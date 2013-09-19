@@ -1,0 +1,1 @@
+venter_dna.py -e "This might have been the contents of the fifth watermark... but in reality it is totally bogus, as they say on Science Talk Quiz === Did you find the decoder at http://www.sgidna.com/translator.php === The geocache is hidden at N38 12.345 W091 54.321 === Good luck! roelsch"
