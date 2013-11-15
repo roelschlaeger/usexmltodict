@@ -6,8 +6,8 @@ var sum;
 
 sum = 0;
 for (var i=2; i<process.argv.length; i++) {
-   item = process.argv[i].valueOf();
-   sum += Number(item);
+// item = process.argv[i].valueOf();
+   sum += Number(process.argv[i]);
 };
 
 console.log(sum);
