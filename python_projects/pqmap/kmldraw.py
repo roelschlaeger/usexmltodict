@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Wed 01 Jan 2014 05:15:26 PM CST
-# Last Modified: Thu 02 Jan 2014 09:57:42 AM CST
+# Last Modified: Thu 02 Jan 2014 02:05:23 PM CST
 
 """
 SYNOPSIS
@@ -83,9 +83,9 @@ for rcolor in range(16):
 
 COLOR_TABLE.sort()
 
-import random
 def colorgen():
 #   while 1:
+#       import random
 #       yield random.choice(COLOR_TABLE)
     while 1:
         for value in COLOR_TABLE:

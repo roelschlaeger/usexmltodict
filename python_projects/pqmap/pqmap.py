@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Wed 01 Jan 2014 03:01:01 PM CST
-# Last Modified: Thu 02 Jan 2014 10:18:09 AM CST
+# Last Modified: Thu 02 Jan 2014 03:17:31 PM CST
 
 """
 SYNOPSIS
@@ -64,12 +64,7 @@ LICENSE
 
     This script is in the public domain.
 
-VERSION
-
-    
 """
-
-BASEDIR = r"C:\Users\Robert Oelschlaeger\AppData\Roaming\gsak\PQDownloads"
 
 import sys
 import os
@@ -81,6 +76,8 @@ from simplekml import Kml
 from quads import get_quad
 from zipfile import ZipFile, is_zipfile
 from kmldraw import kmldraw
+from glob import glob
+from datetime import datetime
 
 #from pexpect import run, spawn
 
@@ -93,72 +90,132 @@ from kmldraw import kmldraw
 #    pass
 #atexit.register(readline.write_history_file, histfile)
 
+########################################################################
+
+BASEDIR = r"C:\Users\Robert Oelschlaeger\AppData\Roaming\gsak\PQDownloads"
+DOCUMENT_NAME = "pqmap.kml"
+__VERSION__ = "0.0.1"
 
 ########################################################################
 
-DOCUMENT_NAME = "pqmap.kml"
+def is_gpxfile(arg):
+    if os.path.isdir(arg):
+        return False
+    if is_zipfile(arg):
+        return False
+    if arg.find(".gpx") == -1:
+        return False
+    return True
+#   return not (os.path.isdir(arg) or is_zipfile(arg))
 
-def main (args, options):
+########################################################################
+
+def do_process(kml, gpx_name, gpx):
+#   z.extract(gpx_name)
+    quad = get_quad(gpx)
+
+    if options.verbose:
+        print "%-60s\t%s" % (gpx_name, quad)
+    else:
+        print ".",
+
+    description = gpx_name
+    kmldraw(kml, description, quad)
+
+########################################################################
+
+def process_zipfile(kml, pathname):
+
+    z = ZipFile(pathname, "r")
 
     count = 0
+    for gpx_name in z.namelist():
+
+        if 'wpts' in gpx_name: 
+            continue
+
+        gpx = z.open(gpx_name, "r")
+        do_process(kml, gpx_name, gpx)
+
+        count += 1
+
+    return count
+
+########################################################################
+
+def process_dir(kml, dirname):
+    """Process 'dirname' which is a directory"""
+
+    assert os.path.isdir(dirname), "%s is not a directory" % dirname
+
+    directory = dirname
+    files = os.listdir(dirname)
+
+    count = 0
+    for filename in files:
+
+        pathname = os.path.join(directory, filename)
+        count += process_arg(kml, pathname)
+
+        if is_zipfile(pathname):
+            count += process_zipfile(kml, pathname)
+
+    return count
+
+########################################################################
+
+def process_arg(kml, arg):
+
+    count = 0
+    if os.path.isdir(arg):
+        count += process_dir(kml, arg)
+    else:
+        count += process_file(kml, arg)
+    return count
+
+########################################################################
+
+def process_file(kml, arg):
+
+    count = 0
+    if is_zipfile(arg):
+        count += process_zipfile(kml, arg)
+    elif is_gpxfile(arg):
+        count += process_gpxfile(kml, arg)
+    return count
+
+########################################################################
+
+def process_gpxfile(kml, gpxfilename):
+
+    gpx = open(gpxfilename, "r")
+    do_process(kml, gpxfilename, gpx)
+    return 1
+
+########################################################################
+
+def main (args, options):
 
     debug = options.debug
 
     kml = Kml()
-    import datetime
-    kml.document.name = "GPX Extent Map created by pqmap.py on %s" % datetime.date.today()
 
+    kml.document.name = "GPX Extent Map created by pqmap.py on %s" % datetime.now()
+
+    count = 0
     for arg in args:
-
-        assert os.path.isdir(arg), "%s is not a directory" % arg
-
-        directory = arg
-        files = os.listdir(arg)
-
-        for zipfilename in files:
-
-            pathname = os.path.join(directory, zipfilename)
-
-            if is_zipfile(pathname):
-
-                z = ZipFile(pathname, "r")
-
-                for gpx_name in z.namelist():
-
-                    if 'wpts' in gpx_name: 
-                        continue
-
-                    gpx = z.open(gpx_name, "r")
-
-                    z.extract(gpx_name)
-                    quad = get_quad(gpx)
-
-                    if options.verbose:
-                        print "%-60s\t%s" % (gpx_name, quad)
-                    else:
-                        print ".",
-
-                    description = gpx_name
-                    kmldraw(kml, description, quad)
-
-                    count += 1
-
-        break
+        for globname in glob(arg):
+            count += process_arg(kml, globname)
 
     kml.save(DOCUMENT_NAME)
+
     if not options.verbose:
         print
+
     print "%d .gpx files processed" % count
     print "Output is in %s" % DOCUMENT_NAME
 
-########################################################################
-
-#   def get_quads(file_object):
-#       lines = file_object.readlines()
-#       print lines[:3]
-#       return (0, 1, 2, 3)
-
-########################################################################
+#######################################################################
 
 if __name__ == '__main__':
 
@@ -167,7 +224,7 @@ if __name__ == '__main__':
         parser = optparse.OptionParser(
                 formatter=optparse.TitledHelpFormatter(),
                 usage=globals()['__doc__'],
-                version='$Id: py.tpl 332 2008-10-21 22:24:52Z root $')
+                version=__VERSION__)
         parser.add_option ('-v', '--verbose', action='store_true',
                 default=False, help='verbose output')
         parser.add_option ('-d', '--debug', action='store_true',
