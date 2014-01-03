@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Wed 01 Jan 2014 04:16:58 PM CST
-# Last Modified: Thu 02 Jan 2014 09:52:29 AM CST
+# Last Modified: Fri 03 Jan 2014 11:35:30 AM CST
 
 """
 SYNOPSIS
@@ -37,14 +37,6 @@ VERSION
     
 """
 
-import sys
-import os
-import traceback
-import optparse
-import time
-
-#from pexpect import run, spawn
-
 # Uncomment the following section if you want readline history support.
 #import readline, atexit
 #histfile = os.path.join(os.environ['HOME'], '.TODO_history')
@@ -55,6 +47,8 @@ import time
 #atexit.register(readline.write_history_file, histfile)
 
 import xml.etree.ElementTree as ET
+
+########################################################################
 
 BASE_TAG = '{http://www.topografix.com/GPX/1/0}'
 
@@ -93,6 +87,14 @@ def get_quad(file_object, debug=False):
 ########################################################################
 
 if __name__ == '__main__':
+
+#   from pexpect import run, spawn
+
+    import sys
+    import os
+    import traceback
+    import optparse
+    import time
 
     def main ():
 

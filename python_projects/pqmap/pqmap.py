@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Wed 01 Jan 2014 03:01:01 PM CST
-# Last Modified: Thu 02 Jan 2014 03:17:31 PM CST
+# Last Modified: Fri 03 Jan 2014 11:34:24 AM CST
 
 """
 SYNOPSIS
@@ -66,18 +66,13 @@ LICENSE
 
 """
 
-import sys
-import os
-import traceback
-import optparse
-import time
-
 from simplekml import Kml
 from quads import get_quad
 from zipfile import ZipFile, is_zipfile
 from kmldraw import kmldraw
 from glob import glob
 from datetime import datetime
+import os
 
 #from pexpect import run, spawn
 
@@ -94,11 +89,15 @@ from datetime import datetime
 
 BASEDIR = r"C:\Users\Robert Oelschlaeger\AppData\Roaming\gsak\PQDownloads"
 DOCUMENT_NAME = "pqmap.kml"
-__VERSION__ = "0.0.1"
+__VERSION__ = "0.0.2"
+DEBUG = False
+VERBOSE = False
 
 ########################################################################
 
 def is_gpxfile(arg):
+    if DEBUG:
+        print "is_gpxfile(%s)" % arg
     if os.path.isdir(arg):
         return False
     if is_zipfile(arg):
@@ -111,10 +110,13 @@ def is_gpxfile(arg):
 ########################################################################
 
 def do_process(kml, gpx_name, gpx):
-#   z.extract(gpx_name)
+
+    if DEBUG:
+        print "do_process(kml, %s, gpx)" % gpx_name
+
     quad = get_quad(gpx)
 
-    if options.verbose:
+    if VERBOSE:
         print "%-60s\t%s" % (gpx_name, quad)
     else:
         print ".",
@@ -125,6 +127,9 @@ def do_process(kml, gpx_name, gpx):
 ########################################################################
 
 def process_zipfile(kml, pathname):
+
+    if DEBUG:
+        print "process_zipfile(kml, %s)" % pathname
 
     z = ZipFile(pathname, "r")
 
@@ -146,6 +151,9 @@ def process_zipfile(kml, pathname):
 def process_dir(kml, dirname):
     """Process 'dirname' which is a directory"""
 
+    if DEBUG:
+        print "process_dir(kml, %s)" % dirname
+
     assert os.path.isdir(dirname), "%s is not a directory" % dirname
 
     directory = dirname
@@ -166,6 +174,9 @@ def process_dir(kml, dirname):
 
 def process_arg(kml, arg):
 
+    if DEBUG:
+        print "process_arg(kml, %s)"% arg
+
     count = 0
     if os.path.isdir(arg):
         count += process_dir(kml, arg)
@@ -176,6 +187,9 @@ def process_arg(kml, arg):
 ########################################################################
 
 def process_file(kml, arg):
+
+    if DEBUG:
+        print "process_file(kml, %s)" % arg
 
     count = 0
     if is_zipfile(arg):
@@ -188,15 +202,22 @@ def process_file(kml, arg):
 
 def process_gpxfile(kml, gpxfilename):
 
+    if DEBUG:
+        print "process_gpxfile(kml, %s)" % gpxfilename
+
     gpx = open(gpxfilename, "r")
     do_process(kml, gpxfilename, gpx)
     return 1
 
 ########################################################################
 
-def main (args, options):
+def main(args, options):
 
-    debug = options.debug
+    global DEBUG
+    DEBUG = options.debug
+
+    global VERBOSE
+    VERBOSE = options.verbose
 
     kml = Kml()
 
@@ -204,6 +225,8 @@ def main (args, options):
 
     count = 0
     for arg in args:
+        if DEBUG or VERBOSE:
+            print "arg: %s" % arg
         for globname in glob(arg):
             count += process_arg(kml, globname)
 
@@ -218,6 +241,12 @@ def main (args, options):
 #######################################################################
 
 if __name__ == '__main__':
+
+    import sys
+#   import os
+    import traceback
+    import optparse
+    import time
 
     try:
         start_time = time.time()

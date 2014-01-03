@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Wed 01 Jan 2014 05:15:26 PM CST
-# Last Modified: Thu 02 Jan 2014 02:05:23 PM CST
+# Last Modified: Fri 03 Jan 2014 12:15:29 PM CST
 
 """
 SYNOPSIS
@@ -62,39 +62,34 @@ def luminance(r, g, b):
 ########################################################################
 
 # set the acceptable luminance values
-MIN_LUMINANCE = 0.8
-MAX_LUMINANCE = 0.9
+MIN_LUMINANCE = 0.5
+MAX_LUMINANCE = 0.95
 
 # define a table of acceptable colors
-COLOR_TABLE = []
+COLOR_TABLE_DICT = {}
 
-for rcolor in range(16):
-    for gcolor in range(16):
-        for bcolor in range(16):
-            if MIN_LUMINANCE <= luminance(rcolor, gcolor, bcolor) <= MAX_LUMINANCE:
-                COLOR_TABLE.append( "80%c%c%c%c%c%c" % tuple(map(lambda x: hex(x)[-1], [
+for rcolor in range(0, 16, 4):
+    for gcolor in range(0, 16, 4):
+        for bcolor in range(0, 16, 4):
+            lum = luminance(rcolor, gcolor, bcolor) 
+            if MIN_LUMINANCE <= lum <= MAX_LUMINANCE:
+                COLOR_TABLE_DICT[lum] = "80%c%c%c%c%c%c" % tuple(map(lambda x: hex(x)[-1], [
                     rcolor, 
                     rcolor, 
                     gcolor, 
                     gcolor, 
                     bcolor,
                     bcolor
-                    ])))
+                    ]))
 
-COLOR_TABLE.sort()
+# COLOR_TABLE = [ COLOR_TABLE_DICT[ key ] for key in sorted(COLOR_TABLE_DICT.keys()) ]
+COLOR_TABLE = [ COLOR_TABLE_DICT[ key ] for key in sorted(COLOR_TABLE_DICT) ]
+del COLOR_TABLE_DICT
 
 def colorgen():
-#   while 1:
-#       import random
-#       yield random.choice(COLOR_TABLE)
     while 1:
         for value in COLOR_TABLE:
             yield value
-
-#   g = colorgen()
-#   for i in range(100):
-#       print g.next()
-#   sys.exit()
 
 ########################################################################
 
@@ -158,9 +153,40 @@ if __name__ == '__main__':
 
     DEFAULT_DOCUMENT_NAME = "kmldraw.kml"
 
+    def add_patch(kml, lat, lon, extent, color):
+        pol = kml.newpolygon()
+        pol.name = color
+        pol.description = color
+        pol.outerboundaryis = [
+                (lon, lat),
+                (lon + extent, lat),
+                (lon + extent, lat + extent),
+                (lon, lat + extent),
+                (lon, lat)
+                ]
+        pol.polystyle = PolyStyle(color = color)
+
+    def create_color_map( color_list ):
+        kml = Kml()
+        lat = 38.000
+        init_lon = lon = -90.000
+        extent = 0.02
+        for index, color in enumerate(color_list):
+            add_patch(kml, lat, lon, extent, color)
+            lon += extent
+            if (index % 10) == 9:
+                lon = init_lon
+                lat -= extent
+        kml.save("color_patches.kml")
+        print "Output in color_patches.kml"
+
     def main ():
 
         global options, args
+
+        if options.list_colors:
+            create_color_map(COLOR_TABLE)
+            sys.exit()
 
         output_filename = options.output
 
@@ -190,6 +216,8 @@ if __name__ == '__main__':
                 version='$Id: py.tpl 332 2008-10-21 22:24:52Z root $')
         parser.add_option ('-v', '--verbose', action='store_true',
                 default=False, help='verbose output')
+        parser.add_option ('-l', '--list', action='store_true',
+                dest="list_colors", default=False, help='list colors and quit')
         parser.add_option ('-o', '--output', action='store',
                 default=DEFAULT_DOCUMENT_NAME, help='set output filename')
         (options, args) = parser.parse_args()
