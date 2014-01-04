@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Wed 01 Jan 2014 03:01:01 PM CST
-# Last Modified: Fri 03 Jan 2014 11:34:24 AM CST
+# Last Modified: Sat 04 Jan 2014 05:46:09 AM CST
 
 """
 SYNOPSIS
@@ -163,10 +163,40 @@ def process_dir(kml, dirname):
     for filename in files:
 
         pathname = os.path.join(directory, filename)
-        count += process_arg(kml, pathname)
 
         if is_zipfile(pathname):
             count += process_zipfile(kml, pathname)
+        else:
+            count += process_arg(kml, pathname)
+
+    return count
+
+########################################################################
+
+def process_gpxfile(kml, gpxfilename):
+
+    if DEBUG:
+        print "process_gpxfile(kml, %s)" % gpxfilename
+
+    gpx = open(gpxfilename, "r")
+    do_process(kml, gpxfilename, gpx)
+    return 1
+
+########################################################################
+
+def process_file(kml, arg):
+
+    if DEBUG:
+        print "process_file(kml, %s)" % arg
+
+    count = 0
+
+    if is_zipfile(arg):
+        count += process_zipfile(kml, arg)
+    elif is_gpxfile(arg):
+        count += process_gpxfile(kml, arg)
+    else:
+        print >>sys.stderr, "Skipping %s in process_file" % arg
 
     return count
 
@@ -183,31 +213,6 @@ def process_arg(kml, arg):
     else:
         count += process_file(kml, arg)
     return count
-
-########################################################################
-
-def process_file(kml, arg):
-
-    if DEBUG:
-        print "process_file(kml, %s)" % arg
-
-    count = 0
-    if is_zipfile(arg):
-        count += process_zipfile(kml, arg)
-    elif is_gpxfile(arg):
-        count += process_gpxfile(kml, arg)
-    return count
-
-########################################################################
-
-def process_gpxfile(kml, gpxfilename):
-
-    if DEBUG:
-        print "process_gpxfile(kml, %s)" % gpxfilename
-
-    gpx = open(gpxfilename, "r")
-    do_process(kml, gpxfilename, gpx)
-    return 1
 
 ########################################################################
 
