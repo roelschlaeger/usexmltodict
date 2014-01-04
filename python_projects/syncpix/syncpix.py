@@ -3,12 +3,12 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Fri 03 Jan 2014 05:21:11 PM CST
+# Last Modified: Fri 03 Jan 2014 06:12:18 PM CST
 
 """
 SYNOPSIS
 
-    TODO syncpix [-h] [-v,--verbose] [--version]
+    syncpix [-h] [-v,--verbose] [--version] [-d, --debug]
 
 DESCRIPTION
 
@@ -72,49 +72,71 @@ ROOTTAG = "{http://www.topografix.com/GPX/1/1}gpx"
 def maketag(gpxtag, gpx, new):
     return gpxtag.replace(gpx, new)
 
-NAMETAG = maketag(ROOTTAG, "gpx", "name")
-TIMETAG = maketag(ROOTTAG, "gpx", "time")
-TRKPTTAG = maketag(ROOTTAG, "gpx", "trkpt")
+DESCTAG   = maketag(ROOTTAG, "gpx", "desc")
+NAMETAG   = maketag(ROOTTAG, "gpx", "name")
+TIMETAG   = maketag(ROOTTAG, "gpx", "time")
+TRKPTTAG  = maketag(ROOTTAG, "gpx", "trkpt")
 TRKSEGTAG = maketag(ROOTTAG, "gpx", "trkseg")
-TRKTAG = maketag(ROOTTAG, "gpx", "trk")
+TRKTAG    = maketag(ROOTTAG, "gpx", "trk")
+WPTTAG    = maketag(ROOTTAG, "gpx", "wpt")
 
-def main ():
+########################################################################
 
-    global options, args
+def get_picture_data(dirname, debug=False):
+    """Return a list of (datetime.datetime, filename) tuple objects"""
 
-    filenames = os.listdir(PIXDIR)
+    filenames = os.listdir(dirname)
+
     picture_times = [ x.split('.')[0] for x in filenames ]
-    picture_datetimes = [ datetime.strptime("20%s" % x, "%m%d%H%M%S") for x in picture_times ]
-    pprint(picture_datetimes)
-    sys.exit(1)
 
-    tree = ET.parse(GPXFILE)
-    tree.write("this.gpx")
+    if debug:
+        pprint(picture_times)
 
+    picture_datetimes = [ (datetime.strptime(x, "%m%d%y%H%M"), x) for x in picture_times ]
+
+    picture_datetimes.sort()
+
+    if debug:
+        pprint(picture_datetimes)
+
+    return picture_datetimes
+
+########################################################################
+
+def get_trackpoint_datetimes(filename, debug=False):
+    """Parse the 'filename' .gpx file for the longest trackpoint list,
+    returning a list of (datetime, lon, lat) tuples in time order"""
+
+    tree = ET.parse(filename)
     root = tree.getroot()
-
     tracks = root.findall(TRKTAG)
-    pprint(tracks)
+    if debug:
+        pprint(tracks)
 
     longest = (0, tracks[0].find(TRKSEGTAG).find(TRKPTTAG))
+
     if len(tracks) > 1:
+
         for track in tracks:
+
             name = track[0].text
             print track, name,
+
             tracksegment = track.find(TRKSEGTAG)
             trkpts = tracksegment.findall(TRKPTTAG)
             print len(trkpts)
+
             if len(trkpts) > longest[0]:
                 longest = (len(trkpts), trkpts)
-            print '########################################################################'
 
-#   pprint( longest )
+            print '########################################################################'
 
     # for now, just take the longest list
     trkpts = longest[1]
 
-    # build a list of (time, lon, lat) tuples
+    # build a list of (time, lon, lat) tuples, should already be in time order
     trackpoints = []
+
     for trkpt in trkpts:
         lat = trkpt.attrib["lat"]
         lon = trkpt.attrib["lon"]
@@ -123,8 +145,45 @@ def main ():
         print lat, lon, time
         trackpoints.append( (time, lon, lat) )
 
-    pprint(trackpoints)
+    if debug:
+        pprint(trackpoints)
+
+    return trackpoints
     
+########################################################################
+
+def get_geocache_locations(filename, debug=False):
+
+    tree = ET.parse(filename)
+    root = tree.getroot()
+    waypoints = root.findall(WPTTAG)
+
+    geocache_locations = []
+    for wpt in waypoints:
+        lat = wpt.attrib["lat"]
+        lon = wpt.attrib["lon"]
+        name = wpt.find(NAMETAG).text
+        # optional element
+        desc = wpt.find(DESCTAG)
+        if desc is not None:
+            desc = desc.text
+
+        geocache_locations.append( (lon, lat, name, desc) )
+        if debug:
+            print (lon, lat, name, desc)
+
+    return geocache_locations
+
+########################################################################
+
+def main ():
+
+    global options, args
+
+    picture_datetimes = get_picture_data(PIXDIR, options.debug)
+    trackpoint_datetimes = get_trackpoint_datetimes(GPXFILE, options.debug)
+    geocache_locations = get_geocache_locations(GPXFILE, options.debug)
+
 if __name__ == '__main__':
 
     try:
@@ -133,6 +192,8 @@ if __name__ == '__main__':
                 formatter=optparse.TitledHelpFormatter(),
                 usage=globals()['__doc__'],
                 version='$Id: py.tpl 332 2008-10-21 22:24:52Z root $')
+        parser.add_option ('-d', '--debug', action='store_true',
+                default=False, help='debug output')
         parser.add_option ('-v', '--verbose', action='store_true',
                 default=False, help='verbose output')
         (options, args) = parser.parse_args()
