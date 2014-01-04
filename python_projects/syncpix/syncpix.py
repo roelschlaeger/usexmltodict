@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Fri 03 Jan 2014 06:12:18 PM CST
+# Last Modified: Fri 03 Jan 2014 10:41:58 PM CST
 
 """
 SYNOPSIS
@@ -55,6 +55,7 @@ import time
 ########################################################################
 
 from pprint import pprint
+from find_nearest_gc import find_nearest_gc
 
 ########################################################################
 
@@ -79,6 +80,16 @@ TRKPTTAG  = maketag(ROOTTAG, "gpx", "trkpt")
 TRKSEGTAG = maketag(ROOTTAG, "gpx", "trkseg")
 TRKTAG    = maketag(ROOTTAG, "gpx", "trk")
 WPTTAG    = maketag(ROOTTAG, "gpx", "wpt")
+
+########################################################################
+
+#   def closest_wpt(lat, lon, waypoints):
+#       from geodesic import Geodesic
+#   
+#       for waypoint in waypoints:
+#           wlat = None
+#           wlon = None
+#           dist = Geodesic.WGS84.Inverse(lat, lon, wlat, wlon)['s12']
 
 ########################################################################
 
@@ -138,11 +149,11 @@ def get_trackpoint_datetimes(filename, debug=False):
     trackpoints = []
 
     for trkpt in trkpts:
-        lat = trkpt.attrib["lat"]
-        lon = trkpt.attrib["lon"]
+        lat = float(trkpt.attrib["lat"])
+        lon = float(trkpt.attrib["lon"])
         rawtime = trkpt.find(TIMETAG).text
         time = datetime.strptime(rawtime, "%Y-%m-%dT%H:%M:%SZ")
-        print lat, lon, time
+#       print lat, lon, time
         trackpoints.append( (time, lon, lat) )
 
     if debug:
@@ -160,8 +171,8 @@ def get_geocache_locations(filename, debug=False):
 
     geocache_locations = []
     for wpt in waypoints:
-        lat = wpt.attrib["lat"]
-        lon = wpt.attrib["lon"]
+        lat = float(wpt.attrib["lat"])
+        lon = float(wpt.attrib["lon"])
         name = wpt.find(NAMETAG).text
         # optional element
         desc = wpt.find(DESCTAG)
@@ -176,6 +187,35 @@ def get_geocache_locations(filename, debug=False):
 
 ########################################################################
 
+def find_trackpoint(time, trackpoint_datetimes):
+    """"Locates time in trackpoint_datetimes, returns (lat, lon) of
+    corresponding location"""
+
+    print "find_trackpoint"
+
+    # time is datetime.datetime
+    # trackpoint_datetimes is list of (datetime, lat, lon)
+
+    for rtime, rlon, rlat in trackpoint_datetimes:
+        if rtime > time:
+            return (rlat, rlon)
+    return trackpoint_datetimes[0][1:2]
+
+########################################################################
+
+def compute_closest_waypoints( picture_datetimes, trackpoint_datetimes, geocache_locations):
+
+    print "compute_closest_waypoints"
+
+    for time, filename in picture_datetimes:
+        print "time: %s filename: %s" % (time, filename)
+        tp = find_trackpoint(time, trackpoint_datetimes)
+        print "tp: (%s, %s)" % tp
+        gc = find_nearest_gc(tp, geocache_locations)
+        break
+
+########################################################################
+
 def main ():
 
     global options, args
@@ -183,6 +223,9 @@ def main ():
     picture_datetimes = get_picture_data(PIXDIR, options.debug)
     trackpoint_datetimes = get_trackpoint_datetimes(GPXFILE, options.debug)
     geocache_locations = get_geocache_locations(GPXFILE, options.debug)
+    compute_closest_waypoints( picture_datetimes, trackpoint_datetimes, geocache_locations)
+
+########################################################################
 
 if __name__ == '__main__':
 
