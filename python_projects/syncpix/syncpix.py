@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Fri 03 Jan 2014 10:41:58 PM CST
+# Last Modified: Sun 05 Jan 2014 05:22:34 PM CST
 
 """
 SYNOPSIS
@@ -59,14 +59,16 @@ from find_nearest_gc import find_nearest_gc
 
 ########################################################################
 
-DATE = "20131217"
+DATE = "20140104"
 PIXDIR = r"C:\Users\Robert Oelschlaeger\Google Drive\Caching Pictures\%s" % DATE
-GPXFILE = r"C:\Users\Robert Oelschlaeger\Dropbox\Geocaching\Explorist Results\explorist_results_%s.gpx" % DATE
+# GPXFILE = r"C:\Users\Robert Oelschlaeger\Dropbox\Geocaching\Explorist Results\explorist_results_%s.gpx" % DATE
+GPXFILE = r"%s\explorist_results_%s.gpx" % (PIXDIR, DATE)
 
 ########################################################################
 
 from xml.etree import ElementTree as ET
 from datetime import datetime
+import dateutil.parser
 
 ROOTTAG = "{http://www.topografix.com/GPX/1/1}gpx"
 
@@ -80,6 +82,8 @@ TRKPTTAG  = maketag(ROOTTAG, "gpx", "trkpt")
 TRKSEGTAG = maketag(ROOTTAG, "gpx", "trkseg")
 TRKTAG    = maketag(ROOTTAG, "gpx", "trk")
 WPTTAG    = maketag(ROOTTAG, "gpx", "wpt")
+
+TIMEZONE = "CST"
 
 ########################################################################
 
@@ -96,19 +100,29 @@ WPTTAG    = maketag(ROOTTAG, "gpx", "wpt")
 def get_picture_data(dirname, debug=False):
     """Return a list of (datetime.datetime, filename) tuple objects"""
 
+    print "Reading pictures from %s" % dirname
+
     filenames = os.listdir(dirname)
 
-    picture_times = [ x.split('.')[0] for x in filenames ]
+    picture_times = [ (x.split('.')[0], x) for x in filenames if x.find('.jpg') != -1 ]
 
     if debug:
-        pprint(picture_times)
+        print "picture_times"
+        pprint(picture_times, width=132)
+        print
 
-    picture_datetimes = [ (datetime.strptime(x, "%m%d%y%H%M"), x) for x in picture_times ]
+    picture_datetimes_nozone = [ (datetime.strptime(x[:10], "%m%d%y%H%M"), xf) for x, xf in picture_times ]
+    picture_datetimes = [ (dateutil.parser.parse( str(x[0]) + TIMEZONE), x[1]) for x in picture_datetimes_nozone ]
 
     picture_datetimes.sort()
 
     if debug:
-        pprint(picture_datetimes)
+        print "picture_datetimes_nozone"
+        pprint(picture_datetimes_nozone, width=132)
+        print
+        print "picture_datetimes"
+        pprint(picture_datetimes, width=132)
+        print
 
     return picture_datetimes
 
@@ -122,9 +136,15 @@ def get_trackpoint_datetimes(filename, debug=False):
     root = tree.getroot()
     tracks = root.findall(TRKTAG)
     if debug:
-        pprint(tracks)
+        print "tracks"
+        pprint(tracks, width=132)
+        print
 
-    longest = (0, tracks[0].find(TRKSEGTAG).find(TRKPTTAG))
+    longest = (0, tracks[0].find(TRKSEGTAG).findall(TRKPTTAG))
+    if debug:
+        print "longest"
+        pprint(longest, width=132)
+        print
 
     if len(tracks) > 1:
 
@@ -144,20 +164,26 @@ def get_trackpoint_datetimes(filename, debug=False):
 
     # for now, just take the longest list
     trkpts = longest[1]
+    if debug:
+        print "trkpts"
+        pprint(trkpts)
+        print
 
     # build a list of (time, lon, lat) tuples, should already be in time order
     trackpoints = []
 
     for trkpt in trkpts:
-        lat = float(trkpt.attrib["lat"])
-        lon = float(trkpt.attrib["lon"])
+        lat = float(trkpt.attrib["lat"] or 0.0)
+        lon = float(trkpt.attrib["lon"] or 0.0)
         rawtime = trkpt.find(TIMETAG).text
-        time = datetime.strptime(rawtime, "%Y-%m-%dT%H:%M:%SZ")
+        time = dateutil.parser.parse(rawtime)
 #       print lat, lon, time
         trackpoints.append( (time, lon, lat) )
 
     if debug:
+        print "trackpoints"
         pprint(trackpoints)
+        print
 
     return trackpoints
     
@@ -183,6 +209,10 @@ def get_geocache_locations(filename, debug=False):
         if debug:
             print (lon, lat, name, desc)
 
+    gfile = open('geocache_locations.tmp', 'w')
+    pprint(geocache_locations, gfile, width=132, indent=4) 
+    gfile.close()
+
     return geocache_locations
 
 ########################################################################
@@ -191,7 +221,7 @@ def find_trackpoint(time, trackpoint_datetimes):
     """"Locates time in trackpoint_datetimes, returns (lat, lon) of
     corresponding location"""
 
-    print "find_trackpoint"
+#   print "find_trackpoint"
 
     # time is datetime.datetime
     # trackpoint_datetimes is list of (datetime, lat, lon)
@@ -207,12 +237,23 @@ def compute_closest_waypoints( picture_datetimes, trackpoint_datetimes, geocache
 
     print "compute_closest_waypoints"
 
+    result = []
     for time, filename in picture_datetimes:
-        print "time: %s filename: %s" % (time, filename)
+
+        # locate a nearby trackpoint
         tp = find_trackpoint(time, trackpoint_datetimes)
-        print "tp: (%s, %s)" % tp
+
+        # find a nearby waypoint
         gc = find_nearest_gc(tp, geocache_locations)
-        break
+
+        result.append( (time, filename, gc, tp))
+        # print the result
+        print "time: %s\tfilename: %s\ttp: (%s, %s)" % (time, filename, gc, tp )
+
+    if 1 or debug:
+        resultfile = open("resultfile.txt", "w")
+        pprint(result, resultfile, width=132)
+        resultfile.close()
 
 ########################################################################
 
@@ -223,7 +264,7 @@ def main ():
     picture_datetimes = get_picture_data(PIXDIR, options.debug)
     trackpoint_datetimes = get_trackpoint_datetimes(GPXFILE, options.debug)
     geocache_locations = get_geocache_locations(GPXFILE, options.debug)
-    compute_closest_waypoints( picture_datetimes, trackpoint_datetimes, geocache_locations)
+    compute_closest_waypoints(picture_datetimes, trackpoint_datetimes, geocache_locations)
 
 ########################################################################
 

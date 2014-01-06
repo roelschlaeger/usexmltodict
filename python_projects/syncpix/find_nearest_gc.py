@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Fri 03 Jan 2014 10:02:22 PM CST
-# Last Modified: Fri 03 Jan 2014 10:44:55 PM CST
+# Last Modified: Sun 05 Jan 2014 12:56:00 PM CST
 
 """
 SYNOPSIS
@@ -53,9 +53,6 @@ def find_nearest_gc(tp, geocache_locations):
     geocache_locations is a list of (lon, lat, name, desc) tuples
     """
 
-#   print "find_nearest_gc"
-
-#   pprint(tp)
     lat, lon = tp
 
     min_d = None
@@ -86,8 +83,7 @@ import time
 #atexit.register(readline.write_history_file, histfile)
 
 from test_geocache_locations import geocache_locations
-from pprint import pprint
-from random import choice
+from pprint import pprint, pformat
 
 def main ():
 
@@ -95,17 +91,18 @@ def main ():
 
     extent = 0.001
 
-    for _ in range(20):
-        gl = choice(geocache_locations)
-        tp = (float(gl[1]) + extent, float(gl[0]) + extent)
-        name = gl[2]
+    import re
+    interesting = [ gl for gl in geocache_locations if gl[2].startswith('GC') and gl[3] and re.match('^1\d\d\d', gl[3]) ]
+    pprint(interesting, width=132)
 
-#       tp = (38.580, -90.4)
-        print "\n", name, str(tp)
+    for gl in interesting:
+
+        tp = (float(gl[1]) + extent, float(gl[0]) + extent)
 
         result = find_nearest_gc(tp,  geocache_locations)
 
-        pprint(result)
+        name = gl[2]
+        print name, str(tp), pformat(result, width=132)
 
 if __name__ == '__main__':
 
