@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Sun 05 Jan 2014 05:22:34 PM CST
+# Last Modified: Mon 06 Jan 2014 11:50:33 AM CST
 
 """
 SYNOPSIS
@@ -31,17 +31,10 @@ LICENSE
     This script is in the public domain.
 
 VERSION
-
     
 """
 
-import sys
-import os
-import traceback
-import optparse
-import time
-
-#from pexpect import run, spawn
+# from pexpect import run, spawn
 
 # Uncomment the following section if you want readline history support.
 #import readline, atexit
@@ -52,28 +45,23 @@ import time
 #    pass
 #atexit.register(readline.write_history_file, histfile)
 
-########################################################################
+#######################################################################
 
-from pprint import pprint
-from find_nearest_gc import find_nearest_gc
-
-########################################################################
-
-DATE = "20140104"
-PIXDIR = r"C:\Users\Robert Oelschlaeger\Google Drive\Caching Pictures\%s" % DATE
-# GPXFILE = r"C:\Users\Robert Oelschlaeger\Dropbox\Geocaching\Explorist Results\explorist_results_%s.gpx" % DATE
-GPXFILE = r"%s\explorist_results_%s.gpx" % (PIXDIR, DATE)
-
-########################################################################
-
-from xml.etree import ElementTree as ET
 from datetime import datetime
+from find_nearest_gc import find_nearest_gc
+from make_html import make_html
+from pprint import pprint
+from xml.etree import ElementTree as ET
 import dateutil.parser
+import os
+import re
 
-ROOTTAG = "{http://www.topografix.com/GPX/1/1}gpx"
+########################################################################
 
 def maketag(gpxtag, gpx, new):
     return gpxtag.replace(gpx, new)
+
+ROOTTAG = "{http://www.topografix.com/GPX/1/1}gpx"
 
 DESCTAG   = maketag(ROOTTAG, "gpx", "desc")
 NAMETAG   = maketag(ROOTTAG, "gpx", "name")
@@ -83,22 +71,10 @@ TRKSEGTAG = maketag(ROOTTAG, "gpx", "trkseg")
 TRKTAG    = maketag(ROOTTAG, "gpx", "trk")
 WPTTAG    = maketag(ROOTTAG, "gpx", "wpt")
 
-TIMEZONE = "CST"
+#######################################################################
 
-########################################################################
-
-#   def closest_wpt(lat, lon, waypoints):
-#       from geodesic import Geodesic
-#   
-#       for waypoint in waypoints:
-#           wlat = None
-#           wlon = None
-#           dist = Geodesic.WGS84.Inverse(lat, lon, wlat, wlon)['s12']
-
-########################################################################
-
-def get_picture_data(dirname, debug=False):
-    """Return a list of (datetime.datetime, filename) tuple objects"""
+def get_picture_data(dirname, timezone, debug=False):
+    """Return a list of (datetime, filename) tuple objects"""
 
     print "Reading pictures from %s" % dirname
 
@@ -112,7 +88,7 @@ def get_picture_data(dirname, debug=False):
         print
 
     picture_datetimes_nozone = [ (datetime.strptime(x[:10], "%m%d%y%H%M"), xf) for x, xf in picture_times ]
-    picture_datetimes = [ (dateutil.parser.parse( str(x[0]) + TIMEZONE), x[1]) for x in picture_datetimes_nozone ]
+    picture_datetimes = [ (dateutil.parser.parse( str(x[0]) + timezone), x[1]) for x in picture_datetimes_nozone ]
 
     picture_datetimes.sort()
 
@@ -205,6 +181,9 @@ def get_geocache_locations(filename, debug=False):
         if desc is not None:
             desc = desc.text
 
+        if re.match('^\d\d\d$', name):
+            continue
+
         geocache_locations.append( (lon, lat, name, desc) )
         if debug:
             print (lon, lat, name, desc)
@@ -221,9 +200,7 @@ def find_trackpoint(time, trackpoint_datetimes):
     """"Locates time in trackpoint_datetimes, returns (lat, lon) of
     corresponding location"""
 
-#   print "find_trackpoint"
-
-    # time is datetime.datetime
+    # time is datetime
     # trackpoint_datetimes is list of (datetime, lat, lon)
 
     for rtime, rlon, rlat in trackpoint_datetimes:
@@ -237,7 +214,7 @@ def compute_closest_waypoints( picture_datetimes, trackpoint_datetimes, geocache
 
     print "compute_closest_waypoints"
 
-    result = []
+    results = []
     for time, filename in picture_datetimes:
 
         # locate a nearby trackpoint
@@ -246,29 +223,63 @@ def compute_closest_waypoints( picture_datetimes, trackpoint_datetimes, geocache
         # find a nearby waypoint
         gc = find_nearest_gc(tp, geocache_locations)
 
-        result.append( (time, filename, gc, tp))
+        results.append( (time, filename, gc, tp))
         # print the result
         print "time: %s\tfilename: %s\ttp: (%s, %s)" % (time, filename, gc, tp )
 
     if 1 or debug:
         resultfile = open("resultfile.txt", "w")
-        pprint(result, resultfile, width=132)
+        pprint(results, resultfile, width=132)
         resultfile.close()
 
-########################################################################
+    return results
 
-def main ():
+#######################################################################
 
-    global options, args
+def syncpix(route_name, pixdir, gpxfile, timezone):
+    """Create an HTML file containing a table of pictures vs. waypoints"""
 
-    picture_datetimes = get_picture_data(PIXDIR, options.debug)
-    trackpoint_datetimes = get_trackpoint_datetimes(GPXFILE, options.debug)
-    geocache_locations = get_geocache_locations(GPXFILE, options.debug)
-    compute_closest_waypoints(picture_datetimes, trackpoint_datetimes, geocache_locations)
+    # collect timestamps for pictures
+    picture_datetimes = get_picture_data(pixdir, timezone, options.debug)
 
-########################################################################
+    # collect timestamps for trackpoints
+    trackpoint_datetimes = get_trackpoint_datetimes(gpxfile, options.debug)
+
+    # locate geocaches
+    geocache_locations = get_geocache_locations(gpxfile, options.debug)
+
+    # compute results
+    results = compute_closest_waypoints(picture_datetimes, trackpoint_datetimes, geocache_locations)
+
+    # create an html file
+    make_html(pixdir, route_name, results)
+
+#######################################################################
 
 if __name__ == '__main__':
+
+    import sys
+    import os
+    import traceback
+    import optparse
+    import time
+
+    DATE = "20140104"
+    PIXDIR = r"C:\Users\Robert Oelschlaeger\Google Drive\Caching Pictures\%s" % DATE
+    ROUTE_NAME = "topo727 - Cape Girardeau MO"
+    # GPXFILE = r"C:\Users\Robert Oelschlaeger\Dropbox\Geocaching\Explorist Results\explorist_results_%s.gpx" % DATE
+    GPXFILE = r"%s\explorist_results_%s.gpx" % (PIXDIR, DATE)
+    TIMEZONE = "CST"
+
+    ########################################################################
+
+    def main ():
+
+        global options, args
+
+        syncpix(ROUTE_NAME, PIXDIR, GPXFILE, TIMEZONE)
+
+   ########################################################################
 
     try:
         start_time = time.time()
