@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Sun 05 Jan 2014 05:22:17 PM CST
-# Last Modified: Mon 06 Jan 2014 11:41:57 AM CST
+# Last Modified: Mon 06 Jan 2014 05:51:52 PM CST
 
 """
 SYNOPSIS
@@ -50,35 +50,37 @@ VERSION
 
 ########################################################################
 
-import markup
+from dominate.tags import *
 import os.path
 
 ########################################################################
 
 def make_html(pixdir, route_name, results):
 
-    table = markup.table(border="1", cellspacing="1", cellpadding="1", summary=route_name)
+    title = "Pictures from %s" % route_name
+    p = html( title=title )
 
-    header_row = markup.th("Name") + markup.th("Description") + markup.th( "Link" )
-    table += markup.tr(header_row)
+    t = table(border="1", cellspacing="1", cellpadding="1", summary=route_name)
+    t += caption(route_name)
+
+    t.add(tr())
+    t.add(th("Name"))
+    t.add(th("Description"))
+    t.add(th( "Link" ))
 
     for time, filename, gc, tp in results:
 
+        pathname = os.path.join(pixdir, filename)
+
         d, gcname, gcdesc = gc
 
-        row = markup.tr()
-        row += markup.td((str(gcname)), align="center")
-        row += markup.td((str(gcdesc)), align="center")
-        row += markup.td(markup.a(filename,href=os.path.join(pixdir, filename)), align="center")
+        t.add(tr())
+        t.add(td((str(gcname)), align="center"))
+        t.add(td((str(gcdesc)), align="center"))
+        t.add(td( a(filename, href=pathname), align="center"))
 
-        table += row
-
-    title = markup.title("Pictures from %s" % route_name)
-    head = markup.head(title)
-    body = markup.body(table)
-    html = markup.html(head + body)
-
-    print html
+    p.add(t)
+    print p
 
 ########################################################################
 
@@ -145,7 +147,9 @@ if __name__ == '__main__':
     import optparse
     import time
 
-    from syncpix import PIXDIR
+    DATE = "20140104"
+    PIXDIR = r"C:\Users\Robert Oelschlaeger\Google Drive\Caching Pictures\%s" % DATE
+#   from syncpix import PIXDIR
     ROUTE_NAME = "topo727 - Cape Girardeau MO"
 
     def main ():
