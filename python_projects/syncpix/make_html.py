@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Sun 05 Jan 2014 05:22:17 PM CST
-# Last Modified: Mon 06 Jan 2014 07:05:24 PM CST
+# Last Modified: Mon 06 Jan 2014 07:22:17 PM CST
 
 """
 SYNOPSIS
@@ -56,29 +56,42 @@ import os.path
 def make_html(pixdir, route_name, results):
 
     title = "Pictures from %s" % route_name
-    p = html( title=title )
-    with p:
 
-        with table(border="1", cellspacing="3", cellpadding="3", summary=route_name, align="center"):
+    document = html( title=title )
+    with document:
+        head()
+        with body(footer=title):
 
-            caption(route_name)
+            with table(
+                    border="1", 
+                    cellspacing="3", 
+                    cellpadding="3", 
+                    summary=route_name, 
+                    align="center"
+                    ):
 
-            tr(th("Name"), th("Description"), th("Imagefile"))
+                caption(route_name)
 
-            for time, filename, gc, tp in results:
+                tr(
+                    th("Name"), 
+                    th("Description"), 
+                    th("Imagefile")
+                    )
 
-                pathname = os.path.join(pixdir, filename)
+                for time, filename, gc, tp in results:
 
-                gcname, gcdesc = map(str, gc[1:])
-                gclink = "http://coord.info/%s" % gcname
+                    pathname = os.path.join(pixdir, filename)
 
-                with tr(align="center"):
+                    gcname, gcdesc = map(str, gc[1:])
+                    gclink = "http://coord.info/%s" % gcname
 
-                    td( a(gcname, href=gclink) )
-                    td( gcdesc )
-                    td( a(filename, href=pathname) )
+                    with tr(align="center"):
 
-    print p
+                        td( a(gcname, href=gclink) )
+                        td( gcdesc )
+                        td( a(filename, href=pathname) )
+
+    print document
 
 ########################################################################
 
