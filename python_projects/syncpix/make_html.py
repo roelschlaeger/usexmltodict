@@ -3,22 +3,20 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Sun 05 Jan 2014 05:22:17 PM CST
-# Last Modified: Mon 06 Jan 2014 05:51:52 PM CST
+# Last Modified: Mon 06 Jan 2014 07:05:24 PM CST
 
 """
 SYNOPSIS
 
-    TODO helloworld [-h] [-v,--verbose] [--version]
+    make_html [-h] [-v,--verbose] [--version]
 
 DESCRIPTION
 
-    TODO This describes how to use this script.
-    This docstring will be printed by the script if there is an error or
-    if the user requests help (-h or --help).
+    Create an HTML file from the results
 
 EXAMPLES
 
-    TODO: Show some examples of how to use this script.
+    python make_html.py > make_html.html
 
 EXIT STATUS
 
@@ -26,7 +24,7 @@ EXIT STATUS
 
 AUTHOR
 
-    TODO: Name <name@example.org>
+    TODO: Robert Oelschlaeger <roelsch2009@gmail.com>
 
 LICENSE
 
@@ -59,27 +57,27 @@ def make_html(pixdir, route_name, results):
 
     title = "Pictures from %s" % route_name
     p = html( title=title )
+    with p:
 
-    t = table(border="1", cellspacing="1", cellpadding="1", summary=route_name)
-    t += caption(route_name)
+        with table(border="1", cellspacing="3", cellpadding="3", summary=route_name, align="center"):
 
-    t.add(tr())
-    t.add(th("Name"))
-    t.add(th("Description"))
-    t.add(th( "Link" ))
+            caption(route_name)
 
-    for time, filename, gc, tp in results:
+            tr(th("Name"), th("Description"), th("Imagefile"))
 
-        pathname = os.path.join(pixdir, filename)
+            for time, filename, gc, tp in results:
 
-        d, gcname, gcdesc = gc
+                pathname = os.path.join(pixdir, filename)
 
-        t.add(tr())
-        t.add(td((str(gcname)), align="center"))
-        t.add(td((str(gcdesc)), align="center"))
-        t.add(td( a(filename, href=pathname), align="center"))
+                gcname, gcdesc = map(str, gc[1:])
+                gclink = "http://coord.info/%s" % gcname
 
-    p.add(t)
+                with tr(align="center"):
+
+                    td( a(gcname, href=gclink) )
+                    td( gcdesc )
+                    td( a(filename, href=pathname) )
+
     print p
 
 ########################################################################
