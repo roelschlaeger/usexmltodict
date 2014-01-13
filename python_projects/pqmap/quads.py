@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Wed 01 Jan 2014 04:16:58 PM CST
-# Last Modified: Fri 03 Jan 2014 11:35:30 AM CST
+# Last Modified: Mon 13 Jan 2014 03:54:11 PM CST
 
 """
 SYNOPSIS
@@ -34,7 +34,7 @@ LICENSE
 
 VERSION
 
-    
+
 """
 
 # Uncomment the following section if you want readline history support.
@@ -52,13 +52,17 @@ import xml.etree.ElementTree as ET
 
 BASE_TAG = '{http://www.topografix.com/GPX/1/0}'
 
+
 def TAG(s):
     return BASE_TAG + s
 
-ROOT_TAG   = TAG('gpx')
+ROOT_TAG = TAG('gpx')
 BOUNDS_TAG = TAG('bounds')
 
 ########################################################################
+
+# from pprint import pprint
+
 
 def get_quad(file_object, debug=False):
 
@@ -70,7 +74,6 @@ def get_quad(file_object, debug=False):
     bounds = root.find(BOUNDS_TAG)
 
     if debug:
-        from pprint import pprint
         print bounds
         print dir(bounds)
         print bounds.items()
@@ -96,7 +99,7 @@ if __name__ == '__main__':
     import optparse
     import time
 
-    def main ():
+    def main():
 
         global options, args
 
@@ -112,29 +115,33 @@ if __name__ == '__main__':
     try:
         start_time = time.time()
         parser = optparse.OptionParser(
-                formatter=optparse.TitledHelpFormatter(),
-                usage=globals()['__doc__'],
-                version='$Id: py.tpl 332 2008-10-21 22:24:52Z root $')
-        parser.add_option ('-v', '--verbose', action='store_true',
-                default=False, help='verbose output')
-        parser.add_option ('-d', '--debug', action='store_true',
-                default=False, help='debug output')
+            formatter=optparse.TitledHelpFormatter(),
+            usage=globals()['__doc__'],
+            version='$Id: py.tpl 332 2008-10-21 22:24:52Z root $')
+        parser.add_option('-v', '--verbose', action='store_true',
+                          default=False, help='verbose output')
+        parser.add_option('-d', '--debug', action='store_true', default=False,
+                          help='debug output')
         (options, args) = parser.parse_args()
 
         if not args:
-            args = [ "1180316_Springfield IL.gpx" ]
+            args = ["1180316_Springfield IL.gpx"]
 
-        if options.verbose: print time.asctime()
+        if options.verbose:
+            print time.asctime()
         exit_code = main()
         if exit_code is None:
             exit_code = 0
-        if options.verbose: print time.asctime()
-        if options.verbose: print 'TOTAL TIME IN MINUTES:',
-        if options.verbose: print (time.time() - start_time) / 60.0
+        if options.verbose:
+            print time.asctime()
+        if options.verbose:
+            print 'TOTAL TIME IN MINUTES:',
+        if options.verbose:
+            print (time.time() - start_time) / 60.0
         sys.exit(exit_code)
-    except KeyboardInterrupt, e: # Ctrl-C
+    except KeyboardInterrupt, e:        # Ctrl-C
         raise e
-    except SystemExit, e: # sys.exit()
+    except SystemExit, e:               # sys.exit()
         raise e
     except Exception, e:
         print 'ERROR, UNEXPECTED EXCEPTION'

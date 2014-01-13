@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Wed 01 Jan 2014 05:15:26 PM CST
-# Last Modified: Fri 03 Jan 2014 12:15:29 PM CST
+# Last Modified: Mon 13 Jan 2014 03:45:42 PM CST
 
 """
 SYNOPSIS
@@ -36,7 +36,7 @@ LICENSE
 VERSION
 
     0.1.1
-    
+
 """
 
 from simplekml import Kml, PolyStyle
@@ -54,10 +54,11 @@ from simplekml import Kml, PolyStyle
 
 ########################################################################
 
+
 def luminance(r, g, b):
     # compute the luminance of an (r,g,b) color, where r, g, and b range from 0
     # to 10
-    return ((0.2126*r) + (0.7152*g) + (0.0722*b))/10.
+    return ((0.2126 * r) + (0.7152 * g) + (0.0722 * b)) / 10.
 
 ########################################################################
 
@@ -71,20 +72,18 @@ COLOR_TABLE_DICT = {}
 for rcolor in range(0, 16, 4):
     for gcolor in range(0, 16, 4):
         for bcolor in range(0, 16, 4):
-            lum = luminance(rcolor, gcolor, bcolor) 
+            lum = luminance(rcolor, gcolor, bcolor)
             if MIN_LUMINANCE <= lum <= MAX_LUMINANCE:
-                COLOR_TABLE_DICT[lum] = "80%c%c%c%c%c%c" % tuple(map(lambda x: hex(x)[-1], [
-                    rcolor, 
-                    rcolor, 
-                    gcolor, 
-                    gcolor, 
-                    bcolor,
-                    bcolor
-                    ]))
+                COLOR_TABLE_DICT[lum] = "80%c%c%c%c%c%c" % tuple(
+                    map(
+                        lambda x: hex(x)[-1], [rcolor, rcolor, gcolor, gcolor,
+                                               bcolor, bcolor]))
 
-# COLOR_TABLE = [ COLOR_TABLE_DICT[ key ] for key in sorted(COLOR_TABLE_DICT.keys()) ]
-COLOR_TABLE = [ COLOR_TABLE_DICT[ key ] for key in sorted(COLOR_TABLE_DICT) ]
+# COLOR_TABLE = [ COLOR_TABLE_DICT[ key ] for key in
+# sorted(COLOR_TABLE_DICT.keys()) ]
+COLOR_TABLE = [COLOR_TABLE_DICT[key] for key in sorted(COLOR_TABLE_DICT)]
 del COLOR_TABLE_DICT
+
 
 def colorgen():
     while 1:
@@ -94,6 +93,7 @@ def colorgen():
 ########################################################################
 
 next_color = colorgen()
+
 
 def kmldraw(kml, description, quad, name=None, color=None):
 
@@ -109,7 +109,7 @@ def kmldraw(kml, description, quad, name=None, color=None):
         (maxlon, maxlat),
         (minlon, maxlat),
         (minlon, minlat)
-        ]
+    ]
     pol.polystyle = PolyStyle(color=color or next_color.next())
 
 ########################################################################
@@ -158,15 +158,15 @@ if __name__ == '__main__':
         pol.name = color
         pol.description = color
         pol.outerboundaryis = [
-                (lon, lat),
-                (lon + extent, lat),
-                (lon + extent, lat + extent),
-                (lon, lat + extent),
-                (lon, lat)
-                ]
-        pol.polystyle = PolyStyle(color = color)
+            (lon, lat),
+            (lon + extent, lat),
+            (lon + extent, lat + extent),
+            (lon, lat + extent),
+            (lon, lat)
+        ]
+        pol.polystyle = PolyStyle(color=color)
 
-    def create_color_map( color_list ):
+    def create_color_map(color_list):
         kml = Kml()
         lat = 38.000
         init_lon = lon = -90.000
@@ -180,7 +180,7 @@ if __name__ == '__main__':
         kml.save("color_patches.kml")
         print "Output in color_patches.kml"
 
-    def main ():
+    def main():
 
         global options, args
 
@@ -198,42 +198,50 @@ if __name__ == '__main__':
             name = text.strip()
 
             import re
-            result = re.match('\((\d+.\d+), (\d+.\d+), (-\d+.\d+), (-\d+.\d+)\)', quad)
-            minlat, maxlat, minlon, maxlon  = map(float, result.groups())
+            result = re.match(
+                '\((\d+.\d+), (\d+.\d+), (-\d+.\d+), (-\d+.\d+)\)',
+                quad
+            )
+            minlat, maxlat, minlon, maxlon = map(float, result.groups())
             quad = (minlat, maxlat, minlon, maxlon)
 
             kmldraw(kml, name, quad)
 
-        kml.save( output_filename )
+        kml.save(output_filename)
         print "Wrote to: %s" % output_filename
-
 
     try:
         start_time = time.time()
         parser = optparse.OptionParser(
-                formatter=optparse.TitledHelpFormatter(),
-                usage=globals()['__doc__'],
-                version='$Id: py.tpl 332 2008-10-21 22:24:52Z root $')
-        parser.add_option ('-v', '--verbose', action='store_true',
-                default=False, help='verbose output')
-        parser.add_option ('-l', '--list', action='store_true',
-                dest="list_colors", default=False, help='list colors and quit')
-        parser.add_option ('-o', '--output', action='store',
-                default=DEFAULT_DOCUMENT_NAME, help='set output filename')
+            formatter=optparse.TitledHelpFormatter(),
+            usage=globals()['__doc__'],
+            version='$Id: py.tpl 332 2008-10-21 22:24:52Z root $')
+        parser.add_option('-v', '--verbose', action='store_true',
+                          default=False, help='verbose output')
+        parser.add_option('-l', '--list', action='store_true',
+                          dest="list_colors", default=False,
+                          help='list colors and quit')
+        parser.add_option('-o', '--output', action='store',
+                          default=DEFAULT_DOCUMENT_NAME,
+                          help='set output filename')
         (options, args) = parser.parse_args()
         #if len(args) < 1:
         #    parser.error ('missing argument')
-        if options.verbose: print time.asctime()
+        if options.verbose:
+            print time.asctime()
         exit_code = main()
         if exit_code is None:
             exit_code = 0
-        if options.verbose: print time.asctime()
-        if options.verbose: print 'TOTAL TIME IN MINUTES:',
-        if options.verbose: print (time.time() - start_time) / 60.0
+        if options.verbose:
+            print time.asctime()
+        if options.verbose:
+            print 'TOTAL TIME IN MINUTES:',
+        if options.verbose:
+            print (time.time() - start_time) / 60.0
         sys.exit(exit_code)
-    except KeyboardInterrupt, e: # Ctrl-C
+    except KeyboardInterrupt, e:        # Ctrl-C
         raise e
-    except SystemExit, e: # sys.exit()
+    except SystemExit, e:               # sys.exit()
         raise e
     except Exception, e:
         print 'ERROR, UNEXPECTED EXCEPTION'
