@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Wed 01 Jan 2014 03:01:01 PM CST
-# Last Modified: Sat 04 Jan 2014 05:46:09 AM CST
+# Last Modified: Mon 13 Jan 2014 10:37:57 AM CST
 
 """
 SYNOPSIS
@@ -87,7 +87,8 @@ import os
 
 ########################################################################
 
-BASEDIR = r"C:\Users\Robert Oelschlaeger\AppData\Roaming\gsak\PQDownloads"
+# BASEDIR = r"C:\Users\Robert Oelschlaeger\AppData\Roaming\gsak\PQDownloads"
+BASEDIR = r"C:\Users\Robert Oelschlaeger\Downloads\PQs"
 DOCUMENT_NAME = "pqmap.kml"
 __VERSION__ = "0.0.2"
 DEBUG = False
