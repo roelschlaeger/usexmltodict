@@ -3,9 +3,9 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Wed 01 Jan 2014 03:01:01 PM CST
-# Last Modified: Mon 13 Jan 2014 03:28:29 PM CST
+# Last Modified: Mon 13 Jan 2014 07:17:34 PM CST
 
-# pylint: disable=E501, E302, E225, E126
+# let g:pymode_lint_igmore = "E501,W"
 
 """
 SYNOPSIS

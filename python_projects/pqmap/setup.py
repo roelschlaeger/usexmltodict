@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Thu 02 Jan 2014 02:04:43 PM CST
-# Last Modified: Thu 02 Jan 2014 03:23:36 PM CST
+# Last Modified: Mon 13 Jan 2014 07:25:25 PM CST
 
 """
 SYNOPSIS
@@ -17,7 +17,7 @@ DESCRIPTION
 
 EXAMPLES
 
-    python setup.py 
+    python setup.py
 
 EXIT STATUS
 
@@ -34,16 +34,18 @@ LICENSE
 """
 
 from distutils.core import setup
-setup(name='pqmap',
-      version='0.0.1',
-      py_modules=[
-          'kmldraw',
-          'quads',
-          ],
-      author="Robert L. Oelschlaeger",
-      author_email="roelsch2009@gmail.com",
-      maintainer="Robert L. Oelschlaeger",
-      maintainer_email="roelsch2009@gmail.com",
-      )
+setup(
+    name='pqmap',
+    version='0.0.2',
+    py_modules=[
+        'kmldraw',
+        'quads',
+        'simplekml',
+    ],
+    author="Robert L. Oelschlaeger",
+    author_email="roelsch2009@gmail.com",
+    maintainer="Robert L. Oelschlaeger",
+    maintainer_email="roelsch2009@gmail.com",
+)
 
 # vim:set sr et ts=4 sw=4 ft=python fenc=utf-8: // See Vim, :help 'modeline'
