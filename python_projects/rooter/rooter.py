@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Tue 14 Jan 2014 01:16:18 PM CST
+# Last Modified: Tue 14 Jan 2014 02:16:29 PM CST
 
 """
 SYNOPSIS
@@ -255,7 +255,13 @@ def create_rooter_html(gpxname):
             gc_text += "%s" % w_type.replace("Geocache|", "")
         if c_container:
             gc_text += ", %s" % c_container
-        gc_text += " (%s, %s)" % (degmin(w_lat, "NS"), degmin(w_lon, "EW"))
+
+        # don't publish coordinates for SKIPped geocaches
+        if (e_user2 is not None and e_user2.startswith("SKIP")):
+            gc_text += " (ignoring published puzzle location)"
+        else:
+            gc_text += " (%s, %s)" % (degmin(w_lat, "NS"), degmin(w_lon, "EW"))
+
         if c_encoded_hints:
             gc_text += br()
 
@@ -374,7 +380,10 @@ if __name__ == '__main__':
         )
         (options, args) = parser.parse_args()
         if len(args) < 1:
-            args = ["default.gpx"]
+#           args = ["default.gpx"]
+            args = [r"C:/Users/Robert Oelschlaeger/Dropbox/Geocaching/"
+                    r"topo731 - Poplar Bluff MO/"
+                    r"topo731b - Poplar Bluff MO.gpx"]
 #           args = [""]
 #           parser.error ('missing argument')
         if options.verbose:
