@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Wed 15 Jan 2014 03:31:11 PM CST
+# Last Modified: Wed 15 Jan 2014 04:06:35 PM CST
 
 """
 SYNOPSIS
@@ -316,7 +316,7 @@ if __name__ == '__main__':
     import traceback
 #   import os
 
-    DATE = "20140111"
+    DATE = "20131217"
     HOME = r"C:\Users\Robert Oelschlaeger"
     PIXDIR = r"%s\Google Drive\Caching Pictures\%s" % (HOME, DATE)
     ROUTE_NAME = "topo730 - Sikeston MO"

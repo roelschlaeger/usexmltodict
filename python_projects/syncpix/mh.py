@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Tue 07 Jan 2014 12:04:26 PM CST
-# Last Modified: Wed 15 Jan 2014 03:33:50 PM CST
+# Last Modified: Wed 15 Jan 2014 04:08:02 PM CST
 
 """
 SYNOPSIS
@@ -111,10 +111,10 @@ def make_html(pixdir, route_name, results, debug=False):
 
                     if rowspan == 1:
                         td(a(gcname_key, href=coord_info_url))
-                        td(description)
+                        td(description or "")
                     elif first:
                         td(a(gcname_key, href=coord_info_url), rowspan=rowspan)
-                        td(description, rowspan=rowspan)
+                        td(description or "", rowspan=rowspan)
                         first = False
 
                     td(a(filename, href=pathname))
