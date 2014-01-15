@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Tue 07 Jan 2014 12:04:26 PM CST
-# Last Modified: Tue 07 Jan 2014 01:45:00 PM CST
+# Last Modified: Wed 15 Jan 2014 03:33:50 PM CST
 
 """
 SYNOPSIS
@@ -32,19 +32,22 @@ LICENSE
 
 VERSION
 
-    
 """
 
 ########################################################################
 
+__VERSION__ = "0.0.1"
+
 import dominate
-from dominate.tags import *
+from dominate.tags import table, caption, tr, th, td, a
 from itertools import groupby
 from pprint import pprint
+import os.path
 
 ########################################################################
 
-def mh(pixdir, route_name, results, debug=False):
+
+def make_html(pixdir, route_name, results, debug=False):
 
     document = dominate.document()
     document.title = "Pictures from %s" % route_name
@@ -52,8 +55,9 @@ def mh(pixdir, route_name, results, debug=False):
     groups = []
     uniquekeys = []
 
-    # return gc
-    def keyfunc(t): return t[2][1]
+    # return gcname from line in results
+    def keyfunc(t):
+        return t[2][1]
 
     # k is gcnumber
     for k, g in groupby(results, keyfunc):
@@ -64,33 +68,34 @@ def mh(pixdir, route_name, results, debug=False):
         pprint(groups, sys.stderr, width=132)
         pprint(uniquekeys, sys.stderr, width=132)
 
-    t = table(
-            border=1, 
-            cellpadding=3, 
-            cellspacing=3,
-            summary=route_name,
-            align="center"
-            )
+    picture_table = table(
+        border=1,
+        cellpadding=3,
+        cellspacing=3,
+        summary=route_name,
+        align="center"
+    )
 
-    with t:
+    with picture_table:
 
         # output the table caption
         caption(route_name)
 
         # output the table header
         tr(
-            th("GC Name"), 
-            th("Geocache Description"), 
+            th("GC Name"),
+            th("Geocache Description"),
             th("Imagefile")
-            )
- 
+        )
+
+        # group output fows by gcname_key
         for gcname_key, g in zip(uniquekeys, groups):
 
             # key gcname_key is gcname
             coord_info_url = "http://coord.info/%s" % gcname_key
 
-            groups.append(list(g))
-            uniquekeys.append(gcname_key)
+#           groups.append(list(g))
+#           uniquekeys.append(gcname_key)
 
             rowspan = len(g)
             first = True
@@ -104,19 +109,21 @@ def mh(pixdir, route_name, results, debug=False):
                     distance, gcnumber, description = gc
                     lat, lon = tp
 
-                    if rowspan==1:
-                        td( a(gcname_key, href=coord_info_url) )
+                    if rowspan == 1:
+                        td(a(gcname_key, href=coord_info_url))
                         td(description)
                     elif first:
-                        td( a(gcname_key, href=coord_info_url), rowspan=rowspan)
+                        td(a(gcname_key, href=coord_info_url), rowspan=rowspan)
                         td(description, rowspan=rowspan)
                         first = False
 
-                    td( a(filename, href=pathname) )
+                    td(a(filename, href=pathname))
 
-    document += t
+    document += picture_table
 
-    print document
+    outfilename = os.path.join(pixdir, "make_html.html")
+    print >> open(outfilename, "w"), document
+    print "Output is in %s" % outfilename
 
 ########################################################################
 
@@ -132,43 +139,57 @@ if __name__ == '__main__':
 
     ########################################################################
 
-    DATE = "20140104"
-    PIXDIR = r"C:\Users\Robert Oelschlaeger\Google Drive\Caching Pictures\%s" % DATE
-#   from syncpix import PIXDIR
-    ROUTE_NAME = "topo727 - Cape Girardeau MO"
+    DATE = "20140111"
+    HOME = r"C:\Users\Robert Oelschlaeger"
+    PIXDIR = r"%s\Google Drive\Caching Pictures\%s" % (HOME, DATE)
+    ROUTE_NAME = "topo730 - Sikeston MO"
 
     ########################################################################
 
-    def main ():
+    def main():
 
         global options, args
 
-        mh(PIXDIR, ROUTE_NAME, results, options.debug)
+        make_html(PIXDIR, ROUTE_NAME, results, options.debug)
+
+    ########################################################################
 
     try:
         start_time = time.time()
         parser = optparse.OptionParser(
-                formatter=optparse.TitledHelpFormatter(),
-                usage=globals()['__doc__'],
-                version='$Id: py.tpl 332 2008-10-21 22:24:52Z root $')
-        parser.add_option ('-v', '--verbose', action='store_true',
-                default=False, help='verbose output')
-        parser.add_option ('-d', '--debug', action='store_true',
-                default=False, help='debug')
+            formatter=optparse.TitledHelpFormatter(),
+            usage=globals()['__doc__'],
+            version=__VERSION__)
+        parser.add_option('-v',
+                          '--verbose',
+                          action='store_true',
+                          default=False,
+                          help='verbose output'
+                          )
+        parser.add_option('-d',
+                          '--debug',
+                          action='store_true',
+                          default=False,
+                          help='debug'
+                          )
         (options, args) = parser.parse_args()
         #if len(args) < 1:
         #    parser.error ('missing argument')
-        if options.verbose: print time.asctime()
+        if options.verbose:
+            print time.asctime()
         exit_code = main()
         if exit_code is None:
             exit_code = 0
-        if options.verbose: print time.asctime()
-        if options.verbose: print 'TOTAL TIME IN MINUTES:',
-        if options.verbose: print (time.time() - start_time) / 60.0
+        if options.verbose:
+            print time.asctime()
+        if options.verbose:
+            print 'TOTAL TIME IN MINUTES:',
+        if options.verbose:
+            print (time.time() - start_time) / 60.0
         sys.exit(exit_code)
-    except KeyboardInterrupt, e: # Ctrl-C
+    except KeyboardInterrupt, e:        # Ctrl-C
         raise e
-    except SystemExit, e: # sys.exit()
+    except SystemExit, e:               # sys.exit()
         raise e
     except Exception, e:
         print 'ERROR, UNEXPECTED EXCEPTION'

@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Fri 03 Jan 2014 10:02:22 PM CST
-# Last Modified: Sun 05 Jan 2014 12:56:00 PM CST
+# Last Modified: Wed 15 Jan 2014 10:41:48 AM CST
 
 """
 SYNOPSIS
@@ -34,26 +34,32 @@ LICENSE
 
 VERSION
 
-    
 """
 
 from geographiclib.geodesic import Geodesic
 
 ########################################################################
 
-def distance(lat1, lon1, lat2, lon2):
+
+def distance(lat1, lon1, lat2, lon2, debug=False):
+
+    if debug:
+        print "distance( %s, %s, %s, %s )" % (lat1, lon1, lat2, lon2)
 
     return Geodesic.WGS84.Inverse(lat1, lon1, lat2, lon2)['s12']
 
 ########################################################################
 
-def find_nearest_gc(tp, geocache_locations):
+
+def find_nearest_gc(tp, geocache_locations, debug=False):
     """
     tp is (lat, lon)
     geocache_locations is a list of (lon, lat, name, desc) tuples
     """
 
     lat, lon = tp
+    if debug:
+        print "find_nearest_gc: lat=%s lon=%s" % (lat, lon)
 
     min_d = None
     for glon, glat, gname, gdesc in geocache_locations:
@@ -82,18 +88,24 @@ import time
 #    pass
 #atexit.register(readline.write_history_file, histfile)
 
+from pprint import pformat
 from test_geocache_locations import geocache_locations
-from pprint import pprint, pformat
+import re
 
-def main ():
+
+def main():
 
     global options, args
 
     extent = 0.001
 
-    import re
-    interesting = [ gl for gl in geocache_locations if gl[2].startswith('GC') and gl[3] and re.match('^1\d\d\d', gl[3]) ]
-    pprint(interesting, width=132)
+    interesting = [
+        gl for gl in geocache_locations
+        if gl[2].startswith('GC')
+        and gl[3]
+        and re.match('^1\d\d\d', gl[3])
+    ]
+#   pprint(interesting, width=132)
 
     for gl in interesting:
 
@@ -109,25 +121,29 @@ if __name__ == '__main__':
     try:
         start_time = time.time()
         parser = optparse.OptionParser(
-                formatter=optparse.TitledHelpFormatter(),
-                usage=globals()['__doc__'],
-                version='$Id: py.tpl 332 2008-10-21 22:24:52Z root $')
-        parser.add_option ('-v', '--verbose', action='store_true',
-                default=False, help='verbose output')
+            formatter=optparse.TitledHelpFormatter(),
+            usage=globals()['__doc__'],
+            version='$Id: py.tpl 332 2008-10-21 22:24:52Z root $')
+        parser.add_option('-v', '--verbose', action='store_true',
+                          default=False, help='verbose output')
         (options, args) = parser.parse_args()
         #if len(args) < 1:
         #    parser.error ('missing argument')
-        if options.verbose: print time.asctime()
+        if options.verbose:
+            print time.asctime()
         exit_code = main()
         if exit_code is None:
             exit_code = 0
-        if options.verbose: print time.asctime()
-        if options.verbose: print 'TOTAL TIME IN MINUTES:',
-        if options.verbose: print (time.time() - start_time) / 60.0
+        if options.verbose:
+            print time.asctime()
+        if options.verbose:
+            print 'TOTAL TIME IN MINUTES:',
+        if options.verbose:
+            print (time.time() - start_time) / 60.0
         sys.exit(exit_code)
-    except KeyboardInterrupt, e: # Ctrl-C
+    except KeyboardInterrupt, e:        # Ctrl-C
         raise e
-    except SystemExit, e: # sys.exit()
+    except SystemExit, e:               # sys.exit()
         raise e
     except Exception, e:
         print 'ERROR, UNEXPECTED EXCEPTION'

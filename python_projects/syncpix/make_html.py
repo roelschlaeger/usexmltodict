@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Sun 05 Jan 2014 05:22:17 PM CST
-# Last Modified: Tue 07 Jan 2014 01:18:19 PM CST
+# Last Modified: Tue 07 Jan 2014 04:12:23 PM CST
 
 """
 SYNOPSIS
@@ -91,7 +91,7 @@ def make_html(pixdir, route_name, results):
                         td( gcdesc )
                         td( a(filename, href=pathname) )
 
-    print document
+    print >>open("make_html.html", "w"), document
 
 ########################################################################
 

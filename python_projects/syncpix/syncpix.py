@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Mon 06 Jan 2014 11:50:33 AM CST
+# Last Modified: Wed 15 Jan 2014 03:31:11 PM CST
 
 """
 SYNOPSIS
@@ -31,7 +31,7 @@ LICENSE
     This script is in the public domain.
 
 VERSION
-    
+
 """
 
 # from pexpect import run, spawn
@@ -47,132 +47,152 @@ VERSION
 
 #######################################################################
 
+# from make_html import make_html
 from datetime import datetime
 from find_nearest_gc import find_nearest_gc
-from make_html import make_html
+from mh import make_html
 from pprint import pprint
 from xml.etree import ElementTree as ET
 import dateutil.parser
 import os
+import pickle
 import re
+import sys
 
 ########################################################################
 
-def maketag(gpxtag, gpx, new):
-    return gpxtag.replace(gpx, new)
-
 ROOTTAG = "{http://www.topografix.com/GPX/1/1}gpx"
 
-DESCTAG   = maketag(ROOTTAG, "gpx", "desc")
-NAMETAG   = maketag(ROOTTAG, "gpx", "name")
-TIMETAG   = maketag(ROOTTAG, "gpx", "time")
-TRKPTTAG  = maketag(ROOTTAG, "gpx", "trkpt")
-TRKSEGTAG = maketag(ROOTTAG, "gpx", "trkseg")
-TRKTAG    = maketag(ROOTTAG, "gpx", "trk")
-WPTTAG    = maketag(ROOTTAG, "gpx", "wpt")
+########################################################################
+
+
+def make_tag_from_root(new):
+    """Create a tag for 'new' based on 'gpx'"""
+    return ROOTTAG.replace("gpx", new)
+
+DESCTAG = make_tag_from_root("desc")
+NAMETAG = make_tag_from_root("name")
+TIMETAG = make_tag_from_root("time")
+TRKPTTAG = make_tag_from_root("trkpt")
+TRKSEGTAG = make_tag_from_root("trkseg")
+TRKTAG = make_tag_from_root("trk")
+WPTTAG = make_tag_from_root("wpt")
+
+GEOCACHE_LOCATIONS_FILENAME = "geocache_locations.tmp"
 
 #######################################################################
 
-def get_picture_data(dirname, timezone, debug=False):
+
+def get_picture_datetimes(dirname, timezone, debug=False):
     """Return a list of (datetime, filename) tuple objects"""
 
-    print "Reading pictures from %s" % dirname
+    print >> sys.stderr, "Reading pictures from %s" % dirname
 
     filenames = os.listdir(dirname)
 
-    picture_times = [ (x.split('.')[0], x) for x in filenames if x.find('.jpg') != -1 ]
+    picture_times = [
+        (x.split('.')[0], x)
+        for x in filenames if x.find('.jpg') != -1
+    ]
 
     if debug:
         print "picture_times"
         pprint(picture_times, width=132)
         print
 
-    picture_datetimes_nozone = [ (datetime.strptime(x[:10], "%m%d%y%H%M"), xf) for x, xf in picture_times ]
-    picture_datetimes = [ (dateutil.parser.parse( str(x[0]) + timezone), x[1]) for x in picture_datetimes_nozone ]
+    # get timestamp without time zone
+    picture_datetimes_nozone = [
+        (datetime.strptime(x[:10], "%m%d%y%H%M"), xf)
+        for x, xf in picture_times
+    ]
 
+    # append timezone
+    picture_datetimes = [
+        (dateutil.parser.parse(str(x[0]) + timezone), x[1])
+        for x in picture_datetimes_nozone
+    ]
+
+    # sort into time order
     picture_datetimes.sort()
 
     if debug:
-        print "picture_datetimes_nozone"
-        pprint(picture_datetimes_nozone, width=132)
-        print
+#       print "picture_datetimes_nozone"
+#       pprint(picture_datetimes_nozone, width=132)
+#       print
+
         print "picture_datetimes"
         pprint(picture_datetimes, width=132)
         print
+
+    pickle.dump(picture_datetimes, open("picture_datetimes.dmp", "w"))
 
     return picture_datetimes
 
 ########################################################################
 
+
+def get_trkpts(filename, debug):
+    """Get the trkpts from 'filename'"""
+
+    print >> sys.stderr, "Reading trkpts from %s" % filename
+
+    tree = ET.parse(filename)
+    root = tree.getroot()
+    trkpts = []
+
+    # look through all tracks
+    for track in root.findall(TRKTAG):
+        for index, track_segment in enumerate(track.findall(TRKSEGTAG)):
+            print "track segment %d" % index
+            trkpts.extend(track_segment.findall(TRKPTTAG))
+
+    # save all trkpts
+    pickle.dump(trkpts, open("trkpts.dmp", "w"))
+
+    return trkpts
+
+########################################################################
+
+
 def get_trackpoint_datetimes(filename, debug=False):
     """Parse the 'filename' .gpx file for the longest trackpoint list,
     returning a list of (datetime, lon, lat) tuples in time order"""
 
-    tree = ET.parse(filename)
-    root = tree.getroot()
-    tracks = root.findall(TRKTAG)
-    if debug:
-        print "tracks"
-        pprint(tracks, width=132)
-        print
+    print >> sys.stderr, "Reading track times from %s" % filename
 
-    longest = (0, tracks[0].find(TRKSEGTAG).findall(TRKPTTAG))
-    if debug:
-        print "longest"
-        pprint(longest, width=132)
-        print
-
-    if len(tracks) > 1:
-
-        for track in tracks:
-
-            name = track[0].text
-            print track, name,
-
-            tracksegment = track.find(TRKSEGTAG)
-            trkpts = tracksegment.findall(TRKPTTAG)
-            print len(trkpts)
-
-            if len(trkpts) > longest[0]:
-                longest = (len(trkpts), trkpts)
-
-            print '########################################################################'
-
-    # for now, just take the longest list
-    trkpts = longest[1]
-    if debug:
-        print "trkpts"
-        pprint(trkpts)
-        print
+    trkpts = get_trkpts(filename, debug)
 
     # build a list of (time, lon, lat) tuples, should already be in time order
     trackpoints = []
 
     for trkpt in trkpts:
+
         lat = float(trkpt.attrib["lat"] or 0.0)
         lon = float(trkpt.attrib["lon"] or 0.0)
         rawtime = trkpt.find(TIMETAG).text
         time = dateutil.parser.parse(rawtime)
-#       print lat, lon, time
-        trackpoints.append( (time, lon, lat) )
+        trackpoints.append((time, lon, lat))
 
-    if debug:
-        print "trackpoints"
-        pprint(trackpoints)
-        print
+    pickle.dump(trackpoints, open("trackpoints.dmp", "w"))
 
     return trackpoints
-    
+
 ########################################################################
 
+
 def get_geocache_locations(filename, debug=False):
+    """Create a list of geocache locations from the 'filename' .gpx file"""
+
+    print >> sys.stderr, "Getting geocache locations from %s" % filename
 
     tree = ET.parse(filename)
     root = tree.getroot()
     waypoints = root.findall(WPTTAG)
 
     geocache_locations = []
+
     for wpt in waypoints:
+
         lat = float(wpt.attrib["lat"])
         lon = float(wpt.attrib["lon"])
         name = wpt.find(NAMETAG).text
@@ -181,20 +201,27 @@ def get_geocache_locations(filename, debug=False):
         if desc is not None:
             desc = desc.text
 
+        # skip \d\d\d waypoints generated by Garmin
         if re.match('^\d\d\d$', name):
+            print "skipping: %s" % name
             continue
 
-        geocache_locations.append( (lon, lat, name, desc) )
+        geocache_locations.append((lon, lat, name, desc))
         if debug:
             print (lon, lat, name, desc)
 
-    gfile = open('geocache_locations.tmp', 'w')
-    pprint(geocache_locations, gfile, width=132, indent=4) 
-    gfile.close()
+    # write the geocache locations file
+#   gfile = open(GEOCACHE_LOCATIONS_FILENAME, 'w')
+#   pprint(geocache_locations, gfile, width=132, indent=4)
+#   print "geocache locations results are in %s" % GEOCACHE_LOCATIONS_FILENAME
+#   gfile.close()
+
+    pickle.dump(geocache_locations, open("geocache_locations.dmp", "w"))
 
     return geocache_locations
 
 ########################################################################
+
 
 def find_trackpoint(time, trackpoint_datetimes):
     """"Locates time in trackpoint_datetimes, returns (lat, lon) of
@@ -203,108 +230,148 @@ def find_trackpoint(time, trackpoint_datetimes):
     # time is datetime
     # trackpoint_datetimes is list of (datetime, lat, lon)
 
+    # NOTE: rlon and rlat are switched
     for rtime, rlon, rlat in trackpoint_datetimes:
         if rtime > time:
             return (rlat, rlon)
-    return trackpoint_datetimes[0][1:2]
+    print "Returning default"
+    return (trackpoint_datetimes[0][2], trackpoint_datetimes[0][1])
 
 ########################################################################
 
-def compute_closest_waypoints( picture_datetimes, trackpoint_datetimes, geocache_locations):
 
-    print "compute_closest_waypoints"
+def compute_closest_waypoints(
+    picture_datetimes,
+    trackpoint_datetimes,
+    geocache_locations,
+    debug=True
+):
 
-    results = []
+    print >> sys.stderr, "compute_closest_waypoints"
+
+    closest_waypoints = []
     for time, filename in picture_datetimes:
 
         # locate a nearby trackpoint
         tp = find_trackpoint(time, trackpoint_datetimes)
 
+        if debug:
+            print "compute_closest_waypoints: time: %s tp: %s" % (
+                time,
+                str(tp)
+            )
+
         # find a nearby waypoint
-        gc = find_nearest_gc(tp, geocache_locations)
+        gc = find_nearest_gc(tp, geocache_locations, debug)
 
-        results.append( (time, filename, gc, tp))
+        closest_waypoints.append((time, filename, gc, tp))
         # print the result
-        print "time: %s\tfilename: %s\ttp: (%s, %s)" % (time, filename, gc, tp )
+        print "time: %s\tfilename: %s\ttp: (%s, %s)" % (time, filename, gc, tp)
 
-    if 1 or debug:
-        resultfile = open("resultfile.txt", "w")
-        pprint(results, resultfile, width=132)
-        resultfile.close()
+    pickle.dump(closest_waypoints, open("closest_waypoints.dmp", "w"))
 
-    return results
+    return closest_waypoints
 
 #######################################################################
 
-def syncpix(route_name, pixdir, gpxfile, timezone):
+
+def syncpix(route_name, pixdir, gpxfile, timezone, debug=False):
     """Create an HTML file containing a table of pictures vs. waypoints"""
 
+    if debug:
+        print(
+            'syncpix('
+            'route_name="%s", '
+            'pixdir="%s", '
+            'gpxfile="%s", '
+            'timezone="%s", '
+            'debug="%s")' % (route_name, pixdir, gpxfile, timezone, debug)
+        )
+
     # collect timestamps for pictures
-    picture_datetimes = get_picture_data(pixdir, timezone, options.debug)
+    picture_datetimes = get_picture_datetimes(pixdir, timezone, debug)
 
     # collect timestamps for trackpoints
-    trackpoint_datetimes = get_trackpoint_datetimes(gpxfile, options.debug)
+    trackpoint_datetimes = get_trackpoint_datetimes(gpxfile, debug)
 
     # locate geocaches
-    geocache_locations = get_geocache_locations(gpxfile, options.debug)
+    geocache_locations = get_geocache_locations(gpxfile, debug)
 
-    # compute results
-    results = compute_closest_waypoints(picture_datetimes, trackpoint_datetimes, geocache_locations)
+    # compute closest_waypoints
+    closest_waypoints = compute_closest_waypoints(
+        picture_datetimes,
+        trackpoint_datetimes,
+        geocache_locations
+    )
 
     # create an html file
-    make_html(pixdir, route_name, results)
+    make_html(pixdir, route_name, closest_waypoints)
 
 #######################################################################
 
 if __name__ == '__main__':
 
-    import sys
-    import os
-    import traceback
     import optparse
     import time
+    import traceback
+#   import os
 
-    DATE = "20140104"
-    PIXDIR = r"C:\Users\Robert Oelschlaeger\Google Drive\Caching Pictures\%s" % DATE
-    ROUTE_NAME = "topo727 - Cape Girardeau MO"
-    # GPXFILE = r"C:\Users\Robert Oelschlaeger\Dropbox\Geocaching\Explorist Results\explorist_results_%s.gpx" % DATE
+    DATE = "20140111"
+    HOME = r"C:\Users\Robert Oelschlaeger"
+    PIXDIR = r"%s\Google Drive\Caching Pictures\%s" % (HOME, DATE)
+    ROUTE_NAME = "topo730 - Sikeston MO"
     GPXFILE = r"%s\explorist_results_%s.gpx" % (PIXDIR, DATE)
     TIMEZONE = "CST"
 
     ########################################################################
 
-    def main ():
+    def main():
 
         global options, args
 
-        syncpix(ROUTE_NAME, PIXDIR, GPXFILE, TIMEZONE)
+        syncpix(ROUTE_NAME, PIXDIR, GPXFILE, TIMEZONE, options.debug)
 
    ########################################################################
 
     try:
         start_time = time.time()
         parser = optparse.OptionParser(
-                formatter=optparse.TitledHelpFormatter(),
-                usage=globals()['__doc__'],
-                version='$Id: py.tpl 332 2008-10-21 22:24:52Z root $')
-        parser.add_option ('-d', '--debug', action='store_true',
-                default=False, help='debug output')
-        parser.add_option ('-v', '--verbose', action='store_true',
-                default=False, help='verbose output')
+            formatter=optparse.TitledHelpFormatter(),
+            usage=globals()['__doc__'],
+            version='$Id: py.tpl 332 2008-10-21 22:24:52Z root $'
+        )
+        parser.add_option(
+            '-d',
+            '--debug',
+            action='store_true',
+            default=False,
+            help='debug output'
+        )
+        parser.add_option(
+            '-v',
+            '--verbose',
+            action='store_true',
+            default=False,
+            help='verbose output'
+        )
         (options, args) = parser.parse_args()
         #if len(args) < 1:
         #    parser.error ('missing argument')
-        if options.verbose: print time.asctime()
+        if options.verbose:
+            print time.asctime()
         exit_code = main()
         if exit_code is None:
             exit_code = 0
-        if options.verbose: print time.asctime()
-        if options.verbose: print 'TOTAL TIME IN MINUTES:',
-        if options.verbose: print (time.time() - start_time) / 60.0
+        if options.verbose:
+            print time.asctime()
+        if options.verbose:
+            print 'TOTAL TIME IN MINUTES:',
+        if options.verbose:
+            print (time.time() - start_time) / 60.0
         sys.exit(exit_code)
-    except KeyboardInterrupt, e: # Ctrl-C
+    except KeyboardInterrupt, e:        # Ctrl-C
         raise e
-    except SystemExit, e: # sys.exit()
+    except SystemExit, e:               # sys.exit()
         raise e
     except Exception, e:
         print 'ERROR, UNEXPECTED EXCEPTION'
