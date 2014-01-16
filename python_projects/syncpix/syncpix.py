@@ -1,9 +1,8 @@
 #!/usr/bin/env python
-# vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99
-# -*- coding: utf-8 -*-
+# vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Wed 15 Jan 2014 04:13:01 PM CST
+# Last Modified: Thu 16 Jan 2014 11:00:55 AM CST
 
 """
 SYNOPSIS
@@ -143,7 +142,6 @@ def get_trkpts(filename, debug):
     # look through all tracks
     for track in root.findall(TRKTAG):
         for index, track_segment in enumerate(track.findall(TRKSEGTAG)):
-            print "track segment %d" % index
             trkpts.extend(track_segment.findall(TRKPTTAG))
 
     # save all trkpts
@@ -155,8 +153,10 @@ def get_trkpts(filename, debug):
 
 
 def get_trackpoint_datetimes(filename, debug=False):
-    """Parse the 'filename' .gpx file for the longest trackpoint list,
-    returning a list of (datetime, lon, lat) tuples in time order"""
+    """
+    Parse the 'filename' .gpx file for the longest trackpoint list, returning a
+    list of (datetime, lon, lat) tuples in time order
+    """
 
     print >> sys.stderr, "Reading track times from %s" % filename
 
@@ -181,7 +181,9 @@ def get_trackpoint_datetimes(filename, debug=False):
 
 
 def get_geocache_locations(filename, debug=False):
-    """Create a list of geocache locations from the 'filename' .gpx file"""
+    """
+    Create a list of geocache locations from the 'filename' .gpx file
+    """
 
     print >> sys.stderr, "Getting geocache locations from %s" % filename
 
@@ -224,8 +226,10 @@ def get_geocache_locations(filename, debug=False):
 
 
 def find_trackpoint(time, trackpoint_datetimes):
-    """"Locates time in trackpoint_datetimes, returns (lat, lon) of
-    corresponding location"""
+    """"
+    Locates time in trackpoint_datetimes, returns (lat, lon) of corresponding
+    location
+    """
 
     # time is datetime
     # trackpoint_datetimes is list of (datetime, lat, lon)
@@ -244,8 +248,13 @@ def compute_closest_waypoints(
     picture_datetimes,
     trackpoint_datetimes,
     geocache_locations,
-    debug=True
+    debug=False
 ):
+    """
+    Compute the closest waypoint for each of the pictures by correlating the
+    filename/timestamp against the trackpoint timestamps and the
+    geocache/waypoint locations
+    """
 
     print >> sys.stderr, "compute_closest_waypoints"
 
@@ -266,7 +275,12 @@ def compute_closest_waypoints(
 
         closest_waypoints.append((time, filename, gc, tp))
         # print the result
-        print "time: %s\tfilename: %s\ttp: (%s, %s)" % (time, filename, gc, tp)
+        # print "time: %s\tfilename: %s\ttp: (%s, %s)" % (
+        #     time,
+        #     filename,
+        #     gc,
+        #     tp
+        # )
 
     pickle.dump(closest_waypoints, open("closest_waypoints.dmp", "w"))
 
