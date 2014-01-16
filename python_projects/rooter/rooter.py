@@ -1,14 +1,19 @@
 #!/usr/bin/env python
-# vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99
 # -*- coding: utf-8 -*-
+# vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Tue 14 Jan 2014 02:16:29 PM CST
+# Last Modified: Thu 16 Jan 2014 10:07:12 AM CST
 
 """
 SYNOPSIS
 
     rooter [-h] [-v,--verbose] [--version] [ gpx_filename ]
+
+    where gpx_filename is
+
+        r"C:/Users/Robert Oelschlaeger/Dropbox/Geocaching/topo731 - Poplar
+        Bluff MO/topo731b - Poplar Bluff MO.gpx"
 
 DESCRIPTION
 
@@ -38,10 +43,10 @@ DEBUG = False
 
 ########################################################################
 
-from dominate.tags import html, head, body, table, tr, th, td, br, em, style, \
+from dominate import document
+from dominate.tags import head, body, table, tr, th, td, br, em, style, \
     a, caption
 from math import trunc
-# from pprint import pprint, pformat
 from xml.etree import ElementTree as ET
 import codecs
 
@@ -49,18 +54,43 @@ import codecs
 
 
 def get_wpts(gpxname):
-    """Return a list of waypoints from 'gpxname' .gpx file"""
+    """
+    Return a list of waypoints from 'gpxname' .gpx file and a dictionary of the
+    waypoint lat/lon locations
+    """
 
     tree = ET.parse(gpxname)
     root = tree.getroot()
     wpts = root.findall(root.tag.replace("gpx", "wpt"))
 
-    return wpts
+    latlon_dictionary = {}
+    for wpt in wpts:
+        lat = wpt.attrib["lat"]
+        lon = wpt.attrib["lon"]
+        name = wpt.find(wpt.tag.replace("wpt", "name")).text
+        latlon_dictionary[name] = (lat, lon)
+
+#   from pprint import pprint
+#   pprint(latlon_dictionary)
+
+#   import sys
+#   sys.exit(0)
+
+    return wpts, latlon_dictionary
 
 ########################################################################
 
 
 def degmin(latlon, posneg=" -"):
+    """
+    Convert a latitude or longitude in 'latlon' to a proper string formatted
+    like N12 34.567 using posneg[0] as the positive value indicator, posneg[1]
+    as the negative value indicator.
+
+    For latitude,  string = degmin(lat, "NS")
+    For longitude, string = degmin(lon, "EW")
+
+    """
 
     v = float(latlon)
 
@@ -82,18 +112,18 @@ def degmin(latlon, posneg=" -"):
         s = posneg[0]
 
     s = s.strip()
-    s += "%d %d.%03d" % (degrees, minutes, thousandths)
+    s += "%d %02d.%03d" % (degrees, minutes, thousandths)
 
     return s
 
 ########################################################################
 
 
-def create_rooter_html(gpxname):
+def create_rooter_document(gpxname):
 
     print "reading %s" % gpxname
 
-    wpts = get_wpts(gpxname)
+    wpts, latlon_dictionary = get_wpts(gpxname)
 
     w0 = wpts[0]
 
@@ -115,21 +145,22 @@ def create_rooter_html(gpxname):
     html_table.add(r_head)
     html_table.add(caption("File: %s" % gpxname))
 
+    # row counter for even/odd formatting
     row_number = 0
 
     for wpt in wpts:
 
         w_lat = wpt.attrib["lat"]
         w_lon = wpt.attrib["lon"]
-        w_time = wpt.find(make_wtag("time")).text
+#       w_time = wpt.find(make_wtag("time")).text
         w_name = wpt.find(make_wtag("name")).text
-        _w_cmt = wpt.find(make_wtag("cmt"))
-        w_cmt = _w_cmt is not None and _w_cmt.text
+#       _w_cmt = wpt.find(make_wtag("cmt"))
+#       w_cmt = _w_cmt is not None and _w_cmt.text
         w_desc = wpt.find(make_wtag("desc")).text
         _w_link = wpt.find(make_wtag("link"))
         w_link_href = _w_link.attrib["href"]
-        w_link_text = _w_link[0].text
-        w_sym = wpt.find(make_wtag("sym")).text
+#       w_link_text = _w_link[0].text
+#       w_sym = wpt.find(make_wtag("sym")).text
         w_type = wpt.find(make_wtag("type")).text
         w_extensions = wpt.find(make_wtag("extensions"))
 
@@ -138,18 +169,17 @@ def create_rooter_html(gpxname):
 
             print w_format % ("lat",        str(w_lat))
             print w_format % ("lon",        str(w_lon))
-            print w_format % ("time",       w_time)
+#           print w_format % ("time",       w_time)
             print w_format % ("name",       w_name)
-            print w_format % ("cmt",        w_cmt)
+#           print w_format % ("cmt",        w_cmt)
             print w_format % ("desc",       w_desc)
             print w_format % ("link_href",  w_link_href)
-            print w_format % ("link_text",  w_link_text)
-            print w_format % ("sym",        w_sym)
+#           print w_format % ("link_text",  w_link_text)
+#           print w_format % ("sym",        w_sym)
             print w_format % ("type",       w_type)
             print w_format % ("extensions", w_extensions)
 
         wptExtension = w_extensions[0]
-
         etag = wptExtension[0].tag
 
         def make_etag(s):
@@ -258,7 +288,16 @@ def create_rooter_html(gpxname):
 
         # don't publish coordinates for SKIPped geocaches
         if (e_user2 is not None and e_user2.startswith("SKIP")):
-            gc_text += " (ignoring published puzzle location)"
+            # try to locate the puzzle FINAl coordinates
+            final_name = w_name.replace("GC", "FL")
+            if final_name in latlon_dictionary:
+                w_lat, w_lon = latlon_dictionary[final_name]
+                gc_text += " FINAL=(%s, %s)" % (
+                    degmin(w_lat, "NS"),
+                    degmin(w_lon, "EW")
+                )
+            else:
+                gc_text += " (ignoring published puzzle location)"
         else:
             gc_text += " (%s, %s)" % (degmin(w_lat, "NS"), degmin(w_lon, "EW"))
 
@@ -271,7 +310,6 @@ def create_rooter_html(gpxname):
                     gc_em.add(br())
                 gc_em.add(hint)
             gc_text.add(gc_em)
-#           gc_text += em("Hint: %s" % c_encoded_hints
 
         row.add(gc_text)
 
@@ -287,7 +325,7 @@ def create_rooter_html(gpxname):
         html_table.add(row)
 
     # create the rest of the HTML output file
-    rooter_html = html(title="Rooter's HTML: %s" % gpxname)
+    rooter_document = document(title="Rooter's HTML: %s" % gpxname)
 
     r_style = style(type="text/css")
 #   r_style.add('\nbody { font-family: "Courier New"; }')
@@ -304,12 +342,12 @@ def create_rooter_html(gpxname):
     r_style.add('\n')
 
     r_head = head()
-    rooter_html.add(r_head)
+    rooter_document.add(r_head)
 
     r_head.add(r_style)
 
     r_body = body()
-    rooter_html.add(r_body)
+    rooter_document.add(r_body)
 
     r_body.add(html_table)
 
@@ -321,8 +359,13 @@ def create_rooter_html(gpxname):
 
     outfilename = os.path.join(outfiledir, "rooter_%s.html" % outfilebase)
 
-    outfile = codecs.open(outfilename, "w", errors="ignore", encoding="utf8")
-    outfile.write(unicode(rooter_html))
+    outfile = codecs.open(
+        outfilename,
+        "w",
+        errors="ignore",
+        encoding="utf-8"
+    )
+    outfile.write(rooter_document.render())
     outfile.close()
 
     print "%s written" % outfilename
@@ -355,7 +398,7 @@ if __name__ == '__main__':
         global DEBUG
         DEBUG = options.debug
 
-        create_rooter_html(args[0])
+        create_rooter_document(args[0])
 
     try:
         start_time = time.time()
