@@ -1,11 +1,8 @@
 #!/usr/bin/env python
-# vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99
-# -*- coding: utf-8 -*-
+# vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Wed 01 Jan 2014 03:01:01 PM CST
-# Last Modified: Mon 13 Jan 2014 07:17:34 PM CST
-
-# let g:pymode_lint_igmore = "E501,W"
+# Last Modified: Thu 16 Jan 2014 10:46:55 AM CST
 
 """
 SYNOPSIS
