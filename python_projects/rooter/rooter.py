@@ -3,7 +3,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Thu 16 Jan 2014 10:07:12 AM CST
+# Last Modified: Thu 16 Jan 2014 08:51:49 PM CST
 
 """
 SYNOPSIS
@@ -218,13 +218,13 @@ def create_rooter_document(gpxname):
 #       e_customdata = get_ext('CustomData')
 
 ####
+        def make_ctag(s):
+            return ctag.replace('name', s)
+
         if len(w_extensions) > 1:
             wptCache = w_extensions[1]
 
             ctag = wptCache[0].tag
-
-            def make_ctag(s):
-                return ctag.replace('name', s)
 
             def get_cext(s):
                 tag = make_ctag(s)
@@ -259,8 +259,11 @@ def create_rooter_document(gpxname):
 #       c_short_description = get_cext("short_description")
 #       c_long_description = get_cext("long_description")
         c_encoded_hints = get_cext("encoded_hints")
-#       c_logs = get_cext("logs")
+        c_logs = wptCache.find(make_ctag("logs"))
 #       c_travelbugs = get_cext("travelbugs")
+
+#       from latest_log import latest_log
+#       log_info = latest_log(c_logs)
 
 ####
         if not w_name.startswith("GC"):
@@ -285,6 +288,9 @@ def create_rooter_document(gpxname):
             gc_text += "%s" % w_type.replace("Geocache|", "")
         if c_container:
             gc_text += ", %s" % c_container
+#       if log_info:
+#           gc_text += br()
+#           gc_text += log_info
 
         # don't publish coordinates for SKIPped geocaches
         if (e_user2 is not None and e_user2.startswith("SKIP")):
@@ -351,13 +357,22 @@ def create_rooter_document(gpxname):
 
     r_body.add(html_table)
 
+    return rooter_document
+
+########################################################################
+
+
+def print_rooter_document(gpxname, rooter_document):
+
+    import os.path
+
     # create the output
     outfiledir, outfilebase = os.path.split(gpxname)
 
     outfilebase = outfilebase.replace(" ", "_")
     outfilebase = outfilebase.replace(".", "_")
 
-    outfilename = os.path.join(outfiledir, "rooter_%s.html" % outfilebase)
+    outfilename = os.path.join(outfiledir, "%s_rooter.html" % outfilebase)
 
     outfile = codecs.open(
         outfilename,
@@ -369,6 +384,14 @@ def create_rooter_document(gpxname):
     outfile.close()
 
     print "%s written" % outfilename
+
+########################################################################
+
+def do_rooter(gpxname):
+    """Create and print a Rooter file from gpxname .gpx file"""
+
+    document = create_rooter_document(gpxname)
+    print_rooter_document(gpxname, document)
 
 ########################################################################
 
@@ -398,7 +421,7 @@ if __name__ == '__main__':
         global DEBUG
         DEBUG = options.debug
 
-        create_rooter_document(args[0])
+        do_rooter(args[0])
 
     try:
         start_time = time.time()
