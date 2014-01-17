@@ -3,7 +3,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Thu 16 Jan 2014 08:51:49 PM CST
+# Last Modified: Fri 17 Jan 2014 11:28:07 AM CST
 
 """
 SYNOPSIS
@@ -115,6 +115,19 @@ def degmin(latlon, posneg=" -"):
     s += "%d %02d.%03d" % (degrees, minutes, thousandths)
 
     return s
+
+########################################################################
+
+
+def ellipsis(s, l):
+    """
+    Return a string of length 'l' at most, appending an ellipsis if necessary
+    to indicate overflow
+    """
+
+    if len(s) < l:
+        return s
+    return s[:l-3] + "..."
 
 ########################################################################
 
@@ -259,11 +272,8 @@ def create_rooter_document(gpxname):
 #       c_short_description = get_cext("short_description")
 #       c_long_description = get_cext("long_description")
         c_encoded_hints = get_cext("encoded_hints")
-        c_logs = wptCache.find(make_ctag("logs"))
+#       c_logs = wptCache.find(make_ctag("logs"))
 #       c_travelbugs = get_cext("travelbugs")
-
-#       from latest_log import latest_log
-#       log_info = latest_log(c_logs)
 
 ####
         if not w_name.startswith("GC"):
@@ -316,6 +326,34 @@ def create_rooter_document(gpxname):
                     gc_em.add(br())
                 gc_em.add(hint)
             gc_text.add(gc_em)
+
+        from latest_log import latest_log
+        # get log information from wpt
+        log_info = latest_log(wpt)
+#       "count": 0,
+#       "most_recent_find_date": "",
+#       "recent_log_types": [],
+#       "most_recent_log": "",
+        if log_info["count"]:
+            gc_text.add(br())
+            gc_text.add("Log count: %d" % log_info["count"])
+            gc_text.add(
+                " '%s'"
+                %
+                ellipsis(
+                    "".join(
+                        x[0] for
+                        x in log_info["recent_log_types"]
+                    ),
+                    40
+                )
+            )
+            gc_text.add(br())
+            gc_text.add(
+                "Most recent log: '%s'"
+                %
+                ellipsis(log_info["most_recent_log"], 40)
+            )
 
         row.add(gc_text)
 
@@ -387,6 +425,7 @@ def print_rooter_document(gpxname, rooter_document):
 
 ########################################################################
 
+
 def do_rooter(gpxname):
     """Create and print a Rooter file from gpxname .gpx file"""
 
@@ -449,7 +488,7 @@ if __name__ == '__main__':
 #           args = ["default.gpx"]
             args = [r"C:/Users/Robert Oelschlaeger/Dropbox/Geocaching/"
                     r"topo731 - Poplar Bluff MO/"
-                    r"topo731b - Poplar Bluff MO.gpx"]
+                    r"topo731c - Poplar Bluff MO.gpx"]
 #           args = [""]
 #           parser.error ('missing argument')
         if options.verbose:
