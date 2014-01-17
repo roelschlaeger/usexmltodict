@@ -3,7 +3,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Fri 17 Jan 2014 11:28:07 AM CST
+# Last Modified: Fri 17 Jan 2014 12:48:14 PM CST
 
 """
 SYNOPSIS
@@ -127,7 +127,7 @@ def ellipsis(s, l):
 
     if len(s) < l:
         return s
-    return s[:l-3] + "..."
+    return s[:l - 3] + "..."
 
 ########################################################################
 
@@ -152,8 +152,8 @@ def create_rooter_document(gpxname):
 
     r_head = tr(align="center")
     r_head.add(th("Geocache", width="50%"))
-    r_head.add(th("Found By", width="10%"))
-    r_head.add(th("Notes", width="40%"))
+    r_head.add(th("Found By", width="3%"))
+    r_head.add(th("Notes", width="47%"))
 
     html_table.add(r_head)
     html_table.add(caption("File: %s" % gpxname))
@@ -379,10 +379,11 @@ def create_rooter_document(gpxname):
     r_style.add('\n    tr { page-break-inside:avoid; page-break-after:auto }')
     r_style.add('\n    tr.alt { background-color: #f0f0f0; }')
     r_style.add('\n    caption { background-color: #c0c040; \
-                                font-size: 16px; \
-                                font-family: "Courier New"; \
-                                }'
+font-size: 16px; \
+font-family: "Courier New"; \
+}'
                 )
+    r_style.add('\n    body { font-size: 10px; }')
     r_style.add('\n')
 
     r_head = head()
