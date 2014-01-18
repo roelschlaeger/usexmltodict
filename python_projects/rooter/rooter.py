@@ -3,7 +3,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Fri 17 Jan 2014 06:49:45 PM CST
+# Last Modified: Fri 17 Jan 2014 10:26:58 PM CST
 
 """
 SYNOPSIS
@@ -59,7 +59,7 @@ def location_link(lat, lon):
     from maplink import maplink
     href = maplink(lat, lon)
     link = "(%s, %s)" % (degmin(lat, "NS"), degmin(lon, "EW"))
-    return a(link, href=href)
+    return a(link, cls="latlon", href=href)
 
 ########################################################################
 
@@ -349,18 +349,18 @@ def create_rooter_document(gpxname):
     rooter_document = document(title="Rooter's HTML: %s" % gpxname)
 
     r_style = style(type="text/css")
-#   r_style.add('\nbody { font-family: "Courier New"; }')
-    r_style.add('\n    table { page-break-inside:auto }')
-    r_style.add('\n    table th tr { border:1px solid green; }')
-    r_style.add('\n    th { background-color: green; color: white; }')
-    r_style.add('\n    tr { page-break-inside:avoid; page-break-after:auto }')
-    r_style.add('\n    tr.alt { background-color: #f0f0f0; }')
-    r_style.add('\n    caption { background-color: #c0c040; \
-font-size: 16px; \
-font-family: "Courier New"; \
-}'
-                )
-    r_style.add('\n    body { font-size: 10px; }')
+    r_style.add('\n        table { page-break-inside:auto }')
+    r_style.add('\n        table th tr { border:1px solid green; }')
+    r_style.add('\n        th { background-color: green; color: white; }')
+    r_style.add('\n        tr { page-break-inside:avoid; page-break-after:auto }')
+    r_style.add('\n        tr.alt { background-color: #f0f0f0; }')
+    r_style.add('\n        caption { background-color: #c0c040; font-size: 16px; font-family: "Courier New"; }')
+    r_style.add('\n        body { font-size: 16px; }')
+    r_style.add('\n        @media print {')
+    r_style.add('\n            body { font-size: 8px; font-family: "Courier New" }')
+    r_style.add('\n            caption { font-size: 10px }')
+    r_style.add('\n            a { text-decoration: none; font-style: italic; font-weight: bold }')
+    r_style.add('\n        }')
     r_style.add('\n')
 
     r_head = head()
