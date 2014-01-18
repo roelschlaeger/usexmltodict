@@ -3,7 +3,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Fri 17 Jan 2014 12:48:14 PM CST
+# Last Modified: Fri 17 Jan 2014 06:14:23 PM CST
 
 """
 SYNOPSIS
@@ -43,10 +43,10 @@ DEBUG = False
 
 ########################################################################
 
+from degmin import degmin
 from dominate import document
 from dominate.tags import head, body, table, tr, th, td, br, em, style, \
     a, caption
-from math import trunc
 from xml.etree import ElementTree as ET
 import codecs
 
@@ -77,44 +77,6 @@ def get_wpts(gpxname):
 #   sys.exit(0)
 
     return wpts, latlon_dictionary
-
-########################################################################
-
-
-def degmin(latlon, posneg=" -"):
-    """
-    Convert a latitude or longitude in 'latlon' to a proper string formatted
-    like N12 34.567 using posneg[0] as the positive value indicator, posneg[1]
-    as the negative value indicator.
-
-    For latitude,  string = degmin(lat, "NS")
-    For longitude, string = degmin(lon, "EW")
-
-    """
-
-    v = float(latlon)
-
-    sign = (v < 0)
-
-    v = abs(v)
-
-    degrees, fraction = trunc(v), v - trunc(v)
-    minutes = fraction * 60.
-    minutes, thousandths = (
-        trunc(minutes),
-        trunc((minutes - trunc(minutes)) * 1000.)
-    )
-
-    # apply sign
-    if sign:
-        s = posneg[1]
-    else:
-        s = posneg[0]
-
-    s = s.strip()
-    s += "%d %02d.%03d" % (degrees, minutes, thousandths)
-
-    return s
 
 ########################################################################
 
