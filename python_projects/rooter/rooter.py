@@ -3,7 +3,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Fri 17 Jan 2014 06:14:23 PM CST
+# Last Modified: Fri 17 Jan 2014 06:49:45 PM CST
 
 """
 SYNOPSIS
@@ -49,6 +49,17 @@ from dominate.tags import head, body, table, tr, th, td, br, em, style, \
     a, caption
 from xml.etree import ElementTree as ET
 import codecs
+
+########################################################################
+
+
+def location_link(lat, lon):
+    """Return an anchor tag for (lat, lon) that links to Google Maps"""
+
+    from maplink import maplink
+    href = maplink(lat, lon)
+    link = "(%s, %s)" % (degmin(lat, "NS"), degmin(lon, "EW"))
+    return a(link, href=href)
 
 ########################################################################
 
@@ -269,15 +280,19 @@ def create_rooter_document(gpxname):
             # try to locate the puzzle FINAl coordinates
             final_name = w_name.replace("GC", "FL")
             if final_name in latlon_dictionary:
-                w_lat, w_lon = latlon_dictionary[final_name]
-                gc_text += " FINAL=(%s, %s)" % (
-                    degmin(w_lat, "NS"),
-                    degmin(w_lon, "EW")
-                )
+                f_lat, f_lon = latlon_dictionary[final_name]
+#               gc_text += " FINAL=(%s, %s)" % (
+#                   degmin(f_lat, "NS"),
+#                   degmin(f_lon, "EW")
+#               )
+                gc_text += " FINAL="
+                gc_text.add(location_link(f_lat, f_lon))
             else:
                 gc_text += " (ignoring published puzzle location)"
         else:
-            gc_text += " (%s, %s)" % (degmin(w_lat, "NS"), degmin(w_lon, "EW"))
+#           gc_text += " (%s, %s)" % (degmin(w_lat, "NS"), degmin(w_lon, "EW"))
+            gc_text += "  "
+            gc_text.add(location_link(w_lat, w_lon))
 
         if c_encoded_hints:
             gc_text += br()
