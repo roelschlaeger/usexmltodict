@@ -3,7 +3,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Fri 17 Jan 2014 10:26:58 PM CST
+# Last Modified: Wed 22 Jan 2014 04:24:39 PM CST
 
 """
 SYNOPSIS
@@ -98,8 +98,13 @@ def ellipsis(s, l):
     to indicate overflow
     """
 
+    # TODO this shouldn't happen?
+    if s is None:
+        return None
+
     if len(s) < l:
         return s
+
     return s[:l - 3] + "..."
 
 ########################################################################
@@ -465,8 +470,8 @@ if __name__ == '__main__':
         if len(args) < 1:
 #           args = ["default.gpx"]
             args = [r"C:/Users/Robert Oelschlaeger/Dropbox/Geocaching/"
-                    r"topo731 - Poplar Bluff MO/"
-                    r"topo731c - Poplar Bluff MO.gpx"]
+                    r"topo710c - Lawrence KS/"
+                    r"topo710c - Lawrence KS.gpx"]
 #           args = [""]
 #           parser.error ('missing argument')
         if options.verbose:
