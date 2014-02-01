@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Fri 03 Jan 2014 10:02:22 PM CST
-# Last Modified: Thu 16 Jan 2014 11:00:06 AM CST
+# Last Modified: Sat 01 Feb 2014 01:16:52 PM CST
 
 """
 SYNOPSIS
@@ -88,10 +88,6 @@ import time
 #    pass
 #atexit.register(readline.write_history_file, histfile)
 
-from pprint import pformat
-from test_geocache_locations import geocache_locations
-import re
-
 ########################################################################
 
 
@@ -101,13 +97,26 @@ def main():
 
     extent = 0.001
 
+    from pickle import Unpickler
+    geocache_locations = Unpickler(open('geocache_locations.dmp')).load()
+
+    import re
     interesting = [
         gl for gl in geocache_locations
         if gl[2].startswith('GC')
         and gl[3]
         and re.match('^1\d\d\d', gl[3])
     ]
-#   pprint(interesting, width=132)
+
+    from pprint import pprint
+    pprint(interesting, width=132)
+
+    test1(interesting, extent, geocache_locations)
+
+########################################################################
+
+
+def test1(interesting, extent, geocache_locations):
 
     for gl in interesting:
 
@@ -116,7 +125,10 @@ def main():
         result = find_nearest_gc(tp,  geocache_locations)
 
         name = gl[2]
+        from pprint import pformat
         print name, str(tp), pformat(result, width=132)
+
+########################################################################
 
 if __name__ == '__main__':
 

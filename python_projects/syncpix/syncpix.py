@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Thu 16 Jan 2014 11:00:55 AM CST
+# Last Modified: Sat 01 Feb 2014 01:18:48 PM CST
 
 """
 SYNOPSIS
@@ -57,8 +57,11 @@ import os
 import pickle
 import re
 import sys
+from compute_closest_waypoints import compute_closest_waypoints
 
 ########################################################################
+
+PICKLE = True
 
 ROOTTAG = "{http://www.topografix.com/GPX/1/1}gpx"
 
@@ -123,7 +126,8 @@ def get_picture_datetimes(dirname, timezone, debug=False):
         pprint(picture_datetimes, width=132)
         print
 
-    pickle.dump(picture_datetimes, open("picture_datetimes.dmp", "w"))
+    if PICKLE:
+        pickle.dump(picture_datetimes, open("picture_datetimes.dmp", "w"))
 
     return picture_datetimes
 
@@ -145,7 +149,8 @@ def get_trkpts(filename, debug):
             trkpts.extend(track_segment.findall(TRKPTTAG))
 
     # save all trkpts
-    pickle.dump(trkpts, open("trkpts.dmp", "w"))
+    if PICKLE:
+        pickle.dump(trkpts, open("trkpts.dmp", "w"))
 
     return trkpts
 
@@ -173,7 +178,8 @@ def get_trackpoint_datetimes(filename, debug=False):
         time = dateutil.parser.parse(rawtime)
         trackpoints.append((time, lon, lat))
 
-    pickle.dump(trackpoints, open("trackpoints.dmp", "w"))
+    if PICKLE:
+        pickle.dump(trackpoints, open("trackpoint_datetimes.dmp", "w"))
 
     return trackpoints
 
@@ -218,73 +224,10 @@ def get_geocache_locations(filename, debug=False):
 #   print "geocache locations results are in %s" % GEOCACHE_LOCATIONS_FILENAME
 #   gfile.close()
 
-    pickle.dump(geocache_locations, open("geocache_locations.dmp", "w"))
+    if PICKLE:
+        pickle.dump(geocache_locations, open("geocache_locations.dmp", "w"))
 
     return geocache_locations
-
-########################################################################
-
-
-def find_trackpoint(time, trackpoint_datetimes):
-    """"
-    Locates time in trackpoint_datetimes, returns (lat, lon) of corresponding
-    location
-    """
-
-    # time is datetime
-    # trackpoint_datetimes is list of (datetime, lat, lon)
-
-    # NOTE: rlon and rlat are switched
-    for rtime, rlon, rlat in trackpoint_datetimes:
-        if rtime > time:
-            return (rlat, rlon)
-    print "Returning default"
-    return (trackpoint_datetimes[0][2], trackpoint_datetimes[0][1])
-
-########################################################################
-
-
-def compute_closest_waypoints(
-    picture_datetimes,
-    trackpoint_datetimes,
-    geocache_locations,
-    debug=False
-):
-    """
-    Compute the closest waypoint for each of the pictures by correlating the
-    filename/timestamp against the trackpoint timestamps and the
-    geocache/waypoint locations
-    """
-
-    print >> sys.stderr, "compute_closest_waypoints"
-
-    closest_waypoints = []
-    for time, filename in picture_datetimes:
-
-        # locate a nearby trackpoint
-        tp = find_trackpoint(time, trackpoint_datetimes)
-
-        if debug:
-            print "compute_closest_waypoints: time: %s tp: %s" % (
-                time,
-                str(tp)
-            )
-
-        # find a nearby waypoint
-        gc = find_nearest_gc(tp, geocache_locations, debug)
-
-        closest_waypoints.append((time, filename, gc, tp))
-        # print the result
-        # print "time: %s\tfilename: %s\ttp: (%s, %s)" % (
-        #     time,
-        #     filename,
-        #     gc,
-        #     tp
-        # )
-
-    pickle.dump(closest_waypoints, open("closest_waypoints.dmp", "w"))
-
-    return closest_waypoints
 
 #######################################################################
 
@@ -330,11 +273,12 @@ if __name__ == '__main__':
     import traceback
 #   import os
 
-    DATE = "20140111"
+    DATE = "20140124"
     HOME = r"C:\Users\Robert Oelschlaeger"
     PIXDIR = r"%s\Google Drive\Caching Pictures\%s" % (HOME, DATE)
-    ROUTE_NAME = "topo730 - Sikeston MO"
     GPXFILE = r"%s\explorist_results_%s.gpx" % (PIXDIR, DATE)
+
+    ROUTE_NAME = "topo710c - Lawrence KS"
     TIMEZONE = "CST"
 
     ########################################################################

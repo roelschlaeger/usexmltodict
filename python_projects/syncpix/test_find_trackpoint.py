@@ -3,18 +3,16 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Mon 13 Jan 2014 03:21:52 PM CST
-# Last Modified: Wed 15 Jan 2014 03:29:53 PM CST
+# Last Modified: Sat 01 Feb 2014 12:41:39 PM CST
 
 """
 SYNOPSIS
 
-    TODO helloworld [-h] [-v,--verbose] [--version]
+    test_find_trackpoint [-h] [-v,--verbose] [--version]
 
 DESCRIPTION
 
-    TODO This describes how to use this script.
-    This docstring will be printed by the script if there is an error or
-    if the user requests help (-h or --help).
+    A test of find_trackpoint using pickled data
 
 EXAMPLES
 
