@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Sat 01 Feb 2014 01:18:48 PM CST
+# Last Modified: Sat 01 Feb 2014 02:58:49 PM CST
 
 """
 SYNOPSIS
@@ -177,6 +177,9 @@ def get_trackpoint_datetimes(filename, debug=False):
         rawtime = trkpt.find(TIMETAG).text
         time = dateutil.parser.parse(rawtime)
         trackpoints.append((time, lon, lat))
+
+    # ensure that the points are in time-sorted order
+    trackpoints.sort()
 
     if PICKLE:
         pickle.dump(trackpoints, open("trackpoint_datetimes.dmp", "w"))

@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Sat 01 Feb 2014 12:57:36 PM CST
-# Last Modified: Sat 01 Feb 2014 01:24:00 PM CST
+# Last Modified: Sat 01 Feb 2014 02:56:25 PM CST
 
 """
 SYNOPSIS
@@ -130,15 +130,21 @@ if __name__ == '__main__':
 
         picture_datetimes = unpickle("picture_datetimes.dmp")
         if debug:
+            print "picture_datetimes"
             pprint(picture_datetimes)
+            print
 
         trackpoint_datetimes = unpickle("trackpoint_datetimes.dmp")
         if debug:
+            print "trackpoint_datetimes"
             pprint(trackpoint_datetimes)
+            print
 
         geocache_locations = unpickle("geocache_locations.dmp")
         if debug:
+            print "geocache_locations"
             pprint(geocache_locations)
+            print
 
         compute_closest_waypoints(
             picture_datetimes,
