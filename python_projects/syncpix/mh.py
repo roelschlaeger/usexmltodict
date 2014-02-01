@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Tue 07 Jan 2014 12:04:26 PM CST
-# Last Modified: Wed 15 Jan 2014 04:08:02 PM CST
+# Last Modified: Sat 01 Feb 2014 03:34:37 PM CST
 
 """
 SYNOPSIS
@@ -139,10 +139,10 @@ if __name__ == '__main__':
 
     ########################################################################
 
-    DATE = "20140111"
+    DATE = "20140124"
     HOME = r"C:\Users\Robert Oelschlaeger"
     PIXDIR = r"%s\Google Drive\Caching Pictures\%s" % (HOME, DATE)
-    ROUTE_NAME = "topo730 - Sikeston MO"
+    ROUTE_NAME = "topoxxx - Lawrence KS"
 
     ########################################################################
 
@@ -150,7 +150,14 @@ if __name__ == '__main__':
 
         global options, args
 
-        make_html(PIXDIR, ROUTE_NAME, results, options.debug)
+        import pickle
+        closest_waypoints = pickle.Unpickler(
+            open("closest_waypoints.dmp")
+        ).load()
+        from pprint import pprint
+        pprint(closest_waypoints)
+
+        make_html(PIXDIR, ROUTE_NAME, closest_waypoints, options.debug)
 
     ########################################################################
 
