@@ -3,17 +3,17 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Wed 22 Jan 2014 04:24:39 PM CST
+# Last Modified: Thu 06 Feb 2014 05:00:07 PM CST
 
 """
 SYNOPSIS
 
     rooter [-h] [-v,--verbose] [--version] [ gpx_filename ]
 
-    where gpx_filename is
+    where gpx_filename defaults to
 
-        r"C:/Users/Robert Oelschlaeger/Dropbox/Geocaching/topo731 - Poplar
-        Bluff MO/topo731b - Poplar Bluff MO.gpx"
+        r"C:/Users/Robert Oelschlaeger/Dropbox/Geocaching/topo710c - Lawrence
+        KS/topo710c - Lawrence KS.gpx"
 
 DESCRIPTION
 
@@ -108,6 +108,22 @@ def ellipsis(s, l):
     return s[:l - 3] + "..."
 
 ########################################################################
+
+
+STYLE = """\
+        table { page-break-inside:auto }
+        table th tr { border:1px solid green; }
+        th { background-color: green; color: white; }
+        tr { page-break-inside:avoid; page-break-after:auto }
+        tr.alt { background-color: #f0f0f0; }
+        caption { background-color: #c0c040; font-size: 16px; font-family: "Courier New"; }
+        body { font-size: 16px; }
+        @media print {
+            body { font-size: 8px; font-family: "Courier New" }
+            caption { font-size: 10px }
+            a { text-decoration: none; font-style: italic; font-weight: bold }
+        }
+"""
 
 
 def create_rooter_document(gpxname):
@@ -354,19 +370,8 @@ def create_rooter_document(gpxname):
     rooter_document = document(title="Rooter's HTML: %s" % gpxname)
 
     r_style = style(type="text/css")
-    r_style.add('\n        table { page-break-inside:auto }')
-    r_style.add('\n        table th tr { border:1px solid green; }')
-    r_style.add('\n        th { background-color: green; color: white; }')
-    r_style.add('\n        tr { page-break-inside:avoid; page-break-after:auto }')
-    r_style.add('\n        tr.alt { background-color: #f0f0f0; }')
-    r_style.add('\n        caption { background-color: #c0c040; font-size: 16px; font-family: "Courier New"; }')
-    r_style.add('\n        body { font-size: 16px; }')
-    r_style.add('\n        @media print {')
-    r_style.add('\n            body { font-size: 8px; font-family: "Courier New" }')
-    r_style.add('\n            caption { font-size: 10px }')
-    r_style.add('\n            a { text-decoration: none; font-style: italic; font-weight: bold }')
-    r_style.add('\n        }')
-    r_style.add('\n')
+    for line in STYLE.split("\n"):
+        r_style.add("\n" + line)
 
     r_head = head()
     rooter_document.add(r_head)
