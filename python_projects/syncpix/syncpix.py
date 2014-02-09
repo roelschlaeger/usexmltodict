@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Sat 01 Feb 2014 04:04:48 PM CST
+# Last Modified: Sun 09 Feb 2014 12:16:35 PM CST
 
 """
 SYNOPSIS
@@ -287,12 +287,12 @@ if __name__ == '__main__':
     import traceback
 #   import os
 
-    DATE = "20140124"
+    DATE = "20140208"
     HOME = r"C:\Users\Robert Oelschlaeger"
     PIXDIR = r"%s\Google Drive\Caching Pictures\%s" % (HOME, DATE)
     GPXFILE = r"%s\explorist_results_%s.gpx" % (PIXDIR, DATE)
 
-    ROUTE_NAME = "topo710c - Lawrence KS"
+    ROUTE_NAME = "topo732b - Chaffee MO"
     TIMEZONE = "CST"
 
     ########################################################################
