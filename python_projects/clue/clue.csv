@@ -1,0 +1,568 @@
+Name	Latitude	Longitude		Person	Weapon	Room
+Gray_Revolver_Lounge	N38 36.762	W92 17.986		Gray	Revolver	Lounge
+Gray_Revolver_Billiard Room	N38 36.762	W92 17.920		Gray	Revolver	Billiard Room
+Gray_Revolver_Dining Room	N38 36.762	W92 17.942		Gray	Revolver	Dining Room
+Gray_Revolver_Ballroom	N38 36.762	W92 17.908		Gray	Revolver	Ballroom
+Gray_Revolver_Conservatory	N38 36.762	W92 17.931		Gray	Revolver	Conservatory
+Gray_Revolver_Study	N38 36.762	W92 17.953		Gray	Revolver	Study
+Gray_Revolver_Hall	N38 36.762	W92 17.997		Gray	Revolver	Hall
+Gray_Revolver_Library	N38 36.762	W92 17.975		Gray	Revolver	Library
+Gray_Revolver_Kitchen	N38 36.762	W92 17.964		Gray	Revolver	Kitchen
+Gray_Candlestick_Lounge	N38 36.762	W92 17.386		Gray	Candlestick	Lounge
+Gray_Candlestick_Billiard Room	N38 36.762	W92 17.320		Gray	Candlestick	Billiard Room
+Gray_Candlestick_Dining Room	N38 36.762	W92 17.342		Gray	Candlestick	Dining Room
+Gray_Candlestick_Ballroom	N38 36.762	W92 17.308		Gray	Candlestick	Ballroom
+Gray_Candlestick_Conservatory	N38 36.762	W92 17.331		Gray	Candlestick	Conservatory
+Gray_Candlestick_Study	N38 36.762	W92 17.353		Gray	Candlestick	Study
+Gray_Candlestick_Hall	N38 36.762	W92 17.397		Gray	Candlestick	Hall
+Gray_Candlestick_Library	N38 36.762	W92 17.375		Gray	Candlestick	Library
+Gray_Candlestick_Kitchen	N38 36.762	W92 17.364		Gray	Candlestick	Kitchen
+Gray_Rope_Lounge	N38 36.762	W92 17.886		Gray	Rope	Lounge
+Gray_Rope_Billiard Room	N38 36.762	W92 17.820		Gray	Rope	Billiard Room
+Gray_Rope_Dining Room	N38 36.762	W92 17.842		Gray	Rope	Dining Room
+Gray_Rope_Ballroom	N38 36.762	W92 17.808		Gray	Rope	Ballroom
+Gray_Rope_Conservatory	N38 36.762	W92 17.831		Gray	Rope	Conservatory
+Gray_Rope_Study	N38 36.762	W92 17.853		Gray	Rope	Study
+Gray_Rope_Hall	N38 36.762	W92 17.897		Gray	Rope	Hall
+Gray_Rope_Library	N38 36.762	W92 17.875		Gray	Rope	Library
+Gray_Rope_Kitchen	N38 36.762	W92 17.864		Gray	Rope	Kitchen
+Gray_Wrench_Lounge	N38 36.762	W92 17.786		Gray	Wrench	Lounge
+Gray_Wrench_Billiard Room	N38 36.762	W92 17.720		Gray	Wrench	Billiard Room
+Gray_Wrench_Dining Room	N38 36.762	W92 17.742		Gray	Wrench	Dining Room
+Gray_Wrench_Ballroom	N38 36.762	W92 17.708		Gray	Wrench	Ballroom
+Gray_Wrench_Conservatory	N38 36.762	W92 17.731		Gray	Wrench	Conservatory
+Gray_Wrench_Study	N38 36.762	W92 17.753		Gray	Wrench	Study
+Gray_Wrench_Hall	N38 36.762	W92 17.797		Gray	Wrench	Hall
+Gray_Wrench_Library	N38 36.762	W92 17.775		Gray	Wrench	Library
+Gray_Wrench_Kitchen	N38 36.762	W92 17.764		Gray	Wrench	Kitchen
+Gray_Lead Pipe_Lounge	N38 36.762	W92 17.586		Gray	Lead Pipe	Lounge
+Gray_Lead Pipe_Billiard Room	N38 36.762	W92 17.520		Gray	Lead Pipe	Billiard Room
+Gray_Lead Pipe_Dining Room	N38 36.762	W92 17.542		Gray	Lead Pipe	Dining Room
+Gray_Lead Pipe_Ballroom	N38 36.762	W92 17.508		Gray	Lead Pipe	Ballroom
+Gray_Lead Pipe_Conservatory	N38 36.762	W92 17.531		Gray	Lead Pipe	Conservatory
+Gray_Lead Pipe_Study	N38 36.762	W92 17.553		Gray	Lead Pipe	Study
+Gray_Lead Pipe_Hall	N38 36.762	W92 17.597		Gray	Lead Pipe	Hall
+Gray_Lead Pipe_Library	N38 36.762	W92 17.575		Gray	Lead Pipe	Library
+Gray_Lead Pipe_Kitchen	N38 36.762	W92 17.564		Gray	Lead Pipe	Kitchen
+Gray_Pills_Lounge	N38 36.762	W92 17.686		Gray	Pills	Lounge
+Gray_Pills_Billiard Room	N38 36.762	W92 17.620		Gray	Pills	Billiard Room
+Gray_Pills_Dining Room	N38 36.762	W92 17.642		Gray	Pills	Dining Room
+Gray_Pills_Ballroom	N38 36.762	W92 17.608		Gray	Pills	Ballroom
+Gray_Pills_Conservatory	N38 36.762	W92 17.631		Gray	Pills	Conservatory
+Gray_Pills_Study	N38 36.762	W92 17.653		Gray	Pills	Study
+Gray_Pills_Hall	N38 36.762	W92 17.697		Gray	Pills	Hall
+Gray_Pills_Library	N38 36.762	W92 17.675		Gray	Pills	Library
+Gray_Pills_Kitchen	N38 36.762	W92 17.664		Gray	Pills	Kitchen
+Gray_Knife_Lounge	N38 36.762	W92 17.486		Gray	Knife	Lounge
+Gray_Knife_Billiard Room	N38 36.762	W92 17.420		Gray	Knife	Billiard Room
+Gray_Knife_Dining Room	N38 36.762	W92 17.442		Gray	Knife	Dining Room
+Gray_Knife_Ballroom	N38 36.762	W92 17.408		Gray	Knife	Ballroom
+Gray_Knife_Conservatory	N38 36.762	W92 17.431		Gray	Knife	Conservatory
+Gray_Knife_Study	N38 36.762	W92 17.453		Gray	Knife	Study
+Gray_Knife_Hall	N38 36.762	W92 17.497		Gray	Knife	Hall
+Gray_Knife_Library	N38 36.762	W92 17.475		Gray	Knife	Library
+Gray_Knife_Kitchen	N38 36.762	W92 17.464		Gray	Knife	Kitchen
+White_Revolver_Lounge	N38 36.666	W92 17.986		White	Revolver	Lounge
+White_Revolver_Billiard Room	N38 36.666	W92 17.920		White	Revolver	Billiard Room
+White_Revolver_Dining Room	N38 36.666	W92 17.942		White	Revolver	Dining Room
+White_Revolver_Ballroom	N38 36.666	W92 17.908		White	Revolver	Ballroom
+White_Revolver_Conservatory	N38 36.666	W92 17.931		White	Revolver	Conservatory
+White_Revolver_Study	N38 36.666	W92 17.953		White	Revolver	Study
+White_Revolver_Hall	N38 36.666	W92 17.997		White	Revolver	Hall
+White_Revolver_Library	N38 36.666	W92 17.975		White	Revolver	Library
+White_Revolver_Kitchen	N38 36.666	W92 17.964		White	Revolver	Kitchen
+White_Candlestick_Lounge	N38 36.666	W92 17.386		White	Candlestick	Lounge
+White_Candlestick_Billiard Room	N38 36.666	W92 17.320		White	Candlestick	Billiard Room
+White_Candlestick_Dining Room	N38 36.666	W92 17.342		White	Candlestick	Dining Room
+White_Candlestick_Ballroom	N38 36.666	W92 17.308		White	Candlestick	Ballroom
+White_Candlestick_Conservatory	N38 36.666	W92 17.331		White	Candlestick	Conservatory
+White_Candlestick_Study	N38 36.666	W92 17.353		White	Candlestick	Study
+White_Candlestick_Hall	N38 36.666	W92 17.397		White	Candlestick	Hall
+White_Candlestick_Library	N38 36.666	W92 17.375		White	Candlestick	Library
+White_Candlestick_Kitchen	N38 36.666	W92 17.364		White	Candlestick	Kitchen
+White_Rope_Lounge	N38 36.666	W92 17.886		White	Rope	Lounge
+White_Rope_Billiard Room	N38 36.666	W92 17.820		White	Rope	Billiard Room
+White_Rope_Dining Room	N38 36.666	W92 17.842		White	Rope	Dining Room
+White_Rope_Ballroom	N38 36.666	W92 17.808		White	Rope	Ballroom
+White_Rope_Conservatory	N38 36.666	W92 17.831		White	Rope	Conservatory
+White_Rope_Study	N38 36.666	W92 17.853		White	Rope	Study
+White_Rope_Hall	N38 36.666	W92 17.897		White	Rope	Hall
+White_Rope_Library	N38 36.666	W92 17.875		White	Rope	Library
+White_Rope_Kitchen	N38 36.666	W92 17.864		White	Rope	Kitchen
+White_Wrench_Lounge	N38 36.666	W92 17.786		White	Wrench	Lounge
+White_Wrench_Billiard Room	N38 36.666	W92 17.720		White	Wrench	Billiard Room
+White_Wrench_Dining Room	N38 36.666	W92 17.742		White	Wrench	Dining Room
+White_Wrench_Ballroom	N38 36.666	W92 17.708		White	Wrench	Ballroom
+White_Wrench_Conservatory	N38 36.666	W92 17.731		White	Wrench	Conservatory
+White_Wrench_Study	N38 36.666	W92 17.753		White	Wrench	Study
+White_Wrench_Hall	N38 36.666	W92 17.797		White	Wrench	Hall
+White_Wrench_Library	N38 36.666	W92 17.775		White	Wrench	Library
+White_Wrench_Kitchen	N38 36.666	W92 17.764		White	Wrench	Kitchen
+White_Lead Pipe_Lounge	N38 36.666	W92 17.586		White	Lead Pipe	Lounge
+White_Lead Pipe_Billiard Room	N38 36.666	W92 17.520		White	Lead Pipe	Billiard Room
+White_Lead Pipe_Dining Room	N38 36.666	W92 17.542		White	Lead Pipe	Dining Room
+White_Lead Pipe_Ballroom	N38 36.666	W92 17.508		White	Lead Pipe	Ballroom
+White_Lead Pipe_Conservatory	N38 36.666	W92 17.531		White	Lead Pipe	Conservatory
+White_Lead Pipe_Study	N38 36.666	W92 17.553		White	Lead Pipe	Study
+White_Lead Pipe_Hall	N38 36.666	W92 17.597		White	Lead Pipe	Hall
+White_Lead Pipe_Library	N38 36.666	W92 17.575		White	Lead Pipe	Library
+White_Lead Pipe_Kitchen	N38 36.666	W92 17.564		White	Lead Pipe	Kitchen
+White_Pills_Lounge	N38 36.666	W92 17.686		White	Pills	Lounge
+White_Pills_Billiard Room	N38 36.666	W92 17.620		White	Pills	Billiard Room
+White_Pills_Dining Room	N38 36.666	W92 17.642		White	Pills	Dining Room
+White_Pills_Ballroom	N38 36.666	W92 17.608		White	Pills	Ballroom
+White_Pills_Conservatory	N38 36.666	W92 17.631		White	Pills	Conservatory
+White_Pills_Study	N38 36.666	W92 17.653		White	Pills	Study
+White_Pills_Hall	N38 36.666	W92 17.697		White	Pills	Hall
+White_Pills_Library	N38 36.666	W92 17.675		White	Pills	Library
+White_Pills_Kitchen	N38 36.666	W92 17.664		White	Pills	Kitchen
+White_Knife_Lounge	N38 36.666	W92 17.486		White	Knife	Lounge
+White_Knife_Billiard Room	N38 36.666	W92 17.420		White	Knife	Billiard Room
+White_Knife_Dining Room	N38 36.666	W92 17.442		White	Knife	Dining Room
+White_Knife_Ballroom	N38 36.666	W92 17.408		White	Knife	Ballroom
+White_Knife_Conservatory	N38 36.666	W92 17.431		White	Knife	Conservatory
+White_Knife_Study	N38 36.666	W92 17.453		White	Knife	Study
+White_Knife_Hall	N38 36.666	W92 17.497		White	Knife	Hall
+White_Knife_Library	N38 36.666	W92 17.475		White	Knife	Library
+White_Knife_Kitchen	N38 36.666	W92 17.464		White	Knife	Kitchen
+Green_Revolver_Lounge	N38 36.036	W92 17.986		Green	Revolver	Lounge
+Green_Revolver_Billiard Room	N38 36.036	W92 17.920		Green	Revolver	Billiard Room
+Green_Revolver_Dining Room	N38 36.036	W92 17.942		Green	Revolver	Dining Room
+Green_Revolver_Ballroom	N38 36.036	W92 17.908		Green	Revolver	Ballroom
+Green_Revolver_Conservatory	N38 36.036	W92 17.931		Green	Revolver	Conservatory
+Green_Revolver_Study	N38 36.036	W92 17.953		Green	Revolver	Study
+Green_Revolver_Hall	N38 36.036	W92 17.997		Green	Revolver	Hall
+Green_Revolver_Library	N38 36.036	W92 17.975		Green	Revolver	Library
+Green_Revolver_Kitchen	N38 36.036	W92 17.964		Green	Revolver	Kitchen
+Green_Candlestick_Lounge	N38 36.036	W92 17.386		Green	Candlestick	Lounge
+Green_Candlestick_Billiard Room	N38 36.036	W92 17.320		Green	Candlestick	Billiard Room
+Green_Candlestick_Dining Room	N38 36.036	W92 17.342		Green	Candlestick	Dining Room
+Green_Candlestick_Ballroom	N38 36.036	W92 17.308		Green	Candlestick	Ballroom
+Green_Candlestick_Conservatory	N38 36.036	W92 17.331		Green	Candlestick	Conservatory
+Green_Candlestick_Study	N38 36.036	W92 17.353		Green	Candlestick	Study
+Green_Candlestick_Hall	N38 36.036	W92 17.397		Green	Candlestick	Hall
+Green_Candlestick_Library	N38 36.036	W92 17.375		Green	Candlestick	Library
+Green_Candlestick_Kitchen	N38 36.036	W92 17.364		Green	Candlestick	Kitchen
+Green_Rope_Lounge	N38 36.036	W92 17.886		Green	Rope	Lounge
+Green_Rope_Billiard Room	N38 36.036	W92 17.820		Green	Rope	Billiard Room
+Green_Rope_Dining Room	N38 36.036	W92 17.842		Green	Rope	Dining Room
+Green_Rope_Ballroom	N38 36.036	W92 17.808		Green	Rope	Ballroom
+Green_Rope_Conservatory	N38 36.036	W92 17.831		Green	Rope	Conservatory
+Green_Rope_Study	N38 36.036	W92 17.853		Green	Rope	Study
+Green_Rope_Hall	N38 36.036	W92 17.897		Green	Rope	Hall
+Green_Rope_Library	N38 36.036	W92 17.875		Green	Rope	Library
+Green_Rope_Kitchen	N38 36.036	W92 17.864		Green	Rope	Kitchen
+Green_Wrench_Lounge	N38 36.036	W92 17.786		Green	Wrench	Lounge
+Green_Wrench_Billiard Room	N38 36.036	W92 17.720		Green	Wrench	Billiard Room
+Green_Wrench_Dining Room	N38 36.036	W92 17.742		Green	Wrench	Dining Room
+Green_Wrench_Ballroom	N38 36.036	W92 17.708		Green	Wrench	Ballroom
+Green_Wrench_Conservatory	N38 36.036	W92 17.731		Green	Wrench	Conservatory
+Green_Wrench_Study	N38 36.036	W92 17.753		Green	Wrench	Study
+Green_Wrench_Hall	N38 36.036	W92 17.797		Green	Wrench	Hall
+Green_Wrench_Library	N38 36.036	W92 17.775		Green	Wrench	Library
+Green_Wrench_Kitchen	N38 36.036	W92 17.764		Green	Wrench	Kitchen
+Green_Lead Pipe_Lounge	N38 36.036	W92 17.586		Green	Lead Pipe	Lounge
+Green_Lead Pipe_Billiard Room	N38 36.036	W92 17.520		Green	Lead Pipe	Billiard Room
+Green_Lead Pipe_Dining Room	N38 36.036	W92 17.542		Green	Lead Pipe	Dining Room
+Green_Lead Pipe_Ballroom	N38 36.036	W92 17.508		Green	Lead Pipe	Ballroom
+Green_Lead Pipe_Conservatory	N38 36.036	W92 17.531		Green	Lead Pipe	Conservatory
+Green_Lead Pipe_Study	N38 36.036	W92 17.553		Green	Lead Pipe	Study
+Green_Lead Pipe_Hall	N38 36.036	W92 17.597		Green	Lead Pipe	Hall
+Green_Lead Pipe_Library	N38 36.036	W92 17.575		Green	Lead Pipe	Library
+Green_Lead Pipe_Kitchen	N38 36.036	W92 17.564		Green	Lead Pipe	Kitchen
+Green_Pills_Lounge	N38 36.036	W92 17.686		Green	Pills	Lounge
+Green_Pills_Billiard Room	N38 36.036	W92 17.620		Green	Pills	Billiard Room
+Green_Pills_Dining Room	N38 36.036	W92 17.642		Green	Pills	Dining Room
+Green_Pills_Ballroom	N38 36.036	W92 17.608		Green	Pills	Ballroom
+Green_Pills_Conservatory	N38 36.036	W92 17.631		Green	Pills	Conservatory
+Green_Pills_Study	N38 36.036	W92 17.653		Green	Pills	Study
+Green_Pills_Hall	N38 36.036	W92 17.697		Green	Pills	Hall
+Green_Pills_Library	N38 36.036	W92 17.675		Green	Pills	Library
+Green_Pills_Kitchen	N38 36.036	W92 17.664		Green	Pills	Kitchen
+Green_Knife_Lounge	N38 36.036	W92 17.486		Green	Knife	Lounge
+Green_Knife_Billiard Room	N38 36.036	W92 17.420		Green	Knife	Billiard Room
+Green_Knife_Dining Room	N38 36.036	W92 17.442		Green	Knife	Dining Room
+Green_Knife_Ballroom	N38 36.036	W92 17.408		Green	Knife	Ballroom
+Green_Knife_Conservatory	N38 36.036	W92 17.431		Green	Knife	Conservatory
+Green_Knife_Study	N38 36.036	W92 17.453		Green	Knife	Study
+Green_Knife_Hall	N38 36.036	W92 17.497		Green	Knife	Hall
+Green_Knife_Library	N38 36.036	W92 17.475		Green	Knife	Library
+Green_Knife_Kitchen	N38 36.036	W92 17.464		Green	Knife	Kitchen
+Mustard_Revolver_Lounge	N38 36.123	W92 17.986		Mustard	Revolver	Lounge
+Mustard_Revolver_Billiard Room	N38 36.123	W92 17.920		Mustard	Revolver	Billiard Room
+Mustard_Revolver_Dining Room	N38 36.123	W92 17.942		Mustard	Revolver	Dining Room
+Mustard_Revolver_Ballroom	N38 36.123	W92 17.908		Mustard	Revolver	Ballroom
+Mustard_Revolver_Conservatory	N38 36.123	W92 17.931		Mustard	Revolver	Conservatory
+Mustard_Revolver_Study	N38 36.123	W92 17.953		Mustard	Revolver	Study
+Mustard_Revolver_Hall	N38 36.123	W92 17.997		Mustard	Revolver	Hall
+Mustard_Revolver_Library	N38 36.123	W92 17.975		Mustard	Revolver	Library
+Mustard_Revolver_Kitchen	N38 36.123	W92 17.964		Mustard	Revolver	Kitchen
+Mustard_Candlestick_Lounge	N38 36.123	W92 17.386		Mustard	Candlestick	Lounge
+Mustard_Candlestick_Billiard Room	N38 36.123	W92 17.320		Mustard	Candlestick	Billiard Room
+Mustard_Candlestick_Dining Room	N38 36.123	W92 17.342		Mustard	Candlestick	Dining Room
+Mustard_Candlestick_Ballroom	N38 36.123	W92 17.308		Mustard	Candlestick	Ballroom
+Mustard_Candlestick_Conservatory	N38 36.123	W92 17.331		Mustard	Candlestick	Conservatory
+Mustard_Candlestick_Study	N38 36.123	W92 17.353		Mustard	Candlestick	Study
+Mustard_Candlestick_Hall	N38 36.123	W92 17.397		Mustard	Candlestick	Hall
+Mustard_Candlestick_Library	N38 36.123	W92 17.375		Mustard	Candlestick	Library
+Mustard_Candlestick_Kitchen	N38 36.123	W92 17.364		Mustard	Candlestick	Kitchen
+Mustard_Rope_Lounge	N38 36.123	W92 17.886		Mustard	Rope	Lounge
+Mustard_Rope_Billiard Room	N38 36.123	W92 17.820		Mustard	Rope	Billiard Room
+Mustard_Rope_Dining Room	N38 36.123	W92 17.842		Mustard	Rope	Dining Room
+Mustard_Rope_Ballroom	N38 36.123	W92 17.808		Mustard	Rope	Ballroom
+Mustard_Rope_Conservatory	N38 36.123	W92 17.831		Mustard	Rope	Conservatory
+Mustard_Rope_Study	N38 36.123	W92 17.853		Mustard	Rope	Study
+Mustard_Rope_Hall	N38 36.123	W92 17.897		Mustard	Rope	Hall
+Mustard_Rope_Library	N38 36.123	W92 17.875		Mustard	Rope	Library
+Mustard_Rope_Kitchen	N38 36.123	W92 17.864		Mustard	Rope	Kitchen
+Mustard_Wrench_Lounge	N38 36.123	W92 17.786		Mustard	Wrench	Lounge
+Mustard_Wrench_Billiard Room	N38 36.123	W92 17.720		Mustard	Wrench	Billiard Room
+Mustard_Wrench_Dining Room	N38 36.123	W92 17.742		Mustard	Wrench	Dining Room
+Mustard_Wrench_Ballroom	N38 36.123	W92 17.708		Mustard	Wrench	Ballroom
+Mustard_Wrench_Conservatory	N38 36.123	W92 17.731		Mustard	Wrench	Conservatory
+Mustard_Wrench_Study	N38 36.123	W92 17.753		Mustard	Wrench	Study
+Mustard_Wrench_Hall	N38 36.123	W92 17.797		Mustard	Wrench	Hall
+Mustard_Wrench_Library	N38 36.123	W92 17.775		Mustard	Wrench	Library
+Mustard_Wrench_Kitchen	N38 36.123	W92 17.764		Mustard	Wrench	Kitchen
+Mustard_Lead Pipe_Lounge	N38 36.123	W92 17.586		Mustard	Lead Pipe	Lounge
+Mustard_Lead Pipe_Billiard Room	N38 36.123	W92 17.520		Mustard	Lead Pipe	Billiard Room
+Mustard_Lead Pipe_Dining Room	N38 36.123	W92 17.542		Mustard	Lead Pipe	Dining Room
+Mustard_Lead Pipe_Ballroom	N38 36.123	W92 17.508		Mustard	Lead Pipe	Ballroom
+Mustard_Lead Pipe_Conservatory	N38 36.123	W92 17.531		Mustard	Lead Pipe	Conservatory
+Mustard_Lead Pipe_Study	N38 36.123	W92 17.553		Mustard	Lead Pipe	Study
+Mustard_Lead Pipe_Hall	N38 36.123	W92 17.597		Mustard	Lead Pipe	Hall
+Mustard_Lead Pipe_Library	N38 36.123	W92 17.575		Mustard	Lead Pipe	Library
+Mustard_Lead Pipe_Kitchen	N38 36.123	W92 17.564		Mustard	Lead Pipe	Kitchen
+Mustard_Pills_Lounge	N38 36.123	W92 17.686		Mustard	Pills	Lounge
+Mustard_Pills_Billiard Room	N38 36.123	W92 17.620		Mustard	Pills	Billiard Room
+Mustard_Pills_Dining Room	N38 36.123	W92 17.642		Mustard	Pills	Dining Room
+Mustard_Pills_Ballroom	N38 36.123	W92 17.608		Mustard	Pills	Ballroom
+Mustard_Pills_Conservatory	N38 36.123	W92 17.631		Mustard	Pills	Conservatory
+Mustard_Pills_Study	N38 36.123	W92 17.653		Mustard	Pills	Study
+Mustard_Pills_Hall	N38 36.123	W92 17.697		Mustard	Pills	Hall
+Mustard_Pills_Library	N38 36.123	W92 17.675		Mustard	Pills	Library
+Mustard_Pills_Kitchen	N38 36.123	W92 17.664		Mustard	Pills	Kitchen
+Mustard_Knife_Lounge	N38 36.123	W92 17.486		Mustard	Knife	Lounge
+Mustard_Knife_Billiard Room	N38 36.123	W92 17.420		Mustard	Knife	Billiard Room
+Mustard_Knife_Dining Room	N38 36.123	W92 17.442		Mustard	Knife	Dining Room
+Mustard_Knife_Ballroom	N38 36.123	W92 17.408		Mustard	Knife	Ballroom
+Mustard_Knife_Conservatory	N38 36.123	W92 17.431		Mustard	Knife	Conservatory
+Mustard_Knife_Study	N38 36.123	W92 17.453		Mustard	Knife	Study
+Mustard_Knife_Hall	N38 36.123	W92 17.497		Mustard	Knife	Hall
+Mustard_Knife_Library	N38 36.123	W92 17.475		Mustard	Knife	Library
+Mustard_Knife_Kitchen	N38 36.123	W92 17.464		Mustard	Knife	Kitchen
+Peacock_Revolver_Lounge	N38 36.292	W92 17.986		Peacock	Revolver	Lounge
+Peacock_Revolver_Billiard Room	N38 36.292	W92 17.920		Peacock	Revolver	Billiard Room
+Peacock_Revolver_Dining Room	N38 36.292	W92 17.942		Peacock	Revolver	Dining Room
+Peacock_Revolver_Ballroom	N38 36.292	W92 17.908		Peacock	Revolver	Ballroom
+Peacock_Revolver_Conservatory	N38 36.292	W92 17.931		Peacock	Revolver	Conservatory
+Peacock_Revolver_Study	N38 36.292	W92 17.953		Peacock	Revolver	Study
+Peacock_Revolver_Hall	N38 36.292	W92 17.997		Peacock	Revolver	Hall
+Peacock_Revolver_Library	N38 36.292	W92 17.975		Peacock	Revolver	Library
+Peacock_Revolver_Kitchen	N38 36.292	W92 17.964		Peacock	Revolver	Kitchen
+Peacock_Candlestick_Lounge	N38 36.292	W92 17.386		Peacock	Candlestick	Lounge
+Peacock_Candlestick_Billiard Room	N38 36.292	W92 17.320		Peacock	Candlestick	Billiard Room
+Peacock_Candlestick_Dining Room	N38 36.292	W92 17.342		Peacock	Candlestick	Dining Room
+Peacock_Candlestick_Ballroom	N38 36.292	W92 17.308		Peacock	Candlestick	Ballroom
+Peacock_Candlestick_Conservatory	N38 36.292	W92 17.331		Peacock	Candlestick	Conservatory
+Peacock_Candlestick_Study	N38 36.292	W92 17.353		Peacock	Candlestick	Study
+Peacock_Candlestick_Hall	N38 36.292	W92 17.397		Peacock	Candlestick	Hall
+Peacock_Candlestick_Library	N38 36.292	W92 17.375		Peacock	Candlestick	Library
+Peacock_Candlestick_Kitchen	N38 36.292	W92 17.364		Peacock	Candlestick	Kitchen
+Peacock_Rope_Lounge	N38 36.292	W92 17.886		Peacock	Rope	Lounge
+Peacock_Rope_Billiard Room	N38 36.292	W92 17.820		Peacock	Rope	Billiard Room
+Peacock_Rope_Dining Room	N38 36.292	W92 17.842		Peacock	Rope	Dining Room
+Peacock_Rope_Ballroom	N38 36.292	W92 17.808		Peacock	Rope	Ballroom
+Peacock_Rope_Conservatory	N38 36.292	W92 17.831		Peacock	Rope	Conservatory
+Peacock_Rope_Study	N38 36.292	W92 17.853		Peacock	Rope	Study
+Peacock_Rope_Hall	N38 36.292	W92 17.897		Peacock	Rope	Hall
+Peacock_Rope_Library	N38 36.292	W92 17.875		Peacock	Rope	Library
+Peacock_Rope_Kitchen	N38 36.292	W92 17.864		Peacock	Rope	Kitchen
+Peacock_Wrench_Lounge	N38 36.292	W92 17.786		Peacock	Wrench	Lounge
+Peacock_Wrench_Billiard Room	N38 36.292	W92 17.720		Peacock	Wrench	Billiard Room
+Peacock_Wrench_Dining Room	N38 36.292	W92 17.742		Peacock	Wrench	Dining Room
+Peacock_Wrench_Ballroom	N38 36.292	W92 17.708		Peacock	Wrench	Ballroom
+Peacock_Wrench_Conservatory	N38 36.292	W92 17.731		Peacock	Wrench	Conservatory
+Peacock_Wrench_Study	N38 36.292	W92 17.753		Peacock	Wrench	Study
+Peacock_Wrench_Hall	N38 36.292	W92 17.797		Peacock	Wrench	Hall
+Peacock_Wrench_Library	N38 36.292	W92 17.775		Peacock	Wrench	Library
+Peacock_Wrench_Kitchen	N38 36.292	W92 17.764		Peacock	Wrench	Kitchen
+Peacock_Lead Pipe_Lounge	N38 36.292	W92 17.586		Peacock	Lead Pipe	Lounge
+Peacock_Lead Pipe_Billiard Room	N38 36.292	W92 17.520		Peacock	Lead Pipe	Billiard Room
+Peacock_Lead Pipe_Dining Room	N38 36.292	W92 17.542		Peacock	Lead Pipe	Dining Room
+Peacock_Lead Pipe_Ballroom	N38 36.292	W92 17.508		Peacock	Lead Pipe	Ballroom
+Peacock_Lead Pipe_Conservatory	N38 36.292	W92 17.531		Peacock	Lead Pipe	Conservatory
+Peacock_Lead Pipe_Study	N38 36.292	W92 17.553		Peacock	Lead Pipe	Study
+Peacock_Lead Pipe_Hall	N38 36.292	W92 17.597		Peacock	Lead Pipe	Hall
+Peacock_Lead Pipe_Library	N38 36.292	W92 17.575		Peacock	Lead Pipe	Library
+Peacock_Lead Pipe_Kitchen	N38 36.292	W92 17.564		Peacock	Lead Pipe	Kitchen
+Peacock_Pills_Lounge	N38 36.292	W92 17.686		Peacock	Pills	Lounge
+Peacock_Pills_Billiard Room	N38 36.292	W92 17.620		Peacock	Pills	Billiard Room
+Peacock_Pills_Dining Room	N38 36.292	W92 17.642		Peacock	Pills	Dining Room
+Peacock_Pills_Ballroom	N38 36.292	W92 17.608		Peacock	Pills	Ballroom
+Peacock_Pills_Conservatory	N38 36.292	W92 17.631		Peacock	Pills	Conservatory
+Peacock_Pills_Study	N38 36.292	W92 17.653		Peacock	Pills	Study
+Peacock_Pills_Hall	N38 36.292	W92 17.697		Peacock	Pills	Hall
+Peacock_Pills_Library	N38 36.292	W92 17.675		Peacock	Pills	Library
+Peacock_Pills_Kitchen	N38 36.292	W92 17.664		Peacock	Pills	Kitchen
+Peacock_Knife_Lounge	N38 36.292	W92 17.486		Peacock	Knife	Lounge
+Peacock_Knife_Billiard Room	N38 36.292	W92 17.420		Peacock	Knife	Billiard Room
+Peacock_Knife_Dining Room	N38 36.292	W92 17.442		Peacock	Knife	Dining Room
+Peacock_Knife_Ballroom	N38 36.292	W92 17.408		Peacock	Knife	Ballroom
+Peacock_Knife_Conservatory	N38 36.292	W92 17.431		Peacock	Knife	Conservatory
+Peacock_Knife_Study	N38 36.292	W92 17.453		Peacock	Knife	Study
+Peacock_Knife_Hall	N38 36.292	W92 17.497		Peacock	Knife	Hall
+Peacock_Knife_Library	N38 36.292	W92 17.475		Peacock	Knife	Library
+Peacock_Knife_Kitchen	N38 36.292	W92 17.464		Peacock	Knife	Kitchen
+Azure_Revolver_Lounge	N38 36.539	W92 17.986		Azure	Revolver	Lounge
+Azure_Revolver_Billiard Room	N38 36.539	W92 17.920		Azure	Revolver	Billiard Room
+Azure_Revolver_Dining Room	N38 36.539	W92 17.942		Azure	Revolver	Dining Room
+Azure_Revolver_Ballroom	N38 36.539	W92 17.908		Azure	Revolver	Ballroom
+Azure_Revolver_Conservatory	N38 36.539	W92 17.931		Azure	Revolver	Conservatory
+Azure_Revolver_Study	N38 36.539	W92 17.953		Azure	Revolver	Study
+Azure_Revolver_Hall	N38 36.539	W92 17.997		Azure	Revolver	Hall
+Azure_Revolver_Library	N38 36.539	W92 17.975		Azure	Revolver	Library
+Azure_Revolver_Kitchen	N38 36.539	W92 17.964		Azure	Revolver	Kitchen
+Azure_Candlestick_Lounge	N38 36.539	W92 17.386		Azure	Candlestick	Lounge
+Azure_Candlestick_Billiard Room	N38 36.539	W92 17.320		Azure	Candlestick	Billiard Room
+Azure_Candlestick_Dining Room	N38 36.539	W92 17.342		Azure	Candlestick	Dining Room
+Azure_Candlestick_Ballroom	N38 36.539	W92 17.308		Azure	Candlestick	Ballroom
+Azure_Candlestick_Conservatory	N38 36.539	W92 17.331		Azure	Candlestick	Conservatory
+Azure_Candlestick_Study	N38 36.539	W92 17.353		Azure	Candlestick	Study
+Azure_Candlestick_Hall	N38 36.539	W92 17.397		Azure	Candlestick	Hall
+Azure_Candlestick_Library	N38 36.539	W92 17.375		Azure	Candlestick	Library
+Azure_Candlestick_Kitchen	N38 36.539	W92 17.364		Azure	Candlestick	Kitchen
+Azure_Rope_Lounge	N38 36.539	W92 17.886		Azure	Rope	Lounge
+Azure_Rope_Billiard Room	N38 36.539	W92 17.820		Azure	Rope	Billiard Room
+Azure_Rope_Dining Room	N38 36.539	W92 17.842		Azure	Rope	Dining Room
+Azure_Rope_Ballroom	N38 36.539	W92 17.808		Azure	Rope	Ballroom
+Azure_Rope_Conservatory	N38 36.539	W92 17.831		Azure	Rope	Conservatory
+Azure_Rope_Study	N38 36.539	W92 17.853		Azure	Rope	Study
+Azure_Rope_Hall	N38 36.539	W92 17.897		Azure	Rope	Hall
+Azure_Rope_Library	N38 36.539	W92 17.875		Azure	Rope	Library
+Azure_Rope_Kitchen	N38 36.539	W92 17.864		Azure	Rope	Kitchen
+Azure_Wrench_Lounge	N38 36.539	W92 17.786		Azure	Wrench	Lounge
+Azure_Wrench_Billiard Room	N38 36.539	W92 17.720		Azure	Wrench	Billiard Room
+Azure_Wrench_Dining Room	N38 36.539	W92 17.742		Azure	Wrench	Dining Room
+Azure_Wrench_Ballroom	N38 36.539	W92 17.708		Azure	Wrench	Ballroom
+Azure_Wrench_Conservatory	N38 36.539	W92 17.731		Azure	Wrench	Conservatory
+Azure_Wrench_Study	N38 36.539	W92 17.753		Azure	Wrench	Study
+Azure_Wrench_Hall	N38 36.539	W92 17.797		Azure	Wrench	Hall
+Azure_Wrench_Library	N38 36.539	W92 17.775		Azure	Wrench	Library
+Azure_Wrench_Kitchen	N38 36.539	W92 17.764		Azure	Wrench	Kitchen
+Azure_Lead Pipe_Lounge	N38 36.539	W92 17.586		Azure	Lead Pipe	Lounge
+Azure_Lead Pipe_Billiard Room	N38 36.539	W92 17.520		Azure	Lead Pipe	Billiard Room
+Azure_Lead Pipe_Dining Room	N38 36.539	W92 17.542		Azure	Lead Pipe	Dining Room
+Azure_Lead Pipe_Ballroom	N38 36.539	W92 17.508		Azure	Lead Pipe	Ballroom
+Azure_Lead Pipe_Conservatory	N38 36.539	W92 17.531		Azure	Lead Pipe	Conservatory
+Azure_Lead Pipe_Study	N38 36.539	W92 17.553		Azure	Lead Pipe	Study
+Azure_Lead Pipe_Hall	N38 36.539	W92 17.597		Azure	Lead Pipe	Hall
+Azure_Lead Pipe_Library	N38 36.539	W92 17.575		Azure	Lead Pipe	Library
+Azure_Lead Pipe_Kitchen	N38 36.539	W92 17.564		Azure	Lead Pipe	Kitchen
+Azure_Pills_Lounge	N38 36.539	W92 17.686		Azure	Pills	Lounge
+Azure_Pills_Billiard Room	N38 36.539	W92 17.620		Azure	Pills	Billiard Room
+Azure_Pills_Dining Room	N38 36.539	W92 17.642		Azure	Pills	Dining Room
+Azure_Pills_Ballroom	N38 36.539	W92 17.608		Azure	Pills	Ballroom
+Azure_Pills_Conservatory	N38 36.539	W92 17.631		Azure	Pills	Conservatory
+Azure_Pills_Study	N38 36.539	W92 17.653		Azure	Pills	Study
+Azure_Pills_Hall	N38 36.539	W92 17.697		Azure	Pills	Hall
+Azure_Pills_Library	N38 36.539	W92 17.675		Azure	Pills	Library
+Azure_Pills_Kitchen	N38 36.539	W92 17.664		Azure	Pills	Kitchen
+Azure_Knife_Lounge	N38 36.539	W92 17.486		Azure	Knife	Lounge
+Azure_Knife_Billiard Room	N38 36.539	W92 17.420		Azure	Knife	Billiard Room
+Azure_Knife_Dining Room	N38 36.539	W92 17.442		Azure	Knife	Dining Room
+Azure_Knife_Ballroom	N38 36.539	W92 17.408		Azure	Knife	Ballroom
+Azure_Knife_Conservatory	N38 36.539	W92 17.431		Azure	Knife	Conservatory
+Azure_Knife_Study	N38 36.539	W92 17.453		Azure	Knife	Study
+Azure_Knife_Hall	N38 36.539	W92 17.497		Azure	Knife	Hall
+Azure_Knife_Library	N38 36.539	W92 17.475		Azure	Knife	Library
+Azure_Knife_Kitchen	N38 36.539	W92 17.464		Azure	Knife	Kitchen
+Plum_Revolver_Lounge	N38 36.987	W92 17.986		Plum	Revolver	Lounge
+Plum_Revolver_Billiard Room	N38 36.987	W92 17.920		Plum	Revolver	Billiard Room
+Plum_Revolver_Dining Room	N38 36.987	W92 17.942		Plum	Revolver	Dining Room
+Plum_Revolver_Ballroom	N38 36.987	W92 17.908		Plum	Revolver	Ballroom
+Plum_Revolver_Conservatory	N38 36.987	W92 17.931		Plum	Revolver	Conservatory
+Plum_Revolver_Study	N38 36.987	W92 17.953		Plum	Revolver	Study
+Plum_Revolver_Hall	N38 36.987	W92 17.997		Plum	Revolver	Hall
+Plum_Revolver_Library	N38 36.987	W92 17.975		Plum	Revolver	Library
+Plum_Revolver_Kitchen	N38 36.987	W92 17.964		Plum	Revolver	Kitchen
+Plum_Candlestick_Lounge	N38 36.987	W92 17.386		Plum	Candlestick	Lounge
+Plum_Candlestick_Billiard Room	N38 36.987	W92 17.320		Plum	Candlestick	Billiard Room
+Plum_Candlestick_Dining Room	N38 36.987	W92 17.342		Plum	Candlestick	Dining Room
+Plum_Candlestick_Ballroom	N38 36.987	W92 17.308		Plum	Candlestick	Ballroom
+Plum_Candlestick_Conservatory	N38 36.987	W92 17.331		Plum	Candlestick	Conservatory
+Plum_Candlestick_Study	N38 36.987	W92 17.353		Plum	Candlestick	Study
+Plum_Candlestick_Hall	N38 36.987	W92 17.397		Plum	Candlestick	Hall
+Plum_Candlestick_Library	N38 36.987	W92 17.375		Plum	Candlestick	Library
+Plum_Candlestick_Kitchen	N38 36.987	W92 17.364		Plum	Candlestick	Kitchen
+Plum_Rope_Lounge	N38 36.987	W92 17.886		Plum	Rope	Lounge
+Plum_Rope_Billiard Room	N38 36.987	W92 17.820		Plum	Rope	Billiard Room
+Plum_Rope_Dining Room	N38 36.987	W92 17.842		Plum	Rope	Dining Room
+Plum_Rope_Ballroom	N38 36.987	W92 17.808		Plum	Rope	Ballroom
+Plum_Rope_Conservatory	N38 36.987	W92 17.831		Plum	Rope	Conservatory
+Plum_Rope_Study	N38 36.987	W92 17.853		Plum	Rope	Study
+Plum_Rope_Hall	N38 36.987	W92 17.897		Plum	Rope	Hall
+Plum_Rope_Library	N38 36.987	W92 17.875		Plum	Rope	Library
+Plum_Rope_Kitchen	N38 36.987	W92 17.864		Plum	Rope	Kitchen
+Plum_Wrench_Lounge	N38 36.987	W92 17.786		Plum	Wrench	Lounge
+Plum_Wrench_Billiard Room	N38 36.987	W92 17.720		Plum	Wrench	Billiard Room
+Plum_Wrench_Dining Room	N38 36.987	W92 17.742		Plum	Wrench	Dining Room
+Plum_Wrench_Ballroom	N38 36.987	W92 17.708		Plum	Wrench	Ballroom
+Plum_Wrench_Conservatory	N38 36.987	W92 17.731		Plum	Wrench	Conservatory
+Plum_Wrench_Study	N38 36.987	W92 17.753		Plum	Wrench	Study
+Plum_Wrench_Hall	N38 36.987	W92 17.797		Plum	Wrench	Hall
+Plum_Wrench_Library	N38 36.987	W92 17.775		Plum	Wrench	Library
+Plum_Wrench_Kitchen	N38 36.987	W92 17.764		Plum	Wrench	Kitchen
+Plum_Lead Pipe_Lounge	N38 36.987	W92 17.586		Plum	Lead Pipe	Lounge
+Plum_Lead Pipe_Billiard Room	N38 36.987	W92 17.520		Plum	Lead Pipe	Billiard Room
+Plum_Lead Pipe_Dining Room	N38 36.987	W92 17.542		Plum	Lead Pipe	Dining Room
+Plum_Lead Pipe_Ballroom	N38 36.987	W92 17.508		Plum	Lead Pipe	Ballroom
+Plum_Lead Pipe_Conservatory	N38 36.987	W92 17.531		Plum	Lead Pipe	Conservatory
+Plum_Lead Pipe_Study	N38 36.987	W92 17.553		Plum	Lead Pipe	Study
+Plum_Lead Pipe_Hall	N38 36.987	W92 17.597		Plum	Lead Pipe	Hall
+Plum_Lead Pipe_Library	N38 36.987	W92 17.575		Plum	Lead Pipe	Library
+Plum_Lead Pipe_Kitchen	N38 36.987	W92 17.564		Plum	Lead Pipe	Kitchen
+Plum_Pills_Lounge	N38 36.987	W92 17.686		Plum	Pills	Lounge
+Plum_Pills_Billiard Room	N38 36.987	W92 17.620		Plum	Pills	Billiard Room
+Plum_Pills_Dining Room	N38 36.987	W92 17.642		Plum	Pills	Dining Room
+Plum_Pills_Ballroom	N38 36.987	W92 17.608		Plum	Pills	Ballroom
+Plum_Pills_Conservatory	N38 36.987	W92 17.631		Plum	Pills	Conservatory
+Plum_Pills_Study	N38 36.987	W92 17.653		Plum	Pills	Study
+Plum_Pills_Hall	N38 36.987	W92 17.697		Plum	Pills	Hall
+Plum_Pills_Library	N38 36.987	W92 17.675		Plum	Pills	Library
+Plum_Pills_Kitchen	N38 36.987	W92 17.664		Plum	Pills	Kitchen
+Plum_Knife_Lounge	N38 36.987	W92 17.486		Plum	Knife	Lounge
+Plum_Knife_Billiard Room	N38 36.987	W92 17.420		Plum	Knife	Billiard Room
+Plum_Knife_Dining Room	N38 36.987	W92 17.442		Plum	Knife	Dining Room
+Plum_Knife_Ballroom	N38 36.987	W92 17.408		Plum	Knife	Ballroom
+Plum_Knife_Conservatory	N38 36.987	W92 17.431		Plum	Knife	Conservatory
+Plum_Knife_Study	N38 36.987	W92 17.453		Plum	Knife	Study
+Plum_Knife_Hall	N38 36.987	W92 17.497		Plum	Knife	Hall
+Plum_Knife_Library	N38 36.987	W92 17.475		Plum	Knife	Library
+Plum_Knife_Kitchen	N38 36.987	W92 17.464		Plum	Knife	Kitchen
+Scarlet_Revolver_Lounge	N38 36.357	W92 17.986		Scarlet	Revolver	Lounge
+Scarlet_Revolver_Billiard Room	N38 36.357	W92 17.920		Scarlet	Revolver	Billiard Room
+Scarlet_Revolver_Dining Room	N38 36.357	W92 17.942		Scarlet	Revolver	Dining Room
+Scarlet_Revolver_Ballroom	N38 36.357	W92 17.908		Scarlet	Revolver	Ballroom
+Scarlet_Revolver_Conservatory	N38 36.357	W92 17.931		Scarlet	Revolver	Conservatory
+Scarlet_Revolver_Study	N38 36.357	W92 17.953		Scarlet	Revolver	Study
+Scarlet_Revolver_Hall	N38 36.357	W92 17.997		Scarlet	Revolver	Hall
+Scarlet_Revolver_Library	N38 36.357	W92 17.975		Scarlet	Revolver	Library
+Scarlet_Revolver_Kitchen	N38 36.357	W92 17.964		Scarlet	Revolver	Kitchen
+Scarlet_Candlestick_Lounge	N38 36.357	W92 17.386		Scarlet	Candlestick	Lounge
+Scarlet_Candlestick_Billiard Room	N38 36.357	W92 17.320		Scarlet	Candlestick	Billiard Room
+Scarlet_Candlestick_Dining Room	N38 36.357	W92 17.342		Scarlet	Candlestick	Dining Room
+Scarlet_Candlestick_Ballroom	N38 36.357	W92 17.308		Scarlet	Candlestick	Ballroom
+Scarlet_Candlestick_Conservatory	N38 36.357	W92 17.331		Scarlet	Candlestick	Conservatory
+Scarlet_Candlestick_Study	N38 36.357	W92 17.353		Scarlet	Candlestick	Study
+Scarlet_Candlestick_Hall	N38 36.357	W92 17.397		Scarlet	Candlestick	Hall
+Scarlet_Candlestick_Library	N38 36.357	W92 17.375		Scarlet	Candlestick	Library
+Scarlet_Candlestick_Kitchen	N38 36.357	W92 17.364		Scarlet	Candlestick	Kitchen
+Scarlet_Rope_Lounge	N38 36.357	W92 17.886		Scarlet	Rope	Lounge
+Scarlet_Rope_Billiard Room	N38 36.357	W92 17.820		Scarlet	Rope	Billiard Room
+Scarlet_Rope_Dining Room	N38 36.357	W92 17.842		Scarlet	Rope	Dining Room
+Scarlet_Rope_Ballroom	N38 36.357	W92 17.808		Scarlet	Rope	Ballroom
+Scarlet_Rope_Conservatory	N38 36.357	W92 17.831		Scarlet	Rope	Conservatory
+Scarlet_Rope_Study	N38 36.357	W92 17.853		Scarlet	Rope	Study
+Scarlet_Rope_Hall	N38 36.357	W92 17.897		Scarlet	Rope	Hall
+Scarlet_Rope_Library	N38 36.357	W92 17.875		Scarlet	Rope	Library
+Scarlet_Rope_Kitchen	N38 36.357	W92 17.864		Scarlet	Rope	Kitchen
+Scarlet_Wrench_Lounge	N38 36.357	W92 17.786		Scarlet	Wrench	Lounge
+Scarlet_Wrench_Billiard Room	N38 36.357	W92 17.720		Scarlet	Wrench	Billiard Room
+Scarlet_Wrench_Dining Room	N38 36.357	W92 17.742		Scarlet	Wrench	Dining Room
+Scarlet_Wrench_Ballroom	N38 36.357	W92 17.708		Scarlet	Wrench	Ballroom
+Scarlet_Wrench_Conservatory	N38 36.357	W92 17.731		Scarlet	Wrench	Conservatory
+Scarlet_Wrench_Study	N38 36.357	W92 17.753		Scarlet	Wrench	Study
+Scarlet_Wrench_Hall	N38 36.357	W92 17.797		Scarlet	Wrench	Hall
+Scarlet_Wrench_Library	N38 36.357	W92 17.775		Scarlet	Wrench	Library
+Scarlet_Wrench_Kitchen	N38 36.357	W92 17.764		Scarlet	Wrench	Kitchen
+Scarlet_Lead Pipe_Lounge	N38 36.357	W92 17.586		Scarlet	Lead Pipe	Lounge
+Scarlet_Lead Pipe_Billiard Room	N38 36.357	W92 17.520		Scarlet	Lead Pipe	Billiard Room
+Scarlet_Lead Pipe_Dining Room	N38 36.357	W92 17.542		Scarlet	Lead Pipe	Dining Room
+Scarlet_Lead Pipe_Ballroom	N38 36.357	W92 17.508		Scarlet	Lead Pipe	Ballroom
+Scarlet_Lead Pipe_Conservatory	N38 36.357	W92 17.531		Scarlet	Lead Pipe	Conservatory
+Scarlet_Lead Pipe_Study	N38 36.357	W92 17.553		Scarlet	Lead Pipe	Study
+Scarlet_Lead Pipe_Hall	N38 36.357	W92 17.597		Scarlet	Lead Pipe	Hall
+Scarlet_Lead Pipe_Library	N38 36.357	W92 17.575		Scarlet	Lead Pipe	Library
+Scarlet_Lead Pipe_Kitchen	N38 36.357	W92 17.564		Scarlet	Lead Pipe	Kitchen
+Scarlet_Pills_Lounge	N38 36.357	W92 17.686		Scarlet	Pills	Lounge
+Scarlet_Pills_Billiard Room	N38 36.357	W92 17.620		Scarlet	Pills	Billiard Room
+Scarlet_Pills_Dining Room	N38 36.357	W92 17.642		Scarlet	Pills	Dining Room
+Scarlet_Pills_Ballroom	N38 36.357	W92 17.608		Scarlet	Pills	Ballroom
+Scarlet_Pills_Conservatory	N38 36.357	W92 17.631		Scarlet	Pills	Conservatory
+Scarlet_Pills_Study	N38 36.357	W92 17.653		Scarlet	Pills	Study
+Scarlet_Pills_Hall	N38 36.357	W92 17.697		Scarlet	Pills	Hall
+Scarlet_Pills_Library	N38 36.357	W92 17.675		Scarlet	Pills	Library
+Scarlet_Pills_Kitchen	N38 36.357	W92 17.664		Scarlet	Pills	Kitchen
+Scarlet_Knife_Lounge	N38 36.357	W92 17.486		Scarlet	Knife	Lounge
+Scarlet_Knife_Billiard Room	N38 36.357	W92 17.420		Scarlet	Knife	Billiard Room
+Scarlet_Knife_Dining Room	N38 36.357	W92 17.442		Scarlet	Knife	Dining Room
+Scarlet_Knife_Ballroom	N38 36.357	W92 17.408		Scarlet	Knife	Ballroom
+Scarlet_Knife_Conservatory	N38 36.357	W92 17.431		Scarlet	Knife	Conservatory
+Scarlet_Knife_Study	N38 36.357	W92 17.453		Scarlet	Knife	Study
+Scarlet_Knife_Hall	N38 36.357	W92 17.497		Scarlet	Knife	Hall
+Scarlet_Knife_Library	N38 36.357	W92 17.475		Scarlet	Knife	Library
+Scarlet_Knife_Kitchen	N38 36.357	W92 17.464		Scarlet	Knife	Kitchen
+Lavender_Revolver_Lounge	N38 36.424	W92 17.986		Lavender	Revolver	Lounge
+Lavender_Revolver_Billiard Room	N38 36.424	W92 17.920		Lavender	Revolver	Billiard Room
+Lavender_Revolver_Dining Room	N38 36.424	W92 17.942		Lavender	Revolver	Dining Room
+Lavender_Revolver_Ballroom	N38 36.424	W92 17.908		Lavender	Revolver	Ballroom
+Lavender_Revolver_Conservatory	N38 36.424	W92 17.931		Lavender	Revolver	Conservatory
+Lavender_Revolver_Study	N38 36.424	W92 17.953		Lavender	Revolver	Study
+Lavender_Revolver_Hall	N38 36.424	W92 17.997		Lavender	Revolver	Hall
+Lavender_Revolver_Library	N38 36.424	W92 17.975		Lavender	Revolver	Library
+Lavender_Revolver_Kitchen	N38 36.424	W92 17.964		Lavender	Revolver	Kitchen
+Lavender_Candlestick_Lounge	N38 36.424	W92 17.386		Lavender	Candlestick	Lounge
+Lavender_Candlestick_Billiard Room	N38 36.424	W92 17.320		Lavender	Candlestick	Billiard Room
+Lavender_Candlestick_Dining Room	N38 36.424	W92 17.342		Lavender	Candlestick	Dining Room
+Lavender_Candlestick_Ballroom	N38 36.424	W92 17.308		Lavender	Candlestick	Ballroom
+Lavender_Candlestick_Conservatory	N38 36.424	W92 17.331		Lavender	Candlestick	Conservatory
+Lavender_Candlestick_Study	N38 36.424	W92 17.353		Lavender	Candlestick	Study
+Lavender_Candlestick_Hall	N38 36.424	W92 17.397		Lavender	Candlestick	Hall
+Lavender_Candlestick_Library	N38 36.424	W92 17.375		Lavender	Candlestick	Library
+Lavender_Candlestick_Kitchen	N38 36.424	W92 17.364		Lavender	Candlestick	Kitchen
+Lavender_Rope_Lounge	N38 36.424	W92 17.886		Lavender	Rope	Lounge
+Lavender_Rope_Billiard Room	N38 36.424	W92 17.820		Lavender	Rope	Billiard Room
+Lavender_Rope_Dining Room	N38 36.424	W92 17.842		Lavender	Rope	Dining Room
+Lavender_Rope_Ballroom	N38 36.424	W92 17.808		Lavender	Rope	Ballroom
+Lavender_Rope_Conservatory	N38 36.424	W92 17.831		Lavender	Rope	Conservatory
+Lavender_Rope_Study	N38 36.424	W92 17.853		Lavender	Rope	Study
+Lavender_Rope_Hall	N38 36.424	W92 17.897		Lavender	Rope	Hall
+Lavender_Rope_Library	N38 36.424	W92 17.875		Lavender	Rope	Library
+Lavender_Rope_Kitchen	N38 36.424	W92 17.864		Lavender	Rope	Kitchen
+Lavender_Wrench_Lounge	N38 36.424	W92 17.786		Lavender	Wrench	Lounge
+Lavender_Wrench_Billiard Room	N38 36.424	W92 17.720		Lavender	Wrench	Billiard Room
+Lavender_Wrench_Dining Room	N38 36.424	W92 17.742		Lavender	Wrench	Dining Room
+Lavender_Wrench_Ballroom	N38 36.424	W92 17.708		Lavender	Wrench	Ballroom
+Lavender_Wrench_Conservatory	N38 36.424	W92 17.731		Lavender	Wrench	Conservatory
+Lavender_Wrench_Study	N38 36.424	W92 17.753		Lavender	Wrench	Study
+Lavender_Wrench_Hall	N38 36.424	W92 17.797		Lavender	Wrench	Hall
+Lavender_Wrench_Library	N38 36.424	W92 17.775		Lavender	Wrench	Library
+Lavender_Wrench_Kitchen	N38 36.424	W92 17.764		Lavender	Wrench	Kitchen
+Lavender_Lead Pipe_Lounge	N38 36.424	W92 17.586		Lavender	Lead Pipe	Lounge
+Lavender_Lead Pipe_Billiard Room	N38 36.424	W92 17.520		Lavender	Lead Pipe	Billiard Room
+Lavender_Lead Pipe_Dining Room	N38 36.424	W92 17.542		Lavender	Lead Pipe	Dining Room
+Lavender_Lead Pipe_Ballroom	N38 36.424	W92 17.508		Lavender	Lead Pipe	Ballroom
+Lavender_Lead Pipe_Conservatory	N38 36.424	W92 17.531		Lavender	Lead Pipe	Conservatory
+Lavender_Lead Pipe_Study	N38 36.424	W92 17.553		Lavender	Lead Pipe	Study
+Lavender_Lead Pipe_Hall	N38 36.424	W92 17.597		Lavender	Lead Pipe	Hall
+Lavender_Lead Pipe_Library	N38 36.424	W92 17.575		Lavender	Lead Pipe	Library
+Lavender_Lead Pipe_Kitchen	N38 36.424	W92 17.564		Lavender	Lead Pipe	Kitchen
+Lavender_Pills_Lounge	N38 36.424	W92 17.686		Lavender	Pills	Lounge
+Lavender_Pills_Billiard Room	N38 36.424	W92 17.620		Lavender	Pills	Billiard Room
+Lavender_Pills_Dining Room	N38 36.424	W92 17.642		Lavender	Pills	Dining Room
+Lavender_Pills_Ballroom	N38 36.424	W92 17.608		Lavender	Pills	Ballroom
+Lavender_Pills_Conservatory	N38 36.424	W92 17.631		Lavender	Pills	Conservatory
+Lavender_Pills_Study	N38 36.424	W92 17.653		Lavender	Pills	Study
+Lavender_Pills_Hall	N38 36.424	W92 17.697		Lavender	Pills	Hall
+Lavender_Pills_Library	N38 36.424	W92 17.675		Lavender	Pills	Library
+Lavender_Pills_Kitchen	N38 36.424	W92 17.664		Lavender	Pills	Kitchen
+Lavender_Knife_Lounge	N38 36.424	W92 17.486		Lavender	Knife	Lounge
+Lavender_Knife_Billiard Room	N38 36.424	W92 17.420		Lavender	Knife	Billiard Room
+Lavender_Knife_Dining Room	N38 36.424	W92 17.442		Lavender	Knife	Dining Room
+Lavender_Knife_Ballroom	N38 36.424	W92 17.408		Lavender	Knife	Ballroom
+Lavender_Knife_Conservatory	N38 36.424	W92 17.431		Lavender	Knife	Conservatory
+Lavender_Knife_Study	N38 36.424	W92 17.453		Lavender	Knife	Study
+Lavender_Knife_Hall	N38 36.424	W92 17.497		Lavender	Knife	Hall
+Lavender_Knife_Library	N38 36.424	W92 17.475		Lavender	Knife	Library
+Lavender_Knife_Kitchen	N38 36.424	W92 17.464		Lavender	Knife	Kitchen
