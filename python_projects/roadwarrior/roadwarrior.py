@@ -4,7 +4,7 @@
 # -*- coding: XXX-8 -*-
 
 # Created:       Tue 04 Mar 2014 12:52:05 PM CST
-# Last Modified: Tue 04 Mar 2014 05:50:11 PM CST
+# Last Modified: Tue 04 Mar 2014 06:30:39 PM CST
 
 """
 SYNOPSIS
@@ -41,7 +41,9 @@ __VERSION__ = "0.0.1"
 
 ########################################################################
 
+DUMPFILENAME = "roadwarrior.pkl"
 FILENAME = "myfinds.gpx"
+OUTFILENAME = "outfile.xls"
 
 ########################################################################
 
@@ -49,6 +51,7 @@ import codecs
 from xml.etree import ElementTree as ET
 
 import csv
+import pickle
 
 # from pprint import pprint
 
@@ -82,9 +85,16 @@ def process_file(filename):
     nametag = w0.tag.replace("wpt", "name")
     gcnames = [w.find(nametag).text or "None" for w in wpts]
 
+    def fixup(t):
+        t = t or "None"
+        t.encode('ascii', 'replace')
+        t = t.replace('"', '')
+        t = t.replace("'", "")
+        return t
+
     desctag = w0.tag.replace("wpt", "desc")
     descriptions = [
-        (w.find(desctag).text or "None").encode('ascii', 'replace')
+        fixup(w.find(desctag).text)
         for w in wpts
     ]
 
@@ -114,32 +124,39 @@ def process_file(filename):
     dates = [e[0].find(datetag).text or "None" for e in extensions]
 
     database = zip(dates, states, counties, gcnames, descriptions)
+    pickle.dump(database, open(DUMPFILENAME, "wb"))
 
-    OUTFILENAME = "outfile.xls"
-    outfile = open(OUTFILENAME, "w")
-    writer = csv.writer(outfile)
+    if 0:
 
-    row = "\t".join(
-        [
-            "Date",
-            "State",
-            "County",
-            "GC",
-            "Description"
-        ]
-    )
-    row = row.encode('ascii', 'replace')
-    writer.writerow(row)
+        outfile = codecs.open(
+            OUTFILENAME,
+            "wb",
+            encoding="ascii",
+            errors="replace"
+        )
+        writer = csv.writer(outfile)
 
-    for data in database:
-
-        row = "\t".join(data)
+        row = "\t".join(
+            [
+                "Date",
+                "State",
+                "County",
+                "GC",
+                "Description"
+            ]
+        )
         row = row.encode('ascii', 'replace')
         writer.writerow(row)
 
-    outfile.close()
+        for data in database:
 
-    print "%s is the output file" % OUTFILENAME
+            row = "\t".join(data)
+            row = row.encode('ascii', 'replace')
+            writer.writerow(row)
+
+        outfile.close()
+
+        print "%s is the output file" % OUTFILENAME
 
 ##########u##############################################################
 
