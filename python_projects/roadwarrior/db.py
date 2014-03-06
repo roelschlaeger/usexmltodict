@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 04 Mar 2014 06:50:34 PM CST
-# Last Modified: Wed 05 Mar 2014 01:58:31 PM CST
+# Last Modified: Thu 06 Mar 2014 03:26:48 PM CST
 
 """
 SYNOPSIS
@@ -46,23 +46,19 @@ from pprint import pprint, pformat
 
 ########################################################################
 
+WIDTH = 160
+
+########################################################################
+
 
 def load(f):
     db = pickle.load(open(f))
     return db
 
 
-def sortkeyfunc(db):
+def date_county_keyfunc(db):
     "sort by date, state, county fields"
-    return "%s_%s_%s" % (db[0], db[1], db[2])
-    "sort by date field"
-#   return db[0]
-
-def keyfunc(db):
-#   "sort by date, state, county fields"
-#   return "%s_%s_%s" % (db[0], db[1], db[2])
-    "sort by date field"
-    return db[0]
+    return (db[0], db[1], db[2])
 
 
 def process():
@@ -72,53 +68,61 @@ def process():
 #   print db[:3]
 
     # sort by date
-    sdb = sorted(db, key=sortkeyfunc)
-#   print sdb[:3]
+    sort_database = sorted(db, key=date_county_keyfunc)
 
-    groups = defaultdict(list)
-    uniquedates = []
+    date_groups = defaultdict(list)
+    unique_dates = []
+
+    def date_keyfunc(db):
+        return db[0]
 
     # group by date
-    for k, g in groupby(sdb, keyfunc):
-        uniquedates.append(k)
-        groups[k].append(list(g))
+    for k, g in groupby(sort_database, date_keyfunc):
+        unique_dates.append(k)
+        date_groups[k].append(list(g))
 
     print 80 * '-'
-    for k in uniquedates:
-        print k, pformat(groups[k], width=132)
-        assert len(groups[k]) == 1, "Length error"
+    for date in unique_dates:
+        print date, pformat(date_groups[date], width=WIDTH)
+        assert len(date_groups[date]) == 1, "Length error"
         print
 
-    def county(r):
+    def state_county_keyfunc(r):
 #       r = r[0]
         result = "%s %s" % (r[1], r[2])
         return result
 
-    counties_by_date = []
+    counties = defaultdict(list)
+
     print 80 * '='
-    for date in uniquedates:
-        caches = groups[date][0]
-        print date, pformat(caches, width=132)
-        print
+    for date in unique_dates:
 
-        counties = []
+        county_group = date_groups[date][0]
+        print "Date: %s len(county_group): %d" % (date, len(county_group))
 
-        for k, g in groupby(caches, county):
+        print date
+
+        # now group them by county
+        for k, g in groupby(county_group, state_county_keyfunc):
             gl = list(g)
-            counties.append((date, k, len(gl), (gl)))
-
-        counties_by_date.append(counties)
+            counties[date].append((k, len(gl)))
 
     print 80 * '#'
-    pprint(counties_by_date)
+    pprint(counties, width=WIDTH)
 
-    for item in counties_by_date:
-        date = item[0][0]
-        formatted_string = "%s: %d Counties" % (item[0][0], len(item))
+    for date, county_list in counties.items():
+
+        clist = [x[0] for x in county_list]
+        formatted_string = "%s: %d Counties (%s)" % (
+            date,
+            len(county_list),
+            ", ".join(clist)
+        )
         print formatted_string
-        for ts in item:
-            print "    %-25s %2s" % (ts[1], ts[2])
-        print
+#       ts = item
+#       for ts in item:
+#       print "    %-25s %2s" % (ts[1], ts[2])
+#       print
 
 ########################################################################
 
