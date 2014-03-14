@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Fri 14 Mar 2014 09:52:02 AM CDT
-# Last Modified: Fri 14 Mar 2014 02:37:53 PM CDT
+# Last Modified: Fri 14 Mar 2014 03:39:45 PM CDT
 
 """
 SYNOPSIS
@@ -36,7 +36,7 @@ LICENSE
 
 """
 
-__VERSION__ = "1.0.2"
+__VERSION__ = "1.0.3"
 """Version string"""
 
 ########################################################################
