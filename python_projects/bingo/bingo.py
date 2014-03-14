@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Fri 14 Mar 2014 09:52:02 AM CDT
-# Last Modified: Fri 14 Mar 2014 12:45:56 PM CDT
+# Last Modified: Fri 14 Mar 2014 01:02:49 PM CDT
 
 """
 SYNOPSIS
@@ -11,15 +11,16 @@ SYNOPSIS
 
 DESCRIPTION
 
-    Compute checksums for "Rest Stop BINGO"
+    Compute checksums and coordinates for "Rest Stop BINGO" based on text
+    strings in "bingo.txt".
 
     http://www.geocaching.com/
     geocache/
     GC4YPE2_rest-stop-bingo?guid=1b22b3c1-fc9f-4824-ac92-af4de6f9a395
 
-EXAMPLES
+USAGE EXAMPLES
 
-    python bingo.py bingo.txt
+    python bingo.py
 
 EXIT STATUS
 
@@ -35,7 +36,7 @@ LICENSE
 
 """
 
-__VERSION__ = "1.0.0"
+__VERSION__ = "1.0.1"
 
 ########################################################################
 
@@ -44,40 +45,27 @@ from collections import defaultdict
 
 ########################################################################
 
-SIGNS = [
-    #   """ONE""",
-    #   """TWO""",
-    #   """THREE""",
-    #   """FOUR""",
-    #   """FIVE""",
-    #   """SIX""",
-    #   """SEVEN""",
-    #   """EIGHT""",
-    #   """NINE""",
-    #   """TEN""",
-    #   """ELEVEN""",
-    #   """TWELVE""",
-    #   """THIRTEEN""",
-    #   """FOURTEEN""",
-]
+SIGNS = []
 
+# these are the expected checksums from each of the signs
 CHECKSUMS = [
-    8,
-    118,
-    5,
-    7,
-    87,
-    14,
-    3,
-    5,
-    2,
-    0,
-    39,
-    7,
-    4,
-    13,
+    8,                                  # Sign 1
+    118,                                # Sign 2
+    5,                                  # Sign 3
+    7,                                  # Sign 4
+    87,                                 # Sign 5
+    14,                                 # Sign 6
+    3,                                  # Sign 7
+    5,                                  # Sign 8
+    2,                                  # Sign 9
+    0,                                  # Sign 10
+    39,                                 # Sign 11
+    7,                                  # Sign 12
+    4,                                  # Sign 13
+    13,                                 # Sign 14
 ]
 
+# these are the equations to be applied for each sign
 EQUATIONS = [
     lambda B, I, N, G, O: (B + I + N + G) / O,                  # Sign 1
     lambda B, I, N, G, O: (B - I + N + O - G) / 5,              # Sign 2
@@ -95,43 +83,58 @@ EQUATIONS = [
     lambda B, I, N, G, O: (I + N) + (B * G * O),                # Sign 14
 ]
 
+# the expected checksum of all the equation results
 EQUATIONS_CHECKSUM = 67
 
 ########################################################################
 
 
-def compute_sign_values(s, equation):
-    """Count 'B', 'I', 'N', 'G', and 'O' characters in #{s}
+def compute_sign_values(sign, equation):
+    """Count 'B', 'I', 'N', 'G', and 'O' characters in #{sign}
+    @param sign: text string of the sign's message
+    @type sign: string
+    @param equation: a function of (B, I, N, G, O)
+    @type equation: function
+    @return: checksum, tuple, number
+    @rtype: tuple
 """
 
-    s = s.upper()
+    # convert to uppercase
+    sign = sign.upper()
+
+    # create a dictionary for the results
     d = defaultdict(lambda: 0)
 
     # count the letters
-    for c in s:
+    for c in sign:
         d[c] += 1
 
-    # collect the results
-    result_list = []
+    # collect the results for 'B', 'I', 'N', 'G' and 'O', computing the
+    # checksum of the counts
+    bingo_result_list = []
     checksum = 0
     for c in "BINGO":
         value = d[c]
         checksum += value
-        result_list.append(value)
+        bingo_result_list.append(value)
 
-    result_tuple = tuple(result_list)
+    # convert the result list to an immutable tuple
+    result_tuple = tuple(bingo_result_list)
 
+    # attempt to compute the equation result, watching out for division by zero
     try:
         equation_result = equation(*result_tuple)
     except ZeroDivisionError:
         equation_result = 99999999
 
+    # return all of the results
     return checksum, result_tuple, equation_result
 
 ########################################################################
 
 
 def process():
+    """Compute and display BINGO results for all signs"""
 
     print "%4s %s %6s %8s %-20s %20s %8s" % (
         "Sign",
@@ -142,6 +145,7 @@ def process():
         "text",
         "equation"
     )
+    print "==== ===== ====== ======== ===============                      ==== ========"
 
     equation_results = []
     equations_checksum = 0
@@ -190,7 +194,7 @@ def process():
         u"W 0%(S8)s%(S9)s %(S10)s%(S11)s.%(S12)s%(S13)s%(S14)s" % interpolate
 
     print
-    print coordinates
+    print "coordinates: %s" % coordinates
 
 ########################################################################
 
