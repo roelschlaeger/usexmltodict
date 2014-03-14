@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Fri 14 Mar 2014 09:52:02 AM CDT
-# Last Modified: Fri 14 Mar 2014 01:02:49 PM CDT
+# Last Modified: Fri 14 Mar 2014 02:37:53 PM CDT
 
 """
 SYNOPSIS
@@ -36,7 +36,8 @@ LICENSE
 
 """
 
-__VERSION__ = "1.0.1"
+__VERSION__ = "1.0.2"
+"""Version string"""
 
 ########################################################################
 
@@ -46,6 +47,7 @@ from collections import defaultdict
 ########################################################################
 
 SIGNS = []
+"""List of strings, one per sign"""
 
 # these are the expected checksums from each of the signs
 CHECKSUMS = [
@@ -64,6 +66,7 @@ CHECKSUMS = [
     4,                                  # Sign 13
     13,                                 # Sign 14
 ]
+"""List of numbers, the checksums for the BINGO characters on each sign"""
 
 # these are the equations to be applied for each sign
 EQUATIONS = [
@@ -82,15 +85,19 @@ EQUATIONS = [
     lambda B, I, N, G, O: (B + I + G) + (N * N) + O,            # Sign 13
     lambda B, I, N, G, O: (I + N) + (B * G * O),                # Sign 14
 ]
+"""List of functions f(B, I, N, G, O) corresponding to each sign"""
 
 # the expected checksum of all the equation results
 EQUATIONS_CHECKSUM = 67
+"""Checksum of all equation results"""
 
 ########################################################################
 
 
 def compute_sign_values(sign, equation):
-    """Count 'B', 'I', 'N', 'G', and 'O' characters in #{sign}
+    """Count 'B', 'I', 'N', 'G', and 'O' characters in L{sign}, then compute
+    L{equation} using the BINGO counts.
+
     @param sign: text string of the sign's message
     @type sign: string
     @param equation: a function of (B, I, N, G, O)
@@ -103,18 +110,18 @@ def compute_sign_values(sign, equation):
     sign = sign.upper()
 
     # create a dictionary for the results
-    d = defaultdict(lambda: 0)
+    counter_dictionary = defaultdict(lambda: 0)
 
     # count the letters
-    for c in sign:
-        d[c] += 1
+    for character in sign:
+        counter_dictionary[character] += 1
 
     # collect the results for 'B', 'I', 'N', 'G' and 'O', computing the
     # checksum of the counts
     bingo_result_list = []
     checksum = 0
-    for c in "BINGO":
-        value = d[c]
+    for character in "BINGO":
+        value = counter_dictionary[character]
         checksum += value
         bingo_result_list.append(value)
 
@@ -208,7 +215,8 @@ if __name__ == '__main__':
 
 ########################################################################
 
-    def main(args, options):
+    def main():
+        """Required main program"""
 
         print
         print 72 * '#'
@@ -231,17 +239,19 @@ if __name__ == '__main__':
 
         process()
 
+        return 0
+
 ########################################################################
 
     try:
-        start_time = time.time()
-        parser = optparse.OptionParser(
+        START_TIME = time.time()
+        PARSER = optparse.OptionParser(
             formatter=optparse.TitledHelpFormatter(),
             usage=globals()['__doc__'],
             version=__VERSION__
         )
 
-        parser.add_option(
+        PARSER.add_option(
             '-v',
             '--verbose',
             action='store_true',
@@ -249,32 +259,32 @@ if __name__ == '__main__':
             help='verbose output'
         )
 
-        (options, args) = parser.parse_args()
+        (OPTIONS, ARGS) = PARSER.parse_args()
 
-        if options.verbose:
+        if OPTIONS.verbose:
             print time.asctime()
 
-        exit_code = main(args, options)
+        EXIT_CODE = main()
 
-        if exit_code is None:
-            exit_code = 0
+        if EXIT_CODE is None:
+            EXIT_CODE = 0
 
-        if options.verbose:
+        if OPTIONS.verbose:
             print time.asctime()
             print 'TOTAL TIME IN MINUTES:',
-            print (time.time() - start_time) / 60.0
+            print (time.time() - START_TIME) / 60.0
 
-        sys.exit(exit_code)
+        sys.exit(EXIT_CODE)
 
-    except KeyboardInterrupt, e:        # Ctrl-C
-        raise e
+    except KeyboardInterrupt, error_exception:        # Ctrl-C
+        raise error_exception
 
-    except SystemExit, e:               # sys.exit()
-        raise e
+    except SystemExit, error_exception:               # sys.exit()
+        raise error_exception
 
-    except Exception, e:
+    except Exception, error_exception:
         print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(e)
+        print str(error_exception)
         traceback.print_exc()
         os._exit(1)
 
