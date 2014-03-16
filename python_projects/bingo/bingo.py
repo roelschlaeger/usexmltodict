@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Fri 14 Mar 2014 09:52:02 AM CDT
-# Last Modified: Fri 14 Mar 2014 03:39:45 PM CDT
+# Last Modified: Sun 16 Mar 2014 02:07:28 PM CDT
 
 """
 SYNOPSIS
@@ -36,7 +36,7 @@ LICENSE
 
 """
 
-__VERSION__ = "1.0.3"
+__VERSION__ = "1.0.4"
 """Version string"""
 
 ########################################################################
@@ -67,6 +67,9 @@ CHECKSUMS = [
     13,                                 # Sign 14
 ]
 """List of numbers, the checksums for the BINGO characters on each sign"""
+
+BINGO_COLUMN_SUMS = [15, 75, 101, 30, 91]
+"""column sums across all fourteen signs"""
 
 # these are the equations to be applied for each sign
 EQUATIONS = [
@@ -140,6 +143,40 @@ def compute_sign_values(sign, equation):
 ########################################################################
 
 
+def print_column_checksums(bingo_column_sums):
+    """Display the column sum differences nicely formatted"""
+
+    print
+    print "Column Checksums"
+    print "================"
+    print "Expected: ", pformat(BINGO_COLUMN_SUMS)
+    print "Actual:   ", pformat(bingo_column_sums)
+    print "          ", pformat(
+        [
+            BINGO_COLUMN_SUMS[i] == bingo_column_sums[i]
+            for i in range(5)
+        ]
+    )
+
+########################################################################
+
+
+def print_equation_checksum(equations_checksum):
+    """Display equation checksums nicely formatted"""
+
+    print
+    print "Equations checksum"
+    print "=================="
+    print "%-5s %9s %9s" % ("BOOL", "Computed", "Expected")
+    print "%-5s %9d %9d" % (
+        (equations_checksum == EQUATIONS_CHECKSUM),
+        equations_checksum,
+        EQUATIONS_CHECKSUM
+    )
+
+########################################################################
+
+
 def process():
     """Compute and display BINGO results for all signs"""
 
@@ -154,6 +191,7 @@ def process():
     )
     print "==== ===== ====== ======== ===============                      ==== ========"
 
+    bingo_column_sums = [0, 0, 0, 0, 0]
     equation_results = []
     equations_checksum = 0
     for index, sign_csum in enumerate(zip(SIGNS, CHECKSUMS)):
@@ -182,14 +220,12 @@ def process():
             equation_result
         )
 
-    print
-    print "Equations checksum"
-    print "%-5s %9s %9s" % ("BOOL", "Computed", "Expected")
-    print "%-5s %9d %9d" % (
-        (equations_checksum == EQUATIONS_CHECKSUM),
-        equations_checksum,
-        EQUATIONS_CHECKSUM
-    )
+        for index, column in enumerate(bingo):
+            bingo_column_sums[index] += column
+
+    print_column_checksums(bingo_column_sums)
+
+    print_equation_checksum(equations_checksum)
 
     interpolate = dict(
         zip(
