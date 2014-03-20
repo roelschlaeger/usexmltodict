@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 19 Mar 2014 02:16:55 PM CDT
-# Last Modified: Thu 20 Mar 2014 01:01:16 PM CDT
+# Last Modified: Thu 20 Mar 2014 01:32:47 PM CDT
 
 """
 SYNOPSIS
@@ -78,7 +78,11 @@ class App(Frame):
         )
         self.b1.pack()
 
-        self.e1 = Entry(self.lf1, textvariable=self.s1)
+        self.e1 = Entry(
+            self.lf1,
+#           command=self.e1_callback,
+            textvariable=self.s1
+        )
         self.e1.pack(fill=BOTH)
 
         self.e2 = Entry(self.lf3, textvariable=self.s2)
@@ -135,6 +139,9 @@ class App(Frame):
             self.v3.get(), \
             self.v4.get(), \
             self.v5.get()
+
+    def e1_callback(self):
+        print "e1_callback"
 
     ########################################################################
 
