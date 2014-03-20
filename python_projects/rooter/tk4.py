@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 19 Mar 2014 02:16:55 PM CDT
-# Last Modified: Thu 20 Mar 2014 01:32:47 PM CDT
+# Last Modified: Thu 20 Mar 2014 02:55:52 PM CDT
 
 """
 SYNOPSIS
@@ -60,10 +60,15 @@ class App(Frame):
         self.v4 = IntVar()
         self.v5 = IntVar()
 
-        self.lf1 = LabelFrame(self, text="File:", padx=5, pady=5)
+        self.lf1 = LabelFrame(self, text="Filename:", padx=5, pady=5)
         self.lf1.pack(fill=BOTH)
 
-        self.lf2 = LabelFrame(self, text="Switches", padx=5, pady=5)
+        self.lf2 = LabelFrame(
+            self,
+            text="Processing choices: pick at least one",
+            padx=5,
+            pady=5
+        )
         self.lf2.pack(fill=BOTH)
 
         self.lf3 = LabelFrame(self, text="Logging", padx=5, pady=5)
@@ -124,7 +129,7 @@ class App(Frame):
         self.c5.pack(anchor=W)
 
     def Initialize(self):
-        self.s1.set("filename goes here")
+        self.s1.set("Filename goes here")
         self.s2.set("Logging")
         self.v1.set(1)
         self.v2.set(0)
@@ -150,7 +155,8 @@ if __name__ == "__main__":
     app = App()
 
     app.master.title("Run quint .gpx processing")
-    app.master.maxsize(1000, 400)
+#   app.master.maxsize(1000, 400)
+    app.master.geometry("450x300+200+200")
 
     app.mainloop()
 
