@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 19 Mar 2014 02:16:55 PM CDT
-# Last Modified: Thu 20 Mar 2014 02:55:52 PM CDT
+# Last Modified: Thu 20 Mar 2014 03:20:57 PM CDT
 
 """
 SYNOPSIS
@@ -38,7 +38,7 @@ __VERSION__ = "0.0.1"
 ########################################################################
 
 from Tkinter import ACTIVE, BOTH, Button, Checkbutton, Entry, Frame, IntVar
-from Tkinter import LabelFrame, RAISED, StringVar, W
+from Tkinter import LabelFrame, Menu, RAISED, StringVar, W
 
 ########################################################################
 
@@ -49,7 +49,26 @@ class App(Frame):
         Frame.__init__(self, master, relief=RAISED)
         self.pack(fill=BOTH)
         self.CreateWidgets()
+        self.CreateMenubar()
         self.Initialize()
+
+    def aboutMe(self):
+        print "aboutMe"
+
+    def CreateMenubar(self):
+        self.menubar = Menu(self)
+
+        self.filemenu = Menu(self.menubar, tearoff=0)
+        self.filemenu.add_separator()
+        self.filemenu.add_command(label="Quit", command=self.quit)
+
+        self.helpmenu = Menu(self.menubar, tearoff=0)
+        self.helpmenu.add_command(label="About Me", command=self.aboutMe)
+
+        self.menubar.add_cascade(label="File", menu=self.filemenu)
+        self.menubar.add_cascade(label="Help", menu=self.helpmenu)
+
+        self.master.config(menu=self.menubar)
 
     def CreateWidgets(self):
         self.s1 = StringVar()
