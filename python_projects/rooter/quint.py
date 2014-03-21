@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # $Id: $
 # Created: 	     Fri 31 Dec 2010 05:38:29 PM CST
-# Last modified: Mon 03 Feb 2014 07:15:57 PM CST
+# Last modified: Thu 20 Mar 2014 08:57:50 PM CDT
 
 ########################################################################
 
@@ -194,7 +194,8 @@ class MyPanel2(wx.Panel):
         et_options = Options()
         et_options.html = html_flag
 
-        body = et.do_body(pathname, index=MIN_INDEX, options=et_options)
+        # TODO use UserSort for Index
+        body = et.do_body2(pathname, index=MIN_INDEX, options=et_options)
 
         if et_flag:
             output_filename = "%s.csv" % pathname

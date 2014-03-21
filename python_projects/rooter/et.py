@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # Created:       Sun 08 Aug 2010 10:04:57 PM CDT
-# Last Modified: Tue 04 Feb 2014 02:51:31 PM CST
+# Last Modified: Thu 20 Mar 2014 08:55:34 PM CDT
 # $Id: et.py 193 2011-01-08 04:28:44Z harry $
 
 """Process a .gpx file to extract pertinent data fields"""
@@ -17,6 +17,7 @@ import os.path
 import re
 import StringIO
 import sys
+import types
 import zipfile
 
 ########################################################################
@@ -45,6 +46,7 @@ AUTHOR = None
 BOUNDS = None
 CMT = None
 DESC = None
+ELE = None
 EMAIL = None
 KEYWORDS = None
 LINK = None
@@ -76,7 +78,7 @@ SMARTNAME = None
 USER2 = None
 # USERDATA = None
 # USERFLAG = None
-# USERSORT = None
+USERSORT = None
 # WATCH = None
 WPTEXTENSION = None
 
@@ -117,7 +119,7 @@ def make_cache_tags(schema="{http://www.groundspeak.com/cache/1/0/1}"):
 
 def make_extension_tags(schema="{http://www.gsak.net/xmlv1/5}"):
 
-    global WPTEXTENSION, USER2, COUNTY, SMARTNAME
+    global WPTEXTENSION, USER2, COUNTY, SMARTNAME, USERSORT
 
     generate_wpt_extension_tag = tag_factory(schema)
 
@@ -130,8 +132,8 @@ def make_extension_tags(schema="{http://www.gsak.net/xmlv1/5}"):
     # FIRSTTOFIND = generate_wpt_extension_tag("FirstToFind")
     USER2 = generate_wpt_extension_tag("User2")
     COUNTY = generate_wpt_extension_tag("County")
-    # USERSORT = generate_wpt_extension_tag("UserSort")
     SMARTNAME = generate_wpt_extension_tag("SmartName")
+    USERSORT = generate_wpt_extension_tag("UserSort")
     # LASTGPXDATE = generate_wpt_extension_tag("LastGpxDate")
 
 ########################################################################
@@ -140,9 +142,9 @@ def make_extension_tags(schema="{http://www.gsak.net/xmlv1/5}"):
 def make_gpx_tags(root_tag="{http://www.topografix.com/GPX/1/0}"):
     """create schema tags for GPX/1/0"""
 
-    global AUTHOR, BOUNDS, CMT, DESC, EMAIL, KEYWORDS, NAME, SYM, TIME, TYPE
-    global URL, URLNAME, WPT, METADATA, LINK, RTE, RTEPT, RTE_TIME, RTE_NAME
-    global RTE_CMT, RTE_DESC, RTE_SYM, RTE_TYPE, RTE_EXTENSIONS
+    global AUTHOR, BOUNDS, CMT, DESC, ELE, EMAIL, KEYWORDS, NAME, SYM, TIME
+    global TYPE, URL, URLNAME, WPT, METADATA, LINK, RTE, RTEPT, RTE_TIME
+    global RTE_NAME, RTE_CMT, RTE_DESC, RTE_SYM, RTE_TYPE, RTE_EXTENSIONS
 
     generate_gpx_tag = tag_factory(root_tag)
 
@@ -150,6 +152,7 @@ def make_gpx_tags(root_tag="{http://www.topografix.com/GPX/1/0}"):
     BOUNDS = generate_gpx_tag("bounds")         # not used, just skipped
     CMT = generate_gpx_tag("cmt")               # not used, just skipped
     DESC = generate_gpx_tag("desc")             # not used, just skipped
+    ELE = generate_gpx_tag("ele")               # not used, just skipped
     EMAIL = generate_gpx_tag("email")           # not used, just skipped
     KEYWORDS = generate_gpx_tag("keywords")     # not used, just skipped
     LINK = generate_gpx_tag("link")             # part of GPX/1/1
@@ -197,6 +200,7 @@ def make_skip_lists():
 
     GRANDCHILD_SKIP_TAGS = [
         CMT,
+        ELE,
         LINK,
         SYM,
         TIME,
@@ -295,7 +299,109 @@ def do_output_header():
 ########################################################################
 
 
-def make_row(index, tags):
+### def make_row(index, tags):
+###     """output the collected column data as a tab-delimited row string"""
+###
+###     # create an empty list to hold output for a line
+###     out = []
+###
+###     cache_dict = tags["cache"]
+###
+###     # assemble column information
+###     archived = cache_dict["archived"]
+###     available = cache_dict["available"]
+###     container = cache_dict["container"] or "ERROR"
+###     encoded_hints = " ".join((cache_dict["encoded_hints"] or "").split())
+###     owner = cache_dict["owner"] or ""
+### #   placed_by     = cache_dict[ "placed_by" ] or ""
+###
+###     desc = tags["desc"]
+###     lat = tags["lat"]
+###     lon = tags["lon"]
+###     name = tags["name"]
+###
+###     # split the GC number into prefix and id
+###     gc_prefix, gc_number = name[:2], name[2:]
+###
+###     gtype = tags["type"].replace(
+###         "Geocache|", ""
+###     ).replace(
+###         "Cache", ""
+###     ).replace(
+###         "Waypoint|", ""
+###     )
+###
+###     # get the url, with modifications
+###     url = tags["url"] or ""
+###     if url:
+###         url = url.replace("cache_details.aspx", "cdpf.aspx")
+###         url += HTTP_TRAILER
+###
+### #   urlname = tags[ "urlname" ]           # not used
+###
+### #   try:
+### #       county = tags[ "wptExtension" ][ "County" ]
+### #   except KeyError:
+### #       county = "UNK"
+###
+###     user2 = tags["wptExtension"].get("User2", "")
+###     smartname = tags["wptExtension"]["SmartName"]
+###
+###     # compute odd or even row for background coloring
+###     odd = ((index - GLOBAL_MIN_INDEX) % 20 == 0 and "even") or "odd"
+###
+### #   link = "N/A"
+###     row_number = ((index - GLOBAL_MIN_INDEX) / 10) + 4
+###     link = "=HYPERLINK(F%d;E%d)" % (row_number, row_number)
+###
+###     log = '=CONCATENATE($a$1;" ";R%d;" Thanks, ";G%d;", for placing this cache! -- roelsch, St. Charles, MO.")' % (row_number, row_number)
+###
+###     # cleanup non GC items
+###     if gc_prefix != "GC":
+###         gc_number = "None"
+###         available = "N/A"
+###         archived = "N/A"
+###         gtype = ""
+###         link = "=E%d" % row_number
+###         container = ""
+###         encoded_hints = ""
+###         owner = ""
+###         url = ""                    # output the column information to the list
+###         log = ""                    # no log if not a waypoint
+###
+###     out.append(gc_prefix)               # A: GC
+###     out.append(gc_number)               # B: GC#
+###     out.append(available)               # C: True | False
+###     out.append(archived)                # D: True | False
+###     out.append(desc)                    # E: A Tiny Park by RGS (2.5/1)
+###     out.append(url)                     # F: http://www.geocaching.com/seek...
+###     out.append(owner)                   # G: RGS
+###     out.append(user2)                   # H: USER2
+###     out.append(odd)                     # I: odd/even
+###     out.append(str(index))              # J: 110
+###     out.append(name)                    # K: GC17KCY
+###     out.append(link)                    # L: =HYPERLINK(F2,E2)
+###     out.append(gtype)                   # M: Traditional
+###     out.append(container)               # N: Micro
+###     out.append(encoded_hints)           # O: Sit a spell.
+###     out.append(lat_format(lat))         # P: 38.576333
+###     out.append(lon_format(lon))         # Q: -90.355583
+###     out.append("")                      # R: note
+###     out.append(log)                     # S: log
+###     out.append(smartname)               # T: smartname
+###
+###     # for a tab-delimited output string
+### #   out = map( str, out )
+###     output_string = "\t".join(map(str, out))
+###
+###     # and fixup any unicode errors
+###     return output_string.encode('utf-8', 'ignore')
+
+########################################################################
+
+
+# TODO use UserSort for Index
+def make_row2(index, tags):
     """output the collected column data as a tab-delimited row string"""
 
     # create an empty list to hold output for a line
@@ -309,6 +415,9 @@ def make_row(index, tags):
     container = cache_dict["container"] or "ERROR"
     encoded_hints = " ".join((cache_dict["encoded_hints"] or "").split())
     owner = cache_dict["owner"] or ""
+
+    extensions_dict = tags["wptExtension"]
+    user_sort = extensions_dict["UserSort"]
 #   placed_by     = cache_dict[ "placed_by" ] or ""
 
     desc = tags["desc"]
@@ -374,7 +483,8 @@ def make_row(index, tags):
     out.append(owner)                   # G: RGS
     out.append(user2)                   # H: USER2
     out.append(odd)                     # I: odd/even
-    out.append(str(index))              # J: 110
+#   out.append(str(index))              # J: 110
+    out.append(user_sort)               # J: 110
     out.append(name)                    # K: GC17KCY
     out.append(link)                    # L: =HYPERLINK(F2,E2)
     out.append(gtype)                   # M: Traditional
@@ -403,7 +513,7 @@ def getzipfile(arg):
     namelist = z_file.namelist()
     if len(namelist) != 1:
         z_file.printdir()
-        raise ValueError, "Expecting a zip file with a single payload"
+        raise ValueError("Expecting a zip file with a single payload")
 
     return StringIO.StringIO(z_file.read(namelist[0]))
 
@@ -458,7 +568,7 @@ derived from this data structure"""
             #   "Watch",
             #   "UserData",
             #   "FirstToFind",
-            #   "UserSort",
+            "UserSort",
             "SmartName",
             "User2",
             "County",
@@ -479,7 +589,7 @@ def striptag(tag):
     if re_match:
         _schema, tag = re_match.groups()
     else:
-        raise ValueError, "tag not found in %s" % tag
+        raise ValueError("tag not found in %s" % tag)
     return tag
 
 ########################################################################
@@ -489,7 +599,7 @@ def handle_wptextension(grandchild, tags):
 
     c3tags = {}
     for child3 in grandchild.getchildren():
-        if child3.tag in [COUNTY, SMARTNAME, USER2]:
+        if child3.tag in [COUNTY, SMARTNAME, USER2, USERSORT]:
             if child3.text:
                 c3tags[striptag(child3.tag)] = child3.text.rstrip()
 
@@ -601,7 +711,7 @@ def process_wpt(child, grandchild_skip_tags):
 
         else:
             print >> sys.stderr, \
-                "UNEXPECTED GRANDCHILD TAG: '%s' '%s' '%s'" % (
+                "UNEXPECTED GRANDCHILD TAG: '%s' '%s' '%s'\nSkipping...\n" % (
                     grandchild.tag,
                     grandchild.text,
                     grandchild.attrib
@@ -613,7 +723,57 @@ def process_wpt(child, grandchild_skip_tags):
 ########################################################################
 
 
-def process_tree(index, tree):
+### def process_tree(index, tree):
+###     """parse the tree generating .xls text output"""
+###
+###     # a list to hold the output lines
+###     outlines = ["Geocaching with Mean Gene and The Rooter", ""]
+###
+###     # output the header
+###     outlines.append(do_output_header())
+###
+###     # get the root of the three
+###     root = tree.getroot()
+###
+###     # create tags
+###     make_tags(root)
+###
+###     child_skip_tags = CHILD_SKIP_TAGS
+###     grandchild_skip_tags = GRANDCHILD_SKIP_TAGS
+###
+###     # look at the children
+###     for child in root.getchildren():
+###
+###         # look at each waypoint
+###         if child.tag == WPT:
+###
+###             tags = process_wpt(child, grandchild_skip_tags)
+###             outlines.append(make_row(index, tags))
+###             index += 10
+###
+###         elif child.tag == RTE:
+###             process_rte(child)
+###
+###         # skip these tags
+###         elif child.tag in child_skip_tags:
+###             pass
+###
+###         else:
+###             print >> sys.stderr,     \
+###                 "UNEXPECTED CHILD TAG:", \
+###                 child.tag,               \
+###                 child.text,              \
+###                 child.attrib
+###
+###             child_skip_tags.append(child.tag)
+###
+###     return "\n".join(outlines)
+
+########################################################################
+
+
+# TODO use UserSort for Index
+def process_tree2(index, tree):
     """parse the tree generating .xls text output"""
 
     # a list to hold the output lines
@@ -638,7 +798,7 @@ def process_tree(index, tree):
         if child.tag == WPT:
 
             tags = process_wpt(child, grandchild_skip_tags)
-            outlines.append(make_row(index, tags))
+            outlines.append(make_row2(index, tags))
             index += 10
 
         elif child.tag == RTE:
@@ -789,7 +949,53 @@ def html_tree(index, tree):
 ########################################################################
 
 
-def do_body(arg, index, options):
+### def do_body(arg, index, options):
+###     """process file L{filedata}"""
+###
+###     global GLOBAL_MIN_INDEX
+###     GLOBAL_MIN_INDEX = index
+###
+###     filedata = arg
+###
+###     # if filedata is a .zip file, replace it with the unzipped contents
+###     if zipfile.is_zipfile(filedata):
+###         filedata = getzipfile(filedata)
+###
+###     # convert to ascii
+###     filedata = StringIO.StringIO(
+###         codecs.open(
+###             filedata,
+###             "r",
+###             encoding="ascii",
+###             errors="ignore"
+###         ).read().decode(
+###             "utf-8",
+###             "ignore"
+###         )
+###     )
+###
+###     # parse the input file
+###     tree = ET.parse(filedata)
+###
+###     # optionally create HTML output
+###     if options.html:
+###
+###         # create a filename with .html extension
+###         ofile = os.path.splitext(arg)[0] + ".html"
+###
+###         # create HTML output and write the file
+###         _tempfile = open(ofile, "w")
+###         print >> _tempfile, html_tree(index, tree)
+###         _tempfile.close()
+###         print >> sys.stderr, "HTML output is in %s" % ofile
+###
+###     return process_tree(index, tree)
+###
+########################################################################
+
+
+# TODO use UserSort for Index
+def do_body2(arg, index, options):
     """process file L{filedata}"""
 
     global GLOBAL_MIN_INDEX
@@ -829,7 +1035,7 @@ def do_body(arg, index, options):
         _tempfile.close()
         print >> sys.stderr, "HTML output is in %s" % ofile
 
-    return process_tree(index, tree)
+    return process_tree2(index, tree)
 
 ########################################################################
 
@@ -845,7 +1051,8 @@ def process_node(node, depth=1, follow=None):
 
         if child.tag in follow:
             print "  " * depth, child.tag, child.text, child.attrib
-            if type(follow) == type({}):
+#           if type(follow) == type({}):
+            if isinstance(follow, types.DictType):
                 aux = follow[child.tag]
             else:
                 aux = []
@@ -893,7 +1100,10 @@ Excel or Open Office base"""
 
     for arg in filelist:
         print >> sys.stderr, "Processing %s" % arg
-        print do_body(arg, index, options)
+
+# TODO use UserSort for Index
+#       print do_body(arg, index, options)
+        print do_body2(arg, index, options)
 
 ########################################################################
 
