@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 19 Mar 2014 02:16:55 PM CDT
-# Last Modified: Fri 21 Mar 2014 04:02:10 PM CDT
+# Last Modified: Fri 21 Mar 2014 04:23:51 PM CDT
 
 """
 SYNOPSIS
@@ -38,7 +38,8 @@ __VERSION__ = "0.0.2"
 ########################################################################
 
 from Tix import *
-# from Tkconstants import *
+from Tkconstants import *
+import ttk
 
 ########################################################################
 
@@ -51,11 +52,6 @@ class App(Frame):
         self.CreateWidgets()
         self.CreateMenubar()
         self.Initialize()
-#       w = self.winfo_reqwidth()
-#       h = self.winfo_reqheight()
-#       print w, h
-#       self.master.minsize(w, h)
-        self.master.minsize(400, 200)
 
     def aboutMe(self):
         print "aboutMe"
@@ -69,15 +65,14 @@ class App(Frame):
         self.v4 = IntVar()
         self.v5 = IntVar()
 
-        self.lf1 = Frame(self)
-#       self.lf1.config(label="Filename:")
+        self.lf1 = ttk.LabelFrame(self, text="Filename:")
         self.lf1.pack(fill=BOTH)
 
-        self.lf2 = Frame(self)
+        self.lf2 = ttk.LabelFrame(self, text="Processing choices: pick at least one")
 #       self.lf2.config(label="Processing choices: pick at least one")
         self.lf2.pack(fill=BOTH)
 
-        self.lf3 = Frame(self)
+        self.lf3 = ttk.LabelFrame(self, text="Logging")
 #       self.lf3.config(label="Logging")
         self.lf3.pack(fill=BOTH)
 
@@ -138,7 +133,6 @@ class App(Frame):
         self.menubar = Menu(self)
 
         self.filemenu = Menu(self.menubar, tearoff=0)
-#       self.filemenu.add_separator()
         self.filemenu.add_command(label="Quit", command=self.quit)
 
         self.helpmenu = Menu(self.menubar, tearoff=0)
@@ -147,7 +141,7 @@ class App(Frame):
         self.menubar.add_cascade(label="File", menu=self.filemenu)
         self.menubar.add_cascade(label="Help", menu=self.helpmenu)
 
-        self.master.config(menu=self.menubar)
+#       self.master.config(menu=self.menubar)
 
     def Initialize(self):
         self.s1.set("Filename goes here")
@@ -183,15 +177,19 @@ class App(Frame):
 
 if __name__ == "__main__":
 
-    app = App()
+    root = Tk()
+    root.title("Run quint .gpx processing")
+    root.geometry("450x300+200+200")
+#   root.minsize(400, 200)
 
-    app.master.title("Run quint .gpx processing")
-#   app.master.maxsize(1000, 400)
-    app.master.geometry("450x300+200+200")
-    # set minimum size restriction
-#   app.master.minsize(app.winfo_reqwidth(), app.winfo_reqheight())
-#   print app.winfo_reqwidth()
-#   print app.winfo_reqheight()
+    master = ttk.Frame(root, padding=(3, 3, 12, 12))
+    master.grid(column=0, row=0, sticky=(N, E, S, W))
+
+    app = App(master)
+    root.config(menu=app.menubar)
+
+    for child in master.winfo_children():
+        child.grid_configure(padx=5, pady=5)
 
     app.mainloop()
 
