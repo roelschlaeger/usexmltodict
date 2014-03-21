@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Fri 21 Mar 2014 10:45:35 AM CDT
-# Last Modified: Fri 21 Mar 2014 11:16:07 AM CDT
+# Last Modified: Fri 21 Mar 2014 02:35:09 PM CDT
 
 """
 SYNOPSIS
@@ -35,7 +35,7 @@ VERSION
 
 """
 
-__VERSION__ = "0.0.1"
+__VERSION__ = "1.0.1"
 
 ########################################################################
 
@@ -62,7 +62,7 @@ def main_sub():
     def calculate(*args):
         try:
             value = float(feet.get())
-            meters.set(0.3048 * value)
+            meters.set(round(0.3048 * value, 4))
         except ValueError:
             pass
 
