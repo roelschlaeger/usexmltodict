@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 19 Mar 2014 02:16:55 PM CDT
-# Last Modified: Fri 21 Mar 2014 02:59:27 PM CDT
+# Last Modified: Fri 21 Mar 2014 03:00:20 PM CDT
 
 """
 SYNOPSIS
@@ -140,7 +140,7 @@ class App(Frame):
         self.menubar = Menu(self)
 
         self.filemenu = Menu(self.menubar, tearoff=0)
-        self.filemenu.add_separator()
+#       self.filemenu.add_separator()
         self.filemenu.add_command(label="Quit", command=self.quit)
 
         self.helpmenu = Menu(self.menubar, tearoff=0)
