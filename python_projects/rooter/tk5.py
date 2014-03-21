@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 19 Mar 2014 02:16:55 PM CDT
-# Last Modified: Fri 21 Mar 2014 03:00:20 PM CDT
+# Last Modified: Fri 21 Mar 2014 03:30:24 PM CDT
 
 """
 SYNOPSIS
@@ -33,7 +33,7 @@ VERSION
 
 """
 
-__VERSION__ = "0.0.1"
+__VERSION__ = "0.0.2"
 
 ########################################################################
 
@@ -46,6 +46,24 @@ __VERSION__ = "0.0.1"
 
 from Tix import *
 from Tkconstants import *
+import tkFileDialog
+
+#   import tkFileDialog as filedialog
+#   from pprint import pprint
+#   dirname = tkFileDialog.askdirectory()
+#   pprint(dirname)
+#   filename = tkFileDialog.askopenfile()
+#   pprint(filename)
+#   filename = tkFileDialog.askopenfilename()
+#   pprint(filename)
+#   filename = tkFileDialog.askopenfilenames()
+#   pprint(filename)
+#   filename = tkFileDialog.askopenfiles()
+#   pprint(filename)
+#   filename = tkFileDialog.asksaveasfile()
+#   pprint(filename)
+#   filename = tkFileDialog.asksaveasfilename()
+#   pprint(filename)
 
 ########################################################################
 
@@ -168,11 +186,19 @@ class App(Frame):
             self.v4.get(), \
             self.v5.get()
 
+        if self.s1.get() == "Filename goes here":
+            self.e1_callback(None)
+            return
+        else:
+            print "Process %s" % self.s1.get()
+
     def e1_callback(self, event):
         print "e1_callback", "%s" % event
-        from Tkinter import filedialog
-        filename = filedialog.askopendialog()
-        del filename
+        filename = tkFileDialog.askopenfilename()
+        if filename:
+            self.s1.set(filename)
+
+    ########################################################################
 
     ########################################################################
 
