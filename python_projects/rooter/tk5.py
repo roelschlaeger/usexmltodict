@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 19 Mar 2014 02:16:55 PM CDT
-# Last Modified: Fri 21 Mar 2014 03:30:24 PM CDT
+# Last Modified: Fri 21 Mar 2014 04:02:10 PM CDT
 
 """
 SYNOPSIS
@@ -37,33 +37,8 @@ __VERSION__ = "0.0.2"
 
 ########################################################################
 
-# import Tix
-# from Tix import ACTIVE, BOTH, Button, Checkbutton, Entry, Frame, IntVar
-# from Tix import LabelFrame, Menu, RAISED, StringVar, W
-# from Tkconstants import *
-# from Tkinter import ACTIVE, BOTH, IntVar, Menu, RAISED, StringVar, W
-# from ttk import Button, Checkbutton, Entry, Frame, LabelFrame
-
 from Tix import *
-from Tkconstants import *
-import tkFileDialog
-
-#   import tkFileDialog as filedialog
-#   from pprint import pprint
-#   dirname = tkFileDialog.askdirectory()
-#   pprint(dirname)
-#   filename = tkFileDialog.askopenfile()
-#   pprint(filename)
-#   filename = tkFileDialog.askopenfilename()
-#   pprint(filename)
-#   filename = tkFileDialog.askopenfilenames()
-#   pprint(filename)
-#   filename = tkFileDialog.askopenfiles()
-#   pprint(filename)
-#   filename = tkFileDialog.asksaveasfile()
-#   pprint(filename)
-#   filename = tkFileDialog.asksaveasfilename()
-#   pprint(filename)
+# from Tkconstants import *
 
 ########################################################################
 
@@ -76,6 +51,11 @@ class App(Frame):
         self.CreateWidgets()
         self.CreateMenubar()
         self.Initialize()
+#       w = self.winfo_reqwidth()
+#       h = self.winfo_reqheight()
+#       print w, h
+#       self.master.minsize(w, h)
+        self.master.minsize(400, 200)
 
     def aboutMe(self):
         print "aboutMe"
@@ -89,16 +69,16 @@ class App(Frame):
         self.v4 = IntVar()
         self.v5 = IntVar()
 
-#       self.lf1 = LabelFrame(self, text="Filename:")
         self.lf1 = Frame(self)
+#       self.lf1.config(label="Filename:")
         self.lf1.pack(fill=BOTH)
 
-#       self.lf2 = LabelFrame(self, text="Processing choices: pick at least one")
         self.lf2 = Frame(self)
+#       self.lf2.config(label="Processing choices: pick at least one")
         self.lf2.pack(fill=BOTH)
 
         self.lf3 = Frame(self)
-#       self.lf3 = LabelFrame(self, text="Logging")
+#       self.lf3.config(label="Logging")
         self.lf3.pack(fill=BOTH)
 
         self.b1 = Button(
@@ -194,11 +174,10 @@ class App(Frame):
 
     def e1_callback(self, event):
         print "e1_callback", "%s" % event
+        import tkFileDialog
         filename = tkFileDialog.askopenfilename()
         if filename:
             self.s1.set(filename)
-
-    ########################################################################
 
     ########################################################################
 
@@ -209,6 +188,10 @@ if __name__ == "__main__":
     app.master.title("Run quint .gpx processing")
 #   app.master.maxsize(1000, 400)
     app.master.geometry("450x300+200+200")
+    # set minimum size restriction
+#   app.master.minsize(app.winfo_reqwidth(), app.winfo_reqheight())
+#   print app.winfo_reqwidth()
+#   print app.winfo_reqheight()
 
     app.mainloop()
 
