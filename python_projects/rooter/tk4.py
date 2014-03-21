@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 19 Mar 2014 02:16:55 PM CDT
-# Last Modified: Thu 20 Mar 2014 03:20:57 PM CDT
+# Last Modified: Thu 20 Mar 2014 04:46:20 PM CDT
 
 """
 SYNOPSIS
@@ -37,8 +37,8 @@ __VERSION__ = "0.0.1"
 
 ########################################################################
 
-from Tkinter import ACTIVE, BOTH, Button, Checkbutton, Entry, Frame, IntVar
-from Tkinter import LabelFrame, Menu, RAISED, StringVar, W
+from Tkinter import ACTIVE, BOTH, IntVar, Menu, RAISED, StringVar, W
+from ttk import Button, Checkbutton, Entry, Frame, LabelFrame
 
 ########################################################################
 
@@ -55,21 +55,6 @@ class App(Frame):
     def aboutMe(self):
         print "aboutMe"
 
-    def CreateMenubar(self):
-        self.menubar = Menu(self)
-
-        self.filemenu = Menu(self.menubar, tearoff=0)
-        self.filemenu.add_separator()
-        self.filemenu.add_command(label="Quit", command=self.quit)
-
-        self.helpmenu = Menu(self.menubar, tearoff=0)
-        self.helpmenu.add_command(label="About Me", command=self.aboutMe)
-
-        self.menubar.add_cascade(label="File", menu=self.filemenu)
-        self.menubar.add_cascade(label="Help", menu=self.helpmenu)
-
-        self.master.config(menu=self.menubar)
-
     def CreateWidgets(self):
         self.s1 = StringVar()
         self.s2 = StringVar()
@@ -79,35 +64,32 @@ class App(Frame):
         self.v4 = IntVar()
         self.v5 = IntVar()
 
-        self.lf1 = LabelFrame(self, text="Filename:", padx=5, pady=5)
+        self.lf1 = LabelFrame(self, text="Filename:")
         self.lf1.pack(fill=BOTH)
 
         self.lf2 = LabelFrame(
             self,
-            text="Processing choices: pick at least one",
-            padx=5,
-            pady=5
+            text="Processing choices: pick at least one"
         )
         self.lf2.pack(fill=BOTH)
 
-        self.lf3 = LabelFrame(self, text="Logging", padx=5, pady=5)
+        self.lf3 = LabelFrame(self, text="Logging")
         self.lf3.pack(fill=BOTH)
 
         self.b1 = Button(
             self,
             text="Run",
             command=self.b1_callback,
-            default=ACTIVE,
-            activebackground="#f00"
+            default=ACTIVE
         )
-        self.b1.pack()
+        self.b1.pack(side="bottom")
 
         self.e1 = Entry(
             self.lf1,
-#           command=self.e1_callback,
             textvariable=self.s1
         )
         self.e1.pack(fill=BOTH)
+        self.e1.bind("<Button-1>", self.e1_callback)
 
         self.e2 = Entry(self.lf3, textvariable=self.s2)
         self.e2.pack(fill=BOTH)
@@ -147,6 +129,21 @@ class App(Frame):
         )
         self.c5.pack(anchor=W)
 
+    def CreateMenubar(self):
+        self.menubar = Menu(self)
+
+        self.filemenu = Menu(self.menubar, tearoff=0)
+        self.filemenu.add_separator()
+        self.filemenu.add_command(label="Quit", command=self.quit)
+
+        self.helpmenu = Menu(self.menubar, tearoff=0)
+        self.helpmenu.add_command(label="About Me", command=self.aboutMe)
+
+        self.menubar.add_cascade(label="File", menu=self.filemenu)
+        self.menubar.add_cascade(label="Help", menu=self.helpmenu)
+
+        self.master.config(menu=self.menubar)
+
     def Initialize(self):
         self.s1.set("Filename goes here")
         self.s2.set("Logging")
@@ -164,8 +161,10 @@ class App(Frame):
             self.v4.get(), \
             self.v5.get()
 
-    def e1_callback(self):
-        print "e1_callback"
+    def e1_callback(self, event):
+        print "e1_callback", "%s" % event
+        from Tkinter import filedialog
+        filename = filedialog.askopendialog()
 
     ########################################################################
 
