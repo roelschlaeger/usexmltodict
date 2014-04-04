@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 03 Apr 2014 06:59:49 PM CDT
-# Last Modified: Thu 03 Apr 2014 08:12:10 PM CDT
+# Last Modified: Fri 04 Apr 2014 01:21:29 AM CDT
 
 """
 SYNOPSIS
@@ -109,6 +109,20 @@ def verify(cubes):
         cube0 = cube1
 
     return True
+
+if 0:
+    print verify([("black", "black", "0"), ("black", "red", "1")])
+    print verify([("black", "black", "0"), ("black", "black", "1")])
+    print verify([("black", "black", "0"), ("red", "black", "1")])
+    print verify([("black", "black", "0"), ("red", "red", "1")])
+    print verify([("black", "black", "0")])
+    print verify([
+        ("black", "black", "0"),
+        ("black", "red", "1"),
+        ("blue", "red", "2")
+    ])
+    import sys
+    sys.exit()
 
 # print "len(CUBES) = %d" % len(CUBES)
 # print verify(CUBES)
