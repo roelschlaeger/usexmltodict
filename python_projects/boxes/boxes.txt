@@ -1,0 +1,93 @@
+===
+1 [('green', 'black', 'N'), None, ('green', 'red', '8'), None, ('blue', 'yellow', '9'), None, None, None, ('square', 'black', 'W'), None, ('pattern', 'black', '5'), None, ('green', 'red', '9'), None, None, None]
+7 3 [('square', 'yellow', '2'), ('black', 'white', '0'), ('black', 'red', '5'), ('pattern', 'white', '0'), ('black', 'black', '9'), ('blue', 'red', '5'), ('pattern', 'red', '3'), ('green', 'white', '3'), ('green', 'red', '6'), ('green', 'yellow', '3')]
+
+N?8?9???W?5?9???
+
+===
+3 [('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), None, ('blue', 'yellow', '9'), None, None, None, ('square', 'black', 'W'), None, ('pattern', 'black', '5'), None, ('green', 'red', '9'), None, None, None]
+5 5 [('square', 'yellow', '2'), ('black', 'white', '0'), ('black', 'red', '5'), ('pattern', 'white', '0'), ('black', 'black', '9'), ('blue', 'red', '5'), ('pattern', 'red', '3'), None, ('green', 'red', '6'), ('green', 'yellow', '3')]
+
+N38?9???W?5?9???
+
+===
+5 [('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('blue', 'red', '5'), ('blue', 'yellow', '9'), None, None, None, ('square', 'black', 'W'), None, ('pattern', 'black', '5'), None, ('green', 'red', '9'), None, None, None]
+0 2 [('square', 'yellow', '2'), ('black', 'white', '0'), ('black', 'red', '5'), ('pattern', 'white', '0'), ('black', 'black', '9'), None, ('pattern', 'red', '3'), None, ('green', 'red', '6'), ('green', 'yellow', '3')]
+
+N3859???W?5?9???
+
+===
+6 [('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('blue', 'red', '5'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), None, None, ('square', 'black', 'W'), None, ('pattern', 'black', '5'), None, ('green', 'red', '9'), None, None, None]
+9 3 [None, ('black', 'white', '0'), ('black', 'red', '5'), ('pattern', 'white', '0'), ('black', 'black', '9'), None, ('pattern', 'red', '3'), None, ('green', 'red', '6'), ('green', 'yellow', '3')]
+
+N38592??W?5?9???
+
+===
+3 [('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('blue', 'red', '5'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), None, ('square', 'black', 'W'), None, ('pattern', 'black', '5'), None, ('green', 'red', '9'), None, None, None]
+9 3 [('square', 'yellow', '2'), ('black', 'white', '0'), ('black', 'red', '5'), ('pattern', 'white', '0'), ('black', 'black', '9'), ('blue', 'red', '5'), ('pattern', 'red', '3'), None, ('green', 'red', '6'), ('green', 'yellow', '3')]
+
+N385923?W?5?9???
+
+===
+7 [('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), None, ('square', 'black', 'W'), None, ('pattern', 'black', '5'), None, ('green', 'red', '9'), None, None, None]
+0 2 [('square', 'yellow', '2'), ('black', 'white', '0'), ('black', 'red', '5'), ('pattern', 'white', '0'), ('black', 'black', '9'), ('blue', 'red', '5'), ('pattern', 'red', '3'), None, ('green', 'red', '6'), None]
+
+N383923?W?5?9???
+
+===
+9 [('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), None, ('pattern', 'black', '5'), None, ('green', 'red', '9'), None, None, None]
+4 9 [None, ('black', 'white', '0'), ('black', 'red', '5'), ('pattern', 'white', '0'), ('black', 'black', '9'), ('blue', 'red', '5'), ('pattern', 'red', '3'), None, ('green', 'red', '6'), None]
+
+N3839232W?5?9???
+
+===
+11 [('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), None, ('green', 'red', '9'), None, None, None]
+6 3 [None, ('black', 'white', '0'), ('black', 'red', '5'), ('pattern', 'white', '0'), None, ('blue', 'red', '5'), ('pattern', 'red', '3'), None, ('green', 'red', '6'), None]
+
+N3839232W95?9???
+
+===
+13 [('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), None, None, None]
+2 5 [None, ('black', 'white', '0'), ('black', 'red', '5'), ('pattern', 'white', '0'), None, ('blue', 'red', '5'), None, None, ('green', 'red', '6'), None]
+
+N3839232W9539???
+
+===
+14 [('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), ('black', 'red', '5'), None, None]
+1 0 [None, ('black', 'white', '0'), None, ('pattern', 'white', '0'), None, ('blue', 'red', '5'), None, None, ('green', 'red', '6'), None]
+
+N3839232W95395??
+
+===
+15 [('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), ('black', 'red', '5'), ('black', 'white', '0'), None]
+3 0 [None, None, None, ('pattern', 'white', '0'), None, ('blue', 'red', '5'), None, None, ('green', 'red', '6'), None]
+
+N3839232W953950?
+
+---
+[('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), ('black', 'red', '5'), ('black', 'white', '0'), ('pattern', 'white', '0')]
+---
+[('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), ('black', 'red', '5'), ('black', 'white', '0'), ('pattern', 'white', '0')]
+---
+[('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), ('black', 'red', '5'), ('black', 'white', '0'), ('pattern', 'white', '0')]
+---
+[('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), ('black', 'red', '5'), ('black', 'white', '0'), ('pattern', 'white', '0')]
+---
+[('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), ('black', 'red', '5'), ('black', 'white', '0'), ('pattern', 'white', '0')]
+---
+[('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), ('black', 'red', '5'), ('black', 'white', '0'), ('pattern', 'white', '0')]
+---
+[('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), ('black', 'red', '5'), ('black', 'white', '0'), ('pattern', 'white', '0')]
+---
+[('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), ('black', 'red', '5'), ('black', 'white', '0'), ('pattern', 'white', '0')]
+===
+1 [('green', 'black', 'N'), ('green', 'white', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), ('black', 'red', '5'), ('black', 'white', '0'), ('pattern', 'white', '0')]
+9 3 [('square', 'yellow', '2'), ('black', 'white', '0'), ('black', 'red', '5'), ('pattern', 'white', '0'), ('black', 'black', '9'), ('blue', 'red', '5'), ('pattern', 'red', '3'), ('green', 'white', '3'), ('green', 'red', '6'), ('green', 'yellow', '3')]
+
+N3839232W9539500
+
+---
+[('green', 'black', 'N'), ('green', 'yellow', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), ('black', 'red', '5'), ('black', 'white', '0'), ('pattern', 'white', '0')]
+---
+[('green', 'black', 'N'), ('green', 'yellow', '3'), ('green', 'red', '8'), ('green', 'yellow', '3'), ('blue', 'yellow', '9'), ('square', 'yellow', '2'), ('green', 'yellow', '3'), ('square', 'yellow', '2'), ('square', 'black', 'W'), ('black', 'black', '9'), ('pattern', 'black', '5'), ('pattern', 'red', '3'), ('green', 'red', '9'), ('black', 'red', '5'), ('black', 'white', '0'), ('pattern', 'white', '0')]
+Hello world!
