@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 03 Apr 2014 06:59:49 PM CDT
-# Last Modified: Fri 04 Apr 2014 01:21:29 AM CDT
+# Last Modified: Fri 04 Apr 2014 09:39:12 PM CDT
 
 """
 SYNOPSIS
@@ -44,8 +44,13 @@ from boxes import CUBES, SOLVERS
 print "len(CUBES) = %d" % len(CUBES)
 from pprint import pprint, pformat
 from copy import deepcopy
+import sys
+
+########################################################################
 
 NONE_LOCATIONS = []
+
+########################################################################
 
 
 def prep():
@@ -62,12 +67,15 @@ def prep():
 prep()
 del prep
 
+########################################################################
+
 
 def fill_cubes(p):
 #   print "fill_cubes"
 
 #   cubes = CUBES
 
+    # TODO: I don't know if deepcopy is required or not
     cubes = deepcopy(CUBES)
 
 #   pprint(cubes, width=2)
@@ -83,30 +91,35 @@ def fill_cubes(p):
 
     return cubes
 
+########################################################################
+
 
 def verify(cubes):
-#   cubes = deepcopy(cubes_in)
-#   print "verify"
-#   p0, c0, v0 = cubes.pop(0)
 
-    cube0 = cubes[0]
-    if cube0 is None:
+    # get the reference cube
+    reference_cube = cubes[0]
+
+    # check for missing
+    if reference_cube is None:
         return False
 
-    for index in range(1, len(cubes)):
+    # check rest of cubes
+    for comparision_cube in cubes[1:]:
 
-        cube1 = cubes[index]
-
-        if cube1 is None:
+        # not enough cubes?
+        if comparision_cube is None:
             return False
 
-        p0, c0, v0 = cube0
-        p1, c1, v1 = cube1
+        # get pattern, color, value
+        p0, c0, v0 = reference_cube
+        p1, c1, v1 = comparision_cube
 
+        # check for one and only one difference
         if (p0 == p1) == (c0 == c1):
             return False
 
-        cube0 = cube1
+        # move the reference cube
+        reference_cube = comparision_cube
 
     return True
 
@@ -121,24 +134,75 @@ if 0:
         ("black", "red", "1"),
         ("blue", "red", "2")
     ])
-    import sys
     sys.exit()
 
 # print "len(CUBES) = %d" % len(CUBES)
 # print verify(CUBES)
 # print "len(CUBES) = %d" % len(CUBES)
 
+########################################################################
+
+
+def my_print_cubes(cubes):
+
+    for index, cube in enumerate(cubes):
+        if cubes is None:
+            cubes = ('?', '?', '?')
+        p, c, v = cube
+        print "%7s %6s %1s" % (p, c, v)
+        if index == 7:
+            print
+    print
+
+########################################################################
+
 
 def job():
+
     print "job"
-    old_p2 = [-1, -1]
-    for p in permutations(range(10), 10):
+
+    skipping = [-1] * 5
+    matching = [-1] * 5
+    pprint(skipping)
+
+    old_p2 = [-1] * 2
+
+#   for p in permutations(range(10), 10):
+    r = range(10)
+
+    # give a head start to [7, 5, ...]
+    if 0:
+        r.remove(7)
+        r.remove(5)
+        r = [7, 5] + r
+
+    for p in permutations(r, 10):
+
+        if skipping == p[:5]:
+#           print "Skipping: %s" % pformat(p)
+            continue
+
+        # use this for heartbeat output
         if old_p2 != p[:2]:
             print p
             old_p2 = p[:2]
 
         cubes = fill_cubes(p)
-        if verify(cubes):
+
+        # locate the first row candidate
+        if not verify(cubes[:8]):
+            continue
+
+        # conditionally report a match if not reported before
+        if matching != p[:5]:
+            print "first row match: %s" % pformat(p[:5])
+            my_print_cubes(cubes)
+            # disable further matches of the first 5 solvers
+            matching = p[:5]
+
+        # now verify the back half of the array
+        if verify(cubes[8:]):
+            print "\tsecond row: %s" % pformat(p[5:])
             print p, pformat(cubes)
 
 job()

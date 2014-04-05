@@ -20,6 +20,7 @@ prep
 [1, 3, 5, 6, 7, 9, 11, 13, 14, 15]
 len(CUBES) = 16
 job
+[-1, -1, -1, -1, -1]
 (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 (0, 2, 1, 3, 4, 5, 6, 7, 8, 9)
 (0, 3, 1, 2, 4, 5, 6, 7, 8, 9)
@@ -89,9 +90,254 @@ job
 (7, 3, 0, 1, 2, 4, 5, 6, 8, 9)
 (7, 4, 0, 1, 2, 3, 5, 6, 8, 9)
 (7, 5, 0, 1, 2, 3, 4, 6, 8, 9)
+first row match: (7, 5, 0, 9, 8)
+  green  black N
+  green  white 3
+  green    red 8
+   blue    red 5
+   blue yellow 9
+ square yellow 2
+  green yellow 3
+  green    red 6
+
+ square  black W
+  black  white 0
+pattern  black 5
+  black    red 5
+  green    red 9
+pattern  white 0
+  black  black 9
+pattern    red 3
+
+	second row: (4, 6, 2, 1, 3)
+(7, 5, 0, 9, 8, 4, 6, 2, 1, 3) [('green', 'black', 'N'),
+ ('green', 'white', '3'),
+ ('green', 'red', '8'),
+ ('blue', 'red', '5'),
+ ('blue', 'yellow', '9'),
+ ('square', 'yellow', '2'),
+ ('green', 'yellow', '3'),
+ ('green', 'red', '6'),
+ ('square', 'black', 'W'),
+ ('black', 'black', '9'),
+ ('pattern', 'black', '5'),
+ ('pattern', 'red', '3'),
+ ('green', 'red', '9'),
+ ('black', 'red', '5'),
+ ('black', 'white', '0'),
+ ('pattern', 'white', '0')]
+first row match: (7, 5, 9, 8, 2)
+  green  black N
+  green  white 3
+  green    red 8
+   blue    red 5
+   blue yellow 9
+  green yellow 3
+  green    red 6
+  black    red 5
+
+ square  black W
+ square yellow 2
+pattern  black 5
+  black  white 0
+  green    red 9
+pattern  white 0
+  black  black 9
+pattern    red 3
+
+first row match: (7, 5, 9, 8, 6)
+  green  black N
+  green  white 3
+  green    red 8
+   blue    red 5
+   blue yellow 9
+  green yellow 3
+  green    red 6
+pattern    red 3
+
+ square  black W
+ square yellow 2
+pattern  black 5
+  black  white 0
+  green    red 9
+  black    red 5
+pattern  white 0
+  black  black 9
+
 (7, 6, 0, 1, 2, 3, 4, 5, 8, 9)
 (7, 8, 0, 1, 2, 3, 4, 5, 6, 9)
 (7, 9, 0, 1, 2, 3, 4, 5, 6, 8)
+first row match: (7, 9, 5, 2, 1)
+  green  black N
+  green  white 3
+  green    red 8
+  green yellow 3
+   blue yellow 9
+   blue    red 5
+  black    red 5
+  black  white 0
+
+ square  black W
+ square yellow 2
+pattern  black 5
+pattern  white 0
+  green    red 9
+  black  black 9
+pattern    red 3
+  green    red 6
+
+first row match: (7, 9, 5, 2, 4)
+  green  black N
+  green  white 3
+  green    red 8
+  green yellow 3
+   blue yellow 9
+   blue    red 5
+  black    red 5
+  black  black 9
+
+ square  black W
+ square yellow 2
+pattern  black 5
+  black  white 0
+  green    red 9
+pattern  white 0
+pattern    red 3
+  green    red 6
+
+first row match: (7, 9, 5, 2, 6)
+  green  black N
+  green  white 3
+  green    red 8
+  green yellow 3
+   blue yellow 9
+   blue    red 5
+  black    red 5
+pattern    red 3
+
+ square  black W
+ square yellow 2
+pattern  black 5
+  black  white 0
+  green    red 9
+pattern  white 0
+  black  black 9
+  green    red 6
+
+first row match: (7, 9, 5, 2, 8)
+  green  black N
+  green  white 3
+  green    red 8
+  green yellow 3
+   blue yellow 9
+   blue    red 5
+  black    red 5
+  green    red 6
+
+ square  black W
+ square yellow 2
+pattern  black 5
+  black  white 0
+  green    red 9
+pattern  white 0
+  black  black 9
+pattern    red 3
+
+first row match: (7, 9, 5, 6, 2)
+  green  black N
+  green  white 3
+  green    red 8
+  green yellow 3
+   blue yellow 9
+   blue    red 5
+pattern    red 3
+  black    red 5
+
+ square  black W
+ square yellow 2
+pattern  black 5
+  black  white 0
+  green    red 9
+pattern  white 0
+  black  black 9
+  green    red 6
+
+first row match: (7, 9, 5, 6, 3)
+  green  black N
+  green  white 3
+  green    red 8
+  green yellow 3
+   blue yellow 9
+   blue    red 5
+pattern    red 3
+pattern  white 0
+
+ square  black W
+ square yellow 2
+pattern  black 5
+  black  white 0
+  green    red 9
+  black    red 5
+  black  black 9
+  green    red 6
+
+first row match: (7, 9, 5, 6, 8)
+  green  black N
+  green  white 3
+  green    red 8
+  green yellow 3
+   blue yellow 9
+   blue    red 5
+pattern    red 3
+  green    red 6
+
+ square  black W
+ square yellow 2
+pattern  black 5
+  black  white 0
+  green    red 9
+  black    red 5
+pattern  white 0
+  black  black 9
+
+first row match: (7, 9, 5, 8, 2)
+  green  black N
+  green  white 3
+  green    red 8
+  green yellow 3
+   blue yellow 9
+   blue    red 5
+  green    red 6
+  black    red 5
+
+ square  black W
+ square yellow 2
+pattern  black 5
+  black  white 0
+  green    red 9
+pattern  white 0
+  black  black 9
+pattern    red 3
+
+first row match: (7, 9, 5, 8, 6)
+  green  black N
+  green  white 3
+  green    red 8
+  green yellow 3
+   blue yellow 9
+   blue    red 5
+  green    red 6
+pattern    red 3
+
+ square  black W
+ square yellow 2
+pattern  black 5
+  black  white 0
+  green    red 9
+  black    red 5
+pattern  white 0
+  black  black 9
+
 (8, 0, 1, 2, 3, 4, 5, 6, 7, 9)
 (8, 1, 0, 2, 3, 4, 5, 6, 7, 9)
 (8, 2, 0, 1, 3, 4, 5, 6, 7, 9)
