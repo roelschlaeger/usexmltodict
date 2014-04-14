@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Mon 14 Apr 2014 05:41:26 PM CDT
-# Last Modified: Mon 14 Apr 2014 05:46:43 PM CDT
+# Last Modified: Mon 14 Apr 2014 06:11:19 PM CDT
 
 """
 SYNOPSIS
@@ -39,10 +39,15 @@ __VERSION__ = "0.0.1"
 
 ########################################################################
 
+from pprint import pprint, pformat
+
+########################################################################
+
 SOLUTION = """
 69688 9875 9600
 23587 2039 2220
 62264 6311 6824
+9061   40157695
    1542 888 938
 03722431 899
 518 18317 69786
@@ -55,6 +60,24 @@ SOLUTION = """
 7516 8778 26130
 8328 6297 78948
 """
+
+LOCATIONS = [
+    ('K', (0, 1, 3)),
+    ('E', (1, 0, 0)),
+    ('L', (1, 2, 2)),
+    ('D', (3, 0, 1)),
+    ('M', (3, 1, 3)),
+    ('J', (4, 0, 1)),
+    ('N', (6, 0, 0)),
+    ('F', (7, 2, 1)),
+    ('G', (8, 0, 4)),
+    ('B', (8, 1, 1)),
+    ('C', (9, 1, 3)),
+    ('H', (11, 0, 3)),
+    ('A', (12, 1, 2)),
+    ('I', (14, 0, 0))
+]
+"""Locations of the answer digits within SOLUTION"""
 
 DIGITS = {
     3: [
@@ -80,17 +103,55 @@ DIGITS = {
     ]
 }
 
-from pprint import pprint, pformat
+########################################################################
+
+
+def show_result():
+
+    # extract interesting lines only
+    solution = SOLUTION.split('\n')[1:-1]
+
+#   for index, line in enumerate(solution):
+#       print index, line
+#   print
+
+    # empty the output list
+    out = []
+
+    # locate result characters
+    for loc in sorted(LOCATIONS):
+#       pprint(loc)
+        a, rcl = loc
+#       pprint(rcl)
+        row, col, ch = rcl
+#       print solution[row]
+        words = solution[row].split()
+#       print a, row, col, ch, words[col][ch]
+        out.append(words[col][ch])
+
+    # reformat the output by inserting formatting
+    out.insert(0, 'N')
+    out.insert(3, ' ')
+    out.insert(6, '.')
+
+    out.insert(10, ' ')
+    out.insert(11, 'W')
+    out.insert(14, ' ')
+    out.insert(17, '.')
+
+    print "".join(out)
+
+########################################################################
 
 
 def parse():
     lines = SOLUTION.split('\n')[1:-1]
-    print len(lines)
-    print
+#   print len(lines)
+#   print
     print "\n".join(lines)
     print
-    pprint(SOLUTION)
-    print
+#   pprint(SOLUTION)
+#   print
 
     for line in lines:
         words = line.split()
@@ -99,8 +160,6 @@ def parse():
             l = len(word)
             assert n in DIGITS[l], \
                 IndexError("Can't find %d in %s" % (n, pformat(DIGITS[l])))
-
-parse()
 
 if __name__ == '__main__':
 
@@ -126,6 +185,9 @@ if __name__ == '__main__':
     def main():
 
         global options, args
+
+        parse()
+        show_result()
 
 ########################################################################
 
