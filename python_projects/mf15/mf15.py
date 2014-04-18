@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 17 Apr 2014 04:15:58 PM CDT
-# Last Modified: Thu 17 Apr 2014 09:45:09 PM CDT
+# Last Modified: Fri 18 Apr 2014 06:01:36 PM CDT
 
 """
 SYNOPSIS
@@ -39,7 +39,7 @@ __VERSION__ = "0.0.1"
 
 ########################################################################
 
-from pprint import pprint
+from pprint import pprint, pformat
 
 ########################################################################
 
@@ -136,23 +136,41 @@ if __name__ == '__main__':
         pprint(tableau_rows)
 
         def alter(r, c, v):
+            print "alter: %d %d %s" % (r, c, v)
             row = tableau_rows[r]
             print r, c, v, row
             row = list(row)
             pprint(row)
+            assert row[c] == " ", \
+                IndexError("Invalid alteration: %s" % row[c], v)
             row[c] = v
             tableau_rows[r] = "".join(row)
 
-        alter(2, 1, '4')
+        alter(2, 1, 'B')
+        alter(7, 3, '3')
+        alter(7, 12, 'B')
+        alter(10, 1, '8')
+        alter(0, 3, '9')
+        alter(6, 3, '2')
+        alter(15, 3, '4')
+        alter(8, 3, '7')
+        alter(9, 3, '5')
         pprint(tableau_rows)
 
         rows = compute_rows(tableau_rows)
+        pprint(rows)
+
         columns = compute_columns(tableau_rows)
+        pprint(columns)
 
         for irow, row in enumerate(rows):
+            tr = tableau_rows[irow]
+            print irow, pformat(row)
             for icolumn, column in enumerate(columns):
-                both = row.intersection(column)
-                print "%2d %2d %2d %s" % (len(both), irow, icolumn, both)
+                tc = tr[icolumn]
+                if tc == " ":
+                    both = row.intersection(column)
+                    print "##%2d %2d %2d %s" % (len(both), irow, icolumn, both)
             print
 
 ########################################################################
