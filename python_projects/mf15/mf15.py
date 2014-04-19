@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 17 Apr 2014 04:15:58 PM CDT
-# Last Modified: Fri 18 Apr 2014 06:01:36 PM CDT
+# Last Modified: Fri 18 Apr 2014 08:22:03 PM CDT
 
 """
 SYNOPSIS
@@ -146,15 +146,16 @@ if __name__ == '__main__':
             row[c] = v
             tableau_rows[r] = "".join(row)
 
-        alter(2, 1, 'B')
-        alter(7, 3, '3')
-        alter(7, 12, 'B')
-        alter(10, 1, '8')
-        alter(0, 3, '9')
-        alter(6, 3, '2')
-        alter(15, 3, '4')
-        alter(8, 3, '7')
-        alter(9, 3, '5')
+        alter(1, 13, '9')
+#       alter(2, 1, 'B')
+#       alter(7, 3, '3')
+#       alter(7, 12, 'B')
+#       alter(10, 1, '8')
+#       alter(0, 3, '9')
+#       alter(6, 3, '2')
+#       alter(15, 3, '4')
+#       alter(8, 3, '7')
+#       alter(9, 3, '5')
         pprint(tableau_rows)
 
         rows = compute_rows(tableau_rows)
@@ -163,6 +164,7 @@ if __name__ == '__main__':
         columns = compute_columns(tableau_rows)
         pprint(columns)
 
+        dresult = {}
         for irow, row in enumerate(rows):
             tr = tableau_rows[irow]
             print irow, pformat(row)
@@ -171,7 +173,33 @@ if __name__ == '__main__':
                 if tc == " ":
                     both = row.intersection(column)
                     print "##%2d %2d %2d %s" % (len(both), irow, icolumn, both)
+                    dresult[(irow, icolumn)] = both
             print
+
+        def select(r, c):
+            t = (r, c)
+            both = dresult.get(t, None)
+            if both is None:
+                both = "Get from original"
+            print "%2d %2d %s" % (r, c, pformat(both))
+
+        print "latitude"
+        select(1, 13)
+        select(2, 13)
+        select(3, 2)
+        select(9, 3)
+        select(12, 2)
+        select(12, 8)
+        select(13, 14)
+
+        print "longitude"
+        select(1, 5)
+        select(2, 0)
+        select(2, 10)
+        select(7, 15)
+        select(8, 2)
+        select(8, 3)
+        select(14, 15)
 
 ########################################################################
 
