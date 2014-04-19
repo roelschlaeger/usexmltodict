@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 17 Apr 2014 04:15:58 PM CDT
-# Last Modified: Fri 18 Apr 2014 08:22:03 PM CDT
+# Last Modified: Sat 19 Apr 2014 11:43:44 AM CDT
 
 """
 SYNOPSIS
@@ -180,12 +180,13 @@ if __name__ == '__main__':
             t = (r, c)
             both = dresult.get(t, None)
             if both is None:
-                both = "Get from original"
+                both = tableau_rows[r][c]
+#               both = "Get from original", pformat(both)
             print "%2d %2d %s" % (r, c, pformat(both))
 
         print "latitude"
-        select(1, 13)
         select(2, 13)
+        select(1, 13)
         select(3, 2)
         select(9, 3)
         select(12, 2)
@@ -194,12 +195,12 @@ if __name__ == '__main__':
 
         print "longitude"
         select(1, 5)
+        select(7, 15)
         select(2, 0)
         select(2, 10)
-        select(7, 15)
+        select(14, 15)
         select(8, 2)
         select(8, 3)
-        select(14, 15)
 
 ########################################################################
 
