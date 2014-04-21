@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 17 Apr 2014 04:15:58 PM CDT
-# Last Modified: Mon 21 Apr 2014 03:07:03 PM CDT
+# Last Modified: Mon 21 Apr 2014 03:18:53 PM CDT
 
 """
 SYNOPSIS
@@ -138,19 +138,23 @@ def compute_quadrants(tableau_rows):
 ########################################################################
 
 
-def compute_all(tableau_rows, tableau_columns, tableau_quads):
+def compute_all(tableau_rows, rows, columns, quadrants):
     print
     print "compute_all"
     result = {}
     for r, c, q in RCQ:
         print r, c, q
-        rv = tableau_rows[r]
-        cv = tableau_columns[c]
-        qv = tableau_quads[q]
-        pprint(rv)
-        pprint(cv)
-        pprint(qv)
-        result[(r, c)] = rv.intersection(cv.intersection(qv))
+        v = tableau_rows[r][c]
+        if v != " ":
+            result[(r, c)] = set(v)
+        else:
+            rv = rows[r]
+            cv = columns[c]
+            qv = quadrants[q]
+            pprint(rv)
+            pprint(cv)
+            pprint(qv)
+            result[(r, c)] = rv.intersection(cv.intersection(qv))
     return result
 
 ########################################################################
@@ -196,6 +200,7 @@ if __name__ == '__main__':
 
         # presumably we need a '9' in the latitude, and this is the only one
         alter(1, 13, '9')
+        alter(13, 14, '3')
 #       alter(2, 1, 'B')
 #       alter(7, 3, '3')
 #       alter(7, 12, 'B')
@@ -219,7 +224,7 @@ if __name__ == '__main__':
         print "quadrants"
         pprint(quadrants)
 
-        dresult = compute_all(rows, columns, quadrants)
+        dresult = compute_all(tableau_rows, rows, columns, quadrants)
         print "dresult"
         pprint(dresult)
 
