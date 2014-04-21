@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 17 Apr 2014 04:15:58 PM CDT
-# Last Modified: Sat 19 Apr 2014 11:43:44 AM CDT
+# Last Modified: Mon 21 Apr 2014 03:07:03 PM CDT
 
 """
 SYNOPSIS
@@ -40,8 +40,15 @@ __VERSION__ = "0.0.1"
 ########################################################################
 
 from pprint import pprint, pformat
+from rcq import RCQ
 
 ########################################################################
+
+"""
+Solve GC37A17 Minty Fresh 15, The Sasquatch Sudoko.........
+
+Somewhere near N39° 51.433  W88° 52.600
+"""
 
 TOKENS = "123456789ABCDEFG"
 
@@ -65,8 +72,6 @@ f3.a........d.g4
 """
 TABLEAU = TABLEAU.upper()
 TABLEAU = TABLEAU.replace('.', ' ')
-
-########################################################################
 
 ########################################################################
 
@@ -104,6 +109,49 @@ def transpose(t):
 def compute_columns(tableau_rows):
     tableau_columns = transpose(tableau_rows)
     return compute_rows(tableau_columns)
+
+########################################################################
+
+
+def sectionate(t):
+    sections = []
+    for major_row in range(0, 16, 4):
+        for major_col in range(0, 16, 4):
+            section = []
+            for rowinc in range(4):
+                for colinc in range(4):
+                    row = major_row + rowinc
+                    col = major_col + colinc
+                    section.append(t[row][col])
+            sections.append(section)
+    return sections
+
+########################################################################
+
+
+def compute_quadrants(tableau_rows):
+    sections = sectionate(tableau_rows)
+#   print "sections"
+#   print "\n".join(["".join(s) for s in sections])
+    return compute_rows(sections)
+
+########################################################################
+
+
+def compute_all(tableau_rows, tableau_columns, tableau_quads):
+    print
+    print "compute_all"
+    result = {}
+    for r, c, q in RCQ:
+        print r, c, q
+        rv = tableau_rows[r]
+        cv = tableau_columns[c]
+        qv = tableau_quads[q]
+        pprint(rv)
+        pprint(cv)
+        pprint(qv)
+        result[(r, c)] = rv.intersection(cv.intersection(qv))
+    return result
 
 ########################################################################
 
@@ -146,6 +194,7 @@ if __name__ == '__main__':
             row[c] = v
             tableau_rows[r] = "".join(row)
 
+        # presumably we need a '9' in the latitude, and this is the only one
         alter(1, 13, '9')
 #       alter(2, 1, 'B')
 #       alter(7, 3, '3')
@@ -159,22 +208,33 @@ if __name__ == '__main__':
         pprint(tableau_rows)
 
         rows = compute_rows(tableau_rows)
+        print "rows"
         pprint(rows)
 
         columns = compute_columns(tableau_rows)
+        print "colunns"
         pprint(columns)
 
-        dresult = {}
-        for irow, row in enumerate(rows):
-            tr = tableau_rows[irow]
-            print irow, pformat(row)
-            for icolumn, column in enumerate(columns):
-                tc = tr[icolumn]
-                if tc == " ":
-                    both = row.intersection(column)
-                    print "##%2d %2d %2d %s" % (len(both), irow, icolumn, both)
-                    dresult[(irow, icolumn)] = both
-            print
+        quadrants = compute_quadrants(tableau_rows)
+        print "quadrants"
+        pprint(quadrants)
+
+        dresult = compute_all(rows, columns, quadrants)
+        print "dresult"
+        pprint(dresult)
+
+        if 0:
+            dresult = {}
+            for irow, row in enumerate(rows):
+                tr = tableau_rows[irow]
+                print irow, pformat(row)
+                for icolumn, column in enumerate(columns):
+                    tc = tr[icolumn]
+                    if tc == " ":
+                        both = row.intersection(column)
+                        print "##%2d %2d %2d %s" % (len(both), irow, icolumn, both)
+                        dresult[(irow, icolumn)] = both
+                print
 
         def select(r, c):
             t = (r, c)
