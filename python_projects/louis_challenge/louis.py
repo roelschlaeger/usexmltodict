@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 29 Apr 2014 04:24:08 PM CDT
-# Last Modified: Tue 29 Apr 2014 05:41:06 PM CDT
+# Last Modified: Tue 29 Apr 2014 05:55:42 PM CDT
 
 """
 SYNOPSIS
@@ -38,7 +38,7 @@ VERSION
 
 """
 
-__VERSION__ = "0.0.3"
+__VERSION__ = "0.0.4"
 
 ########################################################################
 
@@ -53,19 +53,34 @@ FILENAME = "390613.gpx"
 ########################################################################
 
 
+#   def x_get_first_gc(gc_namelist, three_letter_namelist):
+#       """Locate the lexicographically first cache for each element in
+#   three_letter_namelist"""
+#
+#       first_gc_dict = defaultdict(None)
+#
+#       for three_letter_name, gc_name in zip(three_letter_namelist, gc_namelist):
+#           if first_gc_dict.get(three_letter_name) is None:
+#               first_gc_dict[three_letter_name] = gc_name
+#           elif len(first_gc_dict[three_letter_name]) > len(gc_name):
+#               first_gc_dict[three_letter_name] = gc_name
+#           elif first_gc_dict[three_letter_name] > gc_name:
+#               first_gc_dict[three_letter_name] = gc_name
+#
+#       return first_gc_dict
+
+
 def get_first_gc(gc_namelist, three_letter_namelist):
     """Locate the lexicographically first cache for each element in
 three_letter_namelist"""
 
-    first_gc_dict = defaultdict(None)
+    first_gc_dict = defaultdict(list)
 
     for three_letter_name, gc_name in zip(three_letter_namelist, gc_namelist):
-        if first_gc_dict.get(three_letter_name) is None:
-            first_gc_dict[three_letter_name] = gc_name
-        elif len(first_gc_dict[three_letter_name]) > len(gc_name):
-            first_gc_dict[three_letter_name] = gc_name
-        elif first_gc_dict[three_letter_name] > gc_name:
-            first_gc_dict[three_letter_name] = gc_name
+        first_gc_dict[three_letter_name].append(gc_name)
+
+#   from pprint import pprint
+#   pprint(first_gc_dict)
 
     return first_gc_dict
 
@@ -118,7 +133,11 @@ per-state basis"""
     result = get_first_gc(gc, tlc)
     print "%s\t%s" % ("key", "GC")
     for k in sorted(result.keys()):
-        print "%s\t%s" % (k, result[k])
+        l = sorted(result[k])
+        if len(l) > 1:
+            print "%s\t%s\t%s" % (k, l[0], l[-1])
+        else:
+            print "%s\t%s" % (k, l[0])
 
 ########################################################################
 
