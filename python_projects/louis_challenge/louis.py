@@ -2,22 +2,24 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 29 Apr 2014 04:24:08 PM CDT
-# Last Modified: Tue 29 Apr 2014 04:32:34 PM CDT
+# Last Modified: Tue 29 Apr 2014 04:51:45 PM CDT
 
 """
 SYNOPSIS
 
-    TODO helloworld [-h] [-v,--verbose] [--version]
+    louis [-h] [-v,--verbose] [--version]
 
 DESCRIPTION
 
-    TODO This describes how to use this script.
-    This docstring will be printed by the script if there is an error or
-    if the user requests help (-h or --help).
+    This script computes values for certification of the
+    "Nothing to L.O.U.I.S. Challenge"
+    http://www.geocaching.com/geocache/GC4H5VZ_nothing-to-l-o-u-i-s-challenge?guid=19f1a3ae-192a-46a0-9317-76ad28777859
+
+    Input data is contained in the file "390613.gpx"
 
 EXAMPLES
 
-    TODO: Show some examples of how to use this script.
+    python louis.py
 
 EXIT STATUS
 
@@ -42,7 +44,23 @@ __VERSION__ = "0.0.1"
 from xml.etree import ElementTree as ET
 from collections import Counter
 
+########################################################################
+
 FILENAME = "390613.gpx"
+
+########################################################################
+
+
+def get_first_gc(gc_name_list, three_letter_name_list):
+
+    from collections import defaultdict
+    first_gc_dict = defaultdict(None)
+
+    for three_letter_name, gc_name in zip(three_letter_name_list, gc_name_list):
+        if first_gc_dict.get(three_letter_name) is None:
+            first_gc_dict[three_letter_name] = gc_name
+
+    return first_gc_dict
 
 ########################################################################
 
@@ -70,8 +88,19 @@ def process(filename):
     result = sorted(c.keys())
     print "%d results" % len(result)
 
+    print "%3s\t%s" % ("key", "length")
     for k in sorted(c.keys()):
         print "%3s\t%s" % (k, c[k])
+    print
+
+    result = get_first_gc(gc, tlc)
+#   from pprint import pprint
+#   pprint(result)
+    print "%3s\t%s" % ("key", "GC")
+    for k in sorted(result.keys()):
+        print "%3s\t%s" % (k, result[k])
+
+########################################################################
 
 if __name__ == '__main__':
 
