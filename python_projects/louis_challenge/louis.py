@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 29 Apr 2014 04:24:08 PM CDT
-# Last Modified: Tue 29 Apr 2014 04:51:45 PM CDT
+# Last Modified: Tue 29 Apr 2014 04:56:51 PM CDT
 
 """
 SYNOPSIS
@@ -37,7 +37,7 @@ VERSION
 
 """
 
-__VERSION__ = "0.0.1"
+__VERSION__ = "0.0.2"
 
 ########################################################################
 
@@ -59,6 +59,8 @@ def get_first_gc(gc_name_list, three_letter_name_list):
     for three_letter_name, gc_name in zip(three_letter_name_list, gc_name_list):
         if first_gc_dict.get(three_letter_name) is None:
             first_gc_dict[three_letter_name] = gc_name
+        elif first_gc_dict[three_letter_name] > gc_name:
+            first_gc_dict[three_letter_name] = gc_name
 
     return first_gc_dict
 
@@ -68,6 +70,7 @@ def get_first_gc(gc_name_list, three_letter_name_list):
 def process(filename):
     """Get counts of the number of GCx files that have been found"""
 
+    print __VERSION__
     print "Reading from %s" % filename
 
     tree = ET.parse(filename)
