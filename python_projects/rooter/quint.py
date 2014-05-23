@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # $Id: $
 # Created: 	     Fri 31 Dec 2010 05:38:29 PM CST
-# Last modified: Thu 20 Mar 2014 08:57:50 PM CDT
+# Last modified: Fri 23 May 2014 11:18:29 AM CDT
 
 ########################################################################
 
@@ -137,6 +137,7 @@ class MyPanel2(wx.Panel):
     ########################################################################
 
     def on_button(self, event):
+        """Perform processing in response to the Run button"""
 
         # get the checkbox values
         et_flag = self.cb1.GetValue()
@@ -207,6 +208,7 @@ class MyPanel2(wx.Panel):
     ########################################################################
 
     def do_gpx2kml(self, pathname):
+        """Create a KML file from the path data"""
 
         self.log("Processing gpx2hkml")
 
