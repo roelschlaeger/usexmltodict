@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Tue 07 Jan 2014 12:04:26 PM CST
-# Last Modified: Sat 01 Feb 2014 03:34:37 PM CST
+# Last Modified: Tue 03 Jun 2014 04:40:56 PM CDT
 
 """
 SYNOPSIS
@@ -102,8 +102,6 @@ def make_html(pixdir, route_name, results, debug=False):
 
             for time, filename, gc, tp in g:
 
-                pathname = os.path.join(pixdir, filename)
-
                 with tr(align="center"):
 
                     distance, gcnumber, description = gc
@@ -117,7 +115,7 @@ def make_html(pixdir, route_name, results, debug=False):
                         td(description or "", rowspan=rowspan)
                         first = False
 
-                    td(a(filename, href=pathname))
+                    td(a(filename, href=filename))
 
     document += picture_table
 
