@@ -1,0 +1,30 @@
+ 3 A = Flowering Peach
+ 7 B = Pampas
+ 8 C = Firethorn - Yellow Jasmine
+11 D = White Dogwood - Tea Olive - Camellia
+ E = Holly - Golden Bell
+ F = Pink Dogwood
+ G = Golden Bell - Pink Dogwood - Camellia
+ H = Juniper
+ I = Flowering Peach * 2
+ J = Magnolia
+
+
+No. 1 Tea Olive
+No. 2 Pink Dogwood
+No. 3 Flowering Peach
+No. 4 Flowering Crabapple
+No. 5 Magnolia
+No. 6 Juniper
+No. 7 Pampas
+No. 8 Yellow Jasmine
+No. 9 Carolina Cherry
+No. 10 Camellia
+No. 11 White Dogwood
+No. 12 Golden Bell
+No. 13 Azalea
+No. 14 Chinese Fir
+No. 15 Fire Thorn
+No. 16 Redbud
+No. 17 Nandina
+No. 18 Holly

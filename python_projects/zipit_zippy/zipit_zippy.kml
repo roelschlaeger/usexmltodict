@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="feat_1">
+        <Placemark id="feat_2">
+            <name>L34470</name>
+            <Point id="geom_0">
+                <coordinates>-90.3301666667,38.5745,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_3">
+            <name>L34471</name>
+            <Point id="geom_1">
+                <coordinates>-90.3301666667,38.5745166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_4">
+            <name>L34472</name>
+            <Point id="geom_2">
+                <coordinates>-90.3301666667,38.5745333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_5">
+            <name>L34473</name>
+            <Point id="geom_3">
+                <coordinates>-90.3301666667,38.57455,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_6">
+            <name>L34474</name>
+            <Point id="geom_4">
+                <coordinates>-90.3301666667,38.5745666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_7">
+            <name>L34475</name>
+            <Point id="geom_5">
+                <coordinates>-90.3301666667,38.5745833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_8">
+            <name>L34476</name>
+            <Point id="geom_6">
+                <coordinates>-90.3301666667,38.5746,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_9">
+            <name>L34477</name>
+            <Point id="geom_7">
+                <coordinates>-90.3301666667,38.5746166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_10">
+            <name>L34478</name>
+            <Point id="geom_8">
+                <coordinates>-90.3301666667,38.5746333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_11">
+            <name>L34479</name>
+            <Point id="geom_9">
+                <coordinates>-90.3301666667,38.57465,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_12">
+            <name>L34480</name>
+            <Point id="geom_10">
+                <coordinates>-90.3301666667,38.5746666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_13">
+            <name>L34481</name>
+            <Point id="geom_11">
+                <coordinates>-90.3301666667,38.5746833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_14">
+            <name>L34482</name>
+            <Point id="geom_12">
+                <coordinates>-90.3301666667,38.5747,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_15">
+            <name>L34483</name>
+            <Point id="geom_13">
+                <coordinates>-90.3301666667,38.5747166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>
