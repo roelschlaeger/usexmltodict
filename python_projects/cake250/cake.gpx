@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/0" version="1.0" xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd" creator="cake.py">
+<desc>Location of St. Louis 250th Birthday Celebration cakes</desc>
+<author>Robert L. Oelschlaeger</author>
+<email>roelschlaeger@gmail.com</email>
+<wpt lat="38.97443335983215" lon="-90.44071108102798">
+<name>STL000</name>
+<desc>Aerie's Riverview Winery</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.60821152191413" lon="-90.48633813858032">
+<name>STL001</name>
+<desc>AKC Museum of the Dog</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.89073637610905" lon="-90.18389761447906">
+<name>STL002</name>
+<desc>Alton City Hall</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.89055892282516" lon="-90.18683061003685">
+<name>STL003</name>
+<desc>Alton Visitors Center</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62189810866402" lon="-90.21008670330048">
+<name>STL004</name>
+<desc>Ameren</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.630954337431476" lon="-90.19218496978283">
+<name>STL005</name>
+<desc>America's Center (Cervantes Convention Center)</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.70189061515981" lon="-90.170738697052">
+<name>STL006</name>
+<desc>America's Central Port / YMCA</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.5993284429309" lon="-90.21410867571831">
+<name>STL007</name>
+<desc>Anheuser-Busch Brewery</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65967013666694" lon="-90.23670494556427">
+<name>STL008</name>
+<desc>Annie Malone </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63493071198425" lon="-90.1813092827797">
+<name>STL009</name>
+<desc>Ashley Street Power House / Riverfront Trail </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.617503365088915" lon="-90.69012969732285">
+<name>STL010</name>
+<desc>Babler State Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.57636261144783" lon="-90.47188595529269">
+<name>STL011</name>
+<desc>Barretts Elementary School</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62374735347725" lon="-90.18742337822914">
+<name>STL012</name>
+<desc>Basilica of Saint Louis, King of France (Old Cathedral)</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.69085982412851" lon="-90.2351787686348">
+<name>STL013</name>
+<desc>Bellefontaine Cemetery </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.5817034892055" lon="-90.2669508755207">
+<name>STL014</name>
+<desc>Bevo Mill</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63833811887499" lon="-90.23222297430038">
+<name>STL015</name>
+<desc>Big Brothers Big Sisters of Eastern Missouri</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.41293946342521" lon="-90.68249881267548">
+<name>STL016</name>
+<desc>Black Madonna Shrine and Grottos</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.364774544898154" lon="-90.36392211914062">
+<name>STL017</name>
+<desc>Blue Owl</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65593849917534" lon="-90.30495375394821">
+<name>STL018</name>
+<desc>Blueberry Hill</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.64931516764192" lon="-90.52420020103455">
+<name>STL019</name>
+<desc>Bonhomme Old Stone Church</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65735736186223" lon="-90.2208785712719">
+<name>STL020</name>
+<desc>Boys &amp; Girls Clubs of Greater St. Louis</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.61261395378771" lon="-90.26726603507996">
+<name>STL021</name>
+<desc>Brightside St. Louis</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.61879744196361" lon="-90.19253432750702">
+<name>STL022</name>
+<desc>Broadway Oyster Bar</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62380482796262" lon="-90.193792283535">
+<name>STL023</name>
+<desc>Busch Stadium</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.66485974363639" lon="-90.54248079657">
+<name>STL024</name>
+<desc>Butterfly House at Faust Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65487803647611" lon="-90.059072971344">
+<name>STL025</name>
+<desc>Cahokia Mounds State Historic Site</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="39.15683079070586" lon="-90.61666399240494">
+<name>STL026</name>
+<desc>Calhoun County Community Foundation</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63150539839858" lon="-90.20174905657768">
+<name>STL027</name>
+<desc>Campbell House Museum</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.55860813515297" lon="-90.24992689490318">
+<name>STL028</name>
+<desc>Carondelet Historical Society - Des Peres School</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.56242570997017" lon="-90.2658149600029">
+<name>STL029</name>
+<desc>Carondelet Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.55262187891657" lon="-90.54316073656082">
+<name>STL030</name>
+<desc>Castlewood Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.641899332840964" lon="-90.25436729192734">
+<name>STL031</name>
+<desc>Cathedral Basilica of Saint Louis (New Cathedral)</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63786405457314" lon="-90.23131236433983">
+<name>STL032</name>
+<desc>Centene Center for the Arts &amp; Education</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.649877654456716" lon="-90.33480942249298">
+<name>STL033</name>
+<desc>Centene Corporation</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.74042069976983" lon="-90.5238327383995">
+<name>STL034</name>
+<desc>Centennial Greenway / KATY Trail</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63264626971408" lon="-90.26202499866486">
+<name>STL035</name>
+<desc>Central Institute for the Deaf</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.64438216387455" lon="-90.26450470089912">
+<name>STL036</name>
+<desc>Chase Park Plaza</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.592502347949996" lon="-90.21589368581772">
+<name>STL037</name>
+<desc>Chatillon-DeMenil Mansion</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.5934066019545" lon="-90.22562742233276">
+<name>STL038</name>
+<desc>Cherokee Business District</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.644685598069124" lon="-90.2608944475">
+<name>STL039</name>
+<desc>Chess Center</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.630433654260855" lon="-90.19873693585396">
+<name>STL040</name>
+<desc>Christ Church Cathedral</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.713231963850035" lon="-90.35425141453743">
+<name>STL041</name>
+<desc>Chuck-A-Burger Drive-In</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.57019776488476" lon="-90.18851101398468">
+<name>STL042</name>
+<desc>Church of the Holy Family</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.633460268727895" lon="-90.20083576440811">
+<name>STL043</name>
+<desc>City Museum</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62722937573253" lon="-90.19483298063278">
+<name>STL044</name>
+<desc>Citygarden</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.60805222867015" lon="-90.20725563168526">
+<name>STL045</name>
+<desc>Clementine's</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.610898494128534" lon="-89.3683934211731">
+<name>STL046</name>
+<desc>Clinton County Courthouse</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65511323542855" lon="-90.310625284910">
+<name>STL047</name>
+<desc>COCA - Center of Creative Arts</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.614921521903284" lon="-90.23905992507935">
+<name>STL048</name>
+<desc>Compton Hill Water Tower</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.638080346799796" lon="-90.31160697340965">
+<name>STL049</name>
+<desc>Concordia Seminary</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.81096093242938" lon="-90.10086447000504">
+<name>STL050</name>
+<desc>Confluence Tower</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.7246962560316" lon="-90.48522636294365">
+<name>STL051</name>
+<desc>Creve Coeur Lake</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.651303591154736" lon="-90.19777469336987">
+<name>STL052</name>
+<desc>Crown Candy Kitchen</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62872733413996" lon="-90.29315069317818">
+<name>STL053</name>
+<desc>Dogtown </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62503068839763" lon="-90.18858343362808">
+<name>STL054</name>
+<desc>Drury Plaza at the Arch</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62938075219022" lon="-90.18339335918">
+<name>STL055</name>
+<desc>Eads Bridge (Arch-Laclede's Landing MetroLink Station)</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="0.0" lon="0.0">
+<name>STL056</name>
+<desc>East St. Louis Municipal Building</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.47802333380582" lon="-89.94007140398026">
+<name>STL057</name>
+<desc>Eckert's Belleville Country Store</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63219281726567" lon="-90.18986150622368">
+<name>STL058</name>
+<desc>Edward Jones Dome</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.6040393894386" lon="-90.4458475112915">
+<name>STL059</name>
+<desc>Edward Jones South Campus</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.50917173479739" lon="-89.97683376073837">
+<name>STL060</name>
+<desc>Emma Kunz House</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.51535598387319" lon="-90.55192217230797">
+<name>STL061</name>
+<desc>Endangered Wolf Center</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.620021082817566" lon="-90.19203409552574">
+<name>STL062</name>
+<desc>Eugene Field House </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63879869982754" lon="-90.23165434598923">
+<name>STL063</name>
+<desc>Fabulous Fox Theatre</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.668671711865464" lon="-90.22466853260994">
+<name>STL064</name>
+<desc>Fairground Park </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65253264703868" lon="-90.34596824141579">
+<name>STL065</name>
+<desc>Famous Footwear / Brown Shoe Company  </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.58069444881745" lon="-90.24397507309914">
+<name>STL066</name>
+<desc>Feasting Fox</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.74483704883665" lon="-90.30526623129845">
+<name>STL067</name>
+<desc>Ferguson Station Depot</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.779978" lon="-90.48174399999999">
+<name>STL068</name>
+<desc>First Missouri State Capitol State Historic Site</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.64387229133856" lon="-90.28349474072456">
+<name>STL069</name>
+<desc>Forest Park Forever</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.828057380931476" lon="-90.21377205848694">
+<name>STL070</name>
+<desc>Fort Belle Fontaine</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62513573751266" lon="-90.19033089280128">
+<name>STL071</name>
+<desc>Fort San Carlos (Hilton St. Louis at the Ballpark)</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.7960219522598" lon="-90.70716977119446">
+<name>STL072</name>
+<desc>Fort Zumwalt Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65555934113073" lon="-90.26076167821884">
+<name>STL073</name>
+<desc>Fountain Park / MLK Statue</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.64793369136616" lon="-90.31252562999725">
+<name>STL074</name>
+<desc>Francis Field</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.58271905655212" lon="-90.44370174407959">
+<name>STL075</name>
+<desc>Frank Lloyd Wright House</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.44487017951251" lon="-91.00521817803383">
+<name>STL076</name>
+<desc>Franklin County Courthouse</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="0.0" lon="0.0">
+<name>STL077</name>
+<desc>Gaslight Square</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="0.0" lon="0.0">
+<name>STL078</name>
+<desc>Gaslight Theater</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62413717436657" lon="-90.18532991409302">
+<name>STL079</name>
+<desc>Gateway Arch</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.51040205314929" lon="-90.32046496868134">
+<name>STL080</name>
+<desc>Gateway Harley-Davidson</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.755826681064704" lon="-90.2235098183155">
+<name>STL081</name>
+<desc>General Daniel Bissell House</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.6704230503979" lon="-90.20860344171524">
+<name>STL082</name>
+<desc>Grand Avenue Water Tower</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.643123029867795" lon="-90.29135897755623">
+<name>STL083</name>
+<desc>Grand Basin / Fair Saint Louis</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.550118608117124" lon="-90.3575424849987">
+<name>STL084</name>
+<desc>Grant's Farm  </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.53333199184581" lon="-90.33929139375687">
+<name>STL085</name>
+<desc>Grants Trail</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.89189503077101" lon="-89.41520601511002">
+<name>STL086</name>
+<desc>Greenville Public Library</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65277039430952" lon="-90.20926862955093">
+<name>STL087</name>
+<desc>Griot Museum of Black History</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.632403200330465" lon="-90.22373110055923">
+<name>STL088</name>
+<desc>Harris Stowe State University</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.58035917532842" lon="-90.77226161956787">
+<name>STL089</name>
+<desc>Head's General Store / St. Albans</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63371437664377" lon="-90.21871402859688">
+<name>STL090</name>
+<desc>Heritage House</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65137763878274" lon="-90.85318922996521">
+<name>STL091</name>
+<desc>Historic Daniel Boone Home &amp; Heritage Center</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65193147534218" lon="-90.3314982354641">
+<name>STL092</name>
+<desc>Historic Hanley House</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.60931338351347" lon="-90.20258322358131">
+<name>STL093</name>
+<desc>Historic Trinity Lutheran Church</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.68507848926538" lon="-90.40716469287872">
+<name>STL094</name>
+<desc>Holocaust Museum &amp; Learning Center</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.624543047509356" lon="-90.12421444058418">
+<name>STL095</name>
+<desc>Jackie Joyner-Kersee Center</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63148017708528" lon="-90.27081727981567">
+<name>STL096</name>
+<desc>James S. McDonnell Planetarium</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.600323027126336" lon="-90.24250522255898">
+<name>STL097</name>
+<desc>Jay International / South Grand</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63095717469113" lon="-90.21356016397476">
+<name>STL098</name>
+<desc>Jefferson Bank and Trust</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.51899143434721" lon="-90.27511015534401">
+<name>STL099</name>
+<desc>Jefferson Barracks Historic Site Visitor's Center</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="39.11896960643354" lon="-90.32918214797974">
+<name>STL100</name>
+<desc>Jersey County Courthouse</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63506309690988" lon="-90.28031095862389">
+<name>STL101</name>
+<desc>Jewel Box</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62875591832036" lon="-90.1447856426239">
+<name>STL102</name>
+<desc>Kathryn Dunham Museum</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.668715884851096" lon="-90.58809041976929">
+<name>STL103</name>
+<desc>Kemp Auto Museum</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.58553031540652" lon="-90.32397195696831">
+<name>STL104</name>
+<desc>Kenrick-Glennon Seminary</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62598475740751" lon="-90.19041001796722">
+<name>STL105</name>
+<desc>Kiener Plaza</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.5810929453776" lon="-90.40684551000595">
+<name>STL106</name>
+<desc>Kirkwood Train Station</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.6302042172168" lon="-90.18446758389473">
+<name>STL107</name>
+<desc>Laclede's Landing</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.61733109947963" lon="-90.21373450756073">
+<name>STL108</name>
+<desc>Lafayette Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.742385567180705" lon="-90.36623418331146">
+<name>STL109</name>
+<desc>Lambert St. Louis International Airport</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63112342771756" lon="-90.1932705938816">
+<name>STL110</name>
+<desc>Lammert Building</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.54724871606535" lon="-90.41781038045883">
+<name>STL111</name>
+<desc>Laumeier Sculpture Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.6428563868866" lon="-90.18588781356812">
+<name>STL112</name>
+<desc>Le Grange de Terre (Big Mound) Memorial</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.648406035953364" lon="-90.26114255189896">
+<name>STL113</name>
+<desc>Left Bank Books</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.59326429388277" lon="-90.21595269441605">
+<name>STL114</name>
+<desc>Lemp Mansion</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.8021572000041" lon="-90.10188907384872">
+<name>STL115</name>
+<desc>Lewis &amp; Clark State Historic Site</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.77295204016725" lon="-90.48248514533043">
+<name>STL116</name>
+<desc>Lewis and Clark Boat House and Nature Center</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62689007121207" lon="-90.25822296738625">
+<name>STL117</name>
+<desc>LGBT Center of St. Louis</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.610143620743735" lon="-90.1565471291542">
+<name>STL118</name>
+<desc>Lincoln Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.88991799962541" lon="-90.18591463565826">
+<name>STL119</name>
+<desc>Lincoln-Douglas Square and Franklin House</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.7864354849721" lon="-90.50097495317459">
+<name>STL120</name>
+<desc>Lindenwood University</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.53141532191297" lon="-90.54298639297485">
+<name>STL121</name>
+<desc>Lone Elk Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.58946189563089" lon="-90.34437149763107">
+<name>STL122</name>
+<desc>Loretto-Hilton Theatre / The Repertory Theatre of St. Louis</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.598943420466256" lon="-90.224050283432">
+<name>STL123</name>
+<desc>Luvy Duvy's Caf / Benton Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.5937075233023" lon="-90.21094098687172">
+<name>STL124</name>
+<desc>Lyon Park/ United States Arsenal </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.81235287598228" lon="-89.95749771595001">
+<name>STL125</name>
+<desc>Madison County Courthouse</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62254831332208" lon="-90.17573699355125">
+<name>STL126</name>
+<desc>Malcolm W. Martin Memorial Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.59269742519163" lon="-90.51068991422653">
+<name>STL127</name>
+<desc>Manchester City Hall</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.53955169238673" lon="-90.47700673341751">
+<name>STL128</name>
+<desc>Maritz</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.676412718236776" lon="-90.19086062908173">
+<name>STL129</name>
+<desc>Mary Meachum Freedom Crossing</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.379113846311235" lon="-90.3846663236618">
+<name>STL130</name>
+<desc>Mastodon State Historic Site</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.68302651527016" lon="-90.24888753890991">
+<name>STL131</name>
+<desc>Matthews-Dickey Boy's &amp; Girl's Club</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.24251984721875" lon="-91.09187096357346">
+<name>STL132</name>
+<desc>Meramec Caverns</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.71009333792118" lon="-90.31127505004406">
+<name>STL133</name>
+<desc>Mercantile Library</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.51971479172854" lon="-90.27270555496216">
+<name>STL134</name>
+<desc>Mississippi River Greenway - Trailhead in Jefferson Barracks Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63000725697685" lon="-90.18751859664917">
+<name>STL135</name>
+<desc>Missouri Athletic Club</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.615900144355315" lon="-90.25812304020423">
+<name>STL136</name>
+<desc>Missouri Botanical Garden</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.50610400991245" lon="-90.28384745121002">
+<name>STL137</name>
+<desc>Missouri Civil War Museum</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.644746567941446" lon="-90.28577595949173">
+<name>STL138</name>
+<desc>Missouri History Museum</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.335737120460934" lon="-90.14904096722603">
+<name>STL139</name>
+<desc>Monroe County Courthouse</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.43490680703648" lon="-90.19001573324203">
+<name>STL140</name>
+<desc>Monroe County Welcome Center</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.655470475673695" lon="-90.29868006706238">
+<name>STL141</name>
+<desc>Moonrise Hotel</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.570493" lon="-90.88557100000003">
+<name>STL142</name>
+<desc>Mount Pleasant Estates</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.57159459919934" lon="-90.46338379383087">
+<name>STL143</name>
+<desc>Museum of Transportation</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63043093038062" lon="-90.1898467540741">
+<name>STL144</name>
+<desc>National Blues Museum / MX Complex</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.87113450349715" lon="-90.15076696872711">
+<name>STL145</name>
+<desc>National Great Rivers Museum</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.56139352496928" lon="-90.09211778640747">
+<name>STL146</name>
+<desc>National Shrine of Our Lady of the Snows</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.639089208083945" lon="-90.23411929607391">
+<name>STL147</name>
+<desc>Nine Network </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.590484782796814" lon="-90.21919280290604">
+<name>STL148</name>
+<desc>Off Broadway</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.57087394284857" lon="-90.19206359982">
+<name>STL149</name>
+<desc>Old Cahokia Court House</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.76390519277925" lon="-90.18105983734131">
+<name>STL150</name>
+<desc>Old Chain of Rocks Bridge</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62555371575412" lon="-90.18874168395996">
+<name>STL151</name>
+<desc>Old Courthouse</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65067255938364" lon="-90.19729524850845">
+<name>STL152</name>
+<desc>Old North St. Louis</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62898263593599" lon="-90.19325315952301">
+<name>STL153</name>
+<desc>Old Post Office</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.796659750804686" lon="-90.33416837453842">
+<name>STL154</name>
+<desc>Old Saint Ferdinand Shrine</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="0.0" lon="0.0">
+<name>STL155</name>
+<desc>Opera Theatre Saint Louis</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.6160552287107" lon="-90.25072485208511">
+<name>STL156</name>
+<desc>Original Imo's Pizza location.</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.93024522188618" lon="-90.33896684646606">
+<name>STL157</name>
+<desc>Our Lady of the Rivers at Portage des Sioux </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.747203797225254" lon="-90.39953783154488">
+<name>STL158</name>
+<desc>Payne Gentry House</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.6280900093524" lon="-90.20206119892322">
+<name>STL159</name>
+<desc>Peabody Opera House</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.97184659605884" lon="-90.54102972149849">
+<name>STL160</name>
+<desc>Pere Marquette Lodge &amp; Conference Center</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.89807399439461" lon="-90.19913122057915">
+<name>STL161</name>
+<desc>Piasa Bird</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.64017912657881" lon="-90.2306042611599">
+<name>STL162</name>
+<desc>Powell Hall</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.49408281056393" lon="-90.83623766899109">
+<name>STL163</name>
+<desc>Purina Farms</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65509333059303" lon="-90.29723569750786">
+<name>STL164</name>
+<desc>Regional Arts Commission</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.61647901333885" lon="-90.26873856782913">
+<name>STL165</name>
+<desc>Rigazzi's</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.90416725900499" lon="-90.1435786485672">
+<name>STL166</name>
+<desc>Robert Wadlow Statue</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65413896170812" lon="-90.28434365987778">
+<name>STL167</name>
+<desc>Ruth Porter Park on the St. Vincent Greenway</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63992295233561" lon="-90.29395669698715">
+<name>STL168</name>
+<desc>Saint Louis Art Museum</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63701369387526" lon="-90.23262396454811">
+<name>STL169</name>
+<desc>Saint Louis University</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63389216141621" lon="-90.29132008552551">
+<name>STL170</name>
+<desc>Saint Louis Zoo</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.564117808770185" lon="-90.38456976413727">
+<name>STL171</name>
+<desc>Sappington House Museum</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.61321698586527" lon="-90.31484708189964">
+<name>STL172</name>
+<desc>Schlafly Bottleworks</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.54926157095233" lon="-89.86844837665558">
+<name>STL173</name>
+<desc>Scott Field Heritage Air Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.637228210909775" lon="-90.2150622010231">
+<name>STL174</name>
+<desc>Scott Joplin House</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62618528307913" lon="-90.20251214504242">
+<name>STL175</name>
+<desc>Scottrade Center</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.591825521048015" lon="-90.33787541429894">
+<name>STL176</name>
+<desc>Serendipity Homemade Ice Cream</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.638484781883314" lon="-90.2921810746193">
+<name>STL177</name>
+<desc>Shakespeare Glen</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.4820717652855" lon="-90.82432061433792">
+<name>STL178</name>
+<desc>Shaw Nature Reserve</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.64823053277981" lon="-90.3419440984726">
+<name>STL179</name>
+<desc>Shaw Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.59285070944797" lon="-90.31963750720024">
+<name>STL180</name>
+<desc>Shrewsbury MetroLink Station </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63694258311593" lon="-90.19263356924057">
+<name>STL181</name>
+<desc>Shrine of St. Joseph</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.78534097148468" lon="-90.4807524383">
+<name>STL182</name>
+<desc>Shrine of St. Rose Philippine Duchesne</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.51245975953615" lon="-90.67489072680473">
+<name>STL183</name>
+<desc>Six Flags St. Louis</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.54100631732906" lon="-90.0331762433052">
+<name>STL184</name>
+<desc>Skyview Drive In</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62898810312743" lon="-90.20006462931633">
+<name>STL185</name>
+<desc>Soldiers Memorial</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.61024771953103" lon="-90.2014821767807">
+<name>STL186</name>
+<desc>Soulard Market</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.60948559702033" lon="-90.20906209945679">
+<name>STL187</name>
+<desc>Soulard Restoration Group</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.793099423670945" lon="-89.99676525592804">
+<name>STL188</name>
+<desc>Southern Illinois University Edwardsville</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.66348691313919" lon="-90.64552456140518">
+<name>STL189</name>
+<desc>Spirit of St. Louis Airport</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62063949654626" lon="-90.23962184786797">
+<name>STL190</name>
+<desc>SSM Cardinal Glennon Children's Medical Center</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.507561" lon="-90.379699">
+<name>STL191</name>
+<desc>St. Anthony's Medical Center</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.75254168100612" lon="-90.55078089237213">
+<name>STL192</name>
+<desc>St. Charles County Heritage Museum at Heritage Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.782251" lon="-90.48288200000002">
+<name>STL193</name>
+<desc>St. Charles Old County Courthouse</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62444080798841" lon="-90.40616691112518">
+<name>STL194</name>
+<desc>St. Joseph's Academy</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62909626271328" lon="-90.2829971909523">
+<name>STL195</name>
+<desc>St. Louis Arena</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63718998899525" lon="-90.26488825678825">
+<name>STL196</name>
+<desc>St. Louis Children's Hospital</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62674634785248" lon="-90.19904136657715">
+<name>STL197</name>
+<desc>St. Louis City Hall</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63760554888436" lon="-90.26252120733">
+<name>STL198</name>
+<desc>St. Louis College of Pharmacy</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.64935922995489" lon="-90.33912509679794">
+<name>STL199</name>
+<desc>St. Louis County Courthouse</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63436921504334" lon="-90.19560143351555">
+<name>STL200</name>
+<desc>St. Louis Post-Dispatch</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.630398609847376" lon="-90.19975751638412">
+<name>STL201</name>
+<desc>St. Louis Public Library / Central Library</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.628893792797975" lon="-90.27022182941437">
+<name>STL202</name>
+<desc>St. Louis Science Center </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.62779833691439" lon="-90.20788192749023">
+<name>STL203</name>
+<desc>St. Louis Union Station</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.656112674238386" lon="-90.30542850494385">
+<name>STL204</name>
+<desc>St. Louis Walk of Fame</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.6370314715541" lon="-90.26884853839874">
+<name>STL205</name>
+<desc>Steinberg Skating Rink</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.59475984811921" lon="-90.23674182593822">
+<name>STL206</name>
+<desc>STL-Style</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.65979448634461" lon="-90.23893117904663">
+<name>STL207</name>
+<desc>Sumner High School</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.641190734617716" lon="-90.3682351112">
+<name>STL208</name>
+<desc>Sweetology</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.770742754761315" lon="-90.31023502349854">
+<name>STL209</name>
+<desc>Taille de Noyer</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.589372948232125" lon="-90.30797526240349">
+<name>STL210</name>
+<desc>Ted Drewes</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.633487700419444" lon="-90.3066810965538">
+<name>STL211</name>
+<desc>The Cheshire</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.596392041672004" lon="-90.33266633749008">
+<name>STL212</name>
+<desc>The College School</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.61574191605259" lon="-90.27280747890472">
+<name>STL213</name>
+<desc>The Hill</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.59890481407957" lon="-90.45435011386871">
+<name>STL214</name>
+<desc>The Lodge at Des Peres</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.57384315221412" lon="-90.40606606491019">
+<name>STL215</name>
+<desc>The Magic House</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.64131131941566" lon="-90.28018891811371">
+<name>STL216</name>
+<desc>The Muny</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.639984498293636" lon="-90.23321002721786">
+<name>STL217</name>
+<desc>The Sheldon</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.60989759825314" lon="-90.20357094705105">
+<name>STL218</name>
+<desc>The Sweet Divine</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.655738880728855" lon="-90.30332364141941">
+<name>STL219</name>
+<desc>Tivoli Movie Theatre</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.607704297460096" lon="-90.25723542757453">
+<name>STL220</name>
+<desc>Tower Grove Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.63174241764276" lon="-90.29244124889374">
+<name>STL221</name>
+<desc>Turtle Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.64803902837838" lon="-90.51011592149734">
+<name>STL222</name>
+<desc>United Hebrew Congregation </desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.656338390250916" lon="-90.3110383450985">
+<name>STL223</name>
+<desc>University City Lion Gates</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.71757828860251" lon="-90.308338701725">
+<name>STL224</name>
+<desc>University of Missouri St. Louis</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.6412950241833" lon="-90.2326226234436">
+<name>STL225</name>
+<desc>Urban League of Metropolitan St. Louis</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.599329925182886" lon="-90.21753385663033">
+<name>STL226</name>
+<desc>Venice Caf</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.51276171227237" lon="-89.97625038027763">
+<name>STL227</name>
+<desc>Victorian Home Museum</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="0.0" lon="0.0">
+<name>STL228</name>
+<desc>Vintage Vinyl</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.627401249898796" lon="-90.19212394952774">
+<name>STL229</name>
+<desc>Wainwright Building</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.81095048229984" lon="-91.14938959479332">
+<name>STL230</name>
+<desc>Warren County Courthouse</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.55675295242486" lon="-91.0113725066185">
+<name>STL231</name>
+<desc>Washington Historical Society</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.635293565988945" lon="-90.26294767856598">
+<name>STL232</name>
+<desc>Washington University School of Medicine</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.58836487001179" lon="-90.34188911318779">
+<name>STL233</name>
+<desc>Webster University</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.86794148364321" lon="-90.22628456354141">
+<name>STL234</name>
+<desc>West Alton Memorial Park</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.53567035142877" lon="-90.53465276956558">
+<name>STL235</name>
+<desc>World Bird Sanctuary</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.636486287398064" lon="-90.28525829315186">
+<name>STL236</name>
+<desc>Worlds Fair Pavilion</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.66289839955763" lon="-89.98224779963493">
+<name>STL237</name>
+<desc>World's Largest Catsup Bottle</desc>
+<type>Geocache|Unknown Cache</type></wpt>
+<wpt lat="38.704204911436406" lon="-90.45869797468185">
+<name>STL238</name>
+<desc>YMCA of Greater St. Louis</desc>
+<type>Geocache|Unknown Cache</type></wpt></gpx>
