@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Wed 01 Jan 2014 03:01:01 PM CST
-# Last Modified: Thu 16 Jan 2014 10:46:55 AM CST
+# Last Modified: Tue 24 Jun 2014 09:03:27 AM CDT
 
 """
 SYNOPSIS
@@ -72,6 +72,7 @@ from kmldraw import kmldraw
 from glob import glob
 from datetime import datetime
 import os
+import os.path
 
 #from pexpect import run, spawn
 
@@ -87,9 +88,10 @@ import os
 ########################################################################
 
 # BASEDIR = r"C:\Users\Robert Oelschlaeger\AppData\Roaming\gsak\PQDownloads"
-BASEDIR = r"C:\Users\Robert Oelschlaeger\Downloads\PQs"
+# BASEDIR = r"C:\Users\Robert Oelschlaeger\Downloads\PQs"
+BASEDIR = r"C:\Users\Robert Oelschlaeger\Google Drive\Pocket Query Downloads"
 DOCUMENT_NAME = "pqmap.kml"
-__VERSION__ = "0.0.2"
+__VERSION__ = "0.0.3"
 DEBUG = False
 VERBOSE = False
 
@@ -243,13 +245,14 @@ def main(args, options):
         for globname in glob(arg):
             count += process_arg(kml, globname)
 
-    kml.save(DOCUMENT_NAME)
+    document_name = os.path.join(BASEDIR, DOCUMENT_NAME)
+    kml.save(document_name)
 
     if not options.verbose:
         print
 
     print "%d .gpx files processed" % count
-    print "Output is in %s" % DOCUMENT_NAME
+    print "Output is in %s" % document_name
 
 #######################################################################
 
