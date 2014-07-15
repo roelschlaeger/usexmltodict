@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Tue 07 Jan 2014 12:04:26 PM CST
-# Last Modified: Tue 03 Jun 2014 04:40:56 PM CDT
+# Last Modified: Tue 15 Jul 2014 11:04:17 AM CDT
 
 """
 SYNOPSIS
@@ -120,7 +120,7 @@ def make_html(pixdir, route_name, results, debug=False):
     document += picture_table
 
     outfilename = os.path.join(pixdir, "make_html.html")
-    print >> open(outfilename, "w"), document
+    print >> open(outfilename, "w"), unicode(document).encode('utf-8')
     print "Output is in %s" % outfilename
 
 ########################################################################
@@ -133,7 +133,7 @@ if __name__ == '__main__':
     import optparse
     import time
 
-    from results_table import results
+#   from results_table import results
 
     ########################################################################
 
