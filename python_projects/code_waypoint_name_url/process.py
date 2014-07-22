@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 22 Jul 2014 01:21:54 PM CDT
-# Last Modified: Tue 22 Jul 2014 03:01:56 PM CDT
+# Last Modified: Tue 22 Jul 2014 03:49:11 PM CDT
 
 """
 SYNOPSIS
@@ -39,11 +39,13 @@ __VERSION__ = "0.0.1"
 
 ########################################################################
 
-import dominate
-from dominate.tags import html, head, style, body, table, tr, th, td, hr, h3, a
+from dominate.tags import html, head, style, body, table, tr, th, td, hr, a
+from dominate.tags import h3, h4
+from time import asctime
 
 FILENAME = "Code_WaypointName_URL.csv"
 DOCNAME = "topo758b - Lake Ozark to Tipton MO"
+OUTFILE = "process.html"
 
 
 def process():
@@ -58,14 +60,15 @@ def process():
         _head = head()
         with _head:
             s = style()
-            s.add("\nh3 {text-align:center;}")
+            s.add("\nh3, h4 {text-align:center;}")
             s.add("\nth {background-color:yellow;}")
-            s.add("\ntr td th {text-align:center;}")
+            s.add("\ntr, td, th {text-align:center;}")
             s.add("\n")
 
         b = body()
 
         b.add(h3(DOCNAME))
+        b.add(h4(asctime()))
         b.add(hr())
 
         t = table(border="1")
@@ -91,7 +94,10 @@ def process():
             r.add(td(code))
             r.add(td(a(waypoint_name, href=url)))
 
-    print h
+    outfile = open(OUTFILE, "wb")
+    print >> outfile, h
+    outfile.close()
+    print "Output is in %s" % OUTFILE
 
 ########################################################################
 
