@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 22 Jul 2014 01:21:54 PM CDT
-# Last Modified: Tue 22 Jul 2014 01:50:19 PM CDT
+# Last Modified: Tue 22 Jul 2014 03:01:56 PM CDT
 
 """
 SYNOPSIS
@@ -39,31 +39,58 @@ __VERSION__ = "0.0.1"
 
 ########################################################################
 
-import html
+import dominate
+from dominate.tags import html, head, style, body, table, tr, th, td, hr, h3, a
 
 FILENAME = "Code_WaypointName_URL.csv"
+DOCNAME = "topo758b - Lake Ozark to Tipton MO"
 
 
 def process():
-    h = html.HTML()
-    h.p("Hello World!")
-    h.h1("Code Waypoint_Name URL")
-    t = h.table(border="1")
-    r = t.tr()
-    r.td("Code")
-    r.td("Waypoint")
-    r.td("URL")
-    f = open(FILENAME, "r")
-    for index, line in enumerate(f.readlines()):
-        if index == 0:
-            continue
-        r = t.tr
-        code, waypoint_name, url = line.split('\t')
-        r.td(code)
-#       a = h.a(waypoint_name, link=h.raw_text(url))
-#       r.td(a)
-        r.td(waypoint_name)
-        r.td(url)
+#   doc = dominate.document(DOCNAME)
+
+    h = html(name=DOCNAME)
+
+    with h:
+
+#           _head = head()
+
+        _head = head()
+        with _head:
+            s = style()
+            s.add("\nh3 {text-align:center;}")
+            s.add("\nth {background-color:yellow;}")
+            s.add("\ntr td th {text-align:center;}")
+            s.add("\n")
+
+        b = body()
+
+        b.add(h3(DOCNAME))
+        b.add(hr())
+
+        t = table(border="1")
+        b.add(t)
+
+        r = tr()
+        t.add(r)
+
+        r.add(th("Code"))
+        r.add(th("Waypoint"))
+
+        f = open(FILENAME, "r")
+
+        for index, line in enumerate(f.readlines()):
+            if index == 0:
+                continue
+
+            code, waypoint_name, url = line.split('\t')
+
+            r = tr()
+            t.add(r)
+
+            r.add(td(code))
+            r.add(td(a(waypoint_name, href=url)))
+
     print h
 
 ########################################################################
