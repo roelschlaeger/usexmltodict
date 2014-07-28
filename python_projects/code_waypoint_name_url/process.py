@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 22 Jul 2014 01:21:54 PM CDT
-# Last Modified: Tue 22 Jul 2014 03:49:11 PM CDT
+# Last Modified: Mon 28 Jul 2014 11:38:08 AM CDT
 
 """
 SYNOPSIS
@@ -43,9 +43,16 @@ from dominate.tags import html, head, style, body, table, tr, th, td, hr, a
 from dominate.tags import h3, h4
 from time import asctime
 
+PATH = "C:\Users\Robert Oelschlaeger\Desktop"
 FILENAME = "Code_WaypointName_URL.csv"
 DOCNAME = "topo758b - Lake Ozark to Tipton MO"
 OUTFILE = "process.html"
+
+import os.path
+
+FILENAME = os.path.join(PATH, FILENAME)
+from images import IMAGES
+from notes import NOTES
 
 
 def process():
@@ -63,6 +70,7 @@ def process():
             s.add("\nh3, h4 {text-align:center;}")
             s.add("\nth {background-color:yellow;}")
             s.add("\ntr, td, th {text-align:center;}")
+            s.add("\ntd.left {text-align:left;}")
             s.add("\n")
 
         b = body()
@@ -71,7 +79,7 @@ def process():
         b.add(h4(asctime()))
         b.add(hr())
 
-        t = table(border="1")
+        t = table(border="1", cellpadding="3", cellspacing="3")
         b.add(t)
 
         r = tr()
@@ -79,6 +87,8 @@ def process():
 
         r.add(th("Code"))
         r.add(th("Waypoint"))
+        r.add(th("Image"))
+        r.add(th("Note"))
 
         f = open(FILENAME, "r")
 
@@ -93,6 +103,19 @@ def process():
 
             r.add(td(code))
             r.add(td(a(waypoint_name, href=url)))
+
+            if code in IMAGES:
+                link = IMAGES[code]
+                images = a(link, href=link)
+            else:
+                images = ""
+            r.add(td(images))
+
+            if code in NOTES:
+                note = NOTES[code]
+            else:
+                note = "TBD"
+            r.add(td(note, cls="left"))
 
     outfile = open(OUTFILE, "wb")
     print >> outfile, h
