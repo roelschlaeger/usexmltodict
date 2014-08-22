@@ -3,7 +3,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Thu 06 Feb 2014 05:00:07 PM CST
+# Last Modified: Fri 22 Aug 2014 12:31:44 PM CDT
 
 """
 SYNOPSIS
@@ -49,6 +49,7 @@ from dominate.tags import head, body, table, tr, th, td, br, em, style, \
     a, caption
 from xml.etree import ElementTree as ET
 import codecs
+import os.path
 
 ########################################################################
 
@@ -388,9 +389,24 @@ def create_rooter_document(gpxname):
 ########################################################################
 
 
-def print_rooter_document(gpxname, rooter_document):
+def make_zipfile(fname):
+    """Create a zipfile containing fname"""
 
-    import os.path
+    zipdir, zipbase = os.path.split(fname)
+    zipfile, zipext = os.path.splitext(zipbase)
+    zipfilename = os.path.join(zipdir, "%s.zip" % zipfile)
+    print "%s created" % zipfilename
+
+    from zipfile import ZipFile
+    zf = ZipFile(zipfilename, "w")
+    arcdir, arcname = os.path.split(fname)
+    zf.write(fname, arcname)
+    zf.close()
+
+########################################################################
+
+
+def print_rooter_document(gpxname, rooter_document, zipfile=True):
 
     # create the output
     outfiledir, outfilebase = os.path.split(gpxname)
@@ -410,6 +426,9 @@ def print_rooter_document(gpxname, rooter_document):
     outfile.close()
 
     print "%s written" % outfilename
+
+    if zipfile:
+        make_zipfile(outfilename)
 
 ########################################################################
 
@@ -474,9 +493,9 @@ if __name__ == '__main__':
         (options, args) = parser.parse_args()
         if len(args) < 1:
 #           args = ["default.gpx"]
-            args = [r"C:/Users/Robert Oelschlaeger/Dropbox/Geocaching/"
-                    r"topo710c - Lawrence KS/"
-                    r"topo710c - Lawrence KS.gpx"]
+            args = [r"C:\Users\Robert Oelschlaeger\Dropbox\Geocaching"
+                    r"\topo764 - Souvenirs of August"
+                    r"\topo764a - Souvenirs of August.gpx"]
 #           args = [""]
 #           parser.error ('missing argument')
         if options.verbose:
