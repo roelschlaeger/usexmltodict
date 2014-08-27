@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>Auto Calibration</title>
+<meta name="author" content="Robert Oelschlaeger" />
+<meta name="date" content="27 August 2014" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7614 2013-02-21 15:55:51Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="auto-calibration">
+<h1 class="title">Auto Calibration</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>Robert Oelschlaeger</td></tr>
+<tr><th class="docinfo-name">Date:</th>
+<td>27 August 2014</td></tr>
+<tr><th class="docinfo-name">Contact:</th>
+<td><a class="first last reference external" href="mailto:roelsch2009&#64;gmail.com">roelsch2009&#64;gmail.com</a></td></tr>
+</tbody>
+</table>
+<!-- vim:ts=4:sw=4:tw=0:wm=0:et:ft=rst:nowrap -->
+<hr class="docutils" />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#auto-calibration-routine" id="id1">Auto Calibration Routine</a></li>
+<li><a class="reference internal" href="#calibration-data-display" id="id2">Calibration Data Display</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="auto-calibration-routine">
+<h1><a class="toc-backref" href="#id1">Auto Calibration Routine</a></h1>
+<p>The auto calibration routine is set up to linearize the response from the LVTRx
+and calibrate out the zero offset. To do this the two end points of travel are
+used.</p>
+<p>Here is what we do for auto calibration:</p>
+<ol class="arabic">
+<li><p class="first">Perform harmonization (allows motor to spin).</p>
+</li>
+<li><p class="first">Set solenoid current to zero (no axial displacement).</p>
+</li>
+<li><p class="first">Spin motor at half speed.</p>
+</li>
+<li><p class="first">Collect position data every four degrees of shaft rotation to populate Table_1.</p>
+</li>
+<li><p class="first">Calculate the average of Table_1 values.</p>
+</li>
+<li><p class="first">Set solenoid current to 1 Amp to drive valve to max open.</p>
+</li>
+<li><p class="first">Collect position data every four degrees of shaft rotation to populate Table_2.</p>
+</li>
+<li><p class="first">Calculate the average of Table_2 values.</p>
+</li>
+<li><p class="first">Calculate values for Table_3 (best fit position correction or
+<em>rom_harmonize_data</em>) by averaging Table_1 and Table_2 data points.</p>
+<pre class="literal-block">
+Table_3[N] = (Table_1[N] + Table_2[N]) / 2
+</pre>
+<dl class="docutils">
+<dt>where:</dt>
+<dd><ul class="first last simple">
+<li>N is the table index for successive four degree incremental values</li>
+<li>The Table_1 average is the zero offset.</li>
+<li>The difference between Table_1 and Table_2 is a gain scale factor.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+<div class="section" id="calibration-data-display">
+<h1><a class="toc-backref" href="#id2">Calibration Data Display</a></h1>
+<p>Calibration data can be viewed using the RS232 debug port and the
+<em>DisplayHarmonizeData</em> command selection, as shown below:</p>
+<pre class="literal-block">
+Application: ACCV_BLDC
+Version:     0.2.8.11
+Build:       20131029
+
+                                               Harmonize
+                        Program State           Offset
+                    =========================  =========
+                    ALL    MTR1    MTR2_AXIAL
+                    ------ ------  ----------  --------
+rom_harmonize_data: 0x0000 0x0000    0x0000     0x55fc
+                    \_____________________/
+                            |
+                            0xffff = Unprogrammed
+                            0x0000 = Programmed
+                            0x0001 = Partly programmed
+                            0x0002 = Misprogrammed
+
+
+
+Enter Password: XXXXXXXX
+
+Select menu
+1 - menu 1: pi_motor1_phase_detector.param
+2 - menu 2: pi_motor1_idc.param
+3 - menu 3: pi_motor1_rate.param
+4 - menu 4: pi_motor2_idc.param
+5 - menu 5: pi_motor2_position.param
+
+6 - menu 6: Dac Channel Selection
+
+7 - RESET
+
+8 - DisplayHarmonizeData
+</pre>
+<p>Selecting <em>DisplayHarmonizeData</em>:</p>
+<pre class="literal-block">
+8
+                                               Harmonize
+                        Program State           Offset
+                    =========================  =========
+                    ALL    MTR1    MTR2_AXIAL
+                    ------ ------  ----------  --------
+rom_harmonize_data: 0x0000 0x0000    0x0000     0x55fc
+                    \_____________________/
+                            |
+                            0xffff = Unprogrammed
+                            0x0000 = Programmed
+                            0x0001 = Partly programmed
+                            0x0002 = Misprogrammed
+
+
+rom_harmonize_data
+==================
+
+cols 00-04:    0.177883    0.181485    0.177263    0.160720    0.140571
+cols 05-09:    0.133563    0.132405    0.129925    0.121168    0.116266
+cols 10-14:    0.120538    0.118764    0.113832    0.115485    0.119059
+cols 15-19:    0.121871    0.131132    0.136865    0.130735    0.128787
+cols 20-24:    0.136824    0.147551    0.137845    0.128611    0.128641
+cols 25-29:    0.129177    0.117638    0.104029    0.100638    0.100562
+cols 30-34:    0.102443    0.097816    0.097554    0.096358    0.095870
+cols 35-39:    0.100202    0.102628    0.104137    0.104253    0.103700
+cols 40-44:    0.111524    0.120846    0.126988    0.134905    0.143437
+cols 45-49:    0.151411    0.155720    0.141928    0.147719    0.158419
+cols 50-54:    0.152653    0.139366    0.128311    0.123504    0.130040
+cols 55-59:    0.141599    0.129480    0.121493    0.124083    0.141158
+cols 60-64:    0.139463    0.152641    0.148078    0.168555    0.168114
+cols 65-69:    0.180351    0.201203    0.207343    0.204250    0.214174
+cols 70-74:    0.216204    0.207271    0.193938    0.189377    0.184602
+cols 75-79:    0.179836    0.173120    0.174890    0.166526    0.172470
+cols 80-84:    0.167293    0.173621    0.179142    0.180672    0.189402
+cols 85-89:    0.193476    0.191980    0.206092    0.199246    0.203260
+
+Table 1 Average:    0.146729
+Table 2 Average:    0.146500
+</pre>
+<hr class="docutils" />
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">The tabular data displayed above are values collected during a test run
+using the software test bench motor.</p>
+</div>
+</div>
+</div>
+</body>
+</html>
