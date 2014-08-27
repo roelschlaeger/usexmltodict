@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 26 Aug 2014 09:05:21 PM CDT
-# Last Modified: Tue 26 Aug 2014 09:42:48 PM CDT
+# Last Modified: Wed 27 Aug 2014 11:44:03 AM CDT
 
 """
 SYNOPSIS
@@ -40,15 +40,13 @@ __VERSION__ = "0.0.1"
 ########################################################################
 
 FILENAME = "data.txt"
-
-########################################################################
-
-from pprint import pprint
+"""The input filename"""
 
 ########################################################################
 
 
 def process_cols(line):
+    """Collect the float values from a table line"""
 
     return map(float, line.split()[2:])
 
@@ -56,15 +54,27 @@ def process_cols(line):
 
 
 def grab_data(filename):
+    """Collect data from FILENAME, extracting identifying information and table
+    values"""
+
     values = []
     state = 0
-    print "reading from %s" % filename
+    print >>sys.stderr, "reading from %s" % filename
     f = open(filename, "r")
 
     for line in f.readlines():
-#       print "%d: '%s'" % (state, line)
 
+        if state == 0 and line.startswith("Application"):
+            print line[:-1]
+            continue
+        if state == 0 and line.startswith("Version"):
+            print line[:-1]
+            continue
+        if state == 0 and line.startswith("Build"):
+            print line[:-1]
+            continue
         if state == 0 and line == "rom_harmonize_data\n":
+            print
             state = 1
             continue
 
@@ -87,6 +97,19 @@ def grab_data(filename):
             break
 
     return values
+
+########################################################################
+
+
+def print_values(yvalues):
+    """Reformat yvalues in support of generating chart"""
+
+    xvalues = range(0, 360, 4)
+
+    print "Angle\tValue"
+
+    for x, y in zip(xvalues, yvalues):
+        print "%d\t%f" % (x, y)
 
 ########################################################################
 
@@ -116,8 +139,7 @@ if __name__ == '__main__':
         global options, args
 
         values = grab_data(FILENAME)
-        print len(values)
-        pprint(values)
+        print_values(values)
 
 ########################################################################
 
