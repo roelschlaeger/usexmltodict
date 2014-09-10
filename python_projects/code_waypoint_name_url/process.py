@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 22 Jul 2014 01:21:54 PM CDT
-# Last Modified: Mon 28 Jul 2014 11:38:08 AM CDT
+# Last Modified: Tue 09 Sep 2014 09:32:44 PM CDT
 
 """
 SYNOPSIS
@@ -45,7 +45,7 @@ from time import asctime
 
 PATH = "C:\Users\Robert Oelschlaeger\Desktop"
 FILENAME = "Code_WaypointName_URL.csv"
-DOCNAME = "topo758b - Lake Ozark to Tipton MO"
+DOCNAME = "topo765a - Saint Louis MO"
 OUTFILE = "process.html"
 
 import os.path
@@ -106,7 +106,14 @@ def process():
 
             if code in IMAGES:
                 link = IMAGES[code]
-                images = a(link, href=link)
+                if isinstance(link, type([])):
+                    images = table()
+                    for link in link:
+                        r2 = tr()
+                        r2.add(td(a(link, href=link)))
+                        images.add(r2)
+                else:
+                    images = a(link, href=link)
             else:
                 images = ""
             r.add(td(images))
