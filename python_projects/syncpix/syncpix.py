@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Tue 15 Jul 2014 09:32:04 AM CDT
+# Last Modified: Thu 18 Sep 2014 05:04:14 PM CDT
 
 """
 SYNOPSIS
@@ -287,8 +287,8 @@ if __name__ == '__main__':
     import traceback
 #   import os
 
-    DATE = "20140714"
-    ROUTE_NAME = "topo759b - Cardinal GeoArt IL"
+    DATE = "20140917"
+    ROUTE_NAME = "Florissant MO"
 
     HOME = r"C:\Users\Robert Oelschlaeger"
     PIXDIR = r"%s\Google Drive\Caching Pictures\%s" % (HOME, DATE)
