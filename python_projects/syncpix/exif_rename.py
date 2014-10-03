@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 02 Oct 2014 06:37:29 PM CDT
-# Last Modified: Fri 03 Oct 2014 01:12:12 PM CDT
+# Last Modified: Fri 03 Oct 2014 04:26:49 PM CDT
 
 """
 SYNOPSIS
@@ -56,6 +56,27 @@ from itertools import chain, count
 import exifread
 import os
 import string
+
+#########################################################################
+
+
+def show_directories(base):
+    """Show the directories in the 'base' directory"""
+
+    # get filenames in sorted order
+    for filename in sorted(os.listdir(base)):
+
+        # form the path
+        path = os.path.join(base, filename)
+
+        # check for directory
+        if os.path.isdir(path):
+
+            # get the files in the directory
+            files = os.listdir(path)
+
+            # show them on one line
+            print "%-20s %3d: %s" % (filename, len(files), str(files)[:60])
 
 #########################################################################
 
@@ -250,26 +271,31 @@ if __name__ == '__main__':
 
         global OPTIONS, ARGS
 
-        debug = OPTIONS.debug
-        base = OPTIONS.base
-        date = OPTIONS.date
-        generate = OPTIONS.generate
+        debug_option = OPTIONS.debug
+        base_option = OPTIONS.base
+        date_option = OPTIONS.date
+        generate_option = OPTIONS.generate
+        list_option = OPTIONS.list
 
-        if debug:
+        if debug_option:
             print ARGS, OPTIONS
-            print debug
-            print base
-            print date
-            print generate
+            print debug_option
+            print base_option
+            print date_option
+            print generate_option
+            print list_option
             print
 
-        path = os.path.join(base, date)
-        result = process(path, debug)
-        from pprint import pprint
-        pprint(result)
+        if list_option:
+            show_directories(base_option)
+        else:
+            path = os.path.join(base_option, date_option)
+            result = process(path, debug_option)
+            from pprint import pprint
+            pprint(result)
 
-        if generate:
-            generate_cmd_file(path, result, debug)
+            if generate_option:
+                generate_cmd_file(path, result, debug_option)
 
 ########################################################################
 
@@ -320,6 +346,14 @@ if __name__ == '__main__':
             action='store_true',
             default=False,
             help='generate cmd file to cause rename'
+        )
+
+        PARSER.add_option(
+            '-l',
+            '--list',
+            action='store_true',
+            default=False,
+            help='list directories in the base directory'
         )
 
         (OPTIONS, ARGS) = PARSER.parse_args()
