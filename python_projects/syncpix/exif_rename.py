@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 02 Oct 2014 06:37:29 PM CDT
-# Last Modified: Thu 02 Oct 2014 07:40:23 PM CDT
+# Last Modified: Thu 02 Oct 2014 11:53:39 PM CDT
 
 """
 SYNOPSIS
@@ -48,20 +48,35 @@ import string
 
 
 def ensure_unique(name, namelist):
-    testname = name
+    """return unique name not already in namelist"""
+
+    # separate root from extension
+    root, ext = os.path.splitext(name)
+
+    # set up potential name modifier
     g = chain(string.lowercase, count())
-    while testname in namelist:
-        testname = "%s_%s" % (name, g.next())
-    return testname
 
-namelist = {}
-for x in range(100):
-    y = ensure_unique('test', namelist)
-    namelist[y] = x
-    print y
+    # start with original name
+    testname = root
 
-import sys
-sys.exit(0)
+    # check for name alread in namelist
+    while testname + ext in namelist:
+
+        # creaste a new modified name
+        testname = "%s%s" % (root, g.next())
+
+    # return the result with its extension
+    return testname + ext
+
+if 0:
+    namelist = {}
+    for x in range(100):
+        y = ensure_unique('test.jpg', namelist)
+        namelist[y] = x
+        print y
+
+    import sys
+    sys.exit(0)
 
 #########################################################################
 
