@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Fri 03 Oct 2014 12:47:17 PM CDT
+# Last Modified: Fri 03 Oct 2014 04:50:39 PM CDT
 
 """
 SYNOPSIS
@@ -291,17 +291,16 @@ if __name__ == '__main__':
     ROUTE_NAME = "topo760b - Salem IL"
 
     HOME = r"C:\Users\Robert Oelschlaeger"
-    PIXDIR = r"%s\Google Drive\Caching Pictures\%s" % (HOME, DATE)
-    GPXFILE = r"%s\explorist_results_%s.gpx" % (PIXDIR, DATE)
     TIMEZONE = "CST"
 
     ########################################################################
 
-    def main():
-
-        global options, args
-
-        syncpix(ROUTE_NAME, PIXDIR, GPXFILE, TIMEZONE, options.debug)
+    def main(route_name, pixdir, gpxfile, timezone, debug):
+        if debug:
+            print "main(%s, %s, %s, %s, %s)" % (route_name, pixdir, gpxfile,
+                                                timezone, debug)
+        else:
+            syncpix(route_name, pixdir, gpxfile, timezone, debug)
 
    ########################################################################
 
@@ -319,6 +318,7 @@ if __name__ == '__main__':
             default=False,
             help='debug output'
         )
+
         parser.add_option(
             '-v',
             '--verbose',
@@ -326,12 +326,37 @@ if __name__ == '__main__':
             default=False,
             help='verbose output'
         )
+
+        parser.add_option(
+            '-t',
+            '--date',
+            action='store',
+            default=DATE,
+            help='set date (default: %default)'
+        )
+
+        parser.add_option(
+            '-r',
+            '--route',
+            action='store',
+            default=ROUTE_NAME,
+            help='set date (default: %default)'
+        )
+
+        # parse command line options
         (options, args) = parser.parse_args()
+
+        date_option = options.date
+        route_name = options.route
+
+        pixdir = r"%s\Google Drive\Caching Pictures\%s" % (HOME, date_option)
+        gpxfile = r"%s\explorist_results_%s.gpx" % (pixdir, date_option)
+
         #if len(args) < 1:
         #    parser.error ('missing argument')
         if options.verbose:
             print time.asctime()
-        exit_code = main()
+        exit_code = main(route_name, pixdir, gpxfile, TIMEZONE, options.debug)
         if exit_code is None:
             exit_code = 0
         if options.verbose:
