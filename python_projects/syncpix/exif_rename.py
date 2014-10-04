@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 02 Oct 2014 06:37:29 PM CDT
-# Last Modified: Fri 03 Oct 2014 07:36:37 PM CDT
+# Last Modified: Sat 04 Oct 2014 11:36:26 AM CDT
 
 """
 SYNOPSIS
@@ -15,6 +15,7 @@ SYNOPSIS
         [[-b, --base] <base directory>]
         [[-t, --date] yyyymmdd]
         [-l{l...}]
+        [--directory]
 
 DESCRIPTION
 
@@ -57,6 +58,27 @@ from itertools import chain, count
 import exifread
 import os
 import string
+
+#########################################################################
+
+
+def show_make_html(base):
+
+    msg = """Display the status of directories below '%s' that contain
+'explorist_results....gpx' files, indicating whether a corresponding
+'make_html.html' is there also.
+""" % base
+    print msg
+
+    for filename in sorted(os.listdir(base)):
+
+        path = os.path.join(base, filename)
+        if os.path.isdir(path):
+            files = os.listdir(path)
+            explorist = any([f.startswith("explorist_results") for f in files])
+            if explorist:
+                status = ("make_html.html" in files)
+                print filename, status
 
 #########################################################################
 
@@ -285,6 +307,7 @@ if __name__ == '__main__':
         date_option = OPTIONS.date
         generate_option = OPTIONS.generate
         list_option = OPTIONS.list
+        directory_option = OPTIONS.directory
 
         if debug_option:
             print ARGS, OPTIONS
@@ -293,10 +316,13 @@ if __name__ == '__main__':
             print date_option
             print generate_option
             print list_option
+            print directory_option
             print
 
         if list_option:
             show_directories(base_option, list_option)
+        elif directory_option:
+            show_make_html(base_option)
         else:
             path = os.path.join(base_option, date_option)
             result = process(path, debug_option)
@@ -357,12 +383,32 @@ if __name__ == '__main__':
             help='generate cmd file to cause rename'
         )
 
+        _helpmsg = " ".join(
+            [
+                'list directories in the base directory; repeat for showing',
+                'only directories with "explorist_results..."'
+            ]
+        )
         PARSER.add_option(
             '-l',
             '--list',
             action='count',
             default=0,
-            help='list directories in the base directory; repeat for showing only directories with "explorist_results..."'
+            help=_helpmsg
+        )
+
+        _helpmsg = " ".join(
+            [
+                'list directories in the base directory indicating whether',
+                'they have a make_html.html file in them'
+            ]
+        )
+        PARSER.add_option(
+            '',
+            '--directory',
+            action='store_true',
+            default=False,
+            help=_helpmsg
         )
 
         (OPTIONS, ARGS) = PARSER.parse_args()
