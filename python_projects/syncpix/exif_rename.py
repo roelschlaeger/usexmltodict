@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 02 Oct 2014 06:37:29 PM CDT
-# Last Modified: Fri 03 Oct 2014 04:26:49 PM CDT
+# Last Modified: Fri 03 Oct 2014 07:36:37 PM CDT
 
 """
 SYNOPSIS
@@ -14,6 +14,7 @@ SYNOPSIS
         [-d, --debug]
         [[-b, --base] <base directory>]
         [[-t, --date] yyyymmdd]
+        [-l{l...}]
 
 DESCRIPTION
 
@@ -60,7 +61,7 @@ import string
 #########################################################################
 
 
-def show_directories(base):
+def show_directories(base, level):
     """Show the directories in the 'base' directory"""
 
     # get filenames in sorted order
@@ -75,8 +76,16 @@ def show_directories(base):
             # get the files in the directory
             files = os.listdir(path)
 
-            # show them on one line
-            print "%-20s %3d: %s" % (filename, len(files), str(files)[:60])
+            if (
+                (level == 1) or
+                any([f.startswith("explorist_results") for f in files])
+            ):
+
+                # show them on one line
+                sfiles = str(files)
+                if len(sfiles) > 60:
+                    sfiles = sfiles[:56] + "...]"
+                print "%-20s %3d: %s" % (filename, len(files), sfiles)
 
 #########################################################################
 
@@ -287,7 +296,7 @@ if __name__ == '__main__':
             print
 
         if list_option:
-            show_directories(base_option)
+            show_directories(base_option, list_option)
         else:
             path = os.path.join(base_option, date_option)
             result = process(path, debug_option)
@@ -351,9 +360,9 @@ if __name__ == '__main__':
         PARSER.add_option(
             '-l',
             '--list',
-            action='store_true',
-            default=False,
-            help='list directories in the base directory'
+            action='count',
+            default=0,
+            help='list directories in the base directory; repeat for showing only directories with "explorist_results..."'
         )
 
         (OPTIONS, ARGS) = PARSER.parse_args()
