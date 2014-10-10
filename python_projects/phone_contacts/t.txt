@@ -1,0 +1,17 @@
+            Business Fax   8 set(['', '6362370000', '6369499015', '3148956564', '31457669
+          Business Phone  23 set(['', '5209013227', '6369491625', '7232600', '8006688556'
+                 Company  23 set(['', 'Eclypse International', 'Best Buy', 'Lou Fusz', 'R
+        E-mail 2 Address  25 set(['', 'stevecor@bullseye.com', 'roelsch2009@gmail.com', '
+        E-mail 3 Address 817 set(['', 'fairhometown@yahoo.com', 'daanders@aerotek.com', '
+          E-mail Address  32 set(['', 'meray4@wowway.com', 'cpleil@yahoo.com', 'khighhill
+              First Name 820 set(['fairhometown@yahoo.com', 'Eugene Hamilton Jr', 'raldri
+                  Gender   1 set(['Unspecified'])
+              Home Phone  75 set(['', '3148384515', '9138143790', '3094525459', '63644739
+            Home Phone 2   2 set(['', '6369477421'])
+               Last Name 403 set(['', 'Helsell', 'stoehr', 'Hosmer', 'Schmidt', 'Bunger',
+             Middle Name  54 set(['', 'Shenzhong', 'Ver', 'M.', 'Road Branch', 'Topham',
+            Mobile Phone 156 set(['', '6363972012', '3144011947', '7857702027', '31926316
+                   Notes 203 set(['', 'Small Business Specialist', 'geocacher rcrtbjoy\nR
+             Other Phone  15 set(['', '7196385800', '8008722657', '+17856212739', '611',
+            Other Street  85 set(['', '400 North 5th Street,Saint Charles,MO,63301', '217
+           Primary Phone 208 set(['', '6363972012', '6182887005', '5209013227', '31440119

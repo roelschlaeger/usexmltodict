@@ -1,0 +1,24 @@
+                  Additional Name  69 set(['', 'Shenzhong', 'Ridge', 'HELP', 'M.', 'Lake', 'Mark',
+            Address 1 - Formatted  83 set(['', '400 North 5th Street,Saint Charles,MO,63301', '217
+               Address 1 - Street  83 set(['', '400 North 5th Street,Saint Charles,MO,63301', '217
+                 Address 1 - Type   2 set(['', 'Other'])
+                  E-mail 1 - Type   3 set(['', 'Other', '* Other'])
+                 E-mail 1 - Value 829 set(['', 'daanders@aerotek.com', 'raldrich@gttit.com', 'keoh
+                  E-mail 2 - Type   2 set(['', '* Other'])
+                 E-mail 2 - Value  25 set(['', 'richard.oelschlaeger@va.gov', 'happykraut@sbcgloba
+                      Family Name 454 set(['', 'Helsell', 'Hosmer', 'Lodge', 'Schmidt', 'Etling', 
+                       Given Name 739 set(['Greg & Bobbi', 'raldrich@gttit.com', 'Brad', 'Wayne', 
+                 Group Membership   2 set(['* My Contacts ::: Imported 10/10/14', 'Imported 10/10/
+                             Name 948 set(['raldrich@gttit.com', 'mike sorrill', 'Kris Nichol', 'D
+                      Name Prefix   2 set(['', 'Sir'])
+                      Name Suffix   4 set(['', 'Jr.', 'Sr.', 'Jr'])
+                            Notes 193 set(['', 'geocacher smitykid\r\n', 'Anniversary: 0/0/00\r\nB
+            Organization 1 - Name  23 set(['', 'Eclypse International', 'Best Buy', 'Lou Fusz', 'R
+                   Phone 1 - Type   3 set(['', 'Home', 'Main'])
+                  Phone 1 - Value 199 set(['', '7857702027', '5209013227', '3144011947', '95137180
+                   Phone 2 - Type   6 set(['', 'Mobile', 'Work', 'Other', 'Work Fax', 'Home'])
+                  Phone 2 - Value  50 set(['', '9138143790', '3094525459', '6364473949', '63694711
+                   Phone 3 - Type   5 set(['', 'Mobile', 'Other', 'Work Fax', 'Work'])
+                  Phone 3 - Value  13 set(['', '6362370000', '3145534758', '6369499015', '31489565
+                   Phone 4 - Type   2 set(['', 'Work'])
+                  Phone 4 - Value   2 set(['', '3147231653406'])
