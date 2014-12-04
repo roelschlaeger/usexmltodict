@@ -1,0 +1,22 @@
+{
+  "name": "node_projects",
+  "version": "0.0.0",
+  "description": "A first cut at parsing a .gpx file using 'xml2js'",
+  "main": "test.js",
+  "dependencies": {
+    "express": "~4.10.4",
+    "express-generator": "~4.9.0",
+    "jade": "~1.7.0",
+    "split": "~0.3.0",
+    "through": "~2.3.4",
+    "through2-map": "~1.2.0",
+    "xml2js": "~0.4.4",
+    "xmldom": "~0.1.19"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Robert L. Oelschlaeger",
+  "license": "BSD-2-Clause"
+}

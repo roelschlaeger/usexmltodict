@@ -3,7 +3,10 @@ bob_notes
 *********
 
 :author: Robert L. Oelschlaeger
-:date: 20141129
+:date: 20141202
+
+Express
+=======
 
 Running `Node.js tutorial for beginners`_, stopped at about 06:18.
 
@@ -33,3 +36,9 @@ but, instead of having to stop and restart the application, we installed ``nodem
     npm install -g nodemon
     nodemon bin/www
 
+MongoDb
+=======
+
+Proceeding with ``mongodb`` integration, using the video__.
+
+.. __: https://www.youtube.com/watch?v=5e1NEdfs4is&src_vid=ndKRjmA6WNA&feature=iv&annotation_id=annotation_2934154685

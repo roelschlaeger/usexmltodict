@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -47,6 +48,7 @@ if (app.get('env') === 'development') {
             error: err
         });
     });
+    mongoose.connect('mongodb://127.0.0.1/mongo');
 }
 
 // production error handler
@@ -59,5 +61,19 @@ app.use(function(err, req, res, next) {
     });
 });
 
+mongoose.model('users', {name: String});
+mongoose.model('posts', {content: String});
+
+app.get('/users', function(req, res) {
+    mongoose.model('users').find(function(err, users) {
+        res.send(users);
+    });
+});
+
+app.get('/posts', function(req, res) {
+    mongoose.model('posts').find(function(err, posts) {
+        res.send(posts);
+    });
+});
 
 module.exports = app;
