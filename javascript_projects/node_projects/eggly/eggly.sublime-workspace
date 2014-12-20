@@ -1,0 +1,583 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Heading",
+				"heading"
+			],
+			[
+				"sublime",
+				"sublime-project"
+			],
+			[
+				"navbar",
+				"navbar-responsive-collapse"
+			],
+			[
+				"marg",
+				"margin-right"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"inline",
+				"inline-block"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 2658,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 363.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: list",
+				"Package Control: List Packages"
+			],
+			[
+				"xml",
+				"Indent XML"
+			],
+			[
+				"",
+				"Indent JSON"
+			],
+			[
+				"Snippet: #!/usr/bin/env ",
+				"Snippet: #!/usr/bin/env"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"restruc",
+				"Set Syntax: reStructuredText Improved"
+			],
+			[
+				"restruc	",
+				"Set Syntax: reStructuredText Improved"
+			],
+			[
+				"tag",
+				"HTML: Wrap Selection With Tag"
+			],
+			[
+				"p",
+				"Package Control: Remove Package"
+			],
+			[
+				"themr",
+				"Themr: List themes"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control:",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 458.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Robert Oelschlaeger/Desktop/VORC001.WAV",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/javascript_projects/node_projects/exp2014/package.json",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/javascript_projects/node_projects/exp2014/bob_notes.rst",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/User/sublime-rst-completion.sublime-keymap",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/sublime-rst-completion/Default (Windows).sublime-keymap",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/User/sublime-rst-completion.sublime-settings",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/RestructuredText Improved/README.rst",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/javascript_projects/node_projects/exp2014/app.js",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/Restructured Text (RST) Snippets/Main.sublime-menu",
+		"/C/Users/Robert Oelschlaeger/Desktop/test.rst",
+		"/C/Users/Robert Oelschlaeger/Google Drive/Caching Pictures/20140612/20140612_notes.csv",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/sublime-rst-completion/sublime-rst-completion.sublime-settings",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/User/Package Control.sublime-settings",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Robert Oelschlaeger/Desktop/Cardinals_GeoArt_20141114.gpx",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-seed-test/angular-seed-test.sublime-workspace",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/Restructured Text (RST) Snippets/package-metadata.json",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/Restructured Text (RST) Snippets/LICENSE",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angularjs_fundamentals/readme.rst",
+		"/C/Users/Robert Oelschlaeger/test.rst",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/User/readme.rst",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/Emmet/README.md",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/Color Highlighter/README.md",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/ASCII Comment Snippets/readme.md",
+		"/C/?",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/app/js/controllers.js",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/app/index.html",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/app/js/services.js",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/README.md",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/app/partials/phone-detail.html",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/node_modules/karma/node_modules/socket.io/node_modules/socket.io-client/node_modules/active-x-obfuscator/node_modules/zeparser/benchmark.html",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/app/phones/nexus-s.json",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/app/js/filters.js",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/node_modules/http-server/node_modules/union/node_modules/qs/test/browser/mocha.js",
+		"/C/Users/Robert Oelschlaeger/Downloads/All_Contacts_Sun_Nov_23_16-19-47_CST_2014.csv",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/app/phones/t-mobile-mytouch-4g.json",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/app/img/phones/dell-streak-7.3.jpg",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/app/img/phones/dell-streak-7.4.jpg",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/app/img/phones/dell-streak-7.2.jpg",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/app/phones/dell-streak-7.json",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/app/img/phones/dell-streak-7.1.jpg",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angular-phonecat/app/img/phones/dell-streak-7.0.jpg",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angularjs_fundamentals/step1.html",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/angularjs_fundamentals/base.html",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/AngularJS Snippets/README.markdown",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/AngularJS Snippets/package-metadata.json",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/readGpx/main.js",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/readGpx/readGpx.sublime-project",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/readGpx/new.html",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/readGpx/readgpx.html",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/angular_projects/readGpx/new.js",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/User/ThemrFavorites.sublime-settings",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/User/Terminal.sublime-settings",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/Themr/Default (Windows).sublime-keymap",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/Themr/ThemrFavorites.sublime-settings",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 2/Packages/Themr/readme.md",
+		"/C/Users/Robert Oelschlaeger/Desktop/MyWebSite/index.html",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/bootstrap_projects/project1/04 - Code Chunks/B - navbar.html"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"users",
+			"app.get",
+			"{",
+			"	",
+			"\"",
+			",",
+			", ",
+			"        \n",
+			"render",
+			"setImage",
+			"checkmark",
+			"phonecatFilters",
+			"Filter",
+			"filter",
+			"\"",
+			"<head>\n		<meta charset=\"UTF-8\">\n		<title>Reading XML Files</title>\n		<link rel=\"stylesheet\" href=\"bower_components/foundation/css/foundation.css\">\n		<script type=\"text/javascript\" src=\"main.js\"></script>\n	</head>\n	<body>\n		<div ng-app=\"\">\n		    <div ng-controller=\"FirstCtrl\">\n		    	<h1>Hello world + {{data.message}}</h1>\n				<div class=\"{{data.message}}\">\n					Hello there {{data.message}}\n				</div>\n		    </div>\n		</div>\n\n		<script type=\"text/javascript\" src=\"bower_components/angularjs/angular.js\"></script>\n	</body>\n",
+			"/**",
+			"ul",
+			"Settings",
+			"settomgs",
+			"services",
+			"<div .*>",
+			"			",
+			"			\n",
+			"document",
+			"Document",
+			"\\d*6",
+			"#[0-9A-Fa-f]",
+			"td",
+			"lorem",
+			"ipsum",
+			"theme",
+			"package",
+			"_path",
+			"#     ",
+			"^ ",
+			"Home",
+			"Home/",
+			"'",
+			"10",
+			"1",
+			"      </",
+			"'",
+			"\"",
+			"'"
+		],
+		"highlight": true,
+		"in_selection": true,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"posts",
+			"    ",
+			"",
+			" ",
+			"'",
+			"li",
+			"th",
+			"#",
+			"Help",
+			"\"",
+			"20",
+			"\"",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"settings":
+					{
+						"buffer_size": 2658,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Nexus.tmTheme",
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublime_auto_complete": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/AngularJS/AngularJS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 37.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"app/phones/dell-streak-7.json"
+			],
+			[
+				"step1",
+				"step1.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 207.0,
+	"status_bar_visible": true
+}

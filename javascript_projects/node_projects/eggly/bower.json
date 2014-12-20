@@ -1,0 +1,23 @@
+{
+  "name": "bob_eggly",
+  "version": "0.0.0",
+  "homepage": "https://github.com/roelschlaeger/sources",
+  "authors": [
+    "roelschlaeger <roelschlaeger@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "lodash": "~2.4.1",
+    "angular": "~1.3.8",
+    "jquery": "~2.1.3"
+  }
+}
