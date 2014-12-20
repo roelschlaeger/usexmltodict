@@ -5,40 +5,39 @@
     <meta name="viewport" content="width=device-width">
     <title>Eggly</title>
 
-    <link rel="stylesheet" href="assets/css/normalize.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-
     <link rel="stylesheet" href="assets/css/eggly.css">
-    <link rel="stylesheet" href="assets/css/animations.css">
 </head>
 <body>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/lodash/dist/lodash.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="eggly.js"></script>
 
     <script src="test.js"></script> <!-- defines test -->
-    <script src="eggly.js"></script>
+    <!-- <script src="eggly.js"></script> -->
     
     <div ng-controller="controller">
         <h1>{{wpts.length}} Eggly Waypoints </h1>
-        {{wpts[0]}}
-        <br />
+        Filter: <input type="text" ng-model="Filter">
         <table border="1" cellspacing="2" cellpadding="2">
             <tr>
                 <th>User Sort</th>
                 <th>Name</th>
+                <th>Link Name</th>
                 <th>Latitude</th>
                 <th>Longitude</th>
             </tr>
-            <tr ng-repeat="wpt in wpts">
+            <tr ng-repeat="wpt in wpts | filter: Filter">
                 <td>{{wpt.extensions[0]["gsak:wptExtension"][0]["gsak:UserSort"][0]}}</td>
+                <td>{{wpt.name[0]}}</td>
                 <td><a href={{wpt.link[0].$.href}}>{{wpt.link[0].text[0]}}</a></td>
-<!--                <td>{{wpt.extensions[0]["gsak:wptExtension"][0]["gsak:UserFlag"][0]}}</td> -->
                 <td>{{wpt.$.lat}}</td>
                 <td>{{wpt.$.lon}}</td>
             </tr>
         </table>
+        <h2>wpt[8]</h2>
+            <pre>{{show_wpts}}</pre>
     </div>
 </body>
 </html>

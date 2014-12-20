@@ -1,9 +1,28 @@
 table { 
-    text-align: center; 
-    padding: 3 
-    border-spacing: 5px;
+    margin: 0 auto;
+    /*width: 800px;*/
+    width: auto;
+    border-collapse: collapse;
+    /*border-spacing: 5px;*/
 }
 
 th, td {
-    padding: 5px;
+    vertical-align: central;
+    padding: 1px 3px;
+}
+
+th, thead {
+    padding: 6px 0;
+    background-color: #efef80;
+    text-align: center;
+}
+
+a:link {
+    color: blue;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: purple;
+    text-decoration: underline;
 }
