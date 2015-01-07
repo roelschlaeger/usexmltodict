@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Sun 05 Jan 2014 05:22:17 PM CST
-# Last Modified: Tue 07 Jan 2014 04:12:23 PM CST
+# Last Modified: Wed 07 Jan 2015 03:33:37 PM CST
 
 """
 SYNOPSIS
@@ -32,7 +32,7 @@ LICENSE
 
 VERSION
 
-    
+
 """
 
 # from pexpect import run, spawn
@@ -63,18 +63,18 @@ def make_html(pixdir, route_name, results):
         with body(footer=title):
 
             with table(
-                    border="1", 
-                    cellspacing="3", 
-                    cellpadding="3", 
-                    summary=route_name, 
+                    border="1",
+                    cellspacing="3",
+                    cellpadding="3",
+                    summary=route_name,
                     align="center"
                     ):
 
                 caption(route_name)
 
                 tr(
-                    th("Name"), 
-                    th("Description"), 
+                    th("Name"),
+                    th("Description"),
                     th("Imagefile")
                     )
 

@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Fri 03 Oct 2014 04:50:39 PM CDT
+# Last Modified: Wed 07 Jan 2015 11:07:38 AM CST
 
 """
 SYNOPSIS
@@ -287,8 +287,8 @@ if __name__ == '__main__':
     import traceback
 #   import os
 
-    DATE = "20141001"
-    ROUTE_NAME = "topo760b - Salem IL"
+    DATE = "20150106"
+    ROUTE_NAME = "topo775 - Perryville MO"
 
     HOME = r"C:\Users\Robert Oelschlaeger"
     TIMEZONE = "CST"

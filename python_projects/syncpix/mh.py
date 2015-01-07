@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Tue 07 Jan 2014 12:04:26 PM CST
-# Last Modified: Tue 15 Jul 2014 11:04:17 AM CDT
+# Last Modified: Wed 07 Jan 2015 03:19:31 PM CST
 
 """
 SYNOPSIS
@@ -108,14 +108,14 @@ def make_html(pixdir, route_name, results, debug=False):
                     lat, lon = tp
 
                     if rowspan == 1:
-                        td(a(gcname_key, href=coord_info_url))
+                        td(a(gcname_key, href=coord_info_url, target="_blank"))
                         td(description or "")
                     elif first:
-                        td(a(gcname_key, href=coord_info_url), rowspan=rowspan)
+                        td(a(gcname_key, href=coord_info_url, target="_blank"), rowspan=rowspan)
                         td(description or "", rowspan=rowspan)
                         first = False
 
-                    td(a(filename, href=filename))
+                    td(a(filename, href=filename, target="_blank"))
 
     document += picture_table
 
