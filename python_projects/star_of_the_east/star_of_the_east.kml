@@ -1,0 +1,1709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="feat_1">
+        <Placemark id="feat_2">
+            <name>Star_0_0_1</name>
+            <Point id="geom_0">
+                <coordinates>-91.00145,38.4427333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_3">
+            <name>Star_0_0_2</name>
+            <Point id="geom_1">
+                <coordinates>-91.00145,38.4427333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_4">
+            <name>Star_0_0_3</name>
+            <Point id="geom_2">
+                <coordinates>-91.00145,38.4427333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_5">
+            <name>Star_0_0_4</name>
+            <Point id="geom_3">
+                <coordinates>-91.00145,38.4427333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_6">
+            <name>Star_0_0_5</name>
+            <Point id="geom_4">
+                <coordinates>-91.00145,38.4427333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_7">
+            <name>Star_0_0_6</name>
+            <Point id="geom_5">
+                <coordinates>-91.00145,38.4427333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_8">
+            <name>Star_0_0_7</name>
+            <Point id="geom_6">
+                <coordinates>-91.00145,38.4427333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_9">
+            <name>Star_0_0_8</name>
+            <Point id="geom_7">
+                <coordinates>-91.00145,38.4427333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_10">
+            <name>Star_0_0_9</name>
+            <Point id="geom_8">
+                <coordinates>-91.00145,38.4427333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_11">
+            <name>Star_0_1_1</name>
+            <Point id="geom_9">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_12">
+            <name>Star_0_2_1</name>
+            <Point id="geom_10">
+                <coordinates>-91.00145,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_13">
+            <name>Star_0_2_2</name>
+            <Point id="geom_11">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_14">
+            <name>Star_0_3_1</name>
+            <Point id="geom_12">
+                <coordinates>-91.00145,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_15">
+            <name>Star_0_3_3</name>
+            <Point id="geom_13">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_16">
+            <name>Star_0_4_1</name>
+            <Point id="geom_14">
+                <coordinates>-91.00145,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_17">
+            <name>Star_0_4_2</name>
+            <Point id="geom_15">
+                <coordinates>-91.00145,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_18">
+            <name>Star_0_4_4</name>
+            <Point id="geom_16">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_19">
+            <name>Star_0_5_1</name>
+            <Point id="geom_17">
+                <coordinates>-91.00145,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_20">
+            <name>Star_0_5_5</name>
+            <Point id="geom_18">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_21">
+            <name>Star_0_6_1</name>
+            <Point id="geom_19">
+                <coordinates>-91.00145,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_22">
+            <name>Star_0_6_2</name>
+            <Point id="geom_20">
+                <coordinates>-91.00145,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_23">
+            <name>Star_0_6_3</name>
+            <Point id="geom_21">
+                <coordinates>-91.00145,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_24">
+            <name>Star_0_6_6</name>
+            <Point id="geom_22">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_25">
+            <name>Star_0_7_1</name>
+            <Point id="geom_23">
+                <coordinates>-91.00145,38.44285,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_26">
+            <name>Star_0_7_7</name>
+            <Point id="geom_24">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_27">
+            <name>Star_0_8_1</name>
+            <Point id="geom_25">
+                <coordinates>-91.00145,38.4428666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_28">
+            <name>Star_0_8_2</name>
+            <Point id="geom_26">
+                <coordinates>-91.00145,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_29">
+            <name>Star_0_8_4</name>
+            <Point id="geom_27">
+                <coordinates>-91.00145,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_30">
+            <name>Star_0_8_8</name>
+            <Point id="geom_28">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_31">
+            <name>Star_0_9_1</name>
+            <Point id="geom_29">
+                <coordinates>-91.00145,38.4428833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_32">
+            <name>Star_0_9_3</name>
+            <Point id="geom_30">
+                <coordinates>-91.00145,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_33">
+            <name>Star_0_9_9</name>
+            <Point id="geom_31">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_34">
+            <name>Star_1_0_1</name>
+            <Point id="geom_32">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_35">
+            <name>Star_1_1_1</name>
+            <Point id="geom_33">
+                <coordinates>-91.0014666667,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_36">
+            <name>Star_1_1_2</name>
+            <Point id="geom_34">
+                <coordinates>-91.0014833333,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_37">
+            <name>Star_1_2_1</name>
+            <Point id="geom_35">
+                <coordinates>-91.0014833333,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_38">
+            <name>Star_1_2_3</name>
+            <Point id="geom_36">
+                <coordinates>-91.00155,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_39">
+            <name>Star_1_3_1</name>
+            <Point id="geom_37">
+                <coordinates>-91.0015,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_40">
+            <name>Star_1_3_2</name>
+            <Point id="geom_38">
+                <coordinates>-91.00155,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_41">
+            <name>Star_1_3_4</name>
+            <Point id="geom_39">
+                <coordinates>-91.00165,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_42">
+            <name>Star_1_4_1</name>
+            <Point id="geom_40">
+                <coordinates>-91.0015166667,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_43">
+            <name>Star_1_4_5</name>
+            <Point id="geom_41">
+                <coordinates>-91.0017833333,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_44">
+            <name>Star_1_5_1</name>
+            <Point id="geom_42">
+                <coordinates>-91.0015333333,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_45">
+            <name>Star_1_5_2</name>
+            <Point id="geom_43">
+                <coordinates>-91.0016166667,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_46">
+            <name>Star_1_5_3</name>
+            <Point id="geom_44">
+                <coordinates>-91.0017,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_47">
+            <name>Star_1_5_6</name>
+            <Point id="geom_45">
+                <coordinates>-91.00195,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_48">
+            <name>Star_1_6_1</name>
+            <Point id="geom_46">
+                <coordinates>-91.00155,38.44285,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_49">
+            <name>Star_1_6_7</name>
+            <Point id="geom_47">
+                <coordinates>-91.00215,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_50">
+            <name>Star_1_7_1</name>
+            <Point id="geom_48">
+                <coordinates>-91.0015666667,38.4428666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_51">
+            <name>Star_1_7_2</name>
+            <Point id="geom_49">
+                <coordinates>-91.0016833333,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_52">
+            <name>Star_1_7_4</name>
+            <Point id="geom_50">
+                <coordinates>-91.0019166667,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_53">
+            <name>Star_1_7_8</name>
+            <Point id="geom_51">
+                <coordinates>-91.0023833333,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_54">
+            <name>Star_1_8_1</name>
+            <Point id="geom_52">
+                <coordinates>-91.0015833333,38.4428833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_55">
+            <name>Star_1_8_3</name>
+            <Point id="geom_53">
+                <coordinates>-91.00185,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_56">
+            <name>Star_1_8_9</name>
+            <Point id="geom_54">
+                <coordinates>-91.00265,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_57">
+            <name>Star_1_9_1</name>
+            <Point id="geom_55">
+                <coordinates>-91.0016,38.4429,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_58">
+            <name>Star_1_9_2</name>
+            <Point id="geom_56">
+                <coordinates>-91.00175,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_59">
+            <name>Star_1_9_5</name>
+            <Point id="geom_57">
+                <coordinates>-91.0022,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_60">
+            <name>Star_2_0_1</name>
+            <Point id="geom_58">
+                <coordinates>-91.00145,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_61">
+            <name>Star_2_0_2</name>
+            <Point id="geom_59">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_62">
+            <name>Star_2_1_1</name>
+            <Point id="geom_60">
+                <coordinates>-91.0014833333,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_63">
+            <name>Star_2_1_3</name>
+            <Point id="geom_61">
+                <coordinates>-91.00155,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_64">
+            <name>Star_2_2_1</name>
+            <Point id="geom_62">
+                <coordinates>-91.0015166667,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_65">
+            <name>Star_2_2_2</name>
+            <Point id="geom_63">
+                <coordinates>-91.0015833333,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_66">
+            <name>Star_2_2_4</name>
+            <Point id="geom_64">
+                <coordinates>-91.0017166667,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_67">
+            <name>Star_2_3_1</name>
+            <Point id="geom_65">
+                <coordinates>-91.00155,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_68">
+            <name>Star_2_3_5</name>
+            <Point id="geom_66">
+                <coordinates>-91.00195,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_69">
+            <name>Star_2_4_1</name>
+            <Point id="geom_67">
+                <coordinates>-91.0015833333,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_70">
+            <name>Star_2_4_2</name>
+            <Point id="geom_68">
+                <coordinates>-91.0017166667,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_71">
+            <name>Star_2_4_3</name>
+            <Point id="geom_69">
+                <coordinates>-91.00185,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_72">
+            <name>Star_2_4_6</name>
+            <Point id="geom_70">
+                <coordinates>-91.00225,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_73">
+            <name>Star_2_5_1</name>
+            <Point id="geom_71">
+                <coordinates>-91.0016166667,38.44285,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_74">
+            <name>Star_2_5_7</name>
+            <Point id="geom_72">
+                <coordinates>-91.0026166667,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_75">
+            <name>Star_2_6_1</name>
+            <Point id="geom_73">
+                <coordinates>-91.00165,38.4428666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_76">
+            <name>Star_2_6_2</name>
+            <Point id="geom_74">
+                <coordinates>-91.00185,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_77">
+            <name>Star_2_6_4</name>
+            <Point id="geom_75">
+                <coordinates>-91.00225,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_78">
+            <name>Star_2_6_8</name>
+            <Point id="geom_76">
+                <coordinates>-91.00305,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_79">
+            <name>Star_2_7_1</name>
+            <Point id="geom_77">
+                <coordinates>-91.0016833333,38.4428833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_80">
+            <name>Star_2_7_3</name>
+            <Point id="geom_78">
+                <coordinates>-91.00215,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_81">
+            <name>Star_2_7_9</name>
+            <Point id="geom_79">
+                <coordinates>-91.00355,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_82">
+            <name>Star_2_8_1</name>
+            <Point id="geom_80">
+                <coordinates>-91.0017166667,38.4429,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_83">
+            <name>Star_2_8_2</name>
+            <Point id="geom_81">
+                <coordinates>-91.0019833333,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_84">
+            <name>Star_2_8_5</name>
+            <Point id="geom_82">
+                <coordinates>-91.0027833333,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_85">
+            <name>Star_2_9_1</name>
+            <Point id="geom_83">
+                <coordinates>-91.00175,38.4429166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_86">
+            <name>Star_3_0_1</name>
+            <Point id="geom_84">
+                <coordinates>-91.00145,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_87">
+            <name>Star_3_0_3</name>
+            <Point id="geom_85">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_88">
+            <name>Star_3_1_1</name>
+            <Point id="geom_86">
+                <coordinates>-91.0015,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_89">
+            <name>Star_3_1_2</name>
+            <Point id="geom_87">
+                <coordinates>-91.00155,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_90">
+            <name>Star_3_1_4</name>
+            <Point id="geom_88">
+                <coordinates>-91.00165,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_91">
+            <name>Star_3_2_1</name>
+            <Point id="geom_89">
+                <coordinates>-91.00155,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_92">
+            <name>Star_3_2_5</name>
+            <Point id="geom_90">
+                <coordinates>-91.00195,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_93">
+            <name>Star_3_3_1</name>
+            <Point id="geom_91">
+                <coordinates>-91.0016,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_94">
+            <name>Star_3_3_2</name>
+            <Point id="geom_92">
+                <coordinates>-91.00175,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_95">
+            <name>Star_3_3_3</name>
+            <Point id="geom_93">
+                <coordinates>-91.0019,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_96">
+            <name>Star_3_3_6</name>
+            <Point id="geom_94">
+                <coordinates>-91.00235,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_97">
+            <name>Star_3_4_1</name>
+            <Point id="geom_95">
+                <coordinates>-91.00165,38.44285,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_98">
+            <name>Star_3_4_7</name>
+            <Point id="geom_96">
+                <coordinates>-91.00285,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_99">
+            <name>Star_3_5_1</name>
+            <Point id="geom_97">
+                <coordinates>-91.0017,38.4428666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_100">
+            <name>Star_3_5_2</name>
+            <Point id="geom_98">
+                <coordinates>-91.00195,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_101">
+            <name>Star_3_5_4</name>
+            <Point id="geom_99">
+                <coordinates>-91.00245,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_102">
+            <name>Star_3_5_8</name>
+            <Point id="geom_100">
+                <coordinates>-91.00345,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_103">
+            <name>Star_3_6_1</name>
+            <Point id="geom_101">
+                <coordinates>-91.00175,38.4428833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_104">
+            <name>Star_3_6_3</name>
+            <Point id="geom_102">
+                <coordinates>-91.00235,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_105">
+            <name>Star_3_6_9</name>
+            <Point id="geom_103">
+                <coordinates>-91.00415,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_106">
+            <name>Star_3_7_1</name>
+            <Point id="geom_104">
+                <coordinates>-91.0018,38.4429,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_107">
+            <name>Star_3_7_2</name>
+            <Point id="geom_105">
+                <coordinates>-91.00215,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_108">
+            <name>Star_3_7_5</name>
+            <Point id="geom_106">
+                <coordinates>-91.0032,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_109">
+            <name>Star_3_8_1</name>
+            <Point id="geom_107">
+                <coordinates>-91.00185,38.4429166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_110">
+            <name>Star_3_9_1</name>
+            <Point id="geom_108">
+                <coordinates>-91.0019,38.4429333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_111">
+            <name>Star_3_9_2</name>
+            <Point id="geom_109">
+                <coordinates>-91.00235,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_112">
+            <name>Star_3_9_3</name>
+            <Point id="geom_110">
+                <coordinates>-91.0028,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_113">
+            <name>Star_3_9_4</name>
+            <Point id="geom_111">
+                <coordinates>-91.00325,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_114">
+            <name>Star_3_9_6</name>
+            <Point id="geom_112">
+                <coordinates>-91.00415,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_115">
+            <name>Star_4_0_1</name>
+            <Point id="geom_113">
+                <coordinates>-91.00145,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_116">
+            <name>Star_4_0_2</name>
+            <Point id="geom_114">
+                <coordinates>-91.00145,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_117">
+            <name>Star_4_0_4</name>
+            <Point id="geom_115">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_118">
+            <name>Star_4_1_1</name>
+            <Point id="geom_116">
+                <coordinates>-91.0015166667,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_119">
+            <name>Star_4_1_5</name>
+            <Point id="geom_117">
+                <coordinates>-91.0017833333,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_120">
+            <name>Star_4_2_1</name>
+            <Point id="geom_118">
+                <coordinates>-91.0015833333,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_121">
+            <name>Star_4_2_2</name>
+            <Point id="geom_119">
+                <coordinates>-91.0017166667,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_122">
+            <name>Star_4_2_3</name>
+            <Point id="geom_120">
+                <coordinates>-91.00185,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_123">
+            <name>Star_4_2_6</name>
+            <Point id="geom_121">
+                <coordinates>-91.00225,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_124">
+            <name>Star_4_3_1</name>
+            <Point id="geom_122">
+                <coordinates>-91.00165,38.44285,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_125">
+            <name>Star_4_3_7</name>
+            <Point id="geom_123">
+                <coordinates>-91.00285,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_126">
+            <name>Star_4_4_1</name>
+            <Point id="geom_124">
+                <coordinates>-91.0017166667,38.4428666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_127">
+            <name>Star_4_4_2</name>
+            <Point id="geom_125">
+                <coordinates>-91.0019833333,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_128">
+            <name>Star_4_4_4</name>
+            <Point id="geom_126">
+                <coordinates>-91.0025166667,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_129">
+            <name>Star_4_4_8</name>
+            <Point id="geom_127">
+                <coordinates>-91.0035833333,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_130">
+            <name>Star_4_5_1</name>
+            <Point id="geom_128">
+                <coordinates>-91.0017833333,38.4428833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_131">
+            <name>Star_4_5_3</name>
+            <Point id="geom_129">
+                <coordinates>-91.00245,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_132">
+            <name>Star_4_5_9</name>
+            <Point id="geom_130">
+                <coordinates>-91.00445,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_133">
+            <name>Star_4_6_1</name>
+            <Point id="geom_131">
+                <coordinates>-91.00185,38.4429,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_134">
+            <name>Star_4_6_2</name>
+            <Point id="geom_132">
+                <coordinates>-91.00225,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_135">
+            <name>Star_4_6_5</name>
+            <Point id="geom_133">
+                <coordinates>-91.00345,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_136">
+            <name>Star_4_7_1</name>
+            <Point id="geom_134">
+                <coordinates>-91.0019166667,38.4429166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_137">
+            <name>Star_4_8_1</name>
+            <Point id="geom_135">
+                <coordinates>-91.0019833333,38.4429333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_138">
+            <name>Star_4_8_2</name>
+            <Point id="geom_136">
+                <coordinates>-91.0025166667,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_139">
+            <name>Star_4_8_3</name>
+            <Point id="geom_137">
+                <coordinates>-91.00305,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_140">
+            <name>Star_4_8_4</name>
+            <Point id="geom_138">
+                <coordinates>-91.0035833333,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_141">
+            <name>Star_4_8_6</name>
+            <Point id="geom_139">
+                <coordinates>-91.00465,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_142">
+            <name>Star_4_9_1</name>
+            <Point id="geom_140">
+                <coordinates>-91.00205,38.44295,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_143">
+            <name>Star_5_0_1</name>
+            <Point id="geom_141">
+                <coordinates>-91.00145,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_144">
+            <name>Star_5_0_5</name>
+            <Point id="geom_142">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_145">
+            <name>Star_5_1_1</name>
+            <Point id="geom_143">
+                <coordinates>-91.0015333333,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_146">
+            <name>Star_5_1_2</name>
+            <Point id="geom_144">
+                <coordinates>-91.0016166667,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_147">
+            <name>Star_5_1_3</name>
+            <Point id="geom_145">
+                <coordinates>-91.0017,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_148">
+            <name>Star_5_1_6</name>
+            <Point id="geom_146">
+                <coordinates>-91.00195,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_149">
+            <name>Star_5_2_1</name>
+            <Point id="geom_147">
+                <coordinates>-91.0016166667,38.44285,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_150">
+            <name>Star_5_2_7</name>
+            <Point id="geom_148">
+                <coordinates>-91.0026166667,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_151">
+            <name>Star_5_3_1</name>
+            <Point id="geom_149">
+                <coordinates>-91.0017,38.4428666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_152">
+            <name>Star_5_3_2</name>
+            <Point id="geom_150">
+                <coordinates>-91.00195,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_153">
+            <name>Star_5_3_4</name>
+            <Point id="geom_151">
+                <coordinates>-91.00245,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_154">
+            <name>Star_5_3_8</name>
+            <Point id="geom_152">
+                <coordinates>-91.00345,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_155">
+            <name>Star_5_4_1</name>
+            <Point id="geom_153">
+                <coordinates>-91.0017833333,38.4428833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_156">
+            <name>Star_5_4_3</name>
+            <Point id="geom_154">
+                <coordinates>-91.00245,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_157">
+            <name>Star_5_4_9</name>
+            <Point id="geom_155">
+                <coordinates>-91.00445,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_158">
+            <name>Star_5_5_1</name>
+            <Point id="geom_156">
+                <coordinates>-91.0018666667,38.4429,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_159">
+            <name>Star_5_5_2</name>
+            <Point id="geom_157">
+                <coordinates>-91.0022833333,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_160">
+            <name>Star_5_5_5</name>
+            <Point id="geom_158">
+                <coordinates>-91.0035333333,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_161">
+            <name>Star_5_6_1</name>
+            <Point id="geom_159">
+                <coordinates>-91.00195,38.4429166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_162">
+            <name>Star_5_7_1</name>
+            <Point id="geom_160">
+                <coordinates>-91.0020333333,38.4429333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_163">
+            <name>Star_5_7_2</name>
+            <Point id="geom_161">
+                <coordinates>-91.0026166667,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_164">
+            <name>Star_5_7_3</name>
+            <Point id="geom_162">
+                <coordinates>-91.0032,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_165">
+            <name>Star_5_7_4</name>
+            <Point id="geom_163">
+                <coordinates>-91.0037833333,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_166">
+            <name>Star_5_7_6</name>
+            <Point id="geom_164">
+                <coordinates>-91.00495,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_167">
+            <name>Star_5_8_1</name>
+            <Point id="geom_165">
+                <coordinates>-91.0021166667,38.44295,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_168">
+            <name>Star_5_9_1</name>
+            <Point id="geom_166">
+                <coordinates>-91.0022,38.4429666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_169">
+            <name>Star_5_9_2</name>
+            <Point id="geom_167">
+                <coordinates>-91.00295,38.44285,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_170">
+            <name>Star_5_9_7</name>
+            <Point id="geom_168">
+                <coordinates>-91.0067,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_171">
+            <name>Star_6_0_1</name>
+            <Point id="geom_169">
+                <coordinates>-91.00145,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_172">
+            <name>Star_6_0_2</name>
+            <Point id="geom_170">
+                <coordinates>-91.00145,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_173">
+            <name>Star_6_0_3</name>
+            <Point id="geom_171">
+                <coordinates>-91.00145,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_174">
+            <name>Star_6_0_6</name>
+            <Point id="geom_172">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_175">
+            <name>Star_6_1_1</name>
+            <Point id="geom_173">
+                <coordinates>-91.00155,38.44285,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_176">
+            <name>Star_6_1_7</name>
+            <Point id="geom_174">
+                <coordinates>-91.00215,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_177">
+            <name>Star_6_2_1</name>
+            <Point id="geom_175">
+                <coordinates>-91.00165,38.4428666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_178">
+            <name>Star_6_2_2</name>
+            <Point id="geom_176">
+                <coordinates>-91.00185,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_179">
+            <name>Star_6_2_4</name>
+            <Point id="geom_177">
+                <coordinates>-91.00225,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_180">
+            <name>Star_6_2_8</name>
+            <Point id="geom_178">
+                <coordinates>-91.00305,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_181">
+            <name>Star_6_3_1</name>
+            <Point id="geom_179">
+                <coordinates>-91.00175,38.4428833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_182">
+            <name>Star_6_3_3</name>
+            <Point id="geom_180">
+                <coordinates>-91.00235,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_183">
+            <name>Star_6_3_9</name>
+            <Point id="geom_181">
+                <coordinates>-91.00415,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_184">
+            <name>Star_6_4_1</name>
+            <Point id="geom_182">
+                <coordinates>-91.00185,38.4429,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_185">
+            <name>Star_6_4_2</name>
+            <Point id="geom_183">
+                <coordinates>-91.00225,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_186">
+            <name>Star_6_4_5</name>
+            <Point id="geom_184">
+                <coordinates>-91.00345,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_187">
+            <name>Star_6_5_1</name>
+            <Point id="geom_185">
+                <coordinates>-91.00195,38.4429166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_188">
+            <name>Star_6_6_1</name>
+            <Point id="geom_186">
+                <coordinates>-91.00205,38.4429333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_189">
+            <name>Star_6_6_2</name>
+            <Point id="geom_187">
+                <coordinates>-91.00265,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_190">
+            <name>Star_6_6_3</name>
+            <Point id="geom_188">
+                <coordinates>-91.00325,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_191">
+            <name>Star_6_6_4</name>
+            <Point id="geom_189">
+                <coordinates>-91.00385,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_192">
+            <name>Star_6_6_6</name>
+            <Point id="geom_190">
+                <coordinates>-91.00505,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_193">
+            <name>Star_6_7_1</name>
+            <Point id="geom_191">
+                <coordinates>-91.00215,38.44295,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_194">
+            <name>Star_6_8_1</name>
+            <Point id="geom_192">
+                <coordinates>-91.00225,38.4429666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_195">
+            <name>Star_6_8_2</name>
+            <Point id="geom_193">
+                <coordinates>-91.00305,38.44285,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_196">
+            <name>Star_6_8_7</name>
+            <Point id="geom_194">
+                <coordinates>-91.00705,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_197">
+            <name>Star_6_9_1</name>
+            <Point id="geom_195">
+                <coordinates>-91.00235,38.4429833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_198">
+            <name>Star_6_9_3</name>
+            <Point id="geom_196">
+                <coordinates>-91.00415,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_199">
+            <name>Star_6_9_5</name>
+            <Point id="geom_197">
+                <coordinates>-91.00595,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_200">
+            <name>Star_7_0_1</name>
+            <Point id="geom_198">
+                <coordinates>-91.00145,38.44285,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_201">
+            <name>Star_7_0_7</name>
+            <Point id="geom_199">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_202">
+            <name>Star_7_1_1</name>
+            <Point id="geom_200">
+                <coordinates>-91.0015666667,38.4428666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_203">
+            <name>Star_7_1_2</name>
+            <Point id="geom_201">
+                <coordinates>-91.0016833333,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_204">
+            <name>Star_7_1_4</name>
+            <Point id="geom_202">
+                <coordinates>-91.0019166667,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_205">
+            <name>Star_7_1_8</name>
+            <Point id="geom_203">
+                <coordinates>-91.0023833333,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_206">
+            <name>Star_7_2_1</name>
+            <Point id="geom_204">
+                <coordinates>-91.0016833333,38.4428833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_207">
+            <name>Star_7_2_3</name>
+            <Point id="geom_205">
+                <coordinates>-91.00215,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_208">
+            <name>Star_7_2_9</name>
+            <Point id="geom_206">
+                <coordinates>-91.00355,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_209">
+            <name>Star_7_3_1</name>
+            <Point id="geom_207">
+                <coordinates>-91.0018,38.4429,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_210">
+            <name>Star_7_3_2</name>
+            <Point id="geom_208">
+                <coordinates>-91.00215,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_211">
+            <name>Star_7_3_5</name>
+            <Point id="geom_209">
+                <coordinates>-91.0032,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_212">
+            <name>Star_7_4_1</name>
+            <Point id="geom_210">
+                <coordinates>-91.0019166667,38.4429166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_213">
+            <name>Star_7_5_1</name>
+            <Point id="geom_211">
+                <coordinates>-91.0020333333,38.4429333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_214">
+            <name>Star_7_5_2</name>
+            <Point id="geom_212">
+                <coordinates>-91.0026166667,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_215">
+            <name>Star_7_5_3</name>
+            <Point id="geom_213">
+                <coordinates>-91.0032,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_216">
+            <name>Star_7_5_4</name>
+            <Point id="geom_214">
+                <coordinates>-91.0037833333,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_217">
+            <name>Star_7_5_6</name>
+            <Point id="geom_215">
+                <coordinates>-91.00495,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_218">
+            <name>Star_7_6_1</name>
+            <Point id="geom_216">
+                <coordinates>-91.00215,38.44295,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_219">
+            <name>Star_7_7_1</name>
+            <Point id="geom_217">
+                <coordinates>-91.0022666667,38.4429666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_220">
+            <name>Star_7_7_2</name>
+            <Point id="geom_218">
+                <coordinates>-91.0030833333,38.44285,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_221">
+            <name>Star_7_7_7</name>
+            <Point id="geom_219">
+                <coordinates>-91.0071666667,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_222">
+            <name>Star_7_8_1</name>
+            <Point id="geom_220">
+                <coordinates>-91.0023833333,38.4429833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_223">
+            <name>Star_7_8_3</name>
+            <Point id="geom_221">
+                <coordinates>-91.00425,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_224">
+            <name>Star_7_8_5</name>
+            <Point id="geom_222">
+                <coordinates>-91.0061166667,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_225">
+            <name>Star_7_9_1</name>
+            <Point id="geom_223">
+                <coordinates>-91.0025,38.443,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_226">
+            <name>Star_7_9_2</name>
+            <Point id="geom_224">
+                <coordinates>-91.00355,38.4428666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_227">
+            <name>Star_7_9_4</name>
+            <Point id="geom_225">
+                <coordinates>-91.00565,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_228">
+            <name>Star_7_9_8</name>
+            <Point id="geom_226">
+                <coordinates>-91.00985,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_229">
+            <name>Star_8_0_1</name>
+            <Point id="geom_227">
+                <coordinates>-91.00145,38.4428666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_230">
+            <name>Star_8_0_2</name>
+            <Point id="geom_228">
+                <coordinates>-91.00145,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_231">
+            <name>Star_8_0_4</name>
+            <Point id="geom_229">
+                <coordinates>-91.00145,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_232">
+            <name>Star_8_0_8</name>
+            <Point id="geom_230">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_233">
+            <name>Star_8_1_1</name>
+            <Point id="geom_231">
+                <coordinates>-91.0015833333,38.4428833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_234">
+            <name>Star_8_1_3</name>
+            <Point id="geom_232">
+                <coordinates>-91.00185,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_235">
+            <name>Star_8_1_9</name>
+            <Point id="geom_233">
+                <coordinates>-91.00265,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_236">
+            <name>Star_8_2_1</name>
+            <Point id="geom_234">
+                <coordinates>-91.0017166667,38.4429,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_237">
+            <name>Star_8_2_2</name>
+            <Point id="geom_235">
+                <coordinates>-91.0019833333,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_238">
+            <name>Star_8_2_5</name>
+            <Point id="geom_236">
+                <coordinates>-91.0027833333,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_239">
+            <name>Star_8_3_1</name>
+            <Point id="geom_237">
+                <coordinates>-91.00185,38.4429166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_240">
+            <name>Star_8_4_1</name>
+            <Point id="geom_238">
+                <coordinates>-91.0019833333,38.4429333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_241">
+            <name>Star_8_4_2</name>
+            <Point id="geom_239">
+                <coordinates>-91.0025166667,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_242">
+            <name>Star_8_4_3</name>
+            <Point id="geom_240">
+                <coordinates>-91.00305,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_243">
+            <name>Star_8_4_4</name>
+            <Point id="geom_241">
+                <coordinates>-91.0035833333,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_244">
+            <name>Star_8_4_6</name>
+            <Point id="geom_242">
+                <coordinates>-91.00465,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_245">
+            <name>Star_8_5_1</name>
+            <Point id="geom_243">
+                <coordinates>-91.0021166667,38.44295,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_246">
+            <name>Star_8_6_1</name>
+            <Point id="geom_244">
+                <coordinates>-91.00225,38.4429666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_247">
+            <name>Star_8_6_2</name>
+            <Point id="geom_245">
+                <coordinates>-91.00305,38.44285,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_248">
+            <name>Star_8_6_7</name>
+            <Point id="geom_246">
+                <coordinates>-91.00705,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_249">
+            <name>Star_8_7_1</name>
+            <Point id="geom_247">
+                <coordinates>-91.0023833333,38.4429833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_250">
+            <name>Star_8_7_3</name>
+            <Point id="geom_248">
+                <coordinates>-91.00425,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_251">
+            <name>Star_8_7_5</name>
+            <Point id="geom_249">
+                <coordinates>-91.0061166667,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_252">
+            <name>Star_8_8_1</name>
+            <Point id="geom_250">
+                <coordinates>-91.0025166667,38.443,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_253">
+            <name>Star_8_8_2</name>
+            <Point id="geom_251">
+                <coordinates>-91.0035833333,38.4428666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_254">
+            <name>Star_8_8_4</name>
+            <Point id="geom_252">
+                <coordinates>-91.0057166667,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_255">
+            <name>Star_8_8_8</name>
+            <Point id="geom_253">
+                <coordinates>-91.0099833333,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_256">
+            <name>Star_8_9_1</name>
+            <Point id="geom_254">
+                <coordinates>-91.00265,38.4430166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_257">
+            <name>Star_9_0_1</name>
+            <Point id="geom_255">
+                <coordinates>-91.00145,38.4428833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_258">
+            <name>Star_9_0_3</name>
+            <Point id="geom_256">
+                <coordinates>-91.00145,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_259">
+            <name>Star_9_0_9</name>
+            <Point id="geom_257">
+                <coordinates>-91.00145,38.44275,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_260">
+            <name>Star_9_1_1</name>
+            <Point id="geom_258">
+                <coordinates>-91.0016,38.4429,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_261">
+            <name>Star_9_1_2</name>
+            <Point id="geom_259">
+                <coordinates>-91.00175,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_262">
+            <name>Star_9_1_5</name>
+            <Point id="geom_260">
+                <coordinates>-91.0022,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_263">
+            <name>Star_9_2_1</name>
+            <Point id="geom_261">
+                <coordinates>-91.00175,38.4429166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_264">
+            <name>Star_9_3_1</name>
+            <Point id="geom_262">
+                <coordinates>-91.0019,38.4429333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_265">
+            <name>Star_9_3_2</name>
+            <Point id="geom_263">
+                <coordinates>-91.00235,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_266">
+            <name>Star_9_3_3</name>
+            <Point id="geom_264">
+                <coordinates>-91.0028,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_267">
+            <name>Star_9_3_4</name>
+            <Point id="geom_265">
+                <coordinates>-91.00325,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_268">
+            <name>Star_9_3_6</name>
+            <Point id="geom_266">
+                <coordinates>-91.00415,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_269">
+            <name>Star_9_4_1</name>
+            <Point id="geom_267">
+                <coordinates>-91.00205,38.44295,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_270">
+            <name>Star_9_5_1</name>
+            <Point id="geom_268">
+                <coordinates>-91.0022,38.4429666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_271">
+            <name>Star_9_5_2</name>
+            <Point id="geom_269">
+                <coordinates>-91.00295,38.44285,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_272">
+            <name>Star_9_5_7</name>
+            <Point id="geom_270">
+                <coordinates>-91.0067,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_273">
+            <name>Star_9_6_1</name>
+            <Point id="geom_271">
+                <coordinates>-91.00235,38.4429833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_274">
+            <name>Star_9_6_3</name>
+            <Point id="geom_272">
+                <coordinates>-91.00415,38.4428166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_275">
+            <name>Star_9_6_5</name>
+            <Point id="geom_273">
+                <coordinates>-91.00595,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_276">
+            <name>Star_9_7_1</name>
+            <Point id="geom_274">
+                <coordinates>-91.0025,38.443,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_277">
+            <name>Star_9_7_2</name>
+            <Point id="geom_275">
+                <coordinates>-91.00355,38.4428666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_278">
+            <name>Star_9_7_4</name>
+            <Point id="geom_276">
+                <coordinates>-91.00565,38.4428,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_279">
+            <name>Star_9_7_8</name>
+            <Point id="geom_277">
+                <coordinates>-91.00985,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_280">
+            <name>Star_9_8_1</name>
+            <Point id="geom_278">
+                <coordinates>-91.00265,38.4430166667,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_281">
+            <name>Star_9_9_1</name>
+            <Point id="geom_279">
+                <coordinates>-91.0028,38.4430333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_282">
+            <name>Star_9_9_2</name>
+            <Point id="geom_280">
+                <coordinates>-91.00415,38.4428833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_283">
+            <name>Star_9_9_3</name>
+            <Point id="geom_281">
+                <coordinates>-91.0055,38.4428333333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_284">
+            <name>Star_9_9_6</name>
+            <Point id="geom_282">
+                <coordinates>-91.00955,38.4427833333,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="feat_285">
+            <name>Star_9_9_9</name>
+            <Point id="geom_283">
+                <coordinates>-91.0136,38.4427666667,0.0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>
