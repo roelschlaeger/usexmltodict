@@ -2,18 +2,16 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Sun 11 Jan 2015 04:53:43 PM CST
-# Last Modified: Sun 11 Jan 2015 05:11:49 PM CST
+# Last Modified: Sun 11 Jan 2015 06:07:57 PM CST
 
 """
 SYNOPSIS
 
-    TODO helloworld [-h] [-v,--verbose] [--version]
+    star_of_the_east [-h] [-v,--verbose] [--version]
 
 DESCRIPTION
 
-    TODO This describes how to use this script.
-    This docstring will be printed by the script if there is an error or
-    if the user requests help (-h or --help).
+    TODO Computes possible solutions to Star of the East geocache
 
 EXAMPLES
 
@@ -50,8 +48,32 @@ def convert(s):
         result = -result
     return result
 
+
+def add_static_waypoints(kml):
+    kml.newpoint(
+        name="GC4W06M: 3 Wise Men from a Fire - Melchior",
+        coords=[(-91.00025, 38.46105)]
+    )
+
+    kml.newpoint(
+        name="GC4WE93: 3 Wise Men from a Fire - Caspar",
+        coords=[(-91.0281, 38.4419)]
+    )
+
+    kml.newpoint(
+        name="GC4WM5V: 3 Wise Men from a Fire - Balthazar",
+        coords=[(-90.9739, 38.433867)]
+    )
+
+    kml.newpoint(
+        name="GC4XEDK: Star of the East",
+        coords=[(-91.005917, 38.447167)]
+    )
+
+
 def process():
     kml = Kml()
+    add_static_waypoints(kml)
     for a in range(10):
         for b in range(10):
             for c in range(10):
