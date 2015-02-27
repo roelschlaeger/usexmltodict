@@ -33,12 +33,12 @@ def main():
                      ("Algorithm 4", algorithms.algorithm4)]
 
     steps = []
-    
+
     for (name, function) in algorithmList:
         tracer = trace.TraceRecord()
         peak = function(problem, trace = tracer)
         steps.append(tracer.sequence)
-        
+
         status = "is NOT a peak (INCORRECT!)"
         if problem.isPeak(peak):
             status = "is a peak"

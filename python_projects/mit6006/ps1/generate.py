@@ -35,7 +35,7 @@ def main():
     maximum = rows * cols * 2
     if len(sys.argv) > 4:
         maximum = int(sys.argv[4])
-    
+
     generated = randomProblem(rows, cols, maximum)
 
     print("Generated a matrix with %d row and %d columns." % (rows, cols))

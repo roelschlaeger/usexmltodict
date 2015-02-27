@@ -36,7 +36,7 @@ def getSaveFilename(default = None):
     if os.path.exists(filename):
         print("The file %s already exists." % filename)
         prompt = ("Overwrite (o), enter another name (f), or cancel (c)? ")
-        
+
         check = raw_input(prompt)
         while (check != "o" and check != "f" and check != "c"):
             check = raw_input(prompt)

@@ -6,7 +6,7 @@ import trace
 ################################################################################
 
 def algorithm1(problem, trace = None):
-    # if it's empty, we're done 
+    # if it's empty, we're done
     if problem.numRow <= 0 or problem.numCol <= 0:
         return None
 
@@ -37,7 +37,7 @@ def algorithm1(problem, trace = None):
     if neighbor == bestLoc:
         if not trace is None: trace.foundPeak(bestLoc)
         return bestLoc
-   
+
     # otherwise, figure out which subproblem contains the neighbor, and
     # recurse in that half
     sub = problem.getSubproblemContaining(subproblems, neighbor)
@@ -46,7 +46,7 @@ def algorithm1(problem, trace = None):
     return problem.getLocationInSelf(sub, result)
 
 def algorithm2(problem, location = (0, 0), trace = None):
-    # if it's empty, we're done 
+    # if it's empty, we're done
     if problem.numRow <= 0 or problem.numCol <= 0:
         return None
 
@@ -61,7 +61,7 @@ def algorithm2(problem, location = (0, 0), trace = None):
         return algorithm2(problem, nextLocation, trace)
 
 def algorithm3(problem, bestSeen = None, trace = None):
-    # if it's empty, we're done 
+    # if it's empty, we're done
     if problem.numRow <= 0 or problem.numCol <= 0:
         return None
 
@@ -110,7 +110,7 @@ def algorithm3(problem, bestSeen = None, trace = None):
     return problem.getLocationInSelf(sub, result)
 
 def algorithm4(problem, bestSeen = None, rowSplit = True, trace = None):
-    # if it's empty, we're done 
+    # if it's empty, we're done
     if problem.numRow <= 0 or problem.numCol <= 0:
         return None
 
@@ -177,7 +177,7 @@ def algorithm4(problem, bestSeen = None, rowSplit = True, trace = None):
 
 def crossProduct(list1, list2):
     """
-    Returns all pairs with one item from the first list and one item from 
+    Returns all pairs with one item from the first list and one item from
     the second list.  (Cartesian product of the two lists.)
 
     The code is equivalent to the following list comprehension:

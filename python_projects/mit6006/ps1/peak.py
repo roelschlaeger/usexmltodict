@@ -64,20 +64,20 @@ class PeakProblem(object):
         if not trace is None: trace.getBetterNeighbor(location, best)
 
         return best
-    
+
     def getMaximum(self, locations, trace = None):
         """
         Finds the location in the current problem with the greatest value.
 
         RUNTIME: O(len(locations))
         """
-   
+
         (bestLoc, bestVal) = (None, 0)
-    
+
         for loc in locations:
             if bestLoc is None or self.get(loc) > bestVal:
                 (bestLoc, bestVal) = (loc, self.get(loc))
-    
+
         if not trace is None: trace.getMaximum(locations, bestLoc)
 
         return bestLoc
@@ -151,18 +151,18 @@ def getDimensions(array):
 
     rows = len(array)
     cols = 0
-    
+
     for row in array:
         if len(row) > cols:
             cols = len(row)
-    
+
     return (rows, cols)
 
 def createProblem(array):
     """
     Constructs an instance of the PeakProblem object for the given array,
     using bounds derived from the array using the getDimensions function.
-   
+
     RUNTIME: O(len(array))
     """
 
