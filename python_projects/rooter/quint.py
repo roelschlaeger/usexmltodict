@@ -2,11 +2,11 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # $Id: $
 # Created: 	     Fri 31 Dec 2010 05:38:29 PM CST
-# Last modified: Fri 23 May 2014 11:18:29 AM CDT
+# Last modified: Tue 02 Jun 2015 12:00:47 PM CDT
 
 ########################################################################
 
-"""Apply et.py, gpx2kml.py and mr.py to the same file"""
+"""Apply et.py, gpx2kml.py, mr.py and rooter to the same file"""
 
 __version__ = "$Revision: $".split()[1]
 __date__ = "$Date: $".split()[1]
@@ -145,6 +145,7 @@ class MyPanel2(wx.Panel):
         kml_flag = self.cb3.GetValue()
         mr_flag = self.cb4.GetValue()
         ro_flag = self.cb5.GetValue()
+        pathname = self.tc0.GetValue()
 
         # must have at least one checkbox selected
         if not (et_flag or html_flag or kml_flag or mr_flag or ro_flag):
@@ -154,7 +155,6 @@ class MyPanel2(wx.Panel):
             )
             return
 
-        pathname = self.tc0.GetValue()
         if not pathname or pathname == DEFAULT_FILE_TEXT:
 
             # select the file
@@ -169,24 +169,50 @@ class MyPanel2(wx.Panel):
 
             self.tc0.SetValue(pathname)
 
-            self.log("Reading from %s" % pathname)
+            self.process_parameters(
+                pathname=pathname,
+                et_flag=et_flag,
+                html_flag=html_flag,
+                kml_flag=kml_flag,
+                mr_flag=mr_flag,
+                ro_flag=ro_flag,
+            )
 
-            # perform the processing
-            if (et_flag or html_flag):
-                self.do_et(pathname, et_flag=et_flag, html_flag=html_flag)
+########################################################################
 
-            if kml_flag:
-                self.do_gpx2kml(pathname)
+    def process_parameters(
+        self,
+        pathname="",
+        et_flag=True,
+        html_flag=False,
+        kml_flag=True,
+        mr_flag=True,
+        ro_flag=True,
+    ):
+        """Perform the processing specified by pathname and flags"""
 
-            if mr_flag:
-                self.do_mr(pathname)
+        self.log("Reading from %s" % pathname)
 
-            if ro_flag:
-                self.do_rooter(pathname)
+        if not (et_flag or html_flag or kml_flag or mr_flag or ro_flag):
+            self.log("ERROR: Nothing to do: no flags set")
+            return
 
-            self.log("Done!")
+        # perform the processing
+        if (et_flag or html_flag):
+            self.do_et(pathname, et_flag=et_flag, html_flag=html_flag)
 
-    ########################################################################
+        if kml_flag:
+            self.do_gpx2kml(pathname)
+
+        if mr_flag:
+            self.do_mr(pathname)
+
+        if ro_flag:
+            self.do_rooter(pathname)
+
+        self.log("Done!")
+
+########################################################################
 
     def do_et(self, pathname, et_flag=True, html_flag=True):
 
@@ -195,7 +221,6 @@ class MyPanel2(wx.Panel):
         et_options = Options()
         et_options.html = html_flag
 
-        # TODO use UserSort for Index
         body = et.do_body2(pathname, index=MIN_INDEX, options=et_options)
 
         if et_flag:
