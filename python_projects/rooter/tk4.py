@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 19 Mar 2014 02:16:55 PM CDT
-# Last Modified: Thu 20 Mar 2014 04:46:20 PM CDT
+# Last Modified: Tue 02 Jun 2015 10:26:21 AM CDT
 
 """
 SYNOPSIS
@@ -165,6 +165,7 @@ class App(Frame):
         print "e1_callback", "%s" % event
         from Tkinter import filedialog
         filename = filedialog.askopendialog()
+        del filename  # just discard to keep Lint happy
 
     ########################################################################
 

@@ -246,7 +246,7 @@ if __name__ == "__main__":
     ########################################################################
 
     from optparse import OptionParser
-    import sys
+#   import sys
 
     USAGE = "%prog { options }"
     VERSION = "Version: %(version)s, %(date)s" % {

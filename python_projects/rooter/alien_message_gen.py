@@ -15,7 +15,7 @@ __date__    = "$Date: 2011-03-23 07:55:34 -0500 (Wed, 23 Mar 2011) $".split()[1]
 # $Log: $
 ########################################################################
 
-from optparse import OptionParser
+# from optparse import OptionParser
 import sys
 
 alphabet = {

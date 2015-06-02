@@ -42,6 +42,8 @@ __VERSION__ = "0.1.0"
 from pprint import pprint
 from xml.etree import ElementTree as ET
 
+NAMETAG = None                  # replaced later
+
 #######################################################################
 
 def apply_wpts_filter(wpts, debug=False):
@@ -86,8 +88,6 @@ if __name__ == '__main__':
     import optparse
     import time
 
-    global NAMETAG
-
     ########################################################################
 
     def get_wpts(filename, debug=False):
@@ -118,6 +118,7 @@ if __name__ == '__main__':
     def printnames(wpts):
         """Print the names of the waypoints in wpts"""
 
+#       global NAMETAG
         for item in wpts:
             name = item.find(NAMETAG).text
             print name

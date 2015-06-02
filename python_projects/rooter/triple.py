@@ -119,10 +119,10 @@ class MyPanel2( wx.Panel ):
     def on_button( self, event ):
 
         # get the checkbox values
-        et   = self.cb1.GetValue()
+#       et   = self.cb1.GetValue()
         html = self.cb2.GetValue()
         kml  = self.cb3.GetValue()
-        mr   = self.cb4.GetValue()
+#       mr   = self.cb4.GetValue()
 
         # must have at least one checkbox selected
         if not ( et or html or kml or mr ):
