@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 19 Mar 2014 02:16:55 PM CDT
-# Last Modified: Fri 21 Mar 2014 04:23:51 PM CDT
+# Last Modified: Tue 02 Jun 2015 10:43:43 AM CDT
 
 """
 SYNOPSIS
@@ -37,8 +37,8 @@ __VERSION__ = "0.0.2"
 
 ########################################################################
 
-from Tix import *
-from Tkconstants import *
+from Tix import Button, Checkbutton, Entry, Frame, IntVar, Menu, StringVar
+import Tkconstants
 import ttk
 
 ########################################################################
@@ -47,8 +47,8 @@ import ttk
 class App(Frame):
 
     def __init__(self, master=None):
-        Frame.__init__(self, master, relief=RAISED)
-        self.pack(fill=BOTH)
+        Frame.__init__(self, master, relief=Tkconstants.RAISED)
+        self.pack(fill=Tkconstants.BOTH)
         self.CreateWidgets()
         self.CreateMenubar()
         self.Initialize()
@@ -66,21 +66,24 @@ class App(Frame):
         self.v5 = IntVar()
 
         self.lf1 = ttk.LabelFrame(self, text="Filename:")
-        self.lf1.pack(fill=BOTH)
+        self.lf1.pack(fill=Tkconstants.BOTH)
 
-        self.lf2 = ttk.LabelFrame(self, text="Processing choices: pick at least one")
+        self.lf2 = ttk.LabelFrame(
+            self,
+            text="Processing choices: pick at least one"
+        )
 #       self.lf2.config(label="Processing choices: pick at least one")
-        self.lf2.pack(fill=BOTH)
+        self.lf2.pack(fill=Tkconstants.BOTH)
 
         self.lf3 = ttk.LabelFrame(self, text="Logging")
 #       self.lf3.config(label="Logging")
-        self.lf3.pack(fill=BOTH)
+        self.lf3.pack(fill=Tkconstants.BOTH)
 
         self.b1 = Button(
             self,
             text="Run",
             command=self.b1_callback,
-            default=ACTIVE
+            default=Tkconstants.ACTIVE
         )
         self.b1.pack(side="bottom")
 
@@ -88,46 +91,46 @@ class App(Frame):
             self.lf1,
             textvariable=self.s1
         )
-        self.e1.pack(fill=BOTH)
+        self.e1.pack(fill=Tkconstants.BOTH)
         self.e1.bind("<Button-1>", self.e1_callback)
 
         self.e2 = Entry(self.lf3, textvariable=self.s2)
-        self.e2.pack(fill=BOTH)
+        self.e2.pack(fill=Tkconstants.BOTH)
 
         self.c1 = Checkbutton(
             self.lf2,
             text="ET - generate Excel .csv output",
             variable=self.v1
         )
-        self.c1.pack(anchor=W)
+        self.c1.pack(anchor=Tkconstants.W)
 
         self.c2 = Checkbutton(
             self.lf2,
             text="HTML - include HTML output from et.py",
             variable=self.v2
         )
-        self.c2.pack(anchor=W)
+        self.c2.pack(anchor=Tkconstants.W)
 
         self.c3 = Checkbutton(
             self.lf2,
             text="KML - output for Google Earth",
             variable=self.v3
         )
-        self.c3.pack(anchor=W)
+        self.c3.pack(anchor=Tkconstants.W)
 
         self.c4 = Checkbutton(
             self.lf2,
             text="MR - generate a .gpx route file",
             variable=self.v4
         )
-        self.c4.pack(anchor=W)
+        self.c4.pack(anchor=Tkconstants.W)
 
         self.c5 = Checkbutton(
             self.lf2,
             text="ROOTER - generate a Rooter file",
             variable=self.v5
         )
-        self.c5.pack(anchor=W)
+        self.c5.pack(anchor=Tkconstants.W)
 
     def CreateMenubar(self):
         self.menubar = Menu(self)
@@ -177,13 +180,20 @@ class App(Frame):
 
 if __name__ == "__main__":
 
+    from Tix import Tk
+
     root = Tk()
     root.title("Run quint .gpx processing")
     root.geometry("450x300+200+200")
 #   root.minsize(400, 200)
 
     master = ttk.Frame(root, padding=(3, 3, 12, 12))
-    master.grid(column=0, row=0, sticky=(N, E, S, W))
+    master.grid(column=0, row=0, sticky=(
+        Tkconstants.N,
+        Tkconstants.E,
+        Tkconstants.S,
+        Tkconstants.W)
+    )
 
     app = App(master)
     root.config(menu=app.menubar)
