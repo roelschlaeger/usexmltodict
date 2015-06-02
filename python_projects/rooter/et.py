@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # Created:       Sun 08 Aug 2010 10:04:57 PM CDT
-# Last Modified: Thu 20 Mar 2014 08:55:34 PM CDT
+# Last Modified: Tue 02 Jun 2015 11:39:33 AM CDT
 # $Id: et.py 193 2011-01-08 04:28:44Z harry $
 
 """Process a .gpx file to extract pertinent data fields"""
@@ -417,7 +417,7 @@ def make_row2(index, tags):
     owner = cache_dict["owner"] or ""
 
     extensions_dict = tags["wptExtension"]
-    user_sort = extensions_dict["UserSort"]
+    user_sort = extensions_dict.get("UserSort", 0)
 #   placed_by     = cache_dict[ "placed_by" ] or ""
 
     desc = tags["desc"]
