@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # Created:       Sun 08 Aug 2010 10:04:57 PM CDT
-# Last Modified: Tue 02 Jun 2015 11:39:33 AM CDT
+# Last Modified: Tue 02 Jun 2015 11:53:14 AM CDT
 # $Id: et.py 193 2011-01-08 04:28:44Z harry $
 
 """Process a .gpx file to extract pertinent data fields"""
@@ -400,7 +400,6 @@ def do_output_header():
 ########################################################################
 
 
-# TODO use UserSort for Index
 def make_row2(index, tags):
     """output the collected column data as a tab-delimited row string"""
 
@@ -772,7 +771,6 @@ def process_wpt(child, grandchild_skip_tags):
 ########################################################################
 
 
-# TODO use UserSort for Index
 def process_tree2(index, tree):
     """parse the tree generating .xls text output"""
 
@@ -994,7 +992,6 @@ def html_tree(index, tree):
 ########################################################################
 
 
-# TODO use UserSort for Index
 def do_body2(arg, index, options):
     """process file L{filedata}"""
 
@@ -1101,7 +1098,6 @@ Excel or Open Office base"""
     for arg in filelist:
         print >> sys.stderr, "Processing %s" % arg
 
-# TODO use UserSort for Index
 #       print do_body(arg, index, options)
         print do_body2(arg, index, options)
 
