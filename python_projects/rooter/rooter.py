@@ -3,7 +3,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Fri 22 Aug 2014 12:31:44 PM CDT
+# Last Modified: Thu 18 Jun 2015 03:36:42 PM CDT
 
 """
 SYNOPSIS
@@ -12,8 +12,8 @@ SYNOPSIS
 
     where gpx_filename defaults to
 
-        r"C:/Users/Robert Oelschlaeger/Dropbox/Geocaching/topo710c - Lawrence
-        KS/topo710c - Lawrence KS.gpx"
+        r"/Users/Robert Oelschlaeger/Dropbox/Geocaching/\
+            topo803 - Springfield IL/topo803b - Springfield IL.gpx"
 
 DESCRIPTION
 
@@ -37,16 +37,17 @@ VERSION
 
 """
 
-__VERSION__ = "0.0.1"
+__VERSION__ = "0.0.2"
 
 DEBUG = False
+ELLIPSIS_MAX = 72
 
 ########################################################################
 
 from degmin import degmin
 from dominate import document
-from dominate.tags import head, body, table, tr, th, td, br, em, style, \
-    a, caption
+from dominate.tags import table, tr, th, td, br, em, style, a, caption, \
+    meta
 from xml.etree import ElementTree as ET
 import codecs
 import os.path
@@ -82,12 +83,6 @@ def get_wpts(gpxname):
         name = wpt.find(wpt.tag.replace("wpt", "name")).text
         latlon_dictionary[name] = (lat, lon)
 
-#   from pprint import pprint
-#   pprint(latlon_dictionary)
-
-#   import sys
-#   sys.exit(0)
-
     return wpts, latlon_dictionary
 
 ########################################################################
@@ -112,22 +107,31 @@ def ellipsis(s, l):
 
 
 STYLE = """\
-        table { page-break-inside:auto }
-        table th tr { border:1px solid green; }
+        table { page-break-inside:auto; border-spacing:3px; padding:3px; }
+        table, td, th, tr { border:1px solid green; }
         th { background-color: green; color: white; }
-        tr { page-break-inside:avoid; page-break-after:auto }
+        th.tiny { width:3%; }
+        th.narrow { width:47%; }
+        th.wide { width:50%; }
+        tr { page-break-inside:avoid; page-break-after:auto; }
+        tr.center { margin-left:auto; margin-right:auto; }
         tr.alt { background-color: #f0f0f0; }
-        caption { background-color: #c0c040; font-size: 16px; font-family: "Courier New"; }
+        caption { background-color: #c0c040; \
+            font-size: 16px; \
+            font-family: "Courier New"; }
         body { font-size: 16px; }
         @media print {
             body { font-size: 8px; font-family: "Courier New" }
             caption { font-size: 10px }
             a { text-decoration: none; font-style: italic; font-weight: bold }
+            th { background-color: white; color: black; }
         }
 """
 
 
 def create_rooter_document(gpxname):
+    """Create a HTML document from the information contained in the .gpx file
+    named gpxname."""
 
     print "reading %s" % gpxname
 
@@ -138,20 +142,16 @@ def create_rooter_document(gpxname):
     def make_wtag(s):
         return w0.tag.replace("wpt", s)
 
-    html_table = table(
-        border=1,
-        cellspacing=3,
-        cellpadding=3,
-        align="center"
-    )
+    rooter_document = document()
 
-    r_head = tr(align="center")
-    r_head.add(th("Geocache", width="50%"))
-    r_head.add(th("Found By", width="3%"))
-    r_head.add(th("Notes", width="47%"))
+    rooter_document.head = tr(cls="center")
+    rooter_document.head.add(th("Geocache", cls="wide"))
+    rooter_document.head.add(th("Found By", cls="tiny"))
+    rooter_document.head.add(th("Notes", cls="narrow"))
 
-    html_table.add(r_head)
+    html_table = table()
     html_table.add(caption("File: %s" % gpxname))
+    html_table.add(rooter_document.head)
 
     # row counter for even/odd formatting
     row_number = 0
@@ -207,6 +207,8 @@ def create_rooter_document(gpxname):
 #       e_dnf = get_ext('DNF')
 #       e_watch = get_ext('Watch')
 #       e_userdata = get_ext('UserData')
+        e_lat_before_correct = get_ext('LatBeforeCorrect')
+        e_lon_before_correct = get_ext('LonBeforeCorrect')
 #       e_firsttofind = get_ext('FirstToFind')
         e_user2 = get_ext('User2')
 #       e_user3 = get_ext('User3')
@@ -316,6 +318,10 @@ def create_rooter_document(gpxname):
             gc_text += "  "
             gc_text.add(location_link(w_lat, w_lon))
 
+            if not((e_lat_before_correct is None) and (e_lon_before_correct is
+                                                       None)):
+                gc_text.add(" (Corrected)")
+
         if c_encoded_hints:
             gc_text += br()
 
@@ -344,14 +350,14 @@ def create_rooter_document(gpxname):
                         x[0] for
                         x in log_info["recent_log_types"]
                     ),
-                    40
+                    ELLIPSIS_MAX
                 )
             )
             gc_text.add(br())
             gc_text.add(
                 "Most recent log: '%s'"
                 %
-                ellipsis(log_info["most_recent_log"], 40)
+                ellipsis(log_info["most_recent_log"], ELLIPSIS_MAX)
             )
 
         row.add(gc_text)
@@ -374,14 +380,10 @@ def create_rooter_document(gpxname):
     for line in STYLE.split("\n"):
         r_style.add("\n" + line)
 
-    r_head = head()
-    rooter_document.add(r_head)
+    rooter_document.head.add(meta(charset="UTF-8"))
+    rooter_document.head.add(r_style)
 
-    r_head.add(r_style)
-
-    r_body = body()
-    rooter_document.add(r_body)
-
+    r_body = rooter_document.body
     r_body.add(html_table)
 
     return rooter_document
@@ -493,9 +495,13 @@ if __name__ == '__main__':
         (options, args) = parser.parse_args()
         if len(args) < 1:
 #           args = ["default.gpx"]
-            args = [r"C:\Users\Robert Oelschlaeger\Dropbox\Geocaching"
-                    r"\topo764 - Souvenirs of August"
-                    r"\topo764a - Souvenirs of August.gpx"]
+#           args = [r"C:\Users\Robert Oelschlaeger\Dropbox\Geocaching"
+#                   r"\topo764 - Souvenirs of August"
+#                   r"\topo764a - Souvenirs of August.gpx"]
+            args = [
+                r"/Users/Robert Oelschlaeger/Dropbox/Geocaching"
+                r"/topo803 - Springfield IL/topo803b - Springfield IL.gpx"
+            ]
 #           args = [""]
 #           parser.error ('missing argument')
         if options.verbose:
