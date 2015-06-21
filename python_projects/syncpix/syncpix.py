@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Wed 07 Jan 2015 11:07:38 AM CST
+# Last Modified: Fri 19 Jun 2015 08:59:20 PM CDT
 
 """
 SYNOPSIS
@@ -260,6 +260,7 @@ def syncpix(route_name, pixdir, gpxfile, timezone, debug=False):
         )
 
     # collect timestamps for pictures
+    from bobo import new_get_picture_datetimes as get_picture_datetimes
     picture_datetimes = get_picture_datetimes(pixdir, timezone, debug)
 
     # collect timestamps for trackpoints
@@ -287,11 +288,11 @@ if __name__ == '__main__':
     import traceback
 #   import os
 
-    DATE = "20150106"
-    ROUTE_NAME = "topo775 - Perryville MO"
+    DATE = "20150619"
+    ROUTE_NAME = "topo803b - Springfield IL"
 
     HOME = r"C:\Users\Robert Oelschlaeger"
-    TIMEZONE = "CST"
+    TIMEZONE = "CDT"
 
     ########################################################################
 

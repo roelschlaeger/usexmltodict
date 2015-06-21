@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 08 Oct 2014 08:31:13 PM CDT
-# Last Modified: Wed 07 Jan 2015 03:48:58 PM CST
+# Last Modified: Wed 10 Jun 2015 08:28:47 PM CDT
 
 """
 SYNOPSIS
@@ -76,7 +76,6 @@ def img_rename(base, date):
     return namelist
 
 
-
 def create_batch_file(base, date, directory_name):
     namelist = img_rename(base, date)
     outname = os.path.join(base, date, "rename_batch.bat")
@@ -99,10 +98,12 @@ if __name__ == '__main__':
     import optparse
     import time
 
-    BASE = "C:/Users/Robert Oelschlaeger/Google Drive/Caching Pictures"
-    DATE = "x20150106"
+#   BASE = "C:/Users/Robert Oelschlaeger/Google Drive/Caching Pictures"
+    BASE = "C:/Users/Robert Oelschlaeger/Desktop/Camera"
+    DATE = "20150610"
 #   DIRECTORY_NAME = "20150106"
-    DIRECTORY_NAME = "20150106"
+#   DIRECTORY_NAME = "20150205"
+    DIRECTORY_NAME = DATE
 
 #from pexpect import run, spawn
 

@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Tue 07 Jan 2014 12:04:26 PM CST
-# Last Modified: Wed 07 Jan 2015 03:19:31 PM CST
+# Last Modified: Sun 21 Jun 2015 02:22:29 PM CDT
 
 """
 SYNOPSIS
@@ -39,7 +39,7 @@ VERSION
 __VERSION__ = "0.0.1"
 
 import dominate
-from dominate.tags import table, caption, tr, th, td, a
+from dominate.tags import meta, style, table, caption, tr, th, td, a
 from itertools import groupby
 from pprint import pprint
 import os.path
@@ -49,8 +49,36 @@ import os.path
 
 def make_html(pixdir, route_name, results, debug=False):
 
-    document = dominate.document()
-    document.title = "Pictures from %s" % route_name
+    document = dominate.document(
+        title="Pictures from %s" % route_name,
+    )
+
+    with document.head:
+        meta(charset="UTF-8")
+        style("""
+            table { page-break-inside:auto; border-spacing:3px; padding:3px; }
+            table { margin-left:auto; margin-right:auto; }
+            table, td, th, tr { border:1px solid green; }
+            th { background-color: green; color: white; }
+            th.tiny { width:3%; }
+            th.narrow { width:47%; }
+            th.wide { width:50%; }
+            tr { page-break-inside:avoid; page-break-after:auto; }
+            tr.center { margin-left:auto; margin-right:auto; }
+            tr.alt { background-color: #f0f0f0; }
+            caption { background-color: #c0c040; \
+font-size: 16px; \
+font-family: "Courier New"; }
+            body { font-size: 16px; }
+            @media print {
+                body { font-size: 8px; font-family: "Courier New" }
+                caption { font-size: 10px }
+                a {
+                  text-decoration: none; font-style: italic; font-weight: bold
+                }
+                th { background-color: white; color: black; }
+            }
+        """)
 
     groups = []
     uniquekeys = []
@@ -68,18 +96,9 @@ def make_html(pixdir, route_name, results, debug=False):
         pprint(groups, sys.stderr, width=132)
         pprint(uniquekeys, sys.stderr, width=132)
 
-    picture_table = table(
-        border=1,
-        cellpadding=3,
-        cellspacing=3,
-        summary=route_name,
-        align="center"
-    )
-
+    picture_table = table()
+    picture_table.add(caption(route_name))
     with picture_table:
-
-        # output the table caption
-        caption(route_name)
 
         # output the table header
         tr(
@@ -102,7 +121,7 @@ def make_html(pixdir, route_name, results, debug=False):
 
             for time, filename, gc, tp in g:
 
-                with tr(align="center"):
+                with tr():
 
                     distance, gcnumber, description = gc
                     lat, lon = tp
@@ -111,7 +130,10 @@ def make_html(pixdir, route_name, results, debug=False):
                         td(a(gcname_key, href=coord_info_url, target="_blank"))
                         td(description or "")
                     elif first:
-                        td(a(gcname_key, href=coord_info_url, target="_blank"), rowspan=rowspan)
+                        td(
+                            a(gcname_key, href=coord_info_url,
+                              target="_blank"), rowspan=rowspan
+                        )
                         td(description or "", rowspan=rowspan)
                         first = False
 
@@ -133,14 +155,13 @@ if __name__ == '__main__':
     import optparse
     import time
 
-#   from results_table import results
-
     ########################################################################
 
-    DATE = "20140124"
+    DATE = "20150619"
     HOME = r"C:\Users\Robert Oelschlaeger"
     PIXDIR = r"%s\Google Drive\Caching Pictures\%s" % (HOME, DATE)
-    ROUTE_NAME = "topoxxx - Lawrence KS"
+    PIXDIR = "."
+    ROUTE_NAME = "topo803 - Springfield IL"
 
     ########################################################################
 
