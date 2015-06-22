@@ -3,16 +3,16 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Tue 07 Jan 2014 12:04:26 PM CST
-# Last Modified: Mon 22 Jun 2015 02:22:45 PM CDT
+# Last Modified: Mon 22 Jun 2015 05:00:30 PM CDT
 
 """
 SYNOPSIS
 
-    mh [-h] [-v,--verbose] [--version]
+    mh [-h | --help] [-v | --version] [--verbose]
 
 DESCRIPTION
 
-    TODO This describes how to use this script.
+    Create make_html.html to preview caching pictures
 
 EXAMPLES
 
@@ -24,19 +24,17 @@ EXIT STATUS
 
 AUTHOR
 
-    TODO: Name <name@example.org>
+    Robert Oelschlaeger <roelsch2009@gmail.com>
 
 LICENSE
 
     This script is in the public domain.
 
-VERSION
-
 """
 
 ########################################################################
 
-__VERSION__ = "0.0.1"
+__VERSION__ = "0.0.2"
 
 import dominate
 from dominate.tags import meta, style, table, caption, tr, th, td, a
@@ -151,11 +149,12 @@ font-family: "Courier New"; }
 
 if __name__ == '__main__':
 
-    import sys
+    import argparse
     import os
-    import traceback
-    import optparse
+    import sys
+    import textwrap
     import time
+    import traceback
 
     ########################################################################
 
@@ -169,7 +168,7 @@ if __name__ == '__main__':
 
     def main():
 
-        global options, args
+        global OPTIONS
 
         import pickle
         closest_waypoints = pickle.Unpickler(
@@ -178,47 +177,56 @@ if __name__ == '__main__':
         from pprint import pprint
         pprint(closest_waypoints)
 
-        make_html(PIXDIR, ROUTE_NAME, closest_waypoints, options.debug)
+        make_html(PIXDIR, ROUTE_NAME, closest_waypoints, OPTIONS.debug)
 
     ########################################################################
 
     try:
-        start_time = time.time()
-        parser = optparse.OptionParser(
-            formatter=optparse.TitledHelpFormatter(),
-            usage=globals()['__doc__'],
-            version=__VERSION__)
-        parser.add_option('-v',
-                          '--verbose',
-                          action='store_true',
-                          default=False,
-                          help='verbose output'
-                          )
-        parser.add_option('-d',
-                          '--debug',
-                          action='store_true',
-                          default=False,
-                          help='debug'
-                          )
-        (options, args) = parser.parse_args()
-        #if len(args) < 1:
-        #    parser.error ('missing argument')
-        if options.verbose:
+        START_TIME = time.time()
+
+        PARSER = argparse.ArgumentParser(
+            formatter_class=argparse.RawDescriptionHelpFormatter,
+            usage=textwrap.dedent(globals()['__doc__']),
+            version="Version: %s" % __VERSION__)
+
+        PARSER.add_argument(
+            '--verbose',
+            action='store_true',
+            default=False,
+            help='verbose output'
+        )
+
+        PARSER.add_argument(
+            '-d',
+            '--debug',
+            action='store_true',
+            default=False,
+            help='debug'
+        )
+
+        OPTIONS = PARSER.parse_args()
+
+        if OPTIONS.verbose:
             print time.asctime()
-        exit_code = main()
-        if exit_code is None:
-            exit_code = 0
-        if options.verbose:
+
+        EXIT_CODE = main()
+
+        if EXIT_CODE is None:
+            EXIT_CODE = 0
+
+        if OPTIONS.verbose:
             print time.asctime()
-        if options.verbose:
             print 'TOTAL TIME IN MINUTES:',
-        if options.verbose:
-            print (time.time() - start_time) / 60.0
-        sys.exit(exit_code)
+            print (time.time() - START_TIME) / 60.0
+
+        sys.exit(EXIT_CODE)
+
     except KeyboardInterrupt, e:        # Ctrl-C
         raise e
+
     except SystemExit, e:               # sys.exit()
         raise e
+
     except Exception, e:
         print 'ERROR, UNEXPECTED EXCEPTION'
         print str(e)
