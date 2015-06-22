@@ -1,13 +1,18 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Fri 19 Jun 2015 08:59:20 PM CDT
+# Last Modified: Mon 22 Jun 2015 02:09:55 PM CDT
 
 """
 SYNOPSIS
 
-    syncpix [-h] [-v,--verbose] [--version] [-d, --debug]
+    syncpix
+        [--verbose]
+        [-d --debug]
+        [-h --help]
+        [-v --version]
+        [[-t --date] DDDDDDDD]
 
 DESCRIPTION
 
@@ -17,13 +22,9 @@ EXAMPLES
 
     TODO: Show some examples of how to use this script.
 
-EXIT STATUS
-
-    TODO: List exit codes
-
 AUTHOR
 
-    TODO: Name <name@example.org>
+    Robert L. Oelschlaeger <roelsc2009@gmail.com>
 
 LICENSE
 
@@ -31,23 +32,9 @@ LICENSE
 
 """
 
-__VERSION__ = "0.1.0"
-
-# from pexpect import run, spawn
-
-# Uncomment the following section if you want readline history support.
-#import readline, atexit
-#histfile = os.path.join(os.environ['HOME'], '.TODO_history')
-#try:
-#    readline.read_history_file(histfile)
-#except IOError:
-#    pass
-#atexit.register(readline.write_history_file, histfile)
+__VERSION__ = "0.2.0"
 
 #######################################################################
-
-# from make_html import make_html
-# from find_nearest_gc import find_nearest_gc
 
 from datetime import datetime
 from mh import make_html
@@ -62,7 +49,8 @@ from compute_closest_waypoints import compute_closest_waypoints
 
 ########################################################################
 
-PICKLE = True
+global PICKLE
+PICKLE = False
 
 ROOTTAG = "{http://www.topografix.com/GPX/1/1}gpx"
 
@@ -85,16 +73,98 @@ GEOCACHE_LOCATIONS_FILENAME = "geocache_locations.tmp"
 
 #######################################################################
 
+####################################################################
+# the old way of getting picture date and times from picture names #
+####################################################################
+
+### def get_picture_datetimes(dirname, timezone, debug=False):
+###     """Return a list of (datetime, filename) tuple objects"""
+###
+###     print >> sys.stderr, "Reading pictures from %s" % dirname
+###
+###     filenames = os.listdir(dirname)
+###
+###     picture_times = [
+###         (x.split('.')[0], x)
+###         for x in filenames if x.find('.jpg') != -1
+###     ]
+###
+###     if debug:
+###         print "picture_times"
+###         pprint(picture_times, width=132)
+###         print
+###
+###     # get timestamp without time zone
+###     picture_datetimes_nozone = [
+###         (datetime.strptime(x[:10], "%m%d%y%H%M"), xf)
+###         for x, xf in picture_times
+###     ]
+###
+###     # append timezone
+###     picture_datetimes = [
+###         (dateutil.parser.parse(str(x[0]) + timezone), x[1])
+###         for x in picture_datetimes_nozone
+###     ]
+###
+###     # sort into time order
+###     picture_datetimes.sort()
+###
+###     if debug:
+### #       print "picture_datetimes_nozone"
+### #       pprint(picture_datetimes_nozone, width=132)
+### #       print
+###
+###         print "picture_datetimes"
+###         pprint(picture_datetimes, width=132)
+###         print
+###
+###     if PICKLE:
+###         pickle.dump(picture_datetimes, open("picture_datetimes.dmp", "w"))
+###
+###     return picture_datetimes
+
+####################################################################
+# the new way of getting picture date and times from picture names #
+####################################################################
+
 
 def get_picture_datetimes(dirname, timezone, debug=False):
-    """Return a list of (datetime, filename) tuple objects"""
+    """Return a list of (datetime, filename) tuple objects
+    based on filenames like
 
+        IMG_20150610_073626_868.jpg
+
+    instead of
+
+        0610150736.jpg
+    """
+
+    import sys
     print >> sys.stderr, "Reading pictures from %s" % dirname
 
+    import os
     filenames = os.listdir(dirname)
 
+    pprint(filenames)
+
+    def mdyHM(x):
+        """
+IMG_20150610_073626_868.jpg
+01234567890123456789012
+"""
+        # isolate the month, day, year, Hour and Minute fields
+        m = x[8:10]
+        d = x[10:12]
+        y = x[6:8]
+        H = x[13:15]
+        M = x[15:17]
+
+        # return the data as a date string
+        return "%s%s%s%s%s" % (m, d, y, H, M)
+
+    # collect (datestring, filename) tuples
     picture_times = [
-        (x.split('.')[0], x)
+        (mdyHM(x), x)
         for x in filenames if x.find('.jpg') != -1
     ]
 
@@ -119,10 +189,6 @@ def get_picture_datetimes(dirname, timezone, debug=False):
     picture_datetimes.sort()
 
     if debug:
-#       print "picture_datetimes_nozone"
-#       pprint(picture_datetimes_nozone, width=132)
-#       print
-
         print "picture_datetimes"
         pprint(picture_datetimes, width=132)
         print
@@ -232,12 +298,6 @@ def get_geocache_locations(filename, debug=False):
         if debug:
             print (lon, lat, name, desc)
 
-    # write the geocache locations file
-#   gfile = open(GEOCACHE_LOCATIONS_FILENAME, 'w')
-#   pprint(geocache_locations, gfile, width=132, indent=4)
-#   print "geocache locations results are in %s" % GEOCACHE_LOCATIONS_FILENAME
-#   gfile.close()
-
     if PICKLE:
         pickle.dump(geocache_locations, open("geocache_locations.dmp", "w"))
 
@@ -260,7 +320,7 @@ def syncpix(route_name, pixdir, gpxfile, timezone, debug=False):
         )
 
     # collect timestamps for pictures
-    from bobo import new_get_picture_datetimes as get_picture_datetimes
+### from bobo import new_get_picture_datetimes as get_picture_datetimes
     picture_datetimes = get_picture_datetimes(pixdir, timezone, debug)
 
     # collect timestamps for trackpoints
@@ -283,10 +343,10 @@ def syncpix(route_name, pixdir, gpxfile, timezone, debug=False):
 
 if __name__ == '__main__':
 
-    import optparse
+    import argparse
+    import textwrap
     import time
     import traceback
-#   import os
 
     DATE = "20150619"
     ROUTE_NAME = "topo803b - Springfield IL"
@@ -298,80 +358,105 @@ if __name__ == '__main__':
 
     def main(route_name, pixdir, gpxfile, timezone, debug):
         if debug:
-            print "main(%s, %s, %s, %s, %s)" % (route_name, pixdir, gpxfile,
-                                                timezone, debug)
+            print """
+main(
+    route="%s",
+    pixdir="%s",
+    gpxfile="%s",
+    timezone="%s",
+    debug=%s
+)""" % (route_name, pixdir, gpxfile, timezone, debug)
         else:
             syncpix(route_name, pixdir, gpxfile, timezone, debug)
 
    ########################################################################
 
     try:
+
         start_time = time.time()
-        parser = optparse.OptionParser(
-            formatter=optparse.TitledHelpFormatter(),
-            usage=globals()['__doc__'],
+
+        parser = argparse.ArgumentParser(
+            formatter_class=argparse.RawDescriptionHelpFormatter,
+            description=textwrap.dedent(globals()['__doc__']),
             version="Version: %s" % __VERSION__
         )
-        parser.add_option(
-            '-d',
+
+        parser.add_argument(
             '--debug',
+            '-d',
             action='store_true',
             default=False,
             help='debug output'
         )
 
-        parser.add_option(
-            '-v',
+        parser.add_argument(
             '--verbose',
             action='store_true',
             default=False,
             help='verbose output'
         )
 
-        parser.add_option(
-            '-t',
+        parser.add_argument(
             '--date',
+            '-t',
             action='store',
             default=DATE,
-            help='set date (default: %default)'
+            help='set date (default: %(default)s)'
         )
 
-        parser.add_option(
-            '-r',
+        parser.add_argument(
+            '--pickle',
+            '-p',
+            action='store_true',
+            default=False,
+            help='set PICKLE flag'
+        )
+
+        parser.add_argument(
             '--route',
+            '-r',
             action='store',
             default=ROUTE_NAME,
-            help='set date (default: %default)'
+            help='set route (default: %(default)s)'
         )
 
         # parse command line options
-        (options, args) = parser.parse_args()
+        options = parser.parse_args()
+        pprint(options)
 
         date_option = options.date
         route_name = options.route
+        PICKLE = options.pickle
 
         pixdir = r"%s\Google Drive\Caching Pictures\%s" % (HOME, date_option)
-        gpxfile = r"%s\explorist_results_%s.gpx" % (pixdir, date_option)
+        print("pixdir: %s" % pixdir)
 
-        #if len(args) < 1:
-        #    parser.error ('missing argument')
+        gpxfile = r"%s\explorist_results_%s.gpx" % (pixdir, date_option)
+        print("gpxfile: %s" % pixdir)
+
         if options.verbose:
             print time.asctime()
+
         exit_code = main(route_name, pixdir, gpxfile, TIMEZONE, options.debug)
+
         if exit_code is None:
             exit_code = 0
+
         if options.verbose:
             print time.asctime()
-        if options.verbose:
             print 'TOTAL TIME IN MINUTES:',
-        if options.verbose:
             print (time.time() - start_time) / 60.0
+
         sys.exit(exit_code)
+
     except KeyboardInterrupt, e:        # Ctrl-C
         raise e
+
     except SystemExit, e:               # sys.exit()
         raise e
+
     except Exception, e:
+        print "Exception", e
         print 'ERROR, UNEXPECTED EXCEPTION'
         print str(e)
         traceback.print_exc()

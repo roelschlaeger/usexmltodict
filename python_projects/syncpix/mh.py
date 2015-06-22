@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 
 # Created:       Tue 07 Jan 2014 12:04:26 PM CST
-# Last Modified: Sun 21 Jun 2015 02:22:29 PM CDT
+# Last Modified: Mon 22 Jun 2015 02:22:45 PM CDT
 
 """
 SYNOPSIS
@@ -69,6 +69,7 @@ def make_html(pixdir, route_name, results, debug=False):
             caption { background-color: #c0c040; \
 font-size: 16px; \
 font-family: "Courier New"; }
+            td.center { text-align: center }
             body { font-size: 16px; }
             @media print {
                 body { font-size: 8px; font-family: "Courier New" }
@@ -128,13 +129,14 @@ font-family: "Courier New"; }
 
                     if rowspan == 1:
                         td(a(gcname_key, href=coord_info_url, target="_blank"))
-                        td(description or "")
+                        td(description or "", cls="center")
                     elif first:
                         td(
                             a(gcname_key, href=coord_info_url,
-                              target="_blank"), rowspan=rowspan
+                              target="_blank"),
+                            rowspan=rowspan
                         )
-                        td(description or "", rowspan=rowspan)
+                        td(description or "", rowspan=rowspan, cls="center")
                         first = False
 
                     td(a(filename, href=filename, target="_blank"))
