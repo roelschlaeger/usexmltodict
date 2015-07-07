@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 07 Jul 2015 02:47:12 PM CDT
-# Last Modified: Tue 07 Jul 2015 03:10:19 PM CDT
+# Last Modified: Tue 07 Jul 2015 03:23:09 PM CDT
 
 """
 SYNOPSIS
@@ -46,13 +46,17 @@ NORTHINGS = int(CENTER.split()[4])
 
 def process():
 
+    count = [0] * 6
     for A in range(10):
+        count[0]+= 1
         if (A == 0):
             continue
         H = A
         for B in range(10):
+            count[1]+= 1
             S = B
             for C in range(10):
+                count[2]+= 1
                 J = C - B
                 if (J < 0):
                     continue
@@ -62,9 +66,11 @@ def process():
                 K = B + C
                 O = A + C
                 for D in range(10):
+                    count[3]+= 1
                     I = D / A
                     M = D - A
                     for E in range(10):
+                        count[4]+= 1
                         P = E
                         G = E - B
                         if G < 0:
@@ -73,6 +79,7 @@ def process():
                         if L < 0:
                             continue
                         for F in range(10):
+                            count[5]+= 1
                             N = F - A
                             if N < 0:
                                 continue
@@ -92,6 +99,7 @@ def process():
                                 " E %06d" % eastings +
                                 " N %07d" % northings
                             )
+    print count
 
 if __name__ == '__main__':
 
