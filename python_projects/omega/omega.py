@@ -2,12 +2,12 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 25 Jun 2015 04:59:23 PM CDT
-# Last Modified: Sun 28 Jun 2015 09:50:12 AM CDT
+# Last Modified: Mon 06 Jul 2015 07:09:00 PM CDT
 
 """
 SYNOPSIS
 
-    TODO omega [-h | --help] [-v | --version] [--verbose]
+    omega [-h | --help] [-v | --version] [--verbose]
 
 DESCRIPTION
 
@@ -17,7 +17,7 @@ DESCRIPTION
 
 EXAMPLES
 
-    TODO: Show some examples of how to use this script.
+    python omega.py
 
 EXIT STATUS
 
@@ -46,13 +46,17 @@ from xml.etree import ElementTree as ET
 
 ########################################################################
 
+RADIUS = 160.93   # 512.8 feet, in meters
+
+########################################################################
+
 
 def convert(s):
     """Convert a latitude or longitude hdd mm.mmm string to a signed floating
 point value"""
 
     d, m = s.split()
-    h, d = d[0], d[1:]
+    h, d = d[0].upper(), d[1:]
     negative = (h == 'W') or (h == 'S')
     result = int(d) + (float(m) / 60.)
     if negative:
@@ -61,65 +65,74 @@ point value"""
 
 ########################################################################
 
-RADIUS = 160.93   # 512.8 feet, in meters
+
+def getpoints(filename):
+    """Parse the 'filename' .gpx file returning name and location information,
+returning a list of (latitude, longitude, name, description) tuples"""
+
+    tree = ET.parse(filename)
+    root = tree.getroot()
+
+    tag = root.tag
+    wpt_tag = tag.replace('gpx', 'wpt')
+    metadata_tag = tag.replace('gpx', 'metadata')
+    name_tag = tag.replace('gpx', 'name')
+    desc_tag = tag.replace('gpx', 'desc')
+
+    print_meta(root.find(metadata_tag))
+
+    points = []
+    for wpt in root.findall(wpt_tag):
+        lat = float(wpt.get('lat'))
+        lon = float(wpt.get('lon'))
+        name = wpt.find(name_tag).text
+        desc = wpt.find(desc_tag).text
+        latlon = (lat, lon, name, desc)
+        points.append(latlon)
+
+    return points
+
+########################################################################
 
 
-def process(options):
-    kml = Kml()
+def draw_circles(kml, filename):
+    """Draw, into the Kml object kml, 0.1 mile radius circles around the
+waypoints in the .gpx file named by filename"""
 
-    lat_pattern = "N39 45.%s66"
-    lon_pattern = "W89 45.8%s%s"
+    f1 = kml.newfolder(name="GPX Point Centers")
+    f2 = kml.newfolder(name="0.1 Mile Circles")
 
-    f0 = kml.newfolder(name="Solution Locations")
+    points = getpoints(filename)
 
-    for C in range(10):
-        for I in range(10):
-            J = 5
-            dmlat = lat_pattern % C
-            dmlon = lon_pattern % (I, J)
-            lat = convert(dmlat)
-            lon = convert(dmlon)
-            name = "P_C%s_I%s_J%s" % (C, I, J)
-            f0.newpoint(name=name, coords=[(lon, lat)])
+    for point in points:
 
-    if True or options.circles:
+        lat, lon, name, desc = point
+        description = "%s: %s" % (name, desc)
+        # create the center point
 
-        f1 = kml.newfolder(name="GPX Point Centers")
-        f2 = kml.newfolder(name="0.1 Mile Circles")
+        f1.newpoint(
+            name=description,
+            coords=[(lon, lat)]
+        )
 
-        points = getpoints(options.circles)
+        # create the outline
+        polycircle = polycircles.Polycircle(
+            latitude=lat,
+            longitude=lon,
+            radius=RADIUS,
+            number_of_vertices=72
+        )
 
-        for point in points:
+        pol = f2.newpolygon(
+            name=description,
+            outerboundaryis=polycircle.to_kml(),
+        )
 
-            lat, lon, name, desc = point
-            description = "%s: %s" % (name, desc)
-            # create the center point
+        pol.description = description
 
-            f1.newpoint(
-                name=description,
-                coords=[(lon, lat)]
-            )
-
-            # create the outline
-            polycircle = polycircles.Polycircle(
-                latitude=lat,
-                longitude=lon,
-                radius=RADIUS,
-                number_of_vertices=72
-            )
-
-            pol = f2.newpolygon(
-                name=description,
-                outerboundaryis=polycircle.to_kml(),
-            )
-
-            pol.description = description
-
-            pol.style.polystyle.color = simplekml.Color.red
-            pol.style.polystyle.outline = 1
-            pol.style.polystyle.fill = 1
-
-    kml.save("omega.kml")
+        pol.style.polystyle.color = simplekml.Color.red
+        pol.style.polystyle.outline = 1
+        pol.style.polystyle.fill = 1
 
 ########################################################################
 
@@ -140,28 +153,42 @@ def print_meta(meta):
 ########################################################################
 
 
-def getpoints(filename):
-    tree = ET.parse(filename)
-    root = tree.getroot()
+def process(options):
 
-    tag = root.tag
-    wpt_tag = tag.replace('gpx', 'wpt')
-    metadata_tag = tag.replace('gpx', 'metadata')
-    name_tag = tag.replace('gpx', 'name')
-    desc_tag = tag.replace('gpx', 'desc')
+    # create a .kml file
+    kml = Kml()
 
-    print_meta(root.find(metadata_tag))
+    lat_pattern = "N39 45.%s66"
+    lon_pattern = "W89 45.8%s%s"
 
-    points = []
-    for wpt in root.findall(wpt_tag):
-        lat = float(wpt.get('lat'))
-        lon = float(wpt.get('lon'))
-        name = wpt.find(name_tag).text
-        desc = wpt.find(desc_tag).text
-        latlon = (lat, lon, name, desc)
-#       print latlon
-        points.append(latlon)
-    return points
+    # create a new KML folder
+    f0 = kml.newfolder(name="Solution Locations")
+
+    # try all values of C
+    for C in range(10):
+        # try all values of I
+        for I in range(10):
+
+            # use a middle-guess for J
+            J = 5
+
+            # compute a location
+            dmlat = lat_pattern % C
+            dmlon = lon_pattern % (I, J)
+            lat = convert(dmlat)
+            lon = convert(dmlon)
+
+            # make up a name
+            name = "P_C%s_I%s_J%s" % (C, I, J)
+
+            # insert a new waypoint
+            f0.newpoint(name=name, coords=[(lon, lat)])
+
+    if True or options.circles:
+
+        draw_circles(kml, options.circles)
+
+    kml.save("omega.kml")
 
 ########################################################################
 
