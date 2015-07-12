@@ -1,34 +1,22 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Flask Intro - Index Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
-  </head>
-  <body>
-    <div class="container">
-      <h2>Please login</h2>
-      <br>
-      <form action="" method="post">
-        <input
-          type="text"
-          placeholder="Username"
-          name="username"
-          value="{{ request.form.username }}"
-        >
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value="{{ request.form.password }}"
-        >
-        <input class="btn btn-default" type="submit" value="Login">
-      </form>
-      {% if error %}
-        <p class="error"><strong>Error:</strong> {{ error }}</p>
-      {% endif %}
-      {% for message in get_flashed_messages() %}
-        {{ message }}
-      {% endfor %}
-    </div>
-  </body>
+<head>
+  <title>Flask Intro - Index Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome to Flask!</h2>
+    <br>
+    <p>Click <a href="/logout">here</a> to logout.</p>
+  </div>
+  {% if error %}
+  <p class="error"><strong>Error:</strong> {{ error }}</p>
+  {% endif %}
+  {% for message in get_flashed_messages() %}
+  {{ message }}
+  {% endfor %}
+
+</body>
 </html>

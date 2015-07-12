@@ -1,0 +1,715 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"login",
+				"login_required"
+			],
+			[
+				"ngRout",
+				"ngRouteProvider"
+			],
+			[
+				"$route",
+				"$routeParams	AngularJS"
+			],
+			[
+				"wpt",
+				"wptColumnFilters"
+			],
+			[
+				"groundspe",
+				"groundspeak_container"
+			],
+			[
+				"User",
+				"UserSort"
+			],
+			[
+				"orig",
+				"originalValue"
+			],
+			[
+				"false",
+				"False"
+			],
+			[
+				"tR",
+				"tr	Tag"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 1626,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "",
+			"file": "/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 3/Packages/User/~",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 397.0,
+		"last_filter": "indent",
+		"selected_items":
+		[
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"syntax json",
+				"Set Syntax: JSON"
+			],
+			[
+				"syntax js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"syntax ruby",
+				"Set Syntax: Ruby"
+			],
+			[
+				"h",
+				"HTMLBeautify"
+			],
+			[
+				"json",
+				"xml2json pretty"
+			],
+			[
+				"install",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"pack",
+				"Package Control: Discover Packages"
+			],
+			[
+				"angular",
+				"AngularJS: Toggle - Disable All Completions"
+			],
+			[
+				"html",
+				"HTMLBeautify"
+			],
+			[
+				"table",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"comment",
+				"Toggle Comment"
+			],
+			[
+				"htm",
+				"HTMLBeautify"
+			],
+			[
+				"script",
+				"Snippet: <script>"
+			],
+			[
+				"link",
+				"Snippet: link - stylesheet"
+			],
+			[
+				"doctype",
+				"Snippet: DOCTYPE HTML"
+			],
+			[
+				"java",
+				"Format: Javascript"
+			],
+			[
+				"lint",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"lorem",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"html5",
+				"Snippet: Simple HTML5 Boilerplate"
+			],
+			[
+				"fold",
+				"Code Folding: Unfold All"
+			],
+			[
+				"html b",
+				"HTMLBeautify"
+			],
+			[
+				"copy",
+				"File: Copy as Tag script"
+			],
+			[
+				"ja",
+				"Format: Javascript"
+			],
+			[
+				"beau",
+				"HTMLBeautify"
+			],
+			[
+				"bea",
+				"HTMLBeautify"
+			],
+			[
+				"snippets",
+				"Snippet: Simple HTML5 Boilerplate"
+			],
+			[
+				"syntax xsl",
+				"Set Syntax: XSL"
+			],
+			[
+				"syntaxhtml",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"syntax no",
+				"Set Syntax: JSON"
+			],
+			[
+				"syntax: html(angular.js)",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"blo",
+				"Toggle Block Comment"
+			],
+			[
+				"j",
+				"Format: Javascript"
+			],
+			[
+				"togg",
+				"Toggle Block Comment"
+			],
+			[
+				"comm",
+				"Toggle Comment"
+			],
+			[
+				"syntax",
+				"Set Syntax: HTML"
+			],
+			[
+				"special",
+				"HTML: Encode Special Characters"
+			],
+			[
+				"lowercase",
+				"Convert Case: Lower Case"
+			],
+			[
+				"BEA",
+				"HTMLBeautify"
+			],
+			[
+				"syntax javascript",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"syntax html",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"syntax java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"config",
+				"Set Syntax: EditorConfig"
+			]
+		],
+		"width": 488.0
+	},
+	"console":
+	{
+		"height": 209.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Robert Oelschlaeger/Documents/sources/python_projects/flask-intro"
+	],
+	"file_history":
+	[
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/python_projects/flask-intro/templates/welcome.html",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/python_projects/flask-intro/templates/login.html",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/python_projects/flask-intro/templates/index.html",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/python_projects/flask-intro/venv/pip-selfcheck.json",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/python_projects/flask-intro/youtube.md",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/python_projects/flask-intro/youtube.txt",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/index.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/partials/log.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/799_gpx.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/partials/welcome.html",
+		"/C/Users/Robert Oelschlaeger/Dropbox/Geocaching/topo799 - Jacksonville IL/topo799 - Jacksonville IL.gpx",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/app.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/partials/wpt.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/partials/wpts.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/partials/logs.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/bower_components/angular/angular.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/bower_components/ng-table/dist/ng-table.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/wpts.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/log.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/bower.json",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/logs.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/wpts.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/ignore/wpt_listing/bower_components/angular/bower.json",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/partials/routeItem.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/routeControllers.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/partials/routeList.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/index.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/app.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/routeListController.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/bower_components/angular/angular.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/gpxController.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/gpx.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/bower_components/angular-route/angular-route.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/partials/route.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/myController.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/bower_components/bootstrap.css/css/bootstrap.css",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/bower_components/bootstrap.css/.bower.json",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/bower_components/bootstrap.css/bower.json",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/test.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/bower_components/angularjs/package.json",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/bower.json",
+		"/C/Users/Robert Oelschlaeger/Dropbox/Geocaching/topo797 - Jacksonville IL/topo797 - Jacksonville IL.gpx",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/t.html",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/gpx_short.js",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/bower_components/angularjs/angular.js",
+		"/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Robert Oelschlaeger/Desktop/angular_test/gpx.json",
+		"/C/Users/Robert Oelschlaeger/Desktop/geoart.gpx",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/javascript_projects/node_projects/angular-seed/.editorconfig",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/javascript_projects/node_projects/angular-seed/node_modules/bower/.editorconfig",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/javascript_projects/node_projects/angular-seed/app/app.js",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/javascript_projects/node_projects/angular-seed/node_modules/bower/lib/config.js",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/javascript_projects/node_projects/angular-seed/node_modules/bower/node_modules/cardinal/test/fixtures/json.json",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/javascript_projects/node_projects/angular-seed/app/bower_components/angular-loader/package.json",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/javascript_projects/node_projects/angular-seed/app/index.html",
+		"/C/Users/Robert Oelschlaeger/Documents/sources/javascript_projects/node_projects/angular-seed/app/index-async.html",
+		"/C/Users/Robert Oelschlaeger/bin/sublime3.bat"
+	],
+	"find":
+	{
+		"height": 21.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"*.js,*.html",
+			"C:\\Users\\Robert Oelschlaeger\\Desktop\\angular_test\\ignore\\wpt_listin",
+			"",
+			"*.js,*.html",
+			"*.js,*.html,-gps.js",
+			"*.js,*.html",
+			"",
+			"C:\\Users\\Robert Oelschlaeger\\Desktop\\angular_test",
+			"*.js,*.html,C:\\Users\\Robert Oelschlaeger\\Desktop\\angular_test",
+			"*.js,<open files>,C:\\Users\\Robert Oelschlaeger\\Desktop\\angular_test",
+			"*.js,<open files>",
+			"*.js",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"Courier",
+			"courier",
+			"\n@",
+			"    \n",
+			"\"",
+			"			\n",
+			"\"",
+			"login",
+			"\"",
+			"form",
+			"\"",
+			"	",
+			"\"@",
+			" }}",
+			"partials",
+			"div0",
+			"div",
+			"h1",
+			"$route",
+			"div3",
+			"div5",
+			"table-border",
+			"div3",
+			"div0",
+			"$location",
+			"console.log",
+			"table-border",
+			"true",
+			"<br>",
+			"	<tr><td>$location.protocol()</td><td><span ng-bind=\"$location.protocol()\"></span> <br>\n		<tr><td>$location.host()</td><td><span ng-bind=\"$location.host()\"></span> <br>\n		<tr><td>$location.port()</td><td><span ng-bind=\"$location.port()\"></span> <br>\n		<tr><td>$location.path()</td><td><span ng-bind=\"$location.path()\"></span> <br>\n		<tr><td>$location.search()</td><td><span ng-bind=\"$location.search()\"></span> <br>\n		<tr><td>$location.hash()</td><td><span ng-bind=\"$location.hash()\"></span> <br>\n	</table>",
+			"<br>",
+			" <br>",
+			"$",
+			" = ",
+			"routeParams",
+			"'",
+			"routeParams",
+			"location",
+			"wpts[0]",
+			"wpts[1]",
+			"Wpts[0]",
+			"wpts[0]",
+			"Wpts[0]",
+			"wpts[0]",
+			"Wpts[0]",
+			"wpts[0]",
+			"jumbotron",
+			"-->\n",
+			"ngrouteprovider",
+			"\"",
+			"ng-repeat",
+			"value",
+			"key,",
+			"key",
+			"(key,",
+			"\\(key",
+			"(key",
+			"wptFilter",
+			"border-color",
+			"\"red\"",
+			"console.log",
+			"routeListCtrl",
+			"gpxController",
+			"\n	",
+			"routeItemCtrl",
+			"ng-app",
+			"sidebar",
+			"class=\"container",
+			"('#/",
+			"container",
+			"routeListCtrl",
+			"routeController",
+			"container",
+			"row",
+			"Index.html",
+			"myController",
+			"BobsTest",
+			"myController",
+			"module",
+			"controller",
+			"myController",
+			"wptColumnFiltersReset",
+			"wptFilter",
+			"container",
+			"text-center",
+			"center",
+			"container",
+			"col-sm-8",
+			"-->",
+			"col-sm-4",
+			"col-sm-6",
+			"col-sm-4",
+			"col-sm-8",
+			"col-sm-2",
+			"col-sm-10",
+			"col-sm-2",
+			"email",
+			"label",
+			"email",
+			"\\\\",
+			"\\",
+			"\\\\",
+			"\\",
+			"name=",
+			"                <input name=\"general\" class=\"form-control\" placeholder=\"General\" ng-model=\"wptFilter\">\n                                </div>\n                            </div>\n                            <div class=\"form-group\">\n                                <label class=\"control-label col-sm-2\" for=\"waypoint_name\">Waypoint Name:</label>\n                                <div class=\"col-sm-10\">\n                                    <input name=\"waypoint_name\" placeholder=\"Waypoint Name\" ng-model=\"wptColumnFilters.name\">\n                                </div>\n                            </div>\n                            <div class=\"form-group\">\n                                <label class=\"control-label col-sm-2\" for=\"description\">Description:</label>\n                                <div class=\"col-sm-10\">\n                                    <input nae=\"description\" placeholder=\"Description\" ng-model=\"wptColumnFilters.desc\">\n                                </div>\n                            </div>\n                            <div class=\"form-group\">\n                                <label>Type|Container:</label>\n                                <div class=\"col-sm-10\">\n                                    <input name=\"container\" placeholder=\"Type:Container\" ng-model=\"wptColumnFilters.container\">\n                                </div>",
+			"size",
+			"<br",
+			"reset waypoint filter",
+			"container",
+			"groundspeak_container",
+			"Type",
+			"groundspeak_type",
+			"morgan county treasure",
+			"location",
+			"\"",
+			"index",
+			"wpt\\[\".*\"\\]",
+			"wpt[",
+			"groundspeak_container",
+			"Other",
+			"success",
+			"groundspeak:",
+			"gsak:",
+			"@",
+			"_at_",
+			"@",
+			"groundspeak:",
+			"gsak_"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"'",
+			"\"_at_",
+			"</td></tr>",
+			"</td><td>",
+			"\"",
+			"'",
+			"col-sm-8",
+			"/",
+			"id=",
+			"",
+			"'",
+			"groundspeak_",
+			"gsak_",
+			"_at_",
+			"groundspeak_",
+			"gsak_",
+			"\"",
+			"gravatar",
+			"",
+			"td",
+			"th",
+			"td"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1626,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/Robert Oelschlaeger/AppData/Roaming/Sublime Text 3/Packages/User/~",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 100.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "flask-intro.sublime-project",
+	"replace":
+	{
+		"height": 38.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"gpx",
+				"gpx.js"
+			],
+			[
+				"editorconfig",
+				"node_modules\\bower\\.editorconfig"
+			],
+			[
+				"editor",
+				"node_modules\\bower\\.editorconfig"
+			],
+			[
+				"html",
+				"app\\index.html"
+			],
+			[
+				".js",
+				"app\\app.js"
+			],
+			[
+				"cjs",
+				"node_modules\\bower\\lib\\config.js"
+			],
+			[
+				"json",
+				"node_modules\\bower\\node_modules\\cardinal\\test\\fixtures\\json.json"
+			],
+			[
+				"",
+				"app\\bower_components\\angular-loader\\package.json"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"$parse"
+			]
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 279.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
