@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Flask Intro - Welcome Page</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
-</head>
-<body>
-	<div class="container">
-		<h2>Welcome to Flask!</h2>
-		<br>
-		<p>Click <a href="/">here</a> to go home.</p>
-	</div>
-	{% if error %}
-	<p class="error"><strong>Error:</strong> {{ error }}</p>
-	{% endif %}
-	{% for message in get_flashed_messages() %}
-	{{ message }}
-	{% endfor %}
-
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+	<h2>Welcome to Flask!</h2>
+	<br>
+	<p>Click <a href="/">here</a> to go home.</p>
+{% endblock %}
