@@ -48,11 +48,11 @@ def login():
             or
             request.form['password'] != 'admin'
         ):
-            error = 'Invalid credentials; please try again'
+            error = 'Invalid Credentials. Please try again.'
         else:
             session['logged_in'] = True
-            flash('You are logged in.')
-            return redirect(url_for('welcome'))
+            flash('You were logged in.')
+            return redirect(url_for('home'))
     return render_template('login.html', error=error)
 
 
@@ -60,7 +60,7 @@ def login():
 @login_required
 def logout():
     session.pop('logged_in', None)
-    flash('You are logged out.')
+    flash('You were logged out.')
     return redirect(url_for('welcome'))
 
 
