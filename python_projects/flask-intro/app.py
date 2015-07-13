@@ -1,13 +1,15 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
 from flask import Flask, render_template, redirect, request, \
-    url_for, session, flash
+    url_for, session, flash, g
 
 from functools import wraps
+import sqlite3
 
 app = Flask(__name__)
 
 # TODO -- Security Problem
 app.secret_key = "Shhh! Don't Tell!"
+app.database = "sample.db"
 
 
 # login required decorator
@@ -26,7 +28,10 @@ def login_required(f):
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    return render_template('index.html')
+    g.db = connect_db()
+    cur = g.db.execute("select * from posts")
+    posts = [dict(title=row[0], description=row[1]) for row in cur.fetchall()]
+    return render_template('index.html', posts=posts)
 
 
 @app.route('/welcome')
@@ -57,6 +62,10 @@ def logout():
     session.pop('logged_in', None)
     flash('You are logged out.')
     return redirect(url_for('welcome'))
+
+
+def connect_db():
+    return sqlite3.connect(app.database)
 
 if __name__ == '__main__':
     app.run(debug=True)
