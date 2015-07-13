@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # TODO -- Security Problem
 app.secret_key = "Shhh! Don't Tell!"
-app.database = "sample.db"
+app.database = "ample.db"
 
 
 # login required decorator
@@ -28,9 +28,16 @@ def login_required(f):
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    g.db = connect_db()
-    cur = g.db.execute("select * from posts")
-    posts = [dict(title=row[0], description=row[1]) for row in cur.fetchall()]
+    posts = []
+    try:
+        g.db = connect_db()
+        cur = g.db.execute("select * from posts")
+        posts = [
+            dict(title=row[0], description=row[1])
+            for row in cur.fetchall()
+        ]
+    except sqlite3.OperationalError:
+        flash("Your database needs to be installed")
     return render_template('index.html', posts=posts)
 
 
