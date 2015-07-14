@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # TODO -- Security Problem
 app.secret_key = "Shhh! Don't Tell!"
-app.database = "ample.db"
+app.database = "sample.db"
 
 
 # login required decorator
