@@ -1,9 +1,10 @@
 import os
 
+
 # default configuration
 class BaseConfig(object):
     DEBUG = False
-    SECRET_KEY = "Shhh! Don't Tell!"
+    SECRET_KEY = '&\xcf\xb7M\xe3e\x92W+\x83\x11\xd0s\x89!r~H]e\x99P\xb6='
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
 
