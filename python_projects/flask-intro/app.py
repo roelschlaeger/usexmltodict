@@ -8,10 +8,13 @@ from functools import wraps
 
 app = Flask(__name__)
 
+import os
+app.config.from_object(os.environ['APP_SETTINGS'])
+
 # TODO -- Security Problem
-app.secret_key = "Shhh! Don't Tell!"
-app.database = "sample.db"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
+# app.secret_key = "Shhh! Don't Tell!"
+# app.database = "sample.db"
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 
 # create the sqlalchemy object
 db = SQLAlchemy(app)
@@ -72,6 +75,6 @@ def logout():
     # return sqlite3.connect(app.database)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
 #### end of file ####
