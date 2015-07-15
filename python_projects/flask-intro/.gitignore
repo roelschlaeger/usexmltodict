@@ -1,5 +1,6 @@
-youtube.md
-bootstrap-3.3.5-dist/
-venv/
 *.db
 *.pyc
+archived/
+bootstrap-3.3.5-dist/
+venv/
+youtube.md
