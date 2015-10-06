@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 02 Oct 2014 06:37:29 PM CDT
-# Last Modified: Sat 04 Oct 2014 11:36:26 AM CDT
+# Last Modified: Tue 06 Oct 2015 09:44:44 AM CDT
 
 """
 SYNOPSIS
@@ -243,8 +243,15 @@ def process(path, debug=False):
     # get the list of files
     filenames = os.listdir(path)
 
+    if debug:
+        from pprint import pprint
+        pprint(filenames)
+
     # examine each file in the directory
     for filename in filenames:
+
+        # case agnostic
+        filename = filename.lower()
 
         # looking only at the .jpg files
         if filename.endswith('.jpg'):
@@ -256,7 +263,11 @@ def process(path, debug=False):
             yr, mo, dy, hr, mn, se = get_exif_timestamp(path, filename, debug)
 
             # generate a new name like the old camera used to make
-            newname = "%2s%2s%2s%2s%2s.jpg" % (mo, dy, yr[2:], hr, mn)
+
+            # this was the old format
+####        newname = "%2s%2s%2s%2s%2s.jpg" % (mo, dy, yr[2:], hr, mn)
+            newname = "IMG_%4s%2s%2s_%2s%2s%2s_000.jpg" % \
+                (yr, mo, dy, hr, mn, se)
 
             uniquename = ensure_unique(newname, translation_table.keys())
 
@@ -295,7 +306,7 @@ if __name__ == '__main__':
     BASE = r"C:\Users\Robert Oelschlaeger\Google Drive\Caching Pictures"
     """Location of pictures containing EXIF data"""
 
-    DATE = "20141001"
+    DATE = "20151005"
     """Location of this week's pictures"""
 
     def main():
