@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # $Id: gpx2kml.py 179 2010-09-08 05:07:18Z harry $
 # Created: 	     Tue 04 Jun 2009 10:56:11 PM CDT
-# Last modified: Fri 23 May 2014 12:07:13 PM CDT
+# Last modified: Tue 27 Oct 2015 05:19:20 PM CDT
 
 ########################################################################
 
@@ -175,6 +175,8 @@ def make_generic_placemark(wpt):
     name = Element("name")
     style = Element("Style")
     xdata = Element("ExtendedData")
+    xdata.append(Data("gc_wpt_location", "%s %s" % (wpt.attrib["lat"],
+                                                    wpt.attrib["lon"])))
     point = Element("Point")
 
     wpt_name = get_gpx_text("name")
@@ -230,6 +232,8 @@ CHILD_WAYPOINT_BALLOON_STYLE style"""
     styleurl = Element("styleUrl")
     style = Element("Style")
     xdata = Element("ExtendedData")
+    xdata.append(Data("gc_wpt_location", "%s %s" % (wpt.attrib["lat"],
+                                                    wpt.attrib["lon"])))
     point = Element("Point")
 
     wpt_name = get_gpx_text("name")
@@ -288,6 +292,8 @@ GEOCACHE_BALLOON_STYLE style"""
 
     xdata = Element("ExtendedData")
     xdata.append(Data("gc_num", wpt.find(NAME_TAG).text))
+    xdata.append(Data("gc_wpt_location", "%s %s" % (wpt.attrib["lat"],
+                                                    wpt.attrib["lon"])))
 
     description = wpt.find(DESC_TAG).text
 
@@ -495,13 +501,14 @@ waypoint"""
     balloon_text = SubElement(style_balloon, "text")
     balloon_text.text = """
 <pre>
-<i><b>   name</b></i> = $[name]
-<i><b>    cmt</b></i> = $[cmt]
-<i><b>   desc</b></i> = $[desc]
-<i><b>    url</b></i> = $[url]
-<i><b>urlname</b></i> = $[urlname]
-<i><b>    sym</b></i> = $[sym]
-<i><b>   type</b></i> = $[type]
+<i><b>    name</b></i> = $[name]
+<i><b>location</b></i> = $[gc_wpt_location]
+<i><b>     cmt</b></i> = $[cmt]
+<i><b>    desc</b></i> = $[desc]
+<i><b>     url</b></i> = $[url]
+<i><b> urlname</b></i> = $[urlname]
+<i><b>     sym</b></i> = $[sym]
+<i><b>    type</b></i> = $[type]
 </pre>
 """
 
@@ -525,10 +532,16 @@ def geocache_balloon_style():
 &nbsp;
 <b>$[gc_name]</b>
 <br />
-<img src="$[gc_icon]">&nbsp;A <b>$[gc_type]</b>, by <b>$[gc_placer]</b> [<a href="http://www.geocaching.com/profile?id=$[gc_placer_id]">profile</a>]
-<br/>
+<i><b>Location:</b></i> $[gc_wpt_location]
+<br />
+<img src="$[gc_icon]">
+<br />
+A <b>$[gc_type]</b>, by <b>$[gc_placer]</b> [<a href="http://www.geocaching.com/profile?id=$[gc_placer_id]">profile</a>]
+<br />
 <i><b>Difficulty</b></i>: <img src="http://www.geocaching.com/images/stars/$[gc_diff_stars].gif" alt="$[gc_diff]">&nbsp;($[gc_diff])&nbsp;
+<br />
 <i><b>Terrain</b></i>: <img src="http://www.geocaching.com/images/stars/$[gc_terr_stars].gif" alt="$[gc_terr]">&nbsp;($[gc_terr])&nbsp;
+<br />
 <i><b>Size</b></i>: <img src="http://www.geocaching.com/images/icons/container/$[gc_cont_icon].gif" width="45" height="12">&nbsp;($[gc_cont_icon])
 <br />
 <i><b>Cache Attributes</b></i>: $[gc_wpt_cache_attr]
