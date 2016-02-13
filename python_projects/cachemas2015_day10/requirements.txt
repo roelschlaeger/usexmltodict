@@ -1,0 +1,2 @@
+LatLon23>=1.0.7
+simplekml>=1.2.8
