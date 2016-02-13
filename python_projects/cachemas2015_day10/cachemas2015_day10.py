@@ -2,18 +2,20 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Fri 12 Feb 2016 04:37:06 PM CST
-# Last Modified: Sat 13 Feb 2016 10:11:27 AM CST
+# Last Modified: Sat 13 Feb 2016 11:16:27 AM CST
 
 """
 SYNOPSIS
 
-    TODO helloworld [-h | --help] [-v | --version] [--verbose]
+    cachemas2015_day10 [-h | --help] [-v | --version] [--verbose]
 
 DESCRIPTION
 
-    TODO This describes how to use this script.
-    This docstring will be printed by the script if there is an error or
-    if the user requests help (-h or --help).
+    This program computes possible final locations for the Cachemas 2015 Day 10
+    Geocache by Strider. The final cache location is based on the number of
+    rows of bricks and the number of capstones surrounding the Dove logo sign
+    at the South County Shopping Center near Manchester and I-270, Saint Louis,
+    MO.
 
 EXAMPLES
 
@@ -31,11 +33,9 @@ LICENSE
 
     This script is in the public domain.
 
-VERSION
-
 """
 
-__VERSION__ = "0.0.1"
+__VERSION__ = "0.0.2"
 
 ########################################################################
 
@@ -62,17 +62,18 @@ def projection(location, distance, bearing):
 
 
 def job():
+    """Compute the possible final locations for the geocache"""
+
     # open a new KML file
     kml = Kml()
 
-    print " r  c    dist   bear     lat        lon"
+    print(" r  c    dist   bear     lat        lon")
 
     # row checksum is 8
     for rows in range(8, 100, 9):
 
         # compute the distance in feet
         distance = rows * FEET_PER_ROW
-
 
         # caps checksum is 10
         for caps in range(10, 100, 9):
@@ -90,9 +91,9 @@ def job():
             # get the components
             lat = proj.lat
             lon = proj.lon
-            print "%2d %2d %8.2f %6.2f %f %f" % (
+            print("%2d %2d %8.2f %6.2f %f %f" % (
                 rows, caps, distance, bearing, lat, lon
-            )
+            ))
 
             # compute a name based on rows and caps
             name = "R%d_C%d" % (rows, caps)
@@ -128,11 +129,6 @@ if __name__ == '__main__':
 
     def main():
 
-#       global OPTIONS
-
-#       # TODO: Do something more interesting here...
-#       print 'Hello world!'
-
         job()
 
 ########################################################################
@@ -142,8 +138,7 @@ if __name__ == '__main__':
 
         PARSER = argparse.ArgumentParser(
             formatter_class=argparse.RawDescriptionHelpFormatter,
-            usage=textwrap.dedent(globals()['__doc__']),
-            version="Version: %s" % __VERSION__
+            usage=textwrap.dedent(globals()['__doc__'])
         )
 
         PARSER.add_argument(
@@ -151,6 +146,13 @@ if __name__ == '__main__':
             action='store_true',
             default=False,
             help='verbose output'
+        )
+
+        PARSER.add_argument(
+            '--version',
+            '-v',
+            action='version',
+            version='\n%%(prog)s Version: %s\n' % __VERSION__
         )
 
         OPTIONS = PARSER.parse_args()
@@ -165,20 +167,20 @@ if __name__ == '__main__':
 
         if OPTIONS.verbose:
             print(time.asctime())
-            print('TOTAL TIME IN MINUTES:',)
+            print('TOTAL TIME IN MINUTES:'),
             print((time.time() - START_TIME) / 60.0)
 
         sys.exit(EXIT_CODE)
 
-    except KeyboardInterrupt, error_exception:        # Ctrl-C
+    except KeyboardInterrupt as error_exception:      # Ctrl-C
         raise error_exception
 
-    except SystemExit, error_exception:               # sys.exit()
+    except SystemExit as error_exception:             # sys.exit()
         raise error_exception
 
-    except Exception, error_exception:
-        print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(error_exception)
+    except Exception as error_exception:
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(error_exception))
         traceback.print_exc()
         os._exit(1)
 
