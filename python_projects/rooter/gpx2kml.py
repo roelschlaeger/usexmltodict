@@ -2,7 +2,9 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # $Id: gpx2kml.py 179 2010-09-08 05:07:18Z harry $
 # Created: 	     Tue 04 Jun 2009 10:56:11 PM CDT
-# Last modified: Tue 27 Oct 2015 05:19:20 PM CDT
+# Last modified: Mon 15 Feb 2016 06:50:32 PM CST
+
+from __future__ import print_function
 
 ########################################################################
 
@@ -96,11 +98,19 @@ def pretty_print(ofile, element, indent="\t"):
     from xml.dom.minidom import parseString
 
     txt = tostring(element)
-    ofile.write(
-        parseString(txt).toprettyxml(
-            indent=indent
-        ).encode('ascii', 'ignore')
-    )
+    # TODO Fix this Python VERSION dependency
+    if sys.version_info < (3,):
+        ofile.write(
+            parseString(txt).toprettyxml(
+                indent=indent
+            ).encode('ascii', 'ignore')
+        )
+    else:
+        ofile.write(
+            parseString(txt).toprettyxml(
+                indent=indent
+            )
+        )
 
 ########################################################################
 
@@ -108,7 +118,7 @@ def pretty_print(ofile, element, indent="\t"):
 def process_path(path):
     """read in the xml file returning and ElementTree"""
 
-    print "processing file %s" % path
+    print("processing file %s" % path)
 
     # read in the gpx/xml file
     return ElementTree(None, path)
@@ -138,7 +148,7 @@ def make_placemark(**kwargs):
 
     placemark = Element("Placemark")
 
-    for _value in kwargs.values():
+    for _value in list(kwargs.values()):
         placemark.append(_value)
 
     return placemark
@@ -195,7 +205,7 @@ def make_generic_placemark(wpt):
         tag = wpt_child.tag[wpt_child.tag.find('}') + 1:]
         xdata.append(Data(tag, wpt_child.text))
 
-    for _key, _value in wpt.attrib.items():
+    for _key, _value in list(wpt.attrib.items()):
         xdata.append(Data(_key, _value))
 
     coordinates = SubElement(point, "coordinates")
@@ -335,7 +345,7 @@ GEOCACHE_BALLOON_STYLE style"""
         wpt_cache_terr_stars = "stars" + wpt_cache_terr.replace(".", "_")
         wpt_cache_type = get_cache_text("type")
         wpt_cache_attributes = ", ".join(
-            ["%s=%s" % (k, v) for k, v in cache.attrib.items()]
+            ["%s=%s" % (k, v) for k, v in list(cache.attrib.items())]
         )
 
         xdata.append(Data("gc_cont_icon", wpt_cache_cont_icon))
@@ -651,7 +661,7 @@ input_filename"""
     input_tree = process_path(input_filename)
     output_tree = make_kml(input_filename, input_tree)
 
-    print "\twriting to %s" % output_filename
+    print("\twriting to %s" % output_filename)
     output_file = open(output_filename, "w")
     pretty_print(output_file, output_tree.getroot(), indent=" ")
     output_file.close()

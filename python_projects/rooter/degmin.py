@@ -2,7 +2,9 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Fri 17 Jan 2014 06:11:21 PM CST
-# Last Modified: Fri 17 Jan 2014 06:16:01 PM CST
+# Last Modified: Mon 15 Feb 2016 05:47:49 PM CST
+
+from __future__ import print_function
 
 """
 SYNOPSIS
@@ -104,8 +106,8 @@ if __name__ == '__main__':
 
         global options, args
 
-        print degmin(38.5, "NS")
-        print degmin(-90, "EW")
+        print(degmin(38.5, "NS"))
+        print(degmin(-90, "EW"))
 
 ########################################################################
 
@@ -132,7 +134,7 @@ if __name__ == '__main__':
         #       parser.error ('missing argument')
 
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
 
         exit_code = main()
 
@@ -140,21 +142,21 @@ if __name__ == '__main__':
             exit_code = 0
 
         if options.verbose:
-            print time.asctime()
-            print 'TOTAL TIME IN MINUTES:',
-            print (time.time() - start_time) / 60.0
+            print(time.asctime())
+            print('TOTAL TIME IN MINUTES:',)
+            print((time.time() - start_time) / 60.0)
 
         sys.exit(exit_code)
 
-    except KeyboardInterrupt, e:        # Ctrl-C
+    except KeyboardInterrupt as e:      # Ctrl-C
         raise e
 
-    except SystemExit, e:               # sys.exit()
+    except SystemExit as e:             # sys.exit()
         raise e
 
-    except Exception, e:
-        print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(e)
+    except Exception as e:
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(e))
         traceback.print_exc()
         os._exit(1)
 

@@ -2,7 +2,9 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # $Id: $
 # Created: 	     Fri 31 Dec 2010 05:38:29 PM CST
-# Last modified: Tue 02 Jun 2015 12:00:47 PM CDT
+# Last modified: Mon 15 Feb 2016 05:32:09 PM CST
+
+from __future__ import print_function
 
 ########################################################################
 
@@ -226,9 +228,9 @@ class MyPanel2(wx.Panel):
         if et_flag:
             output_filename = "%s.csv" % pathname
             outfile = open(output_filename, "w")
-            print >>outfile, body
+            print(body, file=outfile)
             outfile.close()
-            print "et output is in %s" % output_filename
+            print("et output is in %s" % output_filename)
 
     ########################################################################
 

@@ -2,7 +2,9 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Fri 17 Jan 2014 06:05:32 PM CST
-# Last Modified: Fri 17 Jan 2014 06:27:45 PM CST
+# Last Modified: Mon 15 Feb 2016 06:00:50 PM CST
+
+from __future__ import print_function
 
 """
 SYNOPSIS
@@ -41,7 +43,12 @@ __VERSION__ = "0.0.1"
 
 LINK = "https://www.google.com/search?q="
 
-from urllib import quote
+# was: from urllib import quote
+try:
+    from urllib.parse import quote
+except ImportError:
+    from urllib import quote
+
 from degmin import degmin
 
 ########################################################################
@@ -70,7 +77,7 @@ if __name__ == '__main__':
 
         global options, args
 
-        print maplink(38.798867, -90.508867)
+        print(maplink(38.798867, -90.508867))
 
 ########################################################################
 
@@ -97,7 +104,7 @@ if __name__ == '__main__':
         #       parser.error ('missing argument')
 
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
 
         exit_code = main()
 
@@ -105,21 +112,21 @@ if __name__ == '__main__':
             exit_code = 0
 
         if options.verbose:
-            print time.asctime()
-            print 'TOTAL TIME IN MINUTES:',
-            print (time.time() - start_time) / 60.0
+            print(time.asctime())
+            print('TOTAL TIME IN MINUTES:',)
+            print((time.time() - start_time) / 60.0)
 
         sys.exit(exit_code)
 
-    except KeyboardInterrupt, e:        # Ctrl-C
+    except KeyboardInterrupt as e:      # Ctrl-C
         raise e
 
-    except SystemExit, e:               # sys.exit()
+    except SystemExit as e:             # sys.exit()
         raise e
 
-    except Exception, e:
-        print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(e)
+    except Exception as e:
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(e))
         traceback.print_exc()
         os._exit(1)
 

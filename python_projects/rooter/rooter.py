@@ -3,7 +3,9 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Thu 18 Jun 2015 03:36:42 PM CDT
+# Last Modified: Mon 15 Feb 2016 05:48:43 PM CST
+
+from __future__ import print_function
 
 """
 SYNOPSIS
@@ -37,7 +39,7 @@ VERSION
 
 """
 
-__VERSION__ = "0.0.2"
+__VERSION__ = "0.0.3"
 
 DEBUG = False
 ELLIPSIS_MAX = 72
@@ -133,7 +135,7 @@ def create_rooter_document(gpxname):
     """Create a HTML document from the information contained in the .gpx file
     named gpxname."""
 
-    print "reading %s" % gpxname
+    print("reading %s" % gpxname)
 
     wpts, latlon_dictionary = get_wpts(gpxname)
 
@@ -175,17 +177,17 @@ def create_rooter_document(gpxname):
         if DEBUG:
             w_format = "%-20s = %-70s"
 
-            print w_format % ("lat",        str(w_lat))
-            print w_format % ("lon",        str(w_lon))
-#           print w_format % ("time",       w_time)
-            print w_format % ("name",       w_name)
-#           print w_format % ("cmt",        w_cmt)
-            print w_format % ("desc",       w_desc)
-            print w_format % ("link_href",  w_link_href)
-#           print w_format % ("link_text",  w_link_text)
-#           print w_format % ("sym",        w_sym)
-            print w_format % ("type",       w_type)
-            print w_format % ("extensions", w_extensions)
+            print(w_format % ("lat",        str(w_lat)))
+            print(w_format % ("lon",        str(w_lon)))
+#           print(w_format % ("time",       w_time))
+            print(w_format % ("name",       w_name))
+#           print(w_format % ("cmt",        w_cmt))
+            print(w_format % ("desc",       w_desc))
+            print(w_format % ("link_href",  w_link_href))
+#           print(w_format % ("link_text",  w_link_text))
+#           print(w_format % ("sym",        w_sym))
+            print(w_format % ("type",       w_type))
+            print(w_format % ("extensions", w_extensions))
 
         wptExtension = w_extensions[0]
         etag = wptExtension[0].tag
@@ -199,7 +201,7 @@ def create_rooter_document(gpxname):
             if v is not None:
                 v = v.text
             if DEBUG:
-                print "%s=%s" % (s, v)
+                print("%s=%s" % (s, v))
             return v
 
 #       e_userflag = get_ext('UserFlag')
@@ -242,7 +244,7 @@ def create_rooter_document(gpxname):
                 if v is not None:
                     v = v.text
                 if DEBUG:
-                    print "%s=%s" % (s, v)
+                    print("%s=%s" % (s, v))
                 return v
         else:
 
@@ -253,8 +255,12 @@ def create_rooter_document(gpxname):
         c_cache_available = wptCache.attrib["available"]
         c_cache_archived = wptCache.attrib["archived"]
         if DEBUG:
-            print >> sys.stderr, c_cache_id, c_cache_available, \
-                c_cache_archived
+            print(
+                c_cache_id,
+                c_cache_available,
+                c_cache_archived,
+                file=sys.stderr
+            )
 
 #       c_name = get_cext("name")
 #       c_placed_by = get_cext("placed_by")
@@ -274,7 +280,7 @@ def create_rooter_document(gpxname):
 
 ####
         if not w_name.startswith("GC"):
-            print "skipping %s" % w_name
+            print("skipping %s" % w_name)
             continue
 
         if row_number % 2:
@@ -397,7 +403,7 @@ def make_zipfile(fname):
     zipdir, zipbase = os.path.split(fname)
     zipfile, zipext = os.path.splitext(zipbase)
     zipfilename = os.path.join(zipdir, "%s.zip" % zipfile)
-    print "%s created" % zipfilename
+    print("%s created" % zipfilename)
 
     from zipfile import ZipFile
     zf = ZipFile(zipfilename, "w")
@@ -427,7 +433,7 @@ def print_rooter_document(gpxname, rooter_document, zipfile=True):
     outfile.write(rooter_document.render())
     outfile.close()
 
-    print "%s written" % outfilename
+    print("%s written" % outfilename)
 
     if zipfile:
         make_zipfile(outfilename)
@@ -505,24 +511,24 @@ if __name__ == '__main__':
 #           args = [""]
 #           parser.error ('missing argument')
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
         exit_code = main()
         if exit_code is None:
             exit_code = 0
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
         if options.verbose:
-            print 'TOTAL TIME IN MINUTES:',
+            print('TOTAL TIME IN MINUTES:'),
         if options.verbose:
-            print (time.time() - start_time) / 60.0
+            print((time.time() - start_time) / 60.0)
         sys.exit(exit_code)
-    except KeyboardInterrupt, e:        # Ctrl-C
+    except KeyboardInterrupt as e:      # Ctrl-C
         raise e
-    except SystemExit, e:               # sys.exit()
+    except SystemExit as e:             # sys.exit()
         raise e
-    except Exception, e:
-        print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(e)
+    except Exception as e:
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(e))
         traceback.print_exc()
         os._exit(1)
 
