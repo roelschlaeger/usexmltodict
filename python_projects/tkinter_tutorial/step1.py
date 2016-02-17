@@ -1,5 +1,19 @@
 #! C:\Python34\python34.EXE
 
+# Initial coding from
+# Styling GUIs and windows in Python 3 - Tkinter tutorial Python 3.4
+#
+# https://www.youtube.com/watch?v=A0gaXfM1UN0 Video 2
+# https://www.youtube.com/watch?v=Y6cir7P3YUk Video 3
+# https://www.youtube.com/watch?v=jBUpjijYtCk Video 4
+# https://www.youtube.com/watch?v=oV68QJJUXTU Video 5
+# https://www.youtube.com/watch?v=Zw6M-BnAPP0 Video 6
+# https://www.youtube.com/watch?v=JQ7QP5rPvjU&index=7&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk Video 7 & Playlist
+# https://www.youtube.com/watch?v=eJRLftYo9A0&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk&index=8 Video 8 & Playlist
+# https://www.youtube.com/watch?v=uK7wAvS8C0U&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk&index=9 Video 9 & Playlist
+
+########################################################################
+
 import sys
 if sys.version_info < (3, 0):
     raise DeprecationWarning("Only supported for Python 3.x")
@@ -19,10 +33,13 @@ from matplotlib.figure import Figure
 import tkinter as tk
 from tkinter import ttk
 
-# import urllib
-# import json
-# import pandas as pd
-# import numpy as np
+# import urllib.request
+# import urllib.parse
+# import urllib.error
+import urllib
+import json
+import pandas as pd
+import numpy as np
 
 ########################################################################
 
@@ -40,28 +57,24 @@ a = f.add_subplot(111)
 
 def animate(i):
     """Fetch data from sampleData.txt and plot it"""
-    pullData = open("sampleData.txt", "r").read()
-    dataList = pullData.split("\n")
-    xList = []
-    yList = []
-    for eachLine in dataList:
-        if len(eachLine) > 1:
-            x, y = eachLine.split(",")
-            xList.append(int(x))
-            yList.append(int(y))
-    a.clear()
-    a.plot(xList, yList)
+    dataLink = "https://btc-e.com/api/3/trades/btc_usd?limit=200"
+    data = urllib.request.urlopen(dataLink)
+    data = data.readall().decode("utf-8")
+    data = json.loads(data)
+    data = data["btc_usd"]
+    data = pd.DataFrame(data)
 
-# Initial coding from
-# Styling GUIs and windows in Python 3 - Tkinter tutorial Python 3.4
-#
-# https://www.youtube.com/watch?v=A0gaXfM1UN0 Video 2
-# https://www.youtube.com/watch?v=Y6cir7P3YUk Video 3
-# https://www.youtube.com/watch?v=jBUpjijYtCk Video 4
-# https://www.youtube.com/watch?v=oV68QJJUXTU Video 5
-# https://www.youtube.com/watch?v=Zw6M-BnAPP0 Video 6
-# https://www.youtube.com/watch?v=JQ7QP5rPvjU&index=7&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk Video 7 & Playlist
-# https://www.youtube.com/watch?v=eJRLftYo9A0&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk&index=8 Video 8 & Playlist
+    buys = data[(data['type'] == 'bid')]
+    buys_datestamp = np.array(buys["timestamp"]).astype("datetime64[s]")
+    buyDates = buys_datestamp.tolist()
+
+    sells = data[(data['type'] == 'ask')]
+    sells_datestamp = np.array(sells["timestamp"]).astype("datetime64[s]")
+    sellDates = sells_datestamp.tolist()
+
+    a.clear()
+    a.plot_date(buyDates, buys["price"])
+    a.plot_date(sellDates, sells["price"])
 
 ########################################################################
 
@@ -139,19 +152,12 @@ class PageOne(tk.Frame):
         )
         button1.pack()
 
-        # button2 = ttk.Button(
-        #     self,
-        #     text="Visit Page 2",
-        #     command=lambda: controller.show_frame(PageTwo)
-        # )
-        # button2.pack()
-
-        button3 = ttk.Button(
+        button2 = ttk.Button(
             self,
             text="Visit Graph Page",
             command=lambda: controller.show_frame(BTCePage)
         )
-        button3.pack()
+        button2.pack()
 
 ########################################################################
 
@@ -206,7 +212,7 @@ class BTCePage(tk.Frame):
 ########################################################################
 
 app = SeaofBTCapp()
-ani = animation.FuncAnimation(f, animate, interval=1000)
+ani = animation.FuncAnimation(f, animate, interval=2000)
 app.mainloop()
 
 ########################################################################
