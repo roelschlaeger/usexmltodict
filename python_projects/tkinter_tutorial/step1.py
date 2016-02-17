@@ -4,10 +4,11 @@ if sys.version_info < (3,0):
 
 import matplotlib
 matplotlib.use("TkAgg")
-# matplotlib.use("Agg")
 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-# from matplotlib.backends.backend_tkagg import NavigationToolbar2TkAgg
+from matplotlib.backends.backend_tkagg import NavigationToolbar2TkAgg
+import matplotlib.animation as animation
+from matplotlib import style
 
 from matplotlib.figure import Figure
 
@@ -15,6 +16,24 @@ import tkinter as tk
 from tkinter import ttk
 
 LARGE_FONT = ("Verdana", 12)
+style.use("ggplot")
+
+f = Figure(figsize=(5,5), dpi=100)
+a = f.add_subplot(111)
+a.plot([1,2,3,4,5,6,7,8],[5,6,1,3,8,9,3,5])
+
+def animate(i):
+    pullData = open("sampleData.txt", "r").read()
+    dataList = pullData.split("\n")
+    xList = []
+    yList = []
+    for eachLine in dataList:
+        if len(eachLine) > 1:
+            x, y = eachLine.split(",")
+            xList.append(int(x))
+            yList.append(int(y))
+    a.clear()
+    a.plot(xList, yList)
 
 # Initial coding from
 # Styling GUIs and windows in Python 3 - Tkinter tutorial Python 3.4
@@ -24,6 +43,7 @@ LARGE_FONT = ("Verdana", 12)
 # https://www.youtube.com/watch?v=jBUpjijYtCk Video 4
 # https://www.youtube.com/watch?v=oV68QJJUXTU Video 5
 # https://www.youtube.com/watch?v=Zw6M-BnAPP0 Video 6
+# https://www.youtube.com/watch?v=JQ7QP5rPvjU&index=7&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk Video 7 & Playlist
 
 class SeaofBTCapp(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -151,10 +171,6 @@ class PageThree(tk.Frame):
         )
         button1.pack()
 
-        f = Figure(figsize=(5,5), dpi=100)
-        a = f.add_subplot(111)
-        a.plot([1,2,3,4,5,6,7,8],[5,6,1,3,8,9,3,5])
-
         canvas = FigureCanvasTkAgg(f, self)
         canvas.show()
         canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
@@ -162,4 +178,5 @@ class PageThree(tk.Frame):
 
 
 app = SeaofBTCapp()
+ani = animation.FuncAnimation(f, animate, interval=1000)
 app.mainloop()
