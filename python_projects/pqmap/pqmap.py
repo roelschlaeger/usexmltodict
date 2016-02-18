@@ -2,7 +2,9 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Wed 01 Jan 2014 03:01:01 PM CST
-# Last Modified: Tue 24 Jun 2014 09:03:27 AM CDT
+# Last Modified: Thu 18 Feb 2016 09:06:27 AM CST
+
+from __future__ import print_function
 
 """
 SYNOPSIS
@@ -100,7 +102,7 @@ VERBOSE = False
 
 def is_gpxfile(arg):
     if DEBUG:
-        print "is_gpxfile(%s)" % arg
+        print("is_gpxfile(%s)" % arg)
     if os.path.isdir(arg):
         return False
     if is_zipfile(arg):
@@ -116,14 +118,14 @@ def is_gpxfile(arg):
 def do_process(kml, gpx_name, gpx):
 
     if DEBUG:
-        print "do_process(kml, %s, gpx)" % gpx_name
+        print("do_process(kml, %s, gpx)" % gpx_name)
 
     quad = get_quad(gpx)
 
     if VERBOSE:
-        print "%-60s\t%s" % (gpx_name, quad)
+        print("%-60s\t%s" % (gpx_name, quad))
     else:
-        print ".",
+        print("."),
 
     description = gpx_name
     kmldraw(kml, description, quad)
@@ -134,7 +136,7 @@ def do_process(kml, gpx_name, gpx):
 def process_zipfile(kml, pathname):
 
     if DEBUG:
-        print "process_zipfile(kml, %s)" % pathname
+        print("process_zipfile(kml, %s)" % pathname)
 
     z = ZipFile(pathname, "r")
 
@@ -158,7 +160,7 @@ def process_dir(kml, dirname):
     """Process 'dirname' which is a directory"""
 
     if DEBUG:
-        print "process_dir(kml, %s)" % dirname
+        print("process_dir(kml, %s)" % dirname)
 
     assert os.path.isdir(dirname), "%s is not a directory" % dirname
 
@@ -183,7 +185,7 @@ def process_dir(kml, dirname):
 def process_gpxfile(kml, gpxfilename):
 
     if DEBUG:
-        print "process_gpxfile(kml, %s)" % gpxfilename
+        print("process_gpxfile(kml, %s)" % gpxfilename)
 
     gpx = open(gpxfilename, "r")
     do_process(kml, gpxfilename, gpx)
@@ -195,7 +197,7 @@ def process_gpxfile(kml, gpxfilename):
 def process_file(kml, arg):
 
     if DEBUG:
-        print "process_file(kml, %s)" % arg
+        print("process_file(kml, %s)" % arg)
 
     count = 0
 
@@ -204,7 +206,7 @@ def process_file(kml, arg):
     elif is_gpxfile(arg):
         count += process_gpxfile(kml, arg)
     else:
-        print >>sys.stderr, "Skipping %s in process_file" % arg
+        print("Skipping %s in process_file" % arg, file=sys.stderr)
 
     return count
 
@@ -214,7 +216,7 @@ def process_file(kml, arg):
 def process_arg(kml, arg):
 
     if DEBUG:
-        print "process_arg(kml, %s)" % arg
+        print("process_arg(kml, %s)" % arg)
 
     count = 0
     if os.path.isdir(arg):
@@ -241,7 +243,7 @@ def main(args, options):
     count = 0
     for arg in args:
         if DEBUG or VERBOSE:
-            print "arg: %s" % arg
+            print("arg: %s" % arg)
         for globname in glob(arg):
             count += process_arg(kml, globname)
 
@@ -249,10 +251,10 @@ def main(args, options):
     kml.save(document_name)
 
     if not options.verbose:
-        print
+        print()
 
-    print "%d .gpx files processed" % count
-    print "Output is in %s" % document_name
+    print("%d .gpx files processed" % count)
+    print("Output is in %s" % document_name)
 
 #######################################################################
 
@@ -280,24 +282,24 @@ if __name__ == '__main__':
         if not args:
             args = [BASEDIR]
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
         exit_code = main(args, options)
         if exit_code is None:
             exit_code = 0
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
         if options.verbose:
-            print 'TOTAL TIME IN MINUTES:',
+            print('TOTAL TIME IN MINUTES:'),
         if options.verbose:
-            print (time.time() - start_time) / 60.0
+            print((time.time() - start_time) / 60.0)
         sys.exit(exit_code)
     except KeyboardInterrupt, e:        # Ctrl-C
         raise e
     except SystemExit, e:               # sys.exit()
         raise e
     except Exception, e:
-        print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(e)
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(e))
         traceback.print_exc()
         os._exit(1)
 
