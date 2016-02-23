@@ -2,8 +2,11 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+import sys
+
 # Created:       Wed 01 Jan 2014 05:15:26 PM CST
-# Last Modified: Mon 13 Jan 2014 07:18:18 PM CST
+# Last Modified: Tue 23 Feb 2016 12:16:07 PM CST
 
 """
 SYNOPSIS
@@ -75,9 +78,8 @@ for rcolor in range(0, 16, 4):
             lum = luminance(rcolor, gcolor, bcolor)
             if MIN_LUMINANCE <= lum <= MAX_LUMINANCE:
                 COLOR_TABLE_DICT[lum] = "80%c%c%c%c%c%c" % tuple(
-                    map(
-                        lambda x: hex(x)[-1], [rcolor, rcolor, gcolor, gcolor,
-                                               bcolor, bcolor]))
+                    hex(x)[-1] for x in [rcolor, rcolor, gcolor, gcolor, bcolor, bcolor]
+                )
 
 # COLOR_TABLE = [ COLOR_TABLE_DICT[ key ] for key in
 # sorted(COLOR_TABLE_DICT.keys()) ]
@@ -92,12 +94,21 @@ def colorgen():
 
 ########################################################################
 
-next_color = colorgen()
+NEXT_COLOR = colorgen()
+
+
+def NextColor():
+    """Return next sequential color from the generator"""
+    if sys.version_info < (3,):
+        return NEXT_COLOR.next()
+    return next(NEXT_COLOR)
+
+########################################################################
 
 
 def kmldraw(kml, description, quad, name=None, color=None):
 
-#   print description, quad
+#   print(description, quad)
     minlat, maxlat, minlon, maxlon = quad
 
     pol = kml.newpolygon()
@@ -110,13 +121,13 @@ def kmldraw(kml, description, quad, name=None, color=None):
         (minlon, maxlat),
         (minlon, minlat)
     ]
-    pol.polystyle = PolyStyle(color=color or next_color.next())
+    pol.polystyle = PolyStyle(color=color or NextColor())
 
 ########################################################################
 
 if __name__ == '__main__':
 
-    import sys
+#   import sys
     import os
     import traceback
     import optparse
@@ -178,7 +189,7 @@ if __name__ == '__main__':
                 lon = init_lon
                 lat -= extent
         kml.save("color_patches.kml")
-        print "Output in color_patches.kml"
+        print("Output in color_patches.kml")
 
     def main():
 
@@ -202,13 +213,13 @@ if __name__ == '__main__':
                 '\((\d+.\d+), (\d+.\d+), (-\d+.\d+), (-\d+.\d+)\)',
                 quad
             )
-            minlat, maxlat, minlon, maxlon = map(float, result.groups())
+            minlat, maxlat, minlon, maxlon = list(map(float, result.groups()))
             quad = (minlat, maxlat, minlon, maxlon)
 
             kmldraw(kml, name, quad)
 
         kml.save(output_filename)
-        print "Wrote to: %s" % output_filename
+        print("Wrote to: %s" % output_filename)
 
     try:
         start_time = time.time()
@@ -228,24 +239,24 @@ if __name__ == '__main__':
         #if len(args) < 1:
         #    parser.error ('missing argument')
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
         exit_code = main()
         if exit_code is None:
             exit_code = 0
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
         if options.verbose:
-            print 'TOTAL TIME IN MINUTES:',
+            print('TOTAL TIME IN MINUTES:'),
         if options.verbose:
-            print (time.time() - start_time) / 60.0
+            print((time.time() - start_time) / 60.0)
         sys.exit(exit_code)
-    except KeyboardInterrupt, e:        # Ctrl-C
+    except KeyboardInterrupt as e:      # Ctrl-C
         raise e
-    except SystemExit, e:               # sys.exit()
+    except SystemExit as e:             # sys.exit()
         raise e
-    except Exception, e:
-        print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(e)
+    except Exception as e:
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(e))
         traceback.print_exc()
         os._exit(1)
 

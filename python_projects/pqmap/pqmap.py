@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Wed 01 Jan 2014 03:01:01 PM CST
-# Last Modified: Thu 18 Feb 2016 09:06:27 AM CST
+# Last Modified: Tue 23 Feb 2016 12:39:18 PM CST
 
 from __future__ import print_function
 
@@ -125,7 +125,7 @@ def do_process(kml, gpx_name, gpx):
     if VERBOSE:
         print("%-60s\t%s" % (gpx_name, quad))
     else:
-        print("."),
+        print(".", end="")
 
     description = gpx_name
     kmldraw(kml, description, quad)
@@ -293,11 +293,11 @@ if __name__ == '__main__':
         if options.verbose:
             print((time.time() - start_time) / 60.0)
         sys.exit(exit_code)
-    except KeyboardInterrupt, e:        # Ctrl-C
+    except KeyboardInterrupt as e:      # Ctrl-C
         raise e
-    except SystemExit, e:               # sys.exit()
+    except SystemExit as e:             # sys.exit()
         raise e
-    except Exception, e:
+    except Exception as e:
         print('ERROR, UNEXPECTED EXCEPTION')
         print(str(e))
         traceback.print_exc()

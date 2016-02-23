@@ -2,8 +2,10 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+
 # Created:       Wed 01 Jan 2014 04:16:58 PM CST
-# Last Modified: Mon 13 Jan 2014 07:21:39 PM CST
+# Last Modified: Tue 23 Feb 2016 12:40:28 PM CST
 
 """
 SYNOPSIS
@@ -69,20 +71,23 @@ def get_quad(file_object, debug=False):
     result = (0, 0, 0, 0)
     tree = ET.parse(file_object)
     root = tree.getroot()
-    assert root.tag == ROOT_TAG, "Unexpected root tag: %s != %s" % (root.tag, ROOT_TAG)
+    assert root.tag == ROOT_TAG, "Unexpected root tag: %s != %s" % (
+        root.tag,
+        ROOT_TAG
+    )
 
     bounds = root.find(BOUNDS_TAG)
 
     if debug:
-        print bounds
-        print dir(bounds)
-        print bounds.items()
+        print(bounds)
+        print(dir(bounds))
+        print(list(bounds.items()))
 
     minlat = bounds.attrib["minlat"]
     maxlat = bounds.attrib["maxlat"]
     minlon = bounds.attrib["minlon"]
     maxlon = bounds.attrib["maxlon"]
-#   print minlat, maxlat, minlon, maxlon
+#   print(minlat, maxlat, minlon, maxlon)
 
     result = tuple(map(float, [minlat, maxlat, minlon, maxlon]))
     return result
@@ -109,8 +114,8 @@ if __name__ == '__main__':
 
             file_object = open(filename, "r")
 
-            print "filename: %s" % filename
-            print get_quad(file_object, debug)
+            print("filename: %s" % filename)
+            print(get_quad(file_object, debug))
 
     try:
         start_time = time.time()
@@ -128,24 +133,24 @@ if __name__ == '__main__':
             args = ["1180316_Springfield IL.gpx"]
 
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
         exit_code = main()
         if exit_code is None:
             exit_code = 0
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
         if options.verbose:
-            print 'TOTAL TIME IN MINUTES:',
+            print('TOTAL TIME IN MINUTES:'),
         if options.verbose:
-            print (time.time() - start_time) / 60.0
+            print((time.time() - start_time) / 60.0)
         sys.exit(exit_code)
-    except KeyboardInterrupt, e:        # Ctrl-C
+    except KeyboardInterrupt as e:      # Ctrl-C
         raise e
-    except SystemExit, e:               # sys.exit()
+    except SystemExit as e:             # sys.exit()
         raise e
-    except Exception, e:
-        print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(e)
+    except Exception as e:
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(e))
         traceback.print_exc()
         os._exit(1)
 
