@@ -3,7 +3,7 @@
 # if run from python2.x, support print()
 from __future__ import print_function
 
-__VERSION__ = "0.0.2"
+__VERSION__ = "0.0.3"
 
 from sqlite3 import connect
 from pprint import pprint
@@ -45,11 +45,11 @@ if __name__ == "__main__":
         all = get_all_waypoint_names(DBNAME)
 
         # get all non-geocache names
-        non = [x for x in all if x[:2] != u'GC']
+        non = [x for x in all if x[:2] != 'GC']
         print(len(non), "non-cache waypoints")
 
         # get all geocache names
-        gc = [x for x in all if x[:2] == u'GC']
+        gc = [x for x in all if x[:2] == 'GC']
         print(len(gc), "cache waypoints")
 
         print()
@@ -66,7 +66,7 @@ if __name__ == "__main__":
             # name
             trait = n[2:]
             if 2 <= len(trait) <= 5:
-                gcname = u"GC" + trait
+                gcname = "GC" + trait
                 if not gcname in gc:
                     if trait not in result:
                         result[trait] = []
