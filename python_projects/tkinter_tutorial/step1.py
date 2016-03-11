@@ -1,4 +1,5 @@
 #! C:\Python34\python34.EXE
+# vim:let g:pymode_lint_ignore="E501"
 
 # Initial coding from
 # Styling GUIs and windows in Python 3 - Tkinter tutorial Python 3.4
@@ -12,6 +13,7 @@
 # https://www.youtube.com/watch?v=eJRLftYo9A0&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk&index=8 Video 8 & Playlist
 # https://www.youtube.com/watch?v=uK7wAvS8C0U&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk&index=9 Video 9 & Playlist
 # https://www.youtube.com/watch?v=kfMSN7JEtAA&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk&index=10 Video 10 & Playlist
+# https://www.youtube.com/watch?v=sBZ8C-RAIKg&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk&index=11 # # Video 11 & Playlist
 
 ########################################################################
 
@@ -42,6 +44,8 @@ import json
 import pandas as pd
 import numpy as np
 
+from matplotlib import pyplot as plt
+
 ########################################################################
 
 LARGE_FONT = ("Verdana", 12)
@@ -49,7 +53,7 @@ style.use("ggplot")
 
 ########################################################################
 
-f = Figure(figsize=(10, 6), dpi=100)
+f = Figure()
 a = f.add_subplot(111)
 # a.plot([1,2,3,4,5,6,7,8],[5,6,1,3,8,9,3,5])
 
@@ -89,6 +93,13 @@ def animate(i):
 ########################################################################
 
 
+def popupmsg(s):
+    pass
+
+
+########################################################################
+
+
 class SeaofBTCapp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
@@ -101,6 +112,18 @@ class SeaofBTCapp(tk.Tk):
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
+
+        menubar = tk.Menu(container)
+        filemenu = tk.Menu(menubar, tearoff=0)
+        filemenu.add_command(
+            label="Save settings",
+            command=lambda: popupmsg("Not supported just yet")
+        )
+        filemenu.add_separator()
+        filemenu.add_command(label="Exit", command=quit)
+        menubar.add_cascade(label="File", menu=filemenu)
+
+        tk.Tk.config(self, menu=menubar)
 
         self.frames = {}
 
@@ -222,7 +245,8 @@ class BTCePage(tk.Frame):
 ########################################################################
 
 app = SeaofBTCapp()
-ani = animation.FuncAnimation(f, animate, interval=2000)
+app.geometry("1280x720")
+ani = animation.FuncAnimation(f, animate, interval=5000)
 app.mainloop()
 
 ########################################################################
