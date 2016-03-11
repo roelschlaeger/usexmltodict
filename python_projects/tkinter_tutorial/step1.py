@@ -11,6 +11,7 @@
 # https://www.youtube.com/watch?v=JQ7QP5rPvjU&index=7&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk Video 7 & Playlist
 # https://www.youtube.com/watch?v=eJRLftYo9A0&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk&index=8 Video 8 & Playlist
 # https://www.youtube.com/watch?v=uK7wAvS8C0U&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk&index=9 Video 9 & Playlist
+# https://www.youtube.com/watch?v=kfMSN7JEtAA&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJqLyk&index=10 Video 10 & Playlist
 
 ########################################################################
 
@@ -48,7 +49,7 @@ style.use("ggplot")
 
 ########################################################################
 
-f = Figure(figsize=(5, 5), dpi=100)
+f = Figure(figsize=(10, 6), dpi=100)
 a = f.add_subplot(111)
 # a.plot([1,2,3,4,5,6,7,8],[5,6,1,3,8,9,3,5])
 
@@ -57,7 +58,7 @@ a = f.add_subplot(111)
 
 def animate(i):
     """Fetch data from sampleData.txt and plot it"""
-    dataLink = "https://btc-e.com/api/3/trades/btc_usd?limit=200"
+    dataLink = "https://btc-e.com/api/3/trades/btc_usd?limit=2000"
     data = urllib.request.urlopen(dataLink)
     data = data.readall().decode("utf-8")
     data = json.loads(data)
@@ -73,8 +74,17 @@ def animate(i):
     sellDates = sells_datestamp.tolist()
 
     a.clear()
-    a.plot_date(buyDates, buys["price"])
-    a.plot_date(sellDates, sells["price"])
+    a.plot_date(buyDates, buys["price"], "#00A3E0", label="buys")
+    a.plot_date(sellDates, sells["price"], "#183A54", label="sells")
+    a.legend(
+        bbox_to_anchor=(0, 1.02, 1, 0.102),
+        loc=3,
+        ncol=2,
+        borderaxespad=0
+    )
+
+    title = "BTC-e BTCUSD Prices\nLast Price: " + str(data["price"][1999])
+    a.set_title(title)
 
 ########################################################################
 
