@@ -81,6 +81,16 @@ def degmin(latlon, posneg=" -"):
 
 ########################################################################
 
+def latdegmin(lat):
+    return degmin(lat, "NS")
+
+########################################################################
+
+def londegmin(lon):
+    return degmin(lon, "EW")
+
+########################################################################
+
 if __name__ == '__main__':
 
     import sys
@@ -106,8 +116,11 @@ if __name__ == '__main__':
 
         global options, args
 
-        print(degmin(38.5, "NS"))
-        print(degmin(-90, "EW"))
+        print(degmin(38.20575, "NS"))
+        print(latdegmin(38.20575))
+
+        print(degmin(-90.39094, "EW"))
+        print(londegmin(-90.39094))
 
 ########################################################################
 
