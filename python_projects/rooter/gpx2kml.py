@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # $Id: gpx2kml.py 179 2010-09-08 05:07:18Z harry $
 # Created: 	     Tue 04 Jun 2009 10:56:11 PM CDT
-# Last modified: Mon 15 Feb 2016 06:50:32 PM CST
+# Last modified: Tue 26 Apr 2016 05:41:45 PM CDT
 
 from __future__ import print_function
 
@@ -17,6 +17,7 @@ __date__ = "$Date: 2014-05-23 12:04:56 -0500 (Fri, 23 May 2014) $".split()[1]
 ########################################################################
 
 from xml.etree.ElementTree import Element, ElementTree, SubElement, tostring
+from degmin import latdegmin, londegmin
 
 import glob
 import sys
@@ -48,6 +49,8 @@ URL_TAG = None
 URLNAME_TAG = None
 WPT_TAG = None
 
+GSAK_TAG = "{http://www.gsak.net/xmlv1/6}"
+
 ########################################################################
 
 #: cache icons indexed by groundspeak:type
@@ -66,6 +69,30 @@ GEOCACHE_ICON_MAPPING = {
     "Wherigo Cache": "http://www.geocaching.com/images/kml/8.png",              # Unknown cache
     # pylint: enable-msg=C0301
 }
+
+ACCESS_ICON = "http://maps.google.com/mapfiles/kml/shapes/arrow-reverse.png"    # access to something
+PARKING_ICON = "http://maps.google.com/mapfiles/kml/shapes/parking_lot.png"     # parking for cache
+BUGLE_NOTE_ICON = "http://maps.google.com/mapfiles/kml/shapes/poi.png"          # trail location
+DEFAULT_OTHER_ICON = "http://maps.google.com/mapfiles/kml/shapes/caution.png"   # other
+START_ICON = "http://maps.google.com/mapfiles/kml/shapes/arrow.png"             # starting location
+REST_AREA_ICON = "http://maps.google.com/mapfiles/kml/shapes/toilets.png"       # rest Area
+WAYPOINT_ICON = "http://maps.google.com/mapfiles/kml/shapes/target.png"         # waypoint
+
+OTHER_ICON_MAPPING = {
+    "ACCESS": ACCESS_ICON,
+    "PARKING": PARKING_ICON,
+    "BUGLE": BUGLE_NOTE_ICON,
+    "START": START_ICON,
+    "REST": REST_AREA_ICON,
+    "WAYPOINT": WAYPOINT_ICON
+}
+
+
+def get_other_icon(text):
+    """Return a non-cache icon depending on the name of the location"""
+    # print("get_other_icon", text)
+    word = text.split()[0]
+    return OTHER_ICON_MAPPING.get(word.upper(), DEFAULT_OTHER_ICON)
 
 ########################################################################
 
@@ -167,6 +194,25 @@ def Data(name, value):
 
 ########################################################################
 
+def ExtendedData(wpt, text=None):
+    """Create an ExtendedData element with optional text; format latitude and
+longitude in degmin and degrees"""
+
+    xdata = Element("ExtendedData")
+    if text is not None:
+        xdata.append(text)
+    lat = wpt.attrib["lat"]
+    lon = wpt.attrib["lon"]
+    xdata.append(
+        Data(
+            "gc_wpt_location",
+            "%s %s (%s %s)" % (latdegmin(lat), londegmin(lon), lat, lon)
+        )
+    )
+    return xdata
+
+########################################################################
+
 
 def make_generic_placemark(wpt):
     """make a placemark without a styleUrl reference"""
@@ -184,9 +230,7 @@ def make_generic_placemark(wpt):
 
     name = Element("name")
     style = Element("Style")
-    xdata = Element("ExtendedData")
-    xdata.append(Data("gc_wpt_location", "%s %s" % (wpt.attrib["lat"],
-                                                    wpt.attrib["lon"])))
+    xdata = ExtendedData(wpt)
     point = Element("Point")
 
     wpt_name = get_gpx_text("name")
@@ -198,7 +242,6 @@ def make_generic_placemark(wpt):
     href = SubElement(icon, "href")
     href.text = DEFAULT_ICON
 
-#   for x in [x for x in wpt]:
     for wpt_child in list(wpt):
         if wpt_child.tag == TIME_TAG:
             continue
@@ -241,9 +284,7 @@ CHILD_WAYPOINT_BALLOON_STYLE style"""
     name = Element("name")
     styleurl = Element("styleUrl")
     style = Element("Style")
-    xdata = Element("ExtendedData")
-    xdata.append(Data("gc_wpt_location", "%s %s" % (wpt.attrib["lat"],
-                                                    wpt.attrib["lon"])))
+    xdata = ExtendedData(wpt)
     point = Element("Point")
 
     wpt_name = get_gpx_text("name")
@@ -300,11 +341,7 @@ GEOCACHE_BALLOON_STYLE style"""
     href = SubElement(icon, "href")
     href.text = "http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png"
 
-    xdata = Element("ExtendedData")
-    xdata.append(Data("gc_num", wpt.find(NAME_TAG).text))
-    xdata.append(Data("gc_wpt_location", "%s %s" % (wpt.attrib["lat"],
-                                                    wpt.attrib["lon"])))
-
+    xdata = ExtendedData(wpt, Data("gc_num", wpt.find(NAME_TAG).text))
     description = wpt.find(DESC_TAG).text
 
     wpt_name = wpt.find(NAME_TAG).text
@@ -319,12 +356,15 @@ GEOCACHE_BALLOON_STYLE style"""
     # the location of the 'cache' tag has changed, now it is part of
     # <extensions>
     cache = None
+    wpt_extension = None
     if GPX_TAG == '{http://www.topografix.com/GPX/1/0}':
         cache = wpt.find(CACHE_TAG + "cache")
     else:
         extensions = wpt.find(EXTENSIONS_TAG)
         if extensions is not None:
             cache = extensions.find(CACHE_TAG + "cache")
+            wpt_extension = extensions.find(GSAK_TAG + "wptExtension")
+            # print(wpt_extension)
 
     if cache is not None:
         def get_cache_text(tag):
@@ -366,7 +406,11 @@ GEOCACHE_BALLOON_STYLE style"""
             wpt_cache_type,
             "http://www.geocaching.com/images/kml/1.png"
         )
-        xdata.append(Data("gc_icon",       href.text))
+
+        if wpt_cache_type == "Other":
+            href.text = get_other_icon(description)
+
+        xdata.append(Data("gc_icon", href.text))
 
         # modify the name to reflect availability and archive status
         archived = cache.attrib["archived"]
@@ -392,6 +436,18 @@ GEOCACHE_BALLOON_STYLE style"""
         else:
             xdata.append(Data("gc_issues", ""))
 
+    if wpt_extension is not None:
+        def get_extension_text(tag):
+            """return found cache tag text value or empty string"""
+            value = wpt_extension.find(GSAK_TAG + tag)
+            if value is not None:
+                return value.text
+            return ""
+        user_sort = get_extension_text("UserSort")
+        # adjust name.text to include user_sort
+        name.text = "%s - %s" % (user_sort, name.text)
+
+    # now create the PlaceMark
     point = Element("Point")
     coordinates = SubElement(point, "coordinates")
     coordinates.text = "%s,%s" % (wpt.attrib["lon"], wpt.attrib["lat"])
@@ -682,8 +738,7 @@ def main(args, options):
 
 if __name__ == "__main__":
 
-    from optparse import OptionParser
-#   import sys
+    from argparse import ArgumentParser
 
     DESCRIPTION = __doc__
     USAGE = "%prog { options } { filename ... } }"
@@ -694,28 +749,37 @@ specified with the -o/--output option, the generated output filename will be
 the input filename + ".kml" extension.
 """
 
-    PARSER = OptionParser(
+    PARSER = ArgumentParser(
         description=DESCRIPTION,
         usage=USAGE,
         version=VERSION,
         epilog=EPILOG,
     )
 
-    PARSER.add_option("-d",
-                      "--debug",
-                      dest="debug",
-                      action="count",
-                      help="increment debug counter"
-                      )
+    PARSER.add_argument(
+        "-d",
+        "--debug",
+        dest="debug",
+        action="count",
+        help="increment debug counter"
+    )
 
-    PARSER.add_option("-o",
-                      "--output",
-                      dest="output_file",
-                      action="store",
-                      help="set output file (default: %default)",
-                      )
+    PARSER.add_argument(
+        "-o",
+        "--output",
+        dest="output_file",
+        action="store",
+        help="set output file (default: %default)",
+    )
 
-    (OPTIONS, ARGS) = PARSER.parse_args()
+    PARSER.add_argument("files", nargs="*")
+
+    namespace = PARSER.parse_args()
+
+    (OPTIONS, ARGS) = (
+        namespace,
+        namespace.files
+    )
 
     if not ARGS:
 
