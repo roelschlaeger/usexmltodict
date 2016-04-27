@@ -89,14 +89,28 @@ OTHER_ICON_MAPPING = {
     "TRAILHEAD": TRAILHEAD_ICON,
 }
 
+LABELLED_PIN_ICON = "http://maps.google.com/mapfiles/kml/paddle/%c.png"       #
 MISSING_SYMTYPE_ICON = "http://maps.google.com/mapfiles/kml/shapes/info_circle.png"
 
 def get_other_icon(text):
     """Return a non-cache icon depending on the name of the location"""
     if text is None:
         return MISSING_SYMTYPE_ICON
+
+    # get the first word of the symbol type
     word = text.split()[0]
-    return OTHER_ICON_MAPPING.get(word.upper(), DEFAULT_OTHER_ICON)
+    word = word.upper()
+    # return the types we know
+    if word in OTHER_ICON_MAPPING:
+        return OTHER_ICON_MAPPING[word]
+    # get the first letter, already uppercase
+    c = word[0]
+    # there are icons for all letters and digits
+    if c.isalpha() or c.isdigit():
+        return LABELLED_PIN_ICON % c
+    # otherwise return something else
+    return DEFAULT_OTHER_ICON
+
 
 ########################################################################
 
@@ -419,7 +433,6 @@ GEOCACHE_BALLOON_STYLE style"""
 
         if wpt_cache_type == "Other":
             symbol_type = get_gpx_text("sym")
-            # print("symbol_type = ", symbol_type)
             href.text = get_other_icon(symbol_type)
 
         xdata.append(Data("gc_icon", href.text))
