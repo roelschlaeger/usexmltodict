@@ -77,6 +77,7 @@ DEFAULT_OTHER_ICON = "http://maps.google.com/mapfiles/kml/shapes/caution.png"   
 START_ICON = "http://maps.google.com/mapfiles/kml/shapes/arrow.png"             # starting location
 REST_AREA_ICON = "http://maps.google.com/mapfiles/kml/shapes/toilets.png"       # rest Area
 WAYPOINT_ICON = "http://maps.google.com/mapfiles/kml/shapes/target.png"         # waypoint
+TRAILHEAD_ICON = "http://maps.google.com/mapfiles/kml/shapes/trail.png"         # trailhead
 
 OTHER_ICON_MAPPING = {
     "ACCESS": ACCESS_ICON,
@@ -84,13 +85,16 @@ OTHER_ICON_MAPPING = {
     "BUGLE": BUGLE_NOTE_ICON,
     "START": START_ICON,
     "REST": REST_AREA_ICON,
-    "WAYPOINT": WAYPOINT_ICON
+    "WAYPOINT": WAYPOINT_ICON,
+    "TRAILHEAD": TRAILHEAD_ICON,
 }
 
+MISSING_SYMTYPE_ICON = "http://maps.google.com/mapfiles/kml/shapes/info_circle.png"
 
 def get_other_icon(text):
     """Return a non-cache icon depending on the name of the location"""
-    # print("get_other_icon", text)
+    if text is None:
+        return MISSING_SYMTYPE_ICON
     word = text.split()[0]
     return OTHER_ICON_MAPPING.get(word.upper(), DEFAULT_OTHER_ICON)
 
@@ -329,6 +333,13 @@ def make_geocache_placemark(wpt):
     """create and return a Waypoint placemark using the
 GEOCACHE_BALLOON_STYLE style"""
 
+    def get_gpx_text(tag):
+        """return found gpx tag.text value or empty string"""
+        value = wpt.find(GPX_TAG + tag)
+        if value is not None:
+            return value.text
+        return ""
+
     # create elements needed for creating a placemark
     name = Element('name')
 
@@ -364,7 +375,6 @@ GEOCACHE_BALLOON_STYLE style"""
         if extensions is not None:
             cache = extensions.find(CACHE_TAG + "cache")
             wpt_extension = extensions.find(GSAK_TAG + "wptExtension")
-            # print(wpt_extension)
 
     if cache is not None:
         def get_cache_text(tag):
@@ -408,7 +418,9 @@ GEOCACHE_BALLOON_STYLE style"""
         )
 
         if wpt_cache_type == "Other":
-            href.text = get_other_icon(description)
+            symbol_type = get_gpx_text("sym")
+            # print("symbol_type = ", symbol_type)
+            href.text = get_other_icon(symbol_type)
 
         xdata.append(Data("gc_icon", href.text))
 
