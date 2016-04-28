@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 28 Apr 2016 02:05:46 PM CDT
-# Last Modified: Thu 28 Apr 2016 02:21:43 PM CDT
+# Last Modified: Thu 28 Apr 2016 02:37:53 PM CDT
 
 """
 SYNOPSIS
@@ -77,37 +77,38 @@ if __name__ == '__main__':
 #    pass
 #atexit.register(readline.write_history_file, histfile)
 
-    def test_bacon():
-        result = bacon(
-            [
-                "AAAAA",
-                "AAAAB",
-                "AAABA",
-                "AAABB",
-                "AABAA",
-                "AABAB",
-                "AABBA",
-                "AABBB",
-                "ABAAA",
-                "ABAAB",
-                "ABABA",
-                "ABABB",
-                "ABBAA",
-                "ABBAB",
-                "ABBBA",
-                "ABBBB",
-                "BAAAA",
-                "BAAAB",
-                "BAABA",
-                "BAABB",
-                "BABAA",
-                "BABAB",
-                "BABBA",
-                "BABBB",
-            ],
-            "A",
-            "B")
+    sba = [
+        "AAAAA",
+        "AAAAB",
+        "AAABA",
+        "AAABB",
+        "AABAA",
+        "AABAB",
+        "AABBA",
+        "AABBB",
+        "ABAAA",
+        "ABAAB",
+        "ABABA",
+        "ABABB",
+        "ABBAA",
+        "ABBAB",
+        "ABBBA",
+        "ABBBB",
+        "BAAAA",
+        "BAAAB",
+        "BAABA",
+        "BAABB",
+        "BABAA",
+        "BABAB",
+        "BABBA",
+        "BABBB",
+    ]
 
+    def test_bacon():
+        import itertools
+        ba = itertools.product("AB", repeat=5)
+        sba = ["".join(s) for s in ba]
+        result = bacon(sba, "A", "B")
         print(result)
 
 ########################################################################
