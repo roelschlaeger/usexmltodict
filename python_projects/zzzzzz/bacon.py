@@ -2,18 +2,18 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 28 Apr 2016 02:05:46 PM CDT
-# Last Modified: Thu 28 Apr 2016 02:42:40 PM CDT
+# Last Modified: Thu 28 Apr 2016 03:41:02 PM CDT
 
 """
 SYNOPSIS
 
-    TODO helloworld [-h | --help] [-v | --version] [--verbose]
+    bacon [-h | --help] [-v | --version] [--verbose] | [-r | --reverse]
 
 DESCRIPTION
 
-    TODO This describes how to use this script.
-    This docstring will be printed by the script if there is an error or
-    if the user requests help (-h or --help).
+    Tests a Bacon cipher with all possible 5-character strings, optionally
+    reversed. This Bacon cipher merges i/j and u/v; other codes are noted as
+    errors.
 
 EXAMPLES
 
@@ -35,7 +35,9 @@ VERSION
 
 """
 
-__VERSION__ = "0.0.1"
+from __future__ import print_function
+
+__VERSION__ = "0.0.2"
 
 ########################################################################
 
@@ -43,12 +45,22 @@ __VERSION__ = "0.0.1"
 BACON = "ABCDEFGHIKLMNOPQRSTUWXYZ"
 
 
-def bacon(slist, l, h):
+def bacon(slist, l, h, reverse=False):
+
     out = []
     for s in slist:
+
+        # reverse the string?
+        if reverse:
+            s = "".join(reversed(list(s)))
+
         s = s.replace(l, "0")
         s = s.replace(h, "1")
-        n = int(s, 2)
+        try:
+            n = int(s, 2)
+        except ValueError as e:
+            print(e)
+            n = 31
         if n < len(BACON):
             out.append(BACON[n])
         else:
@@ -78,38 +90,11 @@ if __name__ == '__main__':
 #    pass
 #atexit.register(readline.write_history_file, histfile)
 
-    sba = [
-        "AAAAA",
-        "AAAAB",
-        "AAABA",
-        "AAABB",
-        "AABAA",
-        "AABAB",
-        "AABBA",
-        "AABBB",
-        "ABAAA",
-        "ABAAB",
-        "ABABA",
-        "ABABB",
-        "ABBAA",
-        "ABBAB",
-        "ABBBA",
-        "ABBBB",
-        "BAAAA",
-        "BAAAB",
-        "BAABA",
-        "BAABB",
-        "BABAA",
-        "BABAB",
-        "BABBA",
-        "BABBB",
-    ]
-
-    def test_bacon():
+    def test_bacon(reverse=False):
         import itertools
         ba = itertools.product("AB", repeat=5)
         sba = ["".join(s) for s in ba]
-        result = bacon(sba, "A", "B")
+        result = bacon(sba, "A", "B", reverse)
         print(result)
 
 ########################################################################
@@ -118,7 +103,7 @@ if __name__ == '__main__':
 
         global OPTIONS
 
-        test_bacon()
+        test_bacon(reverse=OPTIONS.reverse)
 
 ########################################################################
 
@@ -138,10 +123,18 @@ if __name__ == '__main__':
             help='verbose output'
         )
 
+        PARSER.add_argument(
+            '-r',
+            '--reverse',
+            action='store_true',
+            default=False,
+            help='reverse code string'
+        )
+
         OPTIONS = PARSER.parse_args()
 
         if OPTIONS.verbose:
-            print time.asctime()
+            print(time.asctime())
 
         EXIT_CODE = main()
 
@@ -149,21 +142,21 @@ if __name__ == '__main__':
             EXIT_CODE = 0
 
         if OPTIONS.verbose:
-            print time.asctime()
-            print 'TOTAL TIME IN MINUTES:',
-            print (time.time() - START_TIME) / 60.0
+            print(time.asctime())
+            print('TOTAL TIME IN MINUTES:',)
+            print((time.time() - START_TIME) / 60.0)
 
         sys.exit(EXIT_CODE)
 
-    except KeyboardInterrupt, error_exception:        # Ctrl-C
+    except KeyboardInterrupt as error_exception:        # Ctrl-C
         raise error_exception
 
-    except SystemExit, error_exception:               # sys.exit()
+    except SystemExit as error_exception:               # sys.exit()
         raise error_exception
 
-    except Exception, error_exception:
-        print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(error_exception)
+    except Exception as error_exception:
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(error_exception))
         traceback.print_exc()
         os._exit(1)
 

@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 27 Apr 2016 08:03:11 AM CDT
-# Last Modified: Thu 28 Apr 2016 02:19:41 PM CDT
+# Last Modified: Thu 28 Apr 2016 03:44:55 PM CDT
 
 """
 SYNOPSIS
@@ -112,19 +112,18 @@ def print_by_blocks(s, l):
 
 ########################################################################
 
+# from pprint import pprint
+from bacon import bacon
 
-def process():
+
+def process(reverse):
     zzz = ZZZ.split("\n")[1:-1]
-    # print(len(zzz))
-    # for line in zzz:
-    #     print(len(line), line)
     allz = "".join(zzz)
-    allz = allz.replace("Z", ".")
-    print()
-    print(len(allz))
-    print()
-    for div in range(5, (len(allz) / 5) + 1):
-        print_by_blocks(allz, div)
+#   allz = "".join(reversed(list(allz)))
+#   pprint(allz)
+#   allz = "".join(allz)
+    bb = split_by_blocks(allz, 5)
+    print(bacon(bb, "Z", "z", reverse=reverse))
 
 ########################################################################
 
@@ -154,7 +153,7 @@ if __name__ == '__main__':
 
         global OPTIONS
 
-        process()
+        process(OPTIONS.reverse)
 
 ########################################################################
 
@@ -172,6 +171,14 @@ if __name__ == '__main__':
             action='store_true',
             default=False,
             help='verbose output'
+        )
+
+        PARSER.add_argument(
+            '-r',
+            '--reverse',
+            action='store_true',
+            default=False,
+            help='reverse strings to bacon()'
         )
 
         OPTIONS = PARSER.parse_args()
