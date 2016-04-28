@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 28 Apr 2016 02:05:46 PM CDT
-# Last Modified: Thu 28 Apr 2016 02:37:53 PM CDT
+# Last Modified: Thu 28 Apr 2016 02:42:40 PM CDT
 
 """
 SYNOPSIS
@@ -52,7 +52,8 @@ def bacon(slist, l, h):
         if n < len(BACON):
             out.append(BACON[n])
         else:
-            out.append(" %s ? " % s)
+            print("bacon: %s ? " % s)
+            out.append('0b%s' % s)
     return out
 
 ########################################################################

@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Thu 28 Apr 2016 01:54:47 PM CDT
-# Last Modified: Thu 28 Apr 2016 02:22:37 PM CDT
+# Last Modified: Thu 28 Apr 2016 02:39:44 PM CDT
 
 from __future__ import print_function
 
@@ -65,6 +65,9 @@ print_by_blocks(az1, 5)
 b = split_by_blocks(az1, 5)
 print(b)
 result = bacon(b, "z", "Z")
+pprint(result)
+print()
+result = bacon(b, "Z", "z")
 pprint(result)
 print()
 sys.exit()
