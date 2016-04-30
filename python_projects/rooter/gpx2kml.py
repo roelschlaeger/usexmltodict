@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # $Id: gpx2kml.py 179 2010-09-08 05:07:18Z harry $
 # Created: 	     Tue 04 Jun 2009 10:56:11 PM CDT
-# Last modified: Tue 26 Apr 2016 05:41:45 PM CDT
+# Last modified: Sat 30 Apr 2016 03:12:50 PM CDT
 
 from __future__ import print_function
 
@@ -217,14 +217,24 @@ def ExtendedData(wpt, text=None):
 longitude in degmin and degrees"""
 
     xdata = Element("ExtendedData")
+
     if text is not None:
         xdata.append(text)
+
     lat = wpt.attrib["lat"]
     lon = wpt.attrib["lon"]
+
+    xdata.append(
+        Data(
+            "gc_wpt_location_degmin",
+            "%s %s" % (latdegmin(lat), londegmin(lon))
+        )
+    )
+
     xdata.append(
         Data(
             "gc_wpt_location",
-            "%s %s (%s %s)" % (latdegmin(lat), londegmin(lon), lat, lon)
+            "%s %s" % (lat, lon)
         )
     )
     return xdata
@@ -592,14 +602,15 @@ waypoint"""
     balloon_text = SubElement(style_balloon, "text")
     balloon_text.text = """
 <pre>
-<i><b>    name</b></i> = $[name]
-<i><b>location</b></i> = $[gc_wpt_location]
-<i><b>     cmt</b></i> = $[cmt]
-<i><b>    desc</b></i> = $[desc]
-<i><b>     url</b></i> = $[url]
-<i><b> urlname</b></i> = $[urlname]
-<i><b>     sym</b></i> = $[sym]
-<i><b>    type</b></i> = $[type]
+<i><b>             name</b></i>  = $[name]
+<i><b>location</b> (degmin)</i>  = $[gc_wpt_location_degmin]
+<i><b>location</b> (degrees)</i> = $[gc_wpt_location]
+<i><b>               cmt</b></i> = $[cmt]
+<i><b>              desc</b></i> = $[desc]
+<i><b>               url</b></i> = $[url]
+<i><b>           urlname</b></i> = $[urlname]
+<i><b>               sym</b></i> = $[sym]
+<i><b>              type</b></i> = $[type]
 </pre>
 """
 
@@ -623,7 +634,9 @@ def geocache_balloon_style():
 &nbsp;
 <b>$[gc_name]</b>
 <br />
-<i><b>Location:</b></i> $[gc_wpt_location]
+<i><b>Location:</b></i> (degmin) $[gc_wpt_location_degmin]
+<br />
+<i><b>Location:</b></i> (degrees) $[gc_wpt_location]
 <br />
 <img src="$[gc_icon]">
 <br />
