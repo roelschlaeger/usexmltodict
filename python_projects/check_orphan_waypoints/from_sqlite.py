@@ -1,9 +1,44 @@
-#! C:\Users\Robert Oelschlaeger\AppData\Local\Programs\Python\Python35\python35.EXE
+# vim:ts=4:sw=4:tw=0:wm=0:et
+
+# =*- encoding=utf-8 -*-
 
 # if run from python2.x, support print()
+
+"""
+SYNOPSIS
+
+    from_sqlite [-h | --help] [-v | --version] [--verbose] [ -k | --kansas ]
+
+DESCRIPTION
+
+    Examine waypoint names in sqlite3.db for orphaned waypoints == no parent
+    GC.
+
+EXAMPLES
+
+    from_sqlite
+
+    from_sqlite --kansas
+
+EXIT STATUS
+
+    TODO: List exit codes
+
+AUTHOR
+
+    TODO: Robert Oelschlaeger <roelsch2009@gmail.com>
+
+LICENSE
+
+    This script is in the public domain.
+
+VERSION
+
+"""
+
 from __future__ import print_function
 
-__VERSION__ = "0.0.3"
+__VERSION__ = "0.0.4"
 
 from sqlite3 import connect
 from pprint import pprint
@@ -32,17 +67,31 @@ def get_all_waypoint_names(dbname):
 
 if __name__ == "__main__":
 
+    import argparse
+    import os
+    import sys
+    import textwrap
+    import time
+    import traceback
+
     ########################################################################
 
     DBNAME = './Default/sqlite.db3'
+    KB_DBNAME = './Kansas/sqlite.db3'
 
     def main():
 
         """Compute all waypoint names that don't have a geocache parent"""
 
+        dbname = DBNAME
+        if OPTIONS.kansas:
+            dbname = KB_DBNAME
+
+        print("Processing from %s" % dbname)
+
         print()
 
-        all = get_all_waypoint_names(DBNAME)
+        all = get_all_waypoint_names(dbname)
 
         # get all non-geocache names
         non = [x for x in all if x[:2] != 'GC']
@@ -78,6 +127,58 @@ if __name__ == "__main__":
 
     ########################################################################
 
-    main()
+    try:
+
+        START_TIME = time.time()
+
+        PARSER = argparse.ArgumentParser(
+            formatter_class=argparse.RawDescriptionHelpFormatter,
+            usage=textwrap.dedent(globals()['__doc__']),
+            version="Version: %s" % __VERSION__
+        )
+
+        PARSER.add_argument(
+            '--verbose',
+            action='store_true',
+            default=False,
+            help='verbose output'
+        )
+
+        PARSER.add_argument(
+            '-k',
+            '--kansas',
+            action='store_true',
+            default=False,
+            help='use Kansas database'
+        )
+
+        OPTIONS = PARSER.parse_args()
+
+        if OPTIONS.verbose:
+            print(time.asctime())
+
+        EXIT_CODE = main()
+
+        if EXIT_CODE is None:
+            EXIT_CODE = 0
+
+        if OPTIONS.verbose:
+            print(time.asctime())
+            print('TOTAL TIME IN MINUTES:',)
+            print((time.time() - START_TIME) / 60.0)
+
+        sys.exit(EXIT_CODE)
+
+    except KeyboardInterrupt, error_exception:        # Ctrl-C
+        raise error_exception
+
+    except SystemExit, error_exception:               # sys.exit()
+        raise error_exception
+
+    except Exception, error_exception:
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(error_exception))
+        traceback.print_exc()
+        os._exit(1)
 
 # end of file
