@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Mon 02 May 2016 03:15:43 PM CDT
-# Last Modified: Tue 03 May 2016 11:35:11 AM CDT
+# Last Modified: Tue 03 May 2016 11:49:26 AM CDT
 
 """
 SYNOPSIS
@@ -208,6 +208,8 @@ Y3
 
 
 """
+
+from both_txt import *
 
 
 def decode(strings):

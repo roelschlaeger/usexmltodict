@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 03 May 2016 11:22:03 AM CDT
-# Last Modified: Tue 03 May 2016 11:32:17 AM CDT
+# Last Modified: Tue 03 May 2016 03:20:50 PM CDT
 
 """
 SYNOPSIS
@@ -40,21 +40,40 @@ __VERSION__ = "0.0.1"
 ########################################################################
 
 from read_image import read_image, LATITUDE_IMAGE, LONGITUDE_IMAGE
+from read_image import MY_LATITUDE_IMAGE
 from im2holl import image_to_hollerith, hollerith_to_strings
 
 
-def process():
-
-#   lat_list = read_image(LATITUDE_IMAGE)
-    lon_list = read_image(LONGITUDE_IMAGE)
-    lon_hollerith = image_to_hollerith(lon_list)
-    lon_string = hollerith_to_strings(lon_hollerith)
-    print(r'LONGITUDE = """')
-    for s in lon_string:
+def process_one(image, sname):
+    one_list = read_image(image)
+    one_hollerith = image_to_hollerith(one_list)
+    one_string = hollerith_to_strings(one_hollerith)
+    print(r'%s = """' % sname)
+    for s in one_string:
         print s
     print(r'"""')
-#   from pprint import pprint
-#   pprint(lon_string)
+
+def process():
+
+#   process_one(LATITUDE_IMAGE, "LATITUDE")
+#   process_one(LONGITUDE_IMAGE, "LONGITUDE")
+    process_one(MY_LATITUDE_IMAGE, "MY_LATITUDE")
+
+#   lat_list = read_image(LATITUDE_IMAGE)
+#   lat_hollerith = image_to_hollerith(lat_list)
+#   lat_string = hollerith_to_strings(lat_hollerith)
+#   print(r'LATITUDE = """')
+#   for s in lat_string:
+#       print s
+#   print(r'"""')
+
+#   lon_list = read_image(LONGITUDE_IMAGE)
+#   lon_hollerith = image_to_hollerith(lon_list)
+#   lon_string = hollerith_to_strings(lon_hollerith)
+#   print(r'LONGITUDE = """')
+#   for s in lon_string:
+#       print s
+#   print(r'"""')
 
 if __name__ == '__main__':
 

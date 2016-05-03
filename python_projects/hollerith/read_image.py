@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 03 May 2016 09:33:16 AM CDT
-# Last Modified: Tue 03 May 2016 11:34:17 AM CDT
+# Last Modified: Tue 03 May 2016 04:02:07 PM CDT
 
 """
 SYNOPSIS
@@ -47,26 +47,51 @@ HOLLERITH_ROWS = 12
 HOLLERITH_COLUMNS = 80
 
 # STARTX = 28 # for LATITUDE image
+# STARTX = 27 # for LONGITUDE image
+# STARTX = 28 # for RGS' images
 STARTX = 27
-PITCHX = 582 / float(HOLLERITH_COLUMNS - 1)
+# ENDX = 609
+ENDX = 738
+
+PITCHX = (ENDX - STARTX) / float(HOLLERITH_COLUMNS - 1)
 
 # STARTY = 25 # for LATITUDE image
-STARTY = 27
-PITCHY = 240 / float(HOLLERITH_ROWS - 1)
+# STARTY = 27 # for RGS' images
+# ENDY = 267 # for RGS' images
+STARTY = 26
+ENDY = 320
+PITCHY = (ENDY - STARTY) / float(HOLLERITH_ROWS - 1)
 
 LATITUDE_IMAGE = "latitude_95f9df43-b70c-49a0-ae72-2a1022699560_l.jpg"
 LONGITUDE_IMAGE = "longitude_b81af7c3-b9cf-46f5-b283-3cdf15db0250_l.jpg"
+MY_LATITUDE_IMAGE = "my_latitude.jpg"
 
 
-def read_image(name):
+def read_image(
+    name,
+    start_x=STARTX,
+    pitch_x=PITCHX,
+    start_y=STARTY,
+    pitch_y=PITCHY
+):
+
+    if 0:
+        print(
+            name,
+            start_x,
+            pitch_x,
+            start_y,
+            pitch_y
+        )
+
     im = Image.open(name)
     color = (255, 0, 0)
     rowdata = []
     for col in range(HOLLERITH_COLUMNS):
-        x = int(STARTX + PITCHX * col)
+        x = int(start_x + pitch_x * col)
         coldata = []
         for row in range(HOLLERITH_ROWS):
-            y = int(STARTY + PITCHY * row)
+            y = int(start_y + pitch_y * row)
             coord = (x, y)
             coldata.append(im.getpixel(coord))
             im.putpixel(coord, color)
