@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # $Id: gpx2kml.py 179 2010-09-08 05:07:18Z harry $
 # Created: 	     Tue 04 Jun 2009 10:56:11 PM CDT
-# Last modified: Sat 30 Apr 2016 03:12:50 PM CDT
+# Last modified: Mon 09 May 2016 03:07:41 PM CDT
 
 from __future__ import print_function
 
@@ -21,6 +21,7 @@ from degmin import latdegmin, londegmin
 
 import glob
 import sys
+import os.path
 
 ########################################################################
 
@@ -91,6 +92,7 @@ OTHER_ICON_MAPPING = {
 
 LABELLED_PIN_ICON = "http://maps.google.com/mapfiles/kml/paddle/%c.png"       #
 MISSING_SYMTYPE_ICON = "http://maps.google.com/mapfiles/kml/shapes/info_circle.png"
+
 
 def get_other_icon(text):
     """Return a non-cache icon depending on the name of the location"""
@@ -753,7 +755,7 @@ input_filename"""
         output_filename = input_filename + ".kml"
 
     input_tree = process_path(input_filename)
-    output_tree = make_kml(input_filename, input_tree)
+    output_tree = make_kml(os.path.basename(input_filename), input_tree)
 
     print("\twriting to %s" % output_filename)
     output_file = open(output_filename, "w")
