@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # $Id: gpx2kml.py 179 2010-09-08 05:07:18Z harry $
 # Created: 	     Tue 04 Jun 2009 10:56:11 PM CDT
-# Last modified: Mon 09 May 2016 03:07:41 PM CDT
+# Last modified: Tue 10 May 2016 09:44:42 AM CDT
 
 from __future__ import print_function
 
@@ -72,22 +72,24 @@ GEOCACHE_ICON_MAPPING = {
 }
 
 ACCESS_ICON = "http://maps.google.com/mapfiles/kml/shapes/arrow-reverse.png"    # access to something
-PARKING_ICON = "http://maps.google.com/mapfiles/kml/shapes/parking_lot.png"     # parking for cache
 BUGLE_NOTE_ICON = "http://maps.google.com/mapfiles/kml/shapes/poi.png"          # trail location
 DEFAULT_OTHER_ICON = "http://maps.google.com/mapfiles/kml/shapes/caution.png"   # other
-START_ICON = "http://maps.google.com/mapfiles/kml/shapes/arrow.png"             # starting location
+PARKING_ICON = "http://maps.google.com/mapfiles/kml/shapes/parking_lot.png"     # parking for cache
 REST_AREA_ICON = "http://maps.google.com/mapfiles/kml/shapes/toilets.png"       # rest Area
-WAYPOINT_ICON = "http://maps.google.com/mapfiles/kml/shapes/target.png"         # waypoint
+START_ICON = "http://maps.google.com/mapfiles/kml/shapes/arrow.png"             # starting location
+TEN_ICON = "http://maps.google.com/mapfiles/kml/paddle/10.png"                  # 10
 TRAILHEAD_ICON = "http://maps.google.com/mapfiles/kml/shapes/trail.png"         # trailhead
+WAYPOINT_ICON = "http://maps.google.com/mapfiles/kml/shapes/target.png"         # waypoint
 
 OTHER_ICON_MAPPING = {
+    "10": TEN_ICON,
     "ACCESS": ACCESS_ICON,
-    "PARKING": PARKING_ICON,
     "BUGLE": BUGLE_NOTE_ICON,
-    "START": START_ICON,
+    "PARKING": PARKING_ICON,
     "REST": REST_AREA_ICON,
-    "WAYPOINT": WAYPOINT_ICON,
+    "START": START_ICON,
     "TRAILHEAD": TRAILHEAD_ICON,
+    "WAYPOINT": WAYPOINT_ICON,
 }
 
 LABELLED_PIN_ICON = "http://maps.google.com/mapfiles/kml/paddle/%c.png"       #
@@ -108,7 +110,7 @@ def get_other_icon(text):
     # get the first letter, already uppercase
     c = word[0]
     # there are icons for all letters and digits
-    if c.isalpha() or c.isdigit():
+    if c.isalpha() or (c.isdigit() and (c != "0")):
         return LABELLED_PIN_ICON % c
     # otherwise return something else
     return DEFAULT_OTHER_ICON
