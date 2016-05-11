@@ -1,90 +1,102 @@
-from xml.etree import ElementTree as ET
+__PROGRAM_NAME__ = "make_rte.py"
 
+from xml.etree import ElementTree as ET
+from gpx2kml import pretty_print
+
+DEBUG = False
 OUTNAME = "make_rte.xml"
 TAG_BASE = "http://www.topografix.com/GPX/1/1/"
+ET.register_namespace("", TAG_BASE)
 
 def make_tag(tag, tag_base=TAG_BASE):
     return "{%s}%s" % (tag_base, tag)
 
 class make_rte(object):
-    last_route = 0
+    _last_route = 0
 
     def __init__(self,
-        name="",
+        name,
         cmt="",
         desc="",
         src="",
         link=None,
         number=0,
-        rtype="",
+        rtype="",           # type
         extensions=[],
-        rtept=[]
+        rtept=[],
+        _debug = DEBUG
         ):
+        self._debug = _debug
+
         self.name = name
+
+        # provide a cmt if none given
+        if not cmt:
+            from datetime import datetime
+            cmt = "Generated on %s by '%s'" % (
+            datetime.today(),
+            __PROGRAM_NAME__
+            )
         self.cmt = cmt
+
         self.desc = desc
         self.src = src
         self.link = link
+
+        # provide a route number if none given
+        if number == 0:
+            self._last_route += 1
+            number = self._last_route
         self.number = number
-        self.rtype = rtype
+
+        self.rtype = rtype              # type
         self.extensions = extensions
         self.rtept = rtept
 
     def to_xml(self):
         rte = ET.Element(make_tag("rte"))
 
-        if self.name:
-            name = ET.Element(make_tag("name"))
+        if self.name or self._debug:
+            name = ET.SubElement(rte, make_tag("name"))
             name.text = self.name
-            rte.append(name)
 
-        if self.cmt:
-            cmt = ET.Element(make_tag("cmt"))
+        if self.cmt or self._debug:
+            cmt = ET.SubElement(rte, make_tag("cmt"))
             cmt.text = self.cmt
-            rte.append(cmt)
 
-        if self.desc:
-            desc = ET.Element(make_tag("desc"))
+        if self.desc or self._debug:
+            desc = ET.SubElement(rte, make_tag("desc"))
             desc.text = self.desc
-            rte.append(desc)
 
-        if self.src:
-            src = ET.Element(make_tag("src"))
+        if self.src or self._debug:
+            src = ET.SubElement(rte, make_tag("src"))
             src.text = self.src
-            rte.append(src)
 
-        if self.link:
-            link = ET.Element(make_tag("link"))
+        if self.link or self._debug:
+            link = ET.SubElement(rte, make_tag("link"))
             link.text = self.link
-            rte.append(link)
 
-        if self.number:
-            number = ET.Element(make_tag("number"))
+        if self.number or self._debug:
+            number = ET.SubElement(rte, make_tag("number"))
             number.text = str(self.number)
-            rte.append(number)
 
-        if self.rtype:
-            rtype = ET.Element(make_tag("type"))
+        if self.rtype or self._debug:
+            rtype = ET.SubElement(rte, make_tag("type"))
             rtype.text = self.rtype
-            rte.append(rtype)
 
-        if self.extensions:
-            extensions = ET.Element(make_tag("extensions"))
+        if self.extensions or self._debug:
+            extensions = ET.SubElement(rte, make_tag("extensions"))
             extensions.text = self.extensions
-            rte.append(extensions)
 
-        if self.rtept:
-            rtept = ET.Element(make_tag("rtept"))
+        if self.rtept or self._debug:
+            rtept = ET.SubElement(rte, make_tag("rtept"))
             rtept.text = self.rtept
-            rte.append(rtept)
 
         return rte
 
-rte = make_rte(name="My Route", number=1).to_xml()
+rte = make_rte(name="My Route").to_xml()
 
-ET.register_namespace("", TAG_BASE)
-ofile = ET.ElementTree(rte)
 outfile = open(OUTNAME, "wb")
-ofile.write(outfile, encoding="utf-8", xml_declaration=True, method="xml")
+pp = pretty_print(outfile, rte, indent="  ")
 outfile.close()
 print("output is in %s" % OUTNAME)
