@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 
 """
 make_rtept.py: Create a <rtept> Element for a <gpx> XML file.
@@ -192,38 +192,103 @@ if __name__ == "__main__":
 
     from gpx2kml import pretty_print
 
-    # get wpts elements from an existing file
-    root = ET.parse("topo840b - collinsville IL.gpx").getroot()
-    wpts = root.findall(WPT_TAG)
+    def process_file(filename, debug=False, outfile=None):
+        """Process a single input file to create rtept output."""
+        if debug:
+            print(filename, debug, outfile)
 
-    # build an output gpx file
-    gpx = ET.Element("gpx")
-    gpx.attrib["version"] = "1.1"
-    gpx.attrib["creator"] = __CREATOR__
+        if outfile is None:
+            outname = "_%s.gpx" % filename.replace(".", "_").replace(" ", "_")
+        else:
+            outname = outfile
+            import os.path
+            if os.pathext(outname) == "":
+                outname = os.path.join(outname, ".gpx")
 
-    # add all current wpts as-is
-    for wpt in wpts:
-        for item in wpt.iter():
-            item.tail = ""
-            txt = item.text
-            # print("'%s'" % txt)
-            if txt is not None and txt.strip() == "":
-                item.text = ""
-            if item.tag == RTYPE_TAG:
-                item.text = "%s %s" % (ITEM_TEXT, item.text)
-        gpx.append(wpt)
+        if debug:
+            print(filename, outname)
+            return
 
-    # with a rte
-    rte = ET.SubElement(gpx, "rte")
+        # get wpts elements from an existing file
+        root = ET.parse(filename).getroot()
+        wpts = root.findall(WPT_TAG)
 
-    # add the wpts to the rte as rtepts
-    add_rtepts_from_wpts(rte, wpts)
+        # build an output gpx file
+        gpx = ET.Element("gpx")
+        gpx.attrib["version"] = "1.1"
+        gpx.attrib["creator"] = __CREATOR__
 
-    OUTNAME = "_make_rtept.gpx"
-    ofile = open(OUTNAME, "wb")
-    pretty_print(ofile, gpx, indent=" ")
-    ofile.close()
+        # add all current wpts as-is
+        for wpt in wpts:
+            for item in wpt.iter():
+                item.tail = ""
+                txt = item.text
+                # print("'%s'" % txt)
+                if txt is not None and txt.strip() == "":
+                    item.text = ""
+                if item.tag == RTYPE_TAG:
+                    item.text = "%s %s" % (ITEM_TEXT, item.text)
+            gpx.append(wpt)
 
-    print("Output is in %s" % OUTNAME)
+        # with a rte
+        rte = ET.SubElement(gpx, "rte")
+
+        # add the wpts to the rte as rtepts
+        add_rtepts_from_wpts(rte, wpts)
+
+        ofile = open(outname, "wb")
+        pretty_print(ofile, gpx, indent=" ")
+        ofile.close()
+
+        print("Output is in %s" % outname)
+
+    #######################################################################
+
+    def process_files(args):
+        """Process args.files using make_rtept."""
+        if isinstance(args.filename, str):
+            args.filename = [args.filename]
+
+        for filename in args.filename:
+            process_file(filename, debug=args.debug, outfile=args.outfile)
+
+    #######################################################################
+
+    DEFAULT_FILENAME = "topo840b - collinsville IL.gpx"
+
+    from argparse import ArgumentParser
+
+    PARSER = ArgumentParser(
+        description="Process files using make_rtept().",
+        epilog="Results will be returned in FILENAME.gpx",
+    )
+
+    PARSER.add_argument(
+        "-d",
+        "--debug",
+        action="store_true",
+        help="Setting the DEBUG flag adds debugging output to the console"
+    )
+
+    PARSER.add_argument(
+        "filename",
+        default=DEFAULT_FILENAME,
+        action="store",
+        nargs="*",
+        help="Specify file(s) to be processed through make_rtept"
+    )
+
+    PARSER.add_argument(
+        "-o",
+        "--outfile",
+        action="store",
+        help="Specify explicit output filename"
+    )
+
+    args = PARSER.parse_args()
+#    from pprint import pprint
+#    pprint(args)
+
+    process_files(args)
 
 # end of file
