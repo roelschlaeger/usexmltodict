@@ -3,6 +3,8 @@
 """
 make_rtept.py: Create a <rtept> Element for a <gpx> XML file.
 
+Copyright (c) 2016, Robert L. Oelschlaeger,  All Rights Reserved.
+
 Create a ElementTree rtept element suitable for use with Microsoft Streets and
 Trips.
 """
