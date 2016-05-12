@@ -1,4 +1,8 @@
 .ropeproject/
+_make_rte.xml
+_make_rtept.gpx
+_s_and_t.gpx
+_s_and_t_topo840.gpx
 8x8.html
 default.gpx.csv
 default.gpx.kml
@@ -6,7 +10,6 @@ default.html
 default_gpx_rooter.html
 default_gpx_rooter.zip
 default_route.gpx
-make_rte.xml
 rooter.html
 rooter.sublime-project
 rooter.sublime-workspace

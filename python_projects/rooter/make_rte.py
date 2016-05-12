@@ -2,16 +2,19 @@ __PROGRAM_NAME__ = "make_rte.py"
 
 from xml.etree import ElementTree as ET
 from gpx2kml import pretty_print
+from datetime import datetime
+from make_rte_wpts import get_wpts
+from make_rtept import make_rtept_from_wpts
 
 DEBUG = False
-OUTNAME = "make_rte.xml"
+OUTNAME = "_make_rte.xml"
 TAG_BASE = "http://www.topografix.com/GPX/1/1/"
 ET.register_namespace("", TAG_BASE)
 
 def make_tag(tag, tag_base=TAG_BASE):
     return "{%s}%s" % (tag_base, tag)
 
-class make_rte(object):
+class Route(object):
     _last_route = 0
 
     def __init__(self,
@@ -32,7 +35,6 @@ class make_rte(object):
 
         # provide a cmt if none given
         if not cmt:
-            from datetime import datetime
             cmt = "Generated on %s by '%s'" % (
             datetime.today(),
             __PROGRAM_NAME__
@@ -51,6 +53,9 @@ class make_rte(object):
 
         self.rtype = rtype              # type
         self.extensions = extensions
+
+        if rtept:
+            rtept = make_rtept_from_wpts(rtept)
         self.rtept = rtept
 
     def to_xml(self):
@@ -94,7 +99,10 @@ class make_rte(object):
 
         return rte
 
-rte = make_rte(name="My Route").to_xml()
+INFILE = "default.gpx"
+tree = ET.parse(INFILE)
+wpts = get_wpts(tree.getroot())
+rte = Route(name="My Route", rtept=wpts).to_xml()
 
 outfile = open(OUTNAME, "wb")
 pp = pretty_print(outfile, rte, indent="  ")
