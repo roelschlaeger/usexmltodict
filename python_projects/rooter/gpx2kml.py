@@ -1,27 +1,22 @@
-#!/usr/bin/python
-# vim:ts=4:sw=4:tw=0:wm=0:et
-# $Id: gpx2kml.py 179 2010-09-08 05:07:18Z harry $
-# Created: 	     Tue 04 Jun 2009 10:56:11 PM CDT
-# Last modified: Tue 10 May 2016 09:44:42 AM CDT
+# coding=utf-8
+
+"""Convert a .gpx file to a .kml file for Google Earth."""
 
 from __future__ import print_function
+from xml.etree.ElementTree import Element, ElementTree, SubElement, tostring
+from degmin import latdegmin, londegmin
+import glob
+import sys
+import os.path
 
 ########################################################################
 
 """Convert an ordered GSAK .gpx waypoint file to a Google Earth .kml file with
 waypoints and route path folders."""
 
-__version__ = "$Revision: 179 $".split()[1]
-__date__ = "$Date: 2014-05-23 12:04:56 -0500 (Fri, 23 May 2014) $".split()[1]
-
-########################################################################
-
-from xml.etree.ElementTree import Element, ElementTree, SubElement, tostring
-from degmin import latdegmin, londegmin
-
-import glob
-import sys
-import os.path
+# TODO: Update this manually, for now
+__version__ = "$Revision: 180 $".split()[1]
+__date__ = "$Date: 2016-05-12 21:06:56 -0500 (Thu, 12 May 2016) $".split()[1]
 
 ########################################################################
 
@@ -56,30 +51,48 @@ GSAK_TAG = "{http://www.gsak.net/xmlv1/6}"
 
 #: cache icons indexed by groundspeak:type
 GEOCACHE_ICON_MAPPING = {
-    # pylint: disable-msg=C0301
-    "Other": "http://maps.google.com/mapfiles/kml/shapes/parking_lot.png",      # [P]
-    "Traditional Cache": "http://www.geocaching.com/images/kml/2.png",          # Green cache
-    "Multi-cache": "http://www.geocaching.com/images/kml/3.png",                # Event cache
-    "Virtual Cache": "http://www.geocaching.com/images/kml/4.png",              # Virtual cache
-    "Letterbox Hybrid": "http://www.geocaching.com/images/kml/5.png",           # Letterbox
-    "Event Cache": "http://www.geocaching.com/images/kml/6.png",                # Event cache
-    "Unknown Cache": "http://www.geocaching.com/images/kml/8.png",              # Unknown cache
-    "Webcam Cache": "http://www.geocaching.com/images/kml/11.png",              # Webcam cache
-    "Cache In Trash Out Event": "http://www.geocaching.com/images/kml/13.png",  # CITO Event
-    "Earthcache": "http://www.geocaching.com/images/kml/earthcache.png",        # Earthcache
-    "Wherigo Cache": "http://www.geocaching.com/images/kml/8.png",              # Unknown cache
-    # pylint: enable-msg=C0301
+    # [P]
+    "Other": "http://maps.google.com/mapfiles/kml/shapes/parking_lot.png",
+    # Green cache
+    "Traditional Cache": "http://www.geocaching.com/images/kml/2.png",
+    # Multi-cache
+    "Multi-cache": "http://www.geocaching.com/images/kml/3.png",
+    # Virtual cache
+    "Virtual Cache": "http://www.geocaching.com/images/kml/4.png",
+    # Letterbox
+    "Letterbox Hybrid": "http://www.geocaching.com/images/kml/5.png",
+    # Event cache
+    "Event Cache": "http://www.geocaching.com/images/kml/6.png",
+    # Unknown cache
+    "Unknown Cache": "http://www.geocaching.com/images/kml/8.png",
+    # Webcam cache
+    "Webcam Cache": "http://www.geocaching.com/images/kml/11.png",
+    # CITO Event
+    "Cache In Trash Out Event": "http://www.geocaching.com/images/kml/13.png",
+    # Earthcache
+    "Earthcache": "http://www.geocaching.com/images/kml/earthcache.png",
+    # Unknown cache
+    "Wherigo Cache": "http://www.geocaching.com/images/kml/8.png",
 }
 
-ACCESS_ICON = "http://maps.google.com/mapfiles/kml/shapes/arrow-reverse.png"    # access to something
-BUGLE_NOTE_ICON = "http://maps.google.com/mapfiles/kml/shapes/poi.png"          # trail location
-DEFAULT_OTHER_ICON = "http://maps.google.com/mapfiles/kml/shapes/caution.png"   # other
-PARKING_ICON = "http://maps.google.com/mapfiles/kml/shapes/parking_lot.png"     # parking for cache
-REST_AREA_ICON = "http://maps.google.com/mapfiles/kml/shapes/toilets.png"       # rest Area
-START_ICON = "http://maps.google.com/mapfiles/kml/shapes/arrow.png"             # starting location
-TEN_ICON = "http://maps.google.com/mapfiles/kml/paddle/10.png"                  # 10
-TRAILHEAD_ICON = "http://maps.google.com/mapfiles/kml/shapes/trail.png"         # trailhead
-WAYPOINT_ICON = "http://maps.google.com/mapfiles/kml/shapes/target.png"         # waypoint
+# access to something
+ACCESS_ICON = "http://maps.google.com/mapfiles/kml/shapes/arrow-reverse.png"
+# trail location
+BUGLE_NOTE_ICON = "http://maps.google.com/mapfiles/kml/shapes/poi.png"
+# other
+DEFAULT_OTHER_ICON = "http://maps.google.com/mapfiles/kml/shapes/caution.png"
+# parking for cache
+PARKING_ICON = "http://maps.google.com/mapfiles/kml/shapes/parking_lot.png"
+# rest Area
+REST_AREA_ICON = "http://maps.google.com/mapfiles/kml/shapes/toilets.png"
+# starting location
+START_ICON = "http://maps.google.com/mapfiles/kml/shapes/arrow.png"
+# 10
+TEN_ICON = "http://maps.google.com/mapfiles/kml/paddle/10.png"
+# trailhead
+TRAILHEAD_ICON = "http://maps.google.com/mapfiles/kml/shapes/trail.png"
+# waypoint
+WAYPOINT_ICON = "http://maps.google.com/mapfiles/kml/shapes/target.png"
 
 OTHER_ICON_MAPPING = {
     "10": TEN_ICON,
@@ -92,12 +105,13 @@ OTHER_ICON_MAPPING = {
     "WAYPOINT": WAYPOINT_ICON,
 }
 
-LABELLED_PIN_ICON = "http://maps.google.com/mapfiles/kml/paddle/%c.png"       #
-MISSING_SYMTYPE_ICON = "http://maps.google.com/mapfiles/kml/shapes/info_circle.png"
+LABELLED_PIN_ICON = "http://maps.google.com/mapfiles/kml/paddle/%c.png"
+MISSING_SYMTYPE_ICON = \
+    "http://maps.google.com/mapfiles/kml/shapes/info_circle.png"
 
 
 def get_other_icon(text):
-    """Return a non-cache icon depending on the name of the location"""
+    """Return a non-cache icon depending on the name of the location."""
     if text is None:
         return MISSING_SYMTYPE_ICON
 
@@ -120,11 +134,15 @@ def get_other_icon(text):
 
 #: waypoint icons indexed by type
 WAYPOINT_ICON_MAPPING = {
-    # pylint: disable-msg=E501
-    "Waypoint|Parking Area": "http://maps.google.com/mapfiles/kml/shapes/parking_lot.png",        # [P]
-    "Waypoint|Question to Answer": "http://maps.google.com/mapfiles/kml/shapes/info_circle.png",  # [?]
-    "Waypoint|Stages of a Multicache": "http://maps.google.com/mapfiles/kml/shapes/flag.png",     # [Flag]
-    # pylint: enable-msg=E501
+    # [P]
+    "Waypoint|Parking Area":
+        "http://maps.google.com/mapfiles/kml/shapes/parking_lot.png",
+    # [?]
+    "Waypoint|Question to Answer":
+        "http://maps.google.com/mapfiles/kml/shapes/info_circle.png",
+    # [Flag]
+    "Waypoint|Stages of a Multicache":
+        "http://maps.google.com/mapfiles/kml/shapes/flag.png",
 }
 
 #: default icon for generic placemarks
@@ -142,8 +160,7 @@ CHILD_WAYPOINT_BALLOON_STYLE = "child_waypoint_balloon"
 
 
 def pretty_print(ofile, element, indent="\t"):
-    """write element to the L{ofile} file with indenting"""
-
+    """Write element to the L{ofile} file with indenting."""
     from xml.dom.minidom import parseString
 
     txt = tostring(element)
@@ -165,8 +182,7 @@ def pretty_print(ofile, element, indent="\t"):
 
 
 def process_path(path):
-    """read in the xml file returning and ElementTree"""
-
+    """read in the xml file returning and ElementTree."""
     print("processing file %s" % path)
 
     # read in the gpx/xml file
@@ -176,9 +192,7 @@ def process_path(path):
 
 
 def make_folder(name, open_value):
-    """create and return a Folder element with the specified name and
-open_value"""
-
+    """Create a Folder element with the specified name and open_value."""
     folder = Element("Folder")
 
     folder_name = SubElement(folder, "name")
@@ -193,8 +207,7 @@ open_value"""
 
 
 def make_placemark(**kwargs):
-    """create and return a Placemark element with the specified parameters"""
-
+    """Create a Placemark element with the specified parameters."""
     placemark = Element("Placemark")
 
     for _value in list(kwargs.values()):
@@ -206,8 +219,7 @@ def make_placemark(**kwargs):
 
 
 def Data(name, value):
-    """create and return a Data element with the specified value"""
-
+    """Create and return a Data element with the specified value."""
     data = Element("Data", {"name": name})
     val = SubElement(data, "value")
     val.text = value
@@ -217,8 +229,8 @@ def Data(name, value):
 ########################################################################
 
 def ExtendedData(wpt, text=None):
-    """Create an ExtendedData element with optional text; format latitude and
-longitude in degmin and degrees"""
+    """Create ExtendedData element with optional text."""
+    """Format latitude and longitude in degmin and degrees."""
 
     xdata = Element("ExtendedData")
 
@@ -247,12 +259,9 @@ longitude in degmin and degrees"""
 
 
 def make_generic_placemark(wpt):
-    """make a placemark without a styleUrl reference"""
-
-    ########################################################################
-
+    """Make a placemark without a styleUrl reference."""
     def get_gpx_text(tag):
-        """return found gpx tag.text or empty string"""
+        """Return found gpx tag.text or empty string."""
         value = wpt.find(GPX_TAG + tag)
         if value is not None:
             return value.text
@@ -299,13 +308,11 @@ def make_generic_placemark(wpt):
 
 
 def make_waypoint_placemark(wpt):
-    """create and return a Waypoint placemark using the
-CHILD_WAYPOINT_BALLOON_STYLE style"""
-
+    """Create a Waypoint placemark using CHILD_WAYPOINT_BALLOON_STYLE style."""
     ########################################################################
 
     def get_gpx_text(tag):
-        """return found gpx tag.text value or empty string"""
+        """Return found gpx tag.text value or empty string."""
         value = wpt.find(GPX_TAG + tag)
         if value is not None:
             return value.text
@@ -358,11 +365,9 @@ CHILD_WAYPOINT_BALLOON_STYLE style"""
 
 
 def make_geocache_placemark(wpt):
-    """create and return a Waypoint placemark using the
-GEOCACHE_BALLOON_STYLE style"""
-
+    """Create a Waypoint placemark using the GEOCACHE_BALLOON_STYLE style."""
     def get_gpx_text(tag):
-        """return found gpx tag.text value or empty string"""
+        """Return found gpx tag.text value or empty string."""
         value = wpt.find(GPX_TAG + tag)
         if value is not None:
             return value.text
@@ -406,7 +411,7 @@ GEOCACHE_BALLOON_STYLE style"""
 
     if cache is not None:
         def get_cache_text(tag):
-            """return found cache tag text value or empty string"""
+            """Return found cache tag text value or empty string."""
             value = cache.find(CACHE_TAG + tag)
             if value is not None:
                 return value.text
@@ -477,7 +482,7 @@ GEOCACHE_BALLOON_STYLE style"""
 
     if wpt_extension is not None:
         def get_extension_text(tag):
-            """return found cache tag text value or empty string"""
+            """Return found cache tag text value or empty string."""
             value = wpt_extension.find(GSAK_TAG + tag)
             if value is not None:
                 return value.text
@@ -505,39 +510,36 @@ GEOCACHE_BALLOON_STYLE style"""
 
 
 def create_wpts_folder(wpts):
-    """create a .kml Folder element containing waypoint information
+    """Create a .kml Folder element containing waypoint information."""
+    """Each waypoint contains the following subelements::
 
-Each waypoint contains the following subelements::
+        <Element {http://www.topografix.com/GPX/1/0}time>,
+        <Element {http://www.topografix.com/GPX/1/0}name>,
+        <Element {http://www.topografix.com/GPX/1/0}desc>,
+        <Element {http://www.topografix.com/GPX/1/0}url>,
+        <Element {http://www.topografix.com/GPX/1/0}urlname>,
+        <Element {http://www.topografix.com/GPX/1/0}sym>,
+        <Element {http://www.topografix.com/GPX/1/0}type>,
+        <Element {http://www.gsak.net/xmlv1/3}wptExtension>,
+        <Element {http://www.groundspeak.com/cache/1/0}cache>]
 
-    <Element {http://www.topografix.com/GPX/1/0}time at b63378>,
-    <Element {http://www.topografix.com/GPX/1/0}name at b63418>,
-    <Element {http://www.topografix.com/GPX/1/0}desc at b633f0>,
-    <Element {http://www.topografix.com/GPX/1/0}url at b634b8>,
-    <Element {http://www.topografix.com/GPX/1/0}urlname at b63508>,
-    <Element {http://www.topografix.com/GPX/1/0}sym at b63558>,
-    <Element {http://www.topografix.com/GPX/1/0}type at b635a8>,
-    <Element {http://www.gsak.net/xmlv1/3}wptExtension at b63620>,
-    <Element {http://www.groundspeak.com/cache/1/0}cache at b635f8>]
+    The cache element contains::
 
-The cache element contains::
-
-    <Element {http://www.groundspeak.com/cache/1/0}name at b69030>,
-    <Element {http://www.groundspeak.com/cache/1/0}placed_by at b69238>,
-    <Element {http://www.groundspeak.com/cache/1/0}owner at b69288>,
-    <Element {http://www.groundspeak.com/cache/1/0}type at b692d8>,
-    <Element {http://www.groundspeak.com/cache/1/0}container at b69328>,
-    <Element {http://www.groundspeak.com/cache/1/0}difficulty at b69378>,
-    <Element {http://www.groundspeak.com/cache/1/0}terrain at b693c8>,
-    <Element {http://www.groundspeak.com/cache/1/0}country at b69418>,
-    <Element {http://www.groundspeak.com/cache/1/0}state at b69468>,
-    <Element {http://www.groundspeak.com/cache/1/0}short_description at b69508>,
-    <Element {http://www.groundspeak.com/cache/1/0}long_description at b69170>,
-    <Element {http://www.groundspeak.com/cache/1/0}encoded_hints at b69558>,
-    <Element {http://www.groundspeak.com/cache/1/0}logs at b695a8>,
-    <Element {http://www.groundspeak.com/cache/1/0}travelbugs at b695f8>]
-
+        <Element {http://www.groundspeak.com/cache/1/0}name>,
+        <Element {http://www.groundspeak.com/cache/1/0}placed_by>,
+        <Element {http://www.groundspeak.com/cache/1/0}owner>,
+        <Element {http://www.groundspeak.com/cache/1/0}type>,
+        <Element {http://www.groundspeak.com/cache/1/0}container>,
+        <Element {http://www.groundspeak.com/cache/1/0}difficulty>,
+        <Element {http://www.groundspeak.com/cache/1/0}terrain>,
+        <Element {http://www.groundspeak.com/cache/1/0}country>,
+        <Element {http://www.groundspeak.com/cache/1/0}state>,
+        <Element {http://www.groundspeak.com/cache/1/0}short_description>,
+        <Element {http://www.groundspeak.com/cache/1/0}long_description>,
+        <Element {http://www.groundspeak.com/cache/1/0}encoded_hints>,
+        <Element {http://www.groundspeak.com/cache/1/0}logs>,
+        <Element {http://www.groundspeak.com/cache/1/0}travelbugs>]
 """
-
     folder = make_folder("Waypoints", "1")
 
     for wpt in wpts:
@@ -564,9 +566,7 @@ The cache element contains::
 
 
 def create_path_placemark(wpts):
-    """create and return a Placemark containing the coordinates of all the
-waypoints in wpts"""
-
+    """Create Placemark containing the coordinates of the waypoints in wpts."""
     placemark = Element("Placemark")
 
     placemark_name = SubElement(placemark, "name")
@@ -597,9 +597,7 @@ waypoints in wpts"""
 
 
 def child_waypoint_balloon_style():
-    """create and return a Style element suitable for use by a child
-waypoint"""
-
+    """Create a Style element suitable for use by a child waypoint."""
     # define child waypoint balloon style
     style = Element("Style", {"id": CHILD_WAYPOINT_BALLOON_STYLE})
     style_balloon = SubElement(style, "BalloonStyle")
@@ -624,17 +622,18 @@ waypoint"""
 
 
 def geocache_balloon_style():
-    """create and return a Style element suitable for use by a geocache"""
-
+    """Create and return a Style element suitable for use by a geocache."""
     # define geocache balloon style
     style = Element("Style", {"id": GEOCACHE_BALLOON_STYLE})
     balloon = SubElement(style, "BalloonStyle")
     balloon_text = SubElement(balloon, "text")
     balloon_text.text = """
 <center>
-<a href="http://www.geocaching.com"><img src="http://www.geocaching.com/images/nav/logo_sub.gif"></a>
+<a href="http://www.geocaching.com">
+<img src="http://www.geocaching.com/images/nav/logo_sub.gif"></a>
 &nbsp;
-<a href="http://www.geocaching.com/seek/cache_details.aspx?wp=$[gc_num]"><b>$[gc_num]</b></a>
+<a href="http://www.geocaching.com/seek/cache_details.aspx?wp=$[gc_num]">
+<b>$[gc_num]</b></a>
 &nbsp;
 <b>$[gc_name]</b>
 <br />
@@ -644,13 +643,20 @@ def geocache_balloon_style():
 <br />
 <img src="$[gc_icon]">
 <br />
-A <b>$[gc_type]</b>, by <b>$[gc_placer]</b> [<a href="http://www.geocaching.com/profile?id=$[gc_placer_id]">profile</a>]
+A <b>$[gc_type]</b>, by <b>$[gc_placer]</b>&nbsp;
+[<a href="http://www.geocaching.com/profile?id=$[gc_placer_id]">profile</a>]
 <br />
-<i><b>Difficulty</b></i>: <img src="http://www.geocaching.com/images/stars/$[gc_diff_stars].gif" alt="$[gc_diff]">&nbsp;($[gc_diff])&nbsp;
+<i><b>Difficulty</b></i>:&nbsp;
+<img src="http://www.geocaching.com/images/stars/$[gc_diff_stars].gif"
+ alt="$[gc_diff]">&nbsp;($[gc_diff])&nbsp;
 <br />
-<i><b>Terrain</b></i>: <img src="http://www.geocaching.com/images/stars/$[gc_terr_stars].gif" alt="$[gc_terr]">&nbsp;($[gc_terr])&nbsp;
+<i><b>Terrain</b></i>:&nbsp;
+<img src="http://www.geocaching.com/images/stars/$[gc_terr_stars].gif"
+ alt="$[gc_terr]">&nbsp;($[gc_terr])&nbsp;
 <br />
-<i><b>Size</b></i>: <img src="http://www.geocaching.com/images/icons/container/$[gc_cont_icon].gif" width="45" height="12">&nbsp;($[gc_cont_icon])
+<i><b>Size</b></i>:&nbsp;
+<img src="http://www.geocaching.com/images/icons/container/$[gc_cont_icon].gif"
+ width="45" height="12">&nbsp;($[gc_cont_icon])
 <br />
 <i><b>Cache Attributes</b></i>: $[gc_wpt_cache_attr]
 <br />
@@ -672,8 +678,8 @@ A <b>$[gc_type]</b>, by <b>$[gc_placer]</b> [<a href="http://www.geocaching.com/
 
 
 def make_gpx_tags(root):
-    """create global GPX_TAG tags"""
-
+    """Create global GPX_TAG tags."""
+    #
     global DESC_TAG, EXTENSIONS_TAG, GPX_TAG, NAME_TAG, RTE_TAG, RTEPT_TAG
     global SYM_TAG, TIME_TAG, TYPE_TAG, URL_TAG, URLNAME_TAG, WPT_TAG
 
@@ -695,9 +701,7 @@ def make_gpx_tags(root):
 
 
 def make_kml(name, input_tree):
-    """create and return an ElementTree containing a kml tree reflecting the
-contents of the input_tree"""
-
+    """Create a kml ElementTree reflecting the contents of the input_tree."""
     # get a list of waypoints to the input document
     root = input_tree.getroot()
     make_gpx_tags(root)
@@ -750,9 +754,7 @@ contents of the input_tree"""
 
 
 def create_kml_file(input_filename, output_filename=None):
-    """generate and write a kml output file from the file named
-input_filename"""
-
+    """Generate a kml output file from the file named input_filename."""
     if output_filename is None:
         output_filename = input_filename + ".kml"
 
@@ -768,8 +770,7 @@ input_filename"""
 
 
 def main(args, options):
-    """generate kml file from command line arguments"""
-
+    """Generate kml file from command line arguments."""
     output_filename = options.output_file
 
     for arg in args:
