@@ -210,8 +210,26 @@ def make_placemark(**kwargs):
     """Create a Placemark element with the specified parameters."""
     placemark = Element("Placemark")
 
-    for _value in list(kwargs.values()):
-        placemark.append(_value)
+    # the subelements must be placed in a specific ordered
+    # print(kwargs.keys())
+    # do the elements in this order, per
+    # http://www.datypic.com/sc/kml22/e-kml_Placemark.html
+    for elementname in [
+        'name',
+        'description',
+        'styleurl',
+        'style',
+        'extendeddata',
+        'point',
+    ]:
+        if elementname in kwargs:
+            placemark.append(kwargs.pop(elementname))
+
+    if (kwargs.keys()):
+        print("make_placemark leftovers!", kwargs.keys())
+
+        for _value in list(kwargs.values()):
+            placemark.append(_value)
 
     return placemark
 
@@ -576,10 +594,10 @@ def create_path_placemark(wpts):
     placemark_name.text = "Path"
     placemark_styleurl.text = "#lineStyle0"
 
-    linestring_tesselate = SubElement(placemark_linestring, "tesselate")
+    linestring_tessellate = SubElement(placemark_linestring, "tessellate")
     linestring_coordinates = SubElement(placemark_linestring, "coordinates")
 
-    linestring_tesselate.text = "1"
+    linestring_tessellate.text = "1"
 
     coordinates_list = []
     for wpt in wpts:
