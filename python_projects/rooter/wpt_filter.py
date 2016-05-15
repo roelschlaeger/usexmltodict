@@ -1,11 +1,13 @@
-#!/usr/bin/env python
-# vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99
-# -*- coding: utf-8 -*-
+# coding=utf-8
+
+"""Filter route waypoints to remove 'USER2 == 'SKIP' waypoints."""
 
 # Created:       Wed 08 Jan 2014 10:18:57 AM CST
 # Last Modified: Mon 15 Feb 2016 06:36:00 PM CST
 
 from __future__ import print_function
+from pprint import pprint
+from xml.etree import ElementTree as ET
 
 """
 SYNOPSIS
@@ -37,12 +39,9 @@ LICENSE
 
 """
 
-__VERSION__ = "0.1.0"
+__VERSION__ = "0.1.1"
 
 ########################################################################
-
-from pprint import pprint
-from xml.etree import ElementTree as ET
 
 NAMETAG = None                  # replaced later
 
@@ -50,7 +49,7 @@ NAMETAG = None                  # replaced later
 
 
 def apply_wpts_filter(wpts, debug=False):
-
+    """Apply the filter to the wpts list of Elements."""
     extensionstag = wpts[0].tag.replace("wpt", "extensions")
     if debug:
         print("extensionstag: %s" % extensionstag)
@@ -97,8 +96,7 @@ if __name__ == '__main__':
     ########################################################################
 
     def get_wpts(filename, debug=False):
-        """Retrieve waypoints from filename"""
-
+        """Retrieve waypoints from filename."""
         tree = ET.parse(filename)
         root = tree.getroot()
 
@@ -122,8 +120,7 @@ if __name__ == '__main__':
     ########################################################################
 
     def printnames(wpts):
-        """Print the names of the waypoints in wpts"""
-
+        """Print the names of the waypoints in wpts."""
 #       global NAMETAG
         for item in wpts:
             name = item.find(NAMETAG).text
@@ -133,7 +130,7 @@ if __name__ == '__main__':
     ########################################################################
 
     def main(args, options):
-
+        """Main function callable from the console."""
         debug = options.debug
 
         if debug:
@@ -174,7 +171,7 @@ if __name__ == '__main__':
         parser.add_option('-v', '--verbose', action='store_true',
                           default=False, help='verbose output')
         (options, args) = parser.parse_args()
-        #if len(args) < 1:
+        # if len(args) < 1:
         #    parser.error ('missing argument')
         if options.verbose:
             print(time.asctime())
