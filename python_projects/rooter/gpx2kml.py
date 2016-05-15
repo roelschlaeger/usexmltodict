@@ -15,8 +15,8 @@ import os.path
 waypoints and route path folders."""
 
 # TODO: Update this manually, for now
-__version__ = "$Revision: 180 $".split()[1]
-__date__ = "$Date: 2016-05-12 21:06:56 -0500 (Thu, 12 May 2016) $".split()[1]
+__version__ = "$Revision: 181 $".split()[1]
+__date__ = "$Date: 2016-05-15 14:36:56 -0500 (Sun, 15 May 2016) $".split()[1]
 
 ########################################################################
 
@@ -136,13 +136,15 @@ def get_other_icon(text):
 WAYPOINT_ICON_MAPPING = {
     # [P]
     "Waypoint|Parking Area":
-        "http://maps.google.com/mapfiles/kml/shapes/parking_lot.png",
+    "http://maps.google.com/mapfiles/kml/shapes/parking_lot.png",
+
     # [?]
     "Waypoint|Question to Answer":
-        "http://maps.google.com/mapfiles/kml/shapes/info_circle.png",
+    "http://maps.google.com/mapfiles/kml/shapes/info_circle.png",
+
     # [Flag]
     "Waypoint|Stages of a Multicache":
-        "http://maps.google.com/mapfiles/kml/shapes/flag.png",
+    "http://maps.google.com/mapfiles/kml/shapes/flag.png",
 }
 
 #: default icon for generic placemarks
@@ -210,9 +212,7 @@ def make_placemark(**kwargs):
     """Create a Placemark element with the specified parameters."""
     placemark = Element("Placemark")
 
-    # the subelements must be placed in a specific ordered
-    # print(kwargs.keys())
-    # do the elements in this order, per
+    # do the subelements in this order, per
     # http://www.datypic.com/sc/kml22/e-kml_Placemark.html
     for elementname in [
         'name',
@@ -789,11 +789,14 @@ def create_kml_file(input_filename, output_filename=None):
 
 def main(args, options):
     """Generate kml file from command line arguments."""
-    output_filename = options.output_file
+    # this works for a single input file or for the first file processed
+    output_filename = options.output
 
     for arg in args:
         for input_filename in glob.glob(arg):
             create_kml_file(input_filename, output_filename)
+            # on next 'for' loop, if any, put output in a different file
+            output_filename = None
 
 ########################################################################
 
@@ -802,17 +805,16 @@ if __name__ == "__main__":
     from argparse import ArgumentParser
 
     DESCRIPTION = __doc__
-    USAGE = "%prog { options } { filename ... } }"
     VERSION = "Version: %s, %s" % (__version__, __date__)
     EPILOG = """If no filename parameter(s) are provided, the user will be
-prompted with a file open dialog to select an input .gpx file.  Unless
-specified with the -o/--output option, the generated output filename will be
-the input filename + ".kml" extension.
+prompted with a file open dialog to select an input .gpx file.
+
+Unless specified with the -o/--output option, the generated output filename
+will be the input filename + ".kml" extension.
 """
 
     PARSER = ArgumentParser(
         description=DESCRIPTION,
-        usage=USAGE,
         version=VERSION,
         epilog=EPILOG,
     )
@@ -820,7 +822,7 @@ the input filename + ".kml" extension.
     PARSER.add_argument(
         "-d",
         "--debug",
-        dest="debug",
+        # dest="debug",
         action="count",
         help="increment debug counter"
     )
@@ -828,12 +830,17 @@ the input filename + ".kml" extension.
     PARSER.add_argument(
         "-o",
         "--output",
-        dest="output_file",
+        dest="output",
         action="store",
-        help="set output file (default: %default)",
+        help="set output filename (default: <files>.kml)",
     )
 
     PARSER.add_argument("files", nargs="*")
+
+#   PARSER.set_defaults(
+        # output_file=None,
+        # debug=False,
+#   )
 
     namespace = PARSER.parse_args()
 
