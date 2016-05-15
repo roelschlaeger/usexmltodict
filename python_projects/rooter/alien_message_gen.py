@@ -4,157 +4,169 @@
 # Timestamp: <timestamp>
 ########################################################################
 
-"""Generate a puzzle like Alien Message #1"""
+"""Generate a puzzle like Alien Message #1."""
 
-__author__  = "Robert L. Oelschlaeger"
-__version__ = "$Revision: 197 $".split()[1]
-__date__    = "$Date: 2011-03-23 07:55:34 -0500 (Wed, 23 Mar 2011) $".split()[1]
-
-########################################################################
-#
-# $Log: $
-########################################################################
-
-# from optparse import OptionParser
 import sys
 
+__author__ = "Robert L. Oelschlaeger"
+__version__ = "$Revision: 198 $".split()[1]
+__date__ = "$Date: 2016-05-15 15:51:34 -0500 (Sun, 15 May 2016) $".split()[1]
+
 alphabet = {
-        '0' :   (   ' xxx ',
-                    'x   x',
-                    'x   x',
-                    'x   x',
-                    'x   x',
-                    'x   x',
-                    ' xxx ',    ),
+    '0':   (' xxx ',
+            'x   x',
+            'x   x',
+            'x   x',
+            'x   x',
+            'x   x',
+            ' xxx ',
+            ),
 
-        '1' :   (   '  x  ',
-                    ' xx  ',
-                    '  x  ',
-                    '  x  ',
-                    '  x  ',
-                    '  x  ',
-                    'xxxxx',    ),
+    '1':   ('  x  ',
+            ' xx  ',
+            '  x  ',
+            '  x  ',
+            '  x  ',
+            '  x  ',
+            'xxxxx',
+            ),
 
-        '2' :   (   ' xxx ',
-                    'x   x',
-                    '   x ',
-                    '  x  ',
-                    ' x   ',
-                    'x    ',
-                    'xxxxx',    ),
+    '2':   (' xxx ',
+            'x   x',
+            '   x ',
+            '  x  ',
+            ' x   ',
+            'x    ',
+            'xxxxx',
+            ),
 
-        '3' :   (   ' xxx ',
-                    'x   x',
-                    '   x ',
-                    '  x  ',
-                    '   x ',
-                    'x   x',
-                    ' xxx ',    ),
+    '3':   (' xxx ',
+            'x   x',
+            '   x ',
+            '  x  ',
+            '   x ',
+            'x   x',
+            ' xxx ',
+            ),
 
-        '4' :   (   '   x ',
-                    '  xx ',
-                    ' x x ',
-                    'x  x ',
-                    'xxxxx',
-                    '   x ',
-                    '   x ',    ),
+    '4':   ('   x ',
+            '  xx ',
+            ' x x ',
+            'x  x ',
+            'xxxxx',
+            '   x ',
+            '   x ',
+            ),
 
-        '5' :   (   'xxxx ',
-                    'x    ',
-                    'x    ',
-                    ' xxx ',
-                    '    x',
-                    'x   x',
-                    ' xxx ',    ),
+    '5':   ('xxxx ',
+            'x    ',
+            'x    ',
+            ' xxx ',
+            '    x',
+            'x   x',
+            ' xxx ',
+            ),
 
-        '6' :   (   '  xx ',
-                    ' x   ',
-                    'x    ',
-                    'xxxx ',
-                    'x   x',
-                    'x   x',
-                    ' xxx ',    ),
+    '6':   ('  xx ',
+            ' x   ',
+            'x    ',
+            'xxxx ',
+            'x   x',
+            'x   x',
+            ' xxx ',
+            ),
 
-        '7' :   (   'xxxxx',
-                    'x   x',
-                    '   x ',
-                    '  x  ',
-                    ' x   ',
-                    'x    ',
-                    'x    ',    ),
+    '7':   ('xxxxx',
+            'x   x',
+            '   x ',
+            '  x  ',
+            ' x   ',
+            'x    ',
+            'x    ',
+            ),
 
-        '8' :   (   ' xxx ',
-                    'x   x',
-                    ' x x ',
-                    '  x  ',
-                    ' x x ',
-                    'x   x',
-                    ' xxx ',    ),
+    '8':   (' xxx ',
+            'x   x',
+            ' x x ',
+            '  x  ',
+            ' x x ',
+            'x   x',
+            ' xxx ',
+            ),
 
-        '9' :   (   ' xxx ',
-                    'x   x',
-                    'x   x',
-                    ' xxxx',
-                    '    x',
-                    '    x',
-                    ' xxx ',    ),
+    '9':   (' xxx ',
+            'x   x',
+            'x   x',
+            ' xxxx',
+            '    x',
+            '    x',
+            ' xxx ',
+            ),
 
-        ' ' :   (   '     ',
-                    '     ',
-                    '     ',
-                    '     ',
-                    '     ',
-                    '     ',
-                    '     ',    ),
+    ' ':   ('     ',
+            '     ',
+            '     ',
+            '     ',
+            '     ',
+            '     ',
+            '     ',
+            ),
 
-        'N' :   (   'x   x',
-                    'x   x',
-                    'xx  x',
-                    'x x x',
-                    'x  xx',
-                    'x   x',
-                    'x   x',    ),
+    'N':   ('x   x',
+            'x   x',
+            'xx  x',
+            'x x x',
+            'x  xx',
+            'x   x',
+            'x   x',
+            ),
 
-        'W' :   (   'x   x',
-                    'x   x',
-                    'x   x',
-                    'x   x',
-                    'x x x',
-                    'xx xx',
-                    'x   x',    ),
+    'W':   ('x   x',
+            'x   x',
+            'x   x',
+            'x   x',
+            'x x x',
+            'xx xx',
+            'x   x',
+            ),
 
-        '.' :   (   '     ',
-                    '     ',
-                    '     ',
-                    '     ',
-                    '     ',
-                    '  xx ',
-                    '  xx ',    ),
+    '.':   ('     ',
+            '     ',
+            '     ',
+            '     ',
+            '     ',
+            '  xx ',
+            '  xx ',
+            ),
 
-        'o' :   (   ' xxx ',
-                    ' x x ',
-                    ' xxx ',
-                    '     ',
-                    '     ',
-                    '     ',
-                    '     ',    ),
+    'o':   (' xxx ',
+            ' x x ',
+            ' xxx ',
+            '     ',
+            '     ',
+            '     ',
+            '     ',
+            ),
 
-        "'" :   (   '   x ',
-                    '  x  ',
-                    ' x   ',
-                    '     ',
-                    '     ',
-                    '     ',
-                    '     ',    ),
+    "'":   ('   x ',
+            '  x  ',
+            ' x   ',
+            '     ',
+            '     ',
+            '     ',
+            '     ',
+            ),
 
-        }
+}
 
 ########################################################################
 
 DEFAULT_CHAR = '.'
 
+
 def update(array, d, charnumber, row, col, c):
-    loc = row*d + charnumber*6 + col
+    """Compute and fill a location in array based on row, col."""
+    loc = row * d + charnumber * 6 + col
     if array[loc] == DEFAULT_CHAR:
         array[loc] = c
     else:
@@ -162,19 +174,23 @@ def update(array, d, charnumber, row, col, c):
 
 ########################################################################
 
+
 def encode(s, array, c):
+    """Encode the latitude/longitude string s into array."""
 #   print "encode: %s" % s
+    # check for, set up for latitude
     if c == 'N':
         d = 77
-        ro=0
-        co=0
+        ro = 0
+        co = 0
     else:
+        # et up for longitude
         d = 91
-        ro=4
-        co=20
+        ro = 4
+        co = 20
 
     for charnumber, char in enumerate(s):
-#       print "char: %s" % char
+        # print "char: %s" % char
         f = alphabet[char]
         for row, l in enumerate(f):
             row += ro
@@ -187,11 +203,12 @@ def encode(s, array, c):
 
 ########################################################################
 
-def main(args, options):
 
+def main(args, options):
+    """Run encoding from the console."""
     latitude = options.latitude
     longitude = options.longitude
-    pitch=options.pitch
+    pitch = options.pitch
 
     if options.debug:
         for c in sorted(alphabet.keys()):
@@ -199,7 +216,7 @@ def main(args, options):
             for l in alphabet[c]:
                 print l
 
-    array = [ DEFAULT_CHAR ] * 1001
+    array = [DEFAULT_CHAR] * 1001
 
     encode(latitude, array, 'N')
     encode(longitude, array, 'W')
@@ -212,7 +229,7 @@ def main(args, options):
 
 ########################################################################
 
-if __name__=="__main__":
+if __name__ == "__main__":
 
     from optparse import OptionParser
 
@@ -220,29 +237,37 @@ if __name__=="__main__":
     usage = "%%prog - [options]"
     parser = OptionParser(usage=usage, version=version)
 
-    parser.add_option("-d", "--debug",
+    parser.add_option(
+        "-d", "--debug",
         action="count",
         dest="debug",
-        help="Increment debug counter")
+        help="Increment debug counter"
+    )
 
-    parser.add_option("-p", "--pitch",
+    parser.add_option(
+        "-p", "--pitch",
         action="store",
         dest="pitch",
         type="int",
         default=59,
-        help="set pitch")
+        help="set pitch"
+    )
 
-    parser.add_option("", "--latitude",
+    parser.add_option(
+        "", "--latitude",
         action="store",
         dest="latitude",
         default="N38o50.599'",
-        help="set latitude (default: %default)")
+        help="set latitude (default: %default)"
+    )
 
-    parser.add_option("", "--longitude",
+    parser.add_option(
+        "", "--longitude",
         action="store",
         dest="longitude",
         default="W090o17.953'",
-        help="set longitude (default: %default)")
+        help="set longitude (default: %default)"
+    )
 
     (options, args) = parser.parse_args()
 

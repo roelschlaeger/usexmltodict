@@ -1,3 +1,5 @@
+# coding=utf-8
+
 #!/usr/bin/env python
 # vim:ts=4:sw=4:tw=0:wm=0:et:nowrap
 # $Id: alien_message.py 35 2008-07-17 05:34:05Z harry $

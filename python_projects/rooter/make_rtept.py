@@ -13,10 +13,12 @@ Trips.
 
 from __future__ import print_function
 from xml.etree import ElementTree as ET
+import os.path
+from gpx2kml import pretty_print
 
 ########################################################################
 
-__VERSION__ = "0.0.1"
+__VERSION__ = "0.0.2"
 __CREATOR__ = "make_rtept.py %s" % __VERSION__
 
 GPX_NAMESPACE = "http://www.topografix.com/GPX/1/1"
@@ -53,7 +55,7 @@ def get_usersort(w0):
 
 
 class DummyText(object):
-    """Create an object from a text string that has a .text attribute."""
+    """From a text string create an object that has a .text attribute."""
 
     text = ""
 
@@ -188,59 +190,62 @@ def add_rtepts_from_wpts(rte, wpts):
 
 #######################################################################
 
+
+def do_make_rtept(filename, debug=False, outfile=None):
+    """Create a route GPX file from pathname."""
+    global ITEM_TEXT
+
+    from datetime import date
+    ITEM_TEXT = str(date.today())
+
+    if outfile is None:
+        outfile = filename
+
+        # munge the filename to add .gpx to the end
+        head, tail = os.path.split(outfile)
+        outname = os.path.join(
+            head,
+            "%s_est.gpx" % tail.replace(".", "_").replace(" ", "_"))
+
+    if debug:
+        print(filename, outname)
+
+    # get wpts elements from an existing file
+    root = ET.parse(filename).getroot()
+    wpts = root.findall(WPT_TAG)
+
+    # build an output gpx file
+    gpx = ET.Element("gpx")
+    gpx.attrib["version"] = "1.1"
+    gpx.attrib["creator"] = __CREATOR__
+
+    # add all current wpts as-is
+    for wpt in wpts:
+        for item in wpt.iter():
+            item.tail = ""
+            txt = item.text
+            # print("'%s'" % txt)
+            if txt is not None and txt.strip() == "":
+                item.text = ""
+            if item.tag == RTYPE_TAG:
+                item.text = "%s %s" % (ITEM_TEXT, item.text)
+        gpx.append(wpt)
+
+    # with a rte
+    rte = ET.SubElement(gpx, "rte")
+
+    # add the wpts to the rte as rtepts
+    add_rtepts_from_wpts(rte, wpts)
+
+    ofile = open(outname, "wb")
+    pretty_print(ofile, gpx, indent=" ")
+    ofile.close()
+
+    return outname
+
+#######################################################################
+
 if __name__ == "__main__":
-
-    from gpx2kml import pretty_print
-
-    def process_file(filename, debug=False, outfile=None):
-        """Process a single input file to create rtept output."""
-        if debug:
-            print(filename, debug, outfile)
-
-        if outfile is None:
-            outname = "_%s.gpx" % filename.replace(".", "_").replace(" ", "_")
-        else:
-            outname = outfile
-            import os.path
-            if os.pathext(outname) == "":
-                outname = os.path.join(outname, ".gpx")
-
-        if debug:
-            print(filename, outname)
-            return
-
-        # get wpts elements from an existing file
-        root = ET.parse(filename).getroot()
-        wpts = root.findall(WPT_TAG)
-
-        # build an output gpx file
-        gpx = ET.Element("gpx")
-        gpx.attrib["version"] = "1.1"
-        gpx.attrib["creator"] = __CREATOR__
-
-        # add all current wpts as-is
-        for wpt in wpts:
-            for item in wpt.iter():
-                item.tail = ""
-                txt = item.text
-                # print("'%s'" % txt)
-                if txt is not None and txt.strip() == "":
-                    item.text = ""
-                if item.tag == RTYPE_TAG:
-                    item.text = "%s %s" % (ITEM_TEXT, item.text)
-            gpx.append(wpt)
-
-        # with a rte
-        rte = ET.SubElement(gpx, "rte")
-
-        # add the wpts to the rte as rtepts
-        add_rtepts_from_wpts(rte, wpts)
-
-        ofile = open(outname, "wb")
-        pretty_print(ofile, gpx, indent=" ")
-        ofile.close()
-
-        print("Output is in %s" % outname)
 
     #######################################################################
 
@@ -250,7 +255,14 @@ if __name__ == "__main__":
             args.filename = [args.filename]
 
         for filename in args.filename:
-            process_file(filename, debug=args.debug, outfile=args.outfile)
+
+            output_filename = do_make_rtept(
+                filename,
+                debug=args.debug,
+                outfile=args.outfile
+            )
+
+            print(output_filename)
 
     #######################################################################
 
