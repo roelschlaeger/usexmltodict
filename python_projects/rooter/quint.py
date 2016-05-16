@@ -13,8 +13,8 @@ import make_rtept
 
 ########################################################################
 
-__version__ = "$Revision: $".split()[1]
-__date__ = "$Date: $".split()[1]
+__version__ = "$Revision: 101 $".split()[1]
+__date__ = "$Date: 2016-05-16 18:51:00 -0500 (Mon, 16 May 2016) $".split()[1]
 
 ########################################################################
 
@@ -79,7 +79,7 @@ class MyPanel2(wx.Panel):
         self.cb1.SetValue(True)
         self.cb2.SetValue(False)
         self.cb3.SetValue(True)
-        self.cb4.SetValue(True)
+        self.cb4.SetValue(False)
         self.cb5.SetValue(True)
         self.cb6.SetValue(True)
 
