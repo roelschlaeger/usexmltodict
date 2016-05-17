@@ -1,22 +1,18 @@
-#!/usr/bin/python
-# vim:ts=4:sw=4:tw=0:wm=0:et
-# $Id: $
-# Created: 	     Mon 03 Oct 2011 10:52:15 AM CDT
-# Last modified: Tue 04 Feb 2014 03:00:06 PM CST
+# coding=utf-8
 
-########################################################################
+"""Use the Franklin Order 8 Magic Square for encryption.
 
-"""Use the Franklin Order 8 Magic Square for encryption
-
-http://www.mathpages.com/HOME/kmath155.htm
+-   http://www.mathpages.com/HOME/kmath155.htm
 """
-
-__version__ = "$Revision: $".split()[1]
-__date__ = "$Date: $".split()[1]
 
 ########################################################################
 
 from pprint import pprint
+
+########################################################################
+
+__version__ = "$Revision: 100 $".split()[1]
+__date__ = "$Date: 2016-05-17 11:50:00 $".split()[1]
 
 ########################################################################
 
@@ -42,7 +38,7 @@ if __name__ == "__main__":
     ########################################################################
 
     def build_dictionaries():
-
+        """Build forward- and back-reference dictionaries from FRANKLIN."""
         d = {}
         dr = {}
 
@@ -66,7 +62,7 @@ if __name__ == "__main__":
     ########################################################################
 
     def decode(s, d):
-
+        """Decode string s according to d."""
         s = s.upper()
 
         result = list("_" * 64)
@@ -82,7 +78,7 @@ if __name__ == "__main__":
     ########################################################################
 
     def encode(s, dr):
-
+        """Encode string s according to d."""
         s = s.upper()
 
         if DEBUG:
@@ -103,13 +99,12 @@ if __name__ == "__main__":
         if DEBUG:
             pprint(o)
 
-        return "\n".join(["".join(r) for r in o])
+        return "\n".join(["".join(_r) for _r in o])
 
     ########################################################################
 
     def main(args, options):
-        """process each of the command line arguments"""
-
+        """Process each of the command line arguments."""
         d, dr = build_dictionaries()
         if DEBUG:
             pprint(dr)
