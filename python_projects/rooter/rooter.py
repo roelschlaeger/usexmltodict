@@ -1,25 +1,13 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
-
-# Created:       Fri 10 Jan 2014 11:44:49 AM CST
-# Last Modified: Mon 15 Feb 2016 05:48:43 PM CST
-
-from __future__ import print_function
+# coding=utf-8
 
 """
+Generate an HTML file from a .gpx route.
+
 SYNOPSIS
 
-    rooter [-h] [-v,--verbose] [--version] [ gpx_filename ]
+    python rooter.py [-h] [-v,--verbose] [--version] [ gpx_filename ]
 
-    where gpx_filename defaults to
-
-        r"/Users/Robert Oelschlaeger/Dropbox/Geocaching/\
-            topo803 - Springfield IL/topo803b - Springfield IL.gpx"
-
-DESCRIPTION
-
-    Generate an HTML cache list file for The Rooter
+    where gpx_filename defaults to "default.gpx"
 
 EXAMPLES
 
@@ -29,7 +17,7 @@ EXIT STATUS
 
 AUTHOR
 
-    TODO: Robert Oelschlaeger <roelsch2009@gmail.com>
+    Robert Oelschlaeger <roelsch2009@gmail.com>
 
 LICENSE
 
@@ -39,27 +27,26 @@ VERSION
 
 """
 
-__VERSION__ = "0.0.3"
-
-DEBUG = False
-ELLIPSIS_MAX = 72
-
-########################################################################
-
+from __future__ import print_function
 from degmin import degmin
 from dominate import document
-from dominate.tags import table, tr, th, td, br, em, style, a, caption, \
-    meta
+from dominate.tags import table, tr, th, td, br, em, style, a, caption, meta
 from xml.etree import ElementTree as ET
 import codecs
 import os.path
 
 ########################################################################
 
+__VERSION__ = "0.0.4"
+
+DEBUG = False
+ELLIPSIS_MAX = 72
+
+########################################################################
+
 
 def location_link(lat, lon):
-    """Return an anchor tag for (lat, lon) that links to Google Maps"""
-
+    """Return an anchor tag for (lat, lon) that links to Google Maps."""
     from maplink import maplink
     href = maplink(lat, lon)
     link = "(%s, %s)" % (degmin(lat, "NS"), degmin(lon, "EW"))
@@ -69,11 +56,12 @@ def location_link(lat, lon):
 
 
 def get_wpts(gpxname):
-    """
-    Return a list of waypoints from 'gpxname' .gpx file and a dictionary of the
-    waypoint lat/lon locations
-    """
+    """Return a waypoint data as a waypoint list and lat/lon dictionary.
 
+    Waypoints are extracted from the 'gpxname' .gpx file. The returned result
+    is a list of the waypoints and a dictionary of the waypoint lat/lon
+    locations.
+    """
     tree = ET.parse(gpxname)
     root = tree.getroot()
     wpts = root.findall(root.tag.replace("gpx", "wpt"))
@@ -92,10 +80,11 @@ def get_wpts(gpxname):
 
 def ellipsis(s, l):
     """
-    Return a string of length 'l' at most, appending an ellipsis if necessary
-    to indicate overflow
-    """
+    Return a string of length 'l' at most.
 
+    The returned string results from appending an ellipsis if necessary to
+    indicate overflow.
+    """
     # TODO this shouldn't happen?
     if s is None:
         return None
@@ -132,9 +121,11 @@ STYLE = """\
 
 
 def create_rooter_document(gpxname):
-    """Create a HTML document from the information contained in the .gpx file
-    named gpxname."""
+    """Generate the HTML 'Rooter' output document.
 
+    Create a HTML document from the information contained in the .gpx file
+    named gpxname.
+    """
     print("reading %s" % gpxname)
 
     wpts, latlon_dictionary = get_wpts(gpxname)
@@ -280,7 +271,7 @@ def create_rooter_document(gpxname):
 
 ####
         if not w_name.startswith("GC"):
-            print("skipping %s" % w_name)
+            print("   skipping %s: '%s'" % (w_name, w_desc[:50]))
             continue
 
         if row_number % 2:
@@ -320,7 +311,8 @@ def create_rooter_document(gpxname):
             else:
                 gc_text += " (ignoring published puzzle location)"
         else:
-#           gc_text += " (%s, %s)" % (degmin(w_lat, "NS"), degmin(w_lon, "EW"))
+            # gc_text += " (%s, %s)" % (degmin(w_lat, "NS"),
+            #                           degmin(w_lon, "EW"))
             gc_text += "  "
             gc_text.add(location_link(w_lat, w_lon))
 
@@ -398,8 +390,7 @@ def create_rooter_document(gpxname):
 
 
 def make_zipfile(fname):
-    """Create a zipfile containing fname"""
-
+    """Create a zipfile containing fname."""
     zipdir, zipbase = os.path.split(fname)
     zipfile, zipext = os.path.splitext(zipbase)
     zipfilename = os.path.join(zipdir, "%s.zip" % zipfile)
@@ -415,7 +406,11 @@ def make_zipfile(fname):
 
 
 def print_rooter_document(gpxname, rooter_document, zipfile=True):
+    """Write the document to a utf-8 file.
 
+    Optionally additionally place the result into a .zip compressed file if
+    the zipfile flag is True.
+    """
     # create the output
     outfiledir, outfilebase = os.path.split(gpxname)
 
@@ -442,8 +437,7 @@ def print_rooter_document(gpxname, rooter_document, zipfile=True):
 
 
 def do_rooter(gpxname):
-    """Create and print a Rooter file from gpxname .gpx file"""
-
+    """Create and print a Rooter file from gpxname .gpx file."""
     document = create_rooter_document(gpxname)
     print_rooter_document(gpxname, document)
 
@@ -457,19 +451,8 @@ if __name__ == '__main__':
     import optparse
     import time
 
-    #from pexpect import run, spawn
-
-    # Uncomment the following section if you want readline history support.
-    #import readline, atexit
-    #histfile = os.path.join(os.environ['HOME'], '.TODO_history')
-    #try:
-    #    readline.read_history_file(histfile)
-    #except IOError:
-    #    pass
-    #atexit.register(readline.write_history_file, histfile)
-
     def main():
-
+        """Process command line arguments and options."""
         global options, args
 
         global DEBUG
@@ -477,12 +460,14 @@ if __name__ == '__main__':
 
         do_rooter(args[0])
 
+    ########################################################################
+
     try:
         start_time = time.time()
         parser = optparse.OptionParser(
             formatter=optparse.TitledHelpFormatter(),
             usage=globals()['__doc__'],
-            version='$Id: py.tpl 332 2008-10-21 22:24:52Z root $'
+            version='Version: %s' % __VERSION__
         )
         parser.add_option(
             '-d',
@@ -500,19 +485,12 @@ if __name__ == '__main__':
         )
         (options, args) = parser.parse_args()
         if len(args) < 1:
-#           args = ["default.gpx"]
-#           args = [r"C:\Users\Robert Oelschlaeger\Dropbox\Geocaching"
-#                   r"\topo764 - Souvenirs of August"
-#                   r"\topo764a - Souvenirs of August.gpx"]
-            args = [
-                r"/Users/Robert Oelschlaeger/Dropbox/Geocaching"
-                r"/topo803 - Springfield IL/topo803b - Springfield IL.gpx"
-            ]
-#           args = [""]
-#           parser.error ('missing argument')
+            args = ["default.gpx"]
         if options.verbose:
             print(time.asctime())
+
         exit_code = main()
+
         if exit_code is None:
             exit_code = 0
         if options.verbose:
