@@ -20,9 +20,11 @@ POLYBIUS = [
 def print_polybius():
     """Display the contents of POLYBIUS."""
     print()
+    print("  12345")
+    print(" +-----")
     for row in range(5):
         s = "".join(POLYBIUS[row])
-        print(s)
+        print("%d|%s" % (row+1, s))
     print()
 
 if DEBUG:
@@ -134,6 +136,11 @@ if __name__ == "__main__":
     if DEBUG:
         print(out)
 
+    reset_polybius()
+    print_polybius()
+
     set_key("SKULL")
+    print_polybius()
+
     result = polybius(out)
     print(result)
