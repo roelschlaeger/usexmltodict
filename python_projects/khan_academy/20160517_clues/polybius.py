@@ -47,17 +47,17 @@ def polybius(digit_pairs):
 
 def set_key(s, debug=False):
     """Set the elements in POLYBIUS from the characters in s."""
-    # allowable characters are "A" - "Z" except "J"
+    # allowable characters are "A" - "Y"
     import string
     others = string.uppercase
-    others = others.replace("J", "")
+    others = others.replace("Z", "")
 
     print("Setting key to %s" % s)
     # sort uppercase into key and non-key characters
     seen = set()
     starting_characters = []
     for key in list(s.upper()):
-        if (not key.isalpha()) or key == "J" or key in seen:
+        if (not key.isalpha()) or key == "Z" or key in seen:
             continue
         seen.add(key)
         starting_characters.append(key)
@@ -124,6 +124,17 @@ if __name__ == "__main__":
 43513544
 """
 
+    CLUE3 = """
+44541134541123335344541242434244325141
+2123113113531554425442444243443251415343543242
+34411125513553341342432253431144543453
+43225134314214325134125334121554153451
+3351444411225144425442444415345123551543
+21345111131121235142543153332142435144531534
+1434512542531544335154325341443
+435135441
+"""
+
     clues = "".join(CLUE3.split("\n")[1:-1])
     if DEBUG:
         print(clues)
@@ -139,7 +150,9 @@ if __name__ == "__main__":
     reset_polybius()
     print_polybius()
 
-    set_key("SKULL")
+#   set_key("SKULL")
+    key1 = "AFKPU BGLQV CHMRW DINSX EJOTY".replace(" ", "")
+    set_key(key1)
     print_polybius()
 
     result = polybius(out)
