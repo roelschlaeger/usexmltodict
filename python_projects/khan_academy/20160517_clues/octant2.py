@@ -9,6 +9,26 @@ def line_check(row, symbols):
 
     out = []
 
+    def save_bits(n1, n2):
+        #               1             0
+        # adjust n1    \|/            |
+        #            7--.--3 ==>  2 --.-- 1
+        #              /|\            |
+        #               5             2
+        #
+        # adjust n2   8   2         2   1
+        #              \|/           \ /
+        #             --.--  ==>      .
+        #              /|\           / \
+        #             6   4         3   0
+
+        assert n1 & 1, "n1 Error"
+        assert (n2 & 1) == 0, "n2 Error"
+
+        b1 = (n1 - 1) // 2
+        b2 = (6 - (n2 - 2)) // 2
+        out.append((b1, b2))
+
     symbols = symbols.strip()
 
     if len(symbols) != 0:
@@ -31,9 +51,9 @@ def line_check(row, symbols):
 
             # return results in (even, odd) order
             if n1 & 1:
-                out.append((n2, n1))
+                save_bits(n1, n2)
             else:
-                out.append((n1, n2))
+                save_bits(n2, n1)
 
             col += 2
 
@@ -57,7 +77,7 @@ if __name__ == "__main__":
 
     from collections import Counter
     c = Counter(result)
-    print(c)
+    print(len(c), "\n", c)
 
 
 # end of file
