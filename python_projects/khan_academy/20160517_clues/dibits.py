@@ -128,4 +128,10 @@ TRIBITS = three2four(DIBITS)
 if __name__ == "__main__":
 
     from pprint import pprint
-    pprint(TRIBITS, width=76, compact=True)
+    import sys
+    if sys.version_info > (3, 0):
+        pprint(TRIBITS, width=76, compact=True)
+    else:
+        pprint(TRIBITS, width=76)
+
+# end of file

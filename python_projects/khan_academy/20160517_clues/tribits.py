@@ -2,7 +2,8 @@
 """Pairs of three-bit values used to XOR Polybius (row, col) values."""
 
 from __future__ import print_function
-from polybius import set_key, print_polybius, text2pairs
+from polybius import set_key, print_polybius
+from polybius import polybius_pair, polybius_char
 
 TRIBITS = [
     (4, 3), (3, 2), (5, 4), (1, 5), (6, 0), (6, 2), (4, 2), (4, 2), (7, 2),
@@ -18,15 +19,6 @@ TRIBITS = [
     (2, 4), (2, 3), (0, 4), (3, 1), (5, 0), (5, 4), (4, 0), (3, 2), (4, 7),
     (5, 1), (1, 0), (5, 7), (4, 2), (2, 5), (6, 0), (4, 0)
 ]
-
-# EJOTY
-# DINSX
-# CHMRW
-# BGLQV
-# AFKPU
-key2 = "EJOTYDINSXCHMRWBGLQVAFKPU"
-set_key(key2)
-print_polybius()
 
 PAD = """
 The whole grain goodness of
@@ -46,14 +38,62 @@ dend payers has been stalled.
 
 PAD_CHARS = "".join([x for x in PAD.upper() if x.isalpha()])
 
+########################################################################
+
+
+def decrypt_one_time_pad(tribits, pad_chars, debug=False):
+    """Decrypt the tribits message using the one-time pad."""
+    if debug:
+        print("tribits   length: ", len(tribits))
+        print("pad_chars length: ", len(pad_chars))
+        print()
+
+    out = []
+    for index, t in enumerate(tribits):
+        t1, t2 = t
+        if debug:
+            print(t1, t2)
+        n1, n2 = polybius_pair(pad_chars[index])
+        if debug:
+            print(n1, n2)
+            print("----")
+        n1 = n1 ^ t1
+        n2 = n2 ^ t2
+        if debug:
+            print(n1, n2)
+            print()
+        out.append(polybius_char(n1, n2))
+    return "".join(out)
+
+########################################################################
 
 if __name__ == '__main__':
 
-    from pprint import pprint
+    # AFKPU
+    # BGLQV
+    # CHMRW
+    # DINSX
+    # EJOTY
+    # key1 = "AFKPUBGLQVCHMRWDINSXEJOTY"
 
-    print(PAD)
-    print(PAD_CHARS)
+    # EJOTY
+    # DINSX
+    # CHMRW
+    # BGLQV
+    # AFKPU
+    key2 = "EJOTYDINSXCHMRWBGLQVAFKPU"
+    set_key(key2)
+    print_polybius()
 
-    PAD_PAIRS = text2pairs(PAD_CHARS)
-    pprint(PAD_PAIRS, width=78)
+#   print(PAD)
+#   print(PAD_CHARS)
+
+#   from polybius import text2pairs
+#   PAD_PAIRS = text2pairs(PAD_CHARS)
+#   from pprint import pprint
+#   pprint(PAD_PAIRS, width=78)
+
+    cleartext = decrypt_one_time_pad(TRIBITS, PAD_CHARS, True)
+    print(cleartext)
+
 # end of file

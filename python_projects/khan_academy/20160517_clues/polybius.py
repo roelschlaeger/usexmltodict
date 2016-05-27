@@ -34,7 +34,7 @@ def _polybius_dicts():
     for row, rowlist in enumerate(POLYBIUS):
         for col, char in enumerate(rowlist):
             # row and column are offset by 1!
-            key = (row + 1, col + 1)
+            key = (row, col)
             d[key] = char
             rd[char] = key
     return d, rd
@@ -61,13 +61,13 @@ def _polybius_reinit():
 
 
 def print_polybius():
-    """Display the contents of POLYBIUS, showing 1-origin."""
+    """Display the contents of POLYBIUS, showing 0-origin."""
     print()
-    print("  12345")
+    print("  01234")
     print(" +-----")
     for row in range(5):
         s = "".join(POLYBIUS[row])
-        print("%d|%s" % (row + 1, s))
+        print("%d|%s" % (row, s))
     print()
 
 if DEBUG:
@@ -80,8 +80,8 @@ def polybius(digit_pairs):
     """Return a string corresponding to the digit_pairs."""
     out = []
     for row, col in digit_pairs:
-        assert(row < 5)
-        assert(col < 5)
+        assert(0 <= row <= 4)
+        assert(0 <= col <= 4)
         out.append(POLYBIUS[row][col])
     return "".join(out)
 
@@ -165,6 +165,22 @@ def upperonly(s):
 ########################################################################
 
 
+def polybius_pair(c):
+    """Convert a character to a (row, col) pair of the Polybius array."""
+    return _RDICT.get(c, (0, 0))
+
+########################################################################
+
+
+def polybius_char(n1, n2):
+    """Convert a character to a (row, col) pair of the Polybius array."""
+    assert 0 <= n1 <= 4, "polybius_char error: n1 = %d" % n1
+    assert 0 <= n2 <= 4, "polybius_char error: n2 = %d" % n2
+    return _DICT.get((n1, n2), "?")
+
+########################################################################
+
+
 def text2pairs(t):
     """Convert text string t to Polybius (row, col) pairs."""
     print("text2pairs", "'%s'" % t)
@@ -181,10 +197,10 @@ def pairs2text(pairs_list):
     """Convert (row, col) pairs in pairs_list to a string."""
     out = []
     for r, c in pairs_list:
-        # r and c are 1-based
-        assert 1 <= r <= 5, "Row error in pairs2text: %s" % r
-        assert 1 <= c <= 5, "Column error in pairs2text: %s" % c
-        out.append(POLYBIUS[r - 1][c - 1])
+        # r and c are 0-based
+        assert 0 <= r <= 4, "Row error in pairs2text: %s" % r
+        assert 0 <= c <= 4, "Column error in pairs2text: %s" % c
+        out.append(POLYBIUS[r][c])
     result = "".join(out)
     return result
 
@@ -193,7 +209,7 @@ def pairs2text(pairs_list):
 
 if __name__ == "__main__":
 
-    test = [(x, y) for y in range(1, 6) for x in range(1, 6)]
+    test = [(x, y) for y in range(5) for x in range(5)]
     print(test)
     print(pairs2text(test))
     print()
