@@ -26,7 +26,9 @@ def line_check(row, symbols):
         assert (n2 & 1) == 0, "n2 Error"
 
         b1 = (n1 - 1) // 2
-        b2 = (6 - (n2 - 2)) // 2
+        b2 = (4 - n2) // 2 % 4
+        assert 0 <= b1 <= 3, "b1 Error"
+        assert 0 <= b2 <= 3, "b2 Error"
         out.append((b1, b2))
 
     symbols = symbols.strip()
@@ -68,17 +70,17 @@ def symbols_check():
     return result
 
 
+DIBIT_PAIRS = symbols_check()
+
 if __name__ == "__main__":
 
     from pprint import pprint
 
-    result = symbols_check()
-    pprint(result)
+    pprint(DIBIT_PAIRS, width=29, compact=True)
 
     from collections import Counter
-    c = Counter(result)
+    c = Counter(DIBIT_PAIRS)
     print(len(c), "\n", c)
 
 
 # end of file
-
