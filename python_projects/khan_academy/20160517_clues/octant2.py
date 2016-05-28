@@ -75,8 +75,16 @@ DIBIT_PAIRS = symbols_check()
 if __name__ == "__main__":
 
     from pprint import pprint
+    import sys
 
-    pprint(DIBIT_PAIRS, width=29, compact=True)
+    # pprint changed in Python 3.4, adding the compact flag
+    if sys.version_info < (3, 0):
+        pprint(DIBIT_PAIRS, width=29)
+    else:
+        pprint(DIBIT_PAIRS, width=29, compact=True)
+        print()
+        pprint(DIBIT_PAIRS, width=80, compact=True)
+        print()
 
     from collections import Counter
     c = Counter(DIBIT_PAIRS)
