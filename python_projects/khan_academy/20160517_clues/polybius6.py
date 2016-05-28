@@ -1,24 +1,25 @@
 # coding=utf-8
 
-"""Perform Polybius encoding using 5x5 matrix."""
+"""Perform Polybius encoding using 6x6 matrix."""
 
 from __future__ import print_function
 from pprint import pprint
 
 
-class Polybius5(object):
+class Polybius6(object):
 
     ########################################################################
 
     DEBUG = False
 
-    # "Z" is not permitted in the POLYBIUS5 array
+    # All alphabetic and digit characters
     POLYBIUS = [
-        ["A", "B", "C", "D", "E"],
-        ["F", "G", "H", "I", "J"],
-        ["K", "L", "M", "N", "O"],
-        ["P", "Q", "R", "S", "T"],
-        ["U", "V", "W", "X", "Y"],
+        ["A", "B", "C", "D", "E", "F"],
+        ["G", "H", "I", "J", "K", "L"],
+        ["M", "N", "O", "P", "Q", "R"],
+        ["S", "T", "U", "V", "W", "X"],
+        ["Y", "Z", "0", "1", "2", "3"],
+        ["4", "5", "6", "7", "8", "9"]
     ]
 
     # a mapping of (row, col) to char, filled by _polybius_reinit()
@@ -61,9 +62,9 @@ class Polybius5(object):
     def print_polybius(self):
         """Display the contents of POLYBIUS, showing 0-origin."""
         print()
-        print("  01234")
-        print(" +-----")
-        for row in range(5):
+        print("  012345")
+        print(" +------")
+        for row in range(6):
             s = "".join(self.POLYBIUS[row])
             print("%d|%s" % (row, s))
         print()
@@ -74,8 +75,8 @@ class Polybius5(object):
         """Return a string corresponding to the digit_pairs."""
         out = []
         for row, col in digit_pairs:
-            assert(0 <= row <= 4)
-            assert(0 <= col <= 4)
+            assert(0 <= row <= 5)
+            assert(0 <= col <= 5)
             out.append(self.POLYBIUS[row][col])
         return "".join(out)
 
@@ -85,8 +86,7 @@ class Polybius5(object):
         """Set the elements in POLYBIUS from the characters in s."""
         import string
         # these are the permitted characters
-        allowed = string.uppercase
-        allowed = allowed.replace("Z", "")
+        allowed = string.uppercase + string.digits
         # print("allowed: '%s'" % allowed)
 
         # others has the permitted characters not yet seen
@@ -121,14 +121,14 @@ class Polybius5(object):
             print("".join(others))
 
         new_key = ("".join(starting_characters)) + ("".join(others))
-        assert len(new_key) == 25,\
-            "Resulting Polybius key has wrong (%d != 25) length?" \
+        assert len(new_key) == 36,\
+            "Resulting Polybius key has wrong (%d != 36) length?" \
             % len(new_key)
 
         # transfer the new_key to POLYBIUS
         index = 0
-        for row in range(5):
-            for col in range(5):
+        for row in range(6):
+            for col in range(6):
                 self.POLYBIUS[row][col] = new_key[index]
                 index += 1
 
@@ -148,14 +148,14 @@ class Polybius5(object):
     def reset_polybius(self):
         """Reset POLYBIUS to the default string."""
         import string
-        # set the key to A-Y; no Z
-        self.set_key(string.uppercase.replace("Z", ""))
+        # s = string.uppercase + string.digits
+        self.set_key(string.uppercase + string.digits)
 
     ########################################################################
 
     def upperonly(self, s):
-        """Return a string of only alphameric characters in s.upper()."""
-        return "".join([x for x in s.upper() if s.isalpha()])
+        """Return a string of only valid characters in s.upper()."""
+        return "".join([x for x in s.upper() if s.isalnum()])
 
     ########################################################################
 
@@ -167,8 +167,8 @@ class Polybius5(object):
 
     def polybius_char(self, n1, n2):
         """Convert a character to a (row, col) pair of the Polybius array."""
-        assert 0 <= n1 <= 4, "polybius_char error: n1 = %d" % n1
-        assert 0 <= n2 <= 4, "polybius_char error: n2 = %d" % n2
+        assert 0 <= n1 <= 5, "polybius_char error: n1 = %d" % n1
+        assert 0 <= n2 <= 5, "polybius_char error: n2 = %d" % n2
         return self._DICT.get((n1, n2), "?")
 
     ########################################################################
@@ -189,8 +189,8 @@ class Polybius5(object):
         out = []
         for r, c in pairs_list:
             # r and c are 0-based
-            assert 0 <= r <= 4, "Row error in pairs2text: %s" % r
-            assert 0 <= c <= 4, "Column error in pairs2text: %s" % c
+            assert 0 <= r <= 5, "Row error in pairs2text: %s" % r
+            assert 0 <= c <= 5, "Column error in pairs2text: %s" % c
             out.append(self.POLYBIUS[r][c])
         result = "".join(out)
         return result
@@ -201,7 +201,7 @@ if __name__ == "__main__":
 
     ########################################################################
 
-    pb = Polybius5()
+    pb = Polybius6()
 
     if pb.DEBUG:
         pb.print_polybius()
@@ -209,20 +209,20 @@ if __name__ == "__main__":
     pb.reset_polybius()
     pb.print_polybius()
 
-    s = pb.polybius([(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), ])
+    s = pb.polybius([(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5)])
     print(s)
-    assert(s == "AGMSY"), "Assertion failed: %s" % s
+    assert(s == "AHOV29"), "Assertion failed: %s" % s
 
-    s = pb.polybius([(0, 4), (1, 3), (2, 2), (3, 1), (4, 0)])
+    s = pb.polybius([(0, 5), (1, 4), (2, 3), (3, 2), (4, 1), (5, 0)])
     print(s)
-    assert(s == "EIMQU"), "Assertion failed: %s" % s
+    assert(s == "FKPUZ4"), "Assertion failed: %s" % s
 
-    pb.set_key("this is the new key no Z or 123", debug=True)
+    pb.set_key("09 this is the new key 81", debug=True)
     s = pb.get_key()
     print(s)
-    assert s == "THISENWKYABCDFGJLMOPQRUVX", "get_key error: %s" % s
+    assert s == "09THISENWKY81ABCDFGJLMOPQRUVXZ234567", "get_key error: %s" % s
 
-    test = [(x, y) for y in range(5) for x in range(5)]
+    test = [(x, y) for y in range(6) for x in range(6)]
     print(test)
     print(pb.pairs2text(test))
     print()
@@ -260,3 +260,11 @@ if __name__ == "__main__":
 
     result = pb.polybius(clue_pairs)
     print(result)
+
+
+    key2 = "AFKPUZ BGLQV9 CHMRW8 DINSX7 EJOTY6 012345"
+    pb.set_key(key2)
+    pb.print_polybius()
+    result = pb.polybius(clue_pairs)
+    print(result)
+
