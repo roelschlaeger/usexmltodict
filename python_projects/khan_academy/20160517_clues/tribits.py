@@ -118,7 +118,7 @@ def decrypt_one_time_pad(pb, hexbits, pad_chars, debug=False):
         print("pad_chars length: ", len(pad_chars))
         print()
 
-    print("idx   t  x  v n1 n2 c")
+    print("idx   t  x  v n1 n2 c (t x v are in octal)")
     print("---   -  -  -  -  - -")
     out = []
     for index, t in enumerate(hexbits):
@@ -127,10 +127,11 @@ def decrypt_one_time_pad(pb, hexbits, pad_chars, debug=False):
         n1, n2 = divmod(v, 8)
         try:
             c = pb.polybius_char(n1, n2)
-        except AssertionError:
+        except AssertionError as e:
+            print(e)
             c = "?"
         if debug:
-            print("%3d: %2d %2d %2d %2d %2d %c" % (index, t, x, v, n1, n2, c))
+            print("%3d: %2o %2o %2o %2d %2d %c" % (index, t, x, v, n1, n2, c))
         out.append(c)
     return "".join(out)
 
