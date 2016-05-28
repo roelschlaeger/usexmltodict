@@ -2,8 +2,7 @@
 """Pairs of three-bit values used to XOR Polybius (row, col) values."""
 
 from __future__ import print_function
-from polybius import set_key, print_polybius
-from polybius import polybius_pair, polybius_char
+from polybius import Polybius5
 
 TRIBITS = [
     (4, 3), (3, 2), (5, 4), (1, 5), (6, 0), (6, 2), (4, 2), (4, 2), (7, 2),
@@ -41,7 +40,7 @@ PAD_CHARS = "".join([x for x in PAD.upper() if x.isalpha()])
 ########################################################################
 
 
-def decrypt_one_time_pad(tribits, pad_chars, debug=False):
+def decrypt_one_time_pad(pb, tribits, pad_chars, debug=False):
     """Decrypt the tribits message using the one-time pad."""
     if debug:
         print("tribits   length: ", len(tribits))
@@ -53,7 +52,7 @@ def decrypt_one_time_pad(tribits, pad_chars, debug=False):
         t1, t2 = t
         if debug:
             print(t1, t2)
-        n1, n2 = polybius_pair(pad_chars[index])
+        n1, n2 = pb.polybius_pair(pad_chars[index])
         if debug:
             print(n1, n2)
             print("----")
@@ -62,7 +61,7 @@ def decrypt_one_time_pad(tribits, pad_chars, debug=False):
         if debug:
             print(n1, n2)
             print()
-        out.append(polybius_char(n1, n2))
+        out.append(pb.polybius_char(n1, n2))
     return "".join(out)
 
 ########################################################################
@@ -81,19 +80,19 @@ if __name__ == '__main__':
     # CHMRW
     # BGLQV
     # AFKPU
+    PB = Polybius5()
     key2 = "EJOTYDINSXCHMRWBGLQVAFKPU"
-    set_key(key2)
-    print_polybius()
+    PB.set_key(key2)
+    PB.print_polybius()
 
 #   print(PAD)
 #   print(PAD_CHARS)
 
-#   from polybius import text2pairs
-#   PAD_PAIRS = text2pairs(PAD_CHARS)
+#   PAD_PAIRS = PB.text2pairs(PAD_CHARS)
 #   from pprint import pprint
 #   pprint(PAD_PAIRS, width=78)
 
-    cleartext = decrypt_one_time_pad(TRIBITS, PAD_CHARS, True)
+    cleartext = decrypt_one_time_pad(PB, TRIBITS, PAD_CHARS, True)
     print(cleartext)
 
 # end of file
