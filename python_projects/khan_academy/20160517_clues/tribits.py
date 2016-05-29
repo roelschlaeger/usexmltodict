@@ -3,6 +3,7 @@
 
 from __future__ import print_function
 from polybius6 import Polybius6
+from dibits import binary6
 
 #   TRIBITS = [
 #       (4, 3), (3, 2), (5, 4), (1, 5), (6, 0), (6, 2), (4, 2), (4, 2), (7, 2),
@@ -79,9 +80,11 @@ if (len(PAD_CHARS) % 6):
 
 
 def pad_mask(s, debug=False):
+    """Compute 6-bit XOR masks from the string s."""
     s = list(s)
 
     def isvowel(c):
+        """Return 1 for vowel, 0 otherwise."""
         if c in "AEIOUY":
             return 1
         return 0
@@ -101,16 +104,27 @@ def pad_mask(s, debug=False):
 
         yield out
 
-#   generator = pad_mask(PAD_CHARS, False)
-#   while 1:
-#       print(generator.next())
+########################################################################
+
+
+def print_pad_chars(s):
+    """Display the results of pad_mask generation on string s."""
+    print("  PAD  <-mask--> (binary and octal)")
+    print("------ ------ --")
+    generator = pad_mask(s)
+    while s:
+        t, s = s[:6], s[6:]
+        n = generator.next()
+        o = binary6(n)
+        print("%s %6s %02o " % (t, o, n))
+
+print_pad_chars(PAD_CHARS)
 
 ########################################################################
 
 
 def decrypt_one_time_pad(pb, hexbits, pad_chars, debug=False):
     """Decrypt the tribits message using the one-time pad."""
-
     generator = pad_mask(PAD_CHARS)
 
     if debug:
@@ -125,13 +139,11 @@ def decrypt_one_time_pad(pb, hexbits, pad_chars, debug=False):
         x = generator.next()
         v = t ^ x
         n1, n2 = divmod(v, 8)
-        try:
-            c = pb.polybius_char(n1, n2)
-        except AssertionError as e:
-            print(e)
-            c = "?"
+        c = pb.polybius_char(n1, n2, alt="?")
         if debug:
-            print("%3d: %2o %2o %2o %2d %2d %c" % (index, t, x, v, n1, n2, c))
+            print("%3d: %02o %02o %02o %2d %2d %c"
+                  % (index, t, x, v, n1, n2, c)
+                  )
         out.append(c)
     return "".join(out)
 
@@ -155,11 +167,11 @@ if __name__ == '__main__':
     # pprint([(x, binary6(x)) for x in generator])
     # print()
 
-    PB = Polybius6()
     key2 = "FGHIJK EXYZ0L DW781M CV692N BU543O ATSRQP"
-    PB.set_key(key2)
-    PB.print_polybius()
-    cleartext = decrypt_one_time_pad(PB, HEXBITS, PAD_CHARS, True)
+    pb = Polybius6(key2, False)
+    pb.print_polybius()
+    print()
+    cleartext = decrypt_one_time_pad(pb, HEXBITS, PAD_CHARS, True)
     print(cleartext)
 
 # end of file

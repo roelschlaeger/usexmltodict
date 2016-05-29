@@ -4,6 +4,7 @@
 
 from __future__ import print_function
 from pprint import pprint
+import string
 
 
 class Polybius6(object):
@@ -14,7 +15,7 @@ class Polybius6(object):
     DEBUG = False
 
     # True if rows and columns are 1-origin instead of 0-origin
-    ONE_ORIGIN = False
+    ONE_ORIGIN = True
 
     # All alphabetic and digit characters
     POLYBIUS = [
@@ -31,6 +32,48 @@ class Polybius6(object):
 
     # a mapping of char to (row, col), filled by _polybius_reinit()
     _RDICT = {}
+
+    ########################################################################
+
+    def __init__(
+        self,
+        key=None,
+        one_origin=False
+    ):
+        """Class instance initialization."""
+        # set this before calling set_key!
+        self.ONE_ORIGIN = one_origin
+
+        if key is None:
+            self.set_key(string.uppercase + string.digits)
+        else:
+            self.set_key(key)
+
+    ########################################################################
+
+    def __str__(self):
+        """Return a string representation of the instance."""
+        out = []
+        out.append("")
+        if self.ONE_ORIGIN:
+            out.append("  123456")
+        else:
+            out.append("  012345")
+        out.append(" +------")
+        for row in range(6):
+            s = "".join(self.POLYBIUS[row])
+            if self.ONE_ORIGIN:
+                out.append("%d|%s" % (row + 1, s))
+            else:
+                out.append("%d|%s" % (row, s))
+        out.append("")
+        return "\n".join(out)
+
+    ########################################################################
+
+    def print_polybius(self):
+        """Display the contents of POLYBIUS, showing 0-origin."""
+        print(self)
 
     ########################################################################
 
@@ -62,40 +105,6 @@ class Polybius6(object):
             print("_RDICT")
             pprint(self._RDICT)
             print()
-
-    ########################################################################
-
-    def print_polybius(self):
-        """Display the contents of POLYBIUS, showing 0-origin."""
-        print()
-        if self.ONE_ORIGIN:
-            print("  123456")
-        else:
-            print("  012345")
-        print(" +------")
-        for row in range(6):
-            s = "".join(self.POLYBIUS[row])
-            if self.ONE_ORIGIN:
-                print("%d|%s" % (row + 1, s))
-            else:
-                print("%d|%s" % (row, s))
-        print()
-
-    ########################################################################
-
-    def polybius(self, digit_pairs):
-        """Return a string corresponding to the digit_pairs."""
-        out = []
-        minval, maxval = self.minval_maxval()
-
-        for row, col in digit_pairs:
-            assert(minval <= row <= maxval)
-            assert(minval <= col <= maxval)
-            if self.ONE_ORIGIN:
-                out.append(self.POLYBIUS[row - 1][col - 1])
-            else:
-                out.append(self.POLYBIUS[row][col])
-        return "".join(out)
 
     ########################################################################
 
@@ -156,6 +165,33 @@ class Polybius6(object):
 
     ########################################################################
 
+    def minval_maxval(self):
+        """Return the min and max row/col indices."""
+        if self.ONE_ORIGIN:
+            minval = 1
+        else:
+            minval = 0
+        return minval, minval + 5
+
+    ########################################################################
+
+    def polybius(self, digit_pairs, alt=None):
+        """Return a string corresponding to the digit_pairs."""
+        out = []
+        # minval, maxval = self.minval_maxval()
+
+        for row, col in digit_pairs:
+            # assert(minval <= row <= maxval)
+            # assert(minval <= col <= maxval)
+            out.append(self.polybius_char(row, col, alt))
+            # if self.ONE_ORIGIN:
+            #     out.append(self.POLYBIUS[row - 1][col - 1])
+            # else:
+            #     out.append(self.POLYBIUS[row][col])
+        return "".join(out)
+
+    ########################################################################
+
     def get_key(self):
         """Return the key as a string."""
         return "".join(["".join(s) for s in self.POLYBIUS])
@@ -178,28 +214,15 @@ class Polybius6(object):
 
     def polybius_pair(self, c):
         """Convert a character to a (row, col) pair of the Polybius array."""
-        return self._RDICT.get(c, (0, 0))
+        return self._RDICT.get(c)
 
     ########################################################################
 
-    def polybius_char(self, n1, n2):
+    def polybius_char(self, n1, n2, alt=None):
         """Convert a character to a (row, col) pair of the Polybius array."""
-        minval, maxval = self.minval_maxval()
-        assert minval <= n1 <= maxval, "polybius_char error: n1 = %d" % n1
-        assert minval <= n2 <= maxval, "polybius_char error: n2 = %d" % n2
-        return self._DICT.get((n1, n2), "?")
-
-    ########################################################################
-
-    def minval_maxval(self):
-        """Return the min and max row/col indices."""
-        if self.ONE_ORIGIN:
-            minval = 1
-            maxval = 6
-        else:
-            minval = 0
-            maxval = 5
-        return minval, maxval
+        if alt is None:
+            return self._DICT.get((n1, n2))
+        return self._DICT.get((n1, n2), alt)
 
     ########################################################################
 
@@ -235,7 +258,17 @@ if __name__ == "__main__":
 
     ########################################################################
 
-    pb = Polybius6()
+    pb = Polybius6(one_origin=False)
+    print(pb)
+
+    pb = Polybius6(one_origin=True)
+    print(pb)
+
+    pb = Polybius6("FGHIJK EXYZ0L DW781M CV692N BU543O ATSRQP")
+    print(pb)
+
+    pb = Polybius6("FGHIJK EXYZ0L DW781M CV692N BU543O ATSRQP", False)
+    print(pb)
 
     if pb.DEBUG:
         pb.print_polybius()
@@ -250,7 +283,10 @@ if __name__ == "__main__":
     print(s)
     assert(s == "AHOV29"), "Assertion failed: %s" % s
 
-    s = pb.polybius([(1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1)])
+    if pb.ONE_ORIGIN:
+        s = pb.polybius([(1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1)])
+    else:
+        s = pb.polybius([(0, 5), (1, 4), (2, 3), (3, 2), (4, 1), (5, 0)])
     print(s)
     assert(s == "FKPUZ4"), "Assertion failed: %s" % s
 
@@ -259,7 +295,10 @@ if __name__ == "__main__":
     print(s)
     assert s == "09THISENWKY81ABCDFGJLMOPQRUVXZ234567", "get_key error: %s" % s
 
-    test = [(x + 1, y + 1) for y in range(6) for x in range(6)]
+    if pb.ONE_ORIGIN:
+        test = [(x + 1, y + 1) for y in range(6) for x in range(6)]
+    else:
+        test = [(x, y) for y in range(6) for x in range(6)]
     print(test)
     print(pb.pairs2text(test))
     print()
@@ -276,6 +315,7 @@ if __name__ == "__main__":
 """
 
     clues = "".join(CLUE3.split("\n")[1:-1])
+    # clues = CLUE3.replace("\n", "")
     if pb.DEBUG:
         print(clues)
 
@@ -297,8 +337,18 @@ if __name__ == "__main__":
     result = pb.polybius(clue_pairs)
     print(result)
 
-    key2 = "AFKPUZ BGLQV9 CHMRW8 DINSX7 EJOTY6 012345"
+    if pb.ONE_ORIGIN:
+        key2 = "AFKPUZ BGLQV9 CHMRW8 DINSX7 EJOTY6 012345"
+    else:
+        key2 = "501234 ZAFKPU 9BGLQV 8CHMRW 7DINSX 6EJOTY"
     pb.set_key(key2)
     pb.print_polybius()
     result = pb.polybius(clue_pairs)
     print(result)
+    expected = """
+START ALMOST FINISHED BLACKOUT IT IS IN SHED ON THIRD AVE WORKING ON A STRONGER
+ CIPHER FOR FUTURE MESSAGES IT IS SURELY UNBREAKABLE IT COMBINES OUR PREVIOUS
+ METHODS RWKTD
+""".replace("\n", "").replace(" ", "")
+    assert result == expected, \
+        "Expected: %s\n                     Got: %s" % (expected, result)
