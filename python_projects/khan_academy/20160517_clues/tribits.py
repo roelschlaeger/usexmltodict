@@ -70,7 +70,16 @@ portfolios his firm puts together
 for clients. A mini-manifesto
 """
 
-PAD_CHARS = "".join([x for x in PAD.upper() if x.isalpha()])
+########################################################################
+
+
+def mask_chars_only(s):
+    """Convert s to a valid mask string."""
+    return "".join([x for x in s.upper() if x.isalpha()])
+
+########################################################################
+
+PAD_CHARS = mask_chars_only(PAD)
 
 # adjust length of PAD_CHARS to a multiple of 6
 # if (len(PAD_CHARS) % 6):
@@ -78,10 +87,13 @@ PAD_CHARS = "".join([x for x in PAD.upper() if x.isalpha()])
 
 # print(len(PAD_CHARS))
 
+########################################################################
+
 
 def pad_mask(s, debug=False):
-    """Compute 6-bit XOR masks from the string s."""
-    s = list(s)
+    """Generate 6-bit XOR masks from the string s."""
+    s = list(mask_chars_only(s))
+
     exhausted = False
 
     def isvowel(c):
@@ -123,7 +135,8 @@ def print_pad_chars(s):
     """Display the results of pad_mask generation on string s."""
     print("idx   PAD  <-mask--> (binary and octal)")
     print("---  ------ ------ --")
-    generator = pad_mask(s.upper())
+    s = mask_chars_only(s)
+    generator = pad_mask(s)
     index = 0
     while s:
         t, s = s[:6], s[6:]
@@ -132,14 +145,12 @@ def print_pad_chars(s):
         print("%3d %s %6s %02o " % (index, t, o, n))
         index += 1
 
-print_pad_chars(PAD_CHARS)
-
 ########################################################################
 
 
 def decrypt_one_time_pad(pb, hexbits, pad_chars, debug=False):
     """Decrypt the tribits message using the one-time pad."""
-    generator = pad_mask(PAD_CHARS)
+    generator = pad_mask(PAD)
 
     if debug:
         print("hexbits   length: ", len(hexbits))
@@ -163,29 +174,80 @@ def decrypt_one_time_pad(pb, hexbits, pad_chars, debug=False):
 
 ########################################################################
 
+
+def string2mask(s):
+    """Convert an arbitrary pad string to 6-bit chunks and print."""
+    chars = "".join([x for x in s.upper() if x.isalpha()])
+    print_pad_chars(chars)
+
+########################################################################
+
+
+def encode(s, m, pb=Polybius6(khan=True), debug=False):
+    """Encode string s using mask m and Polybius pb."""
+    pairs = pb.text2pairs(s)
+    if debug:
+        print('#' * 72)
+        print(pairs)
+        print()
+        string2mask(m)
+        print()
+        print("pl mk ci r")
+        print("-- -- -- -")
+
+    # generate the mask
+    g = pad_mask(m)
+    out = []
+    for n1, n2 in pairs:
+        n = n1 << 3 | n2
+        o = g.next()
+        p = n ^ o
+        p1, p2 = divmod(p, 8)
+        c = pb.polybius_char(p1, p2, "?")
+        if debug:
+            print("%02o %02o %02o %s" % (n, o, p, c))
+        out.append(c)
+
+    if debug:
+        print()
+
+    return "".join(out)
+
+########################################################################
+
 if __name__ == '__main__':
 
-    from pprint import pprint
+    print(encode("in", "open me to read", debug=True))
 
-    def printby(s, n):
-        """Print the 's' string in 'n' character chunks."""
-        out = []
-        while s:
-            t, s = s[:n], s[n:]
-            out.append(t)
-        pprint(out)
+    key = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+    print(encode("10AM", "", Polybius6(key, one_origin=True), True))
+    print(encode("BLACKOUT", "", Polybius6(key, one_origin=True), True))
+    print(encode("VAULT", "", Polybius6(key, one_origin=True), True))
 
-    # printby(PAD_CHARS, 6)
-    generator = pad_mask(PAD_CHARS)
-    # from dibits import binary6
-    # pprint([(x, binary6(x)) for x in generator])
-    # print()
+    if 0:
+        print_pad_chars(PAD)
 
-    key2 = "FGHIJK EXYZ0L DW781M CV692N BU543O ATSRQP"
-    pb = Polybius6(key2, False)
-    pb.print_polybius()
-    print()
-    cleartext = decrypt_one_time_pad(pb, HEXBITS, PAD_CHARS, True)
-    print(cleartext)
+        from pprint import pprint
+
+        def printby(s, n):
+            """Print the 's' string in 'n' character chunks."""
+            out = []
+            while s:
+                t, s = s[:n], s[n:]
+                out.append(t)
+            pprint(out)
+
+        # printby(PAD_CHARS, 6)
+        generator = pad_mask(PAD)
+        # from dibits import binary6
+        # pprint([(x, binary6(x)) for x in generator])
+        # print()
+
+        key2 = "FGHIJK EXYZ0L DW781M CV692N BU543O ATSRQP"
+        pb = Polybius6(key2, False)
+        pb.print_polybius()
+        print()
+        cleartext = decrypt_one_time_pad(pb, HEXBITS, PAD_CHARS, True)
+        print(cleartext)
 
 # end of file
