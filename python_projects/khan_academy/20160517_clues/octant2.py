@@ -1,4 +1,4 @@
-"""Check SYMBOLS from octant.py"""
+"""Check SYMBOLS from octant.py."""
 
 from __future__ import print_function
 
@@ -6,7 +6,7 @@ from octant import SYMBOLS
 
 
 def line_check(row, symbols):
-
+    """Check a line from SYMBOLS."""
     out = []
 
     def save_bits(n1, n2):
@@ -16,17 +16,17 @@ def line_check(row, symbols):
         #              /|\            |
         #               5             2
         #
-        # adjust n2   8   2         2   1
+        # adjust n2   8   2         2   3
         #              \|/           \ /
         #             --.--  ==>      .
         #              /|\           / \
-        #             6   4         3   0
+        #             6   4         1   0
 
         assert n1 & 1, "n1 Error"
         assert (n2 & 1) == 0, "n2 Error"
 
         b1 = (n1 - 1) // 2
-        b2 = (4 - n2) // 2 % 4
+        b2 = (n2 - 4) // 2 % 4
         assert 0 <= b1 <= 3, "b1 Error"
         assert 0 <= b2 <= 3, "b2 Error"
         out.append((b1, b2))
@@ -63,6 +63,7 @@ def line_check(row, symbols):
 
 
 def symbols_check():
+    """Check the values in SYMBOLS."""
     # symbols = "".join(SYMBOLS.split('\n'))
     result = []
     for row, line in enumerate(SYMBOLS.split('\n')):
@@ -81,10 +82,11 @@ if __name__ == "__main__":
     if sys.version_info < (3, 0):
         pprint(DIBIT_PAIRS, width=29)
     else:
+        print("DIBITS = ")
         pprint(DIBIT_PAIRS, width=29, compact=True)
         print()
-        pprint(DIBIT_PAIRS, width=80, compact=True)
-        print()
+        # pprint(DIBIT_PAIRS, width=80, compact=True)
+        # print()
 
     from collections import Counter
     c = Counter(DIBIT_PAIRS)

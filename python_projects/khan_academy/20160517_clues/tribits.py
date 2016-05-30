@@ -27,12 +27,12 @@ from dibits import binary6
 # Each number represents one character.
 
 HEXBITS = [
-    35, 26, 44, 13, 48, 50, 34, 34, 58, 7, 52, 28, 7, 33, 2, 35, 54, 25, 16,
-    26, 21, 24, 13, 49, 42, 8, 34, 45, 33, 25, 23, 26, 51, 19, 34, 52, 25, 48,
-    58, 21, 40, 32, 19, 50, 54, 15, 5, 35, 31, 30, 36, 35, 3, 36, 17, 51, 18,
-    31, 16, 32, 50, 31, 16, 17, 12, 45, 10, 27, 49, 33, 26, 32, 5, 31, 1, 7,
-    44, 25, 10, 5, 11, 44, 62, 29, 32, 38, 55, 0, 49, 44, 20, 19, 4, 25, 40,
-    44, 32, 26, 39, 41, 8, 47, 34, 21, 48, 32
+    35, 58, 36, 15, 48, 18, 34, 34, 58, 5, 60, 60, 15, 35, 2, 33, 62, 59, 16,
+    58, 29, 56, 5, 19, 42, 8, 34, 47, 33, 59, 31, 58, 51, 49, 34, 20, 25, 16,
+    58, 55, 40, 32, 19, 18, 62, 13, 13, 33, 23, 62, 44, 33, 3, 36, 17, 17, 18,
+    61, 16, 32, 50, 61, 16, 51, 4, 47, 10, 57, 49, 35, 26, 32, 13, 61, 1, 5,
+    36, 59, 10, 7, 11, 44, 54, 63, 32, 38, 63, 0, 49, 44, 28, 49, 12, 59, 40,
+    44, 32, 58, 47, 43, 8, 45, 34, 55, 48, 32
 ]
 
 # PAD is a transcription of the newspaper article found at the scene
@@ -49,7 +49,7 @@ has been flat. With the bond mar-
 ket signalling an expectation of
 rising interest rates, the five-year
 rally for steady blue-chip divi-
-dend payers has been stalled.
+dend payers has stalled.
 Should you be scared if you own
 a lot of these stocks either directly
 or through mutual funds or
@@ -59,7 +59,7 @@ cial Services, has a two-pronged
 answer: Keep your top-quality
 dividend stocks, but be prepared
 to follow his firm's example in
-trimming holdings in stucks such
+trimming holdings in stocks such
 as TransCanada Corp., Keyera
 Corp. and Pembina Pipeline
 Corp.
@@ -73,8 +73,8 @@ for clients. A mini-manifesto
 PAD_CHARS = "".join([x for x in PAD.upper() if x.isalpha()])
 
 # adjust length of PAD_CHARS to a multiple of 6
-if (len(PAD_CHARS) % 6):
-    PAD_CHARS += "Z" * (6 - (len(PAD_CHARS) % 6))
+# if (len(PAD_CHARS) % 6):
+#     PAD_CHARS += "Z" * (6 - (len(PAD_CHARS) % 6))
 
 # print(len(PAD_CHARS))
 
@@ -82,6 +82,7 @@ if (len(PAD_CHARS) % 6):
 def pad_mask(s, debug=False):
     """Compute 6-bit XOR masks from the string s."""
     s = list(s)
+    exhausted = False
 
     def isvowel(c):
         """Return 1 for vowel, 0 otherwise."""
@@ -92,7 +93,13 @@ def pad_mask(s, debug=False):
     while s:
         out = 0
         for _ in range(6):
-            c = s.pop(0)
+            try:
+                c = s.pop(0)
+            except IndexError:
+                if not exhausted:
+                    print("Input exhausted; padding with Z's")
+                    exhausted = True
+                c = "Z"
             n = isvowel(c)
             out = out * 2 + n
 
@@ -104,19 +111,26 @@ def pad_mask(s, debug=False):
 
         yield out
 
+    print("pad_mask exhausted; now returning 0's")
+
+    while 1:
+        yield 0
+
 ########################################################################
 
 
 def print_pad_chars(s):
     """Display the results of pad_mask generation on string s."""
-    print("  PAD  <-mask--> (binary and octal)")
-    print("------ ------ --")
-    generator = pad_mask(s)
+    print("idx   PAD  <-mask--> (binary and octal)")
+    print("---  ------ ------ --")
+    generator = pad_mask(s.upper())
+    index = 0
     while s:
         t, s = s[:6], s[6:]
         n = generator.next()
         o = binary6(n)
-        print("%s %6s %02o " % (t, o, n))
+        print("%3d %s %6s %02o " % (index, t, o, n))
+        index += 1
 
 print_pad_chars(PAD_CHARS)
 

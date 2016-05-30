@@ -38,12 +38,17 @@ class Polybius6(object):
     def __init__(
         self,
         key=None,
-        one_origin=False
+        one_origin=False,
+        khan=False
     ):
         """Class instance initialization."""
+        # special overriding setup
+        if khan:
+            key = "FGHIJK EXYZ0L DW781M CV692N BU543O ATSRQP"
+            one_origin = False
+
         # set this before calling set_key!
         self.ONE_ORIGIN = one_origin
-
         if key is None:
             self.set_key(string.uppercase + string.digits)
         else:
