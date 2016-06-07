@@ -47,7 +47,7 @@ KEYWORDS = [
 def build_query(keywords):
     """Create a query from the keywords."""
     c1 = "SELECT Code, Name, PlacedBy, FoundByMeDate FROM Caches"
-    c3 = "ORDER BY FoundByMeDate ASC"
+    c3 = "ORDER BY FoundByMeDate DESC"
 
     clist = []
     for w in keywords:
@@ -88,11 +88,12 @@ def calculate_widths(d):
     """Calculate the widths of the output fields."""
     w1 = w2 = w3 = w4 = 0
 
-    for key, values in d.items():
-        w1 = max(w1, len(values[0]))
-        w2 = max(w2, len(values[1]))
-        w3 = max(w3, len(values[2]))
-        w4 = max(w4, len(values[3]))
+    for key, valuelist in d.items():
+        for values in valuelist:
+            w1 = max(w1, len(values[0]))
+            w2 = max(w2, len(values[1]))
+            w3 = max(w3, len(values[2]))
+            w4 = max(w4, len(values[3]))
 
     # print(w1, w2, w3, w4)
     return w1, w2, w3, w4
@@ -110,14 +111,15 @@ def print_results(out):
     for key in KEYWORDS:
         if key not in out:
             continue
-        value = out[key]
-        print(format % (key, value[0], value[1], value[2], value[3]))
+        for value in out[key]:
+#       value = out[key]
+            print(format % (key, value[0], value[1], value[2], value[3]))
     print()
 
 ########################################################################
 
 
-def main():
+def compute_alphabet_challenge():
     """Compute alphabet challenge."""
     dbname = DBNAME
 
@@ -130,18 +132,28 @@ def main():
     gc = [x for x in all if x[0][:2] == 'GC']
     # print(len(gc), "cache waypoints")
 
-    out = {}
+    from collections import defaultdict
+    out = defaultdict(list)
     for c in KEYWORDS:  # + string.digits + string.lowercase:
         print(c)
         for item in gc:
             if item[1].upper().find(c) >= 0:
                 # print(item[1])
-                out[c] = item
+                out[c].append(item)
                 # print("%c: %s" % (c, out[c][1]))
-                break
+#               break
         else:
-            print("Nothing found for %s" % c)
+            if len(out[c]) == 0:
+                print("Nothing found for %s" % c)
+#   from pprint import pprint
+#   pprint(out)
     print_results(out)
+
+########################################################################
+
+
+def main():
+    compute_alphabet_challenge()
 
 ########################################################################
 
