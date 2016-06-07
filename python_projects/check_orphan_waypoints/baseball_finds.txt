@@ -1,0 +1,55 @@
+Processing from ./My Finds/sqlite.db3
+
+Opening ./My Finds/sqlite.db3
+Selecting Code from Caches
+SELECT Code, Name, PlacedBy, FoundByMeDate FROM Caches WHERE UPPER(Name) LIKE "%_BASEBALL_%" or UPPER(Name) LIKE "%_FIRST_%" or UPPER(Name) LIKE "%_SECOND_%" or UPPER(Name) LIKE "%_THIRD_%" or UPPER(Name) LIKE "%_HOME_%" or UPPER(Name) LIKE "%_BALL_%" or UPPER(Name) LIKE "%_STRIKE_%" or UPPER(Name) LIKE "%_WALK_%" or UPPER(Name) LIKE "%_SINGLE_%" or UPPER(Name) LIKE "%_DOUBLE_%" or UPPER(Name) LIKE "%_TRIPLE_%" or UPPER(Name) LIKE "%_HOMERUN_%" or UPPER(Name) LIKE "%_INNING_%" or UPPER(Name) LIKE "%_PLAYER_%" or UPPER(Name) LIKE "%_MANAGER_%" or UPPER(Name) LIKE "%_COACH_%" or UPPER(Name) LIKE "%_FIELD_%" or UPPER(Name) LIKE "%_CARDINALS_%" or UPPER(Name) LIKE "%_CUBS_%" or UPPER(Name) LIKE "%_PIRATES_%" or UPPER(Name) LIKE "%_REDS_%" or UPPER(Name) LIKE "%_PHILLIES_%" or UPPER(Name) LIKE "%_BREWERS_%" ORDER BY FoundByMeDate DESC
+BASEBALL
+FIRST
+SECOND
+THIRD
+HOME
+BALL
+STRIKE
+WALK
+SINGLE
+DOUBLE
+TRIPLE
+HOMERUN
+INNING
+PLAYER
+MANAGER
+COACH
+FIELD
+CARDINALS
+CUBS
+PIRATES
+REDS
+PHILLIES
+Nothing found for PHILLIES
+BREWERS
+Nothing found for BREWERS
+
+String     :  GC       Name                                             Owner                             Found Date
+-----------:  -------  -----------------------------------------------  --------------------------------  ----------
+BASEBALL   :  GC4NG0J  Baseball Dreams                                  baseballcraze4444                 2014-04-10
+FIRST      :  GC4PZ9X  Her First Pitch                                  belair1955girl                    2016-02-25
+SECOND     :  GC4KCF9  Twenty-second of August                          Gone2theDogs                      2014-01-04
+THIRD      :  GC5E8YB  Grand Old Fellow Third Time is a Charm           Candyce54                         2015-01-29
+HOME       :  GC43HE0  CALL HOME.                                       BH52                              2016-04-07
+BALL       :  GC5VY1W  Play Ball!                                       OFallon P&R                       2015-08-18
+STRIKE     :  GC3VXEV  Lightning Strike ??                              herbiekid                         2012-10-27
+WALK       :  GC6279W  A Walk in the PArk                               Aidanskillern                     2015-10-05
+SINGLE     :  GC1445X  Intergalactic Single Sock Repository             gorgon9380                        2007-08-25
+DOUBLE     :  GC302K5  64 Double D                                      TravelinMan1963                   2012-05-26
+TRIPLE     :  GC25JAY  The Triple Tree Cache                            Old Professor                     2011-07-27
+HOMERUN    :  GC2R7ZY  It's a homerun!                                  Ozark_Mtn_Man                     2014-04-05
+INNING     :  GC6EH5X  New Beginnings for a Beginner.                   reddrose                          2016-05-05
+PLAYER     :  GC62HVT  Orchard Park #3: The Mineplayer Series           mineplayer579                     2015-10-01
+MANAGER    :  GC57YMC  Cardinals  #71 - Manager Red Schoendienst        2_cats                            2014-07-14
+COACH      :  GC3XKD9  Put me in coach....                              4illinifans                       2015-05-06
+FIELD      :  GC684D6  Cooper Field Revisited                           Chod                              2016-06-03
+CARDINALS  :  GC4Z13W  #5 The Cardinals Greatest Six ...Lou Brock (20)  Kid Dylan                         2014-10-08
+CUBS       :  GC3Q9AG  For Cubs Fans                                    Team McShamrock                   2012-09-22
+PIRATES    :  GC40NBT  Dead Pirates' Booty                              DRALBERTLEE (& grandson Brennen)  2013-01-26
+REDS       :  GCN9NK   Mr. Reds' Ghost                                  ETMH88                            2005-04-16
+
