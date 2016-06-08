@@ -1,5 +1,4 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
-
 # =*- encoding=utf-8 -*-
 
 """Locate found files beginning with each letter of the alphabet."""
