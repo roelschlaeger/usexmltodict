@@ -1,15 +1,13 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
-
 # =*- encoding=utf-8 -*-
 
-"""Locate found files beginning with each letter of the alphabet."""
+"""Locate found files with specific baseball terms."""
 
 # if run from python2.x, support print()
 from __future__ import print_function
-
 from sqlite3 import connect
 
-__VERSION__ = "0.0.1"
+__VERSION__ = "0.0.2"
 
 ########################################################################
 
@@ -86,33 +84,33 @@ def get_all_waypoints(dbname):
 
 def calculate_widths(d):
     """Calculate the widths of the output fields."""
-    w1 = w2 = w3 = w4 = 0
+    w0 = w1 = w2 = w3 = w4 = 0
 
     for key, valuelist in d.items():
+        w0 = max(w0, len(key))
         for values in valuelist:
             w1 = max(w1, len(values[0]))
             w2 = max(w2, len(values[1]))
             w3 = max(w3, len(values[2]))
             w4 = max(w4, len(values[3]))
 
-    # print(w1, w2, w3, w4)
-    return w1, w2, w3, w4
+    # print(w0, w1, w2, w3, w4)
+    return w0, w1, w2, w3, w4
 
 ########################################################################
 
 
 def print_results(out):
     """Print the contents of the computed results."""
-    w1, w2, w3, w4 = calculate_widths(out)
-    format = "%%-11s:  %%-%ds  %%-%ds  %%-%ds  %%-%ds" % (w1, w2, w3, w4)
+    w0, w1, w2, w3, w4 = calculate_widths(out)
+    format = "%%-%ds:  %%-%ds  %%-%ds  %%-%ds  %%-%ds" % (w0, w1, w2, w3, w4)
     print()
-    print(format % ("String     ", "GC", "Name", "Owner", "Found Date"))
-    print(format % ("-----------", "-" * w1, "-" * w2, "-" * w3, "-" * w4))
+    print(format % ("String", "GC", "Name", "Owner", "Found Date"))
+    print(format % ("-" * w0, "-" * w1, "-" * w2, "-" * w3, "-" * w4))
     for key in KEYWORDS:
         if key not in out:
             continue
         for value in out[key]:
-#       value = out[key]
             print(format % (key, value[0], value[1], value[2], value[3]))
     print()
 
@@ -153,6 +151,7 @@ def compute_alphabet_challenge():
 
 
 def main():
+    """main routine called from command line."""
     compute_alphabet_challenge()
 
 ########################################################################
