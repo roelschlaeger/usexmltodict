@@ -1,5 +1,15 @@
-var NO_SPIDERS = 6;             // number of spiders
-var G = 1;                      // gravitation constant
+// Spiders
+// Version 1.0.2
+// 6/12/2016
+// Robert L. Oelschlaeger
+
+// Create NO_SPIDERS number of spiders in a world containing food, water and a
+// moving poison container. As the spiders become thirsty or hungry they have to
+// replenish their food and water while avoiding other spiders of other species
+// that might like to eat them for their food/water content.
+
+var NO_SPIDERS = 6; // number of spiders
+var G = 1; // gravitation constant
 
 // spider color choices
 var Colors = [
@@ -35,9 +45,9 @@ var Spider = function(i, x, y) {
     this.acceleration = new PVector(0, 0);
     this.velocity = new PVector(1, -1);
 
-    this.m = random(5, 15);     // mass
-    this.w = this.m * 4;        // width
-    this.h = this.m * 2;        // height
+    this.m = random(5, 15); // mass
+    this.w = this.m * 4; // width
+    this.h = this.m * 2; // height
 
     this.legAngleDelta = 0;
     this.legAngleRate = random(5, 7);
@@ -153,14 +163,18 @@ Spider.prototype.update = function() {
     // clamp position
     if (this.position.x > 400) {
         this.position.x = 400;
+        this.velocity.x = -this.velocity.x;
     } else if (this.position.x < 0) {
         this.position.x = 0;
+        this.velocity.x = -this.velocity.x;
     }
 
     if (this.position.y > 400) {
         this.position.y = 400;
+        this.velocity.y = -this.velocity.y;
     } else if (this.position.y < 0) {
         this.position.y = 0;
+        this.velocity.y = -this.velocity.y;
     }
 
     // clear acceleration
@@ -262,8 +276,12 @@ food.computeForce = function(s) {
     force.sub(s.position);
     force.normalize();
     var mult = this.multiplier * s.m / (r * r);
-    if (s.food < 2 * this.capacity) { mult *= 5;}
-    if (s.food < this.capacity) { mult *= 5;}
+    if (s.food < 2 * this.capacity) {
+        mult *= 5;
+    }
+    if (s.food < this.capacity) {
+        mult *= 5;
+    }
     force.mult(mult);
     return force;
 };
@@ -287,8 +305,12 @@ water.computeForce = function(s) {
     force.sub(s.position);
     force.normalize();
     var mult = this.multiplier * s.m / (r * r);
-    if (s.water < 2 * this.capacity) { mult *= 5;}
-    if (s.water < this.capacity) { mult *= 5;}
+    if (s.water < 2 * this.capacity) {
+        mult *= 5;
+    }
+    if (s.water < this.capacity) {
+        mult *= 5;
+    }
     force.mult(mult);
     return force;
 };
@@ -375,13 +397,13 @@ draw = function() {
         spider.draw();
 
         text(spider.index +
-                " " +
-                round(spider.food) +
-                " " +
-                round(spider.water),
-                200,
-                32 + i * 16
-                );
+            " " +
+            round(spider.food) +
+            " " +
+            round(spider.water),
+            200,
+            32 + i * 16
+        );
         if (spider.isAlive()) {
             living++;
         } else {
@@ -394,4 +416,3 @@ draw = function() {
     }
 
 };
-
