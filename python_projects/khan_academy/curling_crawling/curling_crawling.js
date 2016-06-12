@@ -1,5 +1,5 @@
-var NO_SPIDERS = 8;
-var G = 1; // gravitation constant
+var NO_SPIDERS = 6;             // number of spiders
+var G = 1;                      // gravitation constant
 
 // spider color choices
 var Colors = [
@@ -11,6 +11,7 @@ var Colors = [
     color(255, 0, 255, 90)
 ];
 
+// default mode choices
 var reset = function() {
     angleMode = "degrees";
     rectMode(CENTER);
@@ -24,30 +25,40 @@ reset();
 // Spider
 ////////////////////////////////////////////////////////////////////////
 
-var INITIAL_FOOD = 2400;
-var INITIAL_WATER = 2400;
+var INITIAL_FOOD = 3000;
+var INITIAL_WATER = 3000;
 
-var Spider = function(x, y) {
+var Spider = function(i, x, y) {
+    this.index = i;
+    this.position = new PVector(x, y);
+
     this.acceleration = new PVector(0, 0);
     this.velocity = new PVector(1, -1);
-    this.position = new PVector(x, y);
-    this.m = random(5, 15);
-    this.w = this.m * 4;
-    this.h = this.m * 2;
+
+    this.m = random(5, 15);     // mass
+    this.w = this.m * 4;        // width
+    this.h = this.m * 2;        // height
+
     this.legAngleDelta = 0;
-    this.legAngleRate = random(5, 6);
+    this.legAngleRate = random(5, 7);
+
     this.color = color(255, 0, 0);
+
+    this.alive = true;
     this.water = INITIAL_WATER * random(0.5, 1);
     this.food = INITIAL_FOOD * random(0.5, 1);
-    this.alive = true;
+
+    // pick a spider species/color
     this.species = floor(random(Colors.length));
     this.color = Colors[this.species];
 };
 
+// return true if spider is alive
 Spider.prototype.isAlive = function() {
     return this.alive;
 };
 
+// compute and add the acceleration
 Spider.prototype.applyForce = function(f) {
     var force = f.get();
     force.div(this.m);
@@ -56,53 +67,90 @@ Spider.prototype.applyForce = function(f) {
 
 Spider.prototype.draw = function() {
 
+    // if this spider is dead, don't draw anything
     if (this.isAlive() === false) {
         return;
     }
 
+    // find which way it is heading
     var direction = this.velocity.heading();
 
-    // noFill();
     strokeWeight(5);
+
     pushMatrix();
+
+    // translate to center of spider
     translate(this.position.x, this.position.y);
+
+    // rotate to heading
     rotate(direction);
+
+    // red direction indicator
+    stroke(255, 0, 0, 90);
     line(0, 0, this.w, 0);
+
+    // show spider number
+    fill(255, 255, 255);
+    text(this.index, this.w + 10, 4);
+
+    // black legs and body
+    stroke(0, 0, 0);
     fill(0, 0, 0);
+
+    // draw the body with rounded corners
     rect(0, 0, this.w, this.h, 80);
-    fill(255, 0, 0);
+
+    // draw the legs
     for (var leg = 0; leg < 4; leg++) {
         pushMatrix();
-        var angle = leg * 40 + 30 + cos(this.legAngleDelta) * 15;
+
+        // rhythmic leg variations
+        var angle = leg * 40 + 30 + cos(this.legAngleDelta + leg * 30) * 15;
+
+        // first of a leg pair
         rotate(angle);
         line(0, 0, this.w, 0);
+
+        // second of a leg pair
         rotate(-2 * angle);
         line(0, 0, this.w, 0);
+
         popMatrix();
     }
+
+    // redraw the body the correct color, obscuring the legs in the body
     fill(this.color);
     rect(0, 0, this.w, this.h, 80);
+
     popMatrix();
+
+    // restore defaults
     reset();
 
+    // adjust the leg speed to the body velocity
     this.legAngleDelta += (this.legAngleRate * this.velocity.mag());
 
+    // check remaining water
     this.water -= 1;
     if (this.water < 0) {
         this.alive = false;
     }
 
+    // check remaining food
     this.food -= 1;
     if (this.food < 0) {
         this.alive = false;
     }
 };
 
+// update position
 Spider.prototype.update = function() {
+    // adjust position from acceleration and velocity
     this.velocity.add(this.acceleration);
-    this.velocity.limit(0.5);
+    this.velocity.limit(1.0);
     this.position.add(this.velocity);
 
+    // clamp position
     if (this.position.x > 400) {
         this.position.x = 400;
     } else if (this.position.x < 0) {
@@ -119,6 +167,7 @@ Spider.prototype.update = function() {
     this.acceleration.mult(0);
 };
 
+// spiders attract each other
 Spider.prototype.attract = function(other) {
     var m1 = this.m;
     var m2 = other.m;
@@ -127,8 +176,11 @@ Spider.prototype.attract = function(other) {
     force.sub(other.position);
     force.normalize();
     var strength = G * m1 * m2 / (r * r);
+
+    // like-species attract
     if (this.species === other.species) {
         strength = -strength;
+        // unless they get too close
         if (r < this.w) {
             strength = -strength;
         }
@@ -178,8 +230,8 @@ var Resource = function(x, y, units, text, threshold, capacity, multiplier) {
     this.multiplier = multiplier;
 };
 
-var food = new Resource(100, 100, 1000, "food", 1800, 4800, 10);
-var water = new Resource(300, 300, 1000, "water", 1800, 2400, 1);
+var food = new Resource(100, 100, 1000, "food", 2000, 5000, 9);
+var water = new Resource(300, 300, 1000, "water", 2000, 3000, 8);
 var poison = new Resource(100, 300, 1000, "poison", 1800, 2400, -10);
 
 Resource.prototype.draw = function() {
@@ -209,7 +261,10 @@ food.computeForce = function(s) {
     var force = this.position.get();
     force.sub(s.position);
     force.normalize();
-    force.mult(this.multiplier);
+    var mult = this.multiplier * s.m / (r * r);
+    if (s.food < 2 * this.capacity) { mult *= 5;}
+    if (s.food < this.capacity) { mult *= 5;}
+    force.mult(mult);
     return force;
 };
 
@@ -231,16 +286,14 @@ water.computeForce = function(s) {
     var force = this.position.get();
     force.sub(s.position);
     force.normalize();
-    force.mult(this.multiplier);
+    var mult = this.multiplier * s.m / (r * r);
+    if (s.water < 2 * this.capacity) { mult *= 5;}
+    if (s.water < this.capacity) { mult *= 5;}
+    force.mult(mult);
     return force;
 };
 
 poison.computeForce = function(s) {
-//  // if there is already enough water, no force
-//  if (s.water > this.threshold) {
-//      return new PVector(0, 0);
-//  }
-
     // compute the distance to spider s
     var r = PVector.dist(this.position, s.position);
 
@@ -254,28 +307,46 @@ poison.computeForce = function(s) {
     var force = this.position.get();
     force.sub(s.position);
     force.normalize();
-    force.mult(this.multiplier);
+    var mult = this.multiplier * s.m / (r * r);
+    force.mult(mult);
     return force;
 
-}////////////////////////////////////////////////////////////////////////
+};
+
+var pCenter = new PVector(200, 200);
+var pRadius = 141;
+var pAngle = 135;
+var pAngleDelta = 0.025;
+poison.move = function() {
+    var x = pCenter.x + pRadius * cos(pAngle);
+    var y = pCenter.x + pRadius * sin(pAngle);
+    this.position = new PVector(x, y);
+    pAngle += pAngleDelta;
+};
+poison.move();
+
+
+////////////////////////////////////////////////////////////////////////
 
 var spiders = [];
 
 for (var i = 0; i < NO_SPIDERS; i++) {
     var x = random(0, 400);
     var y = random(0, 400);
-    spiders.push(new Spider(x, y));
+    spiders.push(new Spider(i, x, y));
 }
 
 draw = function() {
     background(128, 128, 128);
+    text("# food water", 200, 16);
+
     var living = 0;
     for (var i = 0; i < spiders.length; i++) {
         var spider = spiders[i];
         var force;
         for (var j = 0; j < spiders.length; j++) {
             if (i !== j) {
-                force = new PVector(0.01, -0.01);
+                // force = new PVector(0.01, -0.01);
                 var d = PVector.dist(spider.position, spiders[j].position);
                 if (d < 50) {
                     force = spider.battle(spiders[j]);
@@ -284,7 +355,6 @@ draw = function() {
                 }
                 spider.applyForce(force);
             }
-
         }
 
         force = water.computeForce(spider);
@@ -299,9 +369,19 @@ draw = function() {
         food.draw();
         water.draw();
         poison.draw();
+        poison.move();
 
         spider.update();
         spider.draw();
+
+        text(spider.index +
+                " " +
+                round(spider.food) +
+                " " +
+                round(spider.water),
+                200,
+                32 + i * 16
+                );
         if (spider.isAlive()) {
             living++;
         } else {
@@ -314,3 +394,4 @@ draw = function() {
     }
 
 };
+
