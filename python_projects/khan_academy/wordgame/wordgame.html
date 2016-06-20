@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+Version 1.0.0
+Robert L. Oelschlaeger
+20160620
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Project: Word game </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            font-size: 1.5em;
+        }
+
+        .scrambled,
+        input,
+        button {
+            font-family: monospace;
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Word game!</h1>
+    <form id="joke-form">
+        <label>
+            Unscramble these letters to form a word:<br>
+            <span class="scrambled">REYJUQ</span>
+            <br>
+            <input id="answer" type="text" size="10">
+        </label>
+        <button type="submit">Check</button>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+
+        // from http://stackoverflow.com/questions/3943772/how-do-i-shuffle-the-characters-in-a-string-in-javascript
+        // answer by Andy E.
+        String.prototype.shuffle = function() {
+            var a = this.split(""),
+                n = a.length;
+
+            for (var i = n - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var tmp = a[i];
+                a[i] = a[j];
+                a[j] = tmp;
+            }
+            return a.join("");
+        }
+
+        var scramble = function(w) {
+            return w.shuffle();
+        }
+
+        // create the results paragraph if it is missing
+        if ($("#result").length === 0) {
+            $("body").append("<p id='result'>Result will be reported here</p>");
+        }
+
+        // results go here
+        var $p = $("#result");
+
+        // the list of words to spell -- there are some doozies in here!
+        // the first 23 are from:
+        // http://blog.oxforddictionaries.com/2015/08/words-everyone-spells-wrong/
+        var words = [
+            'wierd',
+            'arctic',
+            'harass',
+            'indict',
+            'rhythm',
+            'ecstasy',
+            'liaison',
+            'pharoah',
+            'cemetery',
+            'occurred',
+            'caribbean',
+            'embarrass',
+            'recommend',
+            'supercede',
+            'conscience',
+            'convalesce',
+            'deductible',
+            'millennium',
+            'playwright',
+            'accommodate',
+            'maintenance',
+            'handkerchief',
+            'pronunciation',
+            // these are my own additions
+            "oxymoron",
+            "beekeeper",
+            "bookkeeping",
+            "encyclopedia",
+            "antidisestablishmentarianism",
+            // the longest word was just too cruel:
+            // "pneumonoultramicroscopicsilicovolcanoconiosis"
+        ];
+
+        // get the first word (the list will be shortened later)
+        var word = words[0];
+
+        var reload = function() {
+            // check for the end
+            if (words.length === 0) {
+                $p.text("!! Game Over; Congratulations !!");
+                $p.css("background-color", "blue");
+                $p.css("color", "white");
+            } else {
+                // clear out the previous answer
+                $("input").val("");
+                // get a new word, raising it to uppercase
+                word = words[0].toUpperCase();
+                // scramble the word
+                var $scrambled = $(".scrambled");
+                // and display it
+                $scrambled.text(scramble(word));
+            }
+        };
+
+        // force a reload immediately
+        reload();
+
+        // when the user submits the form, check that their answer is correct
+        // and show them appropriate message
+        $("form").on("submit", function(event) {
+            // prevent server action
+            event.preventDefault();
+
+            // locate the input control
+            var $input = $(this).find("input");
+    
+            // get the user's input, in uppercase
+            var input = $input.val();
+            if (typeof(input) !== "string") {
+                // do nothing
+            } else {
+                input = input.toUpperCase();
+                console.log(input);
+
+                // check for the right length
+                if (input.length !== word.length) {
+                    $p.text(word.length + " letters, please");
+                    $p.css("background-color", "rgb(192, 192, 192");
+                // check for the correct answer
+                } else if (input === word) {
+                    $("input").val("");
+                    $p.text("Success!");
+                    $p.css("background-color", "yellow");
+                    words.splice(0, 1);
+                    reload();
+                // otherwise try again
+                } else {
+                    $p.text("Try again!");
+                    $p.css("background-color", "rgb(255, 64, 64");
+                };
+            }
+        });
+
+    </script>
+</body>
+</html>
+
