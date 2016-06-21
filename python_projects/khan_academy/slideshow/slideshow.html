@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+Slideshow
+Version 1.0.0
+Robert L. Oelschlaeger
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Project: Interactive slideshow</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <br>
+    <img src="https://www.kasandbox.org/programming-images/food/mushroom.png" width="400" alt="Mushrooms">
+    <button type="button">Next ➡</button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        jpgs = [
+            {text: "mushroom", jpg: "https://www.kasandbox.org/programming-images/food/mushroom.png"},
+            {text: "Amanita muscaria crop", jpg: "https://upload.wikimedia.org/wikipedia/commons/0/02/2006-10-25_Amanita_muscaria_crop.jpg"},
+            {text: "Psilocybe semilanceata", jpg: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Psilocybe_semilanceata_6514.jpg"},
+            {text: "Coprinus micaceus", jpg: "https://upload.wikimedia.org/wikipedia/commons/8/87/Coprinus_micaceus.jpg"},
+            {text: "Coprinus disseminatus", jpg: "https://upload.wikimedia.org/wikipedia/commons/3/33/Coprinus_disseminatus.JPG"},
+            {text: "Geastrum saccatum", jpg: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Geastrum_saccatum.jpg"},
+            {text: "Coloured Figures of English Fungi_or_Mushrooms", jpg: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Coloured_Figures_of_English_Fungi_or_Mushrooms_-_t._223.jpg"},
+            {text: "Golden teacher kookoskuidussa 32", jpg: "https://upload.wikimedia.org/wikipedia/commons/8/81/Golden_teacher_kookoskuidussa_32.jpg"},
+            {text: "Morchella elata Spitzmorchel Morchella conica", jpg: "https://upload.wikimedia.org/wikipedia/commons/1/17/Morchella_elata_Spitzmorchel_Morchella_conica.jpg"},
+            {text: "Verpa bohemica", jpg: "https://upload.wikimedia.org/wikipedia/commons/2/21/Verpa_bohemica1.jpg"},
+        ];
+        var index = 0;
+        var $img = $("img");
+        $img.attr("height", "200");
+
+        // $img.hide();
+        // $img.slideDown();
+        var $next_button = $("button");
+        $next_button.before('<button type="button" id="next_button">Prev ❟</button');
+
+        var $prev_button = $("#next_button");
+        $next_button.after('<br><p id="caption">Description goes here</p');
+
+        var $caption = $("#caption");
+
+        // '%' has a problem with negative values
+        var modulo = function(n1, n2) {
+            var t = n1 % n2;
+            if (t < 0) {
+                t += n2;
+            }
+            return t;
+        };
+
+        var display_jpg = function(index) {
+            // clamp index to possible jpg range
+            index = modulo(index, jpgs.length);
+            m = jpgs[index];
+            text = m.text;
+            jpg = m.jpg;
+            $img.hide();
+            $img.attr("src", jpg);
+            $img.attr("alt", text);
+            $img.slideDown();
+            $caption.text(index + ": " + text);
+        }
+
+        display_jpg(0);
+
+        $next_button.on("click", function() {
+            index++;
+            display_jpg(index)
+        });
+
+        $prev_button.on("click", function() {
+            index--;
+            display_jpg(index)
+        });
+
+    </script>
+
+</body>
+
+</html>
