@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <!--
 Slideshow
-Version 1.0.2
+Version 1.0.3
+20160621
 Robert L. Oelschlaeger
 -->
 <html>
@@ -16,7 +17,7 @@ Robert L. Oelschlaeger
     <title>Project: Interactive slideshow</title>
 
     <!-- Bootstrap -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,7 +28,7 @@ Robert L. Oelschlaeger
 
     <style>
         h1 {text-align: center; color: red;}
-        #jpgcaption {font-family: monospace; font-size: 24px; font-style: italic; color: red;}
+        #caption {font-family: monospace; font-size: 24px; font-style: italic; color: red;}
         .bold {font-size: 18px; font-weight: bold; color: red;}
         button:disabled { background: rgb(160, 160, 160); font-style: italic;}
     </style>
@@ -62,14 +63,14 @@ Robert L. Oelschlaeger
 
     <div class="jumbotron" id="mushrooms">
         <h1>Interactive Mushroom Display</h1>
-        <img src="https://www.kasandbox.org/programming-images/food/mushroom.png" width="400" alt="Mushrooms">
+        <img src="https://www.kasandbox.org/programming-images/food/mushroom.png" width="400px" alt="Mushrooms">
         <br>
         <button type="button" class="btn btn-primary" id="first_button">First</button>
         <button type="button" class="btn btn-primary" id="prev_button">⇐ Prev</button>
         <button type="button" class="btn btn-primary" id="next_button">Next ⇒</button>
         <button type="button" class="btn btn-primary" id="last_button">Last</button>
         <!-- <p style="font-size: 24px; font-weight: bold; font-family: monospace" id="caption">Description goes here</p> -->
-        <p id="jpgcaption">Description goes here</p>
+        <p id="caption">Description goes here</p>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -78,16 +79,16 @@ Robert L. Oelschlaeger
 
     // array of mushroom images
     jpgs = [
-        {text: "mushroom",                                       jpg: "https://www.kasandbox.org/programming-images/food/mushroom.png"},
-        {text: "Amanita muscaria",                               jpg: "https://upload.wikimedia.org/wikipedia/commons/0/02/2006-10-25_Amanita_muscaria_crop.jpg"},
-        {text: "Psilocybe semilanceata",                         jpg: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Psilocybe_semilanceata_6514.jpg"},
-        {text: "Coprinus micaceus",                              jpg: "https://upload.wikimedia.org/wikipedia/commons/8/87/Coprinus_micaceus.jpg"},
-        {text: "Coprinus disseminatus",                          jpg: "https://upload.wikimedia.org/wikipedia/commons/3/33/Coprinus_disseminatus.JPG"},
-        {text: "Geastrum saccatum",                              jpg: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Geastrum_saccatum.jpg"},
-        {text: "Coloured Figures of English Fungi or Mushrooms", jpg: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Coloured_Figures_of_English_Fungi_or_Mushrooms_-_t._223.jpg"},
-        {text: "Golden teacher kookoskuidussa",                  jpg: "https://upload.wikimedia.org/wikipedia/commons/8/81/Golden_teacher_kookoskuidussa_32.jpg"},
-        {text: "Morchella elata Spitzmorchel Morchella conica",  jpg: "https://upload.wikimedia.org/wikipedia/commons/1/17/Morchella_elata_Spitzmorchel_Morchella_conica.jpg"},
-        {text: "Verpa bohemica",                                 jpg: "https://upload.wikimedia.org/wikipedia/commons/2/21/Verpa_bohemica1.jpg"},
+        {text:"mushroom",                                       jpg:"https://www.kasandbox.org/programming-images/food/mushroom.png"},
+        {text:"Amanita muscaria",                               jpg:"https://upload.wikimedia.org/wikipedia/commons/0/02/2006-10-25_Amanita_muscaria_crop.jpg"},
+        {text:"Psilocybe semilanceata",                         jpg:"https://upload.wikimedia.org/wikipedia/commons/4/4a/Psilocybe_semilanceata_6514.jpg"},
+        {text:"Coprinus micaceus",                              jpg:"https://upload.wikimedia.org/wikipedia/commons/8/87/Coprinus_micaceus.jpg"},
+        {text:"Coprinus disseminatus",                          jpg:"https://upload.wikimedia.org/wikipedia/commons/3/33/Coprinus_disseminatus.JPG"},
+        {text:"Geastrum saccatum",                              jpg:"https://upload.wikimedia.org/wikipedia/commons/b/b8/Geastrum_saccatum.jpg"},
+        {text:"Coloured Figures of English Fungi or Mushrooms", jpg:"https://upload.wikimedia.org/wikipedia/commons/1/1e/Coloured_Figures_of_English_Fungi_or_Mushrooms_-_t._223.jpg"},
+        {text:"Golden teacher kookoskuidussa",                  jpg:"https://upload.wikimedia.org/wikipedia/commons/8/81/Golden_teacher_kookoskuidussa_32.jpg"},
+        {text:"Morchella elata Spitzmorchel Morchella conica",  jpg:"https://upload.wikimedia.org/wikipedia/commons/1/17/Morchella_elata_Spitzmorchel_Morchella_conica.jpg"},
+        {text:"Verpa bohemica",                                 jpg:"https://upload.wikimedia.org/wikipedia/commons/2/21/Verpa_bohemica1.jpg"},
     ];
 
     // index into jpgs array
@@ -95,8 +96,7 @@ Robert L. Oelschlaeger
 
     // the image to be modified
     var $img = $("img");
-    // $img.attr("height", "60%");
-    $img.attr("width", "40%");
+    $img.attr("height", 200);
 
     // locate the First button
     var $first_button = $("#first_button");
@@ -111,7 +111,7 @@ Robert L. Oelschlaeger
     var $last_button = $("#last_button");
 
     // add the caption
-    var $caption = $("#jpgcaption");
+    var $caption = $("#caption");
 
     // '%' has a known problem with negative values
     var modulo = function(n1, n2) {
@@ -135,8 +135,8 @@ Robert L. Oelschlaeger
         $img.hide();
         $img.attr("src", jpg);
         $img.attr("alt", text);
-        $img.slideDown();
-        $caption.text("Item " + (index + 1) + ": " + text);
+        $caption.text("Item " + (index + 1) +": " + text);
+        $img.slideDown(500);
 
         $first_button.attr("disabled", index===0);
         $prev_button.attr("disabled", index===0);
