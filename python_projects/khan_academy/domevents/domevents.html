@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Project: Scene change</title>
+        <style>
+        #leafers {
+            position: absolute;
+            top: 210px;
+            left: 378px;
+        }
+        </style>
+    </head>
+    <body>
+        <img src="https://www.kasandbox.org/programming-images/landscapes/beach-with-palm-trees.png" id="background">
+        <img src="https://www.kasandbox.org/programming-images/avatars/leafers-seedling.png" id="leafers">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>
+            var backgrounds = [
+                "https://www.kasandbox.org/programming-images/landscapes/beach-sunset.png",
+                "https://www.kasandbox.org/programming-images/landscapes/fields-of-wine.png",
+                "https://www.kasandbox.org/programming-images/seasonal/snowy-slope-with-trees.png",
+                "https://www.kasandbox.org/programming-images/landscapes/lotus-garden.png",
+                "https://www.kasandbox.org/programming-images/landscapes/beach-with-palm-trees.png"
+                ];
+
+            var pictures = [
+                "https://www.kasandbox.org/programming-images/avatars/leafers-sapling.png",
+                "https://www.kasandbox.org/programming-images/avatars/leafers-seed.png",
+                "https://www.kasandbox.org/programming-images/avatars/leafers-seedling.png",
+                "https://www.kasandbox.org/programming-images/avatars/leafers-tree.png",
+                "https://www.kasandbox.org/programming-images/avatars/leafers-ultimate.png",
+                "https://www.kasandbox.org/programming-images/creatures/Hopper-Cool.png",
+                "https://www.kasandbox.org/programming-images/creatures/Hopper-Happy.png",
+                "https://www.kasandbox.org/programming-images/creatures/Hopper-Jumping.png",
+                "https://www.kasandbox.org/programming-images/creatures/OhNoes.png"
+                ];
+
+            var index = 0;
+            var bindex = 0;
+
+            $("#leafers").on("click", function(event) {
+                // show a different character
+                $(this).attr("src", pictures[index % pictures.length]);
+                index += 1;
+            });
+
+            $("#background").on("click", function(event) {
+                // show a different character
+                $(this).attr("src", backgrounds[bindex % backgrounds.length]);
+                bindex += 1;
+            });
+
+        </script>
+    </body>
+</html>
+
+
