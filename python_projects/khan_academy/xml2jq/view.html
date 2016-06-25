@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+vim:ts=2:sw=2:tw=0:wm=0:et
+-->
+<html>
+  <head>
+    <meta encoding="utf-8">
+      <script src="bower_components/jquery/dist/jquery.js"></script>
+      <script src="data.js"></script>
+  </head>
+  <body>
+    <h1 id="gpxname"></h1>
+    <h2 id="gpxtime"></h2>
+    <h3 id="gpxauthor"></h3>
+    <script>
+      $("#gpxname").text("Filename: " + data.gpx.name);
+      $("#gpxtime").text("Generated: " + data.gpx.time);
+      $("#gpxauthor").text("Author: " + data.gpx.author);
+      $.each(data.gpx.wpt, function(index, value) {
+              console.log(index);
+              console.log(value);
+              console.log(value['@Lat']);
+              console.log(value['@Lon']);
+              console.log(value.cmt);
+              console.log(value.desc);
+              console.log(value.cache);
+              console.log(value.name);
+              console.log(value.sym);
+              console.log(value.time);
+              console.log(value.type);
+              console.log(value.url);
+              console.log(value.urlname);
+              });
+    </script>
+  </body>
+</html>
