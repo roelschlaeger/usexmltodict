@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Sat 25 Jun 2016 01:17:33 PM CDT
-# Last Modified: Sat 25 Jun 2016 02:21:17 PM CDT
+# Last Modified: Sat 25 Jun 2016 02:42:03 PM CDT
 
 """
 SYNOPSIS
@@ -39,12 +39,13 @@ __VERSION__ = "0.0.1"
 
 import xmltodict
 import json
+import os.path
 
 
 def process_arg(infile_name):
     print()
     print('process_arg("', infile_name, '")', sep="")
-    outfile_name = infile_name + ".js"
+    outfile_name = os.path.split(infile_name)[1] + ".js"
     with open(infile_name, "r") as f:
         xml = xmltodict.parse(f)
         with open(outfile_name, "w") as f2:

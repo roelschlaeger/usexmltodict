@@ -18,6 +18,7 @@ vim:ts=2:sw=2:tw=0:wm=0:et
       }
     </script>
 
+<!--
 <input type="file" id="files" name="files[]" multiple />
 <output id="list"></output>
 
@@ -38,13 +39,15 @@ vim:ts=2:sw=2:tw=0:wm=0:et
 
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
 </script>
+-->
 
-console.log("HELLO");
-var gcdata = JSON.parse("data/gc.gpx.js");
+    <script>
+      console.log("HELLO");
+      var gcdata = jQuery.getJSON("gc.gpx.js");
 
-console.log("#####");
-console.log(gcdata);
-console.log("#####");
+      console.log("#####");
+      console.log(gcdata);
+      console.log("#####");
     </script>
   </head>
   <body>
@@ -52,7 +55,7 @@ console.log("#####");
     <br>
     <p>Lorem ipsit.</p>
     <script>
-      $("p").after().text(gcdata.text);
+      $("p").after().text(gcdata.responseJSON);
     </script>
   </body>
 </html>
