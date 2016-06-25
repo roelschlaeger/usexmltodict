@@ -1,0 +1,22 @@
+{
+  "name": "xml2jq",
+  "homepage": "https://github.com/roelschlaeger/sources",
+  "authors": [
+    "roelschlaeger <roelschlaeger@gmail.com>"
+  ],
+  "description": "Work with gpx files in jquery",
+  "main": "xml2jq.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "xml-to-json": "*",
+    "jquery": "^3.0.0"
+  }
+}

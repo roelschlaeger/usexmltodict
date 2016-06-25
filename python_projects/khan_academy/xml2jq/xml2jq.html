@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+vim:ts=2:sw=2:tw=0:wm=0:et
+-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>xml2jq</title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+
+    <script>
+      // Check for the various File API support.
+      if (window.File && window.FileReader && window.FileList && window.Blob) {
+        // Great success! All the File APIs are supported.
+      } else {
+        alert('The File APIs are not fully supported in this browser.');
+      }
+    </script>
+
+<input type="file" id="files" name="files[]" multiple />
+<output id="list"></output>
+
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                  '</li>');
+    }
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>
+
+console.log("HELLO");
+var gcdata = JSON.parse("data/gc.gpx.js");
+
+console.log("#####");
+console.log(gcdata);
+console.log("#####");
+    </script>
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <br>
+    <p>Lorem ipsit.</p>
+    <script>
+      $("p").after().text(gcdata.text);
+    </script>
+  </body>
+</html>
