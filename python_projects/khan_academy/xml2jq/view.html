@@ -6,8 +6,12 @@ vim:ts=2:sw=2:tw=0:wm=0:et
   <head>
     <meta encoding="utf-8">
       <script src="bower_components/jquery/dist/jquery.js"></script>
-      <script src="data.js"></script>
+      <script src="topo853 - Effingham IL.gpx.js"></script>
       <style>
+        body {
+          font-family: cursive;
+        }
+
         h1 {
           text-align: center;
           background-color: lightgreen;
@@ -28,6 +32,7 @@ vim:ts=2:sw=2:tw=0:wm=0:et
           background-color: yellow;
           border: 2px solid;
           font-family: monospace;
+//        font-family: Times New Roman;
           font-size: 1.5em;
           font-weight: bold;
         }
@@ -40,6 +45,7 @@ vim:ts=2:sw=2:tw=0:wm=0:et
 
         table {
           border-collapse: collapse;
+          width: 100%;
         }
 
         td {
@@ -55,38 +61,73 @@ vim:ts=2:sw=2:tw=0:wm=0:et
         tr:nth-child(odd) {
           background-color: lightgreen;
         }
+
+        .archived {
+          background-color: gray;
+          color: white;
+        }
+
+        tr:nth-child(odd).archived {
+          background-color: gray;
+          color: white;
+        }
+
+        .available {
+          background-color: pink;
+        }
+
+        tr:nth-child(odd).available {
+          background-color: pink;
+        }
+
+        tr a {
+          font-weight: bold;
+        }
+
+        a:visited {
+          color: purple
+        }
+
+        a:link {
+          color: blue
+        }
+
       </style>
   </head>
   <body>
     <h1 id="gpxname"></h1>
     <h2 id="gpxtime"></h2>
-    <h3 id="gpxauthor"></h3>
     <hr width="80%">
     <p></p>
     <script>
-      $("#gpxname").text("Filename: " + data.gpx.name);
-      $("#gpxtime").text("Generated: " + data.gpx.time);
-      $("#gpxauthor").text("Author: " + data.gpx.author);
-      var table = $("<table />");
-      var header = Object.keys(data.gpx.wpt[0]);
-      var row = $("<tr />");
-      var cache;
-      var cache_links = {};
-
       // tags in which we have no interest right now
       var skipTags = function(tag) {
         if (tag === "@lat") { return true; };
         if (tag === "@lon") { return true; };
+//      if (tag === "extensions") { return true; };
+        if (tag === "link") { return true; };
+        if (tag === "sym") { return true; };
         if (tag === "time") { return true; };
-        if (tag === "urlname") { return true; };
         if (tag === "url") { return true; };
+        if (tag === "urlname") { return true; };
 //      if (tag === "type") { return true; };
 //      if (tag === "Waypoint|Parking Area") { return true; };
 //      if (tag === "Parking Area") { return true; };
         return false
       };
 
-      table.prepend($("<caption/>").text("Table Caption"));
+      $("#gpxname").text("Filename: " + data.gpx.metadata.author.name);
+      $("#gpxtime").text("Generated: " + data.gpx.metadata.time);
+
+      var table = $("<table />");
+      var header = Object.keys(data.gpx.wpt[0]);
+      header.splice(0, 0, "UserSort");
+
+      var row = $("<tr />");
+      var cache;
+      var cache_links = {};
+
+      table.prepend($("<caption/>").text("Route Waypoints"));
 
       $.each(header, function(index, r) {
           if (skipTags(r)) { return true }
@@ -98,61 +139,57 @@ vim:ts=2:sw=2:tw=0:wm=0:et
       var cache = {};
 
       $.each(data.gpx.wpt, function(rindex, rdata) {
-          console.log(rdata);
           name = rdata.name;
           row = $("<tr />");
+
+          var usersort = rdata["extensions"]["gsak:wptExtension"]["gsak:UserSort"]
+          row.append($("<td />").text(usersort));
+
+          var archived = rdata["extensions"]["groundspeak:cache"]["@archived"];
+          if (archived === "True") {
+            row.addClass("archived");
+          }
+
+          var available = rdata["extensions"]["groundspeak:cache"]["@available"]; ;
+          if (available !== "True") {
+            row.addClass("available");
+          }
+
+          var link_href = rdata["link"]["@href"];
+//        console.log(link_href)
+
           $.each(rdata, function(ckey, c) {
             if (ckey === "groundspeak:cache") { cache = c; }
             if (skipTags(ckey)) { return true }
 
             // null is an object
             if (typeof(c) === "object" && c !== null) {
-                cache_links[name] = c;
-                var a = $("<a/>");
-                a.text(name);
-                a.attr("href", "links/" + escape(name));
-                row.append($("<td />").html(a));
+              cache_links[name] = c;
+              var a = $("<a/>");
+              a.text(name);
+              a.attr("href", "links/" + escape(name));
+              row.append($("<td />").html(a));
             } else {
+              if ((ckey === "desc") && (link_href !== "")) {
+                var a = $("<a />").text(c).attr("href", link_href);
+                row.append($("<td />").html(a));
+//              console.log(a);
+              } else {
+                if ((ckey === "type") && (c.startsWith("Geocache"))) {
+                  c = c.replace("Geocache|", "");
+                }
                 row.append($("<td />").text(c));
+              }
             }
 
             });
           table.append(row);
       });
       $("p").append(table);
-      console.log(cache);
+
+//    console.log(cache);
       console.log(cache_links);
 
-//    console.log(header);
-
-//    var $table = makeTable($("<p />"), header, data.gpx.wpt);
-//    console.log($table);
-//    $.each(data.gpx.wpt, function(index, value) {
-//        var $table;
-//        var $tr;
-//        var $td;
-//        $table = $("table");
-//        $tr = $table.append("<tr>row</tr>");
-//            console.log(index);
-//            td = tr.append("This is appended to row");
-//            $td = $tr.append("<td>" + index + "</td>");
-//            console.log($td);
-//            console.log(value);
-//            $td = $tr.append("<td></td>");
-//            $td.text(value.desc);
-//            console.log(value['@Lat']);
-//            console.log(value['@Lon']);
-//            console.log(value.cmt);
-//            console.log(value.desc);
-//            console.log(value.cache);
-//            console.log(value.name);
-//            console.log(value.sym);
-//            console.log(value.time);
-//            console.log(value.type);
-//            console.log(value.url);
-//            console.log(value.urlname);
-//            $tr.append("</tr>");
-//            });
     </script>
   </body>
 </html>
