@@ -12,24 +12,40 @@ vim:ts=2:sw=2:tw=0:wm=0:et
     <h1 id="gpxname"></h1>
     <h2 id="gpxtime"></h2>
     <h3 id="gpxauthor"></h3>
+    <table id="table">
+      <tr>
+        <th>Header</th>
+      </tr>
+    </table>
     <script>
       $("#gpxname").text("Filename: " + data.gpx.name);
       $("#gpxtime").text("Generated: " + data.gpx.time);
       $("#gpxauthor").text("Author: " + data.gpx.author);
       $.each(data.gpx.wpt, function(index, value) {
-              console.log(index);
-              console.log(value);
-              console.log(value['@Lat']);
-              console.log(value['@Lon']);
-              console.log(value.cmt);
-              console.log(value.desc);
-              console.log(value.cache);
-              console.log(value.name);
-              console.log(value.sym);
-              console.log(value.time);
-              console.log(value.type);
-              console.log(value.url);
-              console.log(value.urlname);
+          var $table;
+          var $tr;
+          var $td;
+          $table = $("table");
+          $tr = $table.append("<tr>row</tr>");
+//            console.log(index);
+//            td = tr.append("This is appended to row");
+              $td = $tr.append("<td>" + index + "</td>");
+              console.log($td);
+//            console.log(value);
+              $td = $tr.append("<td></td>");
+              $td.text(value.desc);
+//            console.log(value['@Lat']);
+//            console.log(value['@Lon']);
+//            console.log(value.cmt);
+//            console.log(value.desc);
+//            console.log(value.cache);
+//            console.log(value.name);
+//            console.log(value.sym);
+//            console.log(value.time);
+//            console.log(value.type);
+//            console.log(value.url);
+//            console.log(value.urlname);
+              $tr.append("</tr>");
               });
     </script>
   </body>
