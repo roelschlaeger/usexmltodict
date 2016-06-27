@@ -1,0 +1,86 @@
+<!--
+vim:ts=2:sw=2:tw=0:wm=0:et
+-->
+
+body {
+  font-family: cursive;
+}
+
+h1 {
+  text-align: center;
+  background-color: lightgreen;
+  border: 1px solid black
+}
+
+h2, h3 {
+  text-align: center;
+}
+
+table, caption, td, th {
+  border: 1px solid black;
+  text-align: center;
+  vertical-align: middle;
+}
+
+caption {
+  background-color: yellow;
+  border: 2px solid;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+
+th {
+  background-color: lightyellow;
+  border: 2px solid;
+}
+
+table {
+  border-collapse: collapse;
+  //      width: 100%;
+}
+
+td {
+  padding: 2px 8px;
+}
+
+th {
+  border-bottom: 1px solid #ddd;
+  background-color: #4caf50;
+  color: white
+}
+
+tr:nth-child(odd) {
+  background-color: lightgreen;
+}
+
+.archived {
+  background-color: gray;
+  color: white;
+}
+
+tr:nth-child(odd).archived {
+  background-color: gray;
+  color: white;
+}
+
+.available {
+  background-color: pink;
+}
+
+tr:nth-child(odd).available {
+  background-color: pink;
+}
+
+tr a {
+  font-weight: bold;
+}
+
+a:visited {
+  color: purple
+}
+
+a:link {
+  color: blue
+}
+
