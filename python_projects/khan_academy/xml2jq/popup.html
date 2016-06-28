@@ -48,7 +48,7 @@ vim:ts=2:sw=2:tw=0:wm=0:et
 
   </head>
   <body>
-    <h1 style="textAlign=center"></h1>
+    <h1></h1>
     <h2></h2>
     <div data-role="popup" id="myPopup" class="ui-content">
       <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
@@ -56,10 +56,9 @@ vim:ts=2:sw=2:tw=0:wm=0:et
     </div>
     <script>
       var fillMyPopup = function(wpt) {
-//      console.log(wpt);
 
         var table = $("<table/>").attr("alt", "Popup table");
-        table.append($("<caption/>").text("Caption Goes Here"));
+        table.append($("<caption/>").text(wpt.name));
 
         var row;
         row = $("<tr/>");
@@ -74,7 +73,6 @@ vim:ts=2:sw=2:tw=0:wm=0:et
             row.append(td1).append(td2);
             table.append(row);
             });
-//      console.log($("#myPopup").html());
         // this anchor is required to make the Close button work
         var anchor = $("<a/>")
             .attr("href", "#")
