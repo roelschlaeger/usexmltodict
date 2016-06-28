@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+vim:ts=2:sw=2:tw=0:wm=0:et
+-->
+<html>
+  <head>
+    <meta encoding="utf-8">
+    <!-- jQuery CDN -->
+    <!-- <script src="bower_components/jquery/dist/jquery.js"></script> -->
+
+    <!-- jQuery Mobile CDN -->
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Include jQuery Mobile stylesheets -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- Include the jQuery library -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script>
+
+      // Bind to "mobileinit" before you load jquery.mobile.js
+      $( document ).on( "mobileinit", function() {
+          $.mobile.listview.prototype.options.autodividersSelector = function( elt ) {
+              var text = $.trim( elt.text() ) || null;
+              if ( !text ) {
+                  return null;
+              }
+              if ( !isNaN(parseFloat(text)) ) {
+                  var value = Math.floor(parseFloat(text) / 100);
+                  return ">> UserSort: " + value + "00 to " + value + "99";
+              } else {
+                  text = text.slice( 0, 1 ).toUpperCase();
+                  return text;
+              }
+          };
+      });
+
+    </script>
+
+    <!-- Include the jQuery Mobile library -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script src="topo853a - Effingham IL.gpx.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="view.css">
+
+  </head>
+  <body>
+    <h1 style="textAlign=center"></h1>
+    <h2></h2>
+    <div data-role="popup" id="myPopup" class="ui-content">
+      <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+      Popup goes here!
+    </div>
+    <script>
+      var fillMyPopup = function(wpt) {
+//      console.log(wpt);
+
+        var table = $("<table/>").attr("alt", "Popup table");
+        table.append($("<caption/>").text("Caption Goes Here"));
+
+        var row;
+        row = $("<tr/>");
+        row.append($("<th/>").text("key"));
+        row.append($("<th/>").text("value"));
+
+        table.append(row);
+        Object.keys(wpt).forEach(function(ele, index) {
+            row = $("<tr/>");
+            var td1 = $("<td/>").text(ele);
+            var td2 = $("<td/>").text(wpt[ele]);
+            row.append(td1).append(td2);
+            table.append(row);
+            });
+//      console.log($("#myPopup").html());
+        // this anchor is required to make the Close button work
+        var anchor = $("<a/>")
+            .attr("href", "#")
+            .attr("data-rel", "back")
+            .addClass("ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right")
+            .text("Close");
+        $("#myPopup").html(anchor);
+        $("#myPopup").append(table);
+      };
+
+      var desc = data.gpx.metadata.desc;
+      $("h1:first").text(desc);
+      var time = data.gpx.metadata.time;
+      $("h2:first").text(time);
+
+      ul = $("<ul/>");
+      var wpts = data.gpx.wpt;
+      wpts.forEach(function(wpt, index) {
+          var name = wpt.name;
+          var span = $("<span/>");
+          var a = $("<a/>")
+            .attr("href", "#myPopup")
+            .attr("data-rel", "popup")
+            .addClass("ui-btn ui-btn-inline ui-corner-all")
+            .html(name);
+          span.html(a);
+          a.on("click", function(event) {
+            fillMyPopup(wpt)
+            });
+          var li = $("<li/>").html(span);
+          ul.append(li)
+      });
+      $("body").append(ul);
+    </script>
+  </body>
+</html>
