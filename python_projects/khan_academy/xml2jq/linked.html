@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <!--
-vim:ts=2:sw=2:tw=0:wm=0:et
+vim:ts=4:sw=4:tw=0:wm=0:et
 -->
 <html>
-  <head>
-    <meta encoding="utf-8">
+
+<head>
+    <meta charset="utf-8">
+    <title>Linked.html</title>
+
     <!-- jQuery CDN -->
     <!-- <script src="bower_components/jquery/dist/jquery.js"></script> -->
 
@@ -17,26 +20,25 @@ vim:ts=2:sw=2:tw=0:wm=0:et
 
     <!-- Include the jQuery library -->
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="latlon.js"></script>
 
     <script>
-
-      // Bind to "mobileinit" before you load jquery.mobile.js
-      $( document ).on( "mobileinit", function() {
-          $.mobile.listview.prototype.options.autodividersSelector = function( elt ) {
-              var text = $.trim( elt.text() ) || null;
-              if ( !text ) {
-                  return null;
-              }
-              if ( !isNaN(parseFloat(text)) ) {
-                  var value = Math.floor(parseFloat(text) / 100);
-                  return ">> UserSort: " + value + "00 to " + value + "99";
-              } else {
-                  text = text.slice( 0, 1 ).toUpperCase();
-                  return text;
-              }
-          };
-      });
-
+        // Bind to "mobileinit" before you load jquery.mobile.js
+        $(document).on("mobileinit", function() {
+            $.mobile.listview.prototype.options.autodividersSelector = function(elt) {
+                var text = $.trim(elt.text()) || null;
+                if (!text) {
+                    return null;
+                }
+                if (!isNaN(parseFloat(text))) {
+                    var value = Math.floor(parseFloat(text) / 100);
+                    return ">> UserSort: " + value + "00 to " + value + "99";
+                } else {
+                    text = text.slice(0, 1).toUpperCase();
+                    return text;
+                }
+            };
+        });
     </script>
 
     <!-- Include the jQuery Mobile library -->
@@ -46,105 +48,70 @@ vim:ts=2:sw=2:tw=0:wm=0:et
 
     <link rel="stylesheet" type="text/css" href="view.css">
 
-  </head>
-  <body>
+</head>
+
+<body>
     <h1 style="textAlign=center">Hello</h1>
     <h2>Hello 2</h2>
     <br/>
-    <hr color="red">
-    <hr color="red">
+    <hr style="color:red">
+    <hr style="color:red">
     <br/>
 
-    <!--
-    // http://demos.jquerymobile.com/1.4.5/listview/#&ui-state=dialog
-    //  <ul data-role="listview" data-filter="true" data-filter-placeholder="Search fruits..." data-inset="true">
-    //      <li><a href="#">Apple</a></li>
-    //      <li><a href="#">Banana</a></li>
-    //      <li><a href="#">Cherry</a></li>
-    //      <li><a href="#">Cranberry</a></li>
-    //      <li><a href="#">Grape</a></li>
-    //      <li><a href="#">Orange</a></li>
-    //  </ul>
-    -->
-
     <script>
-      var desc = data.gpx.metadata.desc;
-      $("h1:first").text(desc);
-      var time = data.gpx.metadata.time;
-      $("h2:first").text(time);
+        var desc = data.gpx.metadata.desc;
+        $("h1:first").text(desc);
+        var time = data.gpx.metadata.time;
+        $("h2:first").text(time);
 
-      var latlon = function(input_value, pm) {
-        var negative = (input_value < 0);
-        var n = Math.abs(input_value);
-        var degrees = Math.floor(n);
-        var minutes = (n - degrees) * 60.;
-        var c;
-        if (negative) {
-          c = pm.split("")[1];
-        } else {
-          c = pm.split("")[0];
-        }
-        return c + degrees.toFixed(0) + " " + minutes.toFixed(3);
-      };
+        var show_cache = function(obj) {
+            console.log(obj);
+        };
 
-      var latstr = function(n) {
-        return latlon(n, "NS")
-      };
+        var ul = $("<ul/>")
+            .attr({
+                "data-role": "listview",
+                "data-filter": "true",
+                "data-filter-placeholder": "Enter search terms here...",
+                "data-inset": "true",
+                "data-autodividers": "true"
+            });
 
-      var lonstr = function(n) {
-        return latlon(n, "EW")
-      };
+        data.gpx.wpt.forEach(function(element, index) {
+            //              console.log(element);
+            var extensions = element.extensions;
+            var cache = extensions["groundspeak:cache"];
+            var gsak = extensions["gsak:wptExtension"];
+            var usersort = gsak["gsak:UserSort"];
+            var lat = latstr(element["@lat"]);
+            var lon = lonstr(element["@lon"]);
+            var location = "(" + lat + ", " + lon + ")";
+            var name = [
+                usersort,
+                element.name,
+                element.desc,
+                location
+            ].join(" | ");
+            //              var name = components.join(" | ");
+            var a;
+            if (element.name.startsWith("GC")) {
+                a = $("<a/>").attr("href", "#").text(name);
+            } else {
+                a = name;
+            }
 
-      var show_cache = function(obj) {
-        console.log(obj);
-      };
+            var li = $("<li/>").html(a);
+            ul.append(li)
 
-      var ul = $("<ul/>")
-        .attr(
-          {
-            "data-role": "listview",
-            "data-filter": "true",
-            "data-filter-placeholder": "Enter search terms here...",
-            "data-inset": "true",
-            "data-autodividers": "true"
-          }
-        );
+            li.on("click", function(event) {
+                event.preventDefault();
+                show_cache(extensions);
+            });
 
-      data.gpx.wpt.forEach(function (element, index) {
-//        console.log(element);
-          var extensions = element.extensions;
-          var cache = extensions["groundspeak:cache"];
-          var gsak = extensions["gsak:wptExtension"];
-          var usersort = gsak["gsak:UserSort"];
-          var lat = latstr(element["@lat"]);
-          var lon = lonstr(element["@lon"]);
-          var location = "(" + lat + ", " + lon + ")";
-          var name = [
-            usersort,
-            element.name,
-            element.desc,
-            location
-          ].join(" | ");
-//        var name = components.join(" | ");
-          var a;
-          if (element.name.startsWith("GC")){
-            a = $("<a/>").attr("href", "#").text(name);
-          } else {
-            a = name;
-          }
+        });
 
-          var li = $("<li/>").html(a);
-          ul.append(li)
-
-          li.on("click", function(event) {
-              event.preventDefault();
-              show_cache(extensions);
-              });
-
-      });
-
-      $("body").append(ul);
-
+        $("body").append(ul);
     </script>
-    </body>
+</body>
+
 </html>
