@@ -6,6 +6,7 @@ vim:ts=4:sw=4:tw=0:wm=0:et
 
 <head>
     <meta charset="utf-8"></meta>
+
     <!-- jQuery Mobile CDN -->
     <!-- Include meta tag to ensure proper rendering and touch zooming -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +17,9 @@ vim:ts=4:sw=4:tw=0:wm=0:et
     <!-- Include the jQuery library -->
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
+    <!-- <script src="jQuery-Plugin-For-Multi-column-Table-Sorting-tablesort-js/jquery.tablesort.min.js"></script> -->
+    <script type="text/javascript" src="./Mottie-tablesorter-08bf513/js/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="./Mottie-tablesorter-08bf513/js/jquery.tablesorter.widgets.js"></script>
     <script>
         // Bind to "mobileinit" before you load jquery.mobile.js
         $(document).on("mobileinit", function() {
@@ -38,47 +42,73 @@ vim:ts=4:sw=4:tw=0:wm=0:et
     <!-- Include the jQuery Mobile library -->
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <style>
         .gc {
             color: red;
             font-weight: bold
         }
 
-        table {
+        table#data {
             background-color: lightyellow;
-            width: 80%;
+        }
+
+        table#cache {
+            background-color: yellow;
+            width: 50%;
+        }
+
+        table#gsak {
+            background-color: lightgreen;
+            width: 30%;
+        }
+
+        caption {
+            background-color: gold;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 1.5em;
         }
 
         table,
         th,
-        td {
+        td,
+        caption {
+            border-collapse: collapse;
             border: solid 1px black;
             text-align: center
         }
 
-        // th {background-color: yellow}
+        td, th { padding: 0px 3px; }
+
+        tr:nth-child("odd"): { background-color: blue }
+        tr:nth-child("even"): { background-color: green }
+
         thead {
             background-color: lightblue
         }
+
     </style>
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"></script>
     <script src="latlon.js"></script>
     <script src="topo853a - Effingham IL.gpx.js"></script>
     <script>
+
+        ////////////////////
+        // fillCachePopup //
+        ////////////////////
+
         var fillCachePopup = function(cache) {
 
-            console.log(cache);
+            var cache_table = $("<table/>")
+                .attr("id", "cache")
+                .attr("alt", "Cache Popup table")
+                .append($("<caption/>").text(cache["groundspeak:name"]));
 
-            var table = $("<table/>").attr("alt", "Popup table");
-            table.append($("<caption/>").text(cache.name));
+            var row = $("<tr/>")
+                .append($("<th/>").text("key"))
+                .append($("<th/>").text("value"));
 
-            var row;
-            row = $("<tr/>");
-            row.append($("<th/>").text("key"));
-            row.append($("<th/>").text("value"));
-
-            table.append(row);
+            cache_table.append(row);
             Object.keys(cache).forEach(function(ele, index) {
                 row = $("<tr/>");
                 var td1 = $("<td/>").text(ele.replace("groundspeak:", ""));
@@ -93,12 +123,11 @@ vim:ts=4:sw=4:tw=0:wm=0:et
                     } else {
                         td2.text(desc["#text"]);
                     }
-                    console.log(cache[ele])
                     row.append(td1).append(td2);
                 } else {
                     row.append(td1).append(td2);
                 }
-                table.append(row);
+                cache_table.append(row);
             });
             // this anchor is required to make the Close button work
             var anchor = $("<a/>")
@@ -107,28 +136,35 @@ vim:ts=4:sw=4:tw=0:wm=0:et
                 .addClass("ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right")
                 .text("Close");
             $("#cachePopup").html(anchor);
-            $("#cachePopup").append(table);
+            $("#cachePopup").append(cache_table);
         };
+
+        ///////////////////
+        // fillGsakPopup //
+        ///////////////////
 
         var fillGsakPopup = function(cache) {
 
-            console.log(cache);
+            var gsak_table = $("<table/>")
+                .attr("id", "gsak")
+                .attr("alt", "GSAK Popup table")
+                .append($("<caption/>").text(cache["gsak:Code"]));
 
-            var table = $("<table/>").attr("alt", "Popup table");
-            table.append($("<caption/>").text(cache.name));
+            var thead = $("<thead/>");
 
-            var row;
-            row = $("<tr/>");
-            row.append($("<th/>").text("gsak: key"));
-            row.append($("<th/>").text("value"));
+            var row = $("<tr/>")
+                .append($("<th/>").text("gsak: key"))
+                .append($("<th/>").text("value"));
+            thead.append(row);
 
-            table.append(row);
+            gsak_table.append(thead)
+                .append($("<tbody/>"));
+
             Object.keys(cache).forEach(function(ele, index) {
-                row = $("<tr/>");
-                var td1 = $("<td/>").text(ele.replace("gsak:", ""));
-                var td2 = $("<td/>").text(cache[ele]);
-                row.append(td1).append(td2);
-                table.append(row);
+                row = $("<tr/>")
+                    .append($("<td/>").text(ele.replace("gsak:", "")))
+                    .append($("<td/>").text(cache[ele]));
+                gsak_table.append(row);
             });
             // this anchor is required to make the Close button work
             var anchor = $("<a/>")
@@ -136,8 +172,8 @@ vim:ts=4:sw=4:tw=0:wm=0:et
                 .attr("data-rel", "back")
                 .addClass("ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right")
                 .text("Close");
-            $("#gsakPopup").html(anchor);
-            $("#gsakPopup").append(table);
+            $("#gsakPopup").html(anchor)
+                .append(gsak_table);
         };
     </script>
 </head>
@@ -152,31 +188,45 @@ vim:ts=4:sw=4:tw=0:wm=0:et
         <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a> Popup goes here!
     </div>
 
-    <table>
-        <thead id="thead">
-        </thead>
-        <tbody id="tbody">
-        </tbody>
+    <table id="data" class="tablesorter">
+        <caption>Data Table</caption>
+        <thead id="thead"></thead>
+        <tbody id="tbody"></tbody>
     </table>
     <script>
         var wpts = data.gpx.wpt;
 
         var hkeys = [];
         var tr = $("<tr/>");
+        var th = $("<th/>").text("Index");
+        tr.append(th);
         Object.keys(wpts[0]).forEach(function(key, index) {
-            if (key === "link") {
+            if ((key === "link") || (key === "time")) {
                 return false;
             }
+            if (key === "extensions") {
+                key = "Cache";
+                hkeys.push(key);
+                th = $("<th/>").text(key);
+                tr.append(th);
+
+                key = "GSAK";
+            }
             hkeys.push(key);
-            var th = $("<th/>").text(key);
+            th = $("<th/>").text(key);
             tr.append(th);
         })
         $("#thead").append(tr);
 
+
         $(wpts).each(function(index, wpt) {
             var tr = $("<tr/>");
+            var td = $("<td/>").text(index);
+            tr.append(td);
+
             var link = wpt["link"];
             var hasLink = link["@href"] !== "";
+
             hkeys.forEach(function(key) {
                 var td = $("<td/>");
                 if (key == "@lat") {
@@ -191,7 +241,7 @@ vim:ts=4:sw=4:tw=0:wm=0:et
                 } else if (key === "type") {
                     td.text(wpt[key].replace("Geocache|", ""));
                 } else if (key === "desc") {
-                    if (link["@href"] !== "") {
+                    if (hasLink) {
                         var a = $("<a/>")
                             .text(wpt[key])
                             .attr("href", link["@href"])
@@ -200,34 +250,32 @@ vim:ts=4:sw=4:tw=0:wm=0:et
                     } else {
                         td.html(wpt[key])
                     }
-                } else if (key === "extensions") {
-                    var name = wpt.name;
-                    var span = $("<span/>");
-                    var $table = $("<table>");
-                    var a1 = $("<a/>")
-                        .attr("href", "#cachePopup")
-                        .attr("data-rel", "popup")
-                        .addClass("ui-btn ui-btn-inline ui-corner-all")
-                        .html("Cache: " + name);
-                    var a2 = $("<a/>")
-                        .attr("href", "#gsakPopup")
-                        .attr("data-rel", "popup")
-                        .addClass("ui-btn ui-btn-inline ui-corner-all")
-                        .html("GSAK:" + name);
-                    var $td1 = $("<td/>").append(a1);
-                    var $td2 = $("<td/>").append(a2);
-                    var $row = $("<tr/>").append($td1).append($td2);
-                    $table.append($row);
-                    span.append($table);
-                    a1.on("click", function(event) {
-                        // console.log(wpt.extensions);
-                        fillCachePopup(wpt.extensions["groundspeak:cache"]);
-                    });
-                    a2.on("click", function(event) {
-                        // console.log(wpt.extensions["gsak:wptExtension"]);
-                        fillGsakPopup(wpt.extensions["gsak:wptExtension"]);
-                    });
-                    td.html(span);
+                } else if (key === "Cache") {
+                    if (hasLink) {
+                        var name = wpt.name;
+                        var a = $("<a/>")
+                            .attr("href", "#cachePopup")
+                            .attr("data-rel", "popup")
+                            .addClass("ui-btn ui-btn-inline ui-corner-all")
+                            .html("Cache: " + name);
+                        a.on("click", function(event) {
+                            fillCachePopup(wpt.extensions["groundspeak:cache"]);
+                        });
+                        td.html(a);
+                    }
+                } else if (key === "GSAK") {
+                    if (true || hasLink) {
+                        var name = wpt.name;
+                        var a = $("<a/>")
+                            .attr("href", "#gsakPopup")
+                            .attr("data-rel", "popup")
+                            .addClass("ui-btn ui-btn-inline ui-corner-all")
+                            .html("GSAK:" + name);
+                        a.on("click", function(event) {
+                            fillGsakPopup(wpt.extensions["gsak:wptExtension"]);
+                        });
+                        td.html(a);
+                    }
                 } else {
                     td.text(wpt[key]);
                 }
@@ -235,6 +283,11 @@ vim:ts=4:sw=4:tw=0:wm=0:et
             });
             $("#tbody").append(tr);
         });
+
+    $(function() {
+        $("#data").tablesorter();
+    });
+
     </script>
 </body>
 
