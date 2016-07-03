@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Accordion</title>
+
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.css">
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="latlon.js"></script>
+
+    <script src="topo853a - Effingham IL.gpx.js"></script>
+
+</head>
+
+<body>
+    <script>
+        // make accordian divs, adding them to <body>
+        var accordion_count = 0;
+        var make_accordion_div = function(wpt) {
+            var tag = "accordion_" + accordion_count;
+            accordion_count += 1;
+
+            var my_accordion = $("<div/>").attr("id", tag);
+
+            var extensions = wpt.extensions;
+            var groundspeak_extension = extensions['groundspeak:cache'];
+            var logs = groundspeak_extension['groundspeak:logs'];
+            var log = logs['groundspeak:log'];
+
+            log.forEach(function(log) {
+                var id = log["@id"];
+                var date = log["groundspeak:date"];
+                var finder = log["groundspeak:finder"];
+                var text = log["groundspeak:text"];
+                var type = log["groundspeak:type"];
+                var header = [type, date, finder['#text']].join(" | ");
+                h3 = $("<h3/>").text(header);
+                div = $("<div/>").text(text['#text']);
+                my_accordion
+                    .append(h3)
+                    .append(div);
+            });
+
+            // $("body").append(accordion);
+            my_accordion.accordion({
+                heightStyle: "content"
+            });
+
+            return my_accordion;
+        };
+
+        $(function() {
+            var wpts = data.gpx.wpt;
+
+            wpts.forEach(function(wpt, index) {
+
+                var name = wpt.name;
+                if (!name.startsWith("GC")) {
+                    return false;
+                }
+
+                var desc = wpt.desc;
+                var lat = latstr(wpt["@lat"]);
+                var lon = lonstr(wpt["@lon"]);
+                var type = wpt.type.replace("Geocache|", "");
+
+                var header = [name, desc, lat, lon, type].join(" | ");
+
+                $("body").append($("<h2 />").text(header));
+                $("body").append(make_accordion_div(wpt));
+            });
+        });
+    </script>
+</body>
+
+</html>

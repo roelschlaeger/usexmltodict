@@ -54,7 +54,7 @@ vim:ts=4:sw=4:tw=0:wm=0:et
         }
 
         table#cache {
-            background-color: yellow;
+            background-color: lightblue;
             width: 50%;
         }
 
@@ -82,7 +82,6 @@ vim:ts=4:sw=4:tw=0:wm=0:et
         td, th { padding: 0px 3px; }
 
         tr:nth-child("odd"): { background-color: blue }
-        tr:nth-child("even"): { background-color: green }
 
         thead {
             background-color: lightblue
@@ -116,7 +115,7 @@ vim:ts=4:sw=4:tw=0:wm=0:et
                 if (
                     (ele === "groundspeak:short_description") ||
                     (ele === "groundspeak:long_description")
-                ){
+                ) {
                     var desc = cache[ele];
                     if (desc["@html"] === "True") {
                         td2.text("").html(desc["#text"]);
@@ -124,6 +123,16 @@ vim:ts=4:sw=4:tw=0:wm=0:et
                         td2.text(desc["#text"]);
                     }
                     row.append(td1).append(td2);
+                } else if (ele === "groundspeak:logs"){
+                    var a = $("<a/>")
+                        .attr("href","#logsPopup")
+                        .attr("data-rel", "popup")
+                        .addClass("ui-btn ui-btn-inline ui-corner-all")
+                        .text("Logs")
+                        .on("click", function(event) {
+                            fillLogsPopup(cache[ele]);
+                        });
+                    row.append(td1).append(a);
                 } else {
                     row.append(td1).append(td2);
                 }
@@ -175,6 +184,58 @@ vim:ts=4:sw=4:tw=0:wm=0:et
             $("#gsakPopup").html(anchor)
                 .append(gsak_table);
         };
+
+        ///////////////////
+        // fillLogsPopup //
+        ///////////////////
+
+        var fillLogsPopup = function(logs) {
+
+            console.log(logs);
+
+            var logs_table = $("<table/>")
+                .attr("id", "logs")
+                .attr("alt", "Logs Popup table")
+                .append($("<caption/>").text(logs["groundspeak:name"]));
+
+            var row = $("<tr/>")
+                .append($("<th/>").text("key"))
+                .append($("<th/>").text("value"));
+
+            logs_table.append(row);
+            Object.keys(logs).forEach(function(ele, index) {
+                row = $("<tr/>");
+                var td1 = $("<td/>").text(ele.replace("groundspeak:", ""));
+                var td2 = $("<td/>").text(logs[ele]);
+                if (
+                    (ele === "groundspeak:short_description") ||
+                    (ele === "groundspeak:long_description")
+                ){
+                    var desc = logs[ele];
+                    if (desc["@html"] === "True") {
+                        td2.text("").html(desc["#text"]);
+                    } else {
+                        td2.text(desc["#text"]);
+                    }
+                    row.append(td1).append(td2);
+                } else {
+                    row.append(td1).append(td2);
+                }
+                logs_table.append(row);
+            });
+
+            console.log(logs_table);
+
+            // this anchor is required to make the Close button work
+            var anchor = $("<a/>")
+                .attr("href", "#")
+                .attr("data-rel", "back")
+                .addClass("ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right")
+                .text("Close");
+            $("#logsPopup").html(anchor);
+            $("#logsPopup").append(logs_table);
+        };
+
     </script>
 </head>
 
@@ -188,28 +249,34 @@ vim:ts=4:sw=4:tw=0:wm=0:et
         <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a> Popup goes here!
     </div>
 
+    <div data-role="popup" id="logsPopup" class="ui-content">
+        <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a> Popup goes here!
+    </div>
+
     <table id="data" class="tablesorter">
         <caption>Data Table</caption>
         <thead id="thead"></thead>
         <tbody id="tbody"></tbody>
     </table>
+
     <script>
         var wpts = data.gpx.wpt;
 
         var hkeys = [];
         var tr = $("<tr/>");
-        var th = $("<th/>").text("Index");
+        var th = $("<th/>").text("UserSort");
         tr.append(th);
         Object.keys(wpts[0]).forEach(function(key, index) {
             if ((key === "link") || (key === "time")) {
                 return false;
             }
+
             if (key === "extensions") {
+                // add Cache keyword but not as table column
                 key = "Cache";
                 hkeys.push(key);
-                th = $("<th/>").text(key);
-                tr.append(th);
 
+                // add GSAK keyword as a table column
                 key = "GSAK";
             }
             hkeys.push(key);
@@ -218,14 +285,14 @@ vim:ts=4:sw=4:tw=0:wm=0:et
         })
         $("#thead").append(tr);
 
-
         $(wpts).each(function(index, wpt) {
+            var userSort = wpt.extensions["gsak:wptExtension"]["gsak:UserSort"];
             var tr = $("<tr/>");
-            var td = $("<td/>").text(index);
+            var td = $("<td/>").text(userSort);
             tr.append(td);
 
             var link = wpt["link"];
-            var hasLink = link["@href"] !== "";
+            var hasLink = ((link["@href"] !== "") && (wpt.name.startsWith("GC")));
 
             hkeys.forEach(function(key) {
                 var td = $("<td/>");
@@ -252,17 +319,17 @@ vim:ts=4:sw=4:tw=0:wm=0:et
                     }
                 } else if (key === "Cache") {
                     if (hasLink) {
-                        var name = wpt.name;
                         var a = $("<a/>")
                             .attr("href", "#cachePopup")
                             .attr("data-rel", "popup")
                             .addClass("ui-btn ui-btn-inline ui-corner-all")
-                            .html("Cache: " + name);
+                            .html(wpt.name);
                         a.on("click", function(event) {
                             fillCachePopup(wpt.extensions["groundspeak:cache"]);
                         });
-                        td.html(a);
+                        $(tr).find(".gc").html(a);
                     }
+                    return false;
                 } else if (key === "GSAK") {
                     if (true || hasLink) {
                         var name = wpt.name;

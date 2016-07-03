@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "xml-to-json": "*",
-    "jquery": "^3.0.0"
+    "jquery": "^3.0.0",
+    "jquery-ui": "jqueryui#^1.11.4"
   }
 }
