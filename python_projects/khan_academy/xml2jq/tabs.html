@@ -1,0 +1,113 @@
+<!doctype html>
+
+<!-- https://jqueryui.com/tabs/#vertical -->
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI Tabs - Vertical Tabs functionality</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
+    <script src="http://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous">
+    </script>
+    <!-- <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" integrity="sha256-DI6NdAhhFRnO2k51mumYeDShet3I8AKCQf/tf7ARNhI=" crossorigin="anonymous">
+    </script>
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <style>
+        .ui-tabs-vertical {
+            width: 55em;
+        }
+
+        .ui-tabs-vertical .ui-tabs-nav {
+            padding: .2em .1em .2em .2em;
+            float: left;
+            width: 12em;
+        }
+
+        .ui-tabs-vertical .ui-tabs-nav li {
+            clear: left;
+            width: 100%;
+            border-bottom-width: 1px !important;
+            border-right-width: 0 !important;
+            margin: 0 -1px .2em 0;
+        }
+
+        .ui-tabs-vertical .ui-tabs-nav li a {
+            display: block;
+        }
+
+        .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
+            padding-bottom: 0;
+            padding-right: .1em;
+            border-right-width: 1px;
+        }
+
+        .ui-tabs-vertical .ui-tabs-panel {
+            padding: 1em;
+            float: right;
+            width: 40em;
+        }
+    </style>
+    <script src="topo854 - Williamsville IL.gpx.js"></script>
+    <script>
+        var div_index = 0;
+        var addTab = function() {
+            var wpts = data.gpx.wpt;
+            var tabs = $("<div/>").attr("id", "tabs");
+            $("body").append(tabs);
+
+            var ul = $("<ul/>");
+            tabs.append(ul);
+
+            wpts.forEach(function(wpt) {
+                var div_number = "divs-" + div_index;
+
+                console.log(wpt);
+                var usersort = wpt.extensions["gsak:wptExtension"]["gsak:UserSort"];
+                var name = [usersort, wpt.name].join(" ");
+
+                var a = $("<a/>")
+                    .attr("href", "#" + div_number)
+                    .text(name);
+                var li = $("<li/>").append(a);
+                ul.append(li);
+
+                var html  = [
+                    usersort,
+                    wpt.name,
+                    wpt.desc,
+                    wpt["@lat"],
+                    wpt["@lon"],
+                    wpt.sym,
+                    wpt.type.replace("Geocache|", "")
+                ].join("<br/>");
+
+                div = $("<div/>")
+                    .attr("id", div_number)
+                    .appendTo(tabs);
+                div.append($("<h2/>").text("Content Heading " + div_index));
+                div.append($("<p/>").html(html));
+                div_index += 1;
+            });
+        };
+    </script>
+    <script>
+        $(function() {
+            var a = $("<a/>")
+                .text("See jQuery UI Vertical Reference")
+                .attr("href", "https://jqueryui.com/tabs/#vertical")
+                .attr("target", "_blank")
+                .attr("type", "text/html");
+            $("body").append(a);
+            $("body").append("<hr>");
+
+            addTab();
+            $("#tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
+            $("#tabs li").removeClass("ui-corner-top").addClass("ui-corner-left");
+        });
+    </script>
+</head>
+
+<body>
