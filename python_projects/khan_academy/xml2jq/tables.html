@@ -7,42 +7,12 @@ vim:ts=4:sw=4:tw=0:wm=0:et
 <head>
     <meta charset="utf-8"></meta>
 
-    <!-- jQuery Mobile CDN -->
-    <!-- Include meta tag to ensure proper rendering and touch zooming -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Include jQuery Mobile stylesheets -->
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="bower_components/tablesorter/dist/css/theme.default.min.css">
 
     <!-- Include the jQuery library -->
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/tablesorter/dist/js/jquery.tablesorter.combined.js"></script>
 
-    <!-- <script src="jQuery-Plugin-For-Multi-column-Table-Sorting-tablesort-js/jquery.tablesort.min.js"></script> -->
-    <script type="text/javascript" src="./Mottie-tablesorter-08bf513/js/jquery.tablesorter.js"></script>
-    <script type="text/javascript" src="./Mottie-tablesorter-08bf513/js/jquery.tablesorter.widgets.js"></script>
-    <script>
-        // Bind to "mobileinit" before you load jquery.mobile.js
-        $(document).on("mobileinit", function() {
-            $.mobile.listview.prototype.options.autodividersSelector = function(elt) {
-                var text = $.trim(elt.text()) || null;
-                if (!text) {
-                    return null;
-                }
-                if (!isNaN(parseFloat(text))) {
-                    var value = Math.floor(parseFloat(text) / 100);
-                    return ">> UserSort: " + value + "00 to " + value + "99";
-                } else {
-                    text = text.slice(0, 1).toUpperCase();
-                    return text;
-                }
-            };
-        });
-    </script>
-
-    <!-- Include the jQuery Mobile library -->
-    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <style>
         .gc {
             color: red;
@@ -108,10 +78,15 @@ vim:ts=4:sw=4:tw=0:wm=0:et
                 .append($("<th/>").text("value"));
 
             cache_table.append(row);
+
             Object.keys(cache).forEach(function(ele, index) {
+
+                // set up row and two columns
                 row = $("<tr/>");
                 var td1 = $("<td/>").text(ele.replace("groundspeak:", ""));
                 var td2 = $("<td/>").text(cache[ele]);
+
+                // check for HTML content in short_ and long_description
                 if (
                     (ele === "groundspeak:short_description") ||
                     (ele === "groundspeak:long_description")
@@ -123,6 +98,7 @@ vim:ts=4:sw=4:tw=0:wm=0:et
                         td2.text(desc["#text"]);
                     }
                     row.append(td1).append(td2);
+                // check for logs link
                 } else if (ele === "groundspeak:logs"){
                     var a = $("<a/>")
                         .attr("href","#logsPopup")
@@ -133,6 +109,7 @@ vim:ts=4:sw=4:tw=0:wm=0:et
                             fillLogsPopup(cache[ele]);
                         });
                     row.append(td1).append(a);
+                // otherwise, just add the columns
                 } else {
                     row.append(td1).append(td2);
                 }
@@ -253,7 +230,7 @@ vim:ts=4:sw=4:tw=0:wm=0:et
         <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a> Popup goes here!
     </div>
 
-    <table id="data" class="tablesorter">
+    <table id="datatable" class="tablesorter">
         <caption>Data Table</caption>
         <thead id="thead"></thead>
         <tbody id="tbody"></tbody>
@@ -351,9 +328,8 @@ vim:ts=4:sw=4:tw=0:wm=0:et
             $("#tbody").append(tr);
         });
 
-    $(function() {
-        $("#data").tablesorter();
-    });
+        // sort UserSort column ascending
+        $("#datatable").tablesorter( { sortList: [ [0, 0] ]});
 
     </script>
 </body>
