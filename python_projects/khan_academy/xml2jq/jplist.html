@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jPList Demo</title>
+    <!-- css fonts library -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+
+    <!-- jplist demo page styles -->
+
+    <style>
+        table {
+            width: 100%;
+        }
+
+        table, tr, th, td {
+            text-align: center;
+            padding: 3px;
+            border: solid black 1px;
+        };
+    </style>
+
+    <link rel="stylesheet" href="normalize.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jplist/5.2.0/css/jplist.demo-pages.min.css" type="text/css" />
+
+    <!-- jQuery library -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+
+    <!-- jPList Core -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jplist/5.2.0/css/jplist.core.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jplist/5.2.0/js/jplist.core.min.js"></script>
+
+    <!-- add here jPList controls and bundles -->
+    <!-- ... -->
+
+    <script src="topo854 - Williamsville IL.gpx.js"></script>
+    <script src="gpx_jPList.js"></script>
+
+    <script>
+        $('document').ready(function() {
+
+            // fill in data items
+            fillListDiv();
+
+            //check all jPList javascript options
+            $('#demo').jplist({
+                itemsBox: '.list',
+                itemPath: '.list-item',
+                panelPath: '.jplist-panel'
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <!-- demo -->
+    <div id="demo">
+
+        <!-- panel -->
+        <div class="jplist-panel">
+
+            <!-- ios button: show/hide panel -->
+            <div class="jplist-ios-button">
+                <i class="fa fa-sort"></i> jPList Actions
+            </div>
+
+            <!-- add here jPList controls and bundles -->
+            <!-- ... -->
+
+        </div>
+
+        <!-- HTML data -->
+        <div class="list">
+
+            <!-- item 1 -->
+            <div class="list-item">
+                <!-- ... -->
+            </div>
+
+            <!-- item 2 -->
+            <div class="list-item">
+                <!-- ... -->
+            </div>
+
+            <!-- ... -->
+
+        </div>
+
+        <!-- no results found -->
+        <div class="jplist-no-results">
+            <p>No results found</p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
