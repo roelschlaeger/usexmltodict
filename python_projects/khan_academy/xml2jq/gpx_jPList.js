@@ -2,32 +2,14 @@
 
 var fillListDiv = function() {
     var $list = $(".list");
-    $list.empty();
+    // $list.empty();
 
 
     var wpts = data.gpx.wpt;
     wpts.forEach(function(wpt, index) {
         $item = $("<div/>")
-            .addClass("list-item box")
+            .addClass("list-item")
             .appendTo($list);
-
-        $table = $("<table/>")
-            .append("<caption/>")
-            .append("<thead/>")
-            .append("<tbody/>")
-            .appendTo($item);
-
-        $thead = $table.find("thead");
-        // console.log($thead);
-        $row = $("<tr/>").appendTo($thead);
-        keys = ["lat", "lon", "desc", "name", "sym", "time", "type"];
-        keys.forEach(
-            function(element) {
-                $row.append($("<th/>").text(element));
-            });
-
-        // console.log(wpt);
-        var $row = $("<tr/>").appendTo($table);
 
         var lat = wpt["@lat"];
         var lon = wpt["@lon"];
@@ -52,10 +34,8 @@ var fillListDiv = function() {
         };
 
         $.each(text, function(name, property){
-            var td = $("<td/>").addClass(name).text(property);
-            $row.append(td);
+            var td = $("<p/>").addClass(name).text(property);
+            $item.append(td);
         });
-
-        $item.append($("<br/>"));
     });
 };
