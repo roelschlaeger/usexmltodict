@@ -18,7 +18,8 @@
   "dependencies": {
     "jquery": "^3.0.0",
     "jquery-ui": "jqueryui#^1.11.4",
-    "tablesorter": "jquery.tablesorter#^2.26.5"
+    "tablesorter": "jquery.tablesorter#^2.26.5",
+    "jplist": "^5.2.0"
   },
   "resolutions": {
     "jquery": ">=1.2.6",

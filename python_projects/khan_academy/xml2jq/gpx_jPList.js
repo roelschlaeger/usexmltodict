@@ -8,7 +8,7 @@ var fillListDiv = function() {
     var wpts = data.gpx.wpt;
     wpts.forEach(function(wpt, index) {
         $item = $("<div/>")
-            .addClass("list-item")
+            .addClass("list-item box")
             .appendTo($list);
 
         $table = $("<table/>")
