@@ -6,8 +6,9 @@
     <meta charset="utf-8">
 
     <!-- css fonts library -->
-    <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css" />
+    <!-- <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" /> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet" />
 
     <!-- demo page styles -->
     <link href="bower_components/jplist/dist/css/jplist.demo-pages.min.css" rel="stylesheet" type="text/css" />
@@ -15,6 +16,13 @@
     <!-- jplist demo page styles -->
 
     <style>
+        .bob {
+            border: solid black 1px;
+            padding: 3px;
+            margin: 3px;
+            font-family: monospace;
+        }
+
         table {
             width: 100%;
         }
@@ -31,6 +39,7 @@
 
     <!-- jQuery library -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
     <!-- jPList Core -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jplist/5.2.0/css/jplist.core.min.css" rel="stylesheet" type="text/css" />
@@ -59,6 +68,7 @@
     <link href="bower_components/jplist/dist/css/jplist.filter-toggle-bundle.min.css" rel="stylesheet" type="text/css" />
 
     <script src="topo854 - Williamsville IL.gpx.js"></script>
+    <script src="latlon.js"></script>
     <script src="gpx_jPList.js"></script>
 
     <script>
@@ -69,6 +79,7 @@
 
             //check all jPList javascript options
             $('#demo').jplist({
+                debug: true,
                 itemsBox: '.list',
                 itemPath: '.list-item',
                 panelPath: '.jplist-panel'
@@ -110,7 +121,20 @@
                 Reset &nbsp;<i class="fa fa-share"></i>
             </button>
 
+            <select
+                class="jplist-select"
+                data-control-type="items-per-page-select"
+                data-control-name="paging"
+                data-control-action="paging">
+
+                <option data-number="3"> 3 per page </option>
+                <option data-number="5"> 5 per page </option>
+                <option data-number="10" data-default="true"> 10 per page </option>
+                <option data-number="all"> view all </option>
+            </select>
+
             <!-- items per page dropdown -->
+            <!--
             <div
                class="jplist-drop-down"
                data-control-type="items-per-page-drop-down"
@@ -126,6 +150,7 @@
                  <li><span data-number="all"> View All </span></li>
                </ul>
             </div>
+            -->
 
             <!-- sort dropdown -->
             <div
@@ -133,20 +158,22 @@
                 data-control-type="sort-drop-down"
                 data-control-name="sort"
                 data-control-action="sort"
-                data-datetime-format="{month}/{day}/{year}"> <!-- {year}, {month}, {day}, {hour}, {min}, {sec} -->
+                data-datetime-format="{year}-{month}-{day}"> <!-- {year}, {month}, {day}, {hour}, {min}, {sec} -->
 
                 <ul>
                     <li><span data-path="default">Sort by</span></li>
-                    <li><span data-path=".title" data-order="asc" data-type="text">Title A-Z</span></li>
-                    <li><span data-path=".title" data-order="desc" data-type="text">Title Z-A</span></li>
+                    <li><span data-path=".name" data-order="asc" data-default="true" data-type="text">Name A-Z</span></li>
+                    <li><span data-path=".name" data-order="desc" data-type="text">Name Z-A</span></li>
                     <li><span data-path=".desc" data-order="asc" data-type="text">Description A-Z</span></li>
                     <li><span data-path=".desc" data-order="desc" data-type="text">Description Z-A</span></li>
-                    <li><span data-path=".like" data-order="asc" data-type="number">Likes asc</span></li>
-                    <li><span data-path=".like" data-order="desc" data-type="number">Likes desc</span></li>
-                    <li><span data-path=".date" data-order="asc" data-type="datetime">Date asc</span></li>
-                    <li><span data-path=".date" data-order="desc" data-type="datetime">Date desc</span></li>
-                    <li><span data-path=".lat" data-order="asc" data-type="text" data-default="true">Latitude asc</span></li>
-                    <li><span data-path=".lat" data-order="desc" data-type="text">Latitude desc</span></li>
+                    <li><span data-path=".sym" data-order="asc" data-type="text">Sym asc</span></li>
+                    <li><span data-path=".sym" data-order="desc" data-type="text">Sym desc</span></li>
+                    <li><span data-path=".time" data-order="asc" data-type="datetime">Time asc</span></li>
+                    <li><span data-path=".time" data-order="desc" data-type="datetime">Time desc</span></li>
+                    <li><span data-path=".lat" data-order="asc" data-type="text">Latitude asc</span></li>
+                    <li><span data-path=".lat" data-order="desc" data-type="text">Longitude desc</span></li>
+                    <li><span data-path=".lon" data-order="asc" data-type="text">Longitude asc</span></li>
+                    <li><span data-path=".lon" data-order="desc" data-type="text">Longitude desc</span></li>
                 </ul>
             </div>
 
@@ -316,21 +343,860 @@
         </div>
 
         <!-- HTML data -->
-        <div class="list box text-shadow">
+<div class="list">
+    <!-- item 1 -->
+    <div class="list-item box">
+        <!-- ... -->
+    </div>
 
-            <!-- item 1 -->
-            <div class="list-item box">
-                <!-- ... -->
-            </div>
+    <!-- item 2 -->
+    <div class="list-item box">
+        <!-- ... -->
+    </div>
 
-            <!-- item 2 -->
-            <div class="list-item box">
-                <!-- ... -->
-            </div>
+    <!-- ... -->
 
-            <!-- ... -->
-
-        </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">0</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">DCSI</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">DCSI by roelsch (1/1)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N38°&nbsp;46.251</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W90°&nbsp;23.693</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2008-07-01T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">START</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">1</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC67ZEA</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Holy Trinity Entrance by sewivy (2/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;3.881</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;43.152</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-12-09T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">2</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC698HQ</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Trinity Cemetary 2 by sewivy (2/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;3.817</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;43.070</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-01-05T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">3</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC68GAB</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Water tower by sewivy (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;4.418</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;43.597</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-12-22T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">4</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6BTWQ</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Rt 66 second side by sewivy (2/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;5.006</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;44.188</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-02-21T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">5</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC67ZTE</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">North 40 by sewivy (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;5.825</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;46.461</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-12-09T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">6</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6ANW2</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">West 40 by sewivy (2/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;5.847</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;46.711</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-02-01T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">7</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6ANXT</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Cahokia Bridge by sewivy (2/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;6.052</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;46.845</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-02-01T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">8</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6K6F9</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Edgewood Cemetery by sewivy (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;10.768</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;37.340</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-05-30T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">9</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6K6D9</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Elm Lawn Cemetery by sewivy (1/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;11.004</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;37.977</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-05-31T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">10</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC68NMC</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Puppy Potty by Jade.Eryn (1/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;11.897</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;37.053</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-12-26T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">11</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC68NEN</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Birds eye veiw by Jade.Eryn (3/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;11.840</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;36.397</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-12-02T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">12</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC68NMT</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">quit horsing around! by Jade.Eryn (2.5/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;11.782</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;36.861</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-12-26T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">13</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC68NMM</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Head for the trail by Jade.Eryn (3/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;11.203</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;35.846</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-12-26T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">14</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6CRH5</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Looking for Zenobia by schnauzermomx2 (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;32.346</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;32.030</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-03-06T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">15</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC687WD</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Chicken Bristle Cache by k10bach-2020 (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;43.296</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;32.304</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-12-15T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">16</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC67JH0</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Dead End Cache by nickbarkdog (2/2.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;45.457</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;31.928</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-11-29T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">17</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC67T9D</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Arboreous Triumvirate by Nate Dawg 1 (1/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;45.332</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;31.975</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-12-08T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">18</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC67YNP</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Sweet 1st Cache by Chompy18 (2/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;44.984</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;32.128</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-12-08T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">19</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC61JN2</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Murder Mystery #2 by Odd_Intentions (2.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;45.081</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;33.045</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-08-15T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Unknown</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">20</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">R161JN2</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Nice Overlook by (1/1)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;45.306</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;33.119</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-08-15T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Reference Point</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">21</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC4K4ME</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Guy Quotes #13 by Mr.&amp;Mrs.F (2/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;45.142</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;33.281</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2013-08-17T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Unknown</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">22</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">AC4JYHP</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Access For Riley by roelsch (1/1)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;45.394</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;33.332</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time"></div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Access</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">23</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC4JYHP</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">For Riley by Mr.&amp;Mrs.F (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;45.389</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;33.245</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2013-08-15T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">24</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">PK67VH9</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Rochester Park Sports Fields Parking Lot by (1/1)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;45.408</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;33.247</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-12-07T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Parking Area</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">25</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC67VH9</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">South Fork Express by Warchief32 (3/4)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;45.828</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;33.738</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-12-06T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">26</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">PK6G5ZW</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Parking by (1/1)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;45.727</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;36.371</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-04-22T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Parking Area</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">27</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6G5ZW</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Triple Take #3 by aaronatwake (2/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;45.657</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;36.363</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-04-21T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">28</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6K0GM</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Don't STEEL from the birds by sbart71 (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;45.381</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;37.177</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-06-02T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">29</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6K0HG</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Hoping for a Cache by sbart71 (1.5/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;44.856</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;36.963</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-06-02T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">30</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6K7Y4</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Take the High Road or the Low Road by sbart71 (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;43.623</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;35.475</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-06-06T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">31</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6K0JB</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Sitting Near the Dock of the Bay by sbart71 (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;43.762</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;35.475</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-06-02T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">32</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">P066QRF</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Lincoln Memorial Gardens parking lot by (1/1)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;41.817</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;35.770</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-11-12T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Parking Area</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">33</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC66QRF</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Map Cache by Zach.H (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;41.829</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;35.813</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-11-12T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">34</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC69A9Q</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Scouting For A Cache by Hofstrand (1/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;43.606</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;38.599</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-01-04T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">35</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6HW0M</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Hawthorne Two by NevAlw (1/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;43.676</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;39.763</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-05-15T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">36</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6HW0C</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Hawthorne by NevAlw (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;43.558</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;40.046</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-05-15T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">37</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6G5ZF</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Triple Take #2 by aaronatwake (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;45.415</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;40.766</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-04-21T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">38</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">PK5PCWE</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Parking for 3 caches by roelsch (2/2.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;47.313</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;40.662</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2014-08-31T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">39</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC5PCWE</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Don't Make a Racket! by Labrador65 (3.5/2.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;47.318</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;40.571</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-03-14T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">40</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC5N4A7</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Zeta -- It's All Greek To Me! by The Springfield Crew (1.5/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;47.290</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;40.817</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-02-20T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">41</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC573EX</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">2014 Discover our Parks Cache 7 by SpfldParkDistrict (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;47.970</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;37.661</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2014-06-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">42</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC50DNZ</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Duck Dynasty - Phil by vj442 (2/2.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;49.523</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;32.022</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2014-03-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">43</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC59VZ7</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Series Sweet Sixteen Challenge by The 0ld Goat (2.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;50.332</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;28.976</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2014-07-29T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Unknown</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">44</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC4T8PJ</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">For the birds by melicobb (1/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;50.667</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;32.033</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2013-11-17T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">45</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">PK55V26</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Parking for Oris Revenge #1 Bleachers by Mean Gene (1/1)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;49.587</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;37.820</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2014-08-02T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">46</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC55V26</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Ori's Revenge #1 "Bleachers" by mrori11 (4.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;49.578</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;37.863</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2014-05-28T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">47</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">AC5MY6Y</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Access Epsilon -- Its All Greek To Me! by roelsch (1/1)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;52.443</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;36.980</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-02-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Access</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">48</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">T15MY6Y</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Trailhead by roelsch (1/1)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;52.267</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;37.123</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-02-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Trailhead</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">49</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC5MY6Y</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Epsilon -- Its All Greek To Me! by The Springfield Crew (1.5/2.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;52.214</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;37.068</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-02-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">50</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">AC3Q6YB</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Access Lone Star by roelsch (2/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;57.256</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;31.712</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2012-07-09T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">51</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">B13Q6YB</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">BN1 Lone Star by roelsch (2/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;57.245</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;31.701</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2012-07-09T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">52</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">B23Q6YB</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">BN2 Lone Star by roelsch (2/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;57.220</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;31.665</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2012-07-09T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">53</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC3Q6YB</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Lone Star by TxDarlings (2/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;57.201</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;31.670</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2012-07-09T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">54</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC48TBW</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Hope they don't chop this beauty by Reinstone family (1/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;57.121</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;31.738</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2013-03-31T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">55</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC4JWJE</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Welcome Home, Battle! by ROAD KILL! (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;56.990</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;31.765</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2013-08-14T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Letterbox Hybrid</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">56</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC58X9Y</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">What's on the Radio? (#41 The Kinks) by The 0ld Goat (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;58.208</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;30.722</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2014-07-14T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">57</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC3NKP4</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Alone and Empty Inside by SEARCH_PARTY (2/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;58.353</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;32.982</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2012-06-15T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">58</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC40YYJ</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Ron's Steakhouse - Williamsville by Razor1965 (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;57.682</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;33.750</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2012-11-07T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">59</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC588V5</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Guy Quotes #28 by The 0ld Goat (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;58.560</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;36.780</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2014-07-05T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Unknown</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">60</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC588P6</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">What's on the Radio? (#36 - Alice Cooper) by The 0ld Goat (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;57.740</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;38.184</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2014-07-05T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">61</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC588Q9</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">What's on the Radio? (#37 - Yes) by The 0ld Goat (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;58.331</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;38.210</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2014-07-05T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">62</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC41R5M</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Brav and Ollie come to town by jGood2 (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;55.040</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;39.907</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2012-11-23T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">63</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC42B5T</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Just The Good Ol' Boys by Cindyj2 (1/1)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;58.102</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;42.798</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2012-12-02T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">64</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">066C2FE</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Site 6 by (1/1)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;57.604</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;43.431</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-02-25T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Virtual Stage</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Virtual</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">65</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">056C2FE</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Site 5 by (1/1)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;56.737</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;44.895</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-02-25T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Virtual Stage</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Virtual</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">66</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC588R7</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Guy Quotes #27 by The 0ld Goat (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;55.356</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;47.715</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2014-07-05T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Unknown</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">67</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC2TAJD</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Schwere Panzer-Abteilung 506 by MapRat and Off Looking (2/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;55.095</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;48.143</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2011-04-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">68</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC2TAJW</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Schwere SS-Panzer Abteilung 101 LSSAH by MapRat and Off Looking (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;53.701</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;47.875</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2011-04-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">69</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC2TAJ0</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Schwere Panzer-Abteilung 504 by MapRat and Off Looking (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;52.280</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;49.526</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2011-04-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">70</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC2TB6Q</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">The Taylor's Walked For Bunn by off looking and MapRat (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;51.957</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;49.526</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2011-04-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">71</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC2TB6W</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Come to the water on a bridge with no name. by off looking and MapRat (3/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;52.689</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;49.567</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2011-04-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">72</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC2TB5Y</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Irwin Bridge Road by off looking and MapRat (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;53.493</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;46.443</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2011-04-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">73</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC2TAHR</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Schwere Panzer-Abteilung 502 by MapRat and Off Looking (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;53.649</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;46.133</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2011-04-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">74</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC2TAHK</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Schwere Panzer-Abteilung 501 by MapRat and Off Looking (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;54.372</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;44.827</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2011-04-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">75</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6FJER</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Little Free Library - SJL by GoodHunting (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;48.123</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;41.817</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-04-17T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">76</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6G5Z4</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Triple Take #1 by aaronatwake (2/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;47.856</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;41.399</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-04-21T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">77</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6K6MK</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Seeing Red! by schnauzermomx2 (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;46.723</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;42.949</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-06-05T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">78</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC5MY7B</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Omega -- Its All Greek To Me! by The Springfield Crew (1.5/2)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;44.987</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;44.400</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-02-16T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Unknown</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">79</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC62KPK</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">An Emerald Stump by Chief STDNMR (1/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;37.505</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;46.750</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-08-31T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">80</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6KDN9</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Snell Road or Brick Road by Chief STDNMR (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;37.076</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;44.626</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-06-09T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">81</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC6KFWK</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Hambuch Stump by Chief STDNMR (1.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;37.084</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;43.345</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2016-06-10T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Traditional</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">82</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">AC5XFW2</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Access Guy Quotes #34 by roelsch (1/1)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;32.249</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;46.895</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-06-13T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Access</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Other</div>
+    </div>
+    <div class="list-item">
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="index">83</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="name">GC5XFW2</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="desc">Guy Quotes #34 by The 0ld Goat (2.5/1.5)</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lat">N39°&nbsp;32.206</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="lon">W89°&nbsp;46.890</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="time">2015-06-13T08:00:00Z</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="sym">Geocache</div>
+        <div style="font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;" class="type">Unknown</div>
+    </div>
+</div>
 
         <!-- no results found -->
         <div class="jplist-no-results">

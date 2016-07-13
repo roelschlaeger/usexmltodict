@@ -19,10 +19,11 @@
     "jquery": "^3.0.0",
     "jquery-ui": "jqueryui#^1.11.4",
     "tablesorter": "jquery.tablesorter#^2.26.5",
-    "jplist": "^5.2.0"
+    "jplist": "^5.2.0",
+    "bootstrap": "^3.3.6"
   },
   "resolutions": {
-    "jquery": ">=1.2.6",
+    "jquery": "1.9.1 - 2",
     "jquery-ui": "c0ab71056b936627e8a7821f03c044aec6280a40"
   }
 }

@@ -2,7 +2,7 @@
 
 var fillListDiv = function() {
     var $list = $(".list");
-    // $list.empty();
+    $list.empty();
 
 
     var wpts = data.gpx.wpt;
@@ -22,19 +22,28 @@ var fillListDiv = function() {
         var time = wpt.time;
         var type = wpt.type;
         var text = {
-            "lat": lat,
-            "lon": lon,
+            "index": index,
+            "name": name,
             "desc": desc,
+            "lat": latstr(lat),
+            "lon": lonstr(lon),
             // "extensions": extensions,
             // "link": link,
-            "name": name,
-            "sym": sym,
             "time": time,
-            "type": type,
+            "sym": sym,
+            "type": type.replace("Geocache|", "").replace(" Cache", ""),
         };
 
         $.each(text, function(name, property){
-            var td = $("<p/>").addClass(name).text(property);
+            var td = $("<span/>")
+//              .attr("style", "font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;")
+                .addClass("bob")
+                .addClass("architecture")
+//              .addClass("christmas")
+//              .addClass("nature")
+//              .addClass("lifestyle")
+                .addClass(name)
+                .text(property);
             $item.append(td);
         });
     });
