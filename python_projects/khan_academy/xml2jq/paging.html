@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Pagination using Robert Eisele's "paging" plugin</title>
+    <style>
+        .bob {
+            margin: 1px;
+            border: solid black 1px;
+            padding: 1px;
+            font-family: monospace;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        table,
+        tr,
+        th,
+        td {
+            text-align: center;
+            padding: 3px;
+            border: solid black 1px;
+        }
+
+        ;
+    </style>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/paging/jquery.paging.js"></script>
+    <script>
+        $(document).ready(function() {
+            var prev = {
+                    start: 0,
+                    stop: 0
+                },
+                $cont = $('.list-item');
+
+
+            // disable all display items first
+            $cont.css("display", "none");
+
+            $("#pagination").paging($cont.length, { // make 83 elements navigatable
+                format: '[< ncnnn >]', // define how the navigation should look like and in which order onFormat() get's called
+                perpage: 15, // show 15 elements per page
+                lapping: 0, // don't overlap pages for the moment
+                page: 0, // start at page, can also be "null" or negative
+                onSelect: function(page) {
+                    // add code which gets executed when user selects a page, how about $.ajax() or $(...).slice()?
+                    var self_perpage = 15;
+
+                    var data = {
+                        start: (page - 1) * self_perpage,
+                        stop: (page * self_perpage)
+                    };
+
+                    var $old = $cont.slice(prev.start, prev.stop);
+                    $old.css("display", "none");
+
+                    var $new = $cont.slice(data.start, data.stop);
+                    $new.fadeIn("fast");
+
+                    prev = data;
+                },
+                onFormat: function(type) {
+                    switch (type) {
+                        case 'block': // n and c
+                            return '<a href="#">' + " " + this.value + " " + '</a>';
+                        case 'next': // >
+                            return '<a href="#"> &gt; </a>';
+                        case 'prev': // <
+                            return '<a href="#"> &lt; </a>';
+                        case 'first': // [
+                            return '<a href="#"> first </a>';
+                        case 'last': // ]
+                            return '<a href="#"> last </a>';
+                    }
+                }
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <div id="pagination">
+    </div>
+    <br/>
+
+    <div class="list">
+        <div class="list-item">
+            <div class="block">
+                <span class="bob index">0</span>
+                <span class="bob name">DCSI</span>
+                <span class="bob desc">DCSI by roelsch (1/1)</span>
+                <span class="bob lat">N38°&nbsp;46.251</span>
+                <span class="bob lon">W90°&nbsp;23.693</span>
+                <span class="bob time">2008-07-01T08:00:00Z</span>
+                <span class="bob sym">START</span>
+                <span class="bob type">Other</span>
+            </div>
+        </div>
+        <div class="list-item">
+            <span class="bob index">1</span>
+            <span class="bob name">GC67ZEA</span>
+            <span class="bob desc">Holy Trinity Entrance by sewivy (2/1.5)</span>
+            <span class="bob lat">N39°&nbsp;3.881</span>
+            <span class="bob lon">W89°&nbsp;43.152</span>
+            <span class="bob time">2015-12-09T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">2</span>
+            <span class="bob name">GC698HQ</span>
+            <span class="bob desc">Trinity Cemetary 2 by sewivy (2/1.5)</span>
+            <span class="bob lat">N39°&nbsp;3.817</span>
+            <span class="bob lon">W89°&nbsp;43.070</span>
+            <span class="bob time">2016-01-05T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">3</span>
+            <span class="bob name">GC68GAB</span>
+            <span class="bob desc">Water tower by sewivy (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;4.418</span>
+            <span class="bob lon">W89°&nbsp;43.597</span>
+            <span class="bob time">2015-12-22T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">4</span>
+            <span class="bob name">GC6BTWQ</span>
+            <span class="bob desc">Rt 66 second side by sewivy (2/1.5)</span>
+            <span class="bob lat">N39°&nbsp;5.006</span>
+            <span class="bob lon">W89°&nbsp;44.188</span>
+            <span class="bob time">2016-02-21T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">5</span>
+            <span class="bob name">GC67ZTE</span>
+            <span class="bob desc">North 40 by sewivy (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;5.825</span>
+            <span class="bob lon">W89°&nbsp;46.461</span>
+            <span class="bob time">2015-12-09T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">6</span>
+            <span class="bob name">GC6ANW2</span>
+            <span class="bob desc">West 40 by sewivy (2/2)</span>
+            <span class="bob lat">N39°&nbsp;5.847</span>
+            <span class="bob lon">W89°&nbsp;46.711</span>
+            <span class="bob time">2016-02-01T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">7</span>
+            <span class="bob name">GC6ANXT</span>
+            <span class="bob desc">Cahokia Bridge by sewivy (2/2)</span>
+            <span class="bob lat">N39°&nbsp;6.052</span>
+            <span class="bob lon">W89°&nbsp;46.845</span>
+            <span class="bob time">2016-02-01T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">8</span>
+            <span class="bob name">GC6K6F9</span>
+            <span class="bob desc">Edgewood Cemetery by sewivy (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;10.768</span>
+            <span class="bob lon">W89°&nbsp;37.340</span>
+            <span class="bob time">2016-05-30T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">9</span>
+            <span class="bob name">GC6K6D9</span>
+            <span class="bob desc">Elm Lawn Cemetery by sewivy (1/1.5)</span>
+            <span class="bob lat">N39°&nbsp;11.004</span>
+            <span class="bob lon">W89°&nbsp;37.977</span>
+            <span class="bob time">2016-05-31T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">10</span>
+            <span class="bob name">GC68NMC</span>
+            <span class="bob desc">Puppy Potty by Jade.Eryn (1/1.5)</span>
+            <span class="bob lat">N39°&nbsp;11.897</span>
+            <span class="bob lon">W89°&nbsp;37.053</span>
+            <span class="bob time">2015-12-26T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">11</span>
+            <span class="bob name">GC68NEN</span>
+            <span class="bob desc">Birds eye veiw by Jade.Eryn (3/2)</span>
+            <span class="bob lat">N39°&nbsp;11.840</span>
+            <span class="bob lon">W89°&nbsp;36.397</span>
+            <span class="bob time">2015-12-02T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">12</span>
+            <span class="bob name">GC68NMT</span>
+            <span class="bob desc">quit horsing around! by Jade.Eryn (2.5/2)</span>
+            <span class="bob lat">N39°&nbsp;11.782</span>
+            <span class="bob lon">W89°&nbsp;36.861</span>
+            <span class="bob time">2015-12-26T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">13</span>
+            <span class="bob name">GC68NMM</span>
+            <span class="bob desc">Head for the trail by Jade.Eryn (3/1.5)</span>
+            <span class="bob lat">N39°&nbsp;11.203</span>
+            <span class="bob lon">W89°&nbsp;35.846</span>
+            <span class="bob time">2015-12-26T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">14</span>
+            <span class="bob name">GC6CRH5</span>
+            <span class="bob desc">Looking for Zenobia by schnauzermomx2 (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;32.346</span>
+            <span class="bob lon">W89°&nbsp;32.030</span>
+            <span class="bob time">2016-03-06T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">15</span>
+            <span class="bob name">GC687WD</span>
+            <span class="bob desc">Chicken Bristle Cache by k10bach-2020 (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;43.296</span>
+            <span class="bob lon">W89°&nbsp;32.304</span>
+            <span class="bob time">2015-12-15T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">16</span>
+            <span class="bob name">GC67JH0</span>
+            <span class="bob desc">Dead End Cache by nickbarkdog (2/2.5)</span>
+            <span class="bob lat">N39°&nbsp;45.457</span>
+            <span class="bob lon">W89°&nbsp;31.928</span>
+            <span class="bob time">2015-11-29T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">17</span>
+            <span class="bob name">GC67T9D</span>
+            <span class="bob desc">Arboreous Triumvirate by Nate Dawg 1 (1/1.5)</span>
+            <span class="bob lat">N39°&nbsp;45.332</span>
+            <span class="bob lon">W89°&nbsp;31.975</span>
+            <span class="bob time">2015-12-08T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">18</span>
+            <span class="bob name">GC67YNP</span>
+            <span class="bob desc">Sweet 1st Cache by Chompy18 (2/1.5)</span>
+            <span class="bob lat">N39°&nbsp;44.984</span>
+            <span class="bob lon">W89°&nbsp;32.128</span>
+            <span class="bob time">2015-12-08T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">19</span>
+            <span class="bob name">GC61JN2</span>
+            <span class="bob desc">Murder Mystery #2 by Odd_Intentions (2.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;45.081</span>
+            <span class="bob lon">W89°&nbsp;33.045</span>
+            <span class="bob time">2015-08-15T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Unknown</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">20</span>
+            <span class="bob name">R161JN2</span>
+            <span class="bob desc">Nice Overlook by (1/1)</span>
+            <span class="bob lat">N39°&nbsp;45.306</span>
+            <span class="bob lon">W89°&nbsp;33.119</span>
+            <span class="bob time">2015-08-15T08:00:00Z</span>
+            <span class="bob sym">Reference Point</span>
+            <span class="bob type">Other</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">21</span>
+            <span class="bob name">GC4K4ME</span>
+            <span class="bob desc">Guy Quotes #13 by Mr.&amp;Mrs.F (2/2)</span>
+            <span class="bob lat">N39°&nbsp;45.142</span>
+            <span class="bob lon">W89°&nbsp;33.281</span>
+            <span class="bob time">2013-08-17T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Unknown</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">22</span>
+            <span class="bob name">AC4JYHP</span>
+            <span class="bob desc">Access For Riley by roelsch (1/1)</span>
+            <span class="bob lat">N39°&nbsp;45.394</span>
+            <span class="bob lon">W89°&nbsp;33.332</span>
+            <span class="bob time"></span>
+            <span class="bob sym">Access</span>
+            <span class="bob type">Other</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">23</span>
+            <span class="bob name">GC4JYHP</span>
+            <span class="bob desc">For Riley by Mr.&amp;Mrs.F (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;45.389</span>
+            <span class="bob lon">W89°&nbsp;33.245</span>
+            <span class="bob time">2013-08-15T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">24</span>
+            <span class="bob name">PK67VH9</span>
+            <span class="bob desc">Rochester Park Sports Fields Parking Lot by (1/1)</span>
+            <span class="bob lat">N39°&nbsp;45.408</span>
+            <span class="bob lon">W89°&nbsp;33.247</span>
+            <span class="bob time">2015-12-07T08:00:00Z</span>
+            <span class="bob sym">Parking Area</span>
+            <span class="bob type">Other</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">25</span>
+            <span class="bob name">GC67VH9</span>
+            <span class="bob desc">South Fork Express by Warchief32 (3/4)</span>
+            <span class="bob lat">N39°&nbsp;45.828</span>
+            <span class="bob lon">W89°&nbsp;33.738</span>
+            <span class="bob time">2015-12-06T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">26</span>
+            <span class="bob name">PK6G5ZW</span>
+            <span class="bob desc">Parking by (1/1)</span>
+            <span class="bob lat">N39°&nbsp;45.727</span>
+            <span class="bob lon">W89°&nbsp;36.371</span>
+            <span class="bob time">2016-04-22T08:00:00Z</span>
+            <span class="bob sym">Parking Area</span>
+            <span class="bob type">Other</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">27</span>
+            <span class="bob name">GC6G5ZW</span>
+            <span class="bob desc">Triple Take #3 by aaronatwake (2/2)</span>
+            <span class="bob lat">N39°&nbsp;45.657</span>
+            <span class="bob lon">W89°&nbsp;36.363</span>
+            <span class="bob time">2016-04-21T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">28</span>
+            <span class="bob name">GC6K0GM</span>
+            <span class="bob desc">Don't STEEL from the birds by sbart71 (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;45.381</span>
+            <span class="bob lon">W89°&nbsp;37.177</span>
+            <span class="bob time">2016-06-02T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">29</span>
+            <span class="bob name">GC6K0HG</span>
+            <span class="bob desc">Hoping for a Cache by sbart71 (1.5/2)</span>
+            <span class="bob lat">N39°&nbsp;44.856</span>
+            <span class="bob lon">W89°&nbsp;36.963</span>
+            <span class="bob time">2016-06-02T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">30</span>
+            <span class="bob name">GC6K7Y4</span>
+            <span class="bob desc">Take the High Road or the Low Road by sbart71 (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;43.623</span>
+            <span class="bob lon">W89°&nbsp;35.475</span>
+            <span class="bob time">2016-06-06T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">31</span>
+            <span class="bob name">GC6K0JB</span>
+            <span class="bob desc">Sitting Near the Dock of the Bay by sbart71 (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;43.762</span>
+            <span class="bob lon">W89°&nbsp;35.475</span>
+            <span class="bob time">2016-06-02T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">32</span>
+            <span class="bob name">P066QRF</span>
+            <span class="bob desc">Lincoln Memorial Gardens parking lot by (1/1)</span>
+            <span class="bob lat">N39°&nbsp;41.817</span>
+            <span class="bob lon">W89°&nbsp;35.770</span>
+            <span class="bob time">2015-11-12T08:00:00Z</span>
+            <span class="bob sym">Parking Area</span>
+            <span class="bob type">Other</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">33</span>
+            <span class="bob name">GC66QRF</span>
+            <span class="bob desc">Map Cache by Zach.H (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;41.829</span>
+            <span class="bob lon">W89°&nbsp;35.813</span>
+            <span class="bob time">2015-11-12T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">34</span>
+            <span class="bob name">GC69A9Q</span>
+            <span class="bob desc">Scouting For A Cache by Hofstrand (1/1.5)</span>
+            <span class="bob lat">N39°&nbsp;43.606</span>
+            <span class="bob lon">W89°&nbsp;38.599</span>
+            <span class="bob time">2016-01-04T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">35</span>
+            <span class="bob name">GC6HW0M</span>
+            <span class="bob desc">Hawthorne Two by NevAlw (1/1.5)</span>
+            <span class="bob lat">N39°&nbsp;43.676</span>
+            <span class="bob lon">W89°&nbsp;39.763</span>
+            <span class="bob time">2016-05-15T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">36</span>
+            <span class="bob name">GC6HW0C</span>
+            <span class="bob desc">Hawthorne by NevAlw (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;43.558</span>
+            <span class="bob lon">W89°&nbsp;40.046</span>
+            <span class="bob time">2016-05-15T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">37</span>
+            <span class="bob name">GC6G5ZF</span>
+            <span class="bob desc">Triple Take #2 by aaronatwake (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;45.415</span>
+            <span class="bob lon">W89°&nbsp;40.766</span>
+            <span class="bob time">2016-04-21T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">38</span>
+            <span class="bob name">PK5PCWE</span>
+            <span class="bob desc">Parking for 3 caches by roelsch (2/2.5)</span>
+            <span class="bob lat">N39°&nbsp;47.313</span>
+            <span class="bob lon">W89°&nbsp;40.662</span>
+            <span class="bob time">2014-08-31T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Other</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">39</span>
+            <span class="bob name">GC5PCWE</span>
+            <span class="bob desc">Don't Make a Racket! by Labrador65 (3.5/2.5)</span>
+            <span class="bob lat">N39°&nbsp;47.318</span>
+            <span class="bob lon">W89°&nbsp;40.571</span>
+            <span class="bob time">2015-03-14T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">40</span>
+            <span class="bob name">GC5N4A7</span>
+            <span class="bob desc">Zeta -- It's All Greek To Me! by The Springfield Crew (1.5/2)</span>
+            <span class="bob lat">N39°&nbsp;47.290</span>
+            <span class="bob lon">W89°&nbsp;40.817</span>
+            <span class="bob time">2015-02-20T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">41</span>
+            <span class="bob name">GC573EX</span>
+            <span class="bob desc">2014 Discover our Parks Cache 7 by SpfldParkDistrict (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;47.970</span>
+            <span class="bob lon">W89°&nbsp;37.661</span>
+            <span class="bob time">2014-06-16T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">42</span>
+            <span class="bob name">GC50DNZ</span>
+            <span class="bob desc">Duck Dynasty - Phil by vj442 (2/2.5)</span>
+            <span class="bob lat">N39°&nbsp;49.523</span>
+            <span class="bob lon">W89°&nbsp;32.022</span>
+            <span class="bob time">2014-03-16T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">43</span>
+            <span class="bob name">GC59VZ7</span>
+            <span class="bob desc">Series Sweet Sixteen Challenge by The 0ld Goat (2.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;50.332</span>
+            <span class="bob lon">W89°&nbsp;28.976</span>
+            <span class="bob time">2014-07-29T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Unknown</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">44</span>
+            <span class="bob name">GC4T8PJ</span>
+            <span class="bob desc">For the birds by melicobb (1/1.5)</span>
+            <span class="bob lat">N39°&nbsp;50.667</span>
+            <span class="bob lon">W89°&nbsp;32.033</span>
+            <span class="bob time">2013-11-17T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">45</span>
+            <span class="bob name">PK55V26</span>
+            <span class="bob desc">Parking for Oris Revenge #1 Bleachers by Mean Gene (1/1)</span>
+            <span class="bob lat">N39°&nbsp;49.587</span>
+            <span class="bob lon">W89°&nbsp;37.820</span>
+            <span class="bob time">2014-08-02T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Other</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">46</span>
+            <span class="bob name">GC55V26</span>
+            <span class="bob desc">Ori's Revenge #1 "Bleachers" by mrori11 (4.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;49.578</span>
+            <span class="bob lon">W89°&nbsp;37.863</span>
+            <span class="bob time">2014-05-28T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">47</span>
+            <span class="bob name">AC5MY6Y</span>
+            <span class="bob desc">Access Epsilon -- Its All Greek To Me! by roelsch (1/1)</span>
+            <span class="bob lat">N39°&nbsp;52.443</span>
+            <span class="bob lon">W89°&nbsp;36.980</span>
+            <span class="bob time">2015-02-16T08:00:00Z</span>
+            <span class="bob sym">Access</span>
+            <span class="bob type">Other</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">48</span>
+            <span class="bob name">T15MY6Y</span>
+            <span class="bob desc">Trailhead by roelsch (1/1)</span>
+            <span class="bob lat">N39°&nbsp;52.267</span>
+            <span class="bob lon">W89°&nbsp;37.123</span>
+            <span class="bob time">2015-02-16T08:00:00Z</span>
+            <span class="bob sym">Trailhead</span>
+            <span class="bob type">Other</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">49</span>
+            <span class="bob name">GC5MY6Y</span>
+            <span class="bob desc">Epsilon -- Its All Greek To Me! by The Springfield Crew (1.5/2.5)</span>
+            <span class="bob lat">N39°&nbsp;52.214</span>
+            <span class="bob lon">W89°&nbsp;37.068</span>
+            <span class="bob time">2015-02-16T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">50</span>
+            <span class="bob name">AC3Q6YB</span>
+            <span class="bob desc">Access Lone Star by roelsch (2/2)</span>
+            <span class="bob lat">N39°&nbsp;57.256</span>
+            <span class="bob lon">W89°&nbsp;31.712</span>
+            <span class="bob time">2012-07-09T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Other</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">51</span>
+            <span class="bob name">B13Q6YB</span>
+            <span class="bob desc">BN1 Lone Star by roelsch (2/2)</span>
+            <span class="bob lat">N39°&nbsp;57.245</span>
+            <span class="bob lon">W89°&nbsp;31.701</span>
+            <span class="bob time">2012-07-09T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Other</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">52</span>
+            <span class="bob name">B23Q6YB</span>
+            <span class="bob desc">BN2 Lone Star by roelsch (2/2)</span>
+            <span class="bob lat">N39°&nbsp;57.220</span>
+            <span class="bob lon">W89°&nbsp;31.665</span>
+            <span class="bob time">2012-07-09T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Other</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">53</span>
+            <span class="bob name">GC3Q6YB</span>
+            <span class="bob desc">Lone Star by TxDarlings (2/2)</span>
+            <span class="bob lat">N39°&nbsp;57.201</span>
+            <span class="bob lon">W89°&nbsp;31.670</span>
+            <span class="bob time">2012-07-09T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">54</span>
+            <span class="bob name">GC48TBW</span>
+            <span class="bob desc">Hope they don't chop this beauty by Reinstone family (1/1.5)</span>
+            <span class="bob lat">N39°&nbsp;57.121</span>
+            <span class="bob lon">W89°&nbsp;31.738</span>
+            <span class="bob time">2013-03-31T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">55</span>
+            <span class="bob name">GC4JWJE</span>
+            <span class="bob desc">Welcome Home, Battle! by ROAD KILL! (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;56.990</span>
+            <span class="bob lon">W89°&nbsp;31.765</span>
+            <span class="bob time">2013-08-14T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Letterbox Hybrid</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">56</span>
+            <span class="bob name">GC58X9Y</span>
+            <span class="bob desc">What's on the Radio? (#41 The Kinks) by The 0ld Goat (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;58.208</span>
+            <span class="bob lon">W89°&nbsp;30.722</span>
+            <span class="bob time">2014-07-14T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">57</span>
+            <span class="bob name">GC3NKP4</span>
+            <span class="bob desc">Alone and Empty Inside by SEARCH_PARTY (2/2)</span>
+            <span class="bob lat">N39°&nbsp;58.353</span>
+            <span class="bob lon">W89°&nbsp;32.982</span>
+            <span class="bob time">2012-06-15T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">58</span>
+            <span class="bob name">GC40YYJ</span>
+            <span class="bob desc">Ron's Steakhouse - Williamsville by Razor1965 (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;57.682</span>
+            <span class="bob lon">W89°&nbsp;33.750</span>
+            <span class="bob time">2012-11-07T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">59</span>
+            <span class="bob name">GC588V5</span>
+            <span class="bob desc">Guy Quotes #28 by The 0ld Goat (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;58.560</span>
+            <span class="bob lon">W89°&nbsp;36.780</span>
+            <span class="bob time">2014-07-05T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Unknown</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">60</span>
+            <span class="bob name">GC588P6</span>
+            <span class="bob desc">What's on the Radio? (#36 - Alice Cooper) by The 0ld Goat (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;57.740</span>
+            <span class="bob lon">W89°&nbsp;38.184</span>
+            <span class="bob time">2014-07-05T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">61</span>
+            <span class="bob name">GC588Q9</span>
+            <span class="bob desc">What's on the Radio? (#37 - Yes) by The 0ld Goat (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;58.331</span>
+            <span class="bob lon">W89°&nbsp;38.210</span>
+            <span class="bob time">2014-07-05T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">62</span>
+            <span class="bob name">GC41R5M</span>
+            <span class="bob desc">Brav and Ollie come to town by jGood2 (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;55.040</span>
+            <span class="bob lon">W89°&nbsp;39.907</span>
+            <span class="bob time">2012-11-23T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">63</span>
+            <span class="bob name">GC42B5T</span>
+            <span class="bob desc">Just The Good Ol' Boys by Cindyj2 (1/1)</span>
+            <span class="bob lat">N39°&nbsp;58.102</span>
+            <span class="bob lon">W89°&nbsp;42.798</span>
+            <span class="bob time">2012-12-02T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">64</span>
+            <span class="bob name">066C2FE</span>
+            <span class="bob desc">Site 6 by (1/1)</span>
+            <span class="bob lat">N39°&nbsp;57.604</span>
+            <span class="bob lon">W89°&nbsp;43.431</span>
+            <span class="bob time">2016-02-25T08:00:00Z</span>
+            <span class="bob sym">Virtual Stage</span>
+            <span class="bob type">Virtual</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">65</span>
+            <span class="bob name">056C2FE</span>
+            <span class="bob desc">Site 5 by (1/1)</span>
+            <span class="bob lat">N39°&nbsp;56.737</span>
+            <span class="bob lon">W89°&nbsp;44.895</span>
+            <span class="bob time">2016-02-25T08:00:00Z</span>
+            <span class="bob sym">Virtual Stage</span>
+            <span class="bob type">Virtual</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">66</span>
+            <span class="bob name">GC588R7</span>
+            <span class="bob desc">Guy Quotes #27 by The 0ld Goat (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;55.356</span>
+            <span class="bob lon">W89°&nbsp;47.715</span>
+            <span class="bob time">2014-07-05T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Unknown</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">67</span>
+            <span class="bob name">GC2TAJD</span>
+            <span class="bob desc">Schwere Panzer-Abteilung 506 by MapRat and Off Looking (2/2)</span>
+            <span class="bob lat">N39°&nbsp;55.095</span>
+            <span class="bob lon">W89°&nbsp;48.143</span>
+            <span class="bob time">2011-04-16T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">68</span>
+            <span class="bob name">GC2TAJW</span>
+            <span class="bob desc">Schwere SS-Panzer Abteilung 101 LSSAH by MapRat and Off Looking (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;53.701</span>
+            <span class="bob lon">W89°&nbsp;47.875</span>
+            <span class="bob time">2011-04-16T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">69</span>
+            <span class="bob name">GC2TAJ0</span>
+            <span class="bob desc">Schwere Panzer-Abteilung 504 by MapRat and Off Looking (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;52.280</span>
+            <span class="bob lon">W89°&nbsp;49.526</span>
+            <span class="bob time">2011-04-16T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">70</span>
+            <span class="bob name">GC2TB6Q</span>
+            <span class="bob desc">The Taylor's Walked For Bunn by off looking and MapRat (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;51.957</span>
+            <span class="bob lon">W89°&nbsp;49.526</span>
+            <span class="bob time">2011-04-16T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">71</span>
+            <span class="bob name">GC2TB6W</span>
+            <span class="bob desc">Come to the water on a bridge with no name. by off looking and MapRat (3/1.5)</span>
+            <span class="bob lat">N39°&nbsp;52.689</span>
+            <span class="bob lon">W89°&nbsp;49.567</span>
+            <span class="bob time">2011-04-16T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">72</span>
+            <span class="bob name">GC2TB5Y</span>
+            <span class="bob desc">Irwin Bridge Road by off looking and MapRat (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;53.493</span>
+            <span class="bob lon">W89°&nbsp;46.443</span>
+            <span class="bob time">2011-04-16T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">73</span>
+            <span class="bob name">GC2TAHR</span>
+            <span class="bob desc">Schwere Panzer-Abteilung 502 by MapRat and Off Looking (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;53.649</span>
+            <span class="bob lon">W89°&nbsp;46.133</span>
+            <span class="bob time">2011-04-16T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">74</span>
+            <span class="bob name">GC2TAHK</span>
+            <span class="bob desc">Schwere Panzer-Abteilung 501 by MapRat and Off Looking (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;54.372</span>
+            <span class="bob lon">W89°&nbsp;44.827</span>
+            <span class="bob time">2011-04-16T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">75</span>
+            <span class="bob name">GC6FJER</span>
+            <span class="bob desc">Little Free Library - SJL by GoodHunting (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;48.123</span>
+            <span class="bob lon">W89°&nbsp;41.817</span>
+            <span class="bob time">2016-04-17T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">76</span>
+            <span class="bob name">GC6G5Z4</span>
+            <span class="bob desc">Triple Take #1 by aaronatwake (2/1.5)</span>
+            <span class="bob lat">N39°&nbsp;47.856</span>
+            <span class="bob lon">W89°&nbsp;41.399</span>
+            <span class="bob time">2016-04-21T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">77</span>
+            <span class="bob name">GC6K6MK</span>
+            <span class="bob desc">Seeing Red! by schnauzermomx2 (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;46.723</span>
+            <span class="bob lon">W89°&nbsp;42.949</span>
+            <span class="bob time">2016-06-05T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">78</span>
+            <span class="bob name">GC5MY7B</span>
+            <span class="bob desc">Omega -- Its All Greek To Me! by The Springfield Crew (1.5/2)</span>
+            <span class="bob lat">N39°&nbsp;44.987</span>
+            <span class="bob lon">W89°&nbsp;44.400</span>
+            <span class="bob time">2015-02-16T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Unknown</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">79</span>
+            <span class="bob name">GC62KPK</span>
+            <span class="bob desc">An Emerald Stump by Chief STDNMR (1/1.5)</span>
+            <span class="bob lat">N39°&nbsp;37.505</span>
+            <span class="bob lon">W89°&nbsp;46.750</span>
+            <span class="bob time">2015-08-31T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">80</span>
+            <span class="bob name">GC6KDN9</span>
+            <span class="bob desc">Snell Road or Brick Road by Chief STDNMR (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;37.076</span>
+            <span class="bob lon">W89°&nbsp;44.626</span>
+            <span class="bob time">2016-06-09T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">81</span>
+            <span class="bob name">GC6KFWK</span>
+            <span class="bob desc">Hambuch Stump by Chief STDNMR (1.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;37.084</span>
+            <span class="bob lon">W89°&nbsp;43.345</span>
+            <span class="bob time">2016-06-10T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Traditional</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">82</span>
+            <span class="bob name">AC5XFW2</span>
+            <span class="bob desc">Access Guy Quotes #34 by roelsch (1/1)</span>
+            <span class="bob lat">N39°&nbsp;32.249</span>
+            <span class="bob lon">W89°&nbsp;46.895</span>
+            <span class="bob time">2015-06-13T08:00:00Z</span>
+            <span class="bob sym">Access</span>
+            <span class="bob type">Other</span>
+        </div>
+        <div class="list-item">
+            <span class="bob index">83</span>
+            <span class="bob name">GC5XFW2</span>
+            <span class="bob desc">Guy Quotes #34 by The 0ld Goat (2.5/1.5)</span>
+            <span class="bob lat">N39°&nbsp;32.206</span>
+            <span class="bob lon">W89°&nbsp;46.890</span>
+            <span class="bob time">2015-06-13T08:00:00Z</span>
+            <span class="bob sym">Geocache</span>
+            <span class="bob type">Unknown</span>
+        </div>
+    </div>
+
+</body>
+
+</html>
