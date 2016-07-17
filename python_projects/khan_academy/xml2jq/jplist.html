@@ -75,11 +75,13 @@
         $('document').ready(function() {
 
             // fill in data items
-            // fillListDiv();
+            fillListDiv();
+
+            console.log($(".list-item"));
 
             //check all jPList javascript options
             $('#demo').jplist({
-                debug: true,
+//              debug: true,
                 itemsBox: '.list',
                 itemPath: '.list-item',
                 panelPath: '.jplist-panel'
@@ -357,14 +359,16 @@
     <!-- ... -->
 
     <div class="list-item">
-        <span class="bob index">0</span>
-        <span class="bob name">DCSI</span>
-        <span class="bob desc">DCSI by roelsch (1/1)</span>
-        <span class="bob lat">N38°&nbsp;46.251</span>
-        <span class="bob lon">W90°&nbsp;23.693</span>
-        <span class="bob time">2008-07-01T08:00:00Z</span>
-        <span class="bob sym">START</span>
-        <span class="bob type">Other</span>
+        <div class="block">
+            <span class="bob index">0</span>
+            <span class="bob name">DCSI</span>
+            <span class="bob desc">DCSI by roelsch (1/1)</span>
+            <span class="bob lat">N38°&nbsp;46.251</span>
+            <span class="bob lon">W90°&nbsp;23.693</span>
+            <span class="bob time">2008-07-01T08:00:00Z</span>
+            <span class="bob sym">START</span>
+            <span class="bob type">Other</span>
+        </div>
     </div>
     <div class="list-item">
         <span class="bob index">1</span>

@@ -11,6 +11,10 @@ var fillListDiv = function() {
             .addClass("list-item")
             .appendTo($list);
 
+        $div = $("<div/>")
+            .addClass("block")
+            .appendTo($item);
+
         var lat = wpt["@lat"];
         var lon = wpt["@lon"];
         var desc = wpt.desc;
@@ -36,15 +40,10 @@ var fillListDiv = function() {
 
         $.each(text, function(name, property){
             var td = $("<span/>")
-//              .attr("style", "font-family: monospace; border: solid black 1px; padding: 3px; margin: 1px;")
-                .addClass("bob")
-                .addClass("architecture")
-//              .addClass("christmas")
-//              .addClass("nature")
-//              .addClass("lifestyle")
                 .addClass(name)
+                .addClass("bob")
                 .text(property);
-            $item.append(td);
+            $div.append(td);
         });
     });
 };
