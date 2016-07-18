@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Pagination 2 using Robert Eisele's "paging" plugin</title>
+    <style>
+        .bob {
+            margin: 1px;
+            border: solid black 1px;
+            padding: 1px;
+            font-family: monospace;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        table,
+        tr,
+        th,
+        td {
+            text-align: center;
+            padding: 3px;
+            border: solid black 1px;
+        }
+
+        ;
+    </style>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/paging/jquery.paging.js"></script>
+    <script src="topo858a - Chariton County MO.gpx.js"></script>
+    <script src="latlon.js"></script>
+    <script src="gpx_jPList.js"></script>
+    <script>
+
+        var setupPaging = function() {
+
+            var PERPAGE = 10;
+            var prev = {
+                    start: 0,
+                    stop: 0
+                },
+                $cont = $('.list-item');
+
+
+            // disable all display items first
+            $cont.css("display", "none");
+
+            $("#pagination").paging(
+                $cont.length, // make all elements navigatable
+                {
+                    format: '[ < ncnnn! > ]', // define how the navigation should look like and in which order onFormat() get's called
+                    perpage: PERPAGE,   // show 10 elements per page
+                    lapping: 0,         // don't overlap pages for the moment
+                    page: 0,            // start at page, can also be "null" or negative
+                    onSelect: function(page) {
+                        // add code which gets executed when user selects a page, how about $.ajax() or $(...).slice()?
+                        var data = {
+                            start: (page - 1) * PERPAGE,
+                            stop: page * PERPAGE
+                        };
+
+                        var $old = $cont.slice(prev.start, prev.stop);
+                        $old.css("display", "none");
+
+                        var $new = $cont.slice(data.start, data.stop);
+                        $new.fadeIn("fast");
+
+                        prev = data;
+                    },
+                    onFormat: function(type) {
+                        console.log(this);
+                        switch (type) {
+                            case 'block': // n and c
+                                return '<a href="#">' + "&nbsp;&nbsp;" + this.value + "&nbsp;&nbsp;" + '</a>';
+                            case 'next': // >
+                                return '<a href="#">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</a>';
+                            case 'prev': // <
+                                return '<a href="#">&nbsp;&nbsp;&lt;&nbsp;&nbsp;</a>';
+                            case 'first': // [
+                                return '<a href="#">&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;</a>';
+                            case 'last': // ]
+                                return '<a href="#">&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;</a>';
+                        }
+                    }
+                }
+            );
+        };
+
+        $(document).ready(function() {
+
+            fillListDiv();
+            setupPaging();
+
+        });
+    </script>
+</head>
+
+<body>
+
+    <div id="pagination">
+    </div>
+
+    <br/>
+
+    <div class="list">
+    </div>
+
+</body>
+
+</html>

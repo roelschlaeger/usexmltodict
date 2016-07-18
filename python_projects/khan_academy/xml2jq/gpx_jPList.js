@@ -4,7 +4,6 @@ var fillListDiv = function() {
     var $list = $(".list");
     $list.empty();
 
-
     var wpts = data.gpx.wpt;
     wpts.forEach(function(wpt, index) {
         $item = $("<div/>")
