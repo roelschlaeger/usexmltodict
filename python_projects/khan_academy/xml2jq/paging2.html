@@ -25,6 +25,10 @@
             border: solid black 1px;
         }
 
+        disabled {
+            font-style: italic;
+        }
+
         ;
     </style>
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -33,7 +37,6 @@
     <script src="latlon.js"></script>
     <script src="gpx_jPList.js"></script>
     <script>
-
         var setupPaging = function() {
 
             var PERPAGE = 10;
@@ -51,9 +54,13 @@
                 $cont.length, // make all elements navigatable
                 {
                     format: '[ < ncnnn! > ]', // define how the navigation should look like and in which order onFormat() get's called
-                    perpage: PERPAGE,   // show 10 elements per page
-                    lapping: 0,         // don't overlap pages for the moment
-                    page: 0,            // start at page, can also be "null" or negative
+
+                    perpage: PERPAGE, // show 10 elements per page
+
+                    lapping: 0, // don't overlap pages for the moment
+
+                    page: 0, // start at page, can also be "null" or negative
+
                     onSelect: function(page) {
                         // add code which gets executed when user selects a page, how about $.ajax() or $(...).slice()?
                         var data = {
@@ -69,14 +76,18 @@
 
                         prev = data;
                     },
+
                     onFormat: function(type) {
                         console.log(this);
                         switch (type) {
                             case 'block': // n and c
+                                // if (this.active === false) {
+                                //     return '<span class="disabled">' + this.value + '</span>';
+                                // }
                                 return '<a href="#">' + "&nbsp;&nbsp;" + this.value + "&nbsp;&nbsp;" + '</a>';
                             case 'next': // >
                                 return '<a href="#">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</a>';
-                            case 'prev': // <
+                            case 'prev': //&nbsp;&nbsp;<
                                 return '<a href="#">&nbsp;&nbsp;&lt;&nbsp;&nbsp;</a>';
                             case 'first': // [
                                 return '<a href="#">&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;</a>';
