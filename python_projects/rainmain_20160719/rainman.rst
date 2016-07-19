@@ -1,31 +1,50 @@
+.. vim:ts=4:sw=4:tw=0:wm=0:et
+
 ==================================
 PUZZLE CACHE SOLUTIONS FOR RAINMAN
 ==================================
 
 :author: Robert Oelschlaeger (roelsch)
 :contact: roelschlaeger@gmail.com
-:revision: 1.0
+:revision: 1.01
 :date: 19 July 2016
 
 .. contents:: Table of Contents
     :backlinks: entry
 
 .. sectnum::
+    :suffix: .
 
 .. raw:: html
 
     <style>
-        .bordered {
-            border: black solid 1px;
+        img {
+            margin-left: 24px;
+        }
+
+        pre {
             background-color: lightyellow;
-            width: 50%;
+            border: black solid 1px;
+            margin-left: 24px;
+            padding-left: 12px;
+            width: 55%;
         }
 
         table, th, td, tr {
             text-align: center;
         }
 
+        caption, tr, th, td {
+            border: black solid 1px;
+        }
+
+        th, td {
+            margin: 3px;
+            padding: 3px;
+        }
+
         table {
+            border-collapse: collapse;
             margin-left: auto;
             margin-right: auto;
         }
@@ -34,18 +53,36 @@ PUZZLE CACHE SOLUTIONS FOR RAINMAN
 
 ----
 
-`GC1HNNQ`_ Fried Ornithology
-============================
+Executive Summary
+=================
+
+.. table:: **Cache Location Summary Table**
+
+     ========= =================== ============== ===============
+     GC        Cache Name          Latitude       Longitude
+     ========= =================== ============== ===============
+     GC1HNNQ_  Fried Ornithology   N 38° 36.110   W 092° 17.958
+     --------- ------------------- -------------- ---------------
+     GC2HDZM_  3 out of 5          N 38° 33.914   W 092° 20.126
+     --------- ------------------- -------------- ---------------
+     GC3N3NY_  Drawing a Blanc     N 38° 54.492   W 092° 20.768
+     --------- ------------------- -------------- ---------------
+     GC6CKHJ_  Dots                N 38° 54.606   W 092° 19.602
+     --------- ------------------- -------------- ---------------
+     GC2QDWG_  It's Sepia          N 38° 54.522   W 092° 20.112
+     ========= =================== ============== ===============
+
+Geocache Details
+================
+
+GC1HNNQ_ Fried Ornithology
+--------------------------
 
 .. _GC1HNNQ : http://coord.info/GC1HNNQ
 
 The trick to this one was to listen to the songs....
 
 Sure, it isn't much fun, but eventually you come up with these answers:
-
-.. raw:: html
-
-    <div class=bordered>
 
 ::
 
@@ -69,20 +106,12 @@ Sure, it isn't much fun, but eventually you come up with these answers:
 
     http://www.allaboutbirds.org/guide/Eastern_Bluebird/sounds etc.
 
-.. raw:: html
-
-    </div>
-
 Matching those results against the table:
 
 .. image:: 130846ac-9a39-45d9-bc33-19c80cc5c340.jpg
     :width: 60%
 
 I got these results:
-
-.. raw:: html
-
-    <div class="bordered">
 
 ::
 
@@ -98,12 +127,8 @@ I got these results:
     N 38° 3A.BCD W 092° 1E.FGH
     N 38° 36.110 W 092° 17.958
 
-.. raw:: html
-
-    </div>
-
-`GC2HDZM`_ 3 out of 5
-=====================
+GC2HDZM_ 3 out of 5
+-------------------
 
 .. _GC2HDZM: http://coord.info/GC2HDZM
 
@@ -113,11 +138,8 @@ The trick to this one is to look at your standard QWERTY keyboard.
 
     2. Note that they fall in a straight line on the keyboard
 
-    3. What letter is either "next" or "missing" from the sequence? That's the cleartext character.
-
-.. raw:: html
-
-    <div class=bordered>
+    3. What letter is either "next" or "missing" from the sequence? That's the
+       cleartext character.
 
 ::
 
@@ -206,10 +228,6 @@ The trick to this one is to look at your standard QWERTY keyboard.
     zzz
     z
 
-.. raw:: html
-
-    </div>
-
 This results in::
 
     northspace38degreesspace33point914minuteswestspace092degreesspace20point126minutes??
@@ -220,10 +238,6 @@ which translates to::
 
 which Geochecker tells you:
 
-.. raw:: html
-
-    <div class="bordered">
-
 ::
 
     · 3 out of 5 ·
@@ -233,21 +247,13 @@ which Geochecker tells you:
 
     Success!
 
-.. raw:: html
-
-    </div>
-
-`GC3N3NY`_ Drawing a Blanc
-==========================
+GC3N3NY_ Drawing a Blanc
+------------------------
 
 .. _GC3N3NY: http://coord.info/GC3N3NY
 
 
 Here's what I got from listening to the audio and a bit of Googling:
-
-.. raw:: html
-
-    <div class="bordered" style="width: 60%">
 
 ::
 
@@ -304,22 +310,14 @@ Here's what I got from listening to the audio and a bit of Googling:
     If you take "Yosemite" as a first name, you get the values shown above. The
     parking lot entrance coordinates seem to corroborate the value.
 
-.. raw:: html
-
-    </div>
-
-`GC6CKHJ`_ Dots
-===============
+GC6CKHJ_ Dots
+-------------
 
 .. _GC6CKHJ: http://coord.info/GC6CKHJ
 
 Nothing in the cache description said that the cache is anywhere other than at
 the posted location. After testing about 60 possible answers, I came to this
 astounding conclusion and then tested it on GeoChecker.
-
-.. raw:: html
-
-    <div class="bordered">
 
 ::
 
@@ -329,10 +327,6 @@ astounding conclusion and then tested it on GeoChecker.
 
     Coordinate:
     N 38°54.606  W 092°19.602
-
-.. raw:: html
-
-    </div>
 
 The coordinates take you to the landscaping blocks around the sign for the Red
 Oak Plaza mall. We parked on the west side, walked directly to the blocks,
@@ -344,8 +338,8 @@ it was tucked in a hole between the blocks.
     :alt: Location of GC6CKHJ Dots FINAL
     :align: center
 
-`GC2QDWG`_ It's Sepia
-=====================
+GC2QDWG_ It's Sepia
+-------------------
 
 .. _GC2QDWG: http://coord.info/GC2QDWG
 
@@ -387,10 +381,6 @@ with these results
 
 Checking with GeoChecker, I got
 
-.. raw:: html
-
-    <div class="bordered">
-
 ::
 
     · It's Sepia (GC2QDWG) ·
@@ -401,27 +391,4 @@ Checking with GeoChecker, I got
     Whoohoo! Yipee! uh-huh, uh-huh! w00t! Yeah, baby!
 
     Now, go get it!
-
-.. raw:: html
-
-    </div>
-
-Summary
-=======
-
-.. table:: **Cache Location Summary Table**
-
-     ========= =================== ============== ===============
-     GC        Cache Name          Latitude       Longitude
-     ========= =================== ============== ===============
-     GC1HNNQ_  Fried Ornithology   N 38° 36.110   W 092° 17.958
-     --------- ------------------- -------------- ---------------
-     GC2HDZM_  3 out of 5          N 38° 33.914   W 092° 20.126
-     --------- ------------------- -------------- ---------------
-     GC3N3NY_  Drawing a Blanc     N 38° 54.492   W 092° 20.768
-     --------- ------------------- -------------- ---------------
-     GC6CKHJ_  Dots                N 38° 54.606   W 092° 19.602
-     --------- ------------------- -------------- ---------------
-     GC2QDWG_  It's Sepia          N 38° 54.522   W 092° 20.112
-     ========= =================== ============== ===============
 
