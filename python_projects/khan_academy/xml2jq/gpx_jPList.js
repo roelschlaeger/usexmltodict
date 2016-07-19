@@ -27,7 +27,6 @@ var fillListDiv = function() {
         var time = wpt.time;
         var type = wpt.type;
         var text = {
-            "title": name,
             "index": index,
             "name": name,
             "desc": desc,
@@ -45,7 +44,9 @@ var fillListDiv = function() {
                 .addClass(name)
                 .addClass("bob")
                 .text(property);
-            if (name === "sym" || name === "type") {
+            if (name === "name" ) {
+                td.addClass("title");
+            } else if (name === "sym" || name === "type") {
                 td.addClass(property);
             }
             $div.append(td);
