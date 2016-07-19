@@ -2,12 +2,13 @@
 
 var fillListDiv = function() {
     var $list = $(".list");
-    $list.empty();
+    // $list.empty();
 
     var wpts = data.gpx.wpt;
     wpts.forEach(function(wpt, index) {
         $item = $("<div/>")
             .addClass("list-item")
+            .addClass("box")
             .appendTo($list);
 
         $div = $("<div/>")
@@ -42,6 +43,9 @@ var fillListDiv = function() {
                 .addClass(name)
                 .addClass("bob")
                 .text(property);
+            if (name === "sym" || name === "type") {
+                td.addClass(property);
+            }
             $div.append(td);
         });
     });
