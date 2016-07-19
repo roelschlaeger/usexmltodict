@@ -9,10 +9,11 @@ var fillListDiv = function() {
         $item = $("<div/>")
             .addClass("list-item")
             .addClass("box")
+            .addClass("right")
             .appendTo($list);
 
         $div = $("<div/>")
-            .addClass("block")
+            .addClass("block right")
             .appendTo($item);
 
         var lat = wpt["@lat"];
@@ -26,6 +27,7 @@ var fillListDiv = function() {
         var time = wpt.time;
         var type = wpt.type;
         var text = {
+            "title": name,
             "index": index,
             "name": name,
             "desc": desc,
