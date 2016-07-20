@@ -1,18 +1,20 @@
 <!-- http://jplist.com/documentation/js-settings -->
 
+"use strict";
+
 var fillListDiv = function() {
     var $list = $(".list");
     // $list.empty();
 
     var wpts = data.gpx.wpt;
     wpts.forEach(function(wpt, index) {
-        $item = $("<div/>")
+        var $item = $("<div/>")
             .addClass("list-item")
             .addClass("box")
             .addClass("right")
             .appendTo($list);
 
-        $div = $("<div/>")
+        var $div = $("<div/>")
             .addClass("block right")
             .appendTo($item);
 
@@ -23,7 +25,6 @@ var fillListDiv = function() {
         // var link = wpt.link;
         var name = wpt.name;
         var sym = wpt.sym;
-        // console.log(sym);
         var time = wpt.time;
         var type = wpt.type;
         var text = {
@@ -34,7 +35,7 @@ var fillListDiv = function() {
             "lon": lonstr(lon),
             // "extensions": extensions,
             // "link": link,
-            "time": time,
+            "date": time,
             "sym": sym,
             "type": type.replace("Geocache|", "").replace(" Cache", ""),
         };

@@ -7,7 +7,6 @@
 
 	    <!-- font libs -->
         <link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css" />
-		<!-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" /> -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet" />
 
 		<!-- demo page styles -->
@@ -33,8 +32,11 @@
 		<script>
 		$('document').ready(function(){
 
+            // remove existing stuff
+            $(".list").empty();
+            // and refill with our stuff
             fillListDiv();
-            console.log($(".list-item"));
+            // console.log($(".list-item"));
 
 			$('#demo').jplist({
 				itemsBox: '.list'
@@ -113,17 +115,25 @@
 						   class="jplist-select"
 						   data-control-type="sort-select"
 						   data-control-name="sort"
-						   data-control-action="sort">
+						   data-control-action="sort"
+                           data-datetime-format="{year}{month}{day}"
+                           data-ignore="[^a-zA-Z0-9]+"/>
 
 							  <option data-path="default">Sort by</option>
+                              <option data-path=".index" data-order="asc" data-type="number">Index asc</option>
+							  <option data-path=".index" data-order="desc" data-type="number">Index desc</option>
 							  <option data-path=".title" data-order="asc" data-type="text">Title A-Z</option>
 							  <option data-path=".title" data-order="desc" data-type="text">Title Z-A</option>
 							  <option data-path=".desc" data-order="asc" data-type="text">Description A-Z</option>
 							  <option data-path=".desc" data-order="desc" data-type="text">Description Z-A</option>
-							  <option data-path=".like" data-order="asc" data-type="number">Likes asc</option>
-							  <option data-path=".like" data-order="desc" data-type="number">Likes desc</option>
 							  <option data-path=".date" data-order="asc" data-type="datetime">Date asc</option>
-							  <option data-path=".date" data-order="desc" data-type="datetime">Date desc</option>
+							  <option data-path=".date" data-order="desc" data-type="datetime" data-default="true">Date desc</option>
+                              <option data-path=".type" data-order="asc" data-type="text">Type asc</option>
+							  <option data-path=".type" data-order="desc" data-type="text">Type desc</option>
+                              <option data-path=".lat" data-order="asc" data-type="text">Latitude asc</option>
+							  <option data-path=".lat" data-order="desc" data-type="text">Latitude desc</option>
+                              <option data-path=".lon" data-order="asc" data-type="text">Longitude asc</option>
+							  <option data-path=".lon" data-order="desc" data-type="text">Longitude desc</option>
 						</select>
 
 					</div>
@@ -868,22 +878,31 @@
 					<!-- panel -->
 					<div class="jplist-panel box panel-bottom">
 
-						<select
+                        <select
 						   class="jplist-select"
 						   data-control-type="sort-select"
 						   data-control-name="sort"
-						   data-control-action="sort">
+						   data-control-action="sort"
+                           data-datetime-format="{year}{month}{day}"
+                           data-ignore="[^a-zA-Z0-9]+"/>
 
 							  <option data-path="default">Sort by</option>
+                              <option data-path=".index" data-order="asc" data-type="number">Index asc</option>
+							  <option data-path=".index" data-order="desc" data-type="number">Index desc</option>
 							  <option data-path=".title" data-order="asc" data-type="text">Title A-Z</option>
 							  <option data-path=".title" data-order="desc" data-type="text">Title Z-A</option>
 							  <option data-path=".desc" data-order="asc" data-type="text">Description A-Z</option>
 							  <option data-path=".desc" data-order="desc" data-type="text">Description Z-A</option>
-							  <option data-path=".like" data-order="asc" data-type="number">Likes asc</option>
-							  <option data-path=".like" data-order="desc" data-type="number">Likes desc</option>
 							  <option data-path=".date" data-order="asc" data-type="datetime">Date asc</option>
-							  <option data-path=".date" data-order="desc" data-type="datetime">Date desc</option>
+							  <option data-path=".date" data-order="desc" data-type="datetime" data-default="true">Date desc</option>
+                              <option data-path=".type" data-order="asc" data-type="text">Type asc</option>
+							  <option data-path=".type" data-order="desc" data-type="text">Type desc</option>
+                              <option data-path=".lat" data-order="asc" data-type="text">Latitude asc</option>
+							  <option data-path=".lat" data-order="desc" data-type="text">Latitude desc</option>
+                              <option data-path=".lon" data-order="asc" data-type="text">Longitude asc</option>
+                              <option data-path=".lon" data-order="desc" data-type="text">Longitude desc</option>
 						</select>
+
 
 					</div>
 
