@@ -1,0 +1,23 @@
+<style>
+    .bob {
+        border: solid black 1px;
+        padding: 3px;
+        margin: 3px;
+        font-family: monospace;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    table,
+    tr,
+    th,
+    td {
+        text-align: center;
+        padding: 3px;
+        border: solid black 1px;
+    }
+
+    ;
+</style>

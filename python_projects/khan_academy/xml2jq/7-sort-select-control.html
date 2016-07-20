@@ -7,7 +7,8 @@
 
 	    <!-- font libs -->
         <link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css" />
-		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+		<!-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" /> -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet" />
 
 		<!-- demo page styles -->
 		<link href="bower_components/jplist/dist/css/jplist.demo-pages.min.css" rel="stylesheet" type="text/css" />
@@ -22,9 +23,18 @@
 		<!-- jPList sort bundle -->
 		<script src="bower_components/jplist/dist/js/jplist.sort-bundle.min.js"></script>
 
+        <!-- My stuff -->
+        <link href="gpx_jPList.css" rel="stylesheet" type="text/css" />
+        <script src="latlon.js"></script>
+        <script src="topo858a - Chariton County MO.gpx.js"></script>
+        <script src="gpx_jPList.js"></script>
+
 		<!-- jPList start -->
 		<script>
 		$('document').ready(function(){
+
+            fillListDiv();
+            console.log($(".list-item"));
 
 			$('#demo').jplist({
 				itemsBox: '.list'
