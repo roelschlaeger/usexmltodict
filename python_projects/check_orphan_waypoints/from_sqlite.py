@@ -2,9 +2,10 @@
 
 # =*- encoding=utf-8 -*-
 
-# if run from python2.x, support print()
-
 """
+
+Search sqlite database for orphan geocaches.
+
 SYNOPSIS
 
     from_sqlite [-h | --help] [-v | --version] [--verbose] [ -k | --kansas ]
@@ -37,18 +38,16 @@ VERSION
 """
 
 from __future__ import print_function
-
-__VERSION__ = "0.0.4"
-
 from sqlite3 import connect
 from pprint import pprint
+
+__VERSION__ = "0.0.5"
 
 ########################################################################
 
 
 def get_all_waypoint_names(dbname):
-    """Fetch all waypoint names from the SQLite3 database"""
-
+    """Fetch all waypoint names from the SQLite3 database."""
     print("Opening %s" % dbname)
 
     with connect(dbname) as c:
@@ -79,10 +78,21 @@ if __name__ == "__main__":
     DBNAME = './Default/sqlite.db3'
     KB_DBNAME = './Kansas/sqlite.db3'
 
+    def search_string(result):
+        """Return GSAK RE search string.
+
+        Examine the strings in result for likely cache name search strings
+        suitable for regular expression searching in GSAK.
+        """
+        out = []
+        for s in result:
+            if (s[0].isdigit()) and (len(s) == 5):
+                out.append(s)
+
+        return "|".join(out)
+
     def main():
-
-        """Compute all waypoint names that don't have a geocache parent"""
-
+        """Compute all waypoint names that don't have a geocache parent."""
         dbname = DBNAME
         if OPTIONS.kansas:
             dbname = KB_DBNAME
@@ -116,7 +126,7 @@ if __name__ == "__main__":
             trait = n[2:]
             if 2 <= len(trait) <= 5:
                 gcname = "GC" + trait
-                if not gcname in gc:
+                if gcname not in gc:
                     if trait not in result:
                         result[trait] = []
                     result[trait].append(n)
@@ -124,6 +134,10 @@ if __name__ == "__main__":
         print(len(result), "waypoints without a parent")
         print()
         pprint(result)
+
+        print()
+        print("Regular expression search string:")
+        print(search_string(result))
 
     ########################################################################
 
