@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-vim:ts=4:sw=4:tw=0:wm=0:et
+vim:ts=4:sw=4:tw=0:wm=0:et:nowrap
 -->
 <html>
 
@@ -10,8 +10,8 @@ vim:ts=4:sw=4:tw=0:wm=0:et
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- font libs -->
-    <link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
 
     <!-- demo page styles -->
     <link href="bower_components/jplist/dist/css/jplist.demo-pages.min.css" rel="stylesheet" type="text/css" />
@@ -23,8 +23,20 @@ vim:ts=4:sw=4:tw=0:wm=0:et
     <link href="bower_components/jplist/dist/css/jplist.core.min.css" rel="stylesheet" type="text/css" />
     <script src="bower_components/jplist/dist/js/jplist.core.min.js"></script>
 
-    <!-- filter dropdown bundle -->
-    <script src="bower_components/jplist/dist/js/jplist.filter-dropdown-bundle.min.js"></script>
+    <!-- jPList sort bundle -->
+    <script src="bower_components/jplist/dist/js/jplist.sort-bundle.min.js"></script>
+
+    <!-- jPList pagination bundle -->
+    <script src="bower_components/jplist/dist/js/jplist.pagination-bundle.min.js"></script>
+    <link href="bower_components/jplist/dist/css/jplist.pagination-bundle.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- jPList history bundle -->
+    <script src="bower_components/jplist/dist/js/jplist.history-bundle.min.js"></script>
+    <link href="bower_components/jplist/dist/css/jplist.history-bundle.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- jPList toggle bundle -->
+    <script src="bower_components/jplist/dist/js/jplist.filter-toggle-bundle.min.js"></script>
+    <link href="bower_components/jplist/dist/css/jplist.filter-toggle-bundle.min.css" rel="stylesheet" type="text/css" />
 
     <!-- My stuff -->
     <link href="gpx_jPList.css" rel="stylesheet" type="text/css" />
@@ -115,51 +127,142 @@ vim:ts=4:sw=4:tw=0:wm=0:et
                 <!-- panel -->
                 <div class="jplist-panel box panel-top">
 
-                    <div class="jplist-drop-down" data-control-type="filter-drop-down" data-control-name="category-filter" data-control-action="filter">
+                    <!-- reset button -->
+                    <button type="button" class="jplist-reset-btn" data-control-type="reset" data-control-name="reset" data-control-action="reset">
+                        Reset &nbsp;<i class="fa fa-share"></i>
+                    </button>
+
+                    <select class="jplist-select" data-control-type="sort-select" data-control-name="sort" data-control-action="sort" data-datetime-format="{year}{month}{day}" data-ignore="[^a-zA-Z0-9]+" />
+
+                    <option data-path="default">Sort by</option>
+                    <option data-path=".index" data-order="asc" data-type="number" data-default="true">Index asc</option>
+                    <option data-path=".index" data-order="desc" data-type="number">Index desc</option>
+                    <option data-path=".title" data-order="asc" data-type="text">Title A-Z</option>
+                    <option data-path=".title" data-order="desc" data-type="text">Title Z-A</option>
+                    <option data-path=".desc" data-order="asc" data-type="text">Description A-Z</option>
+                    <option data-path=".desc" data-order="desc" data-type="text">Description Z-A</option>
+                    <option data-path=".date" data-order="asc" data-type="datetime">Date asc</option>
+                    <option data-path=".date" data-order="desc" data-type="datetime">Date desc</option>
+                    <option data-path=".type" data-order="asc" data-type="text">Type asc</option>
+                    <option data-path=".type" data-order="desc" data-type="text">Type desc</option>
+                    <option data-path=".lat" data-order="asc" data-type="text">Latitude asc</option>
+                    <option data-path=".lat" data-order="desc" data-type="text">Latitude desc</option>
+                    <option data-path=".lon" data-order="asc" data-type="text">Longitude asc</option>
+                    <option data-path=".lon" data-order="desc" data-type="text">Longitude desc</option>
+
+                    </select>
+
+                    <!-- items per page dropdown -->
+                    <div class="jplist-drop-down" data-control-type="items-per-page-drop-down" data-control-name="paging" data-control-action="paging">
+
                         <ul>
-                            <li><span data-path="default">Default</span></li>
-                            <li><span data-path=".Multi-cache">Multi-cache</span></li>
-                            <li><span data-path=".Other">Other</span></li>
-                            <li><span data-path=".Traditional">Traditional</span></li>
-                            <li><span data-path=".Virtual">Virtual</span></li>
+                            <li><span data-number="3"> 3 per page </span></li>
+                            <li><span data-number="5"> 5 per page </span></li>
+                            <li><span data-number="10"> 10 per page </span></li>
+                            <li><span data-number="all" data-default="true"> View All </span></li>
                         </ul>
                     </div>
 
-                </div>
+                    <!-- pagination results -->
+                    <div class="jplist-label" data-type="Page {current} of {pages}" data-control-type="pagination-info" data-control-name="paging" data-control-action="paging">
+                    </div>
 
-                <!-- data -->
-                <div class="list box text-shadow">
-                    <!-- list-item class items go here -->
-                </div>
+                    <!-- pagination control -->
+                    <div class="jplist-pagination" data-control-type="pagination" data-control-name="paging" data-control-action="paging">
+                    </div>
 
-                <div class="box jplist-no-results text-shadow align-center">
-                    <p>No results found</p>
-                </div>
+                    <!-- radio buttons filters -->
+                    <div class="jplist-group">
 
-                <!-- ios button: show/hide panel -->
-                <div class="jplist-ios-button">
-                    <i class="fa fa-sort"></i> jPList Actions
-                </div>
+                        <input data-control-type="radio-buttons-filters" data-control-action="filter" data-control-name="default" data-path="default" id="default-radio" type="radio" name="jplist" checked="checked" />
+                        <label for="default-radio">All</label>
 
-                <!-- panel -->
-                <div class="jplist-panel box panel-bottom">
+                        <input data-control-type="radio-buttons-filters" data-control-action="filter" data-control-name="letterbox" data-path=".Letterbox" id="letterbox" type="radio" name="jplist" />
+                        <label for="letterboxhybrid">Letterbox</label>
 
-                    <div class="jplist-drop-down" data-control-type="filter-drop-down" data-control-name="category-filter" data-control-action="filter">
-                        <ul>
-                            <li><span data-path="default">Default</span></li>
-                            <li><span data-path=".Multi-cache">Multi-cache</span></li>
-                            <li><span data-path=".Other">Other</span></li>
-                            <li><span data-path=".Traditional">Traditional</span></li>
-                            <li><span data-path=".Virtual">Virtual</span></li>
-                        </ul>
+                        <input data-control-type="radio-buttons-filters" data-control-action="filter" data-control-name="multicache" data-path=".Multi-cache" id="multicache" type="radio" name="jplist" />
+                        <label for="multicache">Multi-Cache</label>
+
+                        <input data-control-type="radio-buttons-filters" data-control-action="filter" data-control-name="other" data-path=".Other" id="other" type="radio" name="jplist" />
+                        <label for="other">Other</label>
+
+                        <input data-control-type="radio-buttons-filters" data-control-action="filter" data-control-name="traditional" data-path=".Traditional" id="traditional" type="radio" name="jplist" />
+                        <label for="traditional">Traditional</label>
+
+                        <input data-control-type="radio-buttons-filters" data-control-action="filter" data-control-name="unknown" data-path=".Unknown" id="unknown" type="radio" name="jplist" />
+                        <label for="unknown">Unknown</label>
+
+                        <input data-control-type="radio-buttons-filters" data-control-action="filter" data-control-name="virtual" data-path=".Virtual" id="virtual" type="radio" name="jplist" />
+                        <label for="virtual">Virtual</label>
+
+                        <input data-control-type="radio-buttons-filters" data-control-action="filter" data-control-name="wherigo" data-path=".Wherigo" id="wherigo" type="radio" name="jplist" />
+                        <label for="wherigo">Wherigo</label>
+
+                    </div>
+
+                    <!-- data -->
+                    <div class="list box text-shadow">
+                        <!-- list-item elements go here -->
+                    </div>
+
+                    <div class="box jplist-no-results text-shadow align-center">
+                        <p>No results found</p>
+                    </div>
+
+                    <!-- ios button: show/hide panel -->
+                    <div class="jplist-ios-button">
+                        <i class="fa fa-sort"></i> jPList Actions
+                    </div>
+
+                    <!-- panel -->
+                    <div class="jplist-panel box panel-bottom">
+
+                        <!-- reset button -->
+                        <button type="button" class="jplist-reset-btn" data-control-type="reset" data-control-name="reset" data-control-action="reset">
+                            Reset &nbsp;<i class="fa fa-share"></i>
+                        </button>
+
+                        <select class="jplist-select" data-control-type="sort-select" data-control-name="sort" data-control-action="sort" data-datetime-format="{year}{month}{day}" data-ignore="[^a-zA-Z0-9]+" />
+
+                        <option data-path="default">Sort by</option>
+                        <option data-path=".index" data-order="asc" data-type="number" data-default="true">Index asc</option>
+                        <option data-path=".index" data-order="desc" data-type="number">Index desc</option>
+                        <option data-path=".title" data-order="asc" data-type="text">Title A-Z</option>
+                        <option data-path=".title" data-order="desc" data-type="text">Title Z-A</option>
+                        <option data-path=".desc" data-order="asc" data-type="text">Description A-Z</option>
+                        <option data-path=".desc" data-order="desc" data-type="text">Description Z-A</option>
+                        <option data-path=".date" data-order="asc" data-type="datetime">Date asc</option>
+                        <option data-path=".date" data-order="desc" data-type="datetime">Date desc</option>
+                        <option data-path=".type" data-order="asc" data-type="text">Type asc</option>
+                        <option data-path=".type" data-order="desc" data-type="text">Type desc</option>
+                        <option data-path=".lat" data-order="asc" data-type="text">Latitude asc</option>
+                        <option data-path=".lat" data-order="desc" data-type="text">Latitude desc</option>
+                        <option data-path=".lon" data-order="asc" data-type="text">Longitude asc</option>
+                        <option data-path=".lon" data-order="desc" data-type="text">Longitude desc</option>
+
+                        </select>
+
+                        <!-- items per page dropdown -->
+                        <div class="jplist-drop-down" data-control-type="items-per-page-drop-down" data-control-name="paging" data-control-action="paging">
+
+                            <ul>
+                                <li><span data-number="3"> 3 per page </span></li>
+                                <li><span data-number="5"> 5 per page </span></li>
+                                <li><span data-number="10"> 10 per page </span></li>
+                                <li><span data-number="all" data-default="true"> View All </span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- pagination control -->
+                    <div class="jplist-pagination" data-control-type="pagination" data-control-name="paging" data-control-action="paging">
                     </div>
 
                 </div>
 
             </div>
-
-            <!--<><><><><><><><><><><><><><><><><><><><><><><><><><> DEMO END <><><><><><><><><><><><><><><><><><><><><><><><><><>-->
         </div>
+        <!-- <><><><><><><><><><><><><><><><><><><><><><><><><><> DEMO END <><><><><><><><><><><><><><><><><><><><><><><><><><> -->
     </div>
 
     <!-- footer -->

@@ -17,7 +17,7 @@ vim:ts=4:sw=4:tw=0:wm=0:et
     <link href="bower_components/jplist/dist/css/jplist.demo-pages.min.css" rel="stylesheet" type="text/css" />
 
     <!-- jQuery lib -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- jPList core js and css  -->
     <link href="bower_components/jplist/dist/css/jplist.core.min.css" rel="stylesheet" type="text/css" />
@@ -42,9 +42,7 @@ vim:ts=4:sw=4:tw=0:wm=0:et
     <link href="gpx_jPList.css" rel="stylesheet" type="text/css" />
     <script src="latlon.js"></script>
     <script src="topo858a - Chariton County MO.gpx.js"></script>
-    <!-- <script src="CacheTypes.gpx.js"></script> -->
     <script src="gpx_jPList.js"></script>
-    <!-- <script src="counter.js"></script> -->
 
     <!-- jPList start -->
     <script>
@@ -136,21 +134,21 @@ vim:ts=4:sw=4:tw=0:wm=0:et
 
                     <select class="jplist-select" data-control-type="sort-select" data-control-name="sort" data-control-action="sort" data-datetime-format="{year}{month}{day}" data-ignore="[^a-zA-Z0-9]+" />
 
-                        <option data-path="default">Sort by</option>
-                        <option data-path=".index" data-order="asc" data-type="number" data-default="true">Index asc</option>
-                        <option data-path=".index" data-order="desc" data-type="number">Index desc</option>
-                        <option data-path=".title" data-order="asc" data-type="text">Title A-Z</option>
-                        <option data-path=".title" data-order="desc" data-type="text">Title Z-A</option>
-                        <option data-path=".desc" data-order="asc" data-type="text">Description A-Z</option>
-                        <option data-path=".desc" data-order="desc" data-type="text">Description Z-A</option>
-                        <option data-path=".date" data-order="asc" data-type="datetime">Date asc</option>
-                        <option data-path=".date" data-order="desc" data-type="datetime">Date desc</option>
-                        <option data-path=".type" data-order="asc" data-type="text">Type asc</option>
-                        <option data-path=".type" data-order="desc" data-type="text">Type desc</option>
-                        <option data-path=".lat" data-order="asc" data-type="text">Latitude asc</option>
-                        <option data-path=".lat" data-order="desc" data-type="text">Latitude desc</option>
-                        <option data-path=".lon" data-order="asc" data-type="text">Longitude asc</option>
-                        <option data-path=".lon" data-order="desc" data-type="text">Longitude desc</option>
+                    <option data-path="default">Sort by</option>
+                    <option data-path=".index" data-order="asc" data-type="number" data-default="true">Index asc</option>
+                    <option data-path=".index" data-order="desc" data-type="number">Index desc</option>
+                    <option data-path=".title" data-order="asc" data-type="text">Title A-Z</option>
+                    <option data-path=".title" data-order="desc" data-type="text">Title Z-A</option>
+                    <option data-path=".desc" data-order="asc" data-type="text">Description A-Z</option>
+                    <option data-path=".desc" data-order="desc" data-type="text">Description Z-A</option>
+                    <option data-path=".date" data-order="asc" data-type="datetime">Date asc</option>
+                    <option data-path=".date" data-order="desc" data-type="datetime">Date desc</option>
+                    <option data-path=".type" data-order="asc" data-type="text">Type asc</option>
+                    <option data-path=".type" data-order="desc" data-type="text">Type desc</option>
+                    <option data-path=".lat" data-order="asc" data-type="text">Latitude asc</option>
+                    <option data-path=".lat" data-order="desc" data-type="text">Latitude desc</option>
+                    <option data-path=".lon" data-order="asc" data-type="text">Longitude asc</option>
+                    <option data-path=".lon" data-order="desc" data-type="text">Longitude desc</option>
 
                     </select>
 
@@ -213,8 +211,9 @@ vim:ts=4:sw=4:tw=0:wm=0:et
 
                 </div>
 
-                <!--<><><><><><><><><><><><><><><><><><><><><><><><><><> DEMO END <><><><><><><><><><><><><><><><><><><><><><><><><><>-->
             </div>
+
+            <!--<><><><><><><><><><><><><><><><><><><><><><><><><><> DEMO END <><><><><><><><><><><><><><><><><><><><><><><><><><>-->
         </div>
     </div>
 
