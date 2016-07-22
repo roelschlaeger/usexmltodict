@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<head>
+    <base href="file:///C:/Users/Robert%20Oelschlaeger/Documents/sources/python_projects/khan_academy/xml2jq/autodivider.html">
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!-- My stuff -->
+    <link href="gpx_jPList.css" rel="stylesheet" type="text/css">
+    <script src="latlon.js"></script>
+    <script src="topo858a - Chariton County MO.gpx.js"></script>
+    <script src="gpx_jPList.js"></script>
+
+    <script>
+        "use strict"
+
+        $(document).ready(function() {
+            // return false;
+            var route_title = data.gpx.metadata.time;
+            $("#route_title").text("Route created " + route_title);
+
+            var $ul = $("<ul/>")
+                .attr("data-role", "listview")
+                .attr("data-autodividers", "true")
+                .addClass("ui-listview ui-listview-inset ui-corner-all ui-shadow");
+
+            var $ul = $("#route_ul");
+            $ul.empty();
+            console.log($ul);
+
+            var wpts = data.gpx.wpt;
+            // console.log(wpts);
+            var names = [];
+            $(wpts).each(function(n, e) {
+                    // console.log(e);
+                    var extensions = e.extensions;
+                    // console.log(extensions);
+                    var wptExtension = extensions["gsak:wptExtension"];
+                    var cache = extensions["groundspeak:cache"];
+                    // console.log(wptExtension);
+                    // console.log(cache);
+                    var usersort = wptExtension["gsak:UserSort"];
+                    // console.log(usersort);
+                    var desc = e.desc;
+                    // console.log(desc);
+                    // var name = usersort + " " + desc;
+                    var name = desc;
+                    // console.log(name);
+                    names.push(name);
+
+                    var $li = $("<li/>")
+                        .appendTo($ul);
+                    var $a = $("<a/>")
+                        .attr("href", "#")
+                        .appendTo($li)
+                        .text(name);
+
+                    // console.log($li);
+                })
+                // console.log(names);
+
+        });
+    </script>
+
+</head>
+
+<body class="ui-mobile-viewport ui-overlay-a">
+    <div data-role="page" id="pageone" data-url="pageone" tabindex="0" class="ui-page ui-page-theme-a ui-page-active">
+        <div data-role="main" class="ui-content">
+            <h2 id="route_title">Route created 2016-07-16T18:28:10Z</h2>
+            <ul id="route_ul" data-role="listview" data-autodividers="true" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+                <li><a href="#">Commuter Lot: US 40 and S Callahan Rd by roelsch (1/1)</a></li>
+                <li><a href="#">OldCedar1 by TeamSteam (1.5/1.5)</a></li>
+                <li><a href="#">A Strong Pinnacles Park and Grab by MSpry and   V1p3rx (1.5/1.5)</a></li>
+                <li><a href="#">OLD HWY 63 SMALL TB TRADING POST by twilight rabbit (1.5/2)</a></li>
+                <li><a href="#">Commuter Parking by jsmtech (1.5/1.5)</a></li>
+                <li><a href="#">TB HOTEL (for small TBs) by twilight rabbit (1.5/1.5)</a></li>
+                <li><a href="#">K105.5 by Twilight Rabbit (1.5/1.5)</a></li>
+                <li><a href="#">The Doctor Is In by MSpry and V1p3rx (1.5/1.5)</a></li>
+                <li><a href="#">Huntsville G R #1 by twilight rabbit (1.5/1.5)</a></li>
+                <li><a href="#">I've Been Switched by pearmanj (2/2.5)</a></li>
+                <li><a href="#">Our Calling by pearmanj (1/1.5)</a></li>
+                <li><a href="#">Sterling Silver by TeamSignal (1.5/1.5)</a></li>
+                <li><a href="#">Walt Disney Birthplace Museum by roelsch (1/1)</a></li>
+                <li><a href="#">Parking area by roelsch (1/1)</a></li>
+                <li><a href="#">Cache Across America - Missouri by webscouter. (1.5/1.5)</a></li>
+                <li><a href="#">I meant Julep by bsabrook41 (1.5/1.5)</a></li>
+                <li><a href="#">right turn by bsabrook41 (1.5/1.5)</a></li>
+                <li><a href="#">Jute road tree by 123brimxyz (1.5/1.5)</a></li>
+                <li><a href="#">Bridge of justice by bsabrook41 (1.5/1.5)</a></li>
+                <li><a href="#">What Happened to Tony? (Was Finding Tony) by JackieA0818 and Rainbowkitty (1.5/1.5)</a></li>
+                <li><a href="#">Who's Your Friend by GmawCache (2/2)</a></li>
+                <li><a href="#">Locust Creek Covered Bridge by a-pineapple (1/1)</a></li>
+                <li><a href="#">Find your Smiley here by GmawCache (1/1.5)</a></li>
+                <li><a href="#">Almost Wheeling by JackieA0818 (1/1.5)</a></li>
+                <li><a href="#">I'm Chip, He's Dale by GmawCache (1.5/1.5)</a></li>
+                <li><a href="#">The airport moved east by bsabrook41 (1.5/1.5)</a></li>
+                <li><a href="#">I'm Dale by GmawCache (1/1.5)</a></li>
+                <li><a href="#">Visting Grandma by SheriffSierra (2/1)</a></li>
+                <li><a href="#">old highway 36 east by 123brimxyz (1.5/1.5)</a></li>
+                <li><a href="#">Spidey 301 by GmawCache (1.5/1.5)</a></li>
+                <li><a href="#">NC  #1 by twilight rabbit (1/1.5)</a></li>
+                <li><a href="#">ONALITTLEHILL by twilight rabbit (1/1.5)</a></li>
+                <li><a href="#">AT THE END by twilight rabbit (1/1.5)</a></li>
+                <li><a href="#">Access USTAB  36 #1 by roelsch (1/1)</a></li>
+                <li><a href="#">USTAB  36 #1 by twilight rabbit (1.5/1.5)</a></li>
+                <li><a href="#">Parking for Mothers Day Surprise Cache by quest4adventure (1.5/1.5)</a></li>
+                <li><a href="#">Mothers Day Surprise Cache by quest4adventure (1.5/1.5)</a></li>
+                <li><a href="#">City of Maple 1 A.C.E. by paperclip-JK (1.5/2)</a></li>
+                <li><a href="#">City of Maple 7  Rustic by paperclip-JK (1/1.5)</a></li>
+                <li><a href="#">A small Town cache 4b by paperclip-JK (1/1.5)</a></li>
+                <li><a href="#">City of Maple 2 county seat by paperclip-JK (1.5/1.5)</a></li>
+                <li><a href="#">City of Maple 8 Stephens opps wrong tree by paperclip-JK (1.5/1.5)</a></li>
+                <li><a href="#">City of Maple 6 lake Catfish by paperclip-JK (1.5/2)</a></li>
+                <li><a href="#">City of Maple 5 lake Bass by paperclip-JK (1.5/2)</a></li>
+                <li><a href="#">City of Maple 3 Green by paperclip-JK (1.5/1.5)</a></li>
+                <li><a href="#">City of Maple 4 medical by paperclip-JK (1.5/1.5)</a></li>
+                <li><a href="#">City of Maple 9  Lake by paperclip-JK (1.5/2)</a></li>
+                <li><a href="#">UNO by Kcars007 (1/1.5)</a></li>
+                <li><a href="#">WHERE ARE ALL THE TRAINS??  CAIRO by twilight rabbit (1.5/1.5)</a></li>
+                <li><a href="#">CAIRO #1 by twilight rabbit (1.5/1.5)</a></li>
+                <li><a href="#">Parking for Charlie Brown's Christmas Tree by roelsch (1/1)</a></li>
+                <li><a href="#">Charlie Brown's Christmas Tree by MSpry and V1p3rx (1/2)</a></li>
+                <li><a href="#">Parking for The Great Pumpkin by roelsch (1/1)</a></li>
+                <li><a href="#">The Great Pumpkin by MSpry and V1p3rx (1.5/2)</a></li>
+                <li><a href="#">The First by MSpry and V1p3rx (1.5/1.5)</a></li>
+                <li><a href="#">Parking for Sir by roelsch (1/1)</a></li>
+                <li><a href="#">Sir by MSpry and V1p3rx (1.5/1.5)</a></li>
+                <li><a href="#">The Joy Is In The Playing by MSpry and V1p3rx (1.5/2.5)</a></li>
+                <li><a href="#">Parking for Up In a Cloud of Dust by roelsch (1/1)</a></li>
+                <li><a href="#">Up In a Cloud of Dust by MSpry and V1p3rx (1.5/2)</a></li>
+                <li><a href="#">Parking for Final Location by roelsch (1/1)</a></li>
+                <li><a href="#">Final Location by  (1/1)</a></li>
+                <li><a href="#">Parking for Ben`s Travel Bug Campground 2 by roelsch (1/1)</a></li>
+                <li><a href="#">Ben`s Travel Bug Campground 2 by wishing on a star (1/2)</a></li>
+                <li><a href="#">Parking for Joe Cool by roelsch (1/1)</a></li>
+                <li><a href="#">Joe Cool by MSpry and V1p3rx (1.5/2)</a></li>
+                <li><a href="#">Parking for !!!!??””…!!!?? by roelsch (1/1)</a></li>
+                <li><a href="#">!!!!??””…!!!?? by MSpry and V1p3rx (2/1.5)</a></li>
+                <li><a href="#">Parking for Little Sister by roelsch (1/1)</a></li>
+                <li><a href="#">Little Sister by MSpry and V1p3rx (1.5/1.5)</a></li>
+                <li><a href="#">Parking for Good Grief by roelsch (1/1)</a></li>
+                <li><a href="#">Good Grief by MSpry and V1p3rx (2/2)</a></li>
+                <li><a href="#">Parking for Hear me Roar! by roelsch (1/1)</a></li>
+                <li><a href="#">Hear me Roar by rc240 and GW246 (3.5/2)</a></li>
+                <li><a href="#">Dorky by MSpry and V1p3rx (1.5/1.5)</a></li>
+                <li><a href="#">A Family Tradition by Ellis Explorers (1.5/1.5)</a></li>
+                <li><a href="#">park and go 2 by paperclip-JK (1.5/1.5)</a></li>
+                <li><a href="#">trains down the line. by paperclip-JK (2/2)</a></li>
+                <li><a href="#">To Soon by Coon creek1 (1/1.5)</a></li>
+                <li><a href="#">A small Town cache 1 by paperclip-JK (1/1)</a></li>
+                <li><a href="#">park and go by paperclip-JK (1/1)</a></li>
+                <li><a href="#">A Real Tree Cut Down by Doug Delp (1.5/1.5)</a></li>
+            </ul>
+            <p>The data-autodividers="true" attribute creates dividers where it is appropriate with uppercased first letters of the item's text.</p>
+        </div>
+
+        <div data-role="main" class="ui-content">
+            <h2 id="route_title">Route created 2016-07-16T18:28:10Z</h2>
+            <ul id="route_ul" data-role="listview" data-autodividers="true" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit ui-first-child">!</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">!!!!??””…!!!?? by MSpry and V1p3rx (2/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">A</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">A Family Tradition by Ellis Explorers (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">A Real Tree Cut Down by Doug Delp (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">A small Town cache 1 by paperclip-JK (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">A small Town cache 4b by paperclip-JK (1/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">A Strong Pinnacles Park and Grab by MSpry and   V1p3rx (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Access USTAB  36 #1 by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Almost Wheeling by JackieA0818 (1/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">AT THE END by twilight rabbit (1/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">B</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Ben`s Travel Bug Campground 2 by wishing on a star (1/2)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Bridge of justice by bsabrook41 (1.5/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">C</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Cache Across America - Missouri by webscouter. (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">CAIRO #1 by twilight rabbit (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Charlie Brown's Christmas Tree by MSpry and V1p3rx (1/2)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">City of Maple 1 A.C.E. by paperclip-JK (1.5/2)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">City of Maple 2 county seat by paperclip-JK (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">City of Maple 3 Green by paperclip-JK (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">City of Maple 4 medical by paperclip-JK (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">City of Maple 5 lake Bass by paperclip-JK (1.5/2)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">City of Maple 6 lake Catfish by paperclip-JK (1.5/2)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">City of Maple 7  Rustic by paperclip-JK (1/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">City of Maple 8 Stephens opps wrong tree by paperclip-JK (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">City of Maple 9  Lake by paperclip-JK (1.5/2)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Commuter Lot: US 40 and S Callahan Rd by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Commuter Parking by jsmtech (1.5/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">D</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Dorky by MSpry and V1p3rx (1.5/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">F</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Final Location by  (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Find your Smiley here by GmawCache (1/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">G</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Good Grief by MSpry and V1p3rx (2/2)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">H</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Hear me Roar by rc240 and GW246 (3.5/2)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Huntsville G R #1 by twilight rabbit (1.5/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">I</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">I'm Chip, He's Dale by GmawCache (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">I'm Dale by GmawCache (1/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">I've Been Switched by pearmanj (2/2.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">I meant Julep by bsabrook41 (1.5/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">J</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Joe Cool by MSpry and V1p3rx (1.5/2)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Jute road tree by 123brimxyz (1.5/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">K</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">K105.5 by Twilight Rabbit (1.5/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">L</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Little Sister by MSpry and V1p3rx (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Locust Creek Covered Bridge by a-pineapple (1/1)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">M</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Mothers Day Surprise Cache by quest4adventure (1.5/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">N</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">NC  #1 by twilight rabbit (1/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">O</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">old highway 36 east by 123brimxyz (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">OLD HWY 63 SMALL TB TRADING POST by twilight rabbit (1.5/2)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">OldCedar1 by TeamSteam (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">ONALITTLEHILL by twilight rabbit (1/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Our Calling by pearmanj (1/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">P</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">park and go 2 by paperclip-JK (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">park and go by paperclip-JK (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Parking area by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Parking for !!!!??””…!!!?? by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Parking for Ben`s Travel Bug Campground 2 by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Parking for Charlie Brown's Christmas Tree by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Parking for Final Location by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Parking for Good Grief by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Parking for Hear me Roar! by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Parking for Joe Cool by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Parking for Little Sister by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Parking for Mothers Day Surprise Cache by quest4adventure (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Parking for Sir by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Parking for The Great Pumpkin by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Parking for Up In a Cloud of Dust by roelsch (1/1)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">R</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">right turn by bsabrook41 (1.5/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">S</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Sir by MSpry and V1p3rx (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Spidey 301 by GmawCache (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Sterling Silver by TeamSignal (1.5/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">T</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">TB HOTEL (for small TBs) by twilight rabbit (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">The airport moved east by bsabrook41 (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">The Doctor Is In by MSpry and V1p3rx (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">The First by MSpry and V1p3rx (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">The Great Pumpkin by MSpry and V1p3rx (1.5/2)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">The Joy Is In The Playing by MSpry and V1p3rx (1.5/2.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">To Soon by Coon creek1 (1/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">trains down the line. by paperclip-JK (2/2)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">U</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">UNO by Kcars007 (1/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Up In a Cloud of Dust by MSpry and V1p3rx (1.5/2)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">USTAB  36 #1 by twilight rabbit (1.5/1.5)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">V</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Visting Grandma by SheriffSierra (2/1)</a></li>
+                <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">W</li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Walt Disney Birthplace Museum by roelsch (1/1)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">What Happened to Tony? (Was Finding Tony) by JackieA0818 and Rainbowkitty (1.5/1.5)</a></li>
+                <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">WHERE ARE ALL THE TRAINS??  CAIRO by twilight rabbit (1.5/1.5)</a></li>
+                <li class="ui-last-child"><a href="#" class="ui-btn ui-btn-icon-right ui-icon-carat-r">Who's Your Friend by GmawCache (2/2)</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="ui-loader ui-corner-all ui-body-a ui-loader-default">
+        <span class="ui-icon-loading"></span>
+        <h1>loading</h1>
+    </div>
+</body>
