@@ -5,7 +5,7 @@
 var fillListDiv = function() {
     var $list = $(".row .panel .table tbody");
     console.log($list);
-    // $list.empty();
+    $list.empty();
 
     var wpts = data.gpx.wpt;
     wpts.forEach(function(wpt, index) {
@@ -23,12 +23,15 @@ var fillListDiv = function() {
         var lat = latstr(wpt["@lat"]);
         var lon = lonstr(wpt["@lon"]);
         var desc = wpt.desc;
-        //     // var extensions = wpt.extensions;
-        //     // var link = wpt.link;
+        // var extensions = wpt.extensions;
+        var usersort = wpt.extensions["gsak:wptExtension"]["gsak:UserSort"]
+        // console.log(usersort);
+        // console.log(extensions["gsak:wptExtension"]);
+        var link = wpt.link;
         var name = wpt.name;
-        //     var sym = wpt.sym;
+        var sym = wpt.sym;
         //     var time = wpt.time;
-        //     var type = wpt.type;
+        var type = wpt.type.replace("Geocache|", "").replace(" Cache", "");
         //     var text = {
         //         "index": index,
         //         "name": name,
@@ -39,7 +42,7 @@ var fillListDiv = function() {
         //         // "link": link,
         //         "date": time,
         //         "sym": sym,
-        //         "type": type.replace("Geocache|", "").replace(" Cache", ""),
+        //         "type": type,
         //     };
         //
         //     $.each(text, function(name, property){
@@ -57,17 +60,34 @@ var fillListDiv = function() {
         var $tr = $("<tr/>")
             .appendTo($list);
         var $td;
+
         $td = $("<td/>")
             .appendTo($tr)
-            .text(index);
+            .text(usersort);
+
         $td = $("<td/>")
             .appendTo($tr)
             .text(name);
+
+        if (link["@href"]) {
+            var descplus = $("<a/>")
+                .attr("href", link["@href"])
+                .text(desc);
+        } else {
+            var descplus = desc;
+        }
+
         $td = $("<td/>")
             .appendTo($tr)
-            .text(desc);
+            .html(descplus);
+
         $td = $("<td/>")
             .appendTo($tr)
             .html(lat + "&nbsp;" + lon);
+
+        $td = $("<td/>")
+            .appendTo($tr)
+            .text(type);
+
     });
 };

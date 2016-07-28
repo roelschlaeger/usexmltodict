@@ -44,3 +44,10 @@ rs input[disabled]::-webkit-input-placeholder {
 .filterable .filters input[disabled]:-ms-input-placeholder {
     color: #333;
 }
+
+/* Bob's additions */
+.filterable a {
+    text-decoration: underline;
+    font-style: italic;
+    font-weight: bold;
+}
