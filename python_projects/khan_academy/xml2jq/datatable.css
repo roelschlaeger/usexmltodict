@@ -1,0 +1,9 @@
+a {
+    text-decoration: underline;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/*tr:nth-child(odd) {
+    background: #EEE;
+}*/
