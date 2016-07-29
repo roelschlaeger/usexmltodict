@@ -24,6 +24,9 @@ var fillListDiv = function() {
         var lon = lonstr(wpt["@lon"]);
         var desc = wpt.desc;
         // var extensions = wpt.extensions;
+        console.log(wpt.extensions);
+        var hint = wpt.extensions["groundspeak:cache"]["groundspeak:encoded_hints"]
+        var container = wpt.extensions["groundspeak:cache"]["groundspeak:container"]
         var usersort = wpt.extensions["gsak:wptExtension"]["gsak:UserSort"]
         // console.log(usersort);
         // console.log(extensions["gsak:wptExtension"]);
@@ -83,11 +86,23 @@ var fillListDiv = function() {
 
         $td = $("<td/>")
             .appendTo($tr)
-            .html(lat + "&nbsp;" + lon);
+            .text(type);
 
         $td = $("<td/>")
             .appendTo($tr)
-            .text(type);
+            .text(container);
+
+        $td = $("<td/>")
+            .appendTo($tr)
+            .text(hint);
+
+        $td = $("<td/>")
+            .appendTo($tr)
+            .html(lat);
+
+        $td = $("<td/>")
+            .appendTo($tr)
+            .html(lon);
 
     });
 };

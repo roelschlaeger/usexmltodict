@@ -51,3 +51,7 @@ rs input[disabled]::-webkit-input-placeholder {
     font-style: italic;
     font-weight: bold;
 }
+
+.filterable tr:nth-child(odd) {
+    background: #EEE;
+}
