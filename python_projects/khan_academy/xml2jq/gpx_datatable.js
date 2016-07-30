@@ -10,9 +10,6 @@ var fillTable = function() {
     var wpts = data.gpx.wpt;
     wpts.forEach(function(wpt, index) {
 
-        var lat = latstr(wpt["@lat"]);
-        var lon = lonstr(wpt["@lon"]);
-        var desc = wpt.desc;
 
         var short = wpt.extensions["groundspeak:cache"]["groundspeak:short_description"]
         var short_text = short["#text"];
@@ -26,26 +23,19 @@ var fillTable = function() {
             long_text = $("<div/>").html(long_text).text();
         }
 
-        var available = wpt.extensions["groundspeak:cache"]["@available"]
         var archived = wpt.extensions["groundspeak:cache"]["@archived"]
-
-        if (index === 1) {
-            // console.log(Object.keys(wpt.extensions["groundspeak:cache"]));
-            // console.log(Object.keys(wpt.extensions["gsak:wptExtension"]));
-            // console.log(short["#text"]);
-            //     console.log(long["#text"]);
-            //     console.log(short_text);
-            //     console.log(long_text);
-        }
-
-        var hint = wpt.extensions["groundspeak:cache"]["groundspeak:encoded_hints"]
+        var available = wpt.extensions["groundspeak:cache"]["@available"]
         var container = wpt.extensions["groundspeak:cache"]["groundspeak:container"]
-        var usersort = wpt.extensions["gsak:wptExtension"]["gsak:UserSort"]
+        var desc = wpt.desc;
+        var hint = wpt.extensions["groundspeak:cache"]["groundspeak:encoded_hints"]
+        var lat = latstr(wpt["@lat"]);
         var link = wpt.link;
+        var lon = lonstr(wpt["@lon"]);
         var name = wpt.name;
         var sym = wpt.sym;
-        //     var time = wpt.time;
         var type = wpt.type.replace("Geocache|", "").replace(" Cache", "");
+        var usersort = wpt.extensions["gsak:wptExtension"]["gsak:UserSort"]
+        //     var time = wpt.time;
 
         // add a row to the table
         var $tr = $("<tr/>")
@@ -101,11 +91,11 @@ var fillTable = function() {
 
         $td = $("<td/>")
             .appendTo($tr)
-            .text(type);
+            .html(type + "<br />" + container);
 
-        $td = $("<td/>")
-            .appendTo($tr)
-            .text(container);
+//      $td = $("<td/>")
+//          .appendTo($tr)
+//          .text(container);
 
         $td = $("<td/>")
             .appendTo($tr)
@@ -113,11 +103,7 @@ var fillTable = function() {
 
         $td = $("<td/>")
             .appendTo($tr)
-            .html(lat);
-
-        $td = $("<td/>")
-            .appendTo($tr)
-            .html(lon);
+            .html(lat + "<br />" + lon);
     });
 
     // now initialize all of the popovers
