@@ -4,6 +4,20 @@ a {
     font-weight: bold;
 }
 
-/*tr:nth-child(odd) {
-    background: #EEE;
-}*/
+tbody a:link {
+    color: red;
+}
+
+tbody a:visited {
+    color: purple;
+}
+
+/*
+tbody a:hover {
+    color: red;
+}
+*/
+
+thead, tbody .even {
+    background-color: #eee
+}
