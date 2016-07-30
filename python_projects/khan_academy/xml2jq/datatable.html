@@ -9,18 +9,19 @@
 
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="datatable.css" />
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="datatable.css" />
-    <!-- <script src="bootsnip.js"></script>
-    <script src="latlon.js"></script>-->
+    <script src="latlon.js"></script>
     <script src="gpx_datatable.js"></script>
     <!-- <script src="topo858a - Chariton County MO.gpx.js"></script> -->
+    <script src="topo858a - Chariton County MO.gpx.js"></script>
     <script>
         $(document).ready(function() {
+            fillTable();
             $("#example").DataTable();
         });
     </script>
@@ -73,7 +74,7 @@
                         <td>N39°&nbsp;8.158</td>
                         <td>W92°&nbsp;19.917</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>1040</td>
                         <td>GC2T312</td>
                         <td><a href="http://www.geocaching.com/seek/cache_details.aspx?guid=f86c9ffa-c8cb-4d42-91bb-9c8be79fbae1">OLD HWY 63 SMALL TB TRADING POST by twilight rabbit (1.5/2)</a></td>
@@ -862,7 +863,7 @@
                         <td>A birds eye of the large stump.</td>
                         <td>N39°&nbsp;23.767</td>
                         <td>W92°&nbsp;25.236</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
