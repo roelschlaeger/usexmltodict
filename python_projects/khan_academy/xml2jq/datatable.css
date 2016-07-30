@@ -21,3 +21,11 @@ tbody a:hover {
 thead, tbody .even {
     background-color: #eee
 }
+
+#example tbody td.unavailable {
+    background-color: pink
+}
+
+#example tbody tr.archived {
+    text-decoration: line-through
+}

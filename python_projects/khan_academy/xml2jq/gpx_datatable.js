@@ -26,14 +26,19 @@ var fillTable = function() {
             long_text = $("<div/>").html(long_text).text();
         }
 
-        // if(index === 1) {
-        //     console.log(Object.keys(wpt.extensions["groundspeak:cache"]));
-        //     console.log(Object.keys(wpt.extensions["gsak:wptExtension"]));
-        //     console.log(short["#text"]);
-        //     console.log(long["#text"]);
-        //     console.log(short_text);
-        //     console.log(long_text);
-        // }
+        var available = wpt.extensions["groundspeak:cache"]["@available"]
+        var archived = wpt.extensions["groundspeak:cache"]["@archived"]
+
+        console.log(available);
+
+        if (index === 1) {
+            console.log(Object.keys(wpt.extensions["groundspeak:cache"]));
+            // console.log(Object.keys(wpt.extensions["gsak:wptExtension"]));
+            // console.log(short["#text"]);
+            //     console.log(long["#text"]);
+            //     console.log(short_text);
+            //     console.log(long_text);
+        }
 
         var hint = wpt.extensions["groundspeak:cache"]["groundspeak:encoded_hints"]
         var container = wpt.extensions["groundspeak:cache"]["groundspeak:container"]
@@ -54,21 +59,34 @@ var fillTable = function() {
             .text(usersort);
 
         // append short and long descriptions to the name as a popover
-        if (!(short_text || long_text)) {
-            var $a = $("<span/>").text(name)
-        } else {
-            var $a = $("<a/>")
+        var $a1 = "";
+        var $a2 = "";
+
+        if (short_text) {
+            $a1 = $("<a/>")
                 .attr("href", "#")
                 .attr("data-toggle", "popover")
                 .attr("data-trigger", "focus")
-                .attr("data-title", short_text)
-                .attr("data-content", long_text)
-                // .attr("text-decoration", "underline")
-                .text(name);
+                .attr("data-title", "Short Description")
+                .attr("data-content", short_text)
+                .html("&nbsp;S");
         }
 
+        if (long_text) {
+            $a2 = $("<a/>")
+                .attr("href", "#")
+                .attr("data-toggle", "popover")
+                .attr("data-trigger", "focus")
+                .attr("data-title", "Long Description")
+                .attr("data-content", long_text)
+                .html("&nbsp;L");
+        }
+
+        // var $a = $("<span/>").text(name)
         $td = $("<td/>")
-            .append($a)
+            .text(name)
+            .append($a1)
+            .append($a2)
             .appendTo($tr);
 
         if (link["@href"]) {
@@ -85,6 +103,14 @@ var fillTable = function() {
         $td = $("<td/>")
             .appendTo($tr)
             .html(descplus);
+
+        if (!(archived === "False")) {
+            $tr.addClass("archived");
+        }
+
+        if (!(available === "True")) {
+            $td.addClass("unavailable");
+        }
 
         $td = $("<td/>")
             .appendTo($tr)
