@@ -29,10 +29,8 @@ var fillTable = function() {
         var available = wpt.extensions["groundspeak:cache"]["@available"]
         var archived = wpt.extensions["groundspeak:cache"]["@archived"]
 
-        console.log(available);
-
         if (index === 1) {
-            console.log(Object.keys(wpt.extensions["groundspeak:cache"]));
+            // console.log(Object.keys(wpt.extensions["groundspeak:cache"]));
             // console.log(Object.keys(wpt.extensions["gsak:wptExtension"]));
             // console.log(short["#text"]);
             //     console.log(long["#text"]);
@@ -49,7 +47,7 @@ var fillTable = function() {
         //     var time = wpt.time;
         var type = wpt.type.replace("Geocache|", "").replace(" Cache", "");
 
-        // create the <tr> for the row
+        // add a row to the table
         var $tr = $("<tr/>")
             .appendTo($list);
 
@@ -58,37 +56,24 @@ var fillTable = function() {
             .appendTo($tr)
             .text(usersort);
 
-        // append short and long descriptions to the name as a popover
-        var $a1 = "";
-        var $a2 = "";
-
-        if (short_text) {
-            $a1 = $("<a/>")
-                .attr("href", "#")
-                .attr("data-toggle", "popover")
-                .attr("data-trigger", "focus")
-                .attr("data-title", "Short Description")
-                .attr("data-content", short_text)
-                .html("&nbsp;S");
-        }
-
-        if (long_text) {
-            $a2 = $("<a/>")
-                .attr("href", "#")
-                .attr("data-toggle", "popover")
-                .attr("data-trigger", "focus")
-                .attr("data-title", "Long Description")
-                .attr("data-content", long_text)
-                .html("&nbsp;L");
-        }
-
-        // var $a = $("<span/>").text(name)
+        // append name
         $td = $("<td/>")
-            .text(name)
-            .append($a1)
-            .append($a2)
-            .appendTo($tr);
+            .appendTo($tr)
+            .html(name);
 
+        if (short_text || long_text) {
+            // append short description to the usersort as a popover
+            var $shorttext = $("<a/>")
+                .attr("href", "#")
+                .attr("data-toggle", "popover")
+                .attr("data-trigger", "focus")
+                .attr("data-title", short_text)
+                .attr("data-content", long_text)
+                .appendTo($td)
+                .html("<p style='font-size: 80%; font-style: normal'>Descriptions</p>");
+        }
+
+        // add a link to the printer-format of the cache description page
         if (link["@href"]) {
             // var tlink = link["@href"];
             var tlink = link["@href"].replace("cache_details", "cdpf") + "&lc=10";
@@ -104,10 +89,12 @@ var fillTable = function() {
             .appendTo($tr)
             .html(descplus);
 
+        // special annotation if the cache is archived
         if (!(archived === "False")) {
             $tr.addClass("archived");
         }
 
+        // special annotation if the cache is unavailable
         if (!(available === "True")) {
             $td.addClass("unavailable");
         }
@@ -133,5 +120,6 @@ var fillTable = function() {
             .html(lon);
     });
 
+    // now initialize all of the popovers
     $('[data-toggle="popover"]').popover();
 };
