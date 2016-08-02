@@ -5,14 +5,17 @@
 <head>
     <!-- https://datatables.net/examples/styling/bootstrap.html -->
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Display Table Via DataTable</title>
 
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css"> -->
     <link rel="stylesheet" type="text/css" href="datatable.css" />
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
@@ -25,27 +28,29 @@
         $(document).ready(function() {
             fillImgTable();
 
-            $(".logs").DataTable(
-                {
-                    "lengthMenu": [[3, 5, 10, -1], [3, 5, 10, "All"]],
-                    "pageLength": 3,
-                }
-                );
+            $(".logs").DataTable({
+                "lengthMenu": [
+                    [3, 5, 10, -1],
+                    [3, 5, 10, "All"]
+                ],
+                "pageLength": 3,
+            });
 
-            $("#images").DataTable(
-                {
-                    "lengthMenu": [[3, 5, 10, -1], [3, 5, 10, "All"]],
-                    "pageLength": 5,
-                    "dom": 'fliptpil',
-                }
-            );
+            $("#images").DataTable({
+                "lengthMenu": [
+                    [3, 5, 10, -1],
+                    [3, 5, 10, "All"]
+                ],
+                "pageLength": 5,
+                "dom": 'fliptpil',
+            });
         });
     </script>
     <!--
     <style>
-        table.logs, thead.logs, tbody.logs, tr.logs td.logs th.logs { 
-            border: solid black 1px; 
-            padding: 12px; 
+        table.logs, thead.logs, tbody.logs, tr.logs td.logs th.logs {
+            border: solid black 1px;
+            padding: 12px;
             background-color: lightyellow;
             border-spacing: 12px;
         }
@@ -55,43 +60,73 @@
 
 <body>
     <div class="container">
-        <div class="table-responsive">
-            <table id="images" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
-                    <tr class="filters">
-                        <th>index</th>
-                        <th>name</th>
-                        <th>desc</th>
-                        <th>logs</th>
-                        <!-- <th>images</th> -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1010</td>
-                        <td>CLUS40A</td>
-                        <td>Commuter Lot: US 40 and S Callahan Rd by roelsch (1/1)</td>
-                        <td>0</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>1020</td>
-                        <td>GC47Q06</td>
-                        <td>OldCedar1 by TeamSteam (1.5/1.5)</td>
-                        <td>1</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td>1030</td>
-                        <td>GC5WYAK</td>
-                        <td>A Strong Pinnacles Park and Grab by MSpry and   V1p3rx (1.5/1.5)</td>
-                        <td>2</td>
-                        <td>3</td>
-                    </tr>
-                    <!-- etc. etc. -->
-                </tbody>
-            </table>
+        <div data-role="page" id="pageone">
+            <div data-role="header">
+                <h1>Welcome To My Homepage</h1>
+            </div>
+
+            <div data-role="main" class="ui-content">
+                <p>Welcome!</p>
+                <a href="#pagetwo">Go to Dialog Page</a>
+                <div class="table-responsive">
+                    <table id="images" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr class="filters">
+                                <th>index</th>
+                                <th>name</th>
+                                <th>desc</th>
+                                <th>logs</th>
+                                <!-- <th>images</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1010</td>
+                                <td>CLUS40A</td>
+                                <td>Commuter Lot: US 40 and S Callahan Rd by roelsch (1/1)</td>
+                                <td>0</td>
+                                <!-- <td>1</td> -->
+                            </tr>
+                            <tr>
+                                <td>1020</td>
+                                <td>GC47Q06</td>
+                                <td>OldCedar1 by TeamSteam (1.5/1.5)</td>
+                                <td>1</td>
+                                <!-- <td>2</td> -->
+                            </tr>
+                            <tr>
+                                <td>1030</td>
+                                <td>GC5WYAK</td>
+                                <td>A Strong Pinnacles Park and Grab by MSpry and V1p3rx (1.5/1.5)</td>
+                                <td>2</td>
+                                <!-- <td>3</td> -->
+                            </tr>
+                            <!-- etc. etc. -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div data-role="footer">
+                <h1>Footer Text</h1>
+            </div>
         </div>
+
+        <div data-role="page" data-dialog="true" id="pagetwo">
+            <div data-role="header">
+                <h1>I'm A Dialog Box!</h1>
+            </div>
+
+            <div data-role="main" class="ui-content">
+                <a href="#pageone">Go to Page One</a>
+            </div>
+
+            <div data-role="footer">
+                <h1>Footer Text In Dialog</h1>
+            </div>
+
+        </div>
+
     </div>
 
 </body>

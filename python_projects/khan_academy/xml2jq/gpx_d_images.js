@@ -1,5 +1,5 @@
 <!-- http://jplist.com/documentation/js-settings -->
-
+<!-- http://www.w3schools.com/jquerymobile/jquerymobile_pages.asp -->
 "use strict";
 
 var make_logs_table = function(logs) {
@@ -11,12 +11,12 @@ var make_logs_table = function(logs) {
     var $tr = $('<tr/>').appendTo($thead);
 
     $.each(
-        ["id", "date", "type", "finder", "text"], 
+        ["id", "date", "type", "finder", "text"],
         function(n, e) {
             $("<th/>")
                 .appendTo($tr)
                 .text(e);
-    });
+        });
 
     $.each(logs, function(n, e) {
         var id = e["@id"];
@@ -30,14 +30,13 @@ var make_logs_table = function(logs) {
         }
         var text = "NO TEXT";
         if (_text) {
-            if (_text["@encoded"] !== "False"){
-            }
+            if (_text["@encoded"] !== "False") {}
             var text = _text["#text"]
         }
-//      if (n === 0) {
-//          console.log(_finder);
-//          console.log(_text);
-//      }
+        //      if (n === 0) {
+        //          console.log(_finder);
+        //          console.log(_text);
+        //      }
         var $tr = $('<tr>').appendTo($tbody);
         var td = $("<td/>").appendTo($tr).text(id);
         var td = $("<td/>").appendTo($tr).text(date);
@@ -62,9 +61,17 @@ var fillImgTable = function() {
         var name = wpt.name;
         var desc = wpt.desc;
         var cache = wpt.extensions["groundspeak:cache"]
-        var logs = cache["groundspeak:logs"] || { "groundspeak:log": [] };
+        var logs = cache["groundspeak:logs"] || {
+            "groundspeak:log": []
+        };
         logs = logs["groundspeak:log"];
+
         var $new_table = make_logs_table(logs);
+        $new_table.append(
+            $("<a/>")
+                .attr("href", "#pageone")
+                .text("Go to pageone")
+        );
 
         var finds = "";
         $.each(logs, function(n, e) {
@@ -99,15 +106,44 @@ var fillImgTable = function() {
             .appendTo($tr)
             .html(logs.length + " " + finds);
 
-        var $a = $("<span/>")
-            .attr("href", "#")
-            .attr("rel", "_blank")
-            .html($new_table);
-        $td.append($a);
+        var page_link = "log_" + name;
 
-//      $td = $("<td/>")
-//          .appendTo($tr)
-//          .html(finds);
+        var $a = $("<a/>")
+            .attr("href", "#" + page_link)
+            .text("Logs " + name)
+            .appendTo($td);
+
+        var $new_header = $("<div/>")
+            .attr("data-role", "header")
+            .text("Header Text");
+
+        var $new_main = $("<div/>")
+            .attr("data-role", "main")
+            .addClass("ui-content")
+            .append($new_table);
+
+        var $new_footer= $("<div/>")
+            .attr("data-role", "footer")
+            .text("Footer Text");
+
+        var $new_content = $("<div/>")
+            .append($new_header)
+            .append($new_main)
+            .append($new_footer);
+
+        var $new_page = $("<div/>")
+            .attr("data_role", "page")
+            .attr("data-dialog", "true")
+            .attr("id", page_link)
+            .append($new_content);
+
+        $("#pageone")
+            .after($new_page);
+
+
+        //      $td = $("<td/>")
+        //          .appendTo($tr)
+        //          .html(finds);
 
     });
 
