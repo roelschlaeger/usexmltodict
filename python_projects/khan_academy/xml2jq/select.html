@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Select Menu</title>
+
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="topo859 - Macon County MO.gpx.js"></script>
+    <style>
+        label {
+            display: block;
+        }
+
+        select {
+            width: 450px;
+        }
+
+        .overflow {
+            height: 200px;
+        }
+    </style>
+
+    <script>
+        $(document).on("ready", function(event) {
+            var build_select_table = function(data) {
+
+                var $label = $("<label/>")
+                    .attr("for", "waypoints")
+                    .text("Select a waypoint");
+
+                var $select = $("<select/>")
+                    .attr("name", "waypoints")
+                    .attr("id", "waypoints");
+
+                $.each($(data.gpx.wpt), function(n, e) {
+                    var name = e.name;
+                    var desc = e.desc;
+                    var usersort = e["extensions"]["gsak:wptExtension"]["gsak:UserSort"];
+
+                    var value = name;
+                    var selector = usersort + ": " + desc;
+
+                    $("<option/>")
+                        .attr("value", value)
+                        .text(selector)
+                        .appendTo($select);
+                })
+
+                var $div = $("<div/>")
+                    .append($label)
+                    .append($select);
+
+                return $div;
+            };
+
+//          var $div = build_select_table(data);
+
+            $("body").append(build_select_table(data));
+        })
+    </script>
+
+</head>
+
+<body>
+</body>
+
+</html>
