@@ -58,17 +58,14 @@
                     .append($label)
                     .append($select);
 
-                // $select.selectmenu();
-
                 $select.on("change", function(event) {
+                    alert(event.target);
                     console.log(event.target);
                     console.log(event);
                 })
 
                 return $div;
             };
-
-//          var $div = build_select_table(data);
 
             $("body").append(build_select_table(data));
         })
