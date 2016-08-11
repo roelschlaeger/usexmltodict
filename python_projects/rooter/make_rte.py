@@ -100,6 +100,7 @@ class Route(object):
         return rte
 
 INFILE = "default.gpx"
+INFILE = "topo859 - Macon County MO.gpx"
 tree = ET.parse(INFILE)
 wpts = get_wpts(tree.getroot())
 rte = Route(name="My Route", rtept=wpts).to_xml()

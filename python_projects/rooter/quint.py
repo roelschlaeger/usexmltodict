@@ -10,6 +10,7 @@ import gpx2kml
 import mr
 import rooter
 import make_rtept
+import make_gs
 
 ########################################################################
 
@@ -66,6 +67,11 @@ class MyPanel2(wx.Panel):
             -1,
             "&RTEPT - generate a Streets &Trips GPX _rtept file"
         )
+        self.cb7 = wx.CheckBox(
+            self,
+            -1,
+            "&GeoSphere - generate a GeoSphere file"
+        )
 
         button = wx.Button(self,   -1, "&Run")
         self.tc1 = wx.TextCtrl(
@@ -82,6 +88,7 @@ class MyPanel2(wx.Panel):
         self.cb4.SetValue(False)
         self.cb5.SetValue(True)
         self.cb6.SetValue(True)
+        self.cb7.SetValue(True)
 
         # set up sizers
         sb1 = wx.StaticBoxSizer(
@@ -97,6 +104,7 @@ class MyPanel2(wx.Panel):
         sb1.Add(self.cb4, 0, wx.ALL, 5)
         sb1.Add(self.cb5, 0, wx.ALL, 5)
         sb1.Add(self.cb6, 0, wx.ALL, 5)
+        sb1.Add(self.cb7, 0, wx.ALL, 5)
 
         top_sizer = wx.BoxSizer(wx.VERTICAL)
         top_sizer.Add(sz0,      0, wx.CENTER | wx.ALL, 5)
@@ -150,6 +158,7 @@ class MyPanel2(wx.Panel):
         mr_flag = self.cb4.GetValue()
         ro_flag = self.cb5.GetValue()
         rtept_flag = self.cb6.GetValue()
+        gs_flag = self.cb7.GetValue()
         pathname = self.tc0.GetValue()
 
         # must have at least one checkbox selected
@@ -159,7 +168,8 @@ class MyPanel2(wx.Panel):
             kml_flag or
             mr_flag or
             ro_flag or
-            rtept_flag
+            rtept_flag or
+            gs_flag
         ):
             wx.MessageBox(
                 "You must select at least one of checkbox choices",
@@ -188,7 +198,8 @@ class MyPanel2(wx.Panel):
                 kml_flag=kml_flag,
                 mr_flag=mr_flag,
                 ro_flag=ro_flag,
-                rtept_flag=rtept_flag
+                rtept_flag=rtept_flag,
+                gs_flag=gs_flag
             )
 
 ########################################################################
@@ -201,7 +212,8 @@ class MyPanel2(wx.Panel):
         kml_flag=True,
         mr_flag=True,
         ro_flag=True,
-        rtept_flag=False
+        rtept_flag=False,
+        gs_flag=True
     ):
         """Perform all processing specified by pathname and flags."""
         self.log("Reading from %s" % pathname)
@@ -212,7 +224,8 @@ class MyPanel2(wx.Panel):
             kml_flag or
             mr_flag or
             ro_flag or
-            rtept_flag
+            rtept_flag or
+            gs_flag
         ):
             self.log("ERROR: Nothing to do: no flags set")
             return
@@ -233,6 +246,9 @@ class MyPanel2(wx.Panel):
         if rtept_flag:
             self.log("rtept_flag: %s" % pathname)
             self.do_rtept(pathname)
+
+        if gs_flag:
+            self.do_gs(pathname)
 
         self.log("Done!")
 
@@ -289,6 +305,14 @@ class MyPanel2(wx.Panel):
 
         output_filename = make_rtept.do_make_rtept(pathname)
         self.log("%s created" % output_filename)
+
+    ########################################################################
+
+    def do_gs(self, pathname):
+        """Create a GeoSphere gpx File."""
+        self.log("Creating GeoSphere file")
+
+        make_gs.process_arg(pathname)
 
 ########################################################################
 
