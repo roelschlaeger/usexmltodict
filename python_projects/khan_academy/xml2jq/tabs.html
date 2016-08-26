@@ -49,8 +49,17 @@
             float: right;
             width: 40em;
         }
+
+        .unavailable, .archived {
+            color: red;
+        }
+
+        .archived {
+            font-style: italic;
+        }
     </style>
-    <script src="topo854 - Williamsville IL.gpx.js"></script>
+    <script src="topo860a - Moberly MO.gpx.js"></script>
+    <script src="latlon.js"></script>
     <script>
         var div_index = 0;
         var addTab = function() {
@@ -63,33 +72,65 @@
 
             wpts.forEach(function(wpt) {
                 var div_number = "divs-" + div_index;
+                div_index += 1;
 
                 console.log(wpt);
-                var usersort = wpt.extensions["gsak:wptExtension"]["gsak:UserSort"];
+                var cacheExtension = wpt.extensions["groundspeak:cache"]
+                var gsakExtension = wpt.extensions["gsak:wptExtension"]
+
+                var archived = (div_index & 1) || cacheExtension["@archived"] !== "False";
+                var unavailable = (div_index & 2) || cacheExtension["@available"] !== "True";
+
+                var usersort = gsakExtension["gsak:UserSort"];
+
                 var name = [usersort, wpt.name].join(" ");
+                if (archived || unavailable) {
+                    $("<span/>")
+                        .attr("color", "red")
+                        .wrap(name);
+                }
 
                 var a = $("<a/>")
                     .attr("href", "#" + div_number)
-                    .text(name);
+                    .html(name);
                 var li = $("<li/>").append(a);
                 ul.append(li);
 
                 var html  = [
-                    usersort,
-                    wpt.name,
-                    wpt.desc,
-                    wpt["@lat"],
-                    wpt["@lon"],
+                    latstr(wpt["@lat"]),
+                    lonstr(wpt["@lon"]),
                     wpt.sym,
                     wpt.type.replace("Geocache|", "")
                 ].join("<br/>");
 
+                var heading = $("<span>").html(name + "<br />" + wpt.desc);
+                if (archived) {
+                    heading.addClass("archived")
+                }
+                if (unavailable) {
+                    heading.addClass("unavailable")
+                }
+
                 div = $("<div/>")
                     .attr("id", div_number)
                     .appendTo(tabs);
-                div.append($("<h2/>").text("Content Heading " + div_index));
+                div.append($("<h2/>").html(heading));
+
+                if (archived) {
+                    var p = $("<span/>")
+                        .addClass("archived")
+                        .text("Archived ");
+                    div.append(p);
+                }
+
+                if (unavailable) {
+                    var p = $("<span/>")
+                        .addClass("unavailable")
+                        .text("Unavailable ");
+                    div.append(p);
+                }
+
                 div.append($("<p/>").html(html));
-                div_index += 1;
             });
         };
     </script>

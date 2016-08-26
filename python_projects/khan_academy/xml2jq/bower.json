@@ -16,12 +16,13 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^3.0.0",
+    "jquery": "3.0.0",
     "jquery-ui": "jqueryui#^1.11.4",
     "tablesorter": "jquery.tablesorter#^2.26.5",
     "jplist": "^5.2.0",
     "bootstrap": "^3.3.6",
-    "paging": "https://github.com/infusion/jQuery-Paging.git#^1.2.0"
+    "paging": "https://github.com/infusion/jQuery-Paging.git#^1.2.0",
+    "knockout": "^3.4.0"
   },
   "resolutions": {
     "jquery": "1.9.1 - 2",
