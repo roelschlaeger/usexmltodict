@@ -1,0 +1,134 @@
+{
+  "groundspeak:log": [
+    {
+      "@id": "-2",
+      "groundspeak:date": "2016-04-19T08:00:00",
+      "groundspeak:type": "Write note",
+      "groundspeak:finder": {
+        "@id": "0",
+        "#text": "GSAK"
+      },
+      "groundspeak:text": {
+        "@encoded": "False",
+        "#text": "A = 7\nB = 2\nC = 4\nD = 6\nE = 5\nF = 3\nG = 0\n\n\nN38 5A.BCD W92 0E.AFG\nN38 57.246 W92 05.730\n\n· Hymenoptera (GC6FPDM) ·\nN 38° 57.246  W 92° 05.730\n\nSuccess!\n\nWhoohoo! Yipee! uh-huh, uh-huh! w00t! Yeah, baby!\n\nNow, go get it!"
+      }
+    },
+    {
+      "@id": "623968271",
+      "groundspeak:date": "2016-07-31T19:00:00Z",
+      "groundspeak:type": "Found it",
+      "groundspeak:finder": {
+        "@id": "426597",
+        "#text": "Funwalt & Birdie"
+      },
+      "groundspeak:text": {
+        "@encoded": "False",
+        "#text": "Great series!  A great big thank you to the CO for his help on this one!  Thanks for the cache!"
+      }
+    },
+    {
+      "@id": "621784401",
+      "groundspeak:date": "2016-07-25T19:00:00Z",
+      "groundspeak:type": "Write note",
+      "groundspeak:finder": {
+        "@id": "1562026",
+        "#text": "spitoony"
+      },
+      "groundspeak:text": {
+        "@encoded": "False",
+        "#text": "the quiz portion of this has proven trickier than I thought.  bumping up difficulty rating [:)]"
+      }
+    },
+    {
+      "@id": "615551694",
+      "groundspeak:date": "2016-07-04T19:00:00Z",
+      "groundspeak:type": "Found it",
+      "groundspeak:finder": {
+        "@id": "450222",
+        "#text": "Unitzoid"
+      },
+      "groundspeak:text": {
+        "@encoded": "False",
+        "#text": "Something's Bugging Me . . . #7 (6:50 PM)\n\nAh, the last cache for the day.  There'd be plenty of time to return home and relax . . . provided the hunt was short and sweet.  [:P]  Parking was easily obtained close to the coordinates, and a short walk saw me there quickly.  Some manner of looking about was needed to procure this particular stash.  A keen eye spotted the container, and all was good.  I contemplated finding a couple more west of Columbia; however, there were tasks awaiting that could not be put off . . . like dinner . . .\n\nThank you for all the work you've put into researching and publishing this series.  While my logs centered around the journey and discovery, learning more about the insect world around us was stupendous!"
+      }
+    },
+    {
+      "@id": "609897314",
+      "groundspeak:date": "2016-06-15T19:00:00Z",
+      "groundspeak:type": "Found it",
+      "groundspeak:finder": {
+        "@id": "1425169",
+        "#text": "trekto"
+      },
+      "groundspeak:text": {
+        "@encoded": "False",
+        "#text": "A really hot day GeoCaching with Bluedaisy, Bustermom and Chance. Thanks."
+      }
+    },
+    {
+      "@id": "609848968",
+      "groundspeak:date": "2016-06-15T19:00:00Z",
+      "groundspeak:type": "Found it",
+      "groundspeak:finder": {
+        "@id": "443157",
+        "#text": "bluedaisy"
+      },
+      "groundspeak:text": {
+        "@encoded": "False",
+        "#text": "Found with Trekto and Buster's Mama while caching in the Columbia area. Thanks!"
+      }
+    },
+    {
+      "@id": "598130228",
+      "groundspeak:date": "2016-05-07T18:08:03Z",
+      "groundspeak:type": "Found it",
+      "groundspeak:finder": {
+        "@id": "8413173",
+        "#text": "pianocats90"
+      },
+      "groundspeak:text": {
+        "@encoded": "False",
+        "#text": "Got it! Tftc!"
+      }
+    },
+    {
+      "@id": "592051138",
+      "groundspeak:date": "2016-04-16T18:59:59Z",
+      "groundspeak:type": "Found it",
+      "groundspeak:finder": {
+        "@id": "561623",
+        "#text": "Arthur & Trillian"
+      },
+      "groundspeak:text": {
+        "@encoded": "False",
+        "#text": "FTF! [:D]\n\nOut caching after the \"Battle of Binder Redux - CITO 2016\" event on a gorgeous Saturday. The event went off without a hitch and the conditions couldn't have been better. The great weather continued into the afternoon, when it was at this point that I decided to go after these new caches.\n\nI saw one pop up the night before, but I was too pooped to go after it, having already traveled to Marshall, Sedalia, Jeff City and back home. No matter...another cacher got the well-earned FTF. Early this morning, however, I noticed five more caches publish. Hmmm...better get to work on them. I got all but one solved, and that one was quickly rectified after I got a tip from the cache owner. Solving them was all I could do, though, because I had an event to attend.\n\nAfter the event was over and we were heading back home, I noticed that the caches had remained unfound. What the heck, I thought...let's go for them! Best case scenario, I get a few FTF's and cache on a gorgeous day...worst case, I still get to cache on a gorgeous day! So, I loaded up the GPSr and scooted off down the road.\n\nThis cache was the first of the new caches I went after. As I neared the area of ground zero, I kinda had an idea where it might be. I was wrong just a bit. The second place I looked held the container. I opened it up and was pleased to find a blank log, which I dutifully marred in the FTF spot. I put it back and set out for the next one.\n\nThanks for placing this cache for everyone, myself included, to enjoy! TNLN/SL TFTC!\n\nYes, we know where our towels are...\n\n-Fulton, MO"
+      }
+    },
+    {
+      "@id": "591455514",
+      "groundspeak:date": "2016-04-15T18:59:59Z",
+      "groundspeak:type": "Post Reviewer Note",
+      "groundspeak:finder": {
+        "@id": "4552",
+        "#text": "*gln"
+      },
+      "groundspeak:text": {
+        "@encoded": "False",
+        "#text": "**Quick View** l [Guidelines ](http://tinyurl.com/bdf5m)l [FAQ's ](http://tinyurl.com/2re5k6) l  [ Knowledgebase ](http://tinyurl.com/yd459kh) l [ Geocaches to be Archived ](http://tinyurl.com/hly9zpq) l [Geocache Rating System ](http://www.clayjar.com/gcrs/) l [Get your Cache Published Quickly: ](http://tinyurl.com/yhnva3g) l [Cache Listing Requirements ](http://www.geocaching.com/about/guidelines.aspx) l [How to enable your geocache for further review.](http://support.groundspeak.com/index.php?pg=kb.page&id=301) l [How to do EVERYTHING!](http://support.groundspeak.com/index.php?pg=kb.chapter&id=22)\n\n\n___\n\n\nCheers  & Thanks,\n\nCongratulations  on this addition to geocaching in your area. \n\n\n\n***Thanks a MILLION, Glenn*** \n***\"Seek quality, not quantity\"***\n--Your friendly Missouri Geocache Review team is:\n ***[*gln](http://www.geocaching.com/profile/?u=*gln), [Mongo](http://www.geocaching.com/profile/?u=Mongo) and [Banjo-Boy](http://www.geocaching.com/profile/?u=Banjo-Boy)***\n \n----\n\"When you go to hide a geocache, think of the reason you are bringing people to that spot. If the only reason is for the geocache, then find a better spot.\" – briansnat\nApril 16, 2016 12:05 AM by *gln"
+      }
+    },
+    {
+      "@id": "591455503",
+      "groundspeak:date": "2016-04-16T05:06:15Z",
+      "groundspeak:type": "Publish Listing",
+      "groundspeak:finder": {
+        "@id": "4552",
+        "#text": "*gln"
+      },
+      "groundspeak:text": {
+        "@encoded": "False",
+        "#text": "Published"
+      }
+    }
+  ]
+}

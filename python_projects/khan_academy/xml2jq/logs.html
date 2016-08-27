@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Log Display</title>
+    <link rel="stylesheet" href="">
+    <script src="bower_components\json2\json2.js"></script>
+    <script src="bower_components\jquery\dist\jquery.js"></script>
+    <script src="bower_components\knockout\dist\knockout.js"></script>
+    <script>
+        var Log = function(data) {
+            console.log(data);
+
+            var finderObject = data["groundspeak:finder"];
+            var textObject = data["groundspeak:text"];
+
+            var s = {
+                id: data["@id"],
+                date: data["groundspeak:date"],
+                finder_text: finderObject["#text"],
+                finder_id: finderObject["@id"],
+                text_text: textObject["#text"],
+                text_encoded: textObject["@encoded"],
+                type: data["groundspeak:type"],
+            };
+
+            return s;
+        };
+
+        var ViewModel = function(rawLogs) {
+            var self = this;
+
+            self.logs = [];
+            for (var i = 0; i < rawLogs.length; i++) {
+                self.logs.push(new Log(rawLogs[i]));
+            };
+            console.log(self.logs);
+
+            self.index = function(el) {
+                console.log(el);
+                return el.date + " " + el.type + " " + el.finder_text + " " + el.text_text;
+            }
+        };
+
+        // Ready function
+        $(function() {
+
+            console.log("Ready");
+
+            // Fetch logs from a file
+            var fetchLogs = function(filename) {
+
+                var rawLogs = null;
+
+                var jqxhr = $.getJSON(filename,
+                    function() {
+                        console.log("success");
+                    })
+
+                .done(function(data) {
+                    console.log("second success");
+                    rawLogs = data["groundspeak:log"];
+                    console.log(rawLogs);
+                })
+
+                .fail(function() {
+                    console.log("error");
+                    alert("Failed to load logs.json");
+                });
+
+                jqxhr.always(function() {
+                    console.log("second complete");
+                    ko.applyBindings(new ViewModel(rawLogs));
+                });
+            };
+            fetchLogs("logs.json");
+
+        });
+    </script>
+</head>
+
+<body>
+    <div id="logs">
+        <ul data-bind="foreach: logs">
+            <li data-bind="text: $parent.index($data)"></li>
+        </ul>
+    </div>
+</body>
+
+</html>

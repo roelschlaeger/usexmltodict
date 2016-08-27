@@ -22,7 +22,8 @@
     "jplist": "^5.2.0",
     "bootstrap": "^3.3.6",
     "paging": "https://github.com/infusion/jQuery-Paging.git#^1.2.0",
-    "knockout": "^3.4.0"
+    "knockout": "^3.4.0",
+    "json2": "*"
   },
   "resolutions": {
     "jquery": "1.9.1 - 2",
