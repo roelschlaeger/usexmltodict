@@ -5,6 +5,47 @@
     <meta charset="utf-8">
     <title>Log Display</title>
     <link rel="stylesheet" href="">
+    <style>
+        #logs table,
+        thead,
+        tbody,
+        tr,
+        th,
+        td {
+            border: 1px solid black;
+            text-align: center;
+            font-family: monospace;
+            border-collapse: collapse;
+        }
+
+        #logs thead {
+            background-color: lightyellow;
+        }
+        #logs tr:nth-child(even) {
+            background-color: #ddd;
+        }
+
+        #logs td.left-align {
+            text-align: left;
+        }
+
+        #logs {
+            margin: 4px;
+        }
+
+        #logs table td:first-child {
+            width: 11em;
+        }
+
+        #logs table td pre {
+            white-space: pre-wrap;              /* Since CSS 2.1 */
+            white-space: -moz-pre-wrap;         /* Mozilla, since 1999 */
+            white-space: -pre-wrap;             /* Opera 4-6 */
+            white-space: -o-pre-wrap;           /* Opera 7 */
+            word-wrap: break-word;              /* Internet Explorer 5.5+ */
+            margin: 4px;
+        }
+    </style>
     <script src="bower_components\json2\json2.js"></script>
     <script src="bower_components\jquery\dist\jquery.js"></script>
     <script src="bower_components\knockout\dist\knockout.js"></script>
@@ -18,12 +59,14 @@
             var s = {
                 id: data["@id"],
                 date: data["groundspeak:date"],
-                finder_text: finderObject["#text"],
-                finder_id: finderObject["@id"],
-                text_text: textObject["#text"],
-                text_encoded: textObject["@encoded"],
+                finderText: finderObject["#text"],
+                finderId: finderObject["@id"],
+                textText: textObject["#text"].trim(),
+                textEncoded: textObject["@encoded"],
                 type: data["groundspeak:type"],
             };
+
+            console.log(s);
 
             return s;
         };
@@ -82,9 +125,36 @@
 
 <body>
     <div id="logs">
-        <ul data-bind="foreach: logs">
+        <table>
+            <thead>
+                <tr>
+                    <!-- <th>Id</th> -->
+                    <th>Date</th>
+                    <th style="width: 6%">Type</th>
+                    <!-- <th>Finder Id</th> -->
+                    <th>Finder</th>
+                    <th>Text Encoded Flag</th>
+                    <th>Text</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: logs">
+                <tr>
+                    <!-- <td data-bind="text: id"></td> -->
+                    <td data-bind="text: date"></td>
+                    <td data-bind="text: type"></td>
+                    <!-- <td data-bind="text: finderId"></td> -->
+                    <td data-bind="text: finderText"></td>
+                    <td data-bind="text: textEncoded"></td>
+                    <td class="left-align">
+                        <pre data-bind="html: textText">
+                        </pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <ul data-bind="foreach: logs">
             <li data-bind="text: $parent.index($data)"></li>
-        </ul>
+        </ul> -->
     </div>
 </body>
 
