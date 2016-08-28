@@ -5,16 +5,36 @@
     <meta charset="utf-8">
     <title>Using Knockout with GPX</title>
     <style>
-        body {
-            margin-top, margin-left: 2px;
+        h1, h2
+        {
+            text-align: center;
+            width: 80%;
+            margin: auto;
         }
 
-        table,
-        tr,
-        td,
-        th {
-            border: solid 1px black;
+        table
+        {
+            text-align: center;
+            width: 80%;
+            margin: auto;
+            border-spacing: 2px;
+            border: solid 2px black;
+            border-collapse: collapse;
+        }
 
+        td, th
+        {
+            border: solid 1px black;
+            border-collapse: collapse;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ddd;
+        }
+
+        thead, tfoot {
+            background-color: #6d6;
+            font-style: italic;
         }
 
         .corrected {
@@ -46,30 +66,36 @@
         }
 
         .archived {
-            font-size: 1.5em;
+            font-size: 1.25em;
             text-decoration: line-through;
             color: white;
             background-color: red;
         }
-
     </style>
     <script src="bower_components\jquery\dist\jquery.js"></script>
     <script src="bower_components\knockout\dist\knockout.js"></script>
     <script src="topo860a - Moberly MO.gpx.js"></script>
     <script src="latlon.js"></script>
+    <script src="Geocache.js"></script>
     <script src="kogpx.js"></script>
 </head>
 
 <body>
-    <h1>Data</h1>
-    <!-- <select data-bind="foreach: wptList">
+    <h1 data-bind="text: h1"></h1>
+    <h1 data-bind="text: h2"></h2>
+    <br/>
+
+    <!-- <select data-bind="foreach: GeocacheList">
         <option data-bind="value: desc, text: desc"></option>
-    </select>
-    <ul data-bind="foreach: wptList">
-        <li data-bind="text: $parent.cacheName($data)"></li>
+    </select> -->
+
+    <!-- <ul data-bind="foreach: GeocacheList">
+        <li data-bind="text: cache_name"></li>
     </ul> -->
-    <table style="text-align: center" >
-        <thead style="background-color: lightyellow">
+
+    <table>
+        <caption data-bind="text: caption"></caption>
+        <thead>
             <tr data-bind="foreach: thList">
                 <th data-bind="text: $data"></th>
             </tr>
@@ -79,8 +105,6 @@
                 <!-- <td data-bind="text: gsak_county, css: { red: inWatchedCounty }"></td> -->
                 <td data-bind="text: gsak_usersort, css: { archived: isArchived}"></td>
                 <td data-bind="text: gsak_code, css: { blue: isGC, unavailable: isUnavailable, archived: isArchived }"></td>
-                <td data-bind="text: type"></td>
-                <!-- <td data-bind="text: cache_type"></td> -->
                 <td>
                     <!-- ko if: link_href -->
                     <a target="_blank" data-bind="text: desc, attr: { href: link_href }"></a>
@@ -89,19 +113,31 @@
                     <span data-bind="text: desc"></span>
                     <!-- /ko -->
                 </td>
-                <!-- <td data-bind="text: cache_name"></td> -->
+                <td>
+                    <!-- ko if: isGC -->
+                    <span data-bind="text: type"></span>
+                    <!-- /ko -->
+                </td>
+                <td>
+                    <!-- ko if: isGC -->
+                    <span data-bind="text: cache_container"></span>
+                    <!-- /ko -->
+                </td>
+                <td data-bind="text: cache_encoded_hints"></td>
                 <td data-bind="text: lat, css: { yellow: isCorrected }"></td>
                 <td data-bind="text: lon, css: { yellow: isCorrected }"></td>
-                <!-- <td data-bind="text: cache_archived"></td> -->
-                <!-- <td data-bind="text: cache_available"></td> -->
-                <!-- <td data-bind="text: cache_difficulty"></td> -->
-                <!-- <td data-bind="text: cache_terrain"></td> -->
-                <td data-bind="text: cache_encoded_hints"></td>
+                <td>
+                    <!-- ko if: cache_object_logs -->
+                    <button data-bind="click: $parent.logsButtonClick">
+                    <span data-bind="text: $parent.logsButtonName($data)"></span>
+                    </button>
+                    <!-- /ko -->
+                </td>
             </tr>
         </tbody>
         <tfoot>
-            <tr>
-                <th></th>
+            <tr data-bind="foreach: thList">
+                <th data-bind="text: $data"></th>
             </tr>
         </tfoot>
     </table>

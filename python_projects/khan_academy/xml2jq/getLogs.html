@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Get Logs</title>
+    <link rel="stylesheet" href="getLogs.css">
+    <script src="bower_components\json2\json2.js"></script>
+    <script src="bower_components\jquery\dist\jquery.js"></script>
+    <script src="bower_components\knockout\dist\knockout.js"></script>
+    <script src="topo862 - Rowena MO.gpx.js"></script>
+    <script src="latlon.js"></script>
+    <script src="Geocache.js"></script>
+    <script>
+        // Ready function
+        var GeocacheList;
+        $(function() {
+            var $wpt = data.gpx.wpt;
+            var viewPort = {
+                GeocacheList: CreateGeocacheList($wpt),
+
+                select_name: function(self) {
+                    return [
+                        self.gsak_usersort,
+                        self.name,
+                        self.desc
+                    ].join(":");
+                },
+
+                selectionSubmitted: function(item, event) {
+                    alert("selectionSubmitted")
+                    event.preventDefault();
+                    // console.log(event);
+                    // console.log(item);
+                }
+            };
+            ko.applyBindings(viewPort);
+        });
+    </script>
+
+</head>
+
+<body>
+    <h1>Logs</h1>
+
+    <!-- <ul data-bind="foreach: GeocacheList">
+        <li data-bind="text: desc"></li>
+    </ul> -->
+
+    <form>
+        <select
+            size="4"
+            name="Log Select"
+            id="logSelect"
+            required
+            data-bind="foreach: GeocacheList"
+            >
+            <option data-bind="text: $parent.select_name($data), dblclick: selectionSubmitted, attr: { value : $index }"></option>
+        </select>
+        <br>
+        <button type="submit" data-bind="click: selectionSubmitted">Submit</button>
+    </form>
+    <br>
+    <br>
+
+    <div id="logs" display: none>
+        <table>
+            <thead>
+                <tr>
+                    <th id="date">Date</th>
+                    <th id="type" style="width: 6%">Type</th>
+                    <th>Finder</th>
+                    <th>Text Encoded Flag</th>
+                    <th>Text</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: logs">
+                <tr>
+                    <!-- <td data-bind="text: id"></td> -->
+                    <td data-bind="text: date"></td>
+                    <td data-bind="text: type"></td>
+                    <!-- <td data-bind="text: finderId"></td> -->
+                    <td data-bind="text: finderText"></td>
+                    <td data-bind="text: textEncoded"></td>
+                    <td class="left-align">
+                        <pre data-bind="html: textText">
+                            </pre>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th id="date">Date</th>
+                    <th id="type" style="width: 6%">Type</th>
+                    <th>Finder</th>
+                    <th>Text Encoded Flag</th>
+                    <th>Text</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</body>
+
+</html>

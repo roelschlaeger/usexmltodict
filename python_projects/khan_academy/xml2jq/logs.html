@@ -33,8 +33,12 @@
             margin: 4px;
         }
 
-        #logs table td:first-child {
+        #logs table td#date {
             width: 11em;
+        }
+
+        #logs table td#type {
+            width: 10em;
         }
 
         #logs table td pre {
@@ -51,7 +55,7 @@
     <script src="bower_components\knockout\dist\knockout.js"></script>
     <script>
         var Log = function(data) {
-            console.log(data);
+            // console.log(data);
 
             var finderObject = data["groundspeak:finder"];
             var textObject = data["groundspeak:text"];
@@ -66,8 +70,6 @@
                 type: data["groundspeak:type"],
             };
 
-            console.log(s);
-
             return s;
         };
 
@@ -78,10 +80,10 @@
             for (var i = 0; i < rawLogs.length; i++) {
                 self.logs.push(new Log(rawLogs[i]));
             };
-            console.log(self.logs);
+            // console.log(self.logs);
 
             self.index = function(el) {
-                console.log(el);
+                // console.log(el);
                 return el.date + " " + el.type + " " + el.finder_text + " " + el.text_text;
             }
         };
@@ -89,7 +91,7 @@
         // Ready function
         $(function() {
 
-            console.log("Ready");
+            // console.log("Ready");
 
             // Fetch logs from a file
             var fetchLogs = function(filename) {
@@ -98,22 +100,22 @@
 
                 var jqxhr = $.getJSON(filename,
                     function() {
-                        console.log("success");
+                        // console.log("success");
                     })
 
                 .done(function(data) {
-                    console.log("second success");
+                    // console.log("second success");
                     rawLogs = data["groundspeak:log"];
-                    console.log(rawLogs);
+                    // console.log(rawLogs);
                 })
 
                 .fail(function() {
-                    console.log("error");
+                    // console.log("error");
                     alert("Failed to load logs.json");
                 });
 
                 jqxhr.always(function() {
-                    console.log("second complete");
+                    // console.log("second complete");
                     ko.applyBindings(new ViewModel(rawLogs));
                 });
             };
@@ -128,10 +130,8 @@
         <table>
             <thead>
                 <tr>
-                    <!-- <th>Id</th> -->
-                    <th>Date</th>
-                    <th style="width: 6%">Type</th>
-                    <!-- <th>Finder Id</th> -->
+                    <th id="date">Date</th>
+                    <th id="type" style="width: 6%">Type</th>
                     <th>Finder</th>
                     <th>Text Encoded Flag</th>
                     <th>Text</th>
@@ -152,9 +152,6 @@
                 </tr>
             </tbody>
         </table>
-        <!-- <ul data-bind="foreach: logs">
-            <li data-bind="text: $parent.index($data)"></li>
-        </ul> -->
     </div>
 </body>
 
