@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- https://addyosmani.com/backbone-fundamentals/#exercise-2-book-library---your-first-restful-backbone.js-app -->
 <!-- https://addyosmani.com/backbone-fundamentals/#wiring-in-the-interface -->
+<!-- https://addyosmani.com/backbone-fundamentals/#creating-the-back-end -->
 <html lang="en">
 
 <head>
@@ -10,8 +11,35 @@
 </head>
 
 <body>
-    <a href="https://addyosmani.com/backbone-fundamentals/#wiring-in-the-interface" target="_blank">
-        Link to recent stopping point
+    Links to recent stopping point
+    <ul>
+        <li>
+            <a href="https://addyosmani.com/backbone-fundamentals" target="_blank">
+                Developing Backbone.js Applications
+            </a>
+        </li>
+        <li>
+            <a href="https://addyosmani.com/backbone-fundamentals/#wiring-in-the-interface" target="_blank">
+                Wiring the Interface
+            </a>
+        </li>
+        <li>
+            <a href="https://addyosmani.com/backbone-fundamentals/#creating-the-back-end" target="_blank">
+                Creating the Back End
+            </a>
+            <br>
+            <pre class="pre">
+url             HTTP Method  Operation
+/api/books      GET          Get an array of all books
+/api/books/:id  GET          Get the book with id of :id
+/api/books      POST         Add a new book and return the book with an id attribute added
+/api/books/:id  PUT          Update the book with id of :id
+/api/books/:id  DELETE       Delete the book with id of :id
+            </pre>
+        </li>
+    </ul>
+
+
     </a>
     <br>
     <br>
@@ -68,7 +96,7 @@
         </div> -->
     </div>
     <script id="bookTemplate" type="text/template">
-        <img src="<%= coverImage %>" />
+        <img src="<%= coverImage %>"/>
         <ul>
             <li>
                 <%= title %>
@@ -85,6 +113,7 @@
         </ul>
         <button class="delete">Delete</button>
     </script>
+    <script src="1211656\relativePath.js"></script>
     <script src="js/lib/jquery.min.js"></script>
     <script src="js/lib/underscore-min.js"></script>
     <script src="js/lib/backbone-min.js"></script>
