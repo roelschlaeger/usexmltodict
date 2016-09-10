@@ -1,25 +1,53 @@
 // Module dependencies.
+// Rewritten for express 4.x based on https://expressjs.com/en/guide/migrating-4.html
 var application_root = __dirname,
+    mongoose = require('mongoose'), //MongoDB integration
+
     express = require('express'), //Web framework
-    bodyParser = require('body-parser'), //Parser for reading request body
     path = require('path'), //Utilities for dealing with file paths
-    mongoose = require('mongoose'); //MongoDB integration
+
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
+    methodOverride = require('method-override'), //added method-override for express 4.0+
+    session = require('express-session'),
+    bodyParser = require('body-parser'), //Parser for reading request body
+    errorHandler = require('errorhandler');
 
 //Create server
 var app = express();
+var port = 4711; //default port
 
-// Where to serve static content
-// app.use(express.static(path.join(application_root, 'site')));
-// app.use(bodyParser());
+app.set('port', process.env.PORT || port); //default port
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+app.use(favicon(__dirname + '/site/favicon.ico'));
+app.use(logger('dev'));
+app.use(methodOverride());
+app.use(session({
+    resave: true,
+    saveUninitialized: true,
+    secret: 'uwotm8'
+}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(express.static(path.join(__dirname, 'site')));
 
-// Routes
-app.get('/api', function(request, response) {
-    response.send('Library API is running');
-});
+// handles anything, for testing only
+var DEBUG = false;
+if (DEBUG) {
+    app.use(function(req, res) {
+        res.setHeader('Content-Type', 'text/plain')
+        res.write('you posted:\n')
+        res.end(JSON.stringify(req.body, null, 2))
+    });
+};
 
-// vvv ADDITIONS vvv //
-//Connect to database
-mongoose.connect('mongodb://localhost/library_database');
+// MongoDB interface
+// Use bluebird for promises
+mongoose.Promise = require('bluebird');
+mongoose.connect('mongodb://localhost/library_database'); //Connect to database
 
 //Schemas
 var Book = new mongoose.Schema({
@@ -31,30 +59,15 @@ var Book = new mongoose.Schema({
 //Models
 var BookModel = mongoose.model('Book', Book);
 
-// Configure server
-// app.configure(function() {
+// Route handlers
+// /api
+var running = function(request, response) {
+    response.send('Library API is running');
+};
 
-//parses request body and populates request.body
-app.use(express.bodyParser());
-
-//checks request.body for HTTP method overrides
-app.use(express.methodOverride());
-
-//perform route lookup based on url and HTTP method
-app.use(app.router);
-
-//Where to serve static content
-app.use(express.static(path.join(application_root, 'site')));
-
-//Show all errors in development
-app.use(express.errorHandler({
-    dumpExceptions: true,
-    showStack: true
-}));
-//});
-
-//Get a list of all books
-app.get('/api/books', function(request, response) {
+// Get a list of all books
+// get /api/books
+var getBooks = function(request, response) {
     return BookModel.find(function(err, books) {
         if (!err) {
             return response.send(books);
@@ -62,33 +75,60 @@ app.get('/api/books', function(request, response) {
             return console.log(err);
         }
     });
-});
+};
 
 //Insert a new book
-app.post('/api/books', function(request, response) {
+// post /api/books
+var insertBook = function(request, response) {
     console.log("app.post(/api/books)");
-    var book = new BookModel({
-        title: request.body.title,
-        author: request.body.author,
-        releaseDate: request.body.releaseDate
-    });
+    if (request.body === undefined) {
+        console.log("request.body === undefined");
+    } else {
+        var book = new BookModel({
+            title: request.body.title,
+            author: request.body.author,
+            releaseDate: request.body.releaseDate
+        });
 
-    return book.save(function(err) {
-        if (!err) {
-            console.log('created');
-            return response.send(book);
-        } else {
-            console.log(err);
-        }
-    });
-});
+        return book.save(function(err) {
+            if (!err) {
+                console.log('created');
+                return response.send(book);
+            } else {
+                console.log(err);
+            }
+        });
+    }
+};
 
-// ^^^ ADDITIONS ^^^ //
+// Routes
+// app.get('/', routes.index);
+// app.get('/users', user.list);
+
+app.get('/api', running);
+
+//New router function for 4.0
+app.route('/api/books')
+    .get(getBooks) //Get a list of all books
+    .post(insertBook) //Insert a new book
+;
+
+// SHOULD BE LOADED AFTER LOADING THE ROUTES
+// error handling middleware
+// console.log("app.get('env')", app.get('env'));
+if ('development' === app.get('env')) {
+    //Show all errors in development
+    app.use(errorHandler({
+        dumpExceptions: true,
+        showStack: true
+    }));
+}
 
 //Start server
-var port = 4711;
-
-app.listen(port, function() {
-    console.log('Express server listening on port %d in %s mode', port, app.settings.env);
-    // app.configure(); // bobo
+app.listen(app.get('port'), function() {
+    console.log(
+        'Express server listening on port %d in %s mode',
+        app.get('port'),
+        app.settings.env
+    );
 });
