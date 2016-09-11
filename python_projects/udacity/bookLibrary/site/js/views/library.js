@@ -15,11 +15,13 @@ app.LibraryView = Backbone.View.extend({
     initialize: function(initialBooks) {
         // this.collection = new app.Library(initialBooks);
         this.collection = new app.Library();
-        this.collection.fetch({reset: true});
+        this.collection.fetch({
+            reset: true
+        });
         this.render();
 
-        this.listenTo( this.collection, 'add', this.renderBook );
-        this.listenTo( this.collection, 'reset', this.render );
+        this.listenTo(this.collection, 'add', this.renderBook);
+        this.listenTo(this.collection, 'reset', this.render);
     },
 
     // render library by rendering each book in its collection
@@ -38,27 +40,55 @@ app.LibraryView = Backbone.View.extend({
         this.$el.append(bookView.render().el);
     },
 
-    addBook: function(e) {
-        // console.log("addBook");
+    // addBook: function(e) {
+    //     // console.log("addBook");
+    //
+    //     e.preventDefault();
+    //
+    //     var formData = {};
+    //
+    //     $('#addBook div').children('input').each(function(i, el) {
+    //         if ($(el).val() !== '') {
+    //             formData[el.id] = $(el).val();
+    //         }
+    //         // console.log(formData);
+    //         if(formData.coverImage !== undefined) {
+    //             console.log(formData.coverImage);
+    //             // console.log(window.location.pathname);
+    //         }
+    //
+    //     });
+    //
+    //     // :console.log(formData);
+    //     // this.collection.add(new app.Book(formData));
+    //     this.collection.create(formData);
+    // }
 
+    addBook: function(e) {
         e.preventDefault();
 
         var formData = {};
 
         $('#addBook div').children('input').each(function(i, el) {
-            if ($(el).val() !== '') {
-                formData[el.id] = $(el).val();
+            if ($(el).val() != '') {
+                if (el.id === 'keywords') {
+                    formData[el.id] = [];
+                    _.each($(el).val().split(' '), function(keyword) {
+                        formData[el.id].push({
+                            'keyword': keyword
+                        });
+                    });
+                } else if (el.id === 'releaseDate') {
+                    formData[el.id] = $('#releaseDate').datepicker('getDate').getTime();
+                } else {
+                    formData[el.id] = $(el).val();
+                }
             }
-            // console.log(formData);
-            if(formData.coverImage !== undefined) {
-                console.log(formData.coverImage);
-                // console.log(window.location.pathname);
-            }
-
+            // Clear input field value
+            $(el).val('');
         });
 
-        // :console.log(formData);
-        this.collection.add(new app.Book(formData));
-    }
+        this.collection.create(formData);
+    },
 
 });

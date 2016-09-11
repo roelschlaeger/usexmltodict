@@ -210,6 +210,8 @@ if ('development' === app.get('env')) {
 }
 
 //Start server
+app.disable('etag'); //http://stackoverflow.com/questions/18811286/nodejs-express-cache-and-304-status-code
+
 app.listen(app.get('port'), function() {
     console.log(
         'Express server listening on port %d in %s mode',
