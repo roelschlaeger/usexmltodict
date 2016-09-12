@@ -11,7 +11,8 @@ var application_root = __dirname,
     methodOverride = require('method-override'), //added method-override for express 4.0+
     session = require('express-session'),
     bodyParser = require('body-parser'), //Parser for reading request body
-    errorHandler = require('errorhandler');
+    errorHandler = require('errorhandler'),
+    serveStatic = require('serve-static');
 
 //Create server
 var app = express();
@@ -32,7 +33,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(express.static(path.join(__dirname, 'site')));
+// app.use(express.static(path.join(__dirname, 'site')));
+app.use(
+    serveStatic(
+        path.join(__dirname, 'site'), {
+            cacheControl: true,
+            maxAge: '0d'
+        }
+    ));
 
 // handles anything, for testing only
 var DEBUG = false;
@@ -58,7 +66,7 @@ var Book = new mongoose.Schema({
     title: String,
     author: String,
     releaseDate: Date,
-    keywords: [ Keywords ]
+    keywords: [Keywords]
 });
 
 //Schemas

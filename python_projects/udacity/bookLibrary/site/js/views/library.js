@@ -40,30 +40,6 @@ app.LibraryView = Backbone.View.extend({
         this.$el.append(bookView.render().el);
     },
 
-    // addBook: function(e) {
-    //     // console.log("addBook");
-    //
-    //     e.preventDefault();
-    //
-    //     var formData = {};
-    //
-    //     $('#addBook div').children('input').each(function(i, el) {
-    //         if ($(el).val() !== '') {
-    //             formData[el.id] = $(el).val();
-    //         }
-    //         // console.log(formData);
-    //         if(formData.coverImage !== undefined) {
-    //             console.log(formData.coverImage);
-    //             // console.log(window.location.pathname);
-    //         }
-    //
-    //     });
-    //
-    //     // :console.log(formData);
-    //     // this.collection.add(new app.Book(formData));
-    //     this.collection.create(formData);
-    // }
-
     addBook: function(e) {
         e.preventDefault();
 
