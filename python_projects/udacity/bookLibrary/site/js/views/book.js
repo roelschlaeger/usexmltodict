@@ -15,9 +15,15 @@ app.BookView = Backbone.View.extend({
         'click .delete': 'deleteBook'
     },
 
+    initialize: function(args) {
+        _.bindAll(this, "deleteBook", "render");
+
+        this.listenTo(this, "click .delete", this.deleteBook);
+    },
+
     deleteBook: function() {
-        console.log("deleteBook");
-        
+        console.log("deleteBook", this, this.model, this.model.destroy);
+
         //Delete model
         this.model.destroy();
 

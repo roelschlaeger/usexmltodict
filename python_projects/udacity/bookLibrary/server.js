@@ -29,10 +29,6 @@ app.use(session({
     saveUninitialized: true,
     secret: 'uwotm8'
 }));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
 // app.use(express.static(path.join(__dirname, 'site')));
 app.use(
     serveStatic(
@@ -45,12 +41,18 @@ app.use(
 // handles anything, for testing only
 var DEBUG = false;
 if (DEBUG) {
-    app.use(function(req, res) {
-        res.setHeader('Content-Type', 'text/plain')
-        res.write('you posted:\n')
-        res.end(JSON.stringify(req.body, null, 2))
+    app.use(function(req, res, next) {
+        res.setHeader('Content-Type', 'text/plain');
+        res.write('you posted:\n');
+        res.end(JSON.stringify(req.body, null, 2));
+        // next();
     });
 };
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 // MongoDB interface
 // Use bluebird for promises
@@ -86,6 +88,7 @@ var running = function(request, response) {
 // Get a list of all books
 // get /api/books
 var getBooks = function(request, response) {
+    console.log("app.get(/api/books) == getBooks");
     return BookModel.find(function(err, books) {
         if (!err) {
             return response.send(books);
@@ -97,112 +100,73 @@ var getBooks = function(request, response) {
 
 //Insert a new book
 // post /api/books
-// var insertBook = function(request, response) {
-//     console.log("app.post(/api/books)");
-//     if (request.body === undefined) {
-//         console.log("request.body === undefined");
-//     } else {
-//         var book = new BookModel({
-//             title: request.body.title,
-//             author: request.body.author,
-//             releaseDate: request.body.releaseDate
-//         });
-//
-//         return book.save(function(err) {
-//             if (!err) {
-//                 console.log('created');
-//                 return response.send(book);
-//             } else {
-//                 console.log(err);
-//             }
-//         });
-//     }
-// };
+var insertBook = function(request, response) { //Insert a new book
+    console.log("app.post(/api/books)");
+    var book = new BookModel({
+        title: request.body.title,
+        author: request.body.author,
+        releaseDate: request.body.releaseDate,
+        keywords: request.body.keywords
+    });
+    book.save(function(err) {
+        if (!err) {
+            console.log('created');
+            return response.send(book);
+        } else {
+            return console.log(err);
+        }
+    });
+};
 
 // Routes
-// app.get('/', routes.index);
-// app.get('/users', user.list);
-
 app.get('/api', running);
 
-//New router function for 4.0
-app.route('/api/books')
-    .get(getBooks) //Get a list of all books
-    .post(function(request, response) { //Insert a new book
-        var book = new BookModel({
-            title: request.body.title,
-            author: request.body.author,
-            releaseDate: request.body.releaseDate,
-            keywords: request.body.keywords // NEW
-        });
-        book.save(function(err) {
+app.get('/api/books', getBooks);
+
+app.post('/api/books', insertBook);
+
+app.get('/api/books/:id', function(request, response) { //Get a single book by id
+    return BookModel.findById(request.params.id, function(err, book) {
+        if (!err) {
+            return response.send(book);
+        } else {
+            return console.log(err);
+        }
+    });
+});
+
+app.put('/api/books/:id', function(request, response) { //Update a book
+    console.log('Updating book ' + request.body.title);
+    return BookModel.findById(request.params.id, function(err, book) {
+        book.title = request.body.title;
+        book.author = request.body.author;
+        book.releaseDate = request.body.releaseDate;
+        book.keywords = request.body.keywords; // NEW
+
+        return book.save(function(err) {
             if (!err) {
-                console.log('created');
-                return response.send(book);
+                console.log('book updated');
             } else {
-                return console.log(err);
+                console.log(err);
+            }
+            return response.send(book);
+        });
+    });
+});
+
+app.delete('/api/books/:id', function(request, response) { //Delete a book
+    console.log('Deleting book with id: ' + request.params.id);
+    return BookModel.findById(request.params.id, function(err, book) {
+        return book.remove(function(err) {
+            if (!err) {
+                console.log('Book removed');
+                return response.send('');
+            } else {
+                console.log(err);
             }
         });
     });
-
-app.route('/api/books/:id')
-    .put(function(request, response) { //Update a book
-        console.log('Updating book ' + request.body.title);
-        return BookModel.findById(request.params.id, function(err, book) {
-            book.title = request.body.title;
-            book.author = request.body.author;
-            book.releaseDate = request.body.releaseDate;
-            book.keywords = request.body.keywords; // NEW
-
-            return book.save(function(err) {
-                if (!err) {
-                    console.log('book updated');
-                } else {
-                    console.log(err);
-                }
-                return response.send(book);
-            });
-        });
-    })
-    .get(function(request, response) { //Get a single book by id
-        return BookModel.findById(request.params.id, function(err, book) {
-            if (!err) {
-                return response.send(book);
-            } else {
-                return console.log(err);
-            }
-        });
-    })
-    .put(function(request, response) { //Update a book
-        console.log('Updating book ' + request.body.title);
-        return BookModel.findById(request.params.id, function(err, book) {
-            book.title = request.body.title;
-            book.author = request.body.author;
-            book.releaseDate = request.body.releaseDate;
-
-            return book.save(function(err) {
-                if (!err) {
-                    console.log('book updated');
-                    return response.send(book);
-                } else {
-                    console.log(err);
-                }
-            });
-        });
-    })
-    .delete(function(request, response) { //Delete a book
-        console.log('Deleting book with id: ' + request.params.id);
-        return BookModel.findById(request.params.id, function(err, book) {
-            return book.remove(function(err) {
-                if (!err) {
-                    console.log('Book removed');
-                    return response.send('');
-                } else {
-                    console.log(err);
-                }
-            });
-        });
-    });
+});
 
 // ///////////////////////////////////////////////////////////////////////////
 
