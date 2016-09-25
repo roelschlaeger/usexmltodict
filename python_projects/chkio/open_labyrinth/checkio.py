@@ -7,8 +7,9 @@
 # http://stackoverflow.com/questions/3097556/programming-theory-solve-a-maze
 
 from __future__ import print_function
-import copy
 from pprint import pprint
+# from support import sprint, treeprint, verify
+# from support import treeprint
 
 DIRECTIONS = [
     ("E", 0, 1),
@@ -18,82 +19,86 @@ DIRECTIONS = [
 ]
 
 
-def checkio(s):
+def make_tree(s, rows, cols):
     """Recursively solve the maze in s."""
-    rows = len(s)
-    cols = len(s[0])
 
     next = []
     tree = {}
+    visited = []
 
-    s2 = copy.copy(s)
+
+    # push starting location
     next.append((1, 1))
 
+    for row in range(1, rows - 1):
+        for col in range(1, cols - 1):
+            tree[(row, col)] = set()
+
     while next:
-        r, c = next.pop(0)
+        # pop last fork location
+        r, c = next.pop()
+        visited.append((r, c))
         l = []
+#       print_flag = False and (r == 5) and (c == 8)
         for dir, roffset, coffset in DIRECTIONS:
             r2, c2 = r + roffset, c + coffset
-            # already visited?
-            if not (r2, c2) in tree:
-                # available?
-                if s2[r2][c2] == 0:
-                    l.append((r2, c2))
+#           if print_flag:
+#               print("***", r2, c2, tree.get((r2, c2), []), s[r2][c2])
+            # available?
+            if s[r2][c2] == 0:
+                # visited?
+                if (r2, c2) not in visited:
+                    tree[r, c].add((r2, c2))
+                    tree[r2, c2].add((r, c))
+#                   l.append((r2, c2))
                     next.append((r2, c2))
-        tree[(r, c)] = l
-        print((r, c), l)
+#       tree[(r, c)] = l
+#       print((r, c), l)
 
-    def sprint(s):
-        result = []
-        for row in range(rows):
-            out = ""
-            for col in range(cols):
-                out += "%d" % s[row][col]
-            print(out)
-            result.append(out)
-        print()
-        return result
+    return tree
 
-    def treeprint(d):
-        result = []
-        for r in range(rows):
-            out = ""
-            for c in range(cols):
-                if (r, c) in d:
-                    out += "0"
-                else:
-                    out += "1"
-            print(out)
-            result.append(out)
-        print()
-        return result
 
-    r1 = " ".join(sprint(s))
-    r2 = " ".join(treeprint(tree))
-    print(r1)
-    print(r2)
-    out = ""
-    for i in range(len(r1)):
-        out += (" " if r1[i] == r2[i] else "^")
-    print(out)
-    pprint(s)
+def traverse(tree, start, end):
 
-#   pprint(tree)
+    print()
+    print("traverse")
+    r0, c0 = start
+    r1, c1 = end
 
-    if (0):
-        stack = [(1, 1, [], s)]
+    stack = []
+    stack.append((start, tree[start]))
+#   print(stack)
+    print()
 
-        while stack:
-            r, c, l, s = stack.pop()
-            s[r][c] = 2  # mark location as having been visited
-            for direction, ro, co in DIRECTIONS:
-                if s[r + ro][c + co] == 0:
-                    l.append((r + ro, c + co, s))
+    while stack:
+        # get current location
+        loc, l = stack.pop(0)
+        print("%s: %s" % (loc, l))
+
+        if loc == end:
+            print("Done!")
             break
 
-        pprint(stack)
-        pprint(s)
-        pprint(l)
+        elif l:
+            newloc = l.pop()
+            stack.append((loc, l))
+            stack.append((newloc, tree[newloc]))
+
+        elif stack:
+            loc, l = stack.pop(0)
+
+        else:
+            raise ValueError("I give up")
+
+
+def checkio(s):
+    rows = len(s)
+    cols = len(s[0])
+    tree = make_tree(s, rows, cols)
+    pprint(tree)
+#   treeprint(tree)
+#   verify(s, tree, rows, cols)
+    traverse(tree, (1, 1), (10, 10))
 
 checkio([
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
