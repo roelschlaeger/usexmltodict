@@ -10,12 +10,20 @@ def sprint(s, rows, cols):
     for row in range(rows):
         out = ""
         for col in range(cols):
-            out += "%d" % s[row][col]
+            out += "%3d" % s[row][col]
         print(out)
         result.append(out)
     print()
     return result
 
+
+def opposite(d):
+    return {
+        'N': 'S',
+        'E': 'W',
+        'S': 'N',
+        'W': 'E'
+    }[d]
 
 def treeprint(d, rows, cols):
     result = []
