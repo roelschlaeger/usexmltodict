@@ -38,9 +38,9 @@ The route is a string, where each letter is an action.
 """
 
 from __future__ import print_function
-from pprint import pprint, pformat
-
-from traverse import traverse
+from pprint import pprint
+from astar import astar, heuristic
+from numpy import array
 
 ########################################################################
 
@@ -81,54 +81,30 @@ def find_points(plat):
 ########################################################################
 
 
-def make_tree(plat):
-    """Recursively solve the maze in plat."""
+def array_convert(plat, walls):
+    """Convert the plat array to a numpy numeric array."""
 
-    start, end, blist = find_points(plat)
+    print("array_convert")
+    pprint(plat)
 
     rows = len(plat)
     cols = len(plat[0])
 
-    next = []
-    tree = {}
-    visited = []
+    r2 = []
 
-    # push starting location
-    next.append(start)
+    for row in range(rows):
 
-    for row in range(0, rows):
-        for col in range(0, cols):
-            tree[(row, col)] = set()
+        c2 = []
+        for col in range(cols):
+            c = plat[row][col]
+            c2.append(1 if c in walls else 0)
 
-    while next:
-        # pop last fork location
-        r, c = next.pop()
-        visited.append((r, c))
+        r2.append(c2)
 
-        # for the four cardinal directions
-        for dir, roff, coff in DIRECTIONS:
+    pprint(r2)
+    print()
 
-            # compute new coordinates
-            r0, c0 = r + roff, c + coff
-
-            # check for still in bounds
-            if (r0 < 0) or (r0 >= rows) or (c0 < 0) or (c0 >= cols):
-                continue
-
-            # available?
-            v = plat[r0][c0]
-            if v in ['.']:
-                # visited?
-                if (r0, c0) not in visited:
-                    tree[r, c].add((r0, c0))
-                    tree[r0, c0].add((r, c))
-                    next.append((r0, c0))
-            elif v in ['B']:
-                pass
-            else:
-                pass
-
-    return start, end, blist, tree
+    return array(r2)
 
 ########################################################################
 
@@ -139,13 +115,77 @@ def checkio(plat):
     pprint(plat)
     print()
 
-    start, end, blist, tree = make_tree(plat)
-    print(start, end, blist, pformat(tree))
+    start, end, blist = find_points(plat)
+    print(start, end, blist)
     print()
 
-    result = traverse(start, end, blist, tree)
+    from_start = {}
+    to_end = {}
+    b_to_b = {}
+    aplat = array_convert(plat, ['W'])
+    for b in blist:
+        from_start[(start, b)] = astar(aplat, start, b)
+        to_end[(b, end)] = astar(aplat, b, end)
+        for b2 in blist:
+            if b2 == b:
+                continue
+            b_to_b[(b, b2)] = astar(aplat, b, b2)
+            b_to_b[(b2, b)] = astar(aplat, b2, b)
 
+
+    print("from_start")
+    pprint(from_start)
+    print()
+
+    print("b_to_b")
+    pprint(b_to_b)
+    print()
+
+    print("to_end")
+    pprint(to_end)
+    print()
+
+    result = find_path(start, end, from_start, b_to_b, to_end)
     return result
+
+########################################################################
+
+
+def find_path(start, end, from_start, b_to_b, to_end):
+
+    for fpair, flist in from_start:
+        print("fpair", fpair)
+        print("flist", flist)
+        f_from, f_to = fpair
+        start_node = f_from[0]
+        print("start_node", start_node)
+        new_cost = len(flist) * 2  # cost is 2 per node
+        for b_node, blist in b_to_b:
+            print("b_node", b_node)
+            print("blist", blist)
+            if b_node[0] != start_node:
+                continue
+            entry_node = b_node[0]  # entry bubble
+            exit_node = b_node[1]  # exit bubble
+            new_cost += len(blist)  # cost is 1 per node
+            for e, elist in to_end:
+                print("e", e)
+                print("elist", elist)
+                e0 = e[0]
+                end_node = e[1]
+                if e0 != exit_node:
+                    continue
+                new_cost += len(elist) * 2  # cost is 2 per node
+                print(
+                    start_node,
+                    entry_node,
+                    exit_node,
+                    e0,
+                    end_node,
+                    new_cost
+                )
+
+    return "RRRDDD"
 
 ########################################################################
 
