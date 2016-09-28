@@ -39,8 +39,8 @@ The route is a string, where each letter is an action.
 
 from __future__ import print_function
 from pprint import pprint
-from astar import astar, heuristic
 from numpy import array
+from astar import astar
 
 ########################################################################
 
@@ -109,8 +109,73 @@ def array_convert(plat, walls):
 ########################################################################
 
 
+def find_path(start, end, from_start, b_to_b, to_end):
+
+    print("find_path")
+    print()
+    print("from_start")
+    pprint(from_start, width=32)
+
+    # from start to bubble
+    for f_pair, f_list in from_start.items():
+        print("f_pair", f_pair, "f_list", f_list)
+
+        start_node = f_pair[0]
+        start_bubble = f_pair[1]
+        new_cost = len(f_list) * 2  # cost is 2 per node
+        print(
+            "start_node", start_node,
+            "start_bubble", start_bubble,
+        )
+
+        # from bubble_entry to bubble_exit
+        for b_node, b_list in b_to_b.items():
+            print("b_node", b_node, "b_list", b_list)
+
+            # looking for the tunnel start
+            if b_node[0] != start_bubble:
+                print("...skipped")
+                continue
+
+            bubble_entry = b_node[0]  # entry bubble
+            bubble_exit = b_node[1]  # exit bubble
+            new_cost += len(b_list)  # cost is 1 per node
+            print(
+                "bubble_entry", bubble_entry,
+                "bubble_exit", bubble_exit,
+            )
+
+            # from bubble_exit to end
+            for e, e_list in to_end.items():
+                e0 = e[0]
+                end_node = e[1]
+                print("e0", e0, "end_node", end_node, "e_list", e_list)
+
+                if e0 != bubble_exit:
+                    print("...skipped")
+                    continue
+
+                new_cost += len(e_list) * 2  # cost is 2 per node
+                print(
+                    "start_node", start_node,
+                    "bubble_entry", bubble_entry,
+                    "bubble_exit", bubble_exit,
+                    "end_node", end_node,
+                    "new_cost", new_cost
+                )
+
+    return "RRRDDD"
+
+########################################################################
+
+
 def checkio(plat):
     """Compute Express Delivery Route."""
+
+    print()
+    print(72 * '#')
+    print("checkio")
+    print(72 * '#')
 
     pprint(plat)
     print()
@@ -123,69 +188,40 @@ def checkio(plat):
     to_end = {}
     b_to_b = {}
     aplat = array_convert(plat, ['W'])
+
+    # for all bubbles
     for b in blist:
+
+        # compute the path from start to bubble
         from_start[(start, b)] = astar(aplat, start, b)
+
+        # compute the path from bubble to end
         to_end[(b, end)] = astar(aplat, b, end)
+
+        # compute the path from bubble to other bubbles
         for b2 in blist:
+            # skip current bubble
             if b2 == b:
                 continue
+
+            # compute in both directions
             b_to_b[(b, b2)] = astar(aplat, b, b2)
             b_to_b[(b2, b)] = astar(aplat, b2, b)
 
-
     print("from_start")
-    pprint(from_start)
+    pprint(from_start, width=32)
     print()
 
     print("b_to_b")
-    pprint(b_to_b)
+    pprint(b_to_b, width=32)
     print()
 
     print("to_end")
-    pprint(to_end)
+    pprint(to_end, width=32)
     print()
 
     result = find_path(start, end, from_start, b_to_b, to_end)
     return result
-
-########################################################################
-
-
-def find_path(start, end, from_start, b_to_b, to_end):
-
-    for fpair, flist in from_start:
-        print("fpair", fpair)
-        print("flist", flist)
-        f_from, f_to = fpair
-        start_node = f_from[0]
-        print("start_node", start_node)
-        new_cost = len(flist) * 2  # cost is 2 per node
-        for b_node, blist in b_to_b:
-            print("b_node", b_node)
-            print("blist", blist)
-            if b_node[0] != start_node:
-                continue
-            entry_node = b_node[0]  # entry bubble
-            exit_node = b_node[1]  # exit bubble
-            new_cost += len(blist)  # cost is 1 per node
-            for e, elist in to_end:
-                print("e", e)
-                print("elist", elist)
-                e0 = e[0]
-                end_node = e[1]
-                if e0 != exit_node:
-                    continue
-                new_cost += len(elist) * 2  # cost is 2 per node
-                print(
-                    start_node,
-                    entry_node,
-                    exit_node,
-                    e0,
-                    end_node,
-                    new_cost
-                )
-
-    return "RRRDDD"
 
 ########################################################################
 
