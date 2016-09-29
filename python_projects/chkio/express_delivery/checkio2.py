@@ -54,6 +54,23 @@ DIRECTIONS = [
 ########################################################################
 
 
+def compute_steps(plat):
+    table = {}
+    rows = len(plat)
+    cols = len(plat[0])
+
+    for row in range(rows):
+        for col in range(cols):
+            for dir, roffset, coffset in DIRECTIONS:
+                r, c = row + roffset, col + coffset
+                if (0 <= r < rows) and (0 <= c < cols):
+                    table[(row, col), (r, c)] = dir
+    pprint(table)
+    return table
+
+########################################################################
+
+
 def find_points(plat):
     rows = len(plat)
     cols = len(plat[0])
@@ -176,6 +193,9 @@ def checkio(plat):
     print(72 * '#')
     print("checkio")
     print(72 * '#')
+
+
+    steps = compute_steps(plat)
 
     pprint(plat)
     print()
