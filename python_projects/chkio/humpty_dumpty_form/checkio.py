@@ -3,6 +3,11 @@
 
 # https://py.checkio.org/mission/humpty-dumpty/
 
+import sys
+if sys.version_info < (3, 0):
+    print("importing map from future_builtins")
+    from future_builtins import map
+
 from math import pi, sqrt
 from math import asin as arcsin
 from math import log as ln
@@ -39,8 +44,11 @@ def checkio(h, w):
         # sphere: 4 pi r^2
         area = 4.0 * pi * a ** 2
 
-    print(volume, area)
-    return map(lambda x: round(x, 2), [volume, area])
+    result = list(map(lambda x: round(x, 2), [volume, area]))
+
+    print(result)
+
+    return result
 
 assert checkio(4, 2) == [8.38, 21.48]
 assert checkio(2, 2) == [4.19, 12.57]
