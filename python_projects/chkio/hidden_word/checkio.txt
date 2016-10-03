@@ -1,0 +1,466 @@
+[u'dreamingofapplesonawall,', u'anddreamingoften,dear,', u'idreamedthat,ificountedall,', u'-howmanywouldappear?']
+1 anddreamingoften,dear,
+[2, 14, 2, 16]
+[u'dreamingofapplesonawall,',
+ u'anddreamingoften,dear,',
+ u'idreamedthat,ificountedall,',
+ u'-howmanywouldappear?']
+4 27
+transpose 4 27
+0 0 d
+1 0 a
+2 0 i
+3 0 -
+0 1 r
+1 1 n
+2 1 d
+3 1 h
+0 2 e
+1 2 d
+2 2 r
+3 2 o
+0 3 a
+1 3 d
+2 3 e
+3 3 w
+0 4 m
+1 4 r
+2 4 a
+3 4 m
+0 5 i
+1 5 e
+2 5 m
+3 5 a
+0 6 n
+1 6 a
+2 6 e
+3 6 n
+0 7 g
+1 7 m
+2 7 d
+3 7 y
+0 8 o
+1 8 i
+2 8 t
+3 8 w
+0 9 f
+1 9 n
+2 9 h
+3 9 o
+0 10 a
+1 10 g
+2 10 a
+3 10 u
+0 11 p
+1 11 o
+2 11 t
+3 11 l
+0 12 p
+1 12 f
+2 12 ,
+3 12 d
+0 13 l
+1 13 t
+2 13 i
+3 13 a
+0 14 e
+1 14 e
+2 14 f
+3 14 p
+0 15 s
+1 15 n
+2 15 i
+3 15 p
+0 16 o
+1 16 ,
+2 16 c
+3 16 e
+0 17 n
+1 17 d
+2 17 o
+3 17 a
+0 18 a
+1 18 e
+2 18 u
+3 18 r
+0 19 w
+1 19 a
+2 19 n
+3 19 ?
+0 20 a
+1 20 r
+2 20 t
+3 20 
+0 21 l
+1 21 ,
+2 21 e
+3 21 
+0 22 l
+1 22 
+2 22 d
+3 22 
+0 23 ,
+1 23 
+2 23 a
+3 23 
+0 24 
+1 24 
+2 24 l
+3 24 
+0 25 
+1 25 
+2 25 l
+3 25 
+0 26 
+1 26 
+2 26 ,
+3 26 
+{0: [u'd', u'a', u'i', u'-'],
+ 1: [u'r', u'n', u'd', u'h'],
+ 2: [u'e', u'd', u'r', u'o'],
+ 3: [u'a', u'd', u'e', u'w'],
+ 4: [u'm', u'r', u'a', u'm'],
+ 5: [u'i', u'e', u'm', u'a'],
+ 6: [u'n', u'a', u'e', u'n'],
+ 7: [u'g', u'm', u'd', u'y'],
+ 8: [u'o', u'i', u't', u'w'],
+ 9: [u'f', u'n', u'h', u'o'],
+ 10: [u'a', u'g', u'a', u'u'],
+ 11: [u'p', u'o', u't', u'l'],
+ 12: [u'p', u'f', u',', u'd'],
+ 13: [u'l', u't', u'i', u'a'],
+ 14: [u'e', u'e', u'f', u'p'],
+ 15: [u's', u'n', u'i', u'p'],
+ 16: [u'o', u',', u'c', u'e'],
+ 17: [u'n', u'd', u'o', u'a'],
+ 18: [u'a', u'e', u'u', u'r'],
+ 19: [u'w', u'a', u'n', u'?'],
+ 20: [u'a', u'r', u't', ''],
+ 21: [u'l', u',', u'e', ''],
+ 22: [u'l', '', u'd', ''],
+ 23: [u',', '', u'a', ''],
+ 24: ['', '', u'l', ''],
+ 25: ['', '', u'l', ''],
+ 26: ['', '', u',', '']}
+[u'dai-', u'rndh', u'edro', u'adew', u'mram', u'iema', u'naen', u'gmdy', u'oitw', u'fnho', u'agau', u'potl', u'pf,d', u'ltia', u'eefp', u'snip', u'o,ce', u'ndoa', u'aeur', u'wan?', u'art', u'l,e', u'ld', u',a', u'l', u'l', u',']
+[u'dai-', u'rndh', u'edro', u'adew', u'mram', u'iema', u'naen', u'gmdy', u'oitw', u'fnho', u'agau', u'potl', u'pf,d', u'ltia', u'eefp', u'snip', u'o,ce', u'ndoa', u'aeur', u'wan?', u'art', u'l,e', u'ld', u',a', u'l', u'l', u',']
+['hetookhisvorpalswordinhand:', 'longtimethemanxomefoehesought--', 'sorestedhebythetumtumtree,', 'andstoodawhileinthought.', 'andasinuffishthoughthestood,', 'thejabberwock,witheyesofflame,', 'camewhifflingthroughthetulgeywood,', 'andburbledasitcame!']
+[]
+['hetookhisvorpalswordinhand:',
+ 'longtimethemanxomefoehesought--',
+ 'sorestedhebythetumtumtree,',
+ 'andstoodawhileinthought.',
+ 'andasinuffishthoughthestood,',
+ 'thejabberwock,witheyesofflame,',
+ 'camewhifflingthroughthetulgeywood,',
+ 'andburbledasitcame!']
+8 34
+transpose 8 34
+0 0 h
+1 0 l
+2 0 s
+3 0 a
+4 0 a
+5 0 t
+6 0 c
+7 0 a
+0 1 e
+1 1 o
+2 1 o
+3 1 n
+4 1 n
+5 1 h
+6 1 a
+7 1 n
+0 2 t
+1 2 n
+2 2 r
+3 2 d
+4 2 d
+5 2 e
+6 2 m
+7 2 d
+0 3 o
+1 3 g
+2 3 e
+3 3 s
+4 3 a
+5 3 j
+6 3 e
+7 3 b
+0 4 o
+1 4 t
+2 4 s
+3 4 t
+4 4 s
+5 4 a
+6 4 w
+7 4 u
+0 5 k
+1 5 i
+2 5 t
+3 5 o
+4 5 i
+5 5 b
+6 5 h
+7 5 r
+0 6 h
+1 6 m
+2 6 e
+3 6 o
+4 6 n
+5 6 b
+6 6 i
+7 6 b
+0 7 i
+1 7 e
+2 7 d
+3 7 d
+4 7 u
+5 7 e
+6 7 f
+7 7 l
+0 8 s
+1 8 t
+2 8 h
+3 8 a
+4 8 f
+5 8 r
+6 8 f
+7 8 e
+0 9 v
+1 9 h
+2 9 e
+3 9 w
+4 9 f
+5 9 w
+6 9 l
+7 9 d
+0 10 o
+1 10 e
+2 10 b
+3 10 h
+4 10 i
+5 10 o
+6 10 i
+7 10 a
+0 11 r
+1 11 m
+2 11 y
+3 11 i
+4 11 s
+5 11 c
+6 11 n
+7 11 s
+0 12 p
+1 12 a
+2 12 t
+3 12 l
+4 12 h
+5 12 k
+6 12 g
+7 12 i
+0 13 a
+1 13 n
+2 13 h
+3 13 e
+4 13 t
+5 13 ,
+6 13 t
+7 13 t
+0 14 l
+1 14 x
+2 14 e
+3 14 i
+4 14 h
+5 14 w
+6 14 h
+7 14 c
+0 15 s
+1 15 o
+2 15 t
+3 15 n
+4 15 o
+5 15 i
+6 15 r
+7 15 a
+0 16 w
+1 16 m
+2 16 u
+3 16 t
+4 16 u
+5 16 t
+6 16 o
+7 16 m
+0 17 o
+1 17 e
+2 17 m
+3 17 h
+4 17 g
+5 17 h
+6 17 u
+7 17 e
+0 18 r
+1 18 f
+2 18 t
+3 18 o
+4 18 h
+5 18 e
+6 18 g
+7 18 !
+0 19 d
+1 19 o
+2 19 u
+3 19 u
+4 19 t
+5 19 y
+6 19 h
+7 19 
+0 20 i
+1 20 e
+2 20 m
+3 20 g
+4 20 h
+5 20 e
+6 20 t
+7 20 
+0 21 n
+1 21 h
+2 21 t
+3 21 h
+4 21 e
+5 21 s
+6 21 h
+7 21 
+0 22 h
+1 22 e
+2 22 r
+3 22 t
+4 22 s
+5 22 o
+6 22 e
+7 22 
+0 23 a
+1 23 s
+2 23 e
+3 23 .
+4 23 t
+5 23 f
+6 23 t
+7 23 
+0 24 n
+1 24 o
+2 24 e
+3 24 
+4 24 o
+5 24 f
+6 24 u
+7 24 
+0 25 d
+1 25 u
+2 25 ,
+3 25 
+4 25 o
+5 25 l
+6 25 l
+7 25 
+0 26 :
+1 26 g
+2 26 
+3 26 
+4 26 d
+5 26 a
+6 26 g
+7 26 
+0 27 
+1 27 h
+2 27 
+3 27 
+4 27 ,
+5 27 m
+6 27 e
+7 27 
+0 28 
+1 28 t
+2 28 
+3 28 
+4 28 
+5 28 e
+6 28 y
+7 28 
+0 29 
+1 29 -
+2 29 
+3 29 
+4 29 
+5 29 ,
+6 29 w
+7 29 
+0 30 
+1 30 -
+2 30 
+3 30 
+4 30 
+5 30 
+6 30 o
+7 30 
+0 31 
+1 31 
+2 31 
+3 31 
+4 31 
+5 31 
+6 31 o
+7 31 
+0 32 
+1 32 
+2 32 
+3 32 
+4 32 
+5 32 
+6 32 d
+7 32 
+0 33 
+1 33 
+2 33 
+3 33 
+4 33 
+5 33 
+6 33 ,
+7 33 
+{0: ['h', 'l', 's', 'a', 'a', 't', 'c', 'a'],
+ 1: ['e', 'o', 'o', 'n', 'n', 'h', 'a', 'n'],
+ 2: ['t', 'n', 'r', 'd', 'd', 'e', 'm', 'd'],
+ 3: ['o', 'g', 'e', 's', 'a', 'j', 'e', 'b'],
+ 4: ['o', 't', 's', 't', 's', 'a', 'w', 'u'],
+ 5: ['k', 'i', 't', 'o', 'i', 'b', 'h', 'r'],
+ 6: ['h', 'm', 'e', 'o', 'n', 'b', 'i', 'b'],
+ 7: ['i', 'e', 'd', 'd', 'u', 'e', 'f', 'l'],
+ 8: ['s', 't', 'h', 'a', 'f', 'r', 'f', 'e'],
+ 9: ['v', 'h', 'e', 'w', 'f', 'w', 'l', 'd'],
+ 10: ['o', 'e', 'b', 'h', 'i', 'o', 'i', 'a'],
+ 11: ['r', 'm', 'y', 'i', 's', 'c', 'n', 's'],
+ 12: ['p', 'a', 't', 'l', 'h', 'k', 'g', 'i'],
+ 13: ['a', 'n', 'h', 'e', 't', ',', 't', 't'],
+ 14: ['l', 'x', 'e', 'i', 'h', 'w', 'h', 'c'],
+ 15: ['s', 'o', 't', 'n', 'o', 'i', 'r', 'a'],
+ 16: ['w', 'm', 'u', 't', 'u', 't', 'o', 'm'],
+ 17: ['o', 'e', 'm', 'h', 'g', 'h', 'u', 'e'],
+ 18: ['r', 'f', 't', 'o', 'h', 'e', 'g', '!'],
+ 19: ['d', 'o', 'u', 'u', 't', 'y', 'h', ''],
+ 20: ['i', 'e', 'm', 'g', 'h', 'e', 't', ''],
+ 21: ['n', 'h', 't', 'h', 'e', 's', 'h', ''],
+ 22: ['h', 'e', 'r', 't', 's', 'o', 'e', ''],
+ 23: ['a', 's', 'e', '.', 't', 'f', 't', ''],
+ 24: ['n', 'o', 'e', '', 'o', 'f', 'u', ''],
+ 25: ['d', 'u', ',', '', 'o', 'l', 'l', ''],
+ 26: [':', 'g', '', '', 'd', 'a', 'g', ''],
+ 27: ['', 'h', '', '', ',', 'm', 'e', ''],
+ 28: ['', 't', '', '', '', 'e', 'y', ''],
+ 29: ['', '-', '', '', '', ',', 'w', ''],
+ 30: ['', '-', '', '', '', '', 'o', ''],
+ 31: ['', '', '', '', '', '', 'o', ''],
+ 32: ['', '', '', '', '', '', 'd', ''],
+ 33: ['', '', '', '', '', '', ',', '']}
+['hlsaatca', 'eoonnhan', 'tnrddemd', 'ogesajeb', 'otstsawu', 'kitoibhr', 'hmeonbib', 'iedduefl', 'sthafrfe', 'vhewfwld', 'oebhioia', 'rmyiscns', 'patlhkgi', 'anhet,tt', 'lxeihwhc', 'sotnoira', 'wmututom', 'oemhghue', 'rftoheg!', 'douutyh', 'iemghet', 'nhthesh', 'hertsoe', 'ase.tft', 'noeofu', 'du,oll', ':gdag', 'h,me', 'tey', '-,w', '-o', 'o', 'd', ',']
+['hlsaatca', 'eoonnhan', 'tnrddemd', 'ogesajeb', 'otstsawu', 'kitoibhr', 'hmeonbib', 'iedduefl', 'sthafrfe', 'vhewfwld', 'oebhioia', 'rmyiscns', 'patlhkgi', 'anhet,tt', 'lxeihwhc', 'sotnoira', 'wmututom', 'oemhghue', 'rftoheg!', 'douutyh', 'iemghet', 'nhthesh', 'hertsoe', 'ase.tft', 'noeofu', 'du,oll', ':gdag', 'h,me', 'tey', '-,w', '-o', 'o', 'd', ',']
