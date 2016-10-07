@@ -4,113 +4,81 @@
 #
 
 from __future__ import print_function
+
 from itertools import product
-# from collections import Counter
 
 ########################################################################
 
 
 def line(p1, p2):
-    # put points in ascending X order
-    if p1[0] > p2[0]:
-        p1, p2 = p2, p1
+    """Compute parameters for 'm' and 'b for y = mx + b line between p1 and
+p2."""
 
     x1, y1 = p1
     x2, y2 = p2
 
+    # avoid division by zero; synthesize fake slope
     if x1 == x2:
         m = 100
         b = x1
     else:
         # y = mx + b
         m = (y2 - y1) / float(x2 - x1)
+        b = y1 - (m * x1)
 
-        if m != 0:
-            if x1 != 0:
-                b = y1 / (m * x1)
-            else:
-                b = y2 / (m * x2)
-        else:
-            b = y1
-
+    # sand down the precision a bit
     m = round(m, 2)
     b = round(b, 2)
-    print("line", p1, p2, m, b)
+
+    # return the line parameters
     return m, b
 
 ########################################################################
 
 
-def print_group(g):
-    for l, point_slope, point_list in g:
-        print(l, point_slope, point_list)
-
-########################################################################
-
-
 def checkio(l):
-    print("checkio", l)
+    """Compute colinear groups of points."""
+
+    # start with empty results array
     counts = {}
+
+    # form all pairs of points
     p = product(l, l)
+
+    # work on all point pairs
     for p1, p2 in p:
-        if p1 == p2 or p1[0] > p2[0]:
+        # skip equal pairs and take unequal pairs only once
+        if (
+            (p1 == p2) or
+            (p1[0] > p2[0]) or
+            ((p1[0] == p2[0]) and (p1[1] > p2[1]))
+        ):
             continue
+
+        # compute the line parameters between the points
         m, b = line(p1, p2)
-        counts.setdefault((m, b), [])
-        counts[(m, b)].append((p1, p2))
+
+        # accumulate point pairs into a dictionary indexed by (m, b)
+        counts.setdefault((m, b), set())
+        counts[(m, b)].add(tuple(p1))
+        counts[(m, b)].add(tuple(p2))
+
+    # got all of the pairs sorted by line, now keep the lines having three or
+    # more points
 
     datatuples = []
-    print("----")
     for k in sorted(counts.keys()):
-        print(len(counts[k]), k, counts[k])
-        datatuples.append((len(counts[k]), k, counts[k]))
+        if len(counts[k]) >= 3:
+            datatuples.append((len(counts[k]), k, counts[k]))
 
-    groups = []
-    uniquekeys = []
-    data = sorted(datatuples, key=lambda v: v[0])
-
-    from itertools import groupby
-    for k, g in groupby(data, lambda v: v[0]):
-        groups.append(list(g))
-        uniquekeys.append(k)
-
-    # in place reversal
-    groups.reverse()
-    uniquekeys.reverse()
-
-    print("=====")
-    print("groups")
-    for group in groups:
-        print_group(group)
-    print("uniquekeys", uniquekeys)
-
-    all_coverage = set([(x, y) for [x, y] in l])
-    print(all_coverage)
-
-    current_coverage = set()
-    for group in groups:
-        print()
-        new_coverage = set()
-        for element in group:
-            length, slope_intercept, point_list = element
-            print(length, slope_intercept, point_list)
-            for p1, p2 in point_list:
-                x1, y1 = p1
-                x2, y2 = p2
-                new_coverage.add((x1, y1))
-                new_coverage.add((x2, y2))
-        print("new_coverage", new_coverage)
-        current_coverage |= new_coverage
-        print("still missing", all_coverage - current_coverage)
-
-
-
-
-    return counts
+    # whatever lines are left is the answer
+    return len(datatuples)
 
 ########################################################################
 
-checkio([[3, 3], [5, 5], [8, 8], [2, 8], [8, 2]]) == 2
-checkio([[2, 2], [2, 5], [2, 8], [5, 2], [7, 2], [8, 2], [9, 2], [4, 5], [4, 8], [7, 5], [5, 8], [9, 8]]) == 6
+assert checkio([[3, 3], [5, 5], [8, 8], [2, 8], [8, 2]]) == 2
+assert checkio([[2, 2], [2, 5], [2, 8], [5, 2], [7, 2], [8, 2], [9, 2], [4, 5], [4, 8], [7, 5], [5, 8], [9, 8]]) == 6
+assert checkio([[2, 0], [8, 0], [3, 3], [4, 3], [6, 3], [7, 3], [4, 6], [6, 6], [5, 9]]) == 5
+print("Done!")
 
 # end of file
