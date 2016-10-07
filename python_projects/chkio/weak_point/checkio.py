@@ -8,32 +8,13 @@ from __future__ import print_function
 ########################################################################
 
 
-def transpose(l):
-    """Interchange the rows and columns of l."""
-    rows = len(l)
-    cols = len(l[0])
-    result = []
-    for c in range(cols):
-        col = []
-        for r in range(rows):
-            col.append(l[r][c])
-        result.append(col)
-    return result
-
-########################################################################
-
-
 def weak_point(l):
     row_sums = [sum(x) for x in l]
-    col_sums = [sum(y) for y in transpose(l)]
+    col_sums = [sum(y) for y in zip(*l)]
     rmin = min(row_sums)
-    for r, rval in enumerate(row_sums):
-        if rval == rmin:
-            break
+    r = row_sums.index(rmin)
     cmin = min(col_sums)
-    for c, cval in enumerate(col_sums):
-        if cval == cmin:
-            break
+    c = col_sums.index(cmin)
     return [r, c]
 
 ########################################################################
