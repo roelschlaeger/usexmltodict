@@ -71,10 +71,10 @@ def super_root(n):
             (2 * (fp(x0) ** 2) - f(x0, n) * fpp(x0))
         )
 
-    if round(x1, 3) == round(x1, 0):
-        x2 = int(x1)
-        if x2 ** x2 == n:
-            return x2
+#   if round(x1, 3) == round(x1, 0):
+#       x2 = int(x1)
+#       if x2 ** x2 == n:
+#           return x2
 
     return x1
 
