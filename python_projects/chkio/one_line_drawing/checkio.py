@@ -1,6 +1,12 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
 # -*- encoding=utf8 -*-
 
+"""Draw a graph with 'lifting the pen'.
+
+In this case, nodes may be repeated but a given edge may be traversed only
+once.
+"""
+
 # https://py.checkio.org/mission/one-line-drawing/
 
 # dijkstra_search taken from
@@ -9,47 +15,59 @@
 from __future__ import print_function
 
 from pprint import pprint, pformat
+import heapq
 
 ########################################################################
 
 
 class SimpleGraph:
+    """Class to describe the graph."""
+
     def __init__(self):
+        """Initialize the SimpleGraph class."""
         self.edges = {}
 
     def neighbors(self, id):
-        if not id in self.edges:
+        """Return the list of neighbors for node 'id'."""
+        if id not in self.edges:
             self.edges[id] = set()
         return self.edges[id]
 
     def cost(self, current, next):
+        """Return the cost to traverse the (current, next) edge."""
         return 1
 
     def __str__(self):
+        """Support display of the SimpleGraph class."""
         return pformat(self.edges)
 
 ########################################################################
 
-import heapq
-
 
 class PriorityQueue:
+    """Wrapper for the heapq data structure."""
+
     def __init__(self):
+        """Initialize the PriorityQueue data element."""
         self.elements = []
 
     def empty(self):
+        """Return 'True' if the data structure is empty."""
         return len(self.elements) == 0
 
     def put(self, item, priority):
+        """Push 'item' onto the queue with 'priority'."""
         heapq.heappush(self.elements, (priority, item))
 
     def get(self):
+        """Get the highest priority element."""
         return heapq.heappop(self.elements)[1]
 
 ########################################################################
 
 
 def dijkstra_search(graph, start, goal):
+    """Traverse a graph from 'start' to (optional) 'goal'."""
     frontier = PriorityQueue()
     frontier.put(start, 0)
     came_from = {}
@@ -77,6 +95,7 @@ def dijkstra_search(graph, start, goal):
 
 
 def reconstruct_path(came_from, start, goal):
+    """After a path has been found, return the path elements."""
     current = goal
     path = [current]
     while current != start:
@@ -90,6 +109,7 @@ def reconstruct_path(came_from, start, goal):
 
 
 def create_graph(l):
+    """Construct a graph and fill in edges."""
     graph = SimpleGraph()
 
     points = []
@@ -108,6 +128,7 @@ def create_graph(l):
 
 
 def draw(l):
+    """Draw a graph without lifting the pen."""
     print("\n################################################################")
     graph, points = create_graph(l)
     print("graph", graph, "points", points)
