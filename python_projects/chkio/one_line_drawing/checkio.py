@@ -66,6 +66,25 @@ class PriorityQueue:
 ########################################################################
 
 
+def create_graph(l):
+    """Construct a graph and fill in edges."""
+    graph = SimpleGraph()
+
+    points = []
+    for a, b, c, d in l:
+        p1 = (a, b)
+        p2 = (c, d)
+        points.extend([p1, p2])
+        graph.neighbors(p1).add(p2)
+        graph.neighbors(p2).add(p1)
+    points = set(sorted(list(set(points))))
+    print("points")
+    pprint(points)
+    return graph, points
+
+########################################################################
+
+
 def dijkstra_search(graph, start, goal):
     """Traverse a graph from 'start' to (optional) 'goal'."""
     frontier = PriorityQueue()
@@ -104,25 +123,6 @@ def reconstruct_path(came_from, start, goal):
 #   path.append(start)  # optional
     path.reverse()      # optional
     return path
-
-########################################################################
-
-
-def create_graph(l):
-    """Construct a graph and fill in edges."""
-    graph = SimpleGraph()
-
-    points = []
-    for a, b, c, d in l:
-        p1 = (a, b)
-        p2 = (c, d)
-        points.extend([p1, p2])
-        graph.neighbors(p1).add(p2)
-        graph.neighbors(p2).add(p1)
-    points = set(sorted(list(set(points))))
-    print("points")
-    pprint(points)
-    return graph, points
 
 ########################################################################
 
