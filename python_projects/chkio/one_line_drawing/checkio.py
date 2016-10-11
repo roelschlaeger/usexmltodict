@@ -89,10 +89,15 @@ def dijkstra_search(graph, start, goal):
     """Traverse a graph from 'start' to (optional) 'goal'."""
     frontier = PriorityQueue()
     frontier.put(start, 0)
+
     came_from = {}
-    cost_so_far = {}
     came_from[start] = None
+
+    cost_so_far = {}
     cost_so_far[start] = 0
+
+    edges_so_far = {}
+    edges_so_far[start] = []
 
     while not frontier.empty():
         current = frontier.get()
@@ -102,13 +107,25 @@ def dijkstra_search(graph, start, goal):
 
         for next in graph.neighbors(current):
             new_cost = cost_so_far[current] + graph.cost(current, next)
-            if next not in cost_so_far or new_cost < cost_so_far[next]:
+            new_edge = tuple(sorted([current, next]))
+            if (
+                new_edge not in edges_so_far[current] or
+                new_cost < cost_so_far[next]
+            ):
+#               if (
+#                   next not in cost_so_far or
+#                   new_cost < cost_so_far[next]
+#               ):
                 cost_so_far[next] = new_cost
                 priority = new_cost
                 frontier.put(next, priority)
                 came_from[next] = current
+                edges_so_far[current].append(new_edge)
+                if next not in edges_so_far:
+                    edges_so_far[next] = []
+                edges_so_far[next].append(new_edge)
 
-    return came_from, cost_so_far
+    return came_from, cost_so_far, edges_so_far
 
 ########################################################################
 
@@ -131,14 +148,20 @@ def draw(l):
     """Draw a graph without lifting the pen."""
     print("\n################################################################")
     graph, points = create_graph(l)
-    print("graph", graph, "points", points)
+    print(
+        "\nl", pformat(l),
+        "\npoints", points,
+        "\ngraph", str(graph)
+    )
     path = []
     for start in points:
-        came_from, cost_so_far = dijkstra_search(graph, start, None)
+        came_from, cost_so_far, edges_so_far = \
+            dijkstra_search(graph, start, None)
         print(
             "\nstart", start,
-            "\ncame_from", came_from,
-            "\ncost_so_far", cost_so_far
+            "\ncame_from", pformat(came_from),
+            "\ncost_so_far", pformat(cost_so_far),
+            "\nedges_so_far", pformat(edges_so_far)
         )
         highest = max(cost_so_far.values())
         if highest != (len(points) - 1):
@@ -154,19 +177,20 @@ def draw(l):
 
 if __name__ == "__main__":
 
-    assert draw({(1, 2, 1, 5), (1, 2, 7, 2), (1, 5, 4, 7), (4, 7, 7, 5)}) == \
-        ((7, 2), (1, 2), (1, 5), (4, 7), (7, 5))
+    if 0:
+        assert draw({(1, 2, 1, 5), (1, 2, 7, 2), (1, 5, 4, 7), (4, 7, 7, 5)}) == \
+            ((7, 2), (1, 2), (1, 5), (4, 7), (7, 5))
 
-    assert draw(
-        {
-            (1, 2, 1, 5),
-            (1, 2, 7, 2),
-            (1, 5, 4, 7),
-            (4, 7, 7, 5),
-            (7, 5, 7, 2),
-            (1, 5, 7, 2),
-            (7, 5, 1, 2)
-        }) == ()
+        assert draw(
+            {
+                (1, 2, 1, 5),
+                (1, 2, 7, 2),
+                (1, 5, 4, 7),
+                (4, 7, 7, 5),
+                (7, 5, 7, 2),
+                (1, 5, 7, 2),
+                (7, 5, 1, 2)
+            }) == ()
 
     assert draw(
         {
