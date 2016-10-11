@@ -112,10 +112,10 @@ def dijkstra_search(graph, start, goal):
                 new_edge not in edges_so_far[current] or
                 new_cost < cost_so_far[next]
             ):
-#               if (
-#                   next not in cost_so_far or
-#                   new_cost < cost_so_far[next]
-#               ):
+                #    (
+                #        next not in cost_so_far or
+                #        new_cost < cost_so_far[next]
+                #    ):
                 cost_so_far[next] = new_cost
                 priority = new_cost
                 frontier.put(next, priority)
@@ -178,7 +178,8 @@ def draw(l):
 if __name__ == "__main__":
 
     if 0:
-        assert draw({(1, 2, 1, 5), (1, 2, 7, 2), (1, 5, 4, 7), (4, 7, 7, 5)}) == \
+        assert draw(
+            {(1, 2, 1, 5), (1, 2, 7, 2), (1, 5, 4, 7), (4, 7, 7, 5)}) == \
             ((7, 2), (1, 2), (1, 5), (4, 7), (7, 5))
 
         assert draw(
