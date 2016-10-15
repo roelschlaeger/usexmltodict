@@ -14,8 +14,24 @@ once.
 
 from __future__ import print_function
 
+########################################################################
+
 from pprint import pprint, pformat
 import heapq
+from collections import defaultdict
+
+########################################################################
+
+DEBUG = True
+
+########################################################################
+
+
+def debug_print(*a, **b):
+    """Debug-only printing"""
+    if DEBUG:
+        print(*a, **b)
+
 
 ########################################################################
 
@@ -23,14 +39,13 @@ import heapq
 class SimpleGraph:
     """Class to describe the graph."""
 
-    def __init__(self):
+    def __init__(self, l):
         """Initialize the SimpleGraph class."""
-        self.edges = {}
+        self.edges = defaultdict(set)
+        self.l = l
 
     def neighbors(self, id):
         """Return the list of neighbors for node 'id'."""
-        if id not in self.edges:
-            self.edges[id] = set()
         return self.edges[id]
 
     def cost(self, current, next):
@@ -39,7 +54,33 @@ class SimpleGraph:
 
     def __str__(self):
         """Support display of the SimpleGraph class."""
-        return pformat(self.edges)
+        return pformat(self.edges) + "\n" + pformat(self.point_to_points())
+
+    def check_eulerian(self):
+        """Determine if a graph is Eulerian.
+
+        A graph is Eulerian iff exactly zero or two vertices are of odd degree,
+        all others are even.
+        """
+        def is_odd(n):
+            return (n & 1) == 1
+
+        result = sum([is_odd(len(y)) for (x, y) in self.edges.items()]) \
+            in [0, 2]
+
+        debug_print("check_eulerian", self.edges, result)
+        return result
+
+    def point_to_points(self):
+        result = defaultdict(list)
+        nodelist = tuple(sorted(self.edges.keys()))
+        print("\n***\nnodelist", nodelist)
+        for a, b, c, d in self.l:
+            p1 = nodelist.index((a, b))
+            p2 = nodelist.index((c, d))
+            result[p1].append(p2)
+            result[p2].append(p1)
+        print("point_to_points", pformat(result))
 
 ########################################################################
 
@@ -68,7 +109,7 @@ class PriorityQueue:
 
 def create_graph(l):
     """Construct a graph and fill in edges."""
-    graph = SimpleGraph()
+    graph = SimpleGraph(l)
 
     points = []
     for a, b, c, d in l:
@@ -78,8 +119,9 @@ def create_graph(l):
         graph.neighbors(p1).add(p2)
         graph.neighbors(p2).add(p1)
     points = set(sorted(list(set(points))))
-    print("points")
-    pprint(points)
+    debug_print("points")
+    if DEBUG:
+        pprint(points)
     return graph, points
 
 ########################################################################
@@ -146,18 +188,23 @@ def reconstruct_path(came_from, start, goal):
 
 def draw(l):
     """Draw a graph without lifting the pen."""
-    print("\n################################################################")
+    debug_print("\n################################################################")
     graph, points = create_graph(l)
-    print(
+    debug_print(
         "\nl", pformat(l),
         "\npoints", points,
         "\ngraph", str(graph)
     )
+
+    # if the graph is not Eulerian, no path can be found
+    if not graph.check_eulerian():
+        return tuple()
+
     path = []
     for start in points:
         came_from, cost_so_far, edges_so_far = \
             dijkstra_search(graph, start, None)
-        print(
+        debug_print(
             "\nstart", start,
             "\ncame_from", pformat(came_from),
             "\ncost_so_far", pformat(cost_so_far),
@@ -167,10 +214,10 @@ def draw(l):
         if highest != (len(points) - 1):
             continue
         index = cost_so_far.values().index(highest)
-        print("index", index, "#points", len(points))
+        debug_print("index", index, "#points", len(points))
         goal = cost_so_far.keys()[index]
         path = reconstruct_path(came_from, start, goal)
-        print("path", path)
+        debug_print("path", path)
     return tuple(path)
 
 ########################################################################
@@ -178,6 +225,7 @@ def draw(l):
 if __name__ == "__main__":
 
     if 0:
+
         assert draw(
             {(1, 2, 1, 5), (1, 2, 7, 2), (1, 5, 4, 7), (4, 7, 7, 5)}) == \
             ((7, 2), (1, 2), (1, 5), (4, 7), (7, 5))
