@@ -7,7 +7,9 @@ from __future__ import print_function
 
 from copy import copy
 from collections import defaultdict
-from pprint import pformat
+# from pprint import pformat
+
+########################################################################
 
 '''
 
@@ -31,6 +33,8 @@ def is_connected(G):
             color[u] = 'black'
     return list(color.values()).count('black') == len(G)
 
+########################################################################
+
 '''
     odd_degree_nodes - returns a list of all G odd degrees nodes
 '''
@@ -42,6 +46,8 @@ def odd_degree_nodes(G):
         if len(G[u]) % 2 != 0:
             odd_degree_nodes.append(u)
     return odd_degree_nodes
+
+########################################################################
 
 '''
     from_dict - return a list of tuples links from a graph G in a
@@ -55,6 +61,8 @@ def from_dict(G):
         for v in G[u]:
             links.append((u, v))
     return links
+
+########################################################################
 
 '''
     fleury(G) - return eulerian trail from graph G or a
@@ -118,22 +126,22 @@ class FleuryGraph(object):
             p2 = self.edgelist.index((c, d))
             result[p1].append(p2)
             result[p2].append(p1)
-        print("point_to_points", pformat(result))
+        # print("point_to_points", pformat(result))
         return result
 
     def to_nodes(self, indices):
-        print("to_node", indices)
+        # print("to_node", indices)
         result = []
         if indices:
             for from_node, to_node in indices:
                 result.append(self.edgelist[from_node])
             result.append(self.edgelist[to_node])
-            print(
-                "to_nodes",
-                "\nindices", indices,
-                "\nedgelist", self.edgelist,
-                "\nresult", result
-            )
+            # print(
+            #     "to_nodes",
+            #     "\nindices", indices,
+            #     "\nedgelist", self.edgelist,
+            #     "\nresult", result
+            # )
         return result
 
 ########################################################################
@@ -144,8 +152,10 @@ def draw(l):
     G = graph.make_graph(l)
     indices = fleury(G)
     result = tuple(graph.to_nodes(indices))
-    print("draw", result, "\n*** DONE ***\n\n")
+    # print("draw", result, "\n*** DONE ***\n\n")
     return result
+
+########################################################################
 
 if __name__ == "__main__":
 
@@ -164,101 +174,66 @@ if __name__ == "__main__":
             (7, 5, 1, 2)
         }) == ()
 
-    assert draw(
-        {
-            (1, 2, 1, 5),
-            (1, 2, 7, 2),
-            (1, 5, 4, 7),
-            (4, 7, 7, 5),
-            (7, 5, 7, 2),
-            (1, 5, 7, 2),
-            (7, 5, 1, 2),
-            (1, 5, 7, 5)
-        }
-    ) == (
-        (7, 2), (1, 2), (1, 5), (4, 7), (7, 5), (7, 2), (1, 5), (7, 5), (1, 2)
-    )
+    if 0:
+        assert draw(
+            {
+                (1, 2, 1, 5),
+                (1, 2, 7, 2),
+                (1, 5, 4, 7),
+                (4, 7, 7, 5),
+                (7, 5, 7, 2),
+                (1, 5, 7, 2),
+                (7, 5, 1, 2),
+                (1, 5, 7, 5)
+            }
+        ) == (
+            (7, 2), (1, 2), (1, 5), (4, 7),
+            (7, 5), (7, 2), (1, 5), (7, 5),
+            (1, 2)
+        )
 
-    #   # testing seven bridges of konigsberg
-    #   print('Konigsberg')
-    #   G = {0: [2, 2, 3], 1: [2, 2, 3], 2: [0, 0, 1, 1, 3], 3: [0, 1, 2]}
-    #   print(fleury(G))
+    # testing seven bridges of konigsberg
+    print('Konigsberg')
+    G = {0: [2, 2, 3], 1: [2, 2, 3], 2: [0, 0, 1, 1, 3], 3: [0, 1, 2]}
+    print(fleury(G))
 
-    #   # testing an eulerian cycle
-    #   print('1st Eulerian Cycle')
-    #   G = {
-    #       0: [1, 4, 6, 8],
-    #       1: [0, 2, 3, 8],
-    #       2: [1, 3],
-    #       3: [1, 2, 4, 5],
-    #       4: [0, 3],
-    #       5: [3, 6],
-    #       6: [0, 5, 7, 8],
-    #       7: [6, 8],
-    #       8: [0, 1, 6, 7]
-    #   }
-    #   print(fleury(G))
+    # testing an eulerian cycle
+    print('1st Eulerian Cycle')
+    G = {
+        0: [1, 4, 6, 8],
+        1: [0, 2, 3, 8],
+        2: [1, 3],
+        3: [1, 2, 4, 5],
+        4: [0, 3],
+        5: [3, 6],
+        6: [0, 5, 7, 8],
+        7: [6, 8],
+        8: [0, 1, 6, 7]
+    }
+    print(fleury(G))
 
-    #   # testing another eulerian cycle
-    #   print('2nd Eulerian Cycle')
-    #   G = {
-    #       1: [2, 3, 4, 4],
-    #       2: [1, 3, 3, 4],
-    #       3: [1, 2, 2, 4],
-    #       4: [1, 1, 2, 3]
-    #   }
-    #   print(fleury(G))
+    # testing another eulerian cycle
+    print('2nd Eulerian Cycle')
+    G = {
+        1: [2, 3, 4, 4],
+        2: [1, 3, 3, 4],
+        3: [1, 2, 2, 4],
+        4: [1, 1, 2, 3]
+    }
+    print(fleury(G))
 
-    #   # testing an eulerian trail
-    #   print('Eulerian Trail')
-    #   G = {1: [2, 3], 2: [1, 3, 4], 3: [1, 2, 4], 4: [2, 3]}
-    #   print(fleury(G))
+    # testing an eulerian trail
+    print('Eulerian Trail')
+    G = {1: [2, 3], 2: [1, 3, 4], 3: [1, 2, 4], 4: [2, 3]}
+    print(fleury(G))
 
+    print('Eulerian trail example')
+    G = {
+        0: [1, 3, 4],
+        1: [0, 2, 4, 3],
+        2: [4, 1],
+        3: [0, 4, 1],
+        4: [0, 2, 3, 1]
+    }
 
-    #   ### assert fleury(
-    #   ###     {(1, 2, 1, 5), (1, 2, 7, 2), (1, 5, 4, 7), (4, 7, 7, 5)}) == \
-    #   ###     ((7, 2), (1, 2), (1, 5), (4, 7), (7, 5))
-    #   ###
-    #   ### assert fleury(
-    #   ###     {
-    #   ###         (1, 2, 1, 5),
-    #   ###         (1, 2, 7, 2),
-    #   ###         (1, 5, 4, 7),
-    #   ###         (4, 7, 7, 5),
-    #   ###         (7, 5, 7, 2),
-    #   ###         (1, 5, 7, 2),
-    #   ###         (7, 5, 1, 2)
-    #   ###     }) == ()
-    #   ###
-    #   ### assert fleury(
-    #   ###     {
-    #   ###         (1, 2, 1, 5),
-    #   ###         (1, 2, 7, 2),
-    #   ###         (1, 5, 4, 7),
-    #   ###         (4, 7, 7, 5),
-    #   ###         (7, 5, 7, 2),
-    #   ###         (1, 5, 7, 2),
-    #   ###         (7, 5, 1, 2),
-    #   ###         (1, 5, 7, 5)
-    #   ###     }
-    #   ### ) == (
-    #   ###     (7, 2),
-    #   ###     (1, 2),
-    #   ###     (1, 5),
-    #   ###     (4, 7),
-    #   ###     (7, 5),
-    #   ###     (7, 2),
-    #   ###     (1, 5),
-    #   ###     (7, 5),
-    #   ###     (1, 2)
-    #   ### )
-
-    #   G = {
-    #       0: [1, 3, 4],
-    #       1: [0, 2, 4, 3],
-    #       2: [4, 1],
-    #       3: [0, 4, 1],
-    #       4: [0, 2, 3, 1]
-    #   }
-
-    #   print(fleury(G))
+    print(fleury(G))
