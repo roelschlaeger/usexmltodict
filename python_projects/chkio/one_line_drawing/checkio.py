@@ -1,245 +1,167 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et
-# -*- encoding=utf8 -*-
 
-"""Draw a graph with 'lifting the pen'.
-
-In this case, nodes may be repeated but a given edge may be traversed only
-once.
-"""
-
-# https://py.checkio.org/mission/one-line-drawing/
-
-# dijkstra_search taken from
-# http://www.redblobgames.com/pathfinding/a-star/implementation.html
+# implementation of Fleury's algorithm
+# from https://github.com/DiegoAscanio/python-graphs/blob/master/eulerian.py
 
 from __future__ import print_function
 
-########################################################################
-
-from pprint import pprint, pformat
-import heapq
+from copy import copy
 from collections import defaultdict
+# from pprint import pformat
 
 ########################################################################
 
-DEBUG = True
+'''
+
+    is_connected - Checks if a graph in the form of a dictionary is
+    connected or not, using Breadth-First Search Algorithm (BFS)
+
+'''
+
+
+def is_connected(G):
+    start_node = list(G)[0]
+    color = {v: 'white' for v in G}
+    color[start_node] = 'gray'
+    S = [start_node]
+    while len(S) != 0:
+        u = S.pop()
+        for v in G[u]:
+            if color[v] == 'white':
+                color[v] = 'gray'
+                S.append(v)
+            color[u] = 'black'
+    return list(color.values()).count('black') == len(G)
+
+########################################################################
+
+'''
+    odd_degree_nodes - returns a list of all G odd degrees nodes
+'''
+
+
+def odd_degree_nodes(G):
+    odd_degree_nodes = []
+    for u in G:
+        if len(G[u]) % 2 != 0:
+            odd_degree_nodes.append(u)
+    return odd_degree_nodes
+
+########################################################################
+
+'''
+    from_dict - return a list of tuples links from a graph G in a
+    dictionary format
+'''
+
+
+def from_dict(G):
+    links = []
+    for u in G:
+        for v in G[u]:
+            links.append((u, v))
+    return links
+
+########################################################################
+
+'''
+    fleury(G) - return eulerian trail from graph G or a
+    string 'Not Eulerian Graph' if it's not possible to trail a path
+'''
+
+
+def fleury(G):
+    '''
+        checks if G has eulerian cycle or trail
+    '''
+    trail = []
+    odn = odd_degree_nodes(G)
+    if len(odn) > 2 or len(odn) == 1:
+        # print('Not Eulerian Graph')
+        pass
+    else:
+        g = copy(G)
+        if len(odn) == 2:
+            u = odn[0]
+        else:
+            u = list(g)[0]
+        while len(from_dict(g)) > 0:
+            current_vertex = u
+            for u in g[current_vertex]:
+                g[current_vertex].remove(u)
+                g[u].remove(current_vertex)
+                bridge = not is_connected(g)
+                if bridge:
+                    g[current_vertex].append(u)
+                    g[u].append(current_vertex)
+                else:
+                    break
+            if bridge:
+                g[current_vertex].remove(u)
+                g[u].remove(current_vertex)
+                g.pop(current_vertex)
+            trail.append((current_vertex, u))
+    return trail
 
 ########################################################################
 
 
-def debug_print(*a, **b):
-    """Debug-only printing"""
-    if DEBUG:
-        print(*a, **b)
-
-
-########################################################################
-
-
-class SimpleGraph:
-    """Class to describe the graph."""
+class FleuryGraph(object):
 
     def __init__(self, l):
-        """Initialize the SimpleGraph class."""
-        self.edges = defaultdict(set)
-        self.l = l
+        self.edgelist = None
 
-    def neighbors(self, id):
-        """Return the list of neighbors for node 'id'."""
-        return self.edges[id]
+    def make_graph(self, l):
+        nodes = set()
+        for a, b, c, d in l:
+            p1 = (a, b)
+            p2 = (c, d)
+            nodes.add(p2)
+            nodes.add(p1)
 
-    def cost(self, current, next):
-        """Return the cost to traverse the (current, next) edge."""
-        return 1
-
-    def __str__(self):
-        """Support display of the SimpleGraph class."""
-        return pformat(self.edges) + "\n" + pformat(self.point_to_points())
-
-    def check_eulerian(self):
-        """Determine if a graph is Eulerian.
-
-        A graph is Eulerian iff exactly zero or two vertices are of odd degree,
-        all others are even.
-        """
-        def is_odd(n):
-            return (n & 1) == 1
-
-        result = sum([is_odd(len(y)) for (x, y) in self.edges.items()]) \
-            in [0, 2]
-
-        debug_print("check_eulerian", self.edges, result)
-        return result
-
-    def point_to_points(self):
         result = defaultdict(list)
-        nodelist = tuple(sorted(self.edges.keys()))
-        print("\n***\nnodelist", nodelist)
-        for a, b, c, d in self.l:
-            p1 = nodelist.index((a, b))
-            p2 = nodelist.index((c, d))
+        self.edgelist = tuple(sorted(nodes))
+        for a, b, c, d in l:
+            p1 = self.edgelist.index((a, b))
+            p2 = self.edgelist.index((c, d))
             result[p1].append(p2)
             result[p2].append(p1)
-        print("point_to_points", pformat(result))
+        # print("point_to_points", pformat(result))
+        return result
 
-########################################################################
-
-
-class PriorityQueue:
-    """Wrapper for the heapq data structure."""
-
-    def __init__(self):
-        """Initialize the PriorityQueue data element."""
-        self.elements = []
-
-    def empty(self):
-        """Return 'True' if the data structure is empty."""
-        return len(self.elements) == 0
-
-    def put(self, item, priority):
-        """Push 'item' onto the queue with 'priority'."""
-        heapq.heappush(self.elements, (priority, item))
-
-    def get(self):
-        """Get the highest priority element."""
-        return heapq.heappop(self.elements)[1]
-
-########################################################################
-
-
-def create_graph(l):
-    """Construct a graph and fill in edges."""
-    graph = SimpleGraph(l)
-
-    points = []
-    for a, b, c, d in l:
-        p1 = (a, b)
-        p2 = (c, d)
-        points.extend([p1, p2])
-        graph.neighbors(p1).add(p2)
-        graph.neighbors(p2).add(p1)
-    points = set(sorted(list(set(points))))
-    debug_print("points")
-    if DEBUG:
-        pprint(points)
-    return graph, points
-
-########################################################################
-
-
-def dijkstra_search(graph, start, goal):
-    """Traverse a graph from 'start' to (optional) 'goal'."""
-    frontier = PriorityQueue()
-    frontier.put(start, 0)
-
-    came_from = {}
-    came_from[start] = None
-
-    cost_so_far = {}
-    cost_so_far[start] = 0
-
-    edges_so_far = {}
-    edges_so_far[start] = []
-
-    while not frontier.empty():
-        current = frontier.get()
-
-        if current == goal:
-            break
-
-        for next in graph.neighbors(current):
-            new_cost = cost_so_far[current] + graph.cost(current, next)
-            new_edge = tuple(sorted([current, next]))
-            if (
-                new_edge not in edges_so_far[current] or
-                new_cost < cost_so_far[next]
-            ):
-                #    (
-                #        next not in cost_so_far or
-                #        new_cost < cost_so_far[next]
-                #    ):
-                cost_so_far[next] = new_cost
-                priority = new_cost
-                frontier.put(next, priority)
-                came_from[next] = current
-                edges_so_far[current].append(new_edge)
-                if next not in edges_so_far:
-                    edges_so_far[next] = []
-                edges_so_far[next].append(new_edge)
-
-    return came_from, cost_so_far, edges_so_far
-
-########################################################################
-
-
-def reconstruct_path(came_from, start, goal):
-    """After a path has been found, return the path elements."""
-    current = goal
-    path = [current]
-    while current != start:
-        current = came_from[current]
-        path.append(current)
-#   path.append(start)  # optional
-    path.reverse()      # optional
-    return path
+    def to_nodes(self, indices):
+        # print("to_node", indices)
+        result = []
+        if indices:
+            for from_node, to_node in indices:
+                result.append(self.edgelist[from_node])
+            result.append(self.edgelist[to_node])
+            # print(
+            #     "to_nodes",
+            #     "\nindices", indices,
+            #     "\nedgelist", self.edgelist,
+            #     "\nresult", result
+            # )
+        return result
 
 ########################################################################
 
 
 def draw(l):
-    """Draw a graph without lifting the pen."""
-    debug_print("\n################################################################")
-    graph, points = create_graph(l)
-    debug_print(
-        "\nl", pformat(l),
-        "\npoints", points,
-        "\ngraph", str(graph)
-    )
-
-    # if the graph is not Eulerian, no path can be found
-    if not graph.check_eulerian():
-        return tuple()
-
-    path = []
-    for start in points:
-        came_from, cost_so_far, edges_so_far = \
-            dijkstra_search(graph, start, None)
-        debug_print(
-            "\nstart", start,
-            "\ncame_from", pformat(came_from),
-            "\ncost_so_far", pformat(cost_so_far),
-            "\nedges_so_far", pformat(edges_so_far)
-        )
-        highest = max(cost_so_far.values())
-        if highest != (len(points) - 1):
-            continue
-        index = cost_so_far.values().index(highest)
-        debug_print("index", index, "#points", len(points))
-        goal = cost_so_far.keys()[index]
-        path = reconstruct_path(came_from, start, goal)
-        debug_print("path", path)
-    return tuple(path)
+    graph = FleuryGraph(l)
+    G = graph.make_graph(l)
+    indices = fleury(G)
+    result = tuple(graph.to_nodes(indices))
+    # print("draw", result, "\n*** DONE ***\n\n")
+    return result
 
 ########################################################################
 
 if __name__ == "__main__":
 
-    if 0:
-
-        assert draw(
-            {(1, 2, 1, 5), (1, 2, 7, 2), (1, 5, 4, 7), (4, 7, 7, 5)}) == \
-            ((7, 2), (1, 2), (1, 5), (4, 7), (7, 5))
-
-        assert draw(
-            {
-                (1, 2, 1, 5),
-                (1, 2, 7, 2),
-                (1, 5, 4, 7),
-                (4, 7, 7, 5),
-                (7, 5, 7, 2),
-                (1, 5, 7, 2),
-                (7, 5, 1, 2)
-            }) == ()
+    assert draw(
+        {(1, 2, 1, 5), (1, 2, 7, 2), (1, 5, 4, 7), (4, 7, 7, 5)}) == \
+        ((7, 2), (1, 2), (1, 5), (4, 7), (7, 5))
 
     assert draw(
         {
@@ -249,11 +171,69 @@ if __name__ == "__main__":
             (4, 7, 7, 5),
             (7, 5, 7, 2),
             (1, 5, 7, 2),
-            (7, 5, 1, 2),
-            (1, 5, 7, 5)
-        }
-    ) == (
-        (7, 2), (1, 2), (1, 5), (4, 7), (7, 5), (7, 2), (1, 5), (7, 5), (1, 2)
-    )
+            (7, 5, 1, 2)
+        }) == ()
 
-# end of file
+    if 0:
+        assert draw(
+            {
+                (1, 2, 1, 5),
+                (1, 2, 7, 2),
+                (1, 5, 4, 7),
+                (4, 7, 7, 5),
+                (7, 5, 7, 2),
+                (1, 5, 7, 2),
+                (7, 5, 1, 2),
+                (1, 5, 7, 5)
+            }
+        ) == (
+            (7, 2), (1, 2), (1, 5), (4, 7),
+            (7, 5), (7, 2), (1, 5), (7, 5),
+            (1, 2)
+        )
+
+    # testing seven bridges of konigsberg
+    print('Konigsberg')
+    G = {0: [2, 2, 3], 1: [2, 2, 3], 2: [0, 0, 1, 1, 3], 3: [0, 1, 2]}
+    print(fleury(G))
+
+    # testing an eulerian cycle
+    print('1st Eulerian Cycle')
+    G = {
+        0: [1, 4, 6, 8],
+        1: [0, 2, 3, 8],
+        2: [1, 3],
+        3: [1, 2, 4, 5],
+        4: [0, 3],
+        5: [3, 6],
+        6: [0, 5, 7, 8],
+        7: [6, 8],
+        8: [0, 1, 6, 7]
+    }
+    print(fleury(G))
+
+    # testing another eulerian cycle
+    print('2nd Eulerian Cycle')
+    G = {
+        1: [2, 3, 4, 4],
+        2: [1, 3, 3, 4],
+        3: [1, 2, 2, 4],
+        4: [1, 1, 2, 3]
+    }
+    print(fleury(G))
+
+    # testing an eulerian trail
+    print('Eulerian Trail')
+    G = {1: [2, 3], 2: [1, 3, 4], 3: [1, 2, 4], 4: [2, 3]}
+    print(fleury(G))
+
+    print('Eulerian trail example')
+    G = {
+        0: [1, 3, 4],
+        1: [0, 2, 4, 3],
+        2: [4, 1],
+        3: [0, 4, 1],
+        4: [0, 2, 3, 1]
+    }
+
+    print(fleury(G))
