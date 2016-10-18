@@ -42,7 +42,7 @@ from __future__ import print_function
 
 ########################################################################
 
-DEBUG = False
+DEBUG = True
 
 ########################################################################
 
@@ -137,8 +137,8 @@ def rotate(t, ring_plus_1):
     for index, t_index in enumerate(indices):
         t2[t_index] = [d, a, b, c][index]
 
-    if DEBUG:
-        print("rotate", t, ring_plus_1, indices, t2)
+#   if DEBUG:
+#       print("rotate", t, ring_plus_1, indices, t2)
 
     return t2
 
@@ -167,8 +167,8 @@ def count_incorrect(t):
 
 def run_puzzle(t):
     """Try one twist on each circle; pick the best result."""
-    if DEBUG:
-        print("run_puzzle", t)
+#   if DEBUG:
+#       print("run_puzzle", t)
 
     t1 = rotate(t, 1)
     c1 = count_incorrect(t1)
@@ -197,6 +197,11 @@ def run_puzzle(t):
 
 def puzzle88(t):
     """Solve the rings puzzle."""
+
+    print(80 * "#")
+    print("\npuzzle88\n")
+    print(80 * "#")
+    print()
 
     # start with no path
     path = ""
@@ -230,8 +235,11 @@ def puzzle88(t):
 
 if __name__ == "__main__":
 
-    assert puzzle88((0, 2, 1, 3, 2, 1, 4, 0, 0, 4, 0, 3)) == "1433"
+    print(puzzle88((1, 0, 0, 1, 0, 2, 4, 0, 2, 4, 3, 3)))
 
+#   assert puzzle88((0, 2, 1, 3, 2, 1, 4, 0, 0, 4, 0, 3)) == "1433"
+#   assert puzzle88((0, 2, 1, 2, 0, 0, 4, 1, 0, 4, 3, 3)) in ('4231', '4321'), "Rotate all"
+    assert puzzle88((0, 2, 1, 2, 4, 0, 0, 1, 3, 4, 3, 0)) in ('2314', '2341', '3214', '3241'), "Four paths"
     print("Done!")
 
 # end of file
