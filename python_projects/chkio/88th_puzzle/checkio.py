@@ -57,78 +57,6 @@ RINGS_TUPLE = (
     (3, (6, 9, 11, 8))
 )
 
-
-def fill_rings(t):
-    """Fill the rings with input colors."""
-    rings = [[], [], [], []]
-    for ring_index, ring_locations in RINGS_TUPLE:
-        for t_index in ring_locations:
-            rings[ring_index].append(t[t_index])
-    return rings
-
-if DEBUG:
-
-    ########################################################################
-
-    GRID_ROWS_COLS = [                      # table for print_rings
-        (0, 1), (0, 3),
-        (1, 0), (1, 2), (1, 4),
-        (2, 1), (2, 3),
-        (3, 0), (3, 2), (3, 4),
-        (4, 1), (4, 3)
-    ]
-
-    ########################################################################
-
-    COLORS = [                              # colors for print_rings
-        "gray",
-        "blue",
-        "green",
-        "red",
-        "orange"
-    ]
-
-    ########################################################################
-
-    DRAW_WIDTH = 8                          # width for print_rings
-
-    ########################################################################
-
-    def print_rings(t):
-        """Display the rings."""
-
-        output = []
-
-        from collections import defaultdict
-        for row in range(5):
-            output.append(defaultdict(str))
-
-        for index, color in enumerate(t):
-            row, col = GRID_ROWS_COLS[index]
-            print(index, color, row, col)
-            output[row][col] = COLORS[color].center(DRAW_WIDTH)
-
-        # fill in ring numbers
-        ring = 1
-        for row in (1, 3):
-            for col in (1, 3):
-                output[row][col] = ("%s" % ring).center(DRAW_WIDTH)
-                ring += 1
-
-        # draw the output
-        print(54 * '-')
-        for row in range(5):
-            for col in range(5):
-                print("%8s" % output[row][col], end=" | ")
-            print()
-            print(54 * '-')
-        print()
-
-else:
-
-    def print_rings():
-        pass
-
 ########################################################################
 
 
@@ -153,6 +81,8 @@ VERIFY_LIST = [
     (4, "orange", (9, 11))
 ]
 
+########################################################################
+
 
 def count_incorrect(t):
     """Count the number of incorrect colors."""
@@ -165,23 +95,23 @@ def count_incorrect(t):
 ########################################################################
 
 
-def run_puzzle(t, path, h):
+def run_puzzle(t0, path, heap):
     """Try one twist on each circle; pick the best result."""
-    t1 = rotate(t, 1)
+    t1 = rotate(t0, 1)
     c1 = count_incorrect(t1)
-    heappush(h, (c1, path + "1", t1))
+    heappush(heap, (c1, path + "1", t1))
 
-    t2 = rotate(t, 2)
+    t2 = rotate(t0, 2)
     c2 = count_incorrect(t2)
-    heappush(h, (c2, path + "2", t2))
+    heappush(heap, (c2, path + "2", t2))
 
-    t3 = rotate(t, 3)
+    t3 = rotate(t0, 3)
     c3 = count_incorrect(t3)
-    heappush(h, (c3, path + "3", t3))
+    heappush(heap, (c3, path + "3", t3))
 
-    t4 = rotate(t, 4)
+    t4 = rotate(t0, 4)
     c4 = count_incorrect(t4)
-    heappush(h, (c4, path + "4", t4))
+    heappush(heap, (c4, path + "4", t4))
 
     if DEBUG:
         print("c1", c1, "c2", c2, "c3", c3, "c4", c4, "\n")
@@ -192,42 +122,46 @@ def run_puzzle(t, path, h):
 def puzzle88(t):
     """Solve the rings puzzle."""
 
-    print(80 * "#")
-    print("\npuzzle88\n")
-    print(80 * "#")
-    print()
+    if DEBUG:
+        print(80 * "#")
+        print("\npuzzle88\n")
+        print(80 * "#")
+        print()
 
-    # set up heapsort
-    h = []
+    # set up solutions heapsort
+    old_heap = []
     path = ""
-    heappush(h, (24, path, t))
-
     c0 = 24
+    heappush(old_heap, (c0, path, t))
+
+    # set up fail-safe exit
     loopcount = 0
-    MAX_LOOPS = 2400
+    MAX_LOOPS = 99999
 
     while loopcount < MAX_LOOPS and (c0 != 0):
 
-        h2 = []
+        # new heap to be built from the current heap
+        new_heap = []
 
-        while h:
+        # process the old heap
+        while old_heap:
 
             loopcount += 1
 
-            c0, path, t0 = heappop(h)
+            c0, path, t0 = heappop(old_heap)
 
             if DEBUG:
                 print("c0", c0, "path", path, "t0", t0)
 
+            # if count is 0, a solution has been found
             if c0 == 0:
                 break
 
-            # run the puzzle once on each circle, keeping the best
-            run_puzzle(t0, path, h2)
+            # run the puzzle turning each circle once
+            run_puzzle(t0, path, new_heap)
 
-        # transfer the new heap to the old
-        h = h2
-
+        # transfer the new heap to the old heap
+        old_heap = new_heap
 
     # show the accumulated path
     if DEBUG:
@@ -251,7 +185,7 @@ if __name__ == "__main__":
 
     assert puzzle88(
         (1, 0, 0, 1, 0, 2, 4, 0, 2, 4, 3, 3)
-    ) == "444313"
+    ) == "1114223", "Extra credit"
 
     print("Done!")
 
