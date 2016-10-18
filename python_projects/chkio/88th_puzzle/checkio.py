@@ -42,7 +42,11 @@ from __future__ import print_function
 
 ########################################################################
 
-DEBUG = True
+from heapq import heappush, heappop
+
+########################################################################
+
+DEBUG = False
 
 ########################################################################
 
@@ -137,13 +141,9 @@ def rotate(t, ring_plus_1):
     for index, t_index in enumerate(indices):
         t2[t_index] = [d, a, b, c][index]
 
-#   if DEBUG:
-#       print("rotate", t, ring_plus_1, indices, t2)
-
     return t2
 
 ########################################################################
-
 
 VERIFY_LIST = [
     (0, "gray", (3, 5, 6, 8)),
@@ -165,32 +165,26 @@ def count_incorrect(t):
 ########################################################################
 
 
-def run_puzzle(t):
+def run_puzzle(t, path, h):
     """Try one twist on each circle; pick the best result."""
-#   if DEBUG:
-#       print("run_puzzle", t)
-
     t1 = rotate(t, 1)
     c1 = count_incorrect(t1)
+    heappush(h, (c1, path + "1", t1))
 
     t2 = rotate(t, 2)
     c2 = count_incorrect(t2)
+    heappush(h, (c2, path + "2", t2))
 
     t3 = rotate(t, 3)
     c3 = count_incorrect(t3)
+    heappush(h, (c3, path + "3", t3))
 
     t4 = rotate(t, 4)
     c4 = count_incorrect(t4)
+    heappush(h, (c4, path + "4", t4))
 
     if DEBUG:
         print("c1", c1, "c2", c2, "c3", c3, "c4", c4, "\n")
-
-    return min([
-        (c1, "1", t1),                  # errors, path, configuration
-        (c2, "2", t2),
-        (c3, "3", t3),
-        (c4, "4", t4),
-    ])
 
 ########################################################################
 
@@ -203,27 +197,37 @@ def puzzle88(t):
     print(80 * "#")
     print()
 
-    # start with no path
+    # set up heapsort
+    h = []
     path = ""
+    heappush(h, (24, path, t))
 
-    # initialize error count and marble configuration
-    c0, t0 = (12, t)
+    c0 = 24
+    loopcount = 0
+    MAX_LOOPS = 2400
 
-    if DEBUG:
-        print("c0", c0, "t0", t0)
+    while loopcount < MAX_LOOPS and (c0 != 0):
 
-    for _ in range(24):
+        h2 = []
 
-        # run the puzzle once on each circle, keeping the best
-        c0, p0, t0 = run_puzzle(t0)
-        path += p0
+        while h:
 
-        if DEBUG:
-            print("c0", c0, "p0", p0, "t0", t0)
+            loopcount += 1
 
-        # check for getting done early
-        if c0 == 0:
-            break
+            c0, path, t0 = heappop(h)
+
+            if DEBUG:
+                print("c0", c0, "path", path, "t0", t0)
+
+            if c0 == 0:
+                break
+
+            # run the puzzle once on each circle, keeping the best
+            run_puzzle(t0, path, h2)
+
+        # transfer the new heap to the old
+        h = h2
+
 
     # show the accumulated path
     if DEBUG:
@@ -235,11 +239,20 @@ def puzzle88(t):
 
 if __name__ == "__main__":
 
-    print(puzzle88((1, 0, 0, 1, 0, 2, 4, 0, 2, 4, 3, 3)))
-
 #   assert puzzle88((0, 2, 1, 3, 2, 1, 4, 0, 0, 4, 0, 3)) == "1433"
-#   assert puzzle88((0, 2, 1, 2, 0, 0, 4, 1, 0, 4, 3, 3)) in ('4231', '4321'), "Rotate all"
-    assert puzzle88((0, 2, 1, 2, 4, 0, 0, 1, 3, 4, 3, 0)) in ('2314', '2341', '3214', '3241'), "Four paths"
+
+#   assert puzzle88(
+#       (0, 2, 1, 2, 0, 0, 4, 1, 0, 4, 3, 3)
+#   ) in ('4231', '4321'), "Rotate all"
+
+#   assert puzzle88(
+#       (0, 2, 1, 2, 4, 0, 0, 1, 3, 4, 3, 0)
+#   ) in ('2314', '2341', '3214', '3241'), "Four paths"
+
+    assert puzzle88(
+        (1, 0, 0, 1, 0, 2, 4, 0, 2, 4, 3, 3)
+    ) == "444313"
+
     print("Done!")
 
 # end of file
