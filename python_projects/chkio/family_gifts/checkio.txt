@@ -1,0 +1,33 @@
+
+members set(['Beth', 'Javier', 'Curtis', 'Rachel', 'Lee']) groups (set(['Javier', 'Rachel']), set(['Curtis', 'Lee']))
+[('Beth', 'Curtis'),
+ ('Beth', 'Javier'),
+ ('Beth', 'Lee'),
+ ('Beth', 'Rachel'),
+ ('Curtis', 'Javier'),
+ ('Curtis', 'Rachel'),
+ ('Javier', 'Lee'),
+ ('Lee', 'Rachel')]
+givers ['Beth', 'Beth', 'Beth', 'Beth', 'Curtis', 'Curtis', 'Javier', 'Lee']
+counts Counter({'Beth': 4, 'Curtis': 2, 'Javier': 1, 'Lee': 1})
+print_chains 
+    edges [('Beth', 'Curtis'),
+ ('Beth', 'Javier'),
+ ('Beth', 'Lee'),
+ ('Beth', 'Rachel'),
+ ('Curtis', 'Beth'),
+ ('Curtis', 'Javier'),
+ ('Curtis', 'Rachel'),
+ ('Javier', 'Beth'),
+ ('Javier', 'Curtis'),
+ ('Javier', 'Lee'),
+ ('Lee', 'Beth'),
+ ('Lee', 'Javier'),
+ ('Lee', 'Rachel'),
+ ('Rachel', 'Beth'),
+ ('Rachel', 'Curtis'),
+ ('Rachel', 'Lee')] 
+    m set(['Beth', 'Curtis', 'Javier', 'Lee', 'Rachel']) 
+    pairs defaultdict(<type 'list'>, {'Javier': ['Beth', 'Curtis', 'Lee'], 'Beth': ['Curtis', 'Javier', 'Lee', 'Rachel'], 'Curtis': ['Beth', 'Javier', 'Rachel'], 'Lee': ['Beth', 'Javier', 'Rachel'], 'Rachel': ['Beth', 'Curtis', 'Lee']})
+chains []
+result 4
