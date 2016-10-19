@@ -7,51 +7,30 @@ from __future__ import print_function
 
 ########################################################################
 
+from pprint import pformat
 from collections import defaultdict
-# from pprint import pformat
 
 ########################################################################
 
-EDGES = [
-    ('Alex', 'Beth'),
-    ('Alex', 'Lee'),
-
-    ('Beth', 'Curtis'),
-    ('Beth', 'Javier'),
-    ('Beth', 'Lee'),
-    ('Beth', 'Rachel'),
-
-    ('Curtis', 'Javier'), ('Curtis', 'Rachel'),
-
-    ('Javier', 'Curtis'), ('Javier', 'Lee'),
-
-    ('Lee', 'Javier'), ('Lee', 'Rachel'),
-
-    ('Rachel', 'Curtis'), ('Rachel', 'Lee')
-]
+DEBUG = True
 
 ########################################################################
 
 
 def make_graph(edges):
+    """Create a dictionary of from: [to] from edges."""
     graph = defaultdict(list)
-    for f, t in edges:
-        graph[f].append(t)
+    for from_node, to_node in edges:
+        graph[from_node].append(to_node)
+    if DEBUG:
+        print("make_graph", "\n  graph", pformat(graph))
     return graph
-
 
 ########################################################################
 
 
 def find_all_paths(graph, start, end, path=[]):
-#   if path == []:
-#       print(
-#           "\ngraph", pformat(graph),
-#           "\nstart", start,
-#           "\nend", end,
-#           "\npath", path,
-#       )
-
+    """Compute all paths in 'graph' from 'start' to 'end'."""
     path = path + [start]
 
     if start == end:
@@ -67,63 +46,95 @@ def find_all_paths(graph, start, end, path=[]):
             for newpath in newpaths:
                 paths.append(newpath)
 
+    if DEBUG:
+        print("find_all_paths", "\n  paths", pformat(paths))
+
     return paths
 
 ########################################################################
 
 
-def find_n_length_paths(n, graph, start, end):
-    return [x for x in find_all_paths(graph, start, end) if len(x) == n]
+def n_length_paths(n, graph, start, end):
+    """Return paths of length 'n' in 'graph' from 'start' to 'end'."""
+    result = [x for x in find_all_paths(graph, start, end) if len(x) == n]
+    if DEBUG:
+        print("n_length_paths",
+              "\n  n", n,
+              "\n  start", start,
+              "\n  end", end,
+              "\n  result", result
+              )
+    return result
 
 ########################################################################
 
 
 def chains(edges):
+    """Compute all chains in the graph defined by 'edges'."""
 
+    # generate the graph
     graph = make_graph(edges)
 
     # collect all vertex names
-    m = sorted(set([x[0] for x in edges]))
-    print("\n\nm", m)
-
-    from collections import Counter
-    c = Counter([x[0] for x in edges])
-    print("\nc", c)
+    m = sorted(set([x[0] for x in edges] + [x[1] for x in edges]))
 
     output = []
 
-    for m0 in m:
+    # for each possible 'start' vertex
+    for start in m:
 
-        partners = graph[m0]
-        print(
-            "\nm0", m0,
-            "\npartners", partners
-        )
+        # for each actual 'end' vertex
+        end_nodes = graph[start]
+
+        # print(
+        #     "\nstart", start,
+        #     "\nend_nodes", end_nodes
+        # )
 
         result = set()
 
-        for partner in partners:
-            # print("\n\npartner", partner)
-            paths = find_n_length_paths(len(m), graph, m0, partner)
-            for path in paths:
-                # print(
-                #     "\nlen(path)", len(path),
-                #     "\npath", path
-                # )
-                if len(path) == len(m):
-                    result.add(tuple(path))
+        for end in end_nodes:
+            for path in n_length_paths(len(m), graph, start, end):
+                result.add(tuple(path))
 
-        print(len(result), m0, result)
-        output.append((len(result), m0, result))
+        output.append((len(result), start, result))
 
     return max(output)
 
 ########################################################################
 
-result = chains(EDGES)
-print(
-    "\n\nlen(result)", len(result),
-    "\nresult", result
-)
+
+def chain_count(s):
+    result = chains(s)
+    print("\nresult", pformat(result))
+    return result[0]
+
+########################################################################
+
+if __name__ == "__main__":
+
+########################################################################
+
+    EDGES = [
+        ('Beth', 'Curtis'),
+        ('Beth', 'Javier'),
+        ('Beth', 'Lee'),
+        ('Beth', 'Rachel'),
+
+        ('Curtis', 'Javier'), ('Curtis', 'Rachel'),
+
+        ('Javier', 'Curtis'), ('Javier', 'Lee'),
+
+        ('Lee', 'Javier'), ('Lee', 'Rachel'),
+
+        ('Rachel', 'Curtis'), ('Rachel', 'Lee')
+    ]
+
+    EDGES = [
+        ('Gary', 'Hollie'),
+        ('Hollie', 'Jeanette')
+    ]
+
+    result = chain_count(EDGES)
 
 # end of file

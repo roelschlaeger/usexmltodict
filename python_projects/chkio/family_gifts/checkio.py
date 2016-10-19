@@ -11,6 +11,8 @@ from collections import Counter
 from itertools import combinations
 from pprint import pformat
 from collections import defaultdict
+from all_paths import chain_count
+
 
 ########################################################################
 
@@ -49,9 +51,9 @@ def find_chains(members, groups={}):
     print("\nmembers", members, "groups", pformat(groups))
 
     # verify the input
-    for group in groups:
-        for name in group:
-            assert name in members, "%s is missing from members" % name
+    # for group in groups:
+    #     for name in group:
+    #         assert name in members, "%s is missing from members" % name
 
     result = 0
 
@@ -63,34 +65,42 @@ def find_chains(members, groups={}):
         c.remove(tuple(sorted(group)))
 
     # show the remaining combinations
-    print(pformat(c))
+    print("find_chains",
+          "\n  c", pformat(c)
+          )
 
-    if len(c) >= len(members):
+#   if DEBUG:
+#       print_chains(c)
 
-        givers = [x[0] for x in c]
-        print("givers", givers)
+    n = chain_count(c)
 
-        counts = Counter(givers)
-        print("counts", pformat(counts))
+    # if len(c) >= len(members):
 
-        result = max(counts.values())
+    #     givers = [x[0] for x in c]
+    #     print("givers", givers)
 
-    if DEBUG:
-        print_chains(c)
+    #     counts = Counter(givers)
+    #     print("counts", pformat(counts))
 
-    print("result", result)
-    return result
+    #     result = max(counts.values())
+
+    # print("result", result)
+    # return result
+
+    return n
 
 ########################################################################
 
 if 1:
 
-    assert find_chains(
-        {'Gary', 'Jeanette', 'Hollie'},
-        (
-            {'Gary', 'Jeanette'},
-        )
-    ) == 0  # 0 chains
+    if 0:
+
+        assert find_chains(
+            {'Gary', 'Jeanette', 'Hollie'},
+            (
+                {'Gary', 'Jeanette'},
+            )
+        ) == 0  # 0 chains
 
     assert find_chains(
         {'Curtis', 'Lee', 'Rachel', 'Javier'},

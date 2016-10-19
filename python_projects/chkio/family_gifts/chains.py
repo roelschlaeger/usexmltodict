@@ -44,7 +44,6 @@ def alt_chains(edges):
 
     recurse(0, pairs, p0, m0, l0, result)
 
-    print(pformat(result))
     return result
 
 ########################################################################
@@ -52,13 +51,12 @@ def alt_chains(edges):
 if __name__ == "__main__":
 
     EDGES = [
-        # ('Alex', 'Beth'),
-        # ('Alex', 'Lee'),
+#       ('Alex', 'Beth'),
+#       ('Alex', 'Lee'),
 
-        ('Beth', 'Curtis'),
-        ('Beth', 'Javier'),
-        ('Beth', 'Lee'),
-        ('Beth', 'Rachel'),
+#       ('Beth', 'Curtis'),
+#       ('Beth', 'Javier'),
+        ('Beth', 'Lee'), ('Beth', 'Rachel'),
 
         ('Curtis', 'Javier'), ('Curtis', 'Rachel'),
 
@@ -69,6 +67,7 @@ if __name__ == "__main__":
         ('Rachel', 'Curtis'), ('Rachel', 'Lee')
     ]
 
-    alt_chains(EDGES)
+    result = alt_chains(EDGES)
+    print(pformat(result))
 
 # end of file

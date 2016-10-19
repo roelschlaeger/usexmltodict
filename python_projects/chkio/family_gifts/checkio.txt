@@ -1,33 +1,87 @@
 
-members set(['Beth', 'Javier', 'Curtis', 'Rachel', 'Lee']) groups (set(['Javier', 'Rachel']), set(['Curtis', 'Lee']))
-[('Beth', 'Curtis'),
- ('Beth', 'Javier'),
- ('Beth', 'Lee'),
- ('Beth', 'Rachel'),
- ('Curtis', 'Javier'),
+members set(['Jeanette', 'Gary', 'Hollie']) groups (set(['Gary', 'Jeanette']),)
+[('Gary', 'Hollie'), ('Hollie', 'Jeanette')]
+print_chains 
+    edges [('Gary', 'Hollie'),
+ ('Hollie', 'Gary'),
+ ('Hollie', 'Jeanette'),
+ ('Jeanette', 'Hollie')] 
+    c_edges Counter({'Hollie': 2, 'Jeanette': 1, 'Gary': 1}) 
+    min_c_edges 1 
+    m set(['Gary', 'Hollie', 'Jeanette']) 
+    pairs defaultdict(<type 'list'>, {'Jeanette': ['Hollie'], 'Hollie': ['Gary', 'Jeanette'], 'Gary': ['Hollie']})
+chains []
+make_graph 
+  graph defaultdict(<type 'list'>, {'Hollie': ['Jeanette'], 'Gary': ['Hollie']})
+find_all_paths 
+  paths [['Gary', 'Hollie']]
+n_length_paths 
+  n 3 
+  start Gary 
+  end Hollie 
+  result []
+find_all_paths 
+  paths [['Hollie', 'Jeanette']]
+n_length_paths 
+  n 3 
+  start Hollie 
+  end Jeanette 
+  result []
+
+result (0, 'Jeanette', set([]))
+
+members set(['Javier', 'Curtis', 'Rachel', 'Lee']) groups (set(['Javier', 'Rachel']), set(['Curtis', 'Lee']))
+[('Curtis', 'Javier'),
  ('Curtis', 'Rachel'),
  ('Javier', 'Lee'),
  ('Lee', 'Rachel')]
-givers ['Beth', 'Beth', 'Beth', 'Beth', 'Curtis', 'Curtis', 'Javier', 'Lee']
-counts Counter({'Beth': 4, 'Curtis': 2, 'Javier': 1, 'Lee': 1})
 print_chains 
-    edges [('Beth', 'Curtis'),
- ('Beth', 'Javier'),
- ('Beth', 'Lee'),
- ('Beth', 'Rachel'),
- ('Curtis', 'Beth'),
- ('Curtis', 'Javier'),
+    edges [('Curtis', 'Javier'),
  ('Curtis', 'Rachel'),
- ('Javier', 'Beth'),
  ('Javier', 'Curtis'),
  ('Javier', 'Lee'),
- ('Lee', 'Beth'),
  ('Lee', 'Javier'),
  ('Lee', 'Rachel'),
- ('Rachel', 'Beth'),
  ('Rachel', 'Curtis'),
  ('Rachel', 'Lee')] 
-    m set(['Beth', 'Curtis', 'Javier', 'Lee', 'Rachel']) 
-    pairs defaultdict(<type 'list'>, {'Javier': ['Beth', 'Curtis', 'Lee'], 'Beth': ['Curtis', 'Javier', 'Lee', 'Rachel'], 'Curtis': ['Beth', 'Javier', 'Rachel'], 'Lee': ['Beth', 'Javier', 'Rachel'], 'Rachel': ['Beth', 'Curtis', 'Lee']})
+    c_edges Counter({'Javier': 2, 'Curtis': 2, 'Lee': 2, 'Rachel': 2}) 
+    min_c_edges 2 
+    m set(['Curtis', 'Javier', 'Lee', 'Rachel']) 
+    pairs defaultdict(<type 'list'>, {'Javier': ['Curtis', 'Lee'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Javier', 'Rachel'], 'Rachel': ['Curtis', 'Lee']})
 chains []
-result 4
+make_graph 
+  graph defaultdict(<type 'list'>, {'Javier': ['Lee'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel']})
+find_all_paths 
+  paths [['Curtis', 'Javier']]
+n_length_paths 
+  n 4 
+  start Curtis 
+  end Javier 
+  result []
+find_all_paths 
+  paths [['Curtis', 'Javier', 'Lee', 'Rachel']]
+find_all_paths 
+  paths [['Curtis', 'Javier', 'Lee', 'Rachel']]
+find_all_paths 
+  paths [['Curtis', 'Javier', 'Lee', 'Rachel'], ['Curtis', 'Rachel']]
+n_length_paths 
+  n 4 
+  start Curtis 
+  end Rachel 
+  result [['Curtis', 'Javier', 'Lee', 'Rachel']]
+find_all_paths 
+  paths [['Javier', 'Lee']]
+n_length_paths 
+  n 4 
+  start Javier 
+  end Lee 
+  result []
+find_all_paths 
+  paths [['Lee', 'Rachel']]
+n_length_paths 
+  n 4 
+  start Lee 
+  end Rachel 
+  result []
+
+result (1, 'Curtis', set([('Curtis', 'Javier', 'Lee', 'Rachel')]))
