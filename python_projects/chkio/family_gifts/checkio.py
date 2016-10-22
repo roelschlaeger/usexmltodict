@@ -11,7 +11,7 @@ from collections import Counter
 from itertools import combinations
 from pprint import pformat
 from collections import defaultdict
-from all_paths import chain_count
+from ap import findAllPaths
 
 
 ########################################################################
@@ -21,27 +21,43 @@ DEBUG = True
 ########################################################################
 
 
-def print_chains(c):
-    edges = sorted(c + [(y, x) for (x, y) in c])
-    c_edges = Counter([x[0] for x in edges])
-    min_c_edges = min(c_edges.values())
-    m = set([x[0] for x in edges])
+def chain_count(members, c):
 
-    pairs = defaultdict(list)
-    for f, t in edges:
-        pairs[f].append(t)
-    print("print_chains",
-          "\n    edges", pformat(edges),
-          "\n    c_edges", pformat(c_edges),
-          "\n    min_c_edges", min_c_edges,
-          "\n    m", pformat(m),
-          "\n    pairs", pformat(pairs)
-          )
+    # graph to contain edges going both ways
+    bidir = c + [(y, x) for (x, y) in c]
+    print("\ng", bidir)
 
-    chains = []
-#   stack = [edges[0]]
+    g = defaultdict(list)
+    for x, y in bidir:
+        g[x].append(y)
 
-    print("chains", pformat(chains))
+    print(
+        "\nchain_count",
+        "\n  members", pformat(members),
+        "\n  g", pformat(g)
+    )
+
+    full_length = len(members)
+    member_pairs = combinations(members, 2)
+    full_length_paths = []
+
+    for start, end in member_pairs:
+        paths = findAllPaths(g, start, end, [])
+        full_paths = [x for x in paths if len(x) == full_length]
+
+        print(
+            "\nchain_count",
+            "\n  start", start,
+            "\n  end", end,
+            "\n  paths", paths,
+            "\n  full_paths", full_paths
+        )
+
+        for full_path in full_paths:
+            if full_path not in full_length_paths:
+                full_length_paths.append(full_path)
+
+    return len(full_length_paths)
 
 ########################################################################
 
@@ -49,13 +65,6 @@ def print_chains(c):
 def find_chains(members, groups={}):
     # display the input
     print("\nmembers", members, "groups", pformat(groups))
-
-    # verify the input
-    # for group in groups:
-    #     for name in group:
-    #         assert name in members, "%s is missing from members" % name
-
-    result = 0
 
     # form all the combinations
     c = list(combinations(sorted(members), 2))
@@ -66,26 +75,12 @@ def find_chains(members, groups={}):
 
     # show the remaining combinations
     print("find_chains",
-          "\n  c", pformat(c)
+          "\n  members", pformat(members),
+          "\n  groups", pformat(groups),
+          "\n  c", c
           )
 
-#   if DEBUG:
-#       print_chains(c)
-
-    n = chain_count(c)
-
-    # if len(c) >= len(members):
-
-    #     givers = [x[0] for x in c]
-    #     print("givers", givers)
-
-    #     counts = Counter(givers)
-    #     print("counts", pformat(counts))
-
-    #     result = max(counts.values())
-
-    # print("result", result)
-    # return result
+    n = chain_count(members, c)
 
     return n
 

@@ -1,0 +1,66 @@
+
+
+findAllPaths 
+g {'Curtis': ['Javier', 'Rachel'],
+ 'Javier': ['Curtis', 'Lee'],
+ 'Lee': ['Javier', 'Rachel'],
+ 'Rachel': ['Curtis', 'Lee']} 
+start 'Javier' 
+end 'Curtis' 
+path []
+[['Javier', 'Curtis'], ['Javier', 'Lee', 'Rachel', 'Curtis']]
+
+
+findAllPaths 
+g {'Curtis': ['Javier', 'Rachel'],
+ 'Javier': ['Curtis', 'Lee'],
+ 'Lee': ['Javier', 'Rachel'],
+ 'Rachel': ['Curtis', 'Lee']} 
+start 'Javier' 
+end 'Lee' 
+path []
+[['Javier', 'Curtis', 'Rachel', 'Lee'], ['Javier', 'Lee']]
+
+
+findAllPaths 
+g {'Curtis': ['Javier', 'Rachel'],
+ 'Javier': ['Curtis', 'Lee'],
+ 'Lee': ['Javier', 'Rachel'],
+ 'Rachel': ['Curtis', 'Lee']} 
+start 'Javier' 
+end 'Rachel' 
+path []
+[['Javier', 'Curtis', 'Rachel'], ['Javier', 'Lee', 'Rachel']]
+
+
+findAllPaths 
+g {'Curtis': ['Javier', 'Rachel'],
+ 'Javier': ['Curtis', 'Lee'],
+ 'Lee': ['Javier', 'Rachel'],
+ 'Rachel': ['Curtis', 'Lee']} 
+start 'Curtis' 
+end 'Lee' 
+path []
+[['Curtis', 'Javier', 'Lee'], ['Curtis', 'Rachel', 'Lee']]
+
+
+findAllPaths 
+g {'Curtis': ['Javier', 'Rachel'],
+ 'Javier': ['Curtis', 'Lee'],
+ 'Lee': ['Javier', 'Rachel'],
+ 'Rachel': ['Curtis', 'Lee']} 
+start 'Curtis' 
+end 'Rachel' 
+path []
+[['Curtis', 'Javier', 'Lee', 'Rachel'], ['Curtis', 'Rachel']]
+
+
+findAllPaths 
+g {'Curtis': ['Javier', 'Rachel'],
+ 'Javier': ['Curtis', 'Lee'],
+ 'Lee': ['Javier', 'Rachel'],
+ 'Rachel': ['Curtis', 'Lee']} 
+start 'Lee' 
+end 'Rachel' 
+path []
+[['Lee', 'Javier', 'Curtis', 'Rachel'], ['Lee', 'Rachel']]
