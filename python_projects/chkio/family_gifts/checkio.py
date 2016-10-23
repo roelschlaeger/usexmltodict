@@ -7,11 +7,11 @@ from __future__ import print_function
 
 ########################################################################
 
-from collections import Counter
+# from collections import Counter
+from ap import findAllPaths
+from collections import defaultdict
 from itertools import combinations
 from pprint import pformat
-from collections import defaultdict
-from ap import findAllPaths
 
 
 ########################################################################
@@ -42,7 +42,8 @@ def chain_count(members, c):
     full_length_paths = []
 
     for start, end in member_pairs:
-        paths = findAllPaths(g, start, end, [])
+        path = []
+        paths = findAllPaths(g, start, end, path)
         full_paths = [x for x in paths if len(x) == full_length]
 
         print(
@@ -57,7 +58,13 @@ def chain_count(members, c):
             if full_path not in full_length_paths:
                 full_length_paths.append(full_path)
 
-    return len(full_length_paths)
+    result = len(full_length_paths)
+    print(
+        "\n\nchain_count",
+        "\n  full_length_paths\n", pformat(full_length_paths),
+        "\n  result", result
+    )
+    return result
 
 ########################################################################
 

@@ -19,10 +19,10 @@ def findAllPaths(g, start, end, path=[]):
     if path == []:
         print(
             "\n\nfindAllPaths",
-            "\ng", pformat(g),
-            "\nstart", pformat(start),
-            "\nend", pformat(end),
-            "\npath", pformat(path)
+            "\n  g", pformat(g),
+            "\n  start", pformat(start),
+            "\n  end", pformat(end),
+            "\n  path", pformat(path)
         )
 
     path = path + [start]
