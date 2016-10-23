@@ -14,16 +14,21 @@ from pprint import pformat
 
 ########################################################################
 
+DEBUG = False
+
+########################################################################
+
 
 def findAllPaths(g, start, end, path=[]):
     if path == []:
-        print(
-            "\n\nfindAllPaths",
-            "\n  g", pformat(g),
-            "\n  start", pformat(start),
-            "\n  end", pformat(end),
-            "\n  path", pformat(path)
-        )
+        if DEBUG:
+            print(
+                "\n\nfindAllPaths",
+                "\n  g", pformat(g),
+                "\n  start", pformat(start),
+                "\n  end", pformat(end),
+                "\n  path", pformat(path)
+            )
 
     path = path + [start]
 

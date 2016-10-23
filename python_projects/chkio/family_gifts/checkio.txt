@@ -1,90 +1,163 @@
 
+members set(['Jeanette', 'Gary', 'Hollie']) groups (set(['Gary', 'Jeanette']),)
+find_chains 
+  members set(['Gary', 'Hollie', 'Jeanette']) 
+  groups (set(['Gary', 'Jeanette']),) 
+  c [('Gary', 'Hollie'), ('Hollie', 'Jeanette')]
+
+chain_count 
+  edges [('Gary', 'Hollie'), ('Hollie', 'Jeanette'), ('Hollie', 'Gary'), ('Jeanette', 'Hollie')] 
+  members set(['Gary', 'Hollie', 'Jeanette']) 
+  g defaultdict(<type 'list'>, {'Jeanette': ['Hollie'], 'Hollie': ['Jeanette', 'Gary'], 'Gary': ['Hollie']})
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Jeanette': ['Hollie'], 'Hollie': ['Jeanette', 'Gary'], 'Gary': ['Hollie']}) 
+    start 'Jeanette' 
+    end 'Gary' 
+    path []
+
+ 
+  start Jeanette 
+  end Gary 
+  paths [['Jeanette', 'Hollie', 'Gary']] 
+  full_paths []
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Jeanette': ['Hollie'], 'Hollie': ['Jeanette', 'Gary'], 'Gary': ['Hollie']}) 
+    start 'Jeanette' 
+    end 'Hollie' 
+    path []
+
+ 
+  start Jeanette 
+  end Hollie 
+  paths [['Jeanette', 'Hollie']] 
+  full_paths []
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Jeanette': ['Hollie'], 'Hollie': ['Jeanette', 'Gary'], 'Gary': ['Hollie']}) 
+    start 'Gary' 
+    end 'Hollie' 
+    path []
+
+ 
+  start Gary 
+  end Hollie 
+  paths [['Gary', 'Hollie']] 
+  full_paths []
+
+
+ 
+  full_length_paths
+ [] 
+  pruned_paths
+ set([]) 
+  result 0
+
 members set(['Javier', 'Curtis', 'Rachel', 'Lee']) groups (set(['Javier', 'Rachel']), set(['Curtis', 'Lee']))
 find_chains 
   members set(['Curtis', 'Javier', 'Lee', 'Rachel']) 
   groups (set(['Javier', 'Rachel']), set(['Curtis', 'Lee'])) 
-  c [('Curtis', 'Javier'), ('Curtis', 'Rachel'), ('Javier', 'Lee'), ('Lee', 'Rachel')]
-
-g [('Curtis', 'Javier'), ('Curtis', 'Rachel'), ('Javier', 'Lee'), ('Lee', 'Rachel'), ('Javier', 'Curtis'), ('Rachel', 'Curtis'), ('Lee', 'Javier'), ('Rachel', 'Lee')]
+  c [('Curtis', 'Javier'),
+ ('Curtis', 'Rachel'),
+ ('Javier', 'Lee'),
+ ('Lee', 'Rachel')]
 
 chain_count 
+  edges [('Curtis', 'Javier'), ('Curtis', 'Rachel'), ('Javier', 'Lee'), ('Lee', 'Rachel'), ('Javier', 'Curtis'), ('Rachel', 'Curtis'), ('Lee', 'Javier'), ('Rachel', 'Lee')] 
   members set(['Curtis', 'Javier', 'Lee', 'Rachel']) 
   g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']})
 
 
-findAllPaths 
-g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
-start 'Javier' 
-end 'Curtis' 
-path []
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
+    start 'Javier' 
+    end 'Curtis' 
+    path []
 
-chain_count 
+ 
   start Javier 
   end Curtis 
   paths [['Javier', 'Lee', 'Rachel', 'Curtis'], ['Javier', 'Curtis']] 
   full_paths [['Javier', 'Lee', 'Rachel', 'Curtis']]
 
 
-findAllPaths 
-g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
-start 'Javier' 
-end 'Rachel' 
-path []
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
+    start 'Javier' 
+    end 'Rachel' 
+    path []
 
-chain_count 
+ 
   start Javier 
   end Rachel 
   paths [['Javier', 'Lee', 'Rachel'], ['Javier', 'Curtis', 'Rachel']] 
   full_paths []
 
 
-findAllPaths 
-g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
-start 'Javier' 
-end 'Lee' 
-path []
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
+    start 'Javier' 
+    end 'Lee' 
+    path []
 
-chain_count 
+ 
   start Javier 
   end Lee 
   paths [['Javier', 'Lee'], ['Javier', 'Curtis', 'Rachel', 'Lee']] 
   full_paths [['Javier', 'Curtis', 'Rachel', 'Lee']]
 
 
-findAllPaths 
-g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
-start 'Curtis' 
-end 'Rachel' 
-path []
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
+    start 'Curtis' 
+    end 'Rachel' 
+    path []
 
-chain_count 
+ 
   start Curtis 
   end Rachel 
   paths [['Curtis', 'Javier', 'Lee', 'Rachel'], ['Curtis', 'Rachel']] 
   full_paths [['Curtis', 'Javier', 'Lee', 'Rachel']]
 
 
-findAllPaths 
-g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
-start 'Curtis' 
-end 'Lee' 
-path []
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
+    start 'Curtis' 
+    end 'Lee' 
+    path []
 
-chain_count 
+ 
   start Curtis 
   end Lee 
   paths [['Curtis', 'Javier', 'Lee'], ['Curtis', 'Rachel', 'Lee']] 
   full_paths []
 
 
-findAllPaths 
-g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
-start 'Rachel' 
-end 'Lee' 
-path []
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
+    start 'Rachel' 
+    end 'Lee' 
+    path []
 
-chain_count 
+ 
   start Rachel 
   end Lee 
   paths [['Rachel', 'Curtis', 'Javier', 'Lee'], ['Rachel', 'Lee']] 
   full_paths [['Rachel', 'Curtis', 'Javier', 'Lee']]
+
+
+ 
+  full_length_paths
+ [['Javier', 'Lee', 'Rachel', 'Curtis'],
+ ['Javier', 'Curtis', 'Rachel', 'Lee'],
+ ['Curtis', 'Javier', 'Lee', 'Rachel'],
+ ['Rachel', 'Curtis', 'Javier', 'Lee']] 
+  pruned_paths
+ set([('Curtis', 'Javier', 'Lee', 'Rachel'),
+     ('Curtis', 'Rachel', 'Lee', 'Javier')]) 
+  result 2
+Done!
