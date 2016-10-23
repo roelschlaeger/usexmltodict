@@ -1,163 +1,450 @@
 
-members set(['Jeanette', 'Gary', 'Hollie']) groups (set(['Gary', 'Jeanette']),)
+members set(['Curtis', 'Petra', 'Allison', 'Bobbie', 'Kelly', 'Robin']) couples (set(['Allison', 'Curtis']), set(['Kelly', 'Robin']))
 find_chains 
-  members set(['Gary', 'Hollie', 'Jeanette']) 
-  groups (set(['Gary', 'Jeanette']),) 
-  c [('Gary', 'Hollie'), ('Hollie', 'Jeanette')]
+  family set(['Allison', 'Bobbie', 'Curtis', 'Kelly', 'Petra', 'Robin']) 
+  couples (set(['Allison', 'Curtis']), set(['Kelly', 'Robin'])) 
+  c [('Allison', 'Bobbie'),
+ ('Allison', 'Kelly'),
+ ('Allison', 'Petra'),
+ ('Allison', 'Robin'),
+ ('Bobbie', 'Curtis'),
+ ('Bobbie', 'Kelly'),
+ ('Bobbie', 'Petra'),
+ ('Bobbie', 'Robin'),
+ ('Curtis', 'Kelly'),
+ ('Curtis', 'Petra'),
+ ('Curtis', 'Robin'),
+ ('Kelly', 'Petra'),
+ ('Petra', 'Robin')]
 
 chain_count 
-  edges [('Gary', 'Hollie'), ('Hollie', 'Jeanette'), ('Hollie', 'Gary'), ('Jeanette', 'Hollie')] 
-  members set(['Gary', 'Hollie', 'Jeanette']) 
-  g defaultdict(<type 'list'>, {'Jeanette': ['Hollie'], 'Hollie': ['Jeanette', 'Gary'], 'Gary': ['Hollie']})
+  edges [('Allison', 'Bobbie'),
+ ('Allison', 'Kelly'),
+ ('Allison', 'Petra'),
+ ('Allison', 'Robin'),
+ ('Bobbie', 'Curtis'),
+ ('Bobbie', 'Kelly'),
+ ('Bobbie', 'Petra'),
+ ('Bobbie', 'Robin'),
+ ('Curtis', 'Kelly'),
+ ('Curtis', 'Petra'),
+ ('Curtis', 'Robin'),
+ ('Kelly', 'Petra'),
+ ('Petra', 'Robin'),
+ ('Bobbie', 'Allison'),
+ ('Kelly', 'Allison'),
+ ('Petra', 'Allison'),
+ ('Robin', 'Allison'),
+ ('Curtis', 'Bobbie'),
+ ('Kelly', 'Bobbie'),
+ ('Petra', 'Bobbie'),
+ ('Robin', 'Bobbie'),
+ ('Kelly', 'Curtis'),
+ ('Petra', 'Curtis'),
+ ('Robin', 'Curtis'),
+ ('Petra', 'Kelly'),
+ ('Robin', 'Petra')] 
+  family set(['Allison', 'Bobbie', 'Curtis', 'Kelly', 'Petra', 'Robin']) 
+  g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']})
 
 
   findAllPaths 
-    g defaultdict(<type 'list'>, {'Jeanette': ['Hollie'], 'Hollie': ['Jeanette', 'Gary'], 'Gary': ['Hollie']}) 
-    start 'Jeanette' 
-    end 'Gary' 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Curtis' 
+    end 'Petra' 
     path []
 
  
-  start Jeanette 
-  end Gary 
-  paths [['Jeanette', 'Hollie', 'Gary']] 
+  start Curtis 
+  end Petra 
+  paths [['Curtis', 'Kelly', 'Petra'], ['Curtis', 'Kelly', 'Allison', 'Bobbie', 'Petra'], ['Curtis', 'Kelly', 'Allison', 'Bobbie', 'Robin', 'Petra'], ['Curtis', 'Kelly', 'Allison', 'Petra'], ['Curtis', 'Kelly', 'Allison', 'Robin', 'Bobbie', 'Petra'], ['Curtis', 'Kelly', 'Allison', 'Robin', 'Petra'], ['Curtis', 'Kelly', 'Bobbie', 'Petra'], ['Curtis', 'Kelly', 'Bobbie', 'Robin', 'Allison', 'Petra'], ['Curtis', 'Kelly', 'Bobbie', 'Robin', 'Petra'], ['Curtis', 'Kelly', 'Bobbie', 'Allison', 'Petra'], ['Curtis', 'Kelly', 'Bobbie', 'Allison', 'Robin', 'Petra'], ['Curtis', 'Petra'], ['Curtis', 'Robin', 'Allison', 'Bobbie', 'Kelly', 'Petra'], ['Curtis', 'Robin', 'Allison', 'Bobbie', 'Petra'], ['Curtis', 'Robin', 'Allison', 'Kelly', 'Petra'], ['Curtis', 'Robin', 'Allison', 'Kelly', 'Bobbie', 'Petra'], ['Curtis', 'Robin', 'Allison', 'Petra'], ['Curtis', 'Robin', 'Bobbie', 'Kelly', 'Petra'], ['Curtis', 'Robin', 'Bobbie', 'Kelly', 'Allison', 'Petra'], ['Curtis', 'Robin', 'Bobbie', 'Petra'], ['Curtis', 'Robin', 'Bobbie', 'Allison', 'Kelly', 'Petra'], ['Curtis', 'Robin', 'Bobbie', 'Allison', 'Petra'], ['Curtis', 'Robin', 'Petra'], ['Curtis', 'Bobbie', 'Kelly', 'Petra'], ['Curtis', 'Bobbie', 'Kelly', 'Allison', 'Petra'], ['Curtis', 'Bobbie', 'Kelly', 'Allison', 'Robin', 'Petra'], ['Curtis', 'Bobbie', 'Petra'], ['Curtis', 'Bobbie', 'Robin', 'Allison', 'Kelly', 'Petra'], ['Curtis', 'Bobbie', 'Robin', 'Allison', 'Petra'], ['Curtis', 'Bobbie', 'Robin', 'Petra'], ['Curtis', 'Bobbie', 'Allison', 'Kelly', 'Petra'], ['Curtis', 'Bobbie', 'Allison', 'Petra'], ['Curtis', 'Bobbie', 'Allison', 'Robin', 'Petra']] 
+  full_paths [['Curtis', 'Kelly', 'Allison', 'Bobbie', 'Robin', 'Petra'], ['Curtis', 'Kelly', 'Allison', 'Robin', 'Bobbie', 'Petra'], ['Curtis', 'Kelly', 'Bobbie', 'Robin', 'Allison', 'Petra'], ['Curtis', 'Kelly', 'Bobbie', 'Allison', 'Robin', 'Petra'], ['Curtis', 'Robin', 'Allison', 'Bobbie', 'Kelly', 'Petra'], ['Curtis', 'Robin', 'Allison', 'Kelly', 'Bobbie', 'Petra'], ['Curtis', 'Robin', 'Bobbie', 'Kelly', 'Allison', 'Petra'], ['Curtis', 'Robin', 'Bobbie', 'Allison', 'Kelly', 'Petra'], ['Curtis', 'Bobbie', 'Kelly', 'Allison', 'Robin', 'Petra'], ['Curtis', 'Bobbie', 'Robin', 'Allison', 'Kelly', 'Petra']]
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Curtis' 
+    end 'Allison' 
+    path []
+
+ 
+  start Curtis 
+  end Allison 
+  paths [['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], ['Curtis', 'Kelly', 'Petra', 'Robin', 'Bobbie', 'Allison'], ['Curtis', 'Kelly', 'Petra', 'Allison'], ['Curtis', 'Kelly', 'Petra', 'Bobbie', 'Robin', 'Allison'], ['Curtis', 'Kelly', 'Petra', 'Bobbie', 'Allison'], ['Curtis', 'Kelly', 'Allison'], ['Curtis', 'Kelly', 'Bobbie', 'Petra', 'Robin', 'Allison'], ['Curtis', 'Kelly', 'Bobbie', 'Petra', 'Allison'], ['Curtis', 'Kelly', 'Bobbie', 'Robin', 'Allison'], ['Curtis', 'Kelly', 'Bobbie', 'Robin', 'Petra', 'Allison'], ['Curtis', 'Kelly', 'Bobbie', 'Allison'], ['Curtis', 'Petra', 'Robin', 'Allison'], ['Curtis', 'Petra', 'Robin', 'Bobbie', 'Kelly', 'Allison'], ['Curtis', 'Petra', 'Robin', 'Bobbie', 'Allison'], ['Curtis', 'Petra', 'Allison'], ['Curtis', 'Petra', 'Bobbie', 'Kelly', 'Allison'], ['Curtis', 'Petra', 'Bobbie', 'Robin', 'Allison'], ['Curtis', 'Petra', 'Bobbie', 'Allison'], ['Curtis', 'Petra', 'Kelly', 'Allison'], ['Curtis', 'Petra', 'Kelly', 'Bobbie', 'Robin', 'Allison'], ['Curtis', 'Petra', 'Kelly', 'Bobbie', 'Allison'], ['Curtis', 'Robin', 'Allison'], ['Curtis', 'Robin', 'Bobbie', 'Kelly', 'Petra', 'Allison'], ['Curtis', 'Robin', 'Bobbie', 'Kelly', 'Allison'], ['Curtis', 'Robin', 'Bobbie', 'Petra', 'Allison'], ['Curtis', 'Robin', 'Bobbie', 'Petra', 'Kelly', 'Allison'], ['Curtis', 'Robin', 'Bobbie', 'Allison'], ['Curtis', 'Robin', 'Petra', 'Allison'], ['Curtis', 'Robin', 'Petra', 'Bobbie', 'Kelly', 'Allison'], ['Curtis', 'Robin', 'Petra', 'Bobbie', 'Allison'], ['Curtis', 'Robin', 'Petra', 'Kelly', 'Allison'], ['Curtis', 'Robin', 'Petra', 'Kelly', 'Bobbie', 'Allison'], ['Curtis', 'Bobbie', 'Kelly', 'Petra', 'Robin', 'Allison'], ['Curtis', 'Bobbie', 'Kelly', 'Petra', 'Allison'], ['Curtis', 'Bobbie', 'Kelly', 'Allison'], ['Curtis', 'Bobbie', 'Petra', 'Robin', 'Allison'], ['Curtis', 'Bobbie', 'Petra', 'Allison'], ['Curtis', 'Bobbie', 'Petra', 'Kelly', 'Allison'], ['Curtis', 'Bobbie', 'Robin', 'Allison'], ['Curtis', 'Bobbie', 'Robin', 'Petra', 'Allison'], ['Curtis', 'Bobbie', 'Robin', 'Petra', 'Kelly', 'Allison'], ['Curtis', 'Bobbie', 'Allison']] 
   full_paths []
 
 
   findAllPaths 
-    g defaultdict(<type 'list'>, {'Jeanette': ['Hollie'], 'Hollie': ['Jeanette', 'Gary'], 'Gary': ['Hollie']}) 
-    start 'Jeanette' 
-    end 'Hollie' 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Curtis' 
+    end 'Bobbie' 
     path []
 
  
-  start Jeanette 
-  end Hollie 
-  paths [['Jeanette', 'Hollie']] 
-  full_paths []
+  start Curtis 
+  end Bobbie 
+  paths [['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison', 'Bobbie'], ['Curtis', 'Kelly', 'Petra', 'Robin', 'Bobbie'], ['Curtis', 'Kelly', 'Petra', 'Allison', 'Bobbie'], ['Curtis', 'Kelly', 'Petra', 'Allison', 'Robin', 'Bobbie'], ['Curtis', 'Kelly', 'Petra', 'Bobbie'], ['Curtis', 'Kelly', 'Allison', 'Bobbie'], ['Curtis', 'Kelly', 'Allison', 'Petra', 'Robin', 'Bobbie'], ['Curtis', 'Kelly', 'Allison', 'Petra', 'Bobbie'], ['Curtis', 'Kelly', 'Allison', 'Robin', 'Bobbie'], ['Curtis', 'Kelly', 'Allison', 'Robin', 'Petra', 'Bobbie'], ['Curtis', 'Kelly', 'Bobbie'], ['Curtis', 'Petra', 'Robin', 'Allison', 'Bobbie'], ['Curtis', 'Petra', 'Robin', 'Allison', 'Kelly', 'Bobbie'], ['Curtis', 'Petra', 'Robin', 'Bobbie'], ['Curtis', 'Petra', 'Allison', 'Bobbie'], ['Curtis', 'Petra', 'Allison', 'Kelly', 'Bobbie'], ['Curtis', 'Petra', 'Allison', 'Robin', 'Bobbie'], ['Curtis', 'Petra', 'Bobbie'], ['Curtis', 'Petra', 'Kelly', 'Allison', 'Bobbie'], ['Curtis', 'Petra', 'Kelly', 'Allison', 'Robin', 'Bobbie'], ['Curtis', 'Petra', 'Kelly', 'Bobbie'], ['Curtis', 'Robin', 'Allison', 'Bobbie'], ['Curtis', 'Robin', 'Allison', 'Kelly', 'Petra', 'Bobbie'], ['Curtis', 'Robin', 'Allison', 'Kelly', 'Bobbie'], ['Curtis', 'Robin', 'Allison', 'Petra', 'Bobbie'], ['Curtis', 'Robin', 'Allison', 'Petra', 'Kelly', 'Bobbie'], ['Curtis', 'Robin', 'Bobbie'], ['Curtis', 'Robin', 'Petra', 'Allison', 'Bobbie'], ['Curtis', 'Robin', 'Petra', 'Allison', 'Kelly', 'Bobbie'], ['Curtis', 'Robin', 'Petra', 'Bobbie'], ['Curtis', 'Robin', 'Petra', 'Kelly', 'Allison', 'Bobbie'], ['Curtis', 'Robin', 'Petra', 'Kelly', 'Bobbie'], ['Curtis', 'Bobbie']] 
+  full_paths [['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison', 'Bobbie'], ['Curtis', 'Kelly', 'Petra', 'Allison', 'Robin', 'Bobbie'], ['Curtis', 'Kelly', 'Allison', 'Petra', 'Robin', 'Bobbie'], ['Curtis', 'Kelly', 'Allison', 'Robin', 'Petra', 'Bobbie'], ['Curtis', 'Petra', 'Robin', 'Allison', 'Kelly', 'Bobbie'], ['Curtis', 'Petra', 'Kelly', 'Allison', 'Robin', 'Bobbie'], ['Curtis', 'Robin', 'Allison', 'Kelly', 'Petra', 'Bobbie'], ['Curtis', 'Robin', 'Allison', 'Petra', 'Kelly', 'Bobbie'], ['Curtis', 'Robin', 'Petra', 'Allison', 'Kelly', 'Bobbie'], ['Curtis', 'Robin', 'Petra', 'Kelly', 'Allison', 'Bobbie']]
 
 
   findAllPaths 
-    g defaultdict(<type 'list'>, {'Jeanette': ['Hollie'], 'Hollie': ['Jeanette', 'Gary'], 'Gary': ['Hollie']}) 
-    start 'Gary' 
-    end 'Hollie' 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Curtis' 
+    end 'Kelly' 
     path []
 
  
-  start Gary 
-  end Hollie 
-  paths [['Gary', 'Hollie']] 
+  start Curtis 
+  end Kelly 
+  paths [['Curtis', 'Kelly'], ['Curtis', 'Petra', 'Robin', 'Allison', 'Bobbie', 'Kelly'], ['Curtis', 'Petra', 'Robin', 'Allison', 'Kelly'], ['Curtis', 'Petra', 'Robin', 'Bobbie', 'Kelly'], ['Curtis', 'Petra', 'Robin', 'Bobbie', 'Allison', 'Kelly'], ['Curtis', 'Petra', 'Allison', 'Bobbie', 'Kelly'], ['Curtis', 'Petra', 'Allison', 'Kelly'], ['Curtis', 'Petra', 'Allison', 'Robin', 'Bobbie', 'Kelly'], ['Curtis', 'Petra', 'Bobbie', 'Kelly'], ['Curtis', 'Petra', 'Bobbie', 'Robin', 'Allison', 'Kelly'], ['Curtis', 'Petra', 'Bobbie', 'Allison', 'Kelly'], ['Curtis', 'Petra', 'Kelly'], ['Curtis', 'Robin', 'Allison', 'Bobbie', 'Kelly'], ['Curtis', 'Robin', 'Allison', 'Bobbie', 'Petra', 'Kelly'], ['Curtis', 'Robin', 'Allison', 'Kelly'], ['Curtis', 'Robin', 'Allison', 'Petra', 'Bobbie', 'Kelly'], ['Curtis', 'Robin', 'Allison', 'Petra', 'Kelly'], ['Curtis', 'Robin', 'Bobbie', 'Kelly'], ['Curtis', 'Robin', 'Bobbie', 'Petra', 'Allison', 'Kelly'], ['Curtis', 'Robin', 'Bobbie', 'Petra', 'Kelly'], ['Curtis', 'Robin', 'Bobbie', 'Allison', 'Kelly'], ['Curtis', 'Robin', 'Bobbie', 'Allison', 'Petra', 'Kelly'], ['Curtis', 'Robin', 'Petra', 'Allison', 'Bobbie', 'Kelly'], ['Curtis', 'Robin', 'Petra', 'Allison', 'Kelly'], ['Curtis', 'Robin', 'Petra', 'Bobbie', 'Kelly'], ['Curtis', 'Robin', 'Petra', 'Bobbie', 'Allison', 'Kelly'], ['Curtis', 'Robin', 'Petra', 'Kelly'], ['Curtis', 'Bobbie', 'Kelly'], ['Curtis', 'Bobbie', 'Petra', 'Robin', 'Allison', 'Kelly'], ['Curtis', 'Bobbie', 'Petra', 'Allison', 'Kelly'], ['Curtis', 'Bobbie', 'Petra', 'Kelly'], ['Curtis', 'Bobbie', 'Robin', 'Allison', 'Kelly'], ['Curtis', 'Bobbie', 'Robin', 'Allison', 'Petra', 'Kelly'], ['Curtis', 'Bobbie', 'Robin', 'Petra', 'Allison', 'Kelly'], ['Curtis', 'Bobbie', 'Robin', 'Petra', 'Kelly'], ['Curtis', 'Bobbie', 'Allison', 'Kelly'], ['Curtis', 'Bobbie', 'Allison', 'Petra', 'Kelly'], ['Curtis', 'Bobbie', 'Allison', 'Robin', 'Petra', 'Kelly']] 
+  full_paths [['Curtis', 'Petra', 'Robin', 'Allison', 'Bobbie', 'Kelly'], ['Curtis', 'Petra', 'Robin', 'Bobbie', 'Allison', 'Kelly'], ['Curtis', 'Petra', 'Allison', 'Robin', 'Bobbie', 'Kelly'], ['Curtis', 'Petra', 'Bobbie', 'Robin', 'Allison', 'Kelly'], ['Curtis', 'Robin', 'Allison', 'Bobbie', 'Petra', 'Kelly'], ['Curtis', 'Robin', 'Allison', 'Petra', 'Bobbie', 'Kelly'], ['Curtis', 'Robin', 'Bobbie', 'Petra', 'Allison', 'Kelly'], ['Curtis', 'Robin', 'Bobbie', 'Allison', 'Petra', 'Kelly'], ['Curtis', 'Robin', 'Petra', 'Allison', 'Bobbie', 'Kelly'], ['Curtis', 'Robin', 'Petra', 'Bobbie', 'Allison', 'Kelly'], ['Curtis', 'Bobbie', 'Petra', 'Robin', 'Allison', 'Kelly'], ['Curtis', 'Bobbie', 'Robin', 'Allison', 'Petra', 'Kelly'], ['Curtis', 'Bobbie', 'Robin', 'Petra', 'Allison', 'Kelly'], ['Curtis', 'Bobbie', 'Allison', 'Robin', 'Petra', 'Kelly']]
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Curtis' 
+    end 'Robin' 
+    path []
+
+ 
+  start Curtis 
+  end Robin 
+  paths [['Curtis', 'Kelly', 'Petra', 'Robin'], ['Curtis', 'Kelly', 'Petra', 'Allison', 'Bobbie', 'Robin'], ['Curtis', 'Kelly', 'Petra', 'Allison', 'Robin'], ['Curtis', 'Kelly', 'Petra', 'Bobbie', 'Robin'], ['Curtis', 'Kelly', 'Petra', 'Bobbie', 'Allison', 'Robin'], ['Curtis', 'Kelly', 'Allison', 'Bobbie', 'Petra', 'Robin'], ['Curtis', 'Kelly', 'Allison', 'Bobbie', 'Robin'], ['Curtis', 'Kelly', 'Allison', 'Petra', 'Robin'], ['Curtis', 'Kelly', 'Allison', 'Petra', 'Bobbie', 'Robin'], ['Curtis', 'Kelly', 'Allison', 'Robin'], ['Curtis', 'Kelly', 'Bobbie', 'Petra', 'Robin'], ['Curtis', 'Kelly', 'Bobbie', 'Petra', 'Allison', 'Robin'], ['Curtis', 'Kelly', 'Bobbie', 'Robin'], ['Curtis', 'Kelly', 'Bobbie', 'Allison', 'Petra', 'Robin'], ['Curtis', 'Kelly', 'Bobbie', 'Allison', 'Robin'], ['Curtis', 'Petra', 'Robin'], ['Curtis', 'Petra', 'Allison', 'Bobbie', 'Robin'], ['Curtis', 'Petra', 'Allison', 'Kelly', 'Bobbie', 'Robin'], ['Curtis', 'Petra', 'Allison', 'Robin'], ['Curtis', 'Petra', 'Bobbie', 'Kelly', 'Allison', 'Robin'], ['Curtis', 'Petra', 'Bobbie', 'Robin'], ['Curtis', 'Petra', 'Bobbie', 'Allison', 'Robin'], ['Curtis', 'Petra', 'Kelly', 'Allison', 'Bobbie', 'Robin'], ['Curtis', 'Petra', 'Kelly', 'Allison', 'Robin'], ['Curtis', 'Petra', 'Kelly', 'Bobbie', 'Robin'], ['Curtis', 'Petra', 'Kelly', 'Bobbie', 'Allison', 'Robin'], ['Curtis', 'Robin'], ['Curtis', 'Bobbie', 'Kelly', 'Petra', 'Robin'], ['Curtis', 'Bobbie', 'Kelly', 'Petra', 'Allison', 'Robin'], ['Curtis', 'Bobbie', 'Kelly', 'Allison', 'Petra', 'Robin'], ['Curtis', 'Bobbie', 'Kelly', 'Allison', 'Robin'], ['Curtis', 'Bobbie', 'Petra', 'Robin'], ['Curtis', 'Bobbie', 'Petra', 'Allison', 'Robin'], ['Curtis', 'Bobbie', 'Petra', 'Kelly', 'Allison', 'Robin'], ['Curtis', 'Bobbie', 'Robin'], ['Curtis', 'Bobbie', 'Allison', 'Kelly', 'Petra', 'Robin'], ['Curtis', 'Bobbie', 'Allison', 'Petra', 'Robin'], ['Curtis', 'Bobbie', 'Allison', 'Robin']] 
+  full_paths [['Curtis', 'Kelly', 'Petra', 'Allison', 'Bobbie', 'Robin'], ['Curtis', 'Kelly', 'Petra', 'Bobbie', 'Allison', 'Robin'], ['Curtis', 'Kelly', 'Allison', 'Bobbie', 'Petra', 'Robin'], ['Curtis', 'Kelly', 'Allison', 'Petra', 'Bobbie', 'Robin'], ['Curtis', 'Kelly', 'Bobbie', 'Petra', 'Allison', 'Robin'], ['Curtis', 'Kelly', 'Bobbie', 'Allison', 'Petra', 'Robin'], ['Curtis', 'Petra', 'Allison', 'Kelly', 'Bobbie', 'Robin'], ['Curtis', 'Petra', 'Bobbie', 'Kelly', 'Allison', 'Robin'], ['Curtis', 'Petra', 'Kelly', 'Allison', 'Bobbie', 'Robin'], ['Curtis', 'Petra', 'Kelly', 'Bobbie', 'Allison', 'Robin'], ['Curtis', 'Bobbie', 'Kelly', 'Petra', 'Allison', 'Robin'], ['Curtis', 'Bobbie', 'Kelly', 'Allison', 'Petra', 'Robin'], ['Curtis', 'Bobbie', 'Petra', 'Kelly', 'Allison', 'Robin'], ['Curtis', 'Bobbie', 'Allison', 'Kelly', 'Petra', 'Robin']]
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Petra' 
+    end 'Allison' 
+    path []
+
+ 
+  start Petra 
+  end Allison 
+  paths [['Petra', 'Robin', 'Allison'], ['Petra', 'Robin', 'Bobbie', 'Curtis', 'Kelly', 'Allison'], ['Petra', 'Robin', 'Bobbie', 'Kelly', 'Allison'], ['Petra', 'Robin', 'Bobbie', 'Allison'], ['Petra', 'Robin', 'Curtis', 'Kelly', 'Allison'], ['Petra', 'Robin', 'Curtis', 'Kelly', 'Bobbie', 'Allison'], ['Petra', 'Robin', 'Curtis', 'Bobbie', 'Kelly', 'Allison'], ['Petra', 'Robin', 'Curtis', 'Bobbie', 'Allison'], ['Petra', 'Allison'], ['Petra', 'Bobbie', 'Curtis', 'Kelly', 'Allison'], ['Petra', 'Bobbie', 'Curtis', 'Robin', 'Allison'], ['Petra', 'Bobbie', 'Kelly', 'Allison'], ['Petra', 'Bobbie', 'Kelly', 'Curtis', 'Robin', 'Allison'], ['Petra', 'Bobbie', 'Robin', 'Allison'], ['Petra', 'Bobbie', 'Robin', 'Curtis', 'Kelly', 'Allison'], ['Petra', 'Bobbie', 'Allison'], ['Petra', 'Curtis', 'Kelly', 'Allison'], ['Petra', 'Curtis', 'Kelly', 'Bobbie', 'Robin', 'Allison'], ['Petra', 'Curtis', 'Kelly', 'Bobbie', 'Allison'], ['Petra', 'Curtis', 'Robin', 'Allison'], ['Petra', 'Curtis', 'Robin', 'Bobbie', 'Kelly', 'Allison'], ['Petra', 'Curtis', 'Robin', 'Bobbie', 'Allison'], ['Petra', 'Curtis', 'Bobbie', 'Kelly', 'Allison'], ['Petra', 'Curtis', 'Bobbie', 'Robin', 'Allison'], ['Petra', 'Curtis', 'Bobbie', 'Allison'], ['Petra', 'Kelly', 'Allison'], ['Petra', 'Kelly', 'Bobbie', 'Curtis', 'Robin', 'Allison'], ['Petra', 'Kelly', 'Bobbie', 'Robin', 'Allison'], ['Petra', 'Kelly', 'Bobbie', 'Allison'], ['Petra', 'Kelly', 'Curtis', 'Robin', 'Allison'], ['Petra', 'Kelly', 'Curtis', 'Robin', 'Bobbie', 'Allison'], ['Petra', 'Kelly', 'Curtis', 'Bobbie', 'Robin', 'Allison'], ['Petra', 'Kelly', 'Curtis', 'Bobbie', 'Allison']] 
+  full_paths [['Petra', 'Robin', 'Bobbie', 'Curtis', 'Kelly', 'Allison'], ['Petra', 'Robin', 'Curtis', 'Kelly', 'Bobbie', 'Allison'], ['Petra', 'Robin', 'Curtis', 'Bobbie', 'Kelly', 'Allison'], ['Petra', 'Bobbie', 'Kelly', 'Curtis', 'Robin', 'Allison'], ['Petra', 'Bobbie', 'Robin', 'Curtis', 'Kelly', 'Allison'], ['Petra', 'Curtis', 'Kelly', 'Bobbie', 'Robin', 'Allison'], ['Petra', 'Curtis', 'Robin', 'Bobbie', 'Kelly', 'Allison'], ['Petra', 'Kelly', 'Bobbie', 'Curtis', 'Robin', 'Allison'], ['Petra', 'Kelly', 'Curtis', 'Robin', 'Bobbie', 'Allison'], ['Petra', 'Kelly', 'Curtis', 'Bobbie', 'Robin', 'Allison']]
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Petra' 
+    end 'Bobbie' 
+    path []
+
+ 
+  start Petra 
+  end Bobbie 
+  paths [['Petra', 'Robin', 'Allison', 'Bobbie'], ['Petra', 'Robin', 'Allison', 'Kelly', 'Bobbie'], ['Petra', 'Robin', 'Allison', 'Kelly', 'Curtis', 'Bobbie'], ['Petra', 'Robin', 'Bobbie'], ['Petra', 'Robin', 'Curtis', 'Kelly', 'Allison', 'Bobbie'], ['Petra', 'Robin', 'Curtis', 'Kelly', 'Bobbie'], ['Petra', 'Robin', 'Curtis', 'Bobbie'], ['Petra', 'Allison', 'Bobbie'], ['Petra', 'Allison', 'Kelly', 'Bobbie'], ['Petra', 'Allison', 'Kelly', 'Curtis', 'Robin', 'Bobbie'], ['Petra', 'Allison', 'Kelly', 'Curtis', 'Bobbie'], ['Petra', 'Allison', 'Robin', 'Bobbie'], ['Petra', 'Allison', 'Robin', 'Curtis', 'Kelly', 'Bobbie'], ['Petra', 'Allison', 'Robin', 'Curtis', 'Bobbie'], ['Petra', 'Bobbie'], ['Petra', 'Curtis', 'Kelly', 'Allison', 'Bobbie'], ['Petra', 'Curtis', 'Kelly', 'Allison', 'Robin', 'Bobbie'], ['Petra', 'Curtis', 'Kelly', 'Bobbie'], ['Petra', 'Curtis', 'Robin', 'Allison', 'Bobbie'], ['Petra', 'Curtis', 'Robin', 'Allison', 'Kelly', 'Bobbie'], ['Petra', 'Curtis', 'Robin', 'Bobbie'], ['Petra', 'Curtis', 'Bobbie'], ['Petra', 'Kelly', 'Allison', 'Bobbie'], ['Petra', 'Kelly', 'Allison', 'Robin', 'Bobbie'], ['Petra', 'Kelly', 'Allison', 'Robin', 'Curtis', 'Bobbie'], ['Petra', 'Kelly', 'Bobbie'], ['Petra', 'Kelly', 'Curtis', 'Robin', 'Allison', 'Bobbie'], ['Petra', 'Kelly', 'Curtis', 'Robin', 'Bobbie'], ['Petra', 'Kelly', 'Curtis', 'Bobbie']] 
+  full_paths [['Petra', 'Robin', 'Allison', 'Kelly', 'Curtis', 'Bobbie'], ['Petra', 'Robin', 'Curtis', 'Kelly', 'Allison', 'Bobbie'], ['Petra', 'Allison', 'Kelly', 'Curtis', 'Robin', 'Bobbie'], ['Petra', 'Allison', 'Robin', 'Curtis', 'Kelly', 'Bobbie'], ['Petra', 'Curtis', 'Kelly', 'Allison', 'Robin', 'Bobbie'], ['Petra', 'Curtis', 'Robin', 'Allison', 'Kelly', 'Bobbie'], ['Petra', 'Kelly', 'Allison', 'Robin', 'Curtis', 'Bobbie'], ['Petra', 'Kelly', 'Curtis', 'Robin', 'Allison', 'Bobbie']]
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Petra' 
+    end 'Kelly' 
+    path []
+
+ 
+  start Petra 
+  end Kelly 
+  paths [['Petra', 'Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], ['Petra', 'Robin', 'Allison', 'Bobbie', 'Kelly'], ['Petra', 'Robin', 'Allison', 'Kelly'], ['Petra', 'Robin', 'Bobbie', 'Curtis', 'Kelly'], ['Petra', 'Robin', 'Bobbie', 'Kelly'], ['Petra', 'Robin', 'Bobbie', 'Allison', 'Kelly'], ['Petra', 'Robin', 'Curtis', 'Kelly'], ['Petra', 'Robin', 'Curtis', 'Bobbie', 'Kelly'], ['Petra', 'Robin', 'Curtis', 'Bobbie', 'Allison', 'Kelly'], ['Petra', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], ['Petra', 'Allison', 'Bobbie', 'Kelly'], ['Petra', 'Allison', 'Bobbie', 'Robin', 'Curtis', 'Kelly'], ['Petra', 'Allison', 'Kelly'], ['Petra', 'Allison', 'Robin', 'Bobbie', 'Curtis', 'Kelly'], ['Petra', 'Allison', 'Robin', 'Bobbie', 'Kelly'], ['Petra', 'Allison', 'Robin', 'Curtis', 'Kelly'], ['Petra', 'Allison', 'Robin', 'Curtis', 'Bobbie', 'Kelly'], ['Petra', 'Bobbie', 'Curtis', 'Kelly'], ['Petra', 'Bobbie', 'Curtis', 'Robin', 'Allison', 'Kelly'], ['Petra', 'Bobbie', 'Kelly'], ['Petra', 'Bobbie', 'Robin', 'Allison', 'Kelly'], ['Petra', 'Bobbie', 'Robin', 'Curtis', 'Kelly'], ['Petra', 'Bobbie', 'Allison', 'Kelly'], ['Petra', 'Bobbie', 'Allison', 'Robin', 'Curtis', 'Kelly'], ['Petra', 'Curtis', 'Kelly'], ['Petra', 'Curtis', 'Robin', 'Allison', 'Bobbie', 'Kelly'], ['Petra', 'Curtis', 'Robin', 'Allison', 'Kelly'], ['Petra', 'Curtis', 'Robin', 'Bobbie', 'Kelly'], ['Petra', 'Curtis', 'Robin', 'Bobbie', 'Allison', 'Kelly'], ['Petra', 'Curtis', 'Bobbie', 'Kelly'], ['Petra', 'Curtis', 'Bobbie', 'Robin', 'Allison', 'Kelly'], ['Petra', 'Curtis', 'Bobbie', 'Allison', 'Kelly'], ['Petra', 'Kelly']] 
+  full_paths [['Petra', 'Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], ['Petra', 'Robin', 'Curtis', 'Bobbie', 'Allison', 'Kelly'], ['Petra', 'Allison', 'Bobbie', 'Robin', 'Curtis', 'Kelly'], ['Petra', 'Allison', 'Robin', 'Bobbie', 'Curtis', 'Kelly'], ['Petra', 'Allison', 'Robin', 'Curtis', 'Bobbie', 'Kelly'], ['Petra', 'Bobbie', 'Curtis', 'Robin', 'Allison', 'Kelly'], ['Petra', 'Bobbie', 'Allison', 'Robin', 'Curtis', 'Kelly'], ['Petra', 'Curtis', 'Robin', 'Allison', 'Bobbie', 'Kelly'], ['Petra', 'Curtis', 'Robin', 'Bobbie', 'Allison', 'Kelly'], ['Petra', 'Curtis', 'Bobbie', 'Robin', 'Allison', 'Kelly']]
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Petra' 
+    end 'Robin' 
+    path []
+
+ 
+  start Petra 
+  end Robin 
+  paths [['Petra', 'Robin'], ['Petra', 'Allison', 'Bobbie', 'Curtis', 'Robin'], ['Petra', 'Allison', 'Bobbie', 'Kelly', 'Curtis', 'Robin'], ['Petra', 'Allison', 'Bobbie', 'Robin'], ['Petra', 'Allison', 'Kelly', 'Bobbie', 'Curtis', 'Robin'], ['Petra', 'Allison', 'Kelly', 'Bobbie', 'Robin'], ['Petra', 'Allison', 'Kelly', 'Curtis', 'Robin'], ['Petra', 'Allison', 'Kelly', 'Curtis', 'Bobbie', 'Robin'], ['Petra', 'Allison', 'Robin'], ['Petra', 'Bobbie', 'Curtis', 'Kelly', 'Allison', 'Robin'], ['Petra', 'Bobbie', 'Curtis', 'Robin'], ['Petra', 'Bobbie', 'Kelly', 'Allison', 'Robin'], ['Petra', 'Bobbie', 'Kelly', 'Curtis', 'Robin'], ['Petra', 'Bobbie', 'Robin'], ['Petra', 'Bobbie', 'Allison', 'Kelly', 'Curtis', 'Robin'], ['Petra', 'Bobbie', 'Allison', 'Robin'], ['Petra', 'Curtis', 'Kelly', 'Allison', 'Bobbie', 'Robin'], ['Petra', 'Curtis', 'Kelly', 'Allison', 'Robin'], ['Petra', 'Curtis', 'Kelly', 'Bobbie', 'Robin'], ['Petra', 'Curtis', 'Kelly', 'Bobbie', 'Allison', 'Robin'], ['Petra', 'Curtis', 'Robin'], ['Petra', 'Curtis', 'Bobbie', 'Kelly', 'Allison', 'Robin'], ['Petra', 'Curtis', 'Bobbie', 'Robin'], ['Petra', 'Curtis', 'Bobbie', 'Allison', 'Robin'], ['Petra', 'Kelly', 'Allison', 'Bobbie', 'Curtis', 'Robin'], ['Petra', 'Kelly', 'Allison', 'Bobbie', 'Robin'], ['Petra', 'Kelly', 'Allison', 'Robin'], ['Petra', 'Kelly', 'Bobbie', 'Curtis', 'Robin'], ['Petra', 'Kelly', 'Bobbie', 'Robin'], ['Petra', 'Kelly', 'Bobbie', 'Allison', 'Robin'], ['Petra', 'Kelly', 'Curtis', 'Robin'], ['Petra', 'Kelly', 'Curtis', 'Bobbie', 'Robin'], ['Petra', 'Kelly', 'Curtis', 'Bobbie', 'Allison', 'Robin']] 
+  full_paths [['Petra', 'Allison', 'Bobbie', 'Kelly', 'Curtis', 'Robin'], ['Petra', 'Allison', 'Kelly', 'Bobbie', 'Curtis', 'Robin'], ['Petra', 'Allison', 'Kelly', 'Curtis', 'Bobbie', 'Robin'], ['Petra', 'Bobbie', 'Curtis', 'Kelly', 'Allison', 'Robin'], ['Petra', 'Bobbie', 'Allison', 'Kelly', 'Curtis', 'Robin'], ['Petra', 'Curtis', 'Kelly', 'Allison', 'Bobbie', 'Robin'], ['Petra', 'Curtis', 'Kelly', 'Bobbie', 'Allison', 'Robin'], ['Petra', 'Curtis', 'Bobbie', 'Kelly', 'Allison', 'Robin'], ['Petra', 'Kelly', 'Allison', 'Bobbie', 'Curtis', 'Robin'], ['Petra', 'Kelly', 'Curtis', 'Bobbie', 'Allison', 'Robin']]
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Allison' 
+    end 'Bobbie' 
+    path []
+
+ 
+  start Allison 
+  end Bobbie 
+  paths [['Allison', 'Bobbie'], ['Allison', 'Kelly', 'Petra', 'Robin', 'Bobbie'], ['Allison', 'Kelly', 'Petra', 'Robin', 'Curtis', 'Bobbie'], ['Allison', 'Kelly', 'Petra', 'Bobbie'], ['Allison', 'Kelly', 'Petra', 'Curtis', 'Robin', 'Bobbie'], ['Allison', 'Kelly', 'Petra', 'Curtis', 'Bobbie'], ['Allison', 'Kelly', 'Bobbie'], ['Allison', 'Kelly', 'Curtis', 'Petra', 'Robin', 'Bobbie'], ['Allison', 'Kelly', 'Curtis', 'Petra', 'Bobbie'], ['Allison', 'Kelly', 'Curtis', 'Robin', 'Bobbie'], ['Allison', 'Kelly', 'Curtis', 'Robin', 'Petra', 'Bobbie'], ['Allison', 'Kelly', 'Curtis', 'Bobbie'], ['Allison', 'Petra', 'Robin', 'Bobbie'], ['Allison', 'Petra', 'Robin', 'Curtis', 'Kelly', 'Bobbie'], ['Allison', 'Petra', 'Robin', 'Curtis', 'Bobbie'], ['Allison', 'Petra', 'Bobbie'], ['Allison', 'Petra', 'Curtis', 'Kelly', 'Bobbie'], ['Allison', 'Petra', 'Curtis', 'Robin', 'Bobbie'], ['Allison', 'Petra', 'Curtis', 'Bobbie'], ['Allison', 'Petra', 'Kelly', 'Bobbie'], ['Allison', 'Petra', 'Kelly', 'Curtis', 'Robin', 'Bobbie'], ['Allison', 'Petra', 'Kelly', 'Curtis', 'Bobbie'], ['Allison', 'Robin', 'Bobbie'], ['Allison', 'Robin', 'Curtis', 'Kelly', 'Petra', 'Bobbie'], ['Allison', 'Robin', 'Curtis', 'Kelly', 'Bobbie'], ['Allison', 'Robin', 'Curtis', 'Petra', 'Bobbie'], ['Allison', 'Robin', 'Curtis', 'Petra', 'Kelly', 'Bobbie'], ['Allison', 'Robin', 'Curtis', 'Bobbie'], ['Allison', 'Robin', 'Petra', 'Bobbie'], ['Allison', 'Robin', 'Petra', 'Curtis', 'Kelly', 'Bobbie'], ['Allison', 'Robin', 'Petra', 'Curtis', 'Bobbie'], ['Allison', 'Robin', 'Petra', 'Kelly', 'Bobbie'], ['Allison', 'Robin', 'Petra', 'Kelly', 'Curtis', 'Bobbie']] 
+  full_paths [['Allison', 'Kelly', 'Petra', 'Robin', 'Curtis', 'Bobbie'], ['Allison', 'Kelly', 'Petra', 'Curtis', 'Robin', 'Bobbie'], ['Allison', 'Kelly', 'Curtis', 'Petra', 'Robin', 'Bobbie'], ['Allison', 'Kelly', 'Curtis', 'Robin', 'Petra', 'Bobbie'], ['Allison', 'Petra', 'Robin', 'Curtis', 'Kelly', 'Bobbie'], ['Allison', 'Petra', 'Kelly', 'Curtis', 'Robin', 'Bobbie'], ['Allison', 'Robin', 'Curtis', 'Kelly', 'Petra', 'Bobbie'], ['Allison', 'Robin', 'Curtis', 'Petra', 'Kelly', 'Bobbie'], ['Allison', 'Robin', 'Petra', 'Curtis', 'Kelly', 'Bobbie'], ['Allison', 'Robin', 'Petra', 'Kelly', 'Curtis', 'Bobbie']]
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Allison' 
+    end 'Kelly' 
+    path []
+
+ 
+  start Allison 
+  end Kelly 
+  paths [['Allison', 'Bobbie', 'Curtis', 'Kelly'], ['Allison', 'Bobbie', 'Curtis', 'Petra', 'Kelly'], ['Allison', 'Bobbie', 'Curtis', 'Robin', 'Petra', 'Kelly'], ['Allison', 'Bobbie', 'Kelly'], ['Allison', 'Bobbie', 'Petra', 'Robin', 'Curtis', 'Kelly'], ['Allison', 'Bobbie', 'Petra', 'Curtis', 'Kelly'], ['Allison', 'Bobbie', 'Petra', 'Kelly'], ['Allison', 'Bobbie', 'Robin', 'Curtis', 'Kelly'], ['Allison', 'Bobbie', 'Robin', 'Curtis', 'Petra', 'Kelly'], ['Allison', 'Bobbie', 'Robin', 'Petra', 'Curtis', 'Kelly'], ['Allison', 'Bobbie', 'Robin', 'Petra', 'Kelly'], ['Allison', 'Kelly'], ['Allison', 'Petra', 'Robin', 'Bobbie', 'Curtis', 'Kelly'], ['Allison', 'Petra', 'Robin', 'Bobbie', 'Kelly'], ['Allison', 'Petra', 'Robin', 'Curtis', 'Kelly'], ['Allison', 'Petra', 'Robin', 'Curtis', 'Bobbie', 'Kelly'], ['Allison', 'Petra', 'Bobbie', 'Curtis', 'Kelly'], ['Allison', 'Petra', 'Bobbie', 'Kelly'], ['Allison', 'Petra', 'Bobbie', 'Robin', 'Curtis', 'Kelly'], ['Allison', 'Petra', 'Curtis', 'Kelly'], ['Allison', 'Petra', 'Curtis', 'Robin', 'Bobbie', 'Kelly'], ['Allison', 'Petra', 'Curtis', 'Bobbie', 'Kelly'], ['Allison', 'Petra', 'Kelly'], ['Allison', 'Robin', 'Bobbie', 'Curtis', 'Kelly'], ['Allison', 'Robin', 'Bobbie', 'Curtis', 'Petra', 'Kelly'], ['Allison', 'Robin', 'Bobbie', 'Kelly'], ['Allison', 'Robin', 'Bobbie', 'Petra', 'Curtis', 'Kelly'], ['Allison', 'Robin', 'Bobbie', 'Petra', 'Kelly'], ['Allison', 'Robin', 'Curtis', 'Kelly'], ['Allison', 'Robin', 'Curtis', 'Petra', 'Bobbie', 'Kelly'], ['Allison', 'Robin', 'Curtis', 'Petra', 'Kelly'], ['Allison', 'Robin', 'Curtis', 'Bobbie', 'Kelly'], ['Allison', 'Robin', 'Curtis', 'Bobbie', 'Petra', 'Kelly'], ['Allison', 'Robin', 'Petra', 'Bobbie', 'Curtis', 'Kelly'], ['Allison', 'Robin', 'Petra', 'Bobbie', 'Kelly'], ['Allison', 'Robin', 'Petra', 'Curtis', 'Kelly'], ['Allison', 'Robin', 'Petra', 'Curtis', 'Bobbie', 'Kelly'], ['Allison', 'Robin', 'Petra', 'Kelly']] 
+  full_paths [['Allison', 'Bobbie', 'Curtis', 'Robin', 'Petra', 'Kelly'], ['Allison', 'Bobbie', 'Petra', 'Robin', 'Curtis', 'Kelly'], ['Allison', 'Bobbie', 'Robin', 'Curtis', 'Petra', 'Kelly'], ['Allison', 'Bobbie', 'Robin', 'Petra', 'Curtis', 'Kelly'], ['Allison', 'Petra', 'Robin', 'Bobbie', 'Curtis', 'Kelly'], ['Allison', 'Petra', 'Robin', 'Curtis', 'Bobbie', 'Kelly'], ['Allison', 'Petra', 'Bobbie', 'Robin', 'Curtis', 'Kelly'], ['Allison', 'Petra', 'Curtis', 'Robin', 'Bobbie', 'Kelly'], ['Allison', 'Robin', 'Bobbie', 'Curtis', 'Petra', 'Kelly'], ['Allison', 'Robin', 'Bobbie', 'Petra', 'Curtis', 'Kelly'], ['Allison', 'Robin', 'Curtis', 'Petra', 'Bobbie', 'Kelly'], ['Allison', 'Robin', 'Curtis', 'Bobbie', 'Petra', 'Kelly'], ['Allison', 'Robin', 'Petra', 'Bobbie', 'Curtis', 'Kelly'], ['Allison', 'Robin', 'Petra', 'Curtis', 'Bobbie', 'Kelly']]
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Allison' 
+    end 'Robin' 
+    path []
+
+ 
+  start Allison 
+  end Robin 
+  paths [['Allison', 'Bobbie', 'Curtis', 'Kelly', 'Petra', 'Robin'], ['Allison', 'Bobbie', 'Curtis', 'Petra', 'Robin'], ['Allison', 'Bobbie', 'Curtis', 'Robin'], ['Allison', 'Bobbie', 'Kelly', 'Petra', 'Robin'], ['Allison', 'Bobbie', 'Kelly', 'Petra', 'Curtis', 'Robin'], ['Allison', 'Bobbie', 'Kelly', 'Curtis', 'Petra', 'Robin'], ['Allison', 'Bobbie', 'Kelly', 'Curtis', 'Robin'], ['Allison', 'Bobbie', 'Petra', 'Robin'], ['Allison', 'Bobbie', 'Petra', 'Curtis', 'Robin'], ['Allison', 'Bobbie', 'Petra', 'Kelly', 'Curtis', 'Robin'], ['Allison', 'Bobbie', 'Robin'], ['Allison', 'Kelly', 'Petra', 'Robin'], ['Allison', 'Kelly', 'Petra', 'Bobbie', 'Curtis', 'Robin'], ['Allison', 'Kelly', 'Petra', 'Bobbie', 'Robin'], ['Allison', 'Kelly', 'Petra', 'Curtis', 'Robin'], ['Allison', 'Kelly', 'Petra', 'Curtis', 'Bobbie', 'Robin'], ['Allison', 'Kelly', 'Bobbie', 'Curtis', 'Petra', 'Robin'], ['Allison', 'Kelly', 'Bobbie', 'Curtis', 'Robin'], ['Allison', 'Kelly', 'Bobbie', 'Petra', 'Robin'], ['Allison', 'Kelly', 'Bobbie', 'Petra', 'Curtis', 'Robin'], ['Allison', 'Kelly', 'Bobbie', 'Robin'], ['Allison', 'Kelly', 'Curtis', 'Petra', 'Robin'], ['Allison', 'Kelly', 'Curtis', 'Petra', 'Bobbie', 'Robin'], ['Allison', 'Kelly', 'Curtis', 'Robin'], ['Allison', 'Kelly', 'Curtis', 'Bobbie', 'Petra', 'Robin'], ['Allison', 'Kelly', 'Curtis', 'Bobbie', 'Robin'], ['Allison', 'Petra', 'Robin'], ['Allison', 'Petra', 'Bobbie', 'Curtis', 'Robin'], ['Allison', 'Petra', 'Bobbie', 'Kelly', 'Curtis', 'Robin'], ['Allison', 'Petra', 'Bobbie', 'Robin'], ['Allison', 'Petra', 'Curtis', 'Kelly', 'Bobbie', 'Robin'], ['Allison', 'Petra', 'Curtis', 'Robin'], ['Allison', 'Petra', 'Curtis', 'Bobbie', 'Robin'], ['Allison', 'Petra', 'Kelly', 'Bobbie', 'Curtis', 'Robin'], ['Allison', 'Petra', 'Kelly', 'Bobbie', 'Robin'], ['Allison', 'Petra', 'Kelly', 'Curtis', 'Robin'], ['Allison', 'Petra', 'Kelly', 'Curtis', 'Bobbie', 'Robin'], ['Allison', 'Robin']] 
+  full_paths [['Allison', 'Bobbie', 'Curtis', 'Kelly', 'Petra', 'Robin'], ['Allison', 'Bobbie', 'Kelly', 'Petra', 'Curtis', 'Robin'], ['Allison', 'Bobbie', 'Kelly', 'Curtis', 'Petra', 'Robin'], ['Allison', 'Bobbie', 'Petra', 'Kelly', 'Curtis', 'Robin'], ['Allison', 'Kelly', 'Petra', 'Bobbie', 'Curtis', 'Robin'], ['Allison', 'Kelly', 'Petra', 'Curtis', 'Bobbie', 'Robin'], ['Allison', 'Kelly', 'Bobbie', 'Curtis', 'Petra', 'Robin'], ['Allison', 'Kelly', 'Bobbie', 'Petra', 'Curtis', 'Robin'], ['Allison', 'Kelly', 'Curtis', 'Petra', 'Bobbie', 'Robin'], ['Allison', 'Kelly', 'Curtis', 'Bobbie', 'Petra', 'Robin'], ['Allison', 'Petra', 'Bobbie', 'Kelly', 'Curtis', 'Robin'], ['Allison', 'Petra', 'Curtis', 'Kelly', 'Bobbie', 'Robin'], ['Allison', 'Petra', 'Kelly', 'Bobbie', 'Curtis', 'Robin'], ['Allison', 'Petra', 'Kelly', 'Curtis', 'Bobbie', 'Robin']]
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Bobbie' 
+    end 'Kelly' 
+    path []
+
+ 
+  start Bobbie 
+  end Kelly 
+  paths [['Bobbie', 'Curtis', 'Kelly'], ['Bobbie', 'Curtis', 'Petra', 'Robin', 'Allison', 'Kelly'], ['Bobbie', 'Curtis', 'Petra', 'Allison', 'Kelly'], ['Bobbie', 'Curtis', 'Petra', 'Kelly'], ['Bobbie', 'Curtis', 'Robin', 'Allison', 'Kelly'], ['Bobbie', 'Curtis', 'Robin', 'Allison', 'Petra', 'Kelly'], ['Bobbie', 'Curtis', 'Robin', 'Petra', 'Allison', 'Kelly'], ['Bobbie', 'Curtis', 'Robin', 'Petra', 'Kelly'], ['Bobbie', 'Kelly'], ['Bobbie', 'Petra', 'Robin', 'Allison', 'Kelly'], ['Bobbie', 'Petra', 'Robin', 'Curtis', 'Kelly'], ['Bobbie', 'Petra', 'Allison', 'Kelly'], ['Bobbie', 'Petra', 'Allison', 'Robin', 'Curtis', 'Kelly'], ['Bobbie', 'Petra', 'Curtis', 'Kelly'], ['Bobbie', 'Petra', 'Curtis', 'Robin', 'Allison', 'Kelly'], ['Bobbie', 'Petra', 'Kelly'], ['Bobbie', 'Robin', 'Allison', 'Kelly'], ['Bobbie', 'Robin', 'Allison', 'Petra', 'Curtis', 'Kelly'], ['Bobbie', 'Robin', 'Allison', 'Petra', 'Kelly'], ['Bobbie', 'Robin', 'Curtis', 'Kelly'], ['Bobbie', 'Robin', 'Curtis', 'Petra', 'Allison', 'Kelly'], ['Bobbie', 'Robin', 'Curtis', 'Petra', 'Kelly'], ['Bobbie', 'Robin', 'Petra', 'Allison', 'Kelly'], ['Bobbie', 'Robin', 'Petra', 'Curtis', 'Kelly'], ['Bobbie', 'Robin', 'Petra', 'Kelly'], ['Bobbie', 'Allison', 'Kelly'], ['Bobbie', 'Allison', 'Petra', 'Robin', 'Curtis', 'Kelly'], ['Bobbie', 'Allison', 'Petra', 'Curtis', 'Kelly'], ['Bobbie', 'Allison', 'Petra', 'Kelly'], ['Bobbie', 'Allison', 'Robin', 'Curtis', 'Kelly'], ['Bobbie', 'Allison', 'Robin', 'Curtis', 'Petra', 'Kelly'], ['Bobbie', 'Allison', 'Robin', 'Petra', 'Curtis', 'Kelly'], ['Bobbie', 'Allison', 'Robin', 'Petra', 'Kelly']] 
+  full_paths [['Bobbie', 'Curtis', 'Petra', 'Robin', 'Allison', 'Kelly'], ['Bobbie', 'Curtis', 'Robin', 'Allison', 'Petra', 'Kelly'], ['Bobbie', 'Curtis', 'Robin', 'Petra', 'Allison', 'Kelly'], ['Bobbie', 'Petra', 'Allison', 'Robin', 'Curtis', 'Kelly'], ['Bobbie', 'Petra', 'Curtis', 'Robin', 'Allison', 'Kelly'], ['Bobbie', 'Robin', 'Allison', 'Petra', 'Curtis', 'Kelly'], ['Bobbie', 'Robin', 'Curtis', 'Petra', 'Allison', 'Kelly'], ['Bobbie', 'Allison', 'Petra', 'Robin', 'Curtis', 'Kelly'], ['Bobbie', 'Allison', 'Robin', 'Curtis', 'Petra', 'Kelly'], ['Bobbie', 'Allison', 'Robin', 'Petra', 'Curtis', 'Kelly']]
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Bobbie' 
+    end 'Robin' 
+    path []
+
+ 
+  start Bobbie 
+  end Robin 
+  paths [['Bobbie', 'Curtis', 'Kelly', 'Petra', 'Robin'], ['Bobbie', 'Curtis', 'Kelly', 'Petra', 'Allison', 'Robin'], ['Bobbie', 'Curtis', 'Kelly', 'Allison', 'Petra', 'Robin'], ['Bobbie', 'Curtis', 'Kelly', 'Allison', 'Robin'], ['Bobbie', 'Curtis', 'Petra', 'Robin'], ['Bobbie', 'Curtis', 'Petra', 'Allison', 'Robin'], ['Bobbie', 'Curtis', 'Petra', 'Kelly', 'Allison', 'Robin'], ['Bobbie', 'Curtis', 'Robin'], ['Bobbie', 'Kelly', 'Petra', 'Robin'], ['Bobbie', 'Kelly', 'Petra', 'Allison', 'Robin'], ['Bobbie', 'Kelly', 'Petra', 'Curtis', 'Robin'], ['Bobbie', 'Kelly', 'Allison', 'Petra', 'Robin'], ['Bobbie', 'Kelly', 'Allison', 'Petra', 'Curtis', 'Robin'], ['Bobbie', 'Kelly', 'Allison', 'Robin'], ['Bobbie', 'Kelly', 'Curtis', 'Petra', 'Robin'], ['Bobbie', 'Kelly', 'Curtis', 'Petra', 'Allison', 'Robin'], ['Bobbie', 'Kelly', 'Curtis', 'Robin'], ['Bobbie', 'Petra', 'Robin'], ['Bobbie', 'Petra', 'Allison', 'Kelly', 'Curtis', 'Robin'], ['Bobbie', 'Petra', 'Allison', 'Robin'], ['Bobbie', 'Petra', 'Curtis', 'Kelly', 'Allison', 'Robin'], ['Bobbie', 'Petra', 'Curtis', 'Robin'], ['Bobbie', 'Petra', 'Kelly', 'Allison', 'Robin'], ['Bobbie', 'Petra', 'Kelly', 'Curtis', 'Robin'], ['Bobbie', 'Robin'], ['Bobbie', 'Allison', 'Kelly', 'Petra', 'Robin'], ['Bobbie', 'Allison', 'Kelly', 'Petra', 'Curtis', 'Robin'], ['Bobbie', 'Allison', 'Kelly', 'Curtis', 'Petra', 'Robin'], ['Bobbie', 'Allison', 'Kelly', 'Curtis', 'Robin'], ['Bobbie', 'Allison', 'Petra', 'Robin'], ['Bobbie', 'Allison', 'Petra', 'Curtis', 'Robin'], ['Bobbie', 'Allison', 'Petra', 'Kelly', 'Curtis', 'Robin'], ['Bobbie', 'Allison', 'Robin']] 
+  full_paths [['Bobbie', 'Curtis', 'Kelly', 'Petra', 'Allison', 'Robin'], ['Bobbie', 'Curtis', 'Kelly', 'Allison', 'Petra', 'Robin'], ['Bobbie', 'Curtis', 'Petra', 'Kelly', 'Allison', 'Robin'], ['Bobbie', 'Kelly', 'Allison', 'Petra', 'Curtis', 'Robin'], ['Bobbie', 'Kelly', 'Curtis', 'Petra', 'Allison', 'Robin'], ['Bobbie', 'Petra', 'Allison', 'Kelly', 'Curtis', 'Robin'], ['Bobbie', 'Petra', 'Curtis', 'Kelly', 'Allison', 'Robin'], ['Bobbie', 'Allison', 'Kelly', 'Petra', 'Curtis', 'Robin'], ['Bobbie', 'Allison', 'Kelly', 'Curtis', 'Petra', 'Robin'], ['Bobbie', 'Allison', 'Petra', 'Kelly', 'Curtis', 'Robin']]
+
+
+  findAllPaths 
+    g defaultdict(<type 'list'>, {'Curtis': ['Kelly', 'Petra', 'Robin', 'Bobbie'], 'Petra': ['Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'], 'Allison': ['Bobbie', 'Kelly', 'Petra', 'Robin'], 'Bobbie': ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison'], 'Kelly': ['Petra', 'Allison', 'Bobbie', 'Curtis'], 'Robin': ['Allison', 'Bobbie', 'Curtis', 'Petra']}) 
+    start 'Kelly' 
+    end 'Robin' 
+    path []
+
+ 
+  start Kelly 
+  end Robin 
+  paths [['Kelly', 'Petra', 'Robin'], ['Kelly', 'Petra', 'Allison', 'Bobbie', 'Curtis', 'Robin'], ['Kelly', 'Petra', 'Allison', 'Bobbie', 'Robin'], ['Kelly', 'Petra', 'Allison', 'Robin'], ['Kelly', 'Petra', 'Bobbie', 'Curtis', 'Robin'], ['Kelly', 'Petra', 'Bobbie', 'Robin'], ['Kelly', 'Petra', 'Bobbie', 'Allison', 'Robin'], ['Kelly', 'Petra', 'Curtis', 'Robin'], ['Kelly', 'Petra', 'Curtis', 'Bobbie', 'Robin'], ['Kelly', 'Petra', 'Curtis', 'Bobbie', 'Allison', 'Robin'], ['Kelly', 'Allison', 'Bobbie', 'Curtis', 'Petra', 'Robin'], ['Kelly', 'Allison', 'Bobbie', 'Curtis', 'Robin'], ['Kelly', 'Allison', 'Bobbie', 'Petra', 'Robin'], ['Kelly', 'Allison', 'Bobbie', 'Petra', 'Curtis', 'Robin'], ['Kelly', 'Allison', 'Bobbie', 'Robin'], ['Kelly', 'Allison', 'Petra', 'Robin'], ['Kelly', 'Allison', 'Petra', 'Bobbie', 'Curtis', 'Robin'], ['Kelly', 'Allison', 'Petra', 'Bobbie', 'Robin'], ['Kelly', 'Allison', 'Petra', 'Curtis', 'Robin'], ['Kelly', 'Allison', 'Petra', 'Curtis', 'Bobbie', 'Robin'], ['Kelly', 'Allison', 'Robin'], ['Kelly', 'Bobbie', 'Curtis', 'Petra', 'Robin'], ['Kelly', 'Bobbie', 'Curtis', 'Petra', 'Allison', 'Robin'], ['Kelly', 'Bobbie', 'Curtis', 'Robin'], ['Kelly', 'Bobbie', 'Petra', 'Robin'], ['Kelly', 'Bobbie', 'Petra', 'Allison', 'Robin'], ['Kelly', 'Bobbie', 'Petra', 'Curtis', 'Robin'], ['Kelly', 'Bobbie', 'Robin'], ['Kelly', 'Bobbie', 'Allison', 'Petra', 'Robin'], ['Kelly', 'Bobbie', 'Allison', 'Petra', 'Curtis', 'Robin'], ['Kelly', 'Bobbie', 'Allison', 'Robin'], ['Kelly', 'Curtis', 'Petra', 'Robin'], ['Kelly', 'Curtis', 'Petra', 'Allison', 'Bobbie', 'Robin'], ['Kelly', 'Curtis', 'Petra', 'Allison', 'Robin'], ['Kelly', 'Curtis', 'Petra', 'Bobbie', 'Robin'], ['Kelly', 'Curtis', 'Petra', 'Bobbie', 'Allison', 'Robin'], ['Kelly', 'Curtis', 'Robin'], ['Kelly', 'Curtis', 'Bobbie', 'Petra', 'Robin'], ['Kelly', 'Curtis', 'Bobbie', 'Petra', 'Allison', 'Robin'], ['Kelly', 'Curtis', 'Bobbie', 'Robin'], ['Kelly', 'Curtis', 'Bobbie', 'Allison', 'Petra', 'Robin'], ['Kelly', 'Curtis', 'Bobbie', 'Allison', 'Robin']] 
   full_paths []
 
 
  
   full_length_paths
- [] 
+ [['Curtis', 'Kelly', 'Allison', 'Bobbie', 'Robin', 'Petra'],
+ ['Curtis', 'Kelly', 'Allison', 'Robin', 'Bobbie', 'Petra'],
+ ['Curtis', 'Kelly', 'Bobbie', 'Robin', 'Allison', 'Petra'],
+ ['Curtis', 'Kelly', 'Bobbie', 'Allison', 'Robin', 'Petra'],
+ ['Curtis', 'Robin', 'Allison', 'Bobbie', 'Kelly', 'Petra'],
+ ['Curtis', 'Robin', 'Allison', 'Kelly', 'Bobbie', 'Petra'],
+ ['Curtis', 'Robin', 'Bobbie', 'Kelly', 'Allison', 'Petra'],
+ ['Curtis', 'Robin', 'Bobbie', 'Allison', 'Kelly', 'Petra'],
+ ['Curtis', 'Bobbie', 'Kelly', 'Allison', 'Robin', 'Petra'],
+ ['Curtis', 'Bobbie', 'Robin', 'Allison', 'Kelly', 'Petra'],
+ ['Curtis', 'Kelly', 'Petra', 'Robin', 'Allison', 'Bobbie'],
+ ['Curtis', 'Kelly', 'Petra', 'Allison', 'Robin', 'Bobbie'],
+ ['Curtis', 'Kelly', 'Allison', 'Petra', 'Robin', 'Bobbie'],
+ ['Curtis', 'Kelly', 'Allison', 'Robin', 'Petra', 'Bobbie'],
+ ['Curtis', 'Petra', 'Robin', 'Allison', 'Kelly', 'Bobbie'],
+ ['Curtis', 'Petra', 'Kelly', 'Allison', 'Robin', 'Bobbie'],
+ ['Curtis', 'Robin', 'Allison', 'Kelly', 'Petra', 'Bobbie'],
+ ['Curtis', 'Robin', 'Allison', 'Petra', 'Kelly', 'Bobbie'],
+ ['Curtis', 'Robin', 'Petra', 'Allison', 'Kelly', 'Bobbie'],
+ ['Curtis', 'Robin', 'Petra', 'Kelly', 'Allison', 'Bobbie'],
+ ['Curtis', 'Petra', 'Robin', 'Allison', 'Bobbie', 'Kelly'],
+ ['Curtis', 'Petra', 'Robin', 'Bobbie', 'Allison', 'Kelly'],
+ ['Curtis', 'Petra', 'Allison', 'Robin', 'Bobbie', 'Kelly'],
+ ['Curtis', 'Petra', 'Bobbie', 'Robin', 'Allison', 'Kelly'],
+ ['Curtis', 'Robin', 'Allison', 'Bobbie', 'Petra', 'Kelly'],
+ ['Curtis', 'Robin', 'Allison', 'Petra', 'Bobbie', 'Kelly'],
+ ['Curtis', 'Robin', 'Bobbie', 'Petra', 'Allison', 'Kelly'],
+ ['Curtis', 'Robin', 'Bobbie', 'Allison', 'Petra', 'Kelly'],
+ ['Curtis', 'Robin', 'Petra', 'Allison', 'Bobbie', 'Kelly'],
+ ['Curtis', 'Robin', 'Petra', 'Bobbie', 'Allison', 'Kelly'],
+ ['Curtis', 'Bobbie', 'Petra', 'Robin', 'Allison', 'Kelly'],
+ ['Curtis', 'Bobbie', 'Robin', 'Allison', 'Petra', 'Kelly'],
+ ['Curtis', 'Bobbie', 'Robin', 'Petra', 'Allison', 'Kelly'],
+ ['Curtis', 'Bobbie', 'Allison', 'Robin', 'Petra', 'Kelly'],
+ ['Curtis', 'Kelly', 'Petra', 'Allison', 'Bobbie', 'Robin'],
+ ['Curtis', 'Kelly', 'Petra', 'Bobbie', 'Allison', 'Robin'],
+ ['Curtis', 'Kelly', 'Allison', 'Bobbie', 'Petra', 'Robin'],
+ ['Curtis', 'Kelly', 'Allison', 'Petra', 'Bobbie', 'Robin'],
+ ['Curtis', 'Kelly', 'Bobbie', 'Petra', 'Allison', 'Robin'],
+ ['Curtis', 'Kelly', 'Bobbie', 'Allison', 'Petra', 'Robin'],
+ ['Curtis', 'Petra', 'Allison', 'Kelly', 'Bobbie', 'Robin'],
+ ['Curtis', 'Petra', 'Bobbie', 'Kelly', 'Allison', 'Robin'],
+ ['Curtis', 'Petra', 'Kelly', 'Allison', 'Bobbie', 'Robin'],
+ ['Curtis', 'Petra', 'Kelly', 'Bobbie', 'Allison', 'Robin'],
+ ['Curtis', 'Bobbie', 'Kelly', 'Petra', 'Allison', 'Robin'],
+ ['Curtis', 'Bobbie', 'Kelly', 'Allison', 'Petra', 'Robin'],
+ ['Curtis', 'Bobbie', 'Petra', 'Kelly', 'Allison', 'Robin'],
+ ['Curtis', 'Bobbie', 'Allison', 'Kelly', 'Petra', 'Robin'],
+ ['Petra', 'Robin', 'Bobbie', 'Curtis', 'Kelly', 'Allison'],
+ ['Petra', 'Robin', 'Curtis', 'Kelly', 'Bobbie', 'Allison'],
+ ['Petra', 'Robin', 'Curtis', 'Bobbie', 'Kelly', 'Allison'],
+ ['Petra', 'Bobbie', 'Kelly', 'Curtis', 'Robin', 'Allison'],
+ ['Petra', 'Bobbie', 'Robin', 'Curtis', 'Kelly', 'Allison'],
+ ['Petra', 'Curtis', 'Kelly', 'Bobbie', 'Robin', 'Allison'],
+ ['Petra', 'Curtis', 'Robin', 'Bobbie', 'Kelly', 'Allison'],
+ ['Petra', 'Kelly', 'Bobbie', 'Curtis', 'Robin', 'Allison'],
+ ['Petra', 'Kelly', 'Curtis', 'Robin', 'Bobbie', 'Allison'],
+ ['Petra', 'Kelly', 'Curtis', 'Bobbie', 'Robin', 'Allison'],
+ ['Petra', 'Robin', 'Allison', 'Kelly', 'Curtis', 'Bobbie'],
+ ['Petra', 'Robin', 'Curtis', 'Kelly', 'Allison', 'Bobbie'],
+ ['Petra', 'Allison', 'Kelly', 'Curtis', 'Robin', 'Bobbie'],
+ ['Petra', 'Allison', 'Robin', 'Curtis', 'Kelly', 'Bobbie'],
+ ['Petra', 'Curtis', 'Kelly', 'Allison', 'Robin', 'Bobbie'],
+ ['Petra', 'Curtis', 'Robin', 'Allison', 'Kelly', 'Bobbie'],
+ ['Petra', 'Kelly', 'Allison', 'Robin', 'Curtis', 'Bobbie'],
+ ['Petra', 'Kelly', 'Curtis', 'Robin', 'Allison', 'Bobbie'],
+ ['Petra', 'Robin', 'Allison', 'Bobbie', 'Curtis', 'Kelly'],
+ ['Petra', 'Robin', 'Curtis', 'Bobbie', 'Allison', 'Kelly'],
+ ['Petra', 'Allison', 'Bobbie', 'Robin', 'Curtis', 'Kelly'],
+ ['Petra', 'Allison', 'Robin', 'Bobbie', 'Curtis', 'Kelly'],
+ ['Petra', 'Allison', 'Robin', 'Curtis', 'Bobbie', 'Kelly'],
+ ['Petra', 'Bobbie', 'Curtis', 'Robin', 'Allison', 'Kelly'],
+ ['Petra', 'Bobbie', 'Allison', 'Robin', 'Curtis', 'Kelly'],
+ ['Petra', 'Curtis', 'Robin', 'Allison', 'Bobbie', 'Kelly'],
+ ['Petra', 'Curtis', 'Robin', 'Bobbie', 'Allison', 'Kelly'],
+ ['Petra', 'Curtis', 'Bobbie', 'Robin', 'Allison', 'Kelly'],
+ ['Petra', 'Allison', 'Bobbie', 'Kelly', 'Curtis', 'Robin'],
+ ['Petra', 'Allison', 'Kelly', 'Bobbie', 'Curtis', 'Robin'],
+ ['Petra', 'Allison', 'Kelly', 'Curtis', 'Bobbie', 'Robin'],
+ ['Petra', 'Bobbie', 'Curtis', 'Kelly', 'Allison', 'Robin'],
+ ['Petra', 'Bobbie', 'Allison', 'Kelly', 'Curtis', 'Robin'],
+ ['Petra', 'Curtis', 'Kelly', 'Allison', 'Bobbie', 'Robin'],
+ ['Petra', 'Curtis', 'Kelly', 'Bobbie', 'Allison', 'Robin'],
+ ['Petra', 'Curtis', 'Bobbie', 'Kelly', 'Allison', 'Robin'],
+ ['Petra', 'Kelly', 'Allison', 'Bobbie', 'Curtis', 'Robin'],
+ ['Petra', 'Kelly', 'Curtis', 'Bobbie', 'Allison', 'Robin'],
+ ['Allison', 'Kelly', 'Petra', 'Robin', 'Curtis', 'Bobbie'],
+ ['Allison', 'Kelly', 'Petra', 'Curtis', 'Robin', 'Bobbie'],
+ ['Allison', 'Kelly', 'Curtis', 'Petra', 'Robin', 'Bobbie'],
+ ['Allison', 'Kelly', 'Curtis', 'Robin', 'Petra', 'Bobbie'],
+ ['Allison', 'Petra', 'Robin', 'Curtis', 'Kelly', 'Bobbie'],
+ ['Allison', 'Petra', 'Kelly', 'Curtis', 'Robin', 'Bobbie'],
+ ['Allison', 'Robin', 'Curtis', 'Kelly', 'Petra', 'Bobbie'],
+ ['Allison', 'Robin', 'Curtis', 'Petra', 'Kelly', 'Bobbie'],
+ ['Allison', 'Robin', 'Petra', 'Curtis', 'Kelly', 'Bobbie'],
+ ['Allison', 'Robin', 'Petra', 'Kelly', 'Curtis', 'Bobbie'],
+ ['Allison', 'Bobbie', 'Curtis', 'Robin', 'Petra', 'Kelly'],
+ ['Allison', 'Bobbie', 'Petra', 'Robin', 'Curtis', 'Kelly'],
+ ['Allison', 'Bobbie', 'Robin', 'Curtis', 'Petra', 'Kelly'],
+ ['Allison', 'Bobbie', 'Robin', 'Petra', 'Curtis', 'Kelly'],
+ ['Allison', 'Petra', 'Robin', 'Bobbie', 'Curtis', 'Kelly'],
+ ['Allison', 'Petra', 'Robin', 'Curtis', 'Bobbie', 'Kelly'],
+ ['Allison', 'Petra', 'Bobbie', 'Robin', 'Curtis', 'Kelly'],
+ ['Allison', 'Petra', 'Curtis', 'Robin', 'Bobbie', 'Kelly'],
+ ['Allison', 'Robin', 'Bobbie', 'Curtis', 'Petra', 'Kelly'],
+ ['Allison', 'Robin', 'Bobbie', 'Petra', 'Curtis', 'Kelly'],
+ ['Allison', 'Robin', 'Curtis', 'Petra', 'Bobbie', 'Kelly'],
+ ['Allison', 'Robin', 'Curtis', 'Bobbie', 'Petra', 'Kelly'],
+ ['Allison', 'Robin', 'Petra', 'Bobbie', 'Curtis', 'Kelly'],
+ ['Allison', 'Robin', 'Petra', 'Curtis', 'Bobbie', 'Kelly'],
+ ['Allison', 'Bobbie', 'Curtis', 'Kelly', 'Petra', 'Robin'],
+ ['Allison', 'Bobbie', 'Kelly', 'Petra', 'Curtis', 'Robin'],
+ ['Allison', 'Bobbie', 'Kelly', 'Curtis', 'Petra', 'Robin'],
+ ['Allison', 'Bobbie', 'Petra', 'Kelly', 'Curtis', 'Robin'],
+ ['Allison', 'Kelly', 'Petra', 'Bobbie', 'Curtis', 'Robin'],
+ ['Allison', 'Kelly', 'Petra', 'Curtis', 'Bobbie', 'Robin'],
+ ['Allison', 'Kelly', 'Bobbie', 'Curtis', 'Petra', 'Robin'],
+ ['Allison', 'Kelly', 'Bobbie', 'Petra', 'Curtis', 'Robin'],
+ ['Allison', 'Kelly', 'Curtis', 'Petra', 'Bobbie', 'Robin'],
+ ['Allison', 'Kelly', 'Curtis', 'Bobbie', 'Petra', 'Robin'],
+ ['Allison', 'Petra', 'Bobbie', 'Kelly', 'Curtis', 'Robin'],
+ ['Allison', 'Petra', 'Curtis', 'Kelly', 'Bobbie', 'Robin'],
+ ['Allison', 'Petra', 'Kelly', 'Bobbie', 'Curtis', 'Robin'],
+ ['Allison', 'Petra', 'Kelly', 'Curtis', 'Bobbie', 'Robin'],
+ ['Bobbie', 'Curtis', 'Petra', 'Robin', 'Allison', 'Kelly'],
+ ['Bobbie', 'Curtis', 'Robin', 'Allison', 'Petra', 'Kelly'],
+ ['Bobbie', 'Curtis', 'Robin', 'Petra', 'Allison', 'Kelly'],
+ ['Bobbie', 'Petra', 'Allison', 'Robin', 'Curtis', 'Kelly'],
+ ['Bobbie', 'Petra', 'Curtis', 'Robin', 'Allison', 'Kelly'],
+ ['Bobbie', 'Robin', 'Allison', 'Petra', 'Curtis', 'Kelly'],
+ ['Bobbie', 'Robin', 'Curtis', 'Petra', 'Allison', 'Kelly'],
+ ['Bobbie', 'Allison', 'Petra', 'Robin', 'Curtis', 'Kelly'],
+ ['Bobbie', 'Allison', 'Robin', 'Curtis', 'Petra', 'Kelly'],
+ ['Bobbie', 'Allison', 'Robin', 'Petra', 'Curtis', 'Kelly'],
+ ['Bobbie', 'Curtis', 'Kelly', 'Petra', 'Allison', 'Robin'],
+ ['Bobbie', 'Curtis', 'Kelly', 'Allison', 'Petra', 'Robin'],
+ ['Bobbie', 'Curtis', 'Petra', 'Kelly', 'Allison', 'Robin'],
+ ['Bobbie', 'Kelly', 'Allison', 'Petra', 'Curtis', 'Robin'],
+ ['Bobbie', 'Kelly', 'Curtis', 'Petra', 'Allison', 'Robin'],
+ ['Bobbie', 'Petra', 'Allison', 'Kelly', 'Curtis', 'Robin'],
+ ['Bobbie', 'Petra', 'Curtis', 'Kelly', 'Allison', 'Robin'],
+ ['Bobbie', 'Allison', 'Kelly', 'Petra', 'Curtis', 'Robin'],
+ ['Bobbie', 'Allison', 'Kelly', 'Curtis', 'Petra', 'Robin'],
+ ['Bobbie', 'Allison', 'Petra', 'Kelly', 'Curtis', 'Robin']] 
   pruned_paths
- set([]) 
-  result 0
-
-members set(['Javier', 'Curtis', 'Rachel', 'Lee']) groups (set(['Javier', 'Rachel']), set(['Curtis', 'Lee']))
-find_chains 
-  members set(['Curtis', 'Javier', 'Lee', 'Rachel']) 
-  groups (set(['Javier', 'Rachel']), set(['Curtis', 'Lee'])) 
-  c [('Curtis', 'Javier'),
- ('Curtis', 'Rachel'),
- ('Javier', 'Lee'),
- ('Lee', 'Rachel')]
-
-chain_count 
-  edges [('Curtis', 'Javier'), ('Curtis', 'Rachel'), ('Javier', 'Lee'), ('Lee', 'Rachel'), ('Javier', 'Curtis'), ('Rachel', 'Curtis'), ('Lee', 'Javier'), ('Rachel', 'Lee')] 
-  members set(['Curtis', 'Javier', 'Lee', 'Rachel']) 
-  g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']})
-
-
-  findAllPaths 
-    g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
-    start 'Javier' 
-    end 'Curtis' 
-    path []
-
- 
-  start Javier 
-  end Curtis 
-  paths [['Javier', 'Lee', 'Rachel', 'Curtis'], ['Javier', 'Curtis']] 
-  full_paths [['Javier', 'Lee', 'Rachel', 'Curtis']]
-
-
-  findAllPaths 
-    g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
-    start 'Javier' 
-    end 'Rachel' 
-    path []
-
- 
-  start Javier 
-  end Rachel 
-  paths [['Javier', 'Lee', 'Rachel'], ['Javier', 'Curtis', 'Rachel']] 
-  full_paths []
-
-
-  findAllPaths 
-    g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
-    start 'Javier' 
-    end 'Lee' 
-    path []
-
- 
-  start Javier 
-  end Lee 
-  paths [['Javier', 'Lee'], ['Javier', 'Curtis', 'Rachel', 'Lee']] 
-  full_paths [['Javier', 'Curtis', 'Rachel', 'Lee']]
+ [('Allison', 'Bobbie', 'Robin', 'Curtis', 'Petra', 'Kelly'),
+ ('Allison', 'Bobbie', 'Curtis', 'Kelly', 'Petra', 'Robin'),
+ ('Allison', 'Bobbie', 'Curtis', 'Robin', 'Petra', 'Kelly'),
+ ('Allison', 'Robin', 'Curtis', 'Kelly', 'Petra', 'Bobbie'),
+ ('Allison', 'Bobbie', 'Kelly', 'Curtis', 'Petra', 'Robin'),
+ ('Allison', 'Robin', 'Curtis', 'Kelly', 'Bobbie', 'Petra'),
+ ('Allison', 'Robin', 'Petra', 'Kelly', 'Curtis', 'Bobbie'),
+ ('Allison', 'Robin', 'Bobbie', 'Curtis', 'Petra', 'Kelly'),
+ ('Allison', 'Petra', 'Robin', 'Curtis', 'Kelly', 'Bobbie'),
+ ('Allison', 'Kelly', 'Bobbie', 'Curtis', 'Petra', 'Robin'),
+ ('Allison', 'Kelly', 'Curtis', 'Robin', 'Bobbie', 'Petra'),
+ ('Allison', 'Robin', 'Bobbie', 'Curtis', 'Kelly', 'Petra'),
+ ('Allison', 'Kelly', 'Curtis', 'Robin', 'Petra', 'Bobbie'),
+ ('Allison', 'Robin', 'Petra', 'Curtis', 'Kelly', 'Bobbie'),
+ ('Allison', 'Bobbie', 'Kelly', 'Petra', 'Curtis', 'Robin'),
+ ('Allison', 'Petra', 'Curtis', 'Kelly', 'Bobbie', 'Robin'),
+ ('Allison', 'Robin', 'Bobbie', 'Kelly', 'Curtis', 'Petra'),
+ ('Allison', 'Kelly', 'Curtis', 'Bobbie', 'Robin', 'Petra'),
+ ('Allison', 'Robin', 'Petra', 'Bobbie', 'Curtis', 'Kelly'),
+ ('Allison', 'Petra', 'Curtis', 'Robin', 'Bobbie', 'Kelly'),
+ ('Allison', 'Bobbie', 'Robin', 'Curtis', 'Kelly', 'Petra'),
+ ('Allison', 'Petra', 'Bobbie', 'Kelly', 'Curtis', 'Robin'),
+ ('Allison', 'Bobbie', 'Petra', 'Kelly', 'Curtis', 'Robin'),
+ ('Allison', 'Petra', 'Kelly', 'Curtis', 'Robin', 'Bobbie'),
+ ('Allison', 'Robin', 'Curtis', 'Bobbie', 'Petra', 'Kelly'),
+ ('Allison', 'Kelly', 'Bobbie', 'Curtis', 'Robin', 'Petra'),
+ ('Allison', 'Robin', 'Petra', 'Curtis', 'Bobbie', 'Kelly'),
+ ('Allison', 'Kelly', 'Curtis', 'Petra', 'Bobbie', 'Robin'),
+ ('Allison', 'Petra', 'Robin', 'Bobbie', 'Curtis', 'Kelly'),
+ ('Allison', 'Robin', 'Curtis', 'Petra', 'Kelly', 'Bobbie'),
+ ('Allison', 'Petra', 'Robin', 'Curtis', 'Bobbie', 'Kelly'),
+ ('Allison', 'Kelly', 'Petra', 'Curtis', 'Bobbie', 'Robin'),
+ ('Allison', 'Kelly', 'Bobbie', 'Robin', 'Curtis', 'Petra'),
+ ('Allison', 'Bobbie', 'Kelly', 'Curtis', 'Robin', 'Petra'),
+ ('Allison', 'Kelly', 'Curtis', 'Petra', 'Robin', 'Bobbie'),
+ ('Allison', 'Kelly', 'Bobbie', 'Petra', 'Curtis', 'Robin'),
+ ('Allison', 'Kelly', 'Petra', 'Robin', 'Curtis', 'Bobbie'),
+ ('Allison', 'Robin', 'Bobbie', 'Petra', 'Curtis', 'Kelly'),
+ ('Allison', 'Kelly', 'Petra', 'Curtis', 'Robin', 'Bobbie'),
+ ('Allison', 'Petra', 'Kelly', 'Curtis', 'Bobbie', 'Robin'),
+ ('Allison', 'Bobbie', 'Petra', 'Robin', 'Curtis', 'Kelly'),
+ ('Allison', 'Petra', 'Kelly', 'Bobbie', 'Curtis', 'Robin'),
+ ('Allison', 'Kelly', 'Curtis', 'Bobbie', 'Petra', 'Robin'),
+ ('Allison', 'Kelly', 'Petra', 'Bobbie', 'Curtis', 'Robin'),
+ ('Allison', 'Robin', 'Curtis', 'Bobbie', 'Kelly', 'Petra'),
+ ('Allison', 'Petra', 'Bobbie', 'Robin', 'Curtis', 'Kelly'),
+ ('Allison', 'Bobbie', 'Robin', 'Petra', 'Curtis', 'Kelly')] 
+  unique_paths
+ [('Allison', 'Robin', 'Curtis', 'Petra', 'Bobbie', 'Kelly'),
+ ('Allison', 'Bobbie', 'Curtis', 'Kelly', 'Petra', 'Robin'),
+ ('Allison', 'Kelly', 'Curtis', 'Robin', 'Bobbie', 'Petra')]
 
 
-  findAllPaths 
-    g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
-    start 'Curtis' 
-    end 'Rachel' 
-    path []
 
- 
-  start Curtis 
-  end Rachel 
-  paths [['Curtis', 'Javier', 'Lee', 'Rachel'], ['Curtis', 'Rachel']] 
-  full_paths [['Curtis', 'Javier', 'Lee', 'Rachel']]
-
-
-  findAllPaths 
-    g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
-    start 'Curtis' 
-    end 'Lee' 
-    path []
-
- 
-  start Curtis 
-  end Lee 
-  paths [['Curtis', 'Javier', 'Lee'], ['Curtis', 'Rachel', 'Lee']] 
-  full_paths []
-
-
-  findAllPaths 
-    g defaultdict(<type 'list'>, {'Javier': ['Lee', 'Curtis'], 'Curtis': ['Javier', 'Rachel'], 'Lee': ['Rachel', 'Javier'], 'Rachel': ['Curtis', 'Lee']}) 
-    start 'Rachel' 
-    end 'Lee' 
-    path []
-
- 
-  start Rachel 
-  end Lee 
-  paths [['Rachel', 'Curtis', 'Javier', 'Lee'], ['Rachel', 'Lee']] 
-  full_paths [['Rachel', 'Curtis', 'Javier', 'Lee']]
-
-
- 
-  full_length_paths
- [['Javier', 'Lee', 'Rachel', 'Curtis'],
- ['Javier', 'Curtis', 'Rachel', 'Lee'],
- ['Curtis', 'Javier', 'Lee', 'Rachel'],
- ['Rachel', 'Curtis', 'Javier', 'Lee']] 
-  pruned_paths
- set([('Curtis', 'Javier', 'Lee', 'Rachel'),
-     ('Curtis', 'Rachel', 'Lee', 'Javier')]) 
-  result 2
-Done!
+****  3 
+ [('Allison', 'Robin', 'Curtis', 'Petra', 'Bobbie', 'Kelly'),
+ ('Allison', 'Bobbie', 'Curtis', 'Kelly', 'Petra', 'Robin'),
+ ('Allison', 'Kelly', 'Curtis', 'Robin', 'Bobbie', 'Petra')]
