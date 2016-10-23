@@ -4,7 +4,13 @@
 # https://py.checkio.org/mission/expected-dice/
 
 from __future__ import print_function
+from collections import defaultdict
 from fractions import Fraction
+from itertools import product
+from string import digits, ascii_lowercase
+from pprint import pprint
+
+########################################################################
 
 
 def expected(n, sides, target, l):
@@ -24,6 +30,71 @@ def expected(n, sides, target, l):
     result = Fraction(a.denominator, a.numerator)
     print(result)
     return round(result, 1)
+
+########################################################################
+
+
+def frequencies(n, sides):
+    """Returns a dictionary of (value, fraction)."""
+
+    print("frequencies",
+          "\nn", n,
+          "\nsides", sides
+          )
+
+    frequency_dict = {}
+    total_counts = sides ** n
+
+    # for one die, all results are equally likely
+    if n == 1:
+
+        for face in range(1, sides + 1):
+            frequency_dict[face] = Fraction(1, total_counts)
+
+    else:
+
+        # for more than one die, compute the results
+        counts = defaultdict(lambda: 0)
+
+        # sides are numbered beginning at 1
+        symbols = range(1, sides + 1)
+
+        # generate all rolls
+        rolls = list(product(symbols, repeat=n))
+
+        for roll in rolls:
+            value = 0
+            for digit in roll:
+                value += digit
+            counts[value] += 1
+
+        for key in sorted(counts.keys()):
+            frequency_dict[key] = Fraction(counts[key], total_counts)
+
+    return frequency_dict
+
+# pprint(frequencies(1, 4))
+# pprint(frequencies(1, 6))
+# pprint(frequencies(1, 10))
+# pprint(frequencies(1, 20))
+
+# pprint(frequencies(2, 4))
+# pprint(frequencies(2, 6))
+# pprint(frequencies(2, 10))
+# pprint(frequencies(2, 20))
+
+# pprint(frequencies(3, 4))
+# pprint(frequencies(3, 6))
+# pprint(frequencies(3, 10))
+# pprint(frequencies(3, 20))
+
+# pprint(frequencies(4, 4))
+# pprint(frequencies(4, 6))
+# pprint(frequencies(4, 10))
+# pprint(frequencies(4, 20))
+
+# import sys
+# sys.exit()
 
 ########################################################################
 

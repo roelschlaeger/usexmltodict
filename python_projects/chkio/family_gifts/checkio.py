@@ -31,7 +31,7 @@ def prune_circular_duplicates(input_paths):
         while m != d[0]:
             d.rotate(-1)
         output_paths.add(tuple(d))
-    return output_paths
+    return list(output_paths)
 
 ########################################################################
 
@@ -129,18 +129,14 @@ def chain_count(members, combos):
     # now resolve any paths that are the same under circular rotation
     pruned_paths = prune_circular_duplicates(full_length_paths)
 
-    # count the results
-    result = len(pruned_paths)
-
     if DEBUG:
         print(
             "\n\n",
             "\n  full_length_paths\n", pformat(full_length_paths),
             "\n  pruned_paths\n", pformat(pruned_paths),
-            "\n  result", result
         )
 
-    return result
+    return pruned_paths
 
 ########################################################################
 
@@ -165,40 +161,54 @@ def find_chains(members, groups={}):
               "\n  c", pformat(c)
               )
 
-    n = chain_count(members, c)
+    pruned_paths = chain_count(members, c)
 
-    return n
+    return pruned_paths
 
 ########################################################################
 
-if 1:
-
-    if 1:
-
-        assert find_chains(
-            {'Gary', 'Jeanette', 'Hollie'},
+print(
+    pformat(
+#       find_chains({"Doreen", "Fred", "Yolanda"},  ({"Doreen", "Fred"}, ))
+#   )
+        find_chains(
+            {'Curtis', 'Lee', 'Rachel', 'Javier'},
             (
-                {'Gary', 'Jeanette'},
+                {'Rachel', 'Javier'},
+                {'Curtis', 'Lee'},
             )
-        ) == 0  # 0 chains
-
-    assert find_chains(
-        {'Curtis', 'Lee', 'Rachel', 'Javier'},
-        (
-            {'Rachel', 'Javier'},
-            {'Curtis', 'Lee'},
         )
-    ) == 2  # 2 chains
+    )
+)
 
-else:
-
-    assert find_chains(
-        {'Beth', 'Curtis', 'Lee', 'Rachel', 'Javier'},
-        (
-            {'Rachel', 'Javier'},
-            {'Curtis', 'Lee'},
-        )
-    ) == 8  # 8 chains
+# if 1:
+#
+#     if 1:
+#
+#         assert find_chains(
+#             {'Gary', 'Jeanette', 'Hollie'},
+#             (
+#                 {'Gary', 'Jeanette'},
+#             )
+#         ) == 0  # 0 chains
+#
+#     assert find_chains(
+#         {'Curtis', 'Lee', 'Rachel', 'Javier'},
+#         (
+#             {'Rachel', 'Javier'},
+#             {'Curtis', 'Lee'},
+#         )
+#     ) == 2  # 2 chains
+#
+# else:
+#
+#     assert find_chains(
+#         {'Beth', 'Curtis', 'Lee', 'Rachel', 'Javier'},
+#         (
+#             {'Rachel', 'Javier'},
+#             {'Curtis', 'Lee'},
+#         )
+#     ) == 8  # 8 chains
 
 print("Done!")
 
