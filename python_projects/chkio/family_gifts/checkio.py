@@ -195,7 +195,7 @@ def find_chains(family, couples={}):
         "\n", pformat(pruned_paths)
     )
 
-    return len(pruned_paths)
+    return pruned_paths
 
 ########################################################################
 
