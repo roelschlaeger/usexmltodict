@@ -110,17 +110,23 @@ def find_chains(family, couples):
     if DEBUG:
         print("spaths", pformat(spaths))
 
-    remaining = []
+    remaining, first_lasts = [], set()
     while spaths:
 
         # get a remaining path
         r0 = spaths.pop(0).split()
         if DEBUG:
             print("r0", r0)
-        remaining.append(r0)
+
+        # check for last->first duplicates
+        first_last = (r0[0], r0[-1])
+        if first_last not in first_lasts:
+            remaining.append(r0)
+            first_lasts.add(first_last)
 
         # split path into pairs
         ap = [" ".join(r0[i:i + 2]) for i in range(len(r0) - 1)]
+#       ap.append(" ".join([r0[-1], r0[0]]))
         if DEBUG:
             print("ap", ap)
 
