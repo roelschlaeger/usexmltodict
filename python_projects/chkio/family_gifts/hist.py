@@ -49,11 +49,16 @@ def find_chains(family, couples):
     that are 'couples' don't give to each other. Compute the chains of giving
     such that no member gives to the same person in another chain."""
 
-    # extend the permutations to include cycle
+    family = sorted(family)
+
+    # get the first family member
+    f0 = family.pop(0)
+
+    # compute permutations wrapped by first member
     p = [
-        " ".join(x + (x[0],))
+        " ".join((f0,) + x + (f0,))
         for x in permutations(
-            sorted(family), len(family)
+            family, len(family)
         )
     ]
     if DEBUG:
@@ -68,6 +73,11 @@ def find_chains(family, couples):
 
     remove_pairs(couple_pairs, p)
 
+#   if DEBUG:
+#       print("p", len(list(p)), "\n", pformat(list(p)))
+#   import sys
+#   sys.exit(1)
+
     chains = []
     while p:
         r0 = (p.pop(0)).split()
@@ -80,7 +90,7 @@ def find_chains(family, couples):
         remove_pairs(pairs, p)
 
     if DEBUG:
-        print("chains", pformat(chains))
+        print("\n\nchains", len(chains), "\n", pformat(chains))
 
     return chains
 
