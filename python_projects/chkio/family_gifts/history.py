@@ -24,6 +24,8 @@ from pprint import pformat
 
 def findAllPaths(g, start, end, path=[]):
     """Find all paths in 'g' between 'start' and 'end'."""
+
+    # show parameters on the first recursion
     if path == []:
         if DEBUG:
             print(
@@ -34,24 +36,43 @@ def findAllPaths(g, start, end, path=[]):
                 "\n    path", pformat(path)
             )
 
+    # extend the
     path = path + [start]
 
+    # check for completion
     if start == end:
         return [path]
 
     if start not in g:
         return []
 
+    # build a list of paths
     paths = []
 
+    # check the next node in the graph
     for node in g[start]:
 
+        # if not visited yet
         if node not in path:
+
+            # recurse
             newpaths = findAllPaths(g, node, end, path)
             for newpath in newpaths:
                 paths.append(newpath)
 
     return paths
+
+########################################################################
+
+
+def normalize(path, family0):
+    """Rotate the circular path to have 'family0' at the start"""
+
+    from collections import deque
+    d = deque(path)
+    while d[0] != family0:
+        d.rotate(-1)
+    return list(d)
 
 ########################################################################
 
@@ -87,21 +108,28 @@ def find_chains(family, couples):
         print("l2", pformat(l2))
         print("edges", pformat(edges))
 
-    # compute all full-length paths between all (family[0], end) pairs
+    # compute all full-length paths between all (start, end) pairs
     paths = defaultdict(list)
-    for start, end in [(s, e) for (s, e) in l2 if s == family[0]]:
-        paths[(start, end)] = [
-            x for x in findAllPaths(edges, start, end) if len(x) == len(family)
-        ]
-
-    # find all paths starting with the first family member
-    akeys = [x for x in paths if x[0] == list(family)[0]]
-    if DEBUG:
-        print("akeys", pformat(akeys))
+    for start, end in l2:
+        if start in edges[end]:
+            paths[(start, end)] = [
+                x for x in findAllPaths(
+                    edges, start, end
+                ) if len(x) == len(family)
+            ]
 
     # accumulate all paths starting from family[0]
     apaths = []
-    [apaths.extend(paths[x]) for x in akeys]
+    [apaths.extend(paths[x]) for x in paths]
+    if DEBUG:
+        print("apaths", pformat(apaths))
+
+    # append reversed paths
+    reversed_paths = [list(reversed(x)) for x in apaths]
+    if DEBUG:
+        print("reversed_paths", reversed_paths)
+
+    apaths += reversed_paths
     if DEBUG:
         print("apaths", pformat(apaths))
 
@@ -110,7 +138,7 @@ def find_chains(family, couples):
     if DEBUG:
         print("spaths", pformat(spaths))
 
-    remaining, first_lasts = [], set()
+    remaining, last_firsts = [], set()
     while spaths:
 
         # get a remaining path
@@ -119,14 +147,17 @@ def find_chains(family, couples):
             print("r0", r0)
 
         # check for last->first duplicates
-        first_last = (r0[0], r0[-1])
-        if first_last not in first_lasts:
-            remaining.append(r0)
-            first_lasts.add(first_last)
+        last_first = (r0[-1], r0[0])
+        if DEBUG:
+            print("last_first", last_first)
+
+        if last_first not in last_firsts:
+            remaining.append(normalize(r0, family[0]))
+            last_firsts.add(last_first)
 
         # split path into pairs
         ap = [" ".join(r0[i:i + 2]) for i in range(len(r0) - 1)]
-#       ap.append(" ".join([r0[-1], r0[0]]))
+        ap.append(" ".join([r0[-1], r0[0]]))
         if DEBUG:
             print("ap", ap)
 
@@ -148,13 +179,23 @@ def find_chains(family, couples):
     if DEBUG:
         print("remaining", pformat(remaining))
 
-    return remaining
+    result = remaining
+
+    return result
 
 ########################################################################
 
 family = {'Allison', 'Robin', 'Petra', 'Curtis', 'Bobbie', 'Kelly'}
 couples = [('Allison', 'Curtis'), ('Kelly', 'Robin')]
+# family = {'A', 'R', 'P', 'C', 'B', 'K'}
+# couples = [('A', 'C'), ('K', 'R')]
 remaining = find_chains(family, couples)
-print(pformat(remaining))
+print("\nfind_chains(\n",
+      pformat(family),
+      ", \n",
+      pformat(couples),
+      ") = \n",
+      pformat(remaining)
+      )
 
 ########################################################################
