@@ -338,9 +338,16 @@ def find_chains(family, couples):
         print_possible_chains(possible_chains)
 
     # return one of the lists
-    result = possible_chains[max_key][0]
+    result_chain = possible_chains[max_key][0]
+    if 1 or DEBUG:
+        print("result_chain", pformat(result_chain))
 
-    if DEBUG:
+    if result_chain:
+        result = [[x[0] for x in y] for y in result_chain]
+    else:
+        result = []
+
+    if 1 or DEBUG:
         print(
             "\nfind_chains",
             "\n  result", pformat(result)
@@ -351,6 +358,16 @@ def find_chains(family, couples):
 ########################################################################
 
 if __name__ == '__main__':
+
+    # find_chains({"Doreen", "Fred", "Yolanda"},  ({"Doreen", "Fred"}, ))
+
+    find_chains(
+        {"Nelson", "Kaitlin", "Amelia", "Jack"},
+        (
+            {"Kaitlin", "Jack"},
+            {"Nelson", "Amelia"},
+        )
+    )
 
     # family = {
     #     'Loraine', 'Leah', 'Jenifer', 'Russell', 'Benjamin', 'Todd',
@@ -366,10 +383,10 @@ if __name__ == '__main__':
     # family = {'Philip', 'Sondra', 'Mary', 'Selena', 'Eric', 'Phyllis'}
     # couples = ({'Philip', 'Sondra'}, {'Eric', 'Mary'},)
 
-    family = {"Allison",  "Robin",  "Petra",  "Curtis",  "Bobbie",  "Kelly"}
-    couples = ({"Allison",  "Curtis"},  {"Robin",  "Kelly"},)
+    # family = {"Allison",  "Robin",  "Petra",  "Curtis",  "Bobbie",  "Kelly"}
+    # couples = ({"Allison",  "Curtis"},  {"Robin",  "Kelly"},)
 
-    result = find_chains(family, couples)
-    print("\nresult", len(result), pformat(result, width=132, depth=3))
+    # result = find_chains(family, couples)
+    # print("\nresult", len(result), pformat(result, width=132, depth=3))
 
 # end of file
