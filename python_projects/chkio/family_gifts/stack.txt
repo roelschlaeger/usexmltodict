@@ -1,162 +1,134 @@
-['Allison', 'Kelly', 'Bobbie', 'Robin', 'Curtis', 'Petra']
-['Allison', 'Robin', 'Bobbie', 'Kelly', 'Curtis', 'Petra']
-['Allison', 'Kelly', 'Curtis', 'Petra', 'Bobbie', 'Robin']
-['Allison', 'Robin', 'Curtis', 'Petra', 'Bobbie', 'Kelly']
-['Allison', 'Bobbie', 'Robin', 'Curtis', 'Petra', 'Kelly']
-['Allison', 'Bobbie', 'Robin']
-['Allison', 'Robin', 'Bobbie']
-['Allison', 'Robin', 'Curtis', 'Petra', 'Kelly', 'Bobbie']
-['Allison', 'Robin', 'Bobbie', 'Curtis', 'Petra', 'Kelly']
-['Allison', 'Bobbie', 'Kelly']
-['Allison', 'Bobbie', 'Kelly', 'Curtis', 'Petra', 'Robin']
-['Allison', 'Kelly', 'Curtis', 'Petra', 'Robin', 'Bobbie']
-['Allison', 'Kelly', 'Bobbie']
-['Allison', 'Kelly', 'Bobbie', 'Curtis', 'Petra', 'Robin']
-['Allison', 'Kelly', 'Curtis', 'Bobbie', 'Robin', 'Petra']
-['Allison', 'Kelly', 'Petra']
-['Allison', 'Robin', 'Petra']
-['Allison', 'Robin', 'Curtis', 'Bobbie', 'Kelly', 'Petra']
-['Allison', 'Robin', 'Petra', 'Kelly', 'Curtis', 'Bobbie']
-['Allison', 'Robin', 'Curtis', 'Bobbie', 'Petra', 'Kelly']
-['Allison', 'Petra', 'Kelly']
-['Allison', 'Petra', 'Kelly', 'Curtis', 'Bobbie', 'Robin']
-['Allison', 'Kelly', 'Petra', 'Robin', 'Curtis', 'Bobbie']
-['Allison', 'Kelly', 'Curtis', 'Bobbie', 'Petra', 'Robin']
-['Allison', 'Petra', 'Robin', 'Curtis', 'Bobbie', 'Kelly']
-['Allison', 'Petra', 'Robin']
-['Allison', 'Kelly', 'Petra', 'Curtis', 'Bobbie', 'Robin']
-['Allison', 'Robin', 'Petra', 'Curtis', 'Bobbie', 'Kelly']
-['Allison', 'Bobbie', 'Robin', 'Curtis', 'Kelly', 'Petra']
-['Allison', 'Robin', 'Bobbie', 'Curtis', 'Kelly', 'Petra']
-['Allison', 'Robin', 'Petra']
-['Allison', 'Robin', 'Curtis', 'Kelly', 'Bobbie', 'Petra']
-['Allison', 'Robin', 'Curtis', 'Kelly', 'Petra', 'Bobbie']
-['Allison', 'Robin', 'Petra', 'Bobbie', 'Curtis', 'Kelly']
-['Allison', 'Petra', 'Bobbie', 'Robin', 'Curtis', 'Kelly']
-['Allison', 'Bobbie', 'Curtis', 'Kelly', 'Petra', 'Robin']
-['Allison', 'Bobbie', 'Petra', 'Robin', 'Curtis', 'Kelly']
-['Allison', 'Petra', 'Robin', 'Curtis', 'Kelly', 'Bobbie']
-['Allison', 'Petra', 'Robin', 'Bobbie', 'Curtis', 'Kelly']
-['Allison', 'Petra', 'Robin']
-['Allison', 'Bobbie', 'Robin', 'Petra', 'Curtis', 'Kelly']
-['Allison', 'Bobbie', 'Robin']
-['Allison', 'Robin', 'Bobbie']
-['Allison', 'Robin', 'Petra', 'Curtis', 'Kelly', 'Bobbie']
-['Allison', 'Robin', 'Bobbie', 'Petra', 'Curtis', 'Kelly']
-['Allison', 'Petra', 'Curtis', 'Kelly', 'Bobbie', 'Robin']
-['Allison', 'Bobbie', 'Kelly', 'Curtis', 'Robin', 'Petra']
-['Allison', 'Kelly', 'Petra']
-['Allison', 'Kelly', 'Bobbie', 'Curtis', 'Robin', 'Petra']
-['Allison', 'Kelly', 'Curtis', 'Robin', 'Bobbie', 'Petra']
-['Allison', 'Kelly', 'Curtis', 'Robin', 'Petra', 'Bobbie']
-['Allison', 'Kelly', 'Petra', 'Bobbie', 'Curtis', 'Robin']
-['Allison', 'Petra', 'Bobbie', 'Kelly', 'Curtis', 'Robin']
-['Allison', 'Bobbie', 'Curtis', 'Robin', 'Petra', 'Kelly']
-['Allison', 'Bobbie', 'Petra', 'Kelly', 'Curtis', 'Robin']
-['Allison', 'Petra', 'Kelly', 'Curtis', 'Robin', 'Bobbie']
-['Allison', 'Petra', 'Kelly']
-['Allison', 'Petra', 'Kelly', 'Bobbie', 'Curtis', 'Robin']
-['Allison', 'Bobbie', 'Kelly']
-['Allison', 'Bobbie', 'Kelly', 'Petra', 'Curtis', 'Robin']
-['Allison', 'Kelly', 'Petra', 'Curtis', 'Robin', 'Bobbie']
-['Allison', 'Kelly', 'Bobbie']
-['Allison', 'Kelly', 'Bobbie', 'Petra', 'Curtis', 'Robin']
-['Allison', 'Petra', 'Curtis', 'Robin', 'Bobbie', 'Kelly']
-solution set([('Allison', 'Bobbie', 'Curtis', 'Kelly', 'Petra', 'Robin'),
-     ('Allison', 'Bobbie', 'Curtis', 'Robin', 'Petra', 'Kelly'),
-     ('Allison', 'Bobbie', 'Kelly', 'Curtis', 'Petra', 'Robin'),
-     ('Allison', 'Bobbie', 'Kelly', 'Curtis', 'Robin', 'Petra'),
-     ('Allison', 'Bobbie', 'Kelly', 'Petra', 'Curtis', 'Robin'),
-     ('Allison', 'Bobbie', 'Petra', 'Kelly', 'Curtis', 'Robin'),
-     ('Allison', 'Bobbie', 'Petra', 'Robin', 'Curtis', 'Kelly'),
-     ('Allison', 'Bobbie', 'Robin', 'Curtis', 'Kelly', 'Petra'),
-     ('Allison', 'Bobbie', 'Robin', 'Curtis', 'Petra', 'Kelly'),
-     ('Allison', 'Bobbie', 'Robin', 'Petra', 'Curtis', 'Kelly'),
-     ('Allison', 'Kelly', 'Bobbie', 'Curtis', 'Petra', 'Robin'),
-     ('Allison', 'Kelly', 'Bobbie', 'Curtis', 'Robin', 'Petra'),
-     ('Allison', 'Kelly', 'Bobbie', 'Petra', 'Curtis', 'Robin'),
-     ('Allison', 'Kelly', 'Bobbie', 'Robin', 'Curtis', 'Petra'),
-     ('Allison', 'Kelly', 'Curtis', 'Bobbie', 'Petra', 'Robin'),
-     ('Allison', 'Kelly', 'Curtis', 'Bobbie', 'Robin', 'Petra'),
-     ('Allison', 'Kelly', 'Curtis', 'Petra', 'Bobbie', 'Robin'),
-     ('Allison', 'Kelly', 'Curtis', 'Petra', 'Robin', 'Bobbie'),
-     ('Allison', 'Kelly', 'Curtis', 'Robin', 'Bobbie', 'Petra'),
-     ('Allison', 'Kelly', 'Curtis', 'Robin', 'Petra', 'Bobbie'),
-     ('Allison', 'Kelly', 'Petra', 'Bobbie', 'Curtis', 'Robin'),
-     ('Allison', 'Kelly', 'Petra', 'Curtis', 'Bobbie', 'Robin'),
-     ('Allison', 'Kelly', 'Petra', 'Curtis', 'Robin', 'Bobbie'),
-     ('Allison', 'Kelly', 'Petra', 'Robin', 'Curtis', 'Bobbie'),
-     ('Allison', 'Petra', 'Bobbie', 'Kelly', 'Curtis', 'Robin'),
-     ('Allison', 'Petra', 'Bobbie', 'Robin', 'Curtis', 'Kelly'),
-     ('Allison', 'Petra', 'Curtis', 'Kelly', 'Bobbie', 'Robin'),
-     ('Allison', 'Petra', 'Curtis', 'Robin', 'Bobbie', 'Kelly'),
-     ('Allison', 'Petra', 'Kelly', 'Bobbie', 'Curtis', 'Robin'),
-     ('Allison', 'Petra', 'Kelly', 'Curtis', 'Bobbie', 'Robin'),
-     ('Allison', 'Petra', 'Kelly', 'Curtis', 'Robin', 'Bobbie'),
-     ('Allison', 'Petra', 'Robin', 'Bobbie', 'Curtis', 'Kelly'),
-     ('Allison', 'Petra', 'Robin', 'Curtis', 'Bobbie', 'Kelly'),
-     ('Allison', 'Petra', 'Robin', 'Curtis', 'Kelly', 'Bobbie'),
-     ('Allison', 'Robin', 'Bobbie', 'Curtis', 'Kelly', 'Petra'),
-     ('Allison', 'Robin', 'Bobbie', 'Curtis', 'Petra', 'Kelly'),
-     ('Allison', 'Robin', 'Bobbie', 'Kelly', 'Curtis', 'Petra'),
-     ('Allison', 'Robin', 'Bobbie', 'Petra', 'Curtis', 'Kelly'),
-     ('Allison', 'Robin', 'Curtis', 'Bobbie', 'Kelly', 'Petra'),
-     ('Allison', 'Robin', 'Curtis', 'Bobbie', 'Petra', 'Kelly'),
-     ('Allison', 'Robin', 'Curtis', 'Kelly', 'Bobbie', 'Petra'),
-     ('Allison', 'Robin', 'Curtis', 'Kelly', 'Petra', 'Bobbie'),
-     ('Allison', 'Robin', 'Curtis', 'Petra', 'Bobbie', 'Kelly'),
-     ('Allison', 'Robin', 'Curtis', 'Petra', 'Kelly', 'Bobbie'),
-     ('Allison', 'Robin', 'Petra', 'Bobbie', 'Curtis', 'Kelly'),
-     ('Allison', 'Robin', 'Petra', 'Curtis', 'Bobbie', 'Kelly'),
-     ('Allison', 'Robin', 'Petra', 'Curtis', 'Kelly', 'Bobbie'),
-     ('Allison', 'Robin', 'Petra', 'Kelly', 'Curtis', 'Bobbie')])
-
-r0 ['Allison', 'Kelly', 'Bobbie', 'Petra', 'Curtis', 'Robin']
-
-pairs ['Allison Kelly',
- 'Kelly Bobbie',
- 'Bobbie Petra',
- 'Petra Curtis',
- 'Curtis Robin',
- 'Robin Allison']
-remove_pairs ['Allison Kelly',
- 'Kelly Bobbie',
- 'Bobbie Petra',
- 'Petra Curtis',
- 'Curtis Robin',
- 'Robin Allison'] 47 - 31 = 16
-
-r0 ['Allison', 'Bobbie', 'Kelly', 'Curtis', 'Petra', 'Robin']
-
-pairs ['Allison Bobbie',
- 'Bobbie Kelly',
- 'Kelly Curtis',
- 'Curtis Petra',
- 'Petra Robin',
- 'Robin Allison']
-remove_pairs ['Allison Bobbie',
- 'Bobbie Kelly',
- 'Kelly Curtis',
- 'Curtis Petra',
- 'Petra Robin',
- 'Robin Allison'] 15 - 11 = 4
-
-r0 ['Allison', 'Robin', 'Curtis', 'Kelly', 'Petra', 'Bobbie']
-
-pairs ['Allison Robin',
- 'Robin Curtis',
- 'Curtis Kelly',
- 'Kelly Petra',
- 'Petra Bobbie',
- 'Bobbie Allison']
-remove_pairs ['Allison Robin',
- 'Robin Curtis',
- 'Curtis Kelly',
- 'Kelly Petra',
- 'Petra Bobbie',
- 'Bobbie Allison'] 3 - 3 = 0
-chains 
- 3 
- [['Allison', 'Kelly', 'Bobbie', 'Petra', 'Curtis', 'Robin'],
- ['Allison', 'Bobbie', 'Kelly', 'Curtis', 'Petra', 'Robin'],
- ['Allison', 'Robin', 'Curtis', 'Kelly', 'Petra', 'Bobbie']]
+(set(['Benjamin', 'Loraine']),
+ set(['Leah', 'Matthew']),
+ set(['Jenifer', 'Todd']))
+[('Benjamin', 'Loraine'), ('Leah', 'Matthew'), ('Jenifer', 'Todd')]
+pre-unwind {'Benjamin': 'Russell',
+ 'Jenifer': 'Maryanne',
+ 'Leah': 'Penny',
+ 'Loraine': 'Todd',
+ 'Maryanne': 'Loraine',
+ 'Matthew': 'Jenifer',
+ 'Penny': 'Matthew',
+ 'Russell': 'Leah',
+ 'Todd': 'Benjamin'}
+9 ['Benjamin',
+ 'Russell',
+ 'Leah',
+ 'Penny',
+ 'Matthew',
+ 'Jenifer',
+ 'Maryanne',
+ 'Loraine',
+ 'Todd']
+pre-unwind {'Benjamin': 'Leah',
+ 'Jenifer': 'Loraine',
+ 'Leah': 'Jenifer',
+ 'Loraine': 'Matthew',
+ 'Maryanne': 'Benjamin',
+ 'Matthew': 'Maryanne',
+ 'Penny': 'Todd',
+ 'Russell': 'Penny',
+ 'Todd': 'Russell'}
+6 ['Benjamin', 'Leah', 'Jenifer', 'Loraine', 'Matthew', 'Maryanne']
+pre-unwind {'Benjamin': 'Penny',
+ 'Jenifer': 'Benjamin',
+ 'Leah': 'Todd',
+ 'Loraine': 'Leah',
+ 'Maryanne': 'Russell',
+ 'Matthew': 'Loraine',
+ 'Penny': 'Jenifer',
+ 'Russell': 'Matthew',
+ 'Todd': 'Maryanne'}
+3 ['Benjamin', 'Penny', 'Jenifer']
+pre-unwind {'Benjamin': 'Matthew',
+ 'Jenifer': 'Leah',
+ 'Leah': 'Maryanne',
+ 'Loraine': 'Russell',
+ 'Maryanne': 'Penny',
+ 'Matthew': 'Todd',
+ 'Penny': 'Benjamin',
+ 'Russell': 'Jenifer',
+ 'Todd': 'Loraine'}
+9 ['Benjamin',
+ 'Matthew',
+ 'Todd',
+ 'Loraine',
+ 'Russell',
+ 'Jenifer',
+ 'Leah',
+ 'Maryanne',
+ 'Penny']
+pre-unwind {'Benjamin': 'Jenifer',
+ 'Jenifer': 'Russell',
+ 'Leah': 'Loraine',
+ 'Loraine': 'Penny',
+ 'Maryanne': 'Matthew',
+ 'Matthew': 'Benjamin',
+ 'Penny': 'Maryanne',
+ 'Russell': 'Todd',
+ 'Todd': 'Leah'}
+9 ['Benjamin',
+ 'Jenifer',
+ 'Russell',
+ 'Todd',
+ 'Leah',
+ 'Loraine',
+ 'Penny',
+ 'Maryanne',
+ 'Matthew']
+pre-unwind {'Benjamin': 'Todd',
+ 'Jenifer': 'Matthew',
+ 'Leah': 'Benjamin',
+ 'Loraine': 'Jenifer',
+ 'Maryanne': 'Leah',
+ 'Matthew': 'Russell',
+ 'Penny': 'Loraine',
+ 'Russell': 'Maryanne',
+ 'Todd': 'Penny'}
+9 ['Benjamin',
+ 'Todd',
+ 'Penny',
+ 'Loraine',
+ 'Jenifer',
+ 'Matthew',
+ 'Russell',
+ 'Maryanne',
+ 'Leah']
+########################################################################
+4
+{'Benjamin': 'Russell',
+ 'Jenifer': 'Maryanne',
+ 'Leah': 'Penny',
+ 'Loraine': 'Todd',
+ 'Maryanne': 'Loraine',
+ 'Matthew': 'Jenifer',
+ 'Penny': 'Matthew',
+ 'Russell': 'Leah',
+ 'Todd': 'Benjamin'}
+{'Benjamin': 'Matthew',
+ 'Jenifer': 'Leah',
+ 'Leah': 'Maryanne',
+ 'Loraine': 'Russell',
+ 'Maryanne': 'Penny',
+ 'Matthew': 'Todd',
+ 'Penny': 'Benjamin',
+ 'Russell': 'Jenifer',
+ 'Todd': 'Loraine'}
+{'Benjamin': 'Jenifer',
+ 'Jenifer': 'Russell',
+ 'Leah': 'Loraine',
+ 'Loraine': 'Penny',
+ 'Maryanne': 'Matthew',
+ 'Matthew': 'Benjamin',
+ 'Penny': 'Maryanne',
+ 'Russell': 'Todd',
+ 'Todd': 'Leah'}
+{'Benjamin': 'Todd',
+ 'Jenifer': 'Matthew',
+ 'Leah': 'Benjamin',
+ 'Loraine': 'Jenifer',
+ 'Maryanne': 'Leah',
+ 'Matthew': 'Russell',
+ 'Penny': 'Loraine',
+ 'Russell': 'Maryanne',
+ 'Todd': 'Penny'}

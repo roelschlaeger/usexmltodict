@@ -1,44 +1,1729 @@
-chains
 
-chains 
-  d deque(['Allison', 'Bobbie', 'Curtis', 'Kelly', 'Petra', 'Robin']) 
-  couples [{'Allison', 'Curtis'}, {'Kelly', 'Robin'}] 
+  *** retyped couples *** 
+  couples [('Benjamin', 'Loraine'), ('Leah', 'Matthew'), ('Jenifer', 'Todd')] 
+  type(couples) <type 'list'> 
+  type(couples[0]) <type 'tuple'> 
+
+{'Benjamin': ['Jenifer', 'Leah', 'Loraine', 'Maryanne', 'Matthew', 'Penny', 'Russell', 'Todd'],
+ 'Jenifer': ['Benjamin', 'Leah', 'Loraine', 'Maryanne', 'Matthew', 'Penny', 'Russell', 'Todd'],
+ 'Leah': ['Benjamin', 'Jenifer', 'Loraine', 'Maryanne', 'Matthew', 'Penny', 'Russell', 'Todd'],
+ 'Loraine': ['Benjamin', 'Jenifer', 'Leah', 'Maryanne', 'Matthew', 'Penny', 'Russell', 'Todd'],
+ 'Maryanne': ['Benjamin', 'Jenifer', 'Leah', 'Loraine', 'Matthew', 'Penny', 'Russell', 'Todd'],
+ 'Matthew': ['Benjamin', 'Jenifer', 'Leah', 'Loraine', 'Maryanne', 'Penny', 'Russell', 'Todd'],
+ 'Penny': ['Benjamin', 'Jenifer', 'Leah', 'Loraine', 'Maryanne', 'Matthew', 'Russell', 'Todd'],
+ 'Russell': ['Benjamin', 'Jenifer', 'Leah', 'Loraine', 'Maryanne', 'Matthew', 'Penny', 'Todd'],
+ 'Todd': ['Benjamin', 'Jenifer', 'Leah', 'Loraine', 'Maryanne', 'Matthew', 'Penny', 'Russell']}
+{'Benjamin': ['Jenifer', 'Leah', 'Maryanne', 'Matthew', 'Penny', 'Russell', 'Todd'],
+ 'Jenifer': ['Benjamin', 'Leah', 'Loraine', 'Maryanne', 'Matthew', 'Penny', 'Russell'],
+ 'Leah': ['Benjamin', 'Jenifer', 'Loraine', 'Maryanne', 'Penny', 'Russell', 'Todd'],
+ 'Loraine': ['Jenifer', 'Leah', 'Maryanne', 'Matthew', 'Penny', 'Russell', 'Todd'],
+ 'Maryanne': ['Benjamin', 'Jenifer', 'Leah', 'Loraine', 'Matthew', 'Penny', 'Russell', 'Todd'],
+ 'Matthew': ['Benjamin', 'Jenifer', 'Loraine', 'Maryanne', 'Penny', 'Russell', 'Todd'],
+ 'Penny': ['Benjamin', 'Jenifer', 'Leah', 'Loraine', 'Maryanne', 'Matthew', 'Russell', 'Todd'],
+ 'Russell': ['Benjamin', 'Jenifer', 'Leah', 'Loraine', 'Maryanne', 'Matthew', 'Penny', 'Todd'],
+ 'Todd': ['Benjamin', 'Leah', 'Loraine', 'Maryanne', 'Matthew', 'Penny', 'Russell']}
+compute_max_length 7
+
+find_chains 
+  family_deque deque(['Benjamin', 'Jenifer', 'Leah', 'Loraine', 'Maryanne', 'Matthew', 'Penny', 'Russell', 'Todd']) 
+  couples [('Benjamin', 'Loraine'), ('Leah', 'Matthew'), ('Jenifer', 'Todd')] 
 ################################################
 
-
-result 4 
- [(('Allison', 'Bobbie'), ('Bobbie', 'Curtis'), ('Curtis', 'Kelly'), ('Kelly', 'Petra'), ('Petra', 'Robin')),
- (('Allison', 'Kelly'), ('Kelly', 'Bobbie'), ('Bobbie', 'Robin'), ('Robin', 'Curtis'), ('Curtis', 'Petra')),
- (('Allison', 'Petra'), ('Petra', 'Curtis'), ('Curtis', 'Robin'), ('Robin', 'Bobbie'), ('Bobbie', 'Kelly')),
- (('Allison', 'Robin'), ('Robin', 'Petra'), ('Petra', 'Kelly'), ('Kelly', 'Curtis'), ('Curtis', 'Bobbie'))]
+i = 0 
+  family_deque deque(['Benjamin', 'Jenifer', 'Leah', 'Loraine', 'Maryanne', 'Matthew', 'Penny', 'Russell', 'Todd']) 
+  couples [('Benjamin', 'Loraine'), ('Leah', 'Matthew'), ('Jenifer', 'Todd')] 
 
 
-result 2 
- [(('Bobbie', 'Curtis'), ('Curtis', 'Kelly'), ('Kelly', 'Petra'), ('Petra', 'Robin'), ('Robin', 'Allison')),
- (('Bobbie', 'Kelly'), ('Kelly', 'Curtis'), ('Curtis', 'Petra'), ('Petra', 'Allison'), ('Allison', 'Robin'))]
+proto_find_chains 
+  family ['Benjamin',
+ 'Jenifer',
+ 'Leah',
+ 'Loraine',
+ 'Maryanne',
+ 'Matthew',
+ 'Penny',
+ 'Russell',
+ 'Todd'] 
+  type(family) <type 'list'> 
+  type(family[0]) <type 'str'> 
+ 
+  couples [('Benjamin', 'Loraine'), ('Leah', 'Matthew'), ('Jenifer', 'Todd')] 
+  type(couples) <type 'list'> 
+  type(couples[0]) <type 'tuple'> 
+
+  f0 Benjamin
+
+  p 40320 [(('Benjamin', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Todd'),
+  ('Todd', 'Benjamin')),
+ (('Benjamin', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Benjamin')),
+ (('Benjamin', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Benjamin'))]
+
+  couple_pairs [('Benjamin', 'Loraine'), ('Leah', 'Matthew'), ('Jenifer', 'Todd'), ('Loraine', 'Benjamin'), ('Matthew', 'Leah'), ('Todd', 'Jenifer')]
+
+remove_pairs 
+  type(pairs) <type 'list'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs [('Benjamin', 'Loraine'),
+ ('Leah', 'Matthew'),
+ ('Jenifer', 'Todd'),
+ ('Loraine', 'Benjamin'),
+ ('Matthew', 'Leah'),
+ ('Todd', 'Jenifer')]
+
+==== 
+ 40320 - 22560 = 17760 
+removables [(('Benjamin', 'Penny'),
+  ('Penny', 'Jenifer'),
+  ('Jenifer', 'Russell'),
+  ('Russell', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Benjamin')),
+ (('Benjamin', 'Maryanne'),
+  ('Maryanne', 'Loraine'),
+  ('Loraine', 'Jenifer'),
+  ('Jenifer', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Matthew'),
+  ('Matthew', 'Benjamin')),
+ (('Benjamin', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Jenifer'),
+  ('Jenifer', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Benjamin'))]
+
+p 17760 
+ [(('Benjamin', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Todd'),
+  ('Todd', 'Benjamin')),
+ (('Benjamin', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Benjamin')),
+ (('Benjamin', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Benjamin'))]
+
+r0 (('Benjamin', 'Jenifer'), ('Jenifer', 'Leah'), ('Leah', 'Loraine'), ('Loraine', 'Maryanne'), ('Maryanne', 'Matthew'), ('Matthew', 'Penny'), ('Penny', 'Russell'), ('Russell', 'Todd'), ('Todd', 'Benjamin'))
+
+normalize
+  path (('Benjamin', 'Jenifer'),
+ ('Jenifer', 'Leah'),
+ ('Leah', 'Loraine'),
+ ('Loraine', 'Maryanne'),
+ ('Maryanne', 'Matthew'),
+ ('Matthew', 'Penny'),
+ ('Penny', 'Russell'),
+ ('Russell', 'Todd'),
+ ('Todd', 'Benjamin')) 
+  family0 Benjamin 
+  result [('Benjamin', 'Jenifer'), ('Jenifer', 'Leah'), ('Leah', 'Loraine'), ('Loraine', 'Maryanne'), ('Maryanne', 'Matthew'), ('Matthew', 'Penny'), ('Penny', 'Russell'), ('Russell', 'Todd'), ('Todd', 'Benjamin')]
+
+remove_pairs 
+  type(pairs) <type 'tuple'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs (('Benjamin', 'Jenifer'),
+ ('Jenifer', 'Leah'),
+ ('Leah', 'Loraine'),
+ ('Loraine', 'Maryanne'),
+ ('Maryanne', 'Matthew'),
+ ('Matthew', 'Penny'),
+ ('Penny', 'Russell'),
+ ('Russell', 'Todd'),
+ ('Todd', 'Benjamin'))
+
+==== 
+ 17759 - 12559 = 5200 
+removables [(('Benjamin', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Jenifer'),
+  ('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Benjamin')),
+ (('Benjamin', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Benjamin')),
+ (('Benjamin', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Benjamin'))]
+
+p 5200 
+ [(('Benjamin', 'Leah'),
+  ('Leah', 'Jenifer'),
+  ('Jenifer', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Benjamin')),
+ (('Benjamin', 'Leah'),
+  ('Leah', 'Jenifer'),
+  ('Jenifer', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Penny'),
+  ('Penny', 'Benjamin')),
+ (('Benjamin', 'Leah'),
+  ('Leah', 'Jenifer'),
+  ('Jenifer', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Benjamin'))]
+
+r0 (('Benjamin', 'Leah'), ('Leah', 'Jenifer'), ('Jenifer', 'Loraine'), ('Loraine', 'Matthew'), ('Matthew', 'Maryanne'), ('Maryanne', 'Penny'), ('Penny', 'Todd'), ('Todd', 'Russell'), ('Russell', 'Benjamin'))
+
+normalize
+  path (('Benjamin', 'Leah'),
+ ('Leah', 'Jenifer'),
+ ('Jenifer', 'Loraine'),
+ ('Loraine', 'Matthew'),
+ ('Matthew', 'Maryanne'),
+ ('Maryanne', 'Penny'),
+ ('Penny', 'Todd'),
+ ('Todd', 'Russell'),
+ ('Russell', 'Benjamin')) 
+  family0 Benjamin 
+  result [('Benjamin', 'Leah'), ('Leah', 'Jenifer'), ('Jenifer', 'Loraine'), ('Loraine', 'Matthew'), ('Matthew', 'Maryanne'), ('Maryanne', 'Penny'), ('Penny', 'Todd'), ('Todd', 'Russell'), ('Russell', 'Benjamin')]
+
+remove_pairs 
+  type(pairs) <type 'tuple'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs (('Benjamin', 'Leah'),
+ ('Leah', 'Jenifer'),
+ ('Jenifer', 'Loraine'),
+ ('Loraine', 'Matthew'),
+ ('Matthew', 'Maryanne'),
+ ('Maryanne', 'Penny'),
+ ('Penny', 'Todd'),
+ ('Todd', 'Russell'),
+ ('Russell', 'Benjamin'))
+
+==== 
+ 5199 - 4003 = 1196 
+removables [(('Benjamin', 'Russell'),
+  ('Russell', 'Penny'),
+  ('Penny', 'Jenifer'),
+  ('Jenifer', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Benjamin')),
+ (('Benjamin', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Penny'),
+  ('Penny', 'Jenifer'),
+  ('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Benjamin')),
+ (('Benjamin', 'Leah'),
+  ('Leah', 'Jenifer'),
+  ('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Benjamin'))]
+
+p 1196 
+ [(('Benjamin', 'Maryanne'),
+  ('Maryanne', 'Jenifer'),
+  ('Jenifer', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Benjamin')),
+ (('Benjamin', 'Maryanne'),
+  ('Maryanne', 'Jenifer'),
+  ('Jenifer', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Penny'),
+  ('Penny', 'Benjamin')),
+ (('Benjamin', 'Maryanne'),
+  ('Maryanne', 'Jenifer'),
+  ('Jenifer', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Penny'),
+  ('Penny', 'Benjamin'))]
+
+r0 (('Benjamin', 'Maryanne'), ('Maryanne', 'Jenifer'), ('Jenifer', 'Matthew'), ('Matthew', 'Loraine'), ('Loraine', 'Russell'), ('Russell', 'Leah'), ('Leah', 'Todd'), ('Todd', 'Penny'), ('Penny', 'Benjamin'))
+
+normalize
+  path (('Benjamin', 'Maryanne'),
+ ('Maryanne', 'Jenifer'),
+ ('Jenifer', 'Matthew'),
+ ('Matthew', 'Loraine'),
+ ('Loraine', 'Russell'),
+ ('Russell', 'Leah'),
+ ('Leah', 'Todd'),
+ ('Todd', 'Penny'),
+ ('Penny', 'Benjamin')) 
+  family0 Benjamin 
+  result [('Benjamin', 'Maryanne'), ('Maryanne', 'Jenifer'), ('Jenifer', 'Matthew'), ('Matthew', 'Loraine'), ('Loraine', 'Russell'), ('Russell', 'Leah'), ('Leah', 'Todd'), ('Todd', 'Penny'), ('Penny', 'Benjamin')]
+
+remove_pairs 
+  type(pairs) <type 'tuple'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs (('Benjamin', 'Maryanne'),
+ ('Maryanne', 'Jenifer'),
+ ('Jenifer', 'Matthew'),
+ ('Matthew', 'Loraine'),
+ ('Loraine', 'Russell'),
+ ('Russell', 'Leah'),
+ ('Leah', 'Todd'),
+ ('Todd', 'Penny'),
+ ('Penny', 'Benjamin'))
+
+==== 
+ 1195 - 968 = 227 
+removables [(('Benjamin', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Loraine'),
+  ('Loraine', 'Jenifer'),
+  ('Jenifer', 'Penny'),
+  ('Penny', 'Benjamin')),
+ (('Benjamin', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Jenifer'),
+  ('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Benjamin')),
+ (('Benjamin', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Penny'),
+  ('Penny', 'Maryanne'),
+  ('Maryanne', 'Jenifer'),
+  ('Jenifer', 'Matthew'),
+  ('Matthew', 'Benjamin'))]
+
+p 227 
+ [(('Benjamin', 'Matthew'),
+  ('Matthew', 'Jenifer'),
+  ('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Russell'),
+  ('Russell', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Benjamin')),
+ (('Benjamin', 'Matthew'),
+  ('Matthew', 'Jenifer'),
+  ('Jenifer', 'Penny'),
+  ('Penny', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Benjamin')),
+ (('Benjamin', 'Matthew'),
+  ('Matthew', 'Jenifer'),
+  ('Jenifer', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Benjamin'))]
+
+r0 (('Benjamin', 'Matthew'), ('Matthew', 'Jenifer'), ('Jenifer', 'Maryanne'), ('Maryanne', 'Russell'), ('Russell', 'Penny'), ('Penny', 'Loraine'), ('Loraine', 'Todd'), ('Todd', 'Leah'), ('Leah', 'Benjamin'))
+
+normalize
+  path (('Benjamin', 'Matthew'),
+ ('Matthew', 'Jenifer'),
+ ('Jenifer', 'Maryanne'),
+ ('Maryanne', 'Russell'),
+ ('Russell', 'Penny'),
+ ('Penny', 'Loraine'),
+ ('Loraine', 'Todd'),
+ ('Todd', 'Leah'),
+ ('Leah', 'Benjamin')) 
+  family0 Benjamin 
+  result [('Benjamin', 'Matthew'), ('Matthew', 'Jenifer'), ('Jenifer', 'Maryanne'), ('Maryanne', 'Russell'), ('Russell', 'Penny'), ('Penny', 'Loraine'), ('Loraine', 'Todd'), ('Todd', 'Leah'), ('Leah', 'Benjamin')]
+
+remove_pairs 
+  type(pairs) <type 'tuple'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs (('Benjamin', 'Matthew'),
+ ('Matthew', 'Jenifer'),
+ ('Jenifer', 'Maryanne'),
+ ('Maryanne', 'Russell'),
+ ('Russell', 'Penny'),
+ ('Penny', 'Loraine'),
+ ('Loraine', 'Todd'),
+ ('Todd', 'Leah'),
+ ('Leah', 'Benjamin'))
+
+==== 
+ 226 - 203 = 23 
+removables [(('Benjamin', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Jenifer'),
+  ('Jenifer', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Benjamin')),
+ (('Benjamin', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Penny'),
+  ('Penny', 'Matthew'),
+  ('Matthew', 'Jenifer'),
+  ('Jenifer', 'Benjamin')),
+ (('Benjamin', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Russell'),
+  ('Russell', 'Jenifer'),
+  ('Jenifer', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Benjamin'))]
+
+p 23 
+ [(('Benjamin', 'Penny'),
+  ('Penny', 'Jenifer'),
+  ('Jenifer', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Benjamin')),
+ (('Benjamin', 'Penny'),
+  ('Penny', 'Jenifer'),
+  ('Jenifer', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Benjamin')),
+ (('Benjamin', 'Penny'),
+  ('Penny', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Jenifer'),
+  ('Jenifer', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Benjamin'))]
+
+r0 (('Benjamin', 'Penny'), ('Penny', 'Jenifer'), ('Jenifer', 'Russell'), ('Russell', 'Loraine'), ('Loraine', 'Leah'), ('Leah', 'Maryanne'), ('Maryanne', 'Todd'), ('Todd', 'Matthew'), ('Matthew', 'Benjamin'))
+
+normalize
+  path (('Benjamin', 'Penny'),
+ ('Penny', 'Jenifer'),
+ ('Jenifer', 'Russell'),
+ ('Russell', 'Loraine'),
+ ('Loraine', 'Leah'),
+ ('Leah', 'Maryanne'),
+ ('Maryanne', 'Todd'),
+ ('Todd', 'Matthew'),
+ ('Matthew', 'Benjamin')) 
+  family0 Benjamin 
+  result [('Benjamin', 'Penny'), ('Penny', 'Jenifer'), ('Jenifer', 'Russell'), ('Russell', 'Loraine'), ('Loraine', 'Leah'), ('Leah', 'Maryanne'), ('Maryanne', 'Todd'), ('Todd', 'Matthew'), ('Matthew', 'Benjamin')]
+
+remove_pairs 
+  type(pairs) <type 'tuple'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs (('Benjamin', 'Penny'),
+ ('Penny', 'Jenifer'),
+ ('Jenifer', 'Russell'),
+ ('Russell', 'Loraine'),
+ ('Loraine', 'Leah'),
+ ('Leah', 'Maryanne'),
+ ('Maryanne', 'Todd'),
+ ('Todd', 'Matthew'),
+ ('Matthew', 'Benjamin'))
+
+==== 
+ 22 - 21 = 1 
+removables [(('Benjamin', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Jenifer'),
+  ('Jenifer', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Matthew'),
+  ('Matthew', 'Benjamin')),
+ (('Benjamin', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Jenifer'),
+  ('Jenifer', 'Penny'),
+  ('Penny', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Benjamin')),
+ (('Benjamin', 'Penny'),
+  ('Penny', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Jenifer'),
+  ('Jenifer', 'Benjamin'))]
+
+p 1 
+ [(('Benjamin', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Jenifer'),
+  ('Jenifer', 'Benjamin'))]
+
+r0 (('Benjamin', 'Russell'), ('Russell', 'Maryanne'), ('Maryanne', 'Leah'), ('Leah', 'Penny'), ('Penny', 'Matthew'), ('Matthew', 'Todd'), ('Todd', 'Loraine'), ('Loraine', 'Jenifer'), ('Jenifer', 'Benjamin'))
+
+normalize
+  path (('Benjamin', 'Russell'),
+ ('Russell', 'Maryanne'),
+ ('Maryanne', 'Leah'),
+ ('Leah', 'Penny'),
+ ('Penny', 'Matthew'),
+ ('Matthew', 'Todd'),
+ ('Todd', 'Loraine'),
+ ('Loraine', 'Jenifer'),
+ ('Jenifer', 'Benjamin')) 
+  family0 Benjamin 
+  result [('Benjamin', 'Russell'), ('Russell', 'Maryanne'), ('Maryanne', 'Leah'), ('Leah', 'Penny'), ('Penny', 'Matthew'), ('Matthew', 'Todd'), ('Todd', 'Loraine'), ('Loraine', 'Jenifer'), ('Jenifer', 'Benjamin')]
+
+remove_pairs 
+  type(pairs) <type 'tuple'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs (('Benjamin', 'Russell'),
+ ('Russell', 'Maryanne'),
+ ('Maryanne', 'Leah'),
+ ('Leah', 'Penny'),
+ ('Penny', 'Matthew'),
+ ('Matthew', 'Todd'),
+ ('Todd', 'Loraine'),
+ ('Loraine', 'Jenifer'),
+ ('Jenifer', 'Benjamin'))
+
+==== 
+ 0 - 0 = 0 
+removables []
+
+p 0 
+ []
 
 
-result 4 
- [(('Curtis', 'Bobbie'), ('Bobbie', 'Robin'), ('Robin', 'Petra'), ('Petra', 'Allison'), ('Allison', 'Kelly')),
- (('Curtis', 'Kelly'), ('Kelly', 'Petra'), ('Petra', 'Robin'), ('Robin', 'Allison'), ('Allison', 'Bobbie')),
- (('Curtis', 'Petra'), ('Petra', 'Kelly'), ('Kelly', 'Bobbie'), ('Bobbie', 'Allison'), ('Allison', 'Robin')),
- (('Curtis', 'Robin'), ('Robin', 'Bobbie'), ('Bobbie', 'Kelly'), ('Kelly', 'Allison'), ('Allison', 'Petra'))]
+sorted(chains) 6 
+ [[('Benjamin', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Todd'),
+  ('Todd', 'Benjamin')],
+ [('Benjamin', 'Leah'),
+  ('Leah', 'Jenifer'),
+  ('Jenifer', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Benjamin')],
+ [('Benjamin', 'Maryanne'),
+  ('Maryanne', 'Jenifer'),
+  ('Jenifer', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Benjamin')],
+ [('Benjamin', 'Matthew'),
+  ('Matthew', 'Jenifer'),
+  ('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Russell'),
+  ('Russell', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Benjamin')],
+ [('Benjamin', 'Penny'),
+  ('Penny', 'Jenifer'),
+  ('Jenifer', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Benjamin')],
+ [('Benjamin', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Jenifer'),
+  ('Jenifer', 'Benjamin')]]
 
 
-result 4 
- [(('Kelly', 'Allison'), ('Allison', 'Petra'), ('Petra', 'Curtis'), ('Curtis', 'Robin'), ('Robin', 'Bobbie')),
- (('Kelly', 'Bobbie'), ('Bobbie', 'Robin'), ('Robin', 'Curtis'), ('Curtis', 'Petra'), ('Petra', 'Allison')),
- (('Kelly', 'Curtis'), ('Curtis', 'Bobbie'), ('Bobbie', 'Allison'), ('Allison', 'Robin'), ('Robin', 'Petra')),
- (('Kelly', 'Petra'), ('Petra', 'Robin'), ('Robin', 'Allison'), ('Allison', 'Bobbie'), ('Bobbie', 'Curtis'))]
+list_of_chains 6 
+ [[('Benjamin', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Todd'),
+  ('Todd', 'Benjamin')],
+ [('Benjamin', 'Leah'),
+  ('Leah', 'Jenifer'),
+  ('Jenifer', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Benjamin')],
+ [('Benjamin', 'Maryanne'),
+  ('Maryanne', 'Jenifer'),
+  ('Jenifer', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Benjamin')],
+ [('Benjamin', 'Matthew'),
+  ('Matthew', 'Jenifer'),
+  ('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Russell'),
+  ('Russell', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Benjamin')],
+ [('Benjamin', 'Penny'),
+  ('Penny', 'Jenifer'),
+  ('Jenifer', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Benjamin')],
+ [('Benjamin', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Jenifer'),
+  ('Jenifer', 'Benjamin')]]
+
+verify_chains
+
+  chain [('Benjamin', 'Jenifer'), ('Jenifer', 'Leah'), ('Leah', 'Loraine'), ('Loraine', 'Maryanne'), ('Maryanne', 'Matthew'), ('Matthew', 'Penny'), ('Penny', 'Russell'), ('Russell', 'Todd'), ('Todd', 'Benjamin')] 
+  matches [True, True, True, True, True, True, True, True, True] 
+  fail False
+
+  chain [('Benjamin', 'Leah'), ('Leah', 'Jenifer'), ('Jenifer', 'Loraine'), ('Loraine', 'Matthew'), ('Matthew', 'Maryanne'), ('Maryanne', 'Penny'), ('Penny', 'Todd'), ('Todd', 'Russell'), ('Russell', 'Benjamin')] 
+  matches [True, True, True, True, True, True, True, True, True] 
+  fail False
+
+  chain [('Benjamin', 'Maryanne'), ('Maryanne', 'Jenifer'), ('Jenifer', 'Matthew'), ('Matthew', 'Loraine'), ('Loraine', 'Russell'), ('Russell', 'Leah'), ('Leah', 'Todd'), ('Todd', 'Penny'), ('Penny', 'Benjamin')] 
+  matches [True, True, True, True, True, True, True, True, True] 
+  fail False
+
+  chain [('Benjamin', 'Matthew'), ('Matthew', 'Jenifer'), ('Jenifer', 'Maryanne'), ('Maryanne', 'Russell'), ('Russell', 'Penny'), ('Penny', 'Loraine'), ('Loraine', 'Todd'), ('Todd', 'Leah'), ('Leah', 'Benjamin')] 
+  matches [True, True, True, True, True, True, True, True, True] 
+  fail False
+
+  chain [('Benjamin', 'Penny'), ('Penny', 'Jenifer'), ('Jenifer', 'Russell'), ('Russell', 'Loraine'), ('Loraine', 'Leah'), ('Leah', 'Maryanne'), ('Maryanne', 'Todd'), ('Todd', 'Matthew'), ('Matthew', 'Benjamin')] 
+  matches [True, True, True, True, True, True, True, True, True] 
+  fail False
+
+  chain [('Benjamin', 'Russell'), ('Russell', 'Maryanne'), ('Maryanne', 'Leah'), ('Leah', 'Penny'), ('Penny', 'Matthew'), ('Matthew', 'Todd'), ('Todd', 'Loraine'), ('Loraine', 'Jenifer'), ('Jenifer', 'Benjamin')] 
+  matches [True, True, True, True, True, True, True, True, True] 
+  fail False
+
+i = 1 
+  family_deque deque(['Jenifer', 'Leah', 'Loraine', 'Maryanne', 'Matthew', 'Penny', 'Russell', 'Todd', 'Benjamin']) 
+  couples [('Benjamin', 'Loraine'), ('Leah', 'Matthew'), ('Jenifer', 'Todd')] 
 
 
-result 2 
- [(('Petra', 'Allison'), ('Allison', 'Robin'), ('Robin', 'Bobbie'), ('Bobbie', 'Kelly'), ('Kelly', 'Curtis')),
- (('Petra', 'Robin'), ('Robin', 'Allison'), ('Allison', 'Bobbie'), ('Bobbie', 'Curtis'), ('Curtis', 'Kelly'))]
+proto_find_chains 
+  family ['Jenifer',
+ 'Leah',
+ 'Loraine',
+ 'Maryanne',
+ 'Matthew',
+ 'Penny',
+ 'Russell',
+ 'Todd',
+ 'Benjamin'] 
+  type(family) <type 'list'> 
+  type(family[0]) <type 'str'> 
+ 
+  couples [('Benjamin', 'Loraine'), ('Leah', 'Matthew'), ('Jenifer', 'Todd')] 
+  type(couples) <type 'list'> 
+  type(couples[0]) <type 'tuple'> 
+
+  f0 Jenifer
+
+  p 40320 [(('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Todd'),
+  ('Todd', 'Benjamin'),
+  ('Benjamin', 'Jenifer')),
+ (('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Benjamin'),
+  ('Benjamin', 'Todd'),
+  ('Todd', 'Jenifer')),
+ (('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Benjamin'),
+  ('Benjamin', 'Jenifer'))]
+
+  couple_pairs [('Benjamin', 'Loraine'), ('Leah', 'Matthew'), ('Jenifer', 'Todd'), ('Loraine', 'Benjamin'), ('Matthew', 'Leah'), ('Todd', 'Jenifer')]
+
+remove_pairs 
+  type(pairs) <type 'list'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs [('Benjamin', 'Loraine'),
+ ('Leah', 'Matthew'),
+ ('Jenifer', 'Todd'),
+ ('Loraine', 'Benjamin'),
+ ('Matthew', 'Leah'),
+ ('Todd', 'Jenifer')]
+
+==== 
+ 40320 - 22560 = 17760 
+removables [(('Jenifer', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Russell'),
+  ('Russell', 'Benjamin'),
+  ('Benjamin', 'Leah'),
+  ('Leah', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Penny'),
+  ('Penny', 'Jenifer')),
+ (('Jenifer', 'Matthew'),
+  ('Matthew', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Benjamin'),
+  ('Benjamin', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Maryanne'),
+  ('Maryanne', 'Jenifer')),
+ (('Jenifer', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Russell'),
+  ('Russell', 'Penny'),
+  ('Penny', 'Leah'),
+  ('Leah', 'Matthew'),
+  ('Matthew', 'Benjamin'),
+  ('Benjamin', 'Loraine'),
+  ('Loraine', 'Jenifer'))]
+
+p 17760 
+ [(('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Todd'),
+  ('Todd', 'Benjamin'),
+  ('Benjamin', 'Jenifer')),
+ (('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Benjamin'),
+  ('Benjamin', 'Jenifer')),
+ (('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Benjamin'),
+  ('Benjamin', 'Russell'),
+  ('Russell', 'Jenifer'))]
+
+r0 (('Jenifer', 'Leah'), ('Leah', 'Loraine'), ('Loraine', 'Maryanne'), ('Maryanne', 'Matthew'), ('Matthew', 'Penny'), ('Penny', 'Russell'), ('Russell', 'Todd'), ('Todd', 'Benjamin'), ('Benjamin', 'Jenifer'))
+
+normalize
+  path (('Jenifer', 'Leah'),
+ ('Leah', 'Loraine'),
+ ('Loraine', 'Maryanne'),
+ ('Maryanne', 'Matthew'),
+ ('Matthew', 'Penny'),
+ ('Penny', 'Russell'),
+ ('Russell', 'Todd'),
+ ('Todd', 'Benjamin'),
+ ('Benjamin', 'Jenifer')) 
+  family0 Benjamin 
+  result [('Benjamin', 'Jenifer'), ('Jenifer', 'Leah'), ('Leah', 'Loraine'), ('Loraine', 'Maryanne'), ('Maryanne', 'Matthew'), ('Matthew', 'Penny'), ('Penny', 'Russell'), ('Russell', 'Todd'), ('Todd', 'Benjamin')]
+
+remove_pairs 
+  type(pairs) <type 'tuple'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs (('Jenifer', 'Leah'),
+ ('Leah', 'Loraine'),
+ ('Loraine', 'Maryanne'),
+ ('Maryanne', 'Matthew'),
+ ('Matthew', 'Penny'),
+ ('Penny', 'Russell'),
+ ('Russell', 'Todd'),
+ ('Todd', 'Benjamin'),
+ ('Benjamin', 'Jenifer'))
+
+==== 
+ 17759 - 12559 = 5200 
+removables [(('Jenifer', 'Benjamin'),
+  ('Benjamin', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Jenifer')),
+ (('Jenifer', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Benjamin'),
+  ('Benjamin', 'Jenifer')),
+ (('Jenifer', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Benjamin'),
+  ('Benjamin', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Loraine'),
+  ('Loraine', 'Russell'),
+  ('Russell', 'Jenifer'))]
+
+p 5200 
+ [(('Jenifer', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Penny'),
+  ('Penny', 'Matthew'),
+  ('Matthew', 'Benjamin'),
+  ('Benjamin', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Jenifer')),
+ (('Jenifer', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Benjamin'),
+  ('Benjamin', 'Russell'),
+  ('Russell', 'Jenifer')),
+ (('Jenifer', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Benjamin'),
+  ('Benjamin', 'Matthew'),
+  ('Matthew', 'Jenifer'))]
+
+r0 (('Jenifer', 'Loraine'), ('Loraine', 'Leah'), ('Leah', 'Maryanne'), ('Maryanne', 'Penny'), ('Penny', 'Matthew'), ('Matthew', 'Benjamin'), ('Benjamin', 'Todd'), ('Todd', 'Russell'), ('Russell', 'Jenifer'))
+
+normalize
+  path (('Jenifer', 'Loraine'),
+ ('Loraine', 'Leah'),
+ ('Leah', 'Maryanne'),
+ ('Maryanne', 'Penny'),
+ ('Penny', 'Matthew'),
+ ('Matthew', 'Benjamin'),
+ ('Benjamin', 'Todd'),
+ ('Todd', 'Russell'),
+ ('Russell', 'Jenifer')) 
+  family0 Benjamin 
+  result [('Benjamin', 'Todd'), ('Todd', 'Russell'), ('Russell', 'Jenifer'), ('Jenifer', 'Loraine'), ('Loraine', 'Leah'), ('Leah', 'Maryanne'), ('Maryanne', 'Penny'), ('Penny', 'Matthew'), ('Matthew', 'Benjamin')]
+
+remove_pairs 
+  type(pairs) <type 'tuple'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs (('Jenifer', 'Loraine'),
+ ('Loraine', 'Leah'),
+ ('Leah', 'Maryanne'),
+ ('Maryanne', 'Penny'),
+ ('Penny', 'Matthew'),
+ ('Matthew', 'Benjamin'),
+ ('Benjamin', 'Todd'),
+ ('Todd', 'Russell'),
+ ('Russell', 'Jenifer'))
+
+==== 
+ 5199 - 4047 = 1152 
+removables [(('Jenifer', 'Penny'),
+  ('Penny', 'Benjamin'),
+  ('Benjamin', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Jenifer')),
+ (('Jenifer', 'Matthew'),
+  ('Matthew', 'Benjamin'),
+  ('Benjamin', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Jenifer')),
+ (('Jenifer', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Russell'),
+  ('Russell', 'Benjamin'),
+  ('Benjamin', 'Penny'),
+  ('Penny', 'Jenifer'))]
+
+p 1152 
+ [(('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Russell'),
+  ('Russell', 'Benjamin'),
+  ('Benjamin', 'Matthew'),
+  ('Matthew', 'Jenifer')),
+ (('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Benjamin'),
+  ('Benjamin', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Jenifer')),
+ (('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Benjamin'),
+  ('Benjamin', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Jenifer'))]
+
+r0 (('Jenifer', 'Maryanne'), ('Maryanne', 'Leah'), ('Leah', 'Penny'), ('Penny', 'Todd'), ('Todd', 'Loraine'), ('Loraine', 'Russell'), ('Russell', 'Benjamin'), ('Benjamin', 'Matthew'), ('Matthew', 'Jenifer'))
+
+normalize
+  path (('Jenifer', 'Maryanne'),
+ ('Maryanne', 'Leah'),
+ ('Leah', 'Penny'),
+ ('Penny', 'Todd'),
+ ('Todd', 'Loraine'),
+ ('Loraine', 'Russell'),
+ ('Russell', 'Benjamin'),
+ ('Benjamin', 'Matthew'),
+ ('Matthew', 'Jenifer')) 
+  family0 Benjamin 
+  result [('Benjamin', 'Matthew'), ('Matthew', 'Jenifer'), ('Jenifer', 'Maryanne'), ('Maryanne', 'Leah'), ('Leah', 'Penny'), ('Penny', 'Todd'), ('Todd', 'Loraine'), ('Loraine', 'Russell'), ('Russell', 'Benjamin')]
+
+remove_pairs 
+  type(pairs) <type 'tuple'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs (('Jenifer', 'Maryanne'),
+ ('Maryanne', 'Leah'),
+ ('Leah', 'Penny'),
+ ('Penny', 'Todd'),
+ ('Todd', 'Loraine'),
+ ('Loraine', 'Russell'),
+ ('Russell', 'Benjamin'),
+ ('Benjamin', 'Matthew'),
+ ('Matthew', 'Jenifer'))
+
+==== 
+ 1151 - 939 = 212 
+removables [(('Jenifer', 'Benjamin'),
+  ('Benjamin', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Jenifer')),
+ (('Jenifer', 'Benjamin'),
+  ('Benjamin', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Jenifer')),
+ (('Jenifer', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Benjamin'),
+  ('Benjamin', 'Penny'),
+  ('Penny', 'Jenifer'))]
+
+p 212 
+ [(('Jenifer', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Penny'),
+  ('Penny', 'Benjamin'),
+  ('Benjamin', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Jenifer')),
+ (('Jenifer', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Penny'),
+  ('Penny', 'Benjamin'),
+  ('Benjamin', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Jenifer')),
+ (('Jenifer', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Benjamin'),
+  ('Benjamin', 'Penny'),
+  ('Penny', 'Jenifer'))]
+
+r0 (('Jenifer', 'Matthew'), ('Matthew', 'Loraine'), ('Loraine', 'Penny'), ('Penny', 'Benjamin'), ('Benjamin', 'Russell'), ('Russell', 'Leah'), ('Leah', 'Todd'), ('Todd', 'Maryanne'), ('Maryanne', 'Jenifer'))
+
+normalize
+  path (('Jenifer', 'Matthew'),
+ ('Matthew', 'Loraine'),
+ ('Loraine', 'Penny'),
+ ('Penny', 'Benjamin'),
+ ('Benjamin', 'Russell'),
+ ('Russell', 'Leah'),
+ ('Leah', 'Todd'),
+ ('Todd', 'Maryanne'),
+ ('Maryanne', 'Jenifer')) 
+  family0 Benjamin 
+  result [('Benjamin', 'Russell'), ('Russell', 'Leah'), ('Leah', 'Todd'), ('Todd', 'Maryanne'), ('Maryanne', 'Jenifer'), ('Jenifer', 'Matthew'), ('Matthew', 'Loraine'), ('Loraine', 'Penny'), ('Penny', 'Benjamin')]
+
+remove_pairs 
+  type(pairs) <type 'tuple'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs (('Jenifer', 'Matthew'),
+ ('Matthew', 'Loraine'),
+ ('Loraine', 'Penny'),
+ ('Penny', 'Benjamin'),
+ ('Benjamin', 'Russell'),
+ ('Russell', 'Leah'),
+ ('Leah', 'Todd'),
+ ('Todd', 'Maryanne'),
+ ('Maryanne', 'Jenifer'))
+
+==== 
+ 211 - 187 = 24 
+removables [(('Jenifer', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Maryanne'),
+  ('Maryanne', 'Benjamin'),
+  ('Benjamin', 'Leah'),
+  ('Leah', 'Jenifer')),
+ (('Jenifer', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Benjamin'),
+  ('Benjamin', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Jenifer')),
+ (('Jenifer', 'Benjamin'),
+  ('Benjamin', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Jenifer'))]
+
+p 24 
+ [(('Jenifer', 'Penny'),
+  ('Penny', 'Leah'),
+  ('Leah', 'Benjamin'),
+  ('Benjamin', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Jenifer')),
+ (('Jenifer', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Benjamin'),
+  ('Benjamin', 'Leah'),
+  ('Leah', 'Jenifer')),
+ (('Jenifer', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Benjamin'),
+  ('Benjamin', 'Penny'),
+  ('Penny', 'Jenifer'))]
+
+r0 (('Jenifer', 'Penny'), ('Penny', 'Leah'), ('Leah', 'Benjamin'), ('Benjamin', 'Maryanne'), ('Maryanne', 'Todd'), ('Todd', 'Matthew'), ('Matthew', 'Russell'), ('Russell', 'Loraine'), ('Loraine', 'Jenifer'))
+
+normalize
+  path (('Jenifer', 'Penny'),
+ ('Penny', 'Leah'),
+ ('Leah', 'Benjamin'),
+ ('Benjamin', 'Maryanne'),
+ ('Maryanne', 'Todd'),
+ ('Todd', 'Matthew'),
+ ('Matthew', 'Russell'),
+ ('Russell', 'Loraine'),
+ ('Loraine', 'Jenifer')) 
+  family0 Benjamin 
+  result [('Benjamin', 'Maryanne'), ('Maryanne', 'Todd'), ('Todd', 'Matthew'), ('Matthew', 'Russell'), ('Russell', 'Loraine'), ('Loraine', 'Jenifer'), ('Jenifer', 'Penny'), ('Penny', 'Leah'), ('Leah', 'Benjamin')]
+
+remove_pairs 
+  type(pairs) <type 'tuple'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs (('Jenifer', 'Penny'),
+ ('Penny', 'Leah'),
+ ('Leah', 'Benjamin'),
+ ('Benjamin', 'Maryanne'),
+ ('Maryanne', 'Todd'),
+ ('Todd', 'Matthew'),
+ ('Matthew', 'Russell'),
+ ('Russell', 'Loraine'),
+ ('Loraine', 'Jenifer'))
+
+==== 
+ 23 - 19 = 4 
+removables [(('Jenifer', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Benjamin'),
+  ('Benjamin', 'Leah'),
+  ('Leah', 'Jenifer')),
+ (('Jenifer', 'Benjamin'),
+  ('Benjamin', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Jenifer')),
+ (('Jenifer', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Maryanne'),
+  ('Maryanne', 'Benjamin'),
+  ('Benjamin', 'Leah'),
+  ('Leah', 'Jenifer'))]
+
+p 4 
+ [(('Jenifer', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Benjamin'),
+  ('Benjamin', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Jenifer')),
+ (('Jenifer', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Benjamin'),
+  ('Benjamin', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Jenifer')),
+ (('Jenifer', 'Benjamin'),
+  ('Benjamin', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Jenifer'))]
+
+r0 (('Jenifer', 'Russell'), ('Russell', 'Maryanne'), ('Maryanne', 'Benjamin'), ('Benjamin', 'Penny'), ('Penny', 'Loraine'), ('Loraine', 'Matthew'), ('Matthew', 'Todd'), ('Todd', 'Leah'), ('Leah', 'Jenifer'))
+
+normalize
+  path (('Jenifer', 'Russell'),
+ ('Russell', 'Maryanne'),
+ ('Maryanne', 'Benjamin'),
+ ('Benjamin', 'Penny'),
+ ('Penny', 'Loraine'),
+ ('Loraine', 'Matthew'),
+ ('Matthew', 'Todd'),
+ ('Todd', 'Leah'),
+ ('Leah', 'Jenifer')) 
+  family0 Benjamin 
+  result [('Benjamin', 'Penny'), ('Penny', 'Loraine'), ('Loraine', 'Matthew'), ('Matthew', 'Todd'), ('Todd', 'Leah'), ('Leah', 'Jenifer'), ('Jenifer', 'Russell'), ('Russell', 'Maryanne'), ('Maryanne', 'Benjamin')]
+
+remove_pairs 
+  type(pairs) <type 'tuple'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs (('Jenifer', 'Russell'),
+ ('Russell', 'Maryanne'),
+ ('Maryanne', 'Benjamin'),
+ ('Benjamin', 'Penny'),
+ ('Penny', 'Loraine'),
+ ('Loraine', 'Matthew'),
+ ('Matthew', 'Todd'),
+ ('Todd', 'Leah'),
+ ('Leah', 'Jenifer'))
+
+==== 
+ 3 - 2 = 1 
+removables [(('Jenifer', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Benjamin'),
+  ('Benjamin', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Jenifer')),
+ (('Jenifer', 'Benjamin'),
+  ('Benjamin', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Jenifer'))]
+
+p 1 
+ [(('Jenifer', 'Benjamin'),
+  ('Benjamin', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Jenifer'))]
+
+r0 (('Jenifer', 'Benjamin'), ('Benjamin', 'Leah'), ('Leah', 'Russell'), ('Russell', 'Matthew'), ('Matthew', 'Maryanne'), ('Maryanne', 'Loraine'), ('Loraine', 'Todd'), ('Todd', 'Penny'), ('Penny', 'Jenifer'))
+
+normalize
+  path (('Jenifer', 'Benjamin'),
+ ('Benjamin', 'Leah'),
+ ('Leah', 'Russell'),
+ ('Russell', 'Matthew'),
+ ('Matthew', 'Maryanne'),
+ ('Maryanne', 'Loraine'),
+ ('Loraine', 'Todd'),
+ ('Todd', 'Penny'),
+ ('Penny', 'Jenifer')) 
+  family0 Benjamin 
+  result [('Benjamin', 'Leah'), ('Leah', 'Russell'), ('Russell', 'Matthew'), ('Matthew', 'Maryanne'), ('Maryanne', 'Loraine'), ('Loraine', 'Todd'), ('Todd', 'Penny'), ('Penny', 'Jenifer'), ('Jenifer', 'Benjamin')]
+
+remove_pairs 
+  type(pairs) <type 'tuple'> 
+  type(pairs[0]) <type 'tuple'> 
+  type(p) <type 'list'> 
+  pairs (('Jenifer', 'Benjamin'),
+ ('Benjamin', 'Leah'),
+ ('Leah', 'Russell'),
+ ('Russell', 'Matthew'),
+ ('Matthew', 'Maryanne'),
+ ('Maryanne', 'Loraine'),
+ ('Loraine', 'Todd'),
+ ('Todd', 'Penny'),
+ ('Penny', 'Jenifer'))
+
+==== 
+ 0 - 0 = 0 
+removables []
+
+p 0 
+ []
 
 
-result 4 
- [(('Robin', 'Allison'), ('Allison', 'Bobbie'), ('Bobbie', 'Curtis'), ('Curtis', 'Kelly'), ('Kelly', 'Petra')),
- (('Robin', 'Bobbie'), ('Bobbie', 'Allison'), ('Allison', 'Petra'), ('Petra', 'Kelly'), ('Kelly', 'Curtis')),
- (('Robin', 'Curtis'), ('Curtis', 'Petra'), ('Petra', 'Allison'), ('Allison', 'Kelly'), ('Kelly', 'Bobbie')),
- (('Robin', 'Petra'), ('Petra', 'Curtis'), ('Curtis', 'Bobbie'), ('Bobbie', 'Kelly'), ('Kelly', 'Allison'))]
+sorted(chains) 7 
+ [[('Benjamin', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Todd'),
+  ('Todd', 'Benjamin')],
+ [('Benjamin', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Jenifer'),
+  ('Jenifer', 'Benjamin')],
+ [('Benjamin', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Jenifer'),
+  ('Jenifer', 'Penny'),
+  ('Penny', 'Leah'),
+  ('Leah', 'Benjamin')],
+ [('Benjamin', 'Matthew'),
+  ('Matthew', 'Jenifer'),
+  ('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Russell'),
+  ('Russell', 'Benjamin')],
+ [('Benjamin', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Jenifer'),
+  ('Jenifer', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Benjamin')],
+ [('Benjamin', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Jenifer'),
+  ('Jenifer', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Penny'),
+  ('Penny', 'Benjamin')],
+ [('Benjamin', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Jenifer'),
+  ('Jenifer', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Penny'),
+  ('Penny', 'Matthew'),
+  ('Matthew', 'Benjamin')]]
+
+
+list_of_chains 7 
+ [[('Benjamin', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Todd'),
+  ('Todd', 'Benjamin')],
+ [('Benjamin', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Jenifer'),
+  ('Jenifer', 'Benjamin')],
+ [('Benjamin', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Jenifer'),
+  ('Jenifer', 'Penny'),
+  ('Penny', 'Leah'),
+  ('Leah', 'Benjamin')],
+ [('Benjamin', 'Matthew'),
+  ('Matthew', 'Jenifer'),
+  ('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Russell'),
+  ('Russell', 'Benjamin')],
+ [('Benjamin', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Jenifer'),
+  ('Jenifer', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Benjamin')],
+ [('Benjamin', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Jenifer'),
+  ('Jenifer', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Penny'),
+  ('Penny', 'Benjamin')],
+ [('Benjamin', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Jenifer'),
+  ('Jenifer', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Penny'),
+  ('Penny', 'Matthew'),
+  ('Matthew', 'Benjamin')]]
+
+verify_chains
+
+  chain [('Benjamin', 'Jenifer'), ('Jenifer', 'Leah'), ('Leah', 'Loraine'), ('Loraine', 'Maryanne'), ('Maryanne', 'Matthew'), ('Matthew', 'Penny'), ('Penny', 'Russell'), ('Russell', 'Todd'), ('Todd', 'Benjamin')] 
+  matches [True, True, True, True, True, True, True, True, True] 
+  fail False
+
+  chain [('Benjamin', 'Todd'), ('Todd', 'Russell'), ('Russell', 'Jenifer'), ('Jenifer', 'Loraine'), ('Loraine', 'Leah'), ('Leah', 'Maryanne'), ('Maryanne', 'Penny'), ('Penny', 'Matthew'), ('Matthew', 'Benjamin')] 
+  matches [True, True, True, True, True, True, True, True, True] 
+  fail False
+
+  chain [('Benjamin', 'Matthew'), ('Matthew', 'Jenifer'), ('Jenifer', 'Maryanne'), ('Maryanne', 'Leah'), ('Leah', 'Penny'), ('Penny', 'Todd'), ('Todd', 'Loraine'), ('Loraine', 'Russell'), ('Russell', 'Benjamin')] 
+  matches [True, True, True, True, True, True, True, True, True] 
+  fail False
+
+  chain [('Benjamin', 'Russell'), ('Russell', 'Leah'), ('Leah', 'Todd'), ('Todd', 'Maryanne'), ('Maryanne', 'Jenifer'), ('Jenifer', 'Matthew'), ('Matthew', 'Loraine'), ('Loraine', 'Penny'), ('Penny', 'Benjamin')] 
+  matches [True, True, True, True, True, True, True, True, True] 
+  fail False
+
+  chain [('Benjamin', 'Maryanne'), ('Maryanne', 'Todd'), ('Todd', 'Matthew'), ('Matthew', 'Russell'), ('Russell', 'Loraine'), ('Loraine', 'Jenifer'), ('Jenifer', 'Penny'), ('Penny', 'Leah'), ('Leah', 'Benjamin')] 
+  matches [True, True, True, True, True, True, True, True, True] 
+  fail False
+
+  chain [('Benjamin', 'Penny'), ('Penny', 'Loraine'), ('Loraine', 'Matthew'), ('Matthew', 'Todd'), ('Todd', 'Leah'), ('Leah', 'Jenifer'), ('Jenifer', 'Russell'), ('Russell', 'Maryanne'), ('Maryanne', 'Benjamin')] 
+  matches [True, True, True, True, True, True, True, True, True] 
+  fail False
+
+  chain [('Benjamin', 'Leah'), ('Leah', 'Russell'), ('Russell', 'Matthew'), ('Matthew', 'Maryanne'), ('Maryanne', 'Loraine'), ('Loraine', 'Todd'), ('Todd', 'Penny'), ('Penny', 'Jenifer'), ('Jenifer', 'Benjamin')] 
+  matches [True, True, True, True, True, True, True, True, True] 
+  fail False
+
+================= 
+= # chains = 6  = 
+=================
+Solution group: 1
+   1 Benjamin, Jenifer, Leah, Loraine, Maryanne, Matthew, Penny, Russell, Todd
+   2 Benjamin, Leah, Jenifer, Loraine, Matthew, Maryanne, Penny, Todd, Russell
+   3 Benjamin, Maryanne, Jenifer, Matthew, Loraine, Russell, Leah, Todd, Penny
+   4 Benjamin, Matthew, Jenifer, Maryanne, Russell, Penny, Loraine, Todd, Leah
+   5 Benjamin, Penny, Jenifer, Russell, Loraine, Leah, Maryanne, Todd, Matthew
+   6 Benjamin, Russell, Maryanne, Leah, Penny, Matthew, Todd, Loraine, Jenifer
+
+
+================= 
+= # chains = 7  = 
+=================
+Solution group: 1
+   1 Benjamin, Jenifer, Leah, Loraine, Maryanne, Matthew, Penny, Russell, Todd
+   2 Benjamin, Todd, Russell, Jenifer, Loraine, Leah, Maryanne, Penny, Matthew
+   3 Benjamin, Matthew, Jenifer, Maryanne, Leah, Penny, Todd, Loraine, Russell
+   4 Benjamin, Russell, Leah, Todd, Maryanne, Jenifer, Matthew, Loraine, Penny
+   5 Benjamin, Maryanne, Todd, Matthew, Russell, Loraine, Jenifer, Penny, Leah
+   6 Benjamin, Penny, Loraine, Matthew, Todd, Leah, Jenifer, Russell, Maryanne
+   7 Benjamin, Leah, Russell, Matthew, Maryanne, Loraine, Todd, Penny, Jenifer
+
+
+find_chains 
+  result [[('Benjamin', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Todd'),
+  ('Todd', 'Benjamin')],
+ [('Benjamin', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Jenifer'),
+  ('Jenifer', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Penny'),
+  ('Penny', 'Matthew'),
+  ('Matthew', 'Benjamin')],
+ [('Benjamin', 'Matthew'),
+  ('Matthew', 'Jenifer'),
+  ('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Russell'),
+  ('Russell', 'Benjamin')],
+ [('Benjamin', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Jenifer'),
+  ('Jenifer', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Penny'),
+  ('Penny', 'Benjamin')],
+ [('Benjamin', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Jenifer'),
+  ('Jenifer', 'Penny'),
+  ('Penny', 'Leah'),
+  ('Leah', 'Benjamin')],
+ [('Benjamin', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Jenifer'),
+  ('Jenifer', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Benjamin')],
+ [('Benjamin', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Jenifer'),
+  ('Jenifer', 'Benjamin')]]
+
+result 7 [[('Benjamin', 'Jenifer'),
+  ('Jenifer', 'Leah'),
+  ('Leah', 'Loraine'),
+  ('Loraine', 'Maryanne'),
+  ('Maryanne', 'Matthew'),
+  ('Matthew', 'Penny'),
+  ('Penny', 'Russell'),
+  ('Russell', 'Todd'),
+  ('Todd', 'Benjamin')],
+ [('Benjamin', 'Todd'),
+  ('Todd', 'Russell'),
+  ('Russell', 'Jenifer'),
+  ('Jenifer', 'Loraine'),
+  ('Loraine', 'Leah'),
+  ('Leah', 'Maryanne'),
+  ('Maryanne', 'Penny'),
+  ('Penny', 'Matthew'),
+  ('Matthew', 'Benjamin')],
+ [('Benjamin', 'Matthew'),
+  ('Matthew', 'Jenifer'),
+  ('Jenifer', 'Maryanne'),
+  ('Maryanne', 'Leah'),
+  ('Leah', 'Penny'),
+  ('Penny', 'Todd'),
+  ('Todd', 'Loraine'),
+  ('Loraine', 'Russell'),
+  ('Russell', 'Benjamin')],
+ [('Benjamin', 'Russell'),
+  ('Russell', 'Leah'),
+  ('Leah', 'Todd'),
+  ('Todd', 'Maryanne'),
+  ('Maryanne', 'Jenifer'),
+  ('Jenifer', 'Matthew'),
+  ('Matthew', 'Loraine'),
+  ('Loraine', 'Penny'),
+  ('Penny', 'Benjamin')],
+ [('Benjamin', 'Maryanne'),
+  ('Maryanne', 'Todd'),
+  ('Todd', 'Matthew'),
+  ('Matthew', 'Russell'),
+  ('Russell', 'Loraine'),
+  ('Loraine', 'Jenifer'),
+  ('Jenifer', 'Penny'),
+  ('Penny', 'Leah'),
+  ('Leah', 'Benjamin')],
+ [('Benjamin', 'Penny'),
+  ('Penny', 'Loraine'),
+  ('Loraine', 'Matthew'),
+  ('Matthew', 'Todd'),
+  ('Todd', 'Leah'),
+  ('Leah', 'Jenifer'),
+  ('Jenifer', 'Russell'),
+  ('Russell', 'Maryanne'),
+  ('Maryanne', 'Benjamin')],
+ [('Benjamin', 'Leah'),
+  ('Leah', 'Russell'),
+  ('Russell', 'Matthew'),
+  ('Matthew', 'Maryanne'),
+  ('Maryanne', 'Loraine'),
+  ('Loraine', 'Todd'),
+  ('Todd', 'Penny'),
+  ('Penny', 'Jenifer'),
+  ('Jenifer', 'Benjamin')]]

@@ -11,7 +11,7 @@ from __future__ import print_function
 
 from itertools import permutations
 from pprint import pformat
-from collections import deque
+from collections import deque, defaultdict
 
 ########################################################################
 
@@ -61,14 +61,23 @@ def remove_pairs(pairs, p):
 
 def normalize(path, family0):
     """Rotate the circular path to have 'family0' at the start."""
-    return path  # FIXME
+    try:
+        index = [x[0] for x in path].index(family0)
+        d = deque(path)
+        d.rotate(-index)
+        result = list(d)
+    except ValueError:
+        result = path
 
-    d = deque(path)
-    index = d.index(family0)
-    d.rotate(-index)
-#   while d[0] != family0:
-#       d.rotate(-1)
-    return list(d)
+    if DEBUG:
+        print(
+            "\nnormalize"
+            "\n  path", pformat(path, width=132),
+            "\n  family0", family0,
+            "\n  result", result
+        )
+
+    return result
 
 ########################################################################
 
@@ -83,7 +92,7 @@ def tuple_of_pairs(p):
 ########################################################################
 
 
-def find_chains(family, couples):
+def proto_find_chains(family, couples):
     """Find chains of gift-givers in 'family', excuding 'couples'."""
     """Members of 'family' give gifts to each other each year; pairs of members
     that are 'couples' don't give to each other. Compute the chains of giving
@@ -91,7 +100,7 @@ def find_chains(family, couples):
 
     if DEBUG:
         print(
-            "\nfind_chains",
+            "\nproto_find_chains",
             "\n  family", pformat(family),
             "\n  type(family)", type(family),
             "\n  type(family[0])", type(family[0]),
@@ -101,29 +110,6 @@ def find_chains(family, couples):
             "\n  type(couples[0])", type(couples[0]),
             "\n"
         )
-
-    assert type(family) in (list, tuple), \
-        "family is of type %s" % type(family)
-    assert type(family[0]) == str, \
-        "family[0] is of type %s" % type(family[0])
-
-    assert type(couples) in (list, tuple), \
-        "couples is of type %s" % type(couples)
-    assert type(couples[0]) in (set,), \
-        "couples[0] is of type %s" % type(couples[0])
-
-    family = list(family)
-    couples = sorted(list(couples))
-    if type(couples[0]) == set:
-        couples = [tuple(sorted([x, y])) for (x, y) in couples]
-        if DEBUG:
-            print(
-                "\n  *** retyped couples ***",
-                "\n  couples", pformat(couples),
-                "\n  type(couples)", type(couples),
-                "\n  type(couples[0])", type(couples[0]),
-                "\n"
-            )
 
     minfam = sorted(family)[0]
 
@@ -160,88 +146,230 @@ def find_chains(family, couples):
         r0 = p.pop(0)
         if DEBUG:
             print("\nr0", r0)
-        chains.append(normalize(r0[:-1], minfam))
-#       pairs = [tuple(r0[i:i + 2]) for i in range(len(r0) - 1)]
+        chains.append(normalize(r0, minfam))
         remove_pairs(r0, p)
 
     if DEBUG:
-        print("\n\nchains", len(chains), "\n", pformat(chains))
+        print("\n\nsorted(chains)", len(chains), "\n", pformat(sorted(chains)))
 
     return chains
 
 ########################################################################
 
-# family = {'A', 'R', 'P', 'C', 'B', 'K'}
-# couples = [('A', 'C'), ('K', 'R')]
 
-# family = {'Allison', 'Robin', 'Petra', 'Curtis', 'Bobbie', 'Kelly'}
-# couples = ({'Allison', 'Curtis'}, {'Kelly', 'Robin'},)
+def verify_chains(list_of_chains):
+    """Verify that the chains in the list 'list_of_chains' are valid."""
+    if DEBUG:
+        print(
+            "\nverify_chains",
+        )
 
-# family = {'Loraine', 'Leah', 'Jenifer', 'Russell', 'Benjamin', 'Todd',
-#           'Maryanne', 'Penny', 'Matthew'}
-#
-# couples = (
-#     {"Loraine", "Benjamin"},
-#     {"Leah", "Matthew"},
-#     {"Todd", "Jenifer"},
-# )
-#
-# print(pformat(find_chains(family, couples)))
+    for chain in list_of_chains:
 
-# from collections import deque
+        # ensure that all tuples point to their successors
+        matches = [
+            chain[i][1] == chain[i + 1][0]
+            for i in range(-1, len(chain) - 1)
+        ]
+
+        fail = not all(matches)
+
+        if DEBUG or fail:
+            print(
+                "\n  chain", chain,
+                "\n  matches", matches,
+                "\n  fail", fail
+            )
+
+########################################################################
 
 
-def chains(family, couples):
-    """Compute chains from all possible starting family members."""
-    print("chains")
+def print_chain(index, chain):
+    """Display the 'index'th chain."""
+    froms = [x[0] for x in chain]
+    print("  %2d" % (index + 1), ", ".join(froms))
+
+########################################################################
+
+
+def print_chains(chains):
+    """Print all chain in 'chains'."""
+    for index, chain in enumerate(chains):
+        print_chain(index, chain)
+
+########################################################################
+
+
+def print_possible_chains(possible_chains):
+    """Display the contents of 'possible_chains'."""
+    for length, chains in possible_chains.items():
+        print(
+            "\n=================",
+            "\n= # chains =", length, " =",
+            "\n================="
+        )
+
+        for index, chain in enumerate(chains):
+            print("Solution group: %d" % (index + 1))
+            print_chains(chain)
+            print()
+
+########################################################################
+
+
+def ensure_correct_types(family, couples):
+    """Coerce correct data structure types for 'family' and 'couples'."""
+    if type(family) == set:
+        family = list(family)
+
+    assert type(family) in (list, tuple), \
+        "family is of type %s" % type(family)
+    assert type(family[0]) == str, \
+        "family[0] is of type %s" % type(family[0])
+
+    assert type(couples) in (list, tuple), \
+        "couples is of type %s" % type(couples)
+    assert type(couples[0]) == set, \
+        "couples[0] is of type %s" % type(couples[0])
+
     family = sorted(list(family))
     couples = sorted(list(couples))
+    # convert couples to be tuples instead of sets
+    if type(couples[0]) == set:
+        couples = [tuple(sorted([x, y])) for (x, y) in couples]
+        if DEBUG:
+            print(
+                "\n  *** retyped couples ***",
+                "\n  couples", pformat(couples),
+                "\n  type(couples)", type(couples),
+                "\n  type(couples[0])", type(couples[0]),
+                "\n"
+            )
 
-    d = deque(family)
-    print(
-        "\nchains",
-        "\n  d", pformat(d),
-        "\n  couples", pformat(couples),
-        "\n################################################"
-    )
+    return family, couples
 
+########################################################################
+
+
+def compute_max_length(family, couples):
+    """The maximum number of chains is the minumum of edges from all nodes."""
+    result = defaultdict(list)
+
+    # add edges between all family members
+    [result[x].extend(sorted(list(set(family) - set([x])))) for x in family]
+    result = dict(result)
+
+    if DEBUG:
+        print(pformat(result, width=132))
+
+    # remove edges between couples
+    for a, b in couples:
+        result[a].remove(b)
+        result[b].remove(a)
+
+    if DEBUG:
+        print(pformat(result, width=132))
+
+    minval = min([len(x) for x in result.values()])
+
+    if DEBUG:
+        print("compute_max_length", minval)
+
+    return minval
+
+########################################################################
+
+
+def find_chains(family, couples):
+    """Compute chains from all possible starting family members."""
+    # coerce to get the correct data structure types
+    family, couples = ensure_correct_types(family, couples)
+
+    max_expected_length = compute_max_length(family, couples)
+
+    family_deque = deque(family)
+    if DEBUG:
+        print(
+            "\nfind_chains",
+            "\n  family_deque", pformat(family_deque),
+            "\n  couples", pformat(couples),
+            "\n################################################"
+        )
+
+    # compute all chain groups with different ordering of family
+    possible_chains = defaultdict(list)
     for i in range(len(family)):
 
         if DEBUG:
             print(
                 "\ni =", i,
-                "\n  d", d,
+                "\n  family_deque", family_deque,
                 "\n  couples", couples,
                 "\n"
             )
 
-        result = find_chains(list(d), couples)
+        list_of_chains = proto_find_chains(list(family_deque), couples)
 
+        if DEBUG:
+            print(
+                "\n\nlist_of_chains", len(list_of_chains),
+                "\n", pformat(sorted(list_of_chains), width=132)
+            )
+
+        # optional verify of pairs in the result
+        verify_chains(list_of_chains)
+
+        # add this solution to the list
+        possible_chains[len(list_of_chains)].append(list_of_chains)
+
+        if len(list_of_chains) >= max_expected_length:
+            break
+
+        # try the next rotation of the family
+        family_deque.rotate(-1)
+
+    # convert to ordinary dict
+    possible_chains = dict(possible_chains)
+
+    # find the longest list(s)
+    max_key = max(possible_chains.keys())
+
+    if DEBUG:
+        print_possible_chains(possible_chains)
+
+    # return one of the lists
+    result = possible_chains[max_key][0]
+
+    if DEBUG:
         print(
-            "\n\nresult", len(result),
-            "\n", pformat(sorted(result), width=132)
+            "\nfind_chains",
+            "\n  result", pformat(result)
         )
 
-        d.rotate(-1)
+    return result
 
-family = {"Allison",  "Robin",  "Petra",  "Curtis",  "Bobbie",  "Kelly"}
-couples = ({"Allison",  "Curtis"},  {"Robin",  "Kelly"},)
-chains(family, couples)
+########################################################################
 
-# family = {'Philip', 'Sondra', 'Mary', 'Selena', 'Eric', 'Phyllis'}
-# couples = (
-#     {'Philip', 'Sondra'},
-#     {'Eric', 'Mary'},
-# )
-# chains(family, couples)
+if __name__ == '__main__':
 
-# print(pformat(find_chains(
-#     {'Philip', 'Sondra', 'Mary', 'Selena', 'Eric', 'Phyllis'},
-#     (
-#         {'Philip', 'Sondra'},
-#         {'Eric', 'Mary'}
-#     )
-# )))
+    # family = {
+    #     'Loraine', 'Leah', 'Jenifer', 'Russell', 'Benjamin', 'Todd',
+    #     'Maryanne', 'Penny', 'Matthew's
+    # }
+    #
+    # couples = (
+    #     {"Loraine", "Benjamin"},
+    #     {"Leah", "Matthew"},
+    #     {"Todd", "Jenifer"},
+    # )
+    #
+    # family = {'Philip', 'Sondra', 'Mary', 'Selena', 'Eric', 'Phyllis'}
+    # couples = ({'Philip', 'Sondra'}, {'Eric', 'Mary'},)
 
+    family = {"Allison",  "Robin",  "Petra",  "Curtis",  "Bobbie",  "Kelly"}
+    couples = ({"Allison",  "Curtis"},  {"Robin",  "Kelly"},)
+
+    result = find_chains(family, couples)
+    print("\nresult", len(result), pformat(result, width=132, depth=3))
 
 # end of file
