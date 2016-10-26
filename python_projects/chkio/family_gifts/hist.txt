@@ -1,0 +1,44 @@
+chains
+
+chains 
+  d deque(['Allison', 'Bobbie', 'Curtis', 'Kelly', 'Petra', 'Robin']) 
+  couples [{'Allison', 'Curtis'}, {'Kelly', 'Robin'}] 
+################################################
+
+
+result 4 
+ [(('Allison', 'Bobbie'), ('Bobbie', 'Curtis'), ('Curtis', 'Kelly'), ('Kelly', 'Petra'), ('Petra', 'Robin')),
+ (('Allison', 'Kelly'), ('Kelly', 'Bobbie'), ('Bobbie', 'Robin'), ('Robin', 'Curtis'), ('Curtis', 'Petra')),
+ (('Allison', 'Petra'), ('Petra', 'Curtis'), ('Curtis', 'Robin'), ('Robin', 'Bobbie'), ('Bobbie', 'Kelly')),
+ (('Allison', 'Robin'), ('Robin', 'Petra'), ('Petra', 'Kelly'), ('Kelly', 'Curtis'), ('Curtis', 'Bobbie'))]
+
+
+result 2 
+ [(('Bobbie', 'Curtis'), ('Curtis', 'Kelly'), ('Kelly', 'Petra'), ('Petra', 'Robin'), ('Robin', 'Allison')),
+ (('Bobbie', 'Kelly'), ('Kelly', 'Curtis'), ('Curtis', 'Petra'), ('Petra', 'Allison'), ('Allison', 'Robin'))]
+
+
+result 4 
+ [(('Curtis', 'Bobbie'), ('Bobbie', 'Robin'), ('Robin', 'Petra'), ('Petra', 'Allison'), ('Allison', 'Kelly')),
+ (('Curtis', 'Kelly'), ('Kelly', 'Petra'), ('Petra', 'Robin'), ('Robin', 'Allison'), ('Allison', 'Bobbie')),
+ (('Curtis', 'Petra'), ('Petra', 'Kelly'), ('Kelly', 'Bobbie'), ('Bobbie', 'Allison'), ('Allison', 'Robin')),
+ (('Curtis', 'Robin'), ('Robin', 'Bobbie'), ('Bobbie', 'Kelly'), ('Kelly', 'Allison'), ('Allison', 'Petra'))]
+
+
+result 4 
+ [(('Kelly', 'Allison'), ('Allison', 'Petra'), ('Petra', 'Curtis'), ('Curtis', 'Robin'), ('Robin', 'Bobbie')),
+ (('Kelly', 'Bobbie'), ('Bobbie', 'Robin'), ('Robin', 'Curtis'), ('Curtis', 'Petra'), ('Petra', 'Allison')),
+ (('Kelly', 'Curtis'), ('Curtis', 'Bobbie'), ('Bobbie', 'Allison'), ('Allison', 'Robin'), ('Robin', 'Petra')),
+ (('Kelly', 'Petra'), ('Petra', 'Robin'), ('Robin', 'Allison'), ('Allison', 'Bobbie'), ('Bobbie', 'Curtis'))]
+
+
+result 2 
+ [(('Petra', 'Allison'), ('Allison', 'Robin'), ('Robin', 'Bobbie'), ('Bobbie', 'Kelly'), ('Kelly', 'Curtis')),
+ (('Petra', 'Robin'), ('Robin', 'Allison'), ('Allison', 'Bobbie'), ('Bobbie', 'Curtis'), ('Curtis', 'Kelly'))]
+
+
+result 4 
+ [(('Robin', 'Allison'), ('Allison', 'Bobbie'), ('Bobbie', 'Curtis'), ('Curtis', 'Kelly'), ('Kelly', 'Petra')),
+ (('Robin', 'Bobbie'), ('Bobbie', 'Allison'), ('Allison', 'Petra'), ('Petra', 'Kelly'), ('Kelly', 'Curtis')),
+ (('Robin', 'Curtis'), ('Curtis', 'Petra'), ('Petra', 'Allison'), ('Allison', 'Kelly'), ('Kelly', 'Bobbie')),
+ (('Robin', 'Petra'), ('Petra', 'Curtis'), ('Curtis', 'Bobbie'), ('Bobbie', 'Kelly'), ('Kelly', 'Allison'))]
