@@ -1,7 +1,3 @@
-(set(['Benjamin', 'Loraine']),
- set(['Leah', 'Matthew']),
- set(['Jenifer', 'Todd']))
-[('Benjamin', 'Loraine'), ('Leah', 'Matthew'), ('Jenifer', 'Todd')]
 pre-unwind {'Benjamin': 'Russell',
  'Jenifer': 'Maryanne',
  'Leah': 'Penny',
@@ -30,6 +26,24 @@ pre-unwind {'Benjamin': 'Leah',
  'Russell': 'Penny',
  'Todd': 'Russell'}
 6 ['Benjamin', 'Leah', 'Jenifer', 'Loraine', 'Matthew', 'Maryanne']
+pre-unwind {'Benjamin': 'Leah',
+ 'Jenifer': 'Loraine',
+ 'Leah': 'Jenifer',
+ 'Loraine': 'Russell',
+ 'Maryanne': 'Benjamin',
+ 'Matthew': 'Maryanne',
+ 'Penny': 'Todd',
+ 'Russell': 'Penny',
+ 'Todd': 'Matthew'}
+9 ['Benjamin',
+ 'Leah',
+ 'Jenifer',
+ 'Loraine',
+ 'Russell',
+ 'Penny',
+ 'Todd',
+ 'Matthew',
+ 'Maryanne']
 pre-unwind {'Benjamin': 'Penny',
  'Jenifer': 'Benjamin',
  'Leah': 'Todd',
@@ -40,95 +54,161 @@ pre-unwind {'Benjamin': 'Penny',
  'Russell': 'Matthew',
  'Todd': 'Maryanne'}
 3 ['Benjamin', 'Penny', 'Jenifer']
-pre-unwind {'Benjamin': 'Matthew',
+pre-unwind {'Benjamin': 'Penny',
+ 'Jenifer': 'Benjamin',
+ 'Leah': 'Todd',
+ 'Loraine': 'Maryanne',
+ 'Maryanne': 'Leah',
+ 'Matthew': 'Loraine',
+ 'Penny': 'Jenifer',
+ 'Russell': 'Matthew',
+ 'Todd': 'Russell'}
+3 ['Benjamin', 'Penny', 'Jenifer']
+pre-unwind {'Benjamin': 'Penny',
  'Jenifer': 'Leah',
- 'Leah': 'Maryanne',
- 'Loraine': 'Russell',
- 'Maryanne': 'Penny',
- 'Matthew': 'Todd',
- 'Penny': 'Benjamin',
- 'Russell': 'Jenifer',
+ 'Leah': 'Todd',
+ 'Loraine': 'Maryanne',
+ 'Maryanne': 'Russell',
+ 'Matthew': 'Benjamin',
+ 'Penny': 'Jenifer',
+ 'Russell': 'Matthew',
  'Todd': 'Loraine'}
 9 ['Benjamin',
- 'Matthew',
- 'Todd',
- 'Loraine',
- 'Russell',
- 'Jenifer',
- 'Leah',
- 'Maryanne',
- 'Penny']
-pre-unwind {'Benjamin': 'Jenifer',
- 'Jenifer': 'Russell',
- 'Leah': 'Loraine',
- 'Loraine': 'Penny',
- 'Maryanne': 'Matthew',
- 'Matthew': 'Benjamin',
- 'Penny': 'Maryanne',
- 'Russell': 'Todd',
- 'Todd': 'Leah'}
-9 ['Benjamin',
- 'Jenifer',
- 'Russell',
- 'Todd',
- 'Leah',
- 'Loraine',
  'Penny',
+ 'Jenifer',
+ 'Leah',
+ 'Todd',
+ 'Loraine',
  'Maryanne',
+ 'Russell',
  'Matthew']
-pre-unwind {'Benjamin': 'Todd',
- 'Jenifer': 'Matthew',
- 'Leah': 'Benjamin',
- 'Loraine': 'Jenifer',
- 'Maryanne': 'Leah',
- 'Matthew': 'Russell',
+pre-unwind {'Benjamin': 'Matthew',
+ 'Jenifer': 'Benjamin',
+ 'Leah': 'Maryanne',
+ 'Loraine': 'Leah',
+ 'Maryanne': 'Penny',
+ 'Matthew': 'Todd',
  'Penny': 'Loraine',
- 'Russell': 'Maryanne',
- 'Todd': 'Penny'}
+ 'Russell': 'Jenifer',
+ 'Todd': 'Russell'}
+5 ['Benjamin', 'Matthew', 'Todd', 'Russell', 'Jenifer']
+pre-unwind {'Benjamin': 'Matthew',
+ 'Jenifer': 'Benjamin',
+ 'Leah': 'Maryanne',
+ 'Loraine': 'Leah',
+ 'Maryanne': 'Todd',
+ 'Matthew': 'Penny',
+ 'Penny': 'Loraine',
+ 'Russell': 'Jenifer',
+ 'Todd': 'Russell'}
 9 ['Benjamin',
- 'Todd',
+ 'Matthew',
  'Penny',
  'Loraine',
+ 'Leah',
+ 'Maryanne',
+ 'Todd',
+ 'Russell',
+ 'Jenifer']
+pre-unwind {'Benjamin': 'Jenifer',
+ 'Jenifer': 'Matthew',
+ 'Leah': 'Loraine',
+ 'Loraine': 'Penny',
+ 'Maryanne': 'Leah',
+ 'Matthew': 'Russell',
+ 'Penny': 'Benjamin',
+ 'Russell': 'Todd',
+ 'Todd': 'Maryanne'}
+9 ['Benjamin',
  'Jenifer',
  'Matthew',
  'Russell',
+ 'Todd',
  'Maryanne',
- 'Leah']
-########################################################################
-4
-{'Benjamin': 'Russell',
- 'Jenifer': 'Maryanne',
- 'Leah': 'Penny',
- 'Loraine': 'Todd',
- 'Maryanne': 'Loraine',
- 'Matthew': 'Jenifer',
- 'Penny': 'Matthew',
- 'Russell': 'Leah',
- 'Todd': 'Benjamin'}
-{'Benjamin': 'Matthew',
- 'Jenifer': 'Leah',
- 'Leah': 'Maryanne',
- 'Loraine': 'Russell',
- 'Maryanne': 'Penny',
- 'Matthew': 'Todd',
- 'Penny': 'Benjamin',
- 'Russell': 'Jenifer',
- 'Todd': 'Loraine'}
-{'Benjamin': 'Jenifer',
+ 'Leah',
+ 'Loraine',
+ 'Penny']
+pre-unwind {'Benjamin': 'Todd',
  'Jenifer': 'Russell',
- 'Leah': 'Loraine',
- 'Loraine': 'Penny',
- 'Maryanne': 'Matthew',
- 'Matthew': 'Benjamin',
- 'Penny': 'Maryanne',
- 'Russell': 'Todd',
- 'Todd': 'Leah'}
-{'Benjamin': 'Todd',
- 'Jenifer': 'Matthew',
  'Leah': 'Benjamin',
  'Loraine': 'Jenifer',
- 'Maryanne': 'Leah',
- 'Matthew': 'Russell',
- 'Penny': 'Loraine',
+ 'Maryanne': 'Matthew',
+ 'Matthew': 'Loraine',
+ 'Penny': 'Leah',
  'Russell': 'Maryanne',
  'Todd': 'Penny'}
+4 ['Benjamin', 'Todd', 'Penny', 'Leah']
+pre-unwind {'Benjamin': 'Todd',
+ 'Jenifer': 'Penny',
+ 'Leah': 'Benjamin',
+ 'Loraine': 'Jenifer',
+ 'Maryanne': 'Matthew',
+ 'Matthew': 'Loraine',
+ 'Penny': 'Russell',
+ 'Russell': 'Maryanne',
+ 'Todd': 'Leah'}
+3 ['Benjamin', 'Todd', 'Leah']
+pre-unwind {'Benjamin': 'Todd',
+ 'Jenifer': 'Penny',
+ 'Leah': 'Russell',
+ 'Loraine': 'Jenifer',
+ 'Maryanne': 'Matthew',
+ 'Matthew': 'Loraine',
+ 'Penny': 'Maryanne',
+ 'Russell': 'Benjamin',
+ 'Todd': 'Leah'}
+4 ['Benjamin', 'Todd', 'Leah', 'Russell']
+pre-unwind {'Benjamin': 'Maryanne',
+ 'Jenifer': 'Russell',
+ 'Leah': 'Benjamin',
+ 'Loraine': 'Jenifer',
+ 'Maryanne': 'Matthew',
+ 'Matthew': 'Todd',
+ 'Penny': 'Leah',
+ 'Russell': 'Loraine',
+ 'Todd': 'Penny'}
+6 ['Benjamin', 'Maryanne', 'Matthew', 'Todd', 'Penny', 'Leah']
+pre-unwind {'Benjamin': 'Maryanne',
+ 'Jenifer': 'Russell',
+ 'Leah': 'Benjamin',
+ 'Loraine': 'Matthew',
+ 'Maryanne': 'Jenifer',
+ 'Matthew': 'Todd',
+ 'Penny': 'Leah',
+ 'Russell': 'Loraine',
+ 'Todd': 'Penny'}
+9 ['Benjamin',
+ 'Maryanne',
+ 'Jenifer',
+ 'Russell',
+ 'Loraine',
+ 'Matthew',
+ 'Todd',
+ 'Penny',
+ 'Leah']
+pre-unwind {'Benjamin': 'Todd',
+ 'Jenifer': 'Penny',
+ 'Leah': 'Russell',
+ 'Loraine': 'Jenifer',
+ 'Maryanne': 'Matthew',
+ 'Matthew': 'Loraine',
+ 'Penny': 'Maryanne',
+ 'Russell': 'Benjamin',
+ 'Todd': 'Leah'}
+4 ['Benjamin', 'Todd', 'Leah', 'Russell']
+########################################################################
+6
+['Benjamin', 'Russell', 'Leah', 'Penny', 'Matthew', 'Jenifer', 'Maryanne', 'Loraine', 'Todd']
+['Benjamin', 'Leah', 'Jenifer', 'Loraine', 'Russell', 'Penny', 'Todd', 'Matthew', 'Maryanne']
+['Benjamin', 'Penny', 'Jenifer', 'Leah', 'Todd', 'Loraine', 'Maryanne', 'Russell', 'Matthew']
+['Benjamin', 'Matthew', 'Penny', 'Loraine', 'Leah', 'Maryanne', 'Todd', 'Russell', 'Jenifer']
+['Benjamin', 'Jenifer', 'Matthew', 'Russell', 'Todd', 'Maryanne', 'Leah', 'Loraine', 'Penny']
+['Benjamin', 'Maryanne', 'Jenifer', 'Russell', 'Loraine', 'Matthew', 'Todd', 'Penny', 'Leah']
+########################################################################
+['Benjamin', 'Jenifer', 'Leah', 'Loraine', 'Maryanne', 'Matthew', 'Penny', 'Russell', 'Todd']
+['Benjamin', 'Leah', 'Russell', 'Matthew', 'Maryanne', 'Loraine', 'Todd', 'Penny', 'Jenifer']
+['Benjamin', 'Maryanne', 'Todd', 'Matthew', 'Russell', 'Loraine', 'Jenifer', 'Penny', 'Leah']
+['Benjamin', 'Matthew', 'Jenifer', 'Maryanne', 'Leah', 'Penny', 'Todd', 'Loraine', 'Russell']
+['Benjamin', 'Penny', 'Loraine', 'Matthew', 'Todd', 'Leah', 'Jenifer', 'Russell', 'Maryanne']
+['Benjamin', 'Russell', 'Leah', 'Todd', 'Maryanne', 'Jenifer', 'Matthew', 'Loraine', 'Penny']
+['Benjamin', 'Todd', 'Russell', 'Jenifer', 'Loraine', 'Leah', 'Maryanne', 'Penny', 'Matthew']

@@ -361,24 +361,24 @@ if __name__ == '__main__':
 
     # find_chains({"Doreen", "Fred", "Yolanda"},  ({"Doreen", "Fred"}, ))
 
-    find_chains(
-        {"Nelson", "Kaitlin", "Amelia", "Jack"},
-        (
-            {"Kaitlin", "Jack"},
-            {"Nelson", "Amelia"},
-        )
-    )
-
-    # family = {
-    #     'Loraine', 'Leah', 'Jenifer', 'Russell', 'Benjamin', 'Todd',
-    #     'Maryanne', 'Penny', 'Matthew's
-    # }
-    #
-    # couples = (
-    #     {"Loraine", "Benjamin"},
-    #     {"Leah", "Matthew"},
-    #     {"Todd", "Jenifer"},
+    # find_chains(
+    #     {"Nelson", "Kaitlin", "Amelia", "Jack"},
+    #     (
+    #         {"Kaitlin", "Jack"},
+    #         {"Nelson", "Amelia"},
+    #     )
     # )
+
+    family = {
+        'Loraine', 'Leah', 'Jenifer', 'Russell', 'Benjamin', 'Todd',
+        'Maryanne', 'Penny', 'Matthew'
+    }
+
+    couples = (
+        {"Loraine", "Benjamin"},
+        {"Leah", "Matthew"},
+        {"Todd", "Jenifer"},
+    )
     #
     # family = {'Philip', 'Sondra', 'Mary', 'Selena', 'Eric', 'Phyllis'}
     # couples = ({'Philip', 'Sondra'}, {'Eric', 'Mary'},)
@@ -386,7 +386,7 @@ if __name__ == '__main__':
     # family = {"Allison",  "Robin",  "Petra",  "Curtis",  "Bobbie",  "Kelly"}
     # couples = ({"Allison",  "Curtis"},  {"Robin",  "Kelly"},)
 
-    # result = find_chains(family, couples)
-    # print("\nresult", len(result), pformat(result, width=132, depth=3))
+    result = find_chains(family, couples)
+    print("\nresult", len(result), pformat(result, width=132, depth=3))
 
 # end of file

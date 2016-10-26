@@ -121,12 +121,13 @@ def find_chain(family, couples, paths=[]):
     # convert set to list
     names = list(family)
 
-    return next(calc_gifts(names, blacklist))
+    return calc_gifts(names, blacklist)
 
 ########################################################################
 
 
 def unwind(solution_dict, n0):
+    """Convert path dictionary to a list beginning with 'n0'."""
     result = [n0]
     next = solution_dict[n0]
     while next != n0:
@@ -137,95 +138,6 @@ def unwind(solution_dict, n0):
     return result
 
 ########################################################################
-
-
-
-# def old_find_chains(family, couples):
-#     """Find chains of gift-givers in 'family', excuding 'couples'.
-#
-#     Members of 'family' give gifts to each other each year; pairs of members
-#     that are 'couples' don't give to each other. Compute the chains of giving
-#     such that no member gives to the same person in another chain."""
-#
-#     # form the blacklist, pairs of people who cannot exchange gifts
-#     blacklist = defaultdict(list)
-#     for x, y in couples:
-#         blacklist[x].append(y)
-#         blacklist[y].append(x)
-#
-#     # convert set to list
-#     names = list(family)
-#
-#     # get the alphabetically first name
-#     name0 = sorted(names)[0]
-#
-#     # compute all chains, starting them with name0
-#     solution = unwrap(
-#         list(
-#             calc_gifts(names, blacklist)
-#         ),
-#         name0
-#     )
-#
-#     # keep chains of family length
-#     solution = set([x for x in solution if len(x) == len(family)])
-#
-#     if 1 or DEBUG:
-#         print("solution", pformat(solution))
-#
-#     # keep only the chains having different pairings from one another
-#     chains = []
-#
-#     # form a list of solution strings
-#     p = list([" ".join(list(x)) for x in solution])
-#     while p:
-#         # get the topmost solution
-#         r0 = (p.pop(0)).split()
-#         if DEBUG:
-#             print("\nr0", r0)
-#
-#         # add this solution to the output
-#         chains.append(
-#             normalize(
-#                 r0,
-#                 name0
-#             )
-#         )
-#
-#         # form gift-giving pairs
-#         c0 = r0 + [r0[0]]
-#         pairs = [" ".join(c0[i:i + 2]) for i in range(len(c0) - 1)]
-#         if DEBUG:
-#             print("\npairs", pformat(pairs))
-#         remove_pairs(pairs, p)
-#
-#     if DEBUG:
-#         print("chains", "\n", len(chains), "\n", pformat(chains, width=132))
-#
-#     return chains
-
-########################################################################
-
-# assert len(
-#     find_chains(
-#         {"Allison", "Robin", "Petra", "Curtis", "Bobbie", "Kelly"},
-#         (
-#             {"Allison", "Curtis"},
-#             {"Robin", "Kelly"},
-#         )
-#     )
-# ) == 4
-
-# if 0:
-#     family = {'Philip', 'Sondra', 'Mary', 'Selena', 'Eric', 'Phyllis'}
-#     couples = (
-#         {'Philip', 'Sondra'},
-#         {'Eric', 'Mary'},
-#     )
-#
-#     find_chains(family, couples)
-#
-# else:
 
 family = {
     'Loraine', 'Leah', 'Jenifer', 'Russell', 'Benjamin', 'Todd',
@@ -238,28 +150,24 @@ couples = (
     {"Todd", "Jenifer"},
 )
 
-# family = {"Allison", "Robin", "Petra", "Curtis", "Bobbie", "Kelly"}
-# couples = ({"Allison", "Curtis"}, {"Robin", "Kelly"},)
-
-# convert from sets to tuples
-pprint(couples)
+# change couples from sets to tuples
 couples = [tuple(sorted([x, y])) for (x, y) in couples]
-pprint(couples)
 
+# get the first name in the family
 n0 = sorted(list(family))[0]
 
 try:
     good_paths = []
-    bad_paths = []
+    generator = find_chain(family, couples, good_paths[:])
     while 1:
-        path = find_chain(family, couples, good_paths[:] + bad_paths[:])
+        path = next(generator)
         print("pre-unwind", pformat(path))
         upath = unwind(path, n0)
         print(len(upath), pformat(upath, depth=2))
         if len(upath) == len(family):
             good_paths.append(path)
-        else:
-            bad_paths.append(path)
+            generator = find_chain(family, couples, good_paths[:])
+
 except StopIteration:
     pass
 
@@ -267,7 +175,21 @@ print(72 * '#')
 print(len(good_paths))
 
 for path in good_paths:
-    pprint(path, width=132)
+    pprint(unwind(path, n0), width=288)
 
+print(72 * '#')
+
+bogus = [
+    [('Benjamin', 'Jenifer'), ('Jenifer', 'Leah'), ('Leah', 'Loraine'), ('Loraine', 'Maryanne'), ('Maryanne', 'Matthew'), ('Matthew', 'Penny'), ('Penny', 'Russell'), ('Russell', 'Todd'), ('Todd', 'Benjamin')],
+    [('Benjamin', 'Todd'), ('Todd', 'Russell'), ('Russell', 'Jenifer'), ('Jenifer', 'Loraine'), ('Loraine', 'Leah'), ('Leah', 'Maryanne'), ('Maryanne', 'Penny'), ('Penny', 'Matthew'), ('Matthew', 'Benjamin')],
+    [('Benjamin', 'Matthew'), ('Matthew', 'Jenifer'), ('Jenifer', 'Maryanne'), ('Maryanne', 'Leah'), ('Leah', 'Penny'), ('Penny', 'Todd'), ('Todd', 'Loraine'), ('Loraine', 'Russell'), ('Russell', 'Benjamin')],
+    [('Benjamin', 'Russell'), ('Russell', 'Leah'), ('Leah', 'Todd'), ('Todd', 'Maryanne'), ('Maryanne', 'Jenifer'), ('Jenifer', 'Matthew'), ('Matthew', 'Loraine'), ('Loraine', 'Penny'), ('Penny', 'Benjamin')],
+    [('Benjamin', 'Maryanne'), ('Maryanne', 'Todd'), ('Todd', 'Matthew'), ('Matthew', 'Russell'), ('Russell', 'Loraine'), ('Loraine', 'Jenifer'), ('Jenifer', 'Penny'), ('Penny', 'Leah'), ('Leah', 'Benjamin')],
+    [('Benjamin', 'Penny'), ('Penny', 'Loraine'), ('Loraine', 'Matthew'), ('Matthew', 'Todd'), ('Todd', 'Leah'), ('Leah', 'Jenifer'), ('Jenifer', 'Russell'), ('Russell', 'Maryanne'), ('Maryanne', 'Benjamin')],
+    [('Benjamin', 'Leah'), ('Leah', 'Russell'), ('Russell', 'Matthew'), ('Matthew', 'Maryanne'), ('Maryanne', 'Loraine'), ('Loraine', 'Todd'), ('Todd', 'Penny'), ('Penny', 'Jenifer'), ('Jenifer', 'Benjamin')]
+]
+
+for path in sorted(bogus):
+    pprint([x[0] for x in path], width=288)
 
 # end of file
