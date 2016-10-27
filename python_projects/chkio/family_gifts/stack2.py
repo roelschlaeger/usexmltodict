@@ -36,19 +36,19 @@ def normalize(path, family0):
 ########################################################################
 
 
-def unwrap(dictionary_list, n0):
-    """Unwrap the solution list of dictionaries, starting each with n0."""
-    out = []
-    for solution_dict in dictionary_list:
-        result = [n0]
-        next = solution_dict[n0]
-        while next != n0:
-            result.append(next)
-            next = solution_dict[next]
-        if DEBUG:
-            print(result)
-        out.append(tuple(result))
-    return out
+# def unwrap(dictionary_list, n0):
+#     """Unwrap the solution list of dictionaries, starting each with n0."""
+#     out = []
+#     for solution_dict in dictionary_list:
+#         result = [n0]
+#         next = solution_dict[n0]
+#         while next != n0:
+#             result.append(next)
+#             next = solution_dict[next]
+#         if DEBUG:
+#             print(result)
+#         out.append(tuple(result))
+#     return out
 
 ########################################################################
 
@@ -137,19 +137,29 @@ n0 = sorted(list(family))[0]
 
 good_paths = []
 generator = find_chain(family, couples, good_paths[:])
-# solutions = list(generator)
-print(
-    pformat(
-        [
-            long_enough for long_enough in
-            [
-                unwind(path, n0) for path in generator
-            ] if len(long_enough) == len(family)
-        ],
-        width=288
-    )
-)
+# print(next(generator))
 
+chains = list(generator)
+print(len(chains))
+
+len_family = len(family)
+full_chains = [x for x in chains if len(unwind(x, n0)) == len_family]
+print(len(full_chains))
+
+
+# solutions = list(generator)
+# print(
+#     pformat(
+#         [
+#             long_enough for long_enough in
+#             [
+#                 unwind(path, n0) for path in generator
+#             ] if len(long_enough) == len(family)
+#         ],
+#         width=288
+#     )
+# )
+#
 # try:
 #     good_paths = []
 #     generator = find_chain(family, couples, good_paths[:])
