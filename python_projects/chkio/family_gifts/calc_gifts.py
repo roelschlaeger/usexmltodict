@@ -15,6 +15,20 @@ from itertools import permutations
 ########################################################################
 
 
+def unwind(solution_dict, n0):
+    """Convert path dictionary to a list beginning with 'n0'."""
+    result = [n0]
+    next = solution_dict[n0]
+    while next != n0:
+        result.append(next)
+        next = solution_dict[next]
+#   if DEBUG:
+#       print(result)
+    return result
+
+########################################################################
+
+
 def create_blacklist(couples, edges=None):
     """Create the blacklist from the couples pairs."""
     # form the blacklist, pairs of people who cannot exchange gifts
@@ -90,6 +104,8 @@ if __name__ == "__main__":
         {"Todd", "Jenifer"},
     )
 
+    ####################################################################
+
     def print_dict(dname, d):
         print(dname)
         print('=' * len(dname))
@@ -100,6 +116,33 @@ if __name__ == "__main__":
                 "\n", len(d[k]), pformat(d[k], width=132)
             )
         print()
+
+    ####################################################################
+
+    def calc_via_triples(triples, family, couples):
+        print("\n\n\ncalc_via_triples")
+        print("\n  len(triples)", len(triples))
+        for triple in triples[:3]:
+            print("\n  triple", pformat(triple))
+            pre, mid, post = triple
+            fam2 = family - set([mid, post])
+            print("\n  fam2", fam2)
+            blacklist2 = create_blacklist(couples)
+            shorter_paths = list(calc_gifts([post] + list(fam2), blacklist2))
+            short = [
+                y for y in [unwind(x, post) for x in shorter_paths]
+                if len(y) >= len(fam2) and y[-1] == pre
+            ]
+            print(
+                "\n  len(shorter_paths)", len(shorter_paths),
+                "\n  shorter_paths[:2]", pformat(shorter_paths[:2]),
+                "\n...",
+                "\n  len(short)", len(short),
+                "\n  short[:2]", pformat(short[:2]),
+                "\n..."
+            )
+
+    ####################################################################
 
     def find_chain(family, couples, paths=[]):
         """Find a chain of gift-givers in 'family', excluding 'couples'."""
@@ -132,13 +175,10 @@ if __name__ == "__main__":
             print_dict("g_from", g_from)
             print_dict("g_to", g_to)
 
-        # convert set to list
-        names = list(family)
-
         ################################################################
 
         # take one of the couples
-        choice = couples[0][0]
+        choice = list(couples[0])[0]
         to_choices = g_to[choice]
         from_choices = g_from[choice]
 
@@ -148,9 +188,13 @@ if __name__ == "__main__":
             ] for z in from_choices
         ]
 
-        pprint(triples)
+        pprint(triples, width=132)
 
-        return calc_gifts(names, blacklist)
+        for triple0 in triples:
+            calc_via_triples(triple0, family, couples)
+
+        # return calc_gifts(list(family), blacklist)
+        return "No result generated"
 
     result = list(find_chain(family, couples))
     print("len(result)", len(result))
