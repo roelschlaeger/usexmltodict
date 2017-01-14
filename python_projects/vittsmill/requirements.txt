@@ -1,0 +1,2 @@
+geopy==1.10.0
+simplekml==1.2.8
