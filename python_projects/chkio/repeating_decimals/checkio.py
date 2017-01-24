@@ -1,91 +1,55 @@
-# vim:ts=4:sw=4:tw=0:wm=0:et
-# -*- encoding=utf8 -*-
-
-# https://py.checkio.org/mission/repeating-decimals/
+"""Continued fraction expansion."""
 
 from __future__ import print_function
 
-########################################################################
-
-from fractions import Fraction
-
-########################################################################
-
 
 def convert(n, d):
-    f0 = Fraction(n, d)
+    """Expand n/d to a continued fraction."""
 
-    f1 = f0.limit_denominator()
+    # isolate integer and fractional portions of result
+    i, n = divmod(n, d)
 
-    sign = (f1.numerator < 0)
-    if sign:
-        f1 = - f1
-    integer_part = int(f1)
+    # set up data structures
+    qlist = []  # list of successive quotient digits
+    remainders = {}  # dictionary of qlist location of remainder
 
-    n = f1.numerator - integer_part * f1.denominator
-    d = f1.denominator
+    while n not in remainders:
+        # mark the location of the remainder
+        remainders[n] = len(qlist)
+        # compute one more digit of the quotient
+        q, n = divmod(n * 10, d)
+        # save the quotient digit as a string
+        qlist.append(str(q))
 
-    f2 = Fraction(n, d)
+    # locate the start of the repeat
+    r = remainders[n]
+    # concatenate the integer and fixed fractional part
+    result = "%s." % i + "".join(qlist[:r])
+    # compute the repeated fraction
+    frac = "(" + "".join(qlist[r:]) + ")"
+    # don't append the repeated '0' series
+    if frac != "(0)":
+        result += frac
 
-    print("\nconvert",
-          "\n  n", n,
-          "\n  d", d,
-          "\n  f0.numerator", f0.numerator,
-          "\n  f0.denominator", f0.denominator,
-          "\n  sign", sign,
-          "\n  integer_part", integer_part,
-          "\n  f2.numerator", f2.numerator,
-          "\n  f2.denominator", f2.denominator
-          )
+    return result
 
-    dividend = 1000000000000000000 * f2.numerator
-    s = str(int(dividend / f2.denominator))
-    print(s)
-    found = False
-    for i in range(len(s) - 1, 0, -1):
-        ss = s[:i]
-        if ss in s[i:]:
+if __name__ == '__main__':
+    print(convert(1, 1))
+    print(convert(1, 2))
+    print(convert(1, 3))
+    print(convert(1, 4))
+    print(convert(1, 5))
+    print(convert(1, 6))
+    print(convert(1, 7))
+    print(convert(1, 8))
+    print(convert(1, 9))
+    print(convert(1, 10))
+    print(convert(1, 11))
+    print(convert(1, 12))
+    print(convert(1, 13))
+    print(convert(1, 97))
+    print(convert(1, 970))
+    print(convert(1, 9700))
+    print(convert(1, 97000))
 
-            print(
-                "\n  s.find(ss)", s.find(ss),
-                "\n  i", i,
-                "\n  ss", ss,
-                "\n  s[i:]", s[i:]
-            )
-            if not found:
-                found = True
-                leading_fraction = s[:i] if i > 0 else ""
-                repeating_fraction = "(" + ss + ")"
-                print(
-                    "\n\n  leading_fraction", leading_fraction,
-                    "\nrepeating_fraction", repeating_fraction
-                )
-
-    fractional_part = leading_fraction + repeating_fraction
-    result = "%(integer_part)s.%(fractional_part)s" % locals()
-    print("result", result)
-    import sys
-    sys.exit(0)
-
-########################################################################
-
-# convert(1000, 1001)
-convert(8, 7) == "1.(142857)"
-convert(1, 3) == "0.(3)"
-convert(5, 3) == "1.(6)"
-convert(3, 8) == "0.375"
-convert(7, 11) == "0.(63)"
-convert(29, 12) == "2.41(6)"
-convert(11, 7) == "1.(571428)"
-convert(0, 117) == "0."
-convert(4, 2) == "2."
-
-# convert(1, 3) == "0.(3)"
-# convert(5, 3) == "1.(6)"
-# convert(3, 8) == "0.375"
-# convert(7, 11) == "0.(63)"
-# convert(29, 12) == "2.41(6)"
-# convert(11, 7) == "1.(571428)"
-# convert(0, 117) == "0."
-# convert(4, 2) == "2."
 # end of file
