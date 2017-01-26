@@ -1,8 +1,21 @@
 #!/usr/bin/env python
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
+from __future__ import print_function
+
 # Created:       Thu 02 Oct 2014 06:37:29 PM CDT
-# Last Modified: Tue 06 Oct 2015 09:44:44 AM CDT
+# Last Modified: Thu 26 Jan 2017 10:48:55 AM CST
+
+#######################################################################
+
+from itertools import chain, count
+import exifread
+import os
+import string
+from pprint import pprint
+import sys
+
+#######################################################################
 
 """
 SYNOPSIS
@@ -52,13 +65,6 @@ VERSION
 
 __VERSION__ = "0.0.3"
 
-#######################################################################
-
-from itertools import chain, count
-import exifread
-import os
-import string
-
 #########################################################################
 
 
@@ -68,7 +74,7 @@ def show_make_html(base):
 'explorist_results....gpx' files, indicating whether a corresponding
 'make_html.html' is there also.
 """ % base
-    print msg
+    print(msg)
 
     for filename in sorted(os.listdir(base)):
 
@@ -78,7 +84,7 @@ def show_make_html(base):
             explorist = any([f.startswith("explorist_results") for f in files])
             if explorist:
                 status = ("make_html.html" in files)
-                print filename, status
+                print(filename, status)
 
 #########################################################################
 
@@ -107,7 +113,7 @@ def show_directories(base, level):
                 sfiles = str(files)
                 if len(sfiles) > 60:
                     sfiles = sfiles[:56] + "...]"
-                print "%-20s %3d: %s" % (filename, len(files), sfiles)
+                print("%-20s %3d: %s" % (filename, len(files), sfiles))
 
 #########################################################################
 
@@ -127,8 +133,11 @@ def ensure_unique(name, namelist):
     # check for name alread in namelist
     while testname + ext in namelist:
 
-        # creaste a new modified name
-        testname = "%s%s" % (root, g.next())
+        # create a new modified name
+        if sys.version_info < (3,):
+            testname = "%s%s" % (root, g.next())
+        else:
+            testname = "%s%s" % (root, next(g))
 
     # return the result with its extension
     return testname + ext
@@ -138,9 +147,8 @@ if 0:
     for x in range(100):
         y = ensure_unique('test.jpg', namelist)
         namelist[y] = x
-        print y
+        print(y)
 
-    import sys
     sys.exit(0)
 
 #########################################################################
@@ -163,7 +171,7 @@ def get_exif_timestamp(path, filename, debug):
     if debug:
 
         # show all of the relevant keys
-        for tag in tags.keys():
+        for tag in list(tags.keys()):
 
             if tag not in (
                 'JPEGThumbnail',
@@ -171,16 +179,26 @@ def get_exif_timestamp(path, filename, debug):
                 'Filename',
                 'EXIF MakerNote'
             ):
-                print "%-38s: %s" % (tag, tags[tag])
+                print("%-38s: %s" % (tag, tags[tag]))
 
     # we're interested in the original date and time the picture was
     # taken
-    datetimeoriginal = str(tags["EXIF DateTimeOriginal"])
+    try:
+        datetimeoriginal = str(tags["EXIF DateTimeOriginal"])
+    except KeyError as e:
+        print()
+        print("in ", pathname)
+        print(str(e))
+        print()
+        print(e.args, e.message)
+        print()
+        print("SKIPPING")
+        datetimeoriginal = "2001:01:01 00:00:00"
 
     # split into date and time fields
     date, time = datetimeoriginal.split()
     if debug:
-        print "Date: %s Time: %s" % (date, time)
+        print("Date: %s Time: %s" % (date, time))
 
     # split into year, month, day, hour, minute, second fields
     yr, mo, dy = date.split(":")
@@ -199,31 +217,31 @@ def generate_cmd_file(path, result, debug=False):
 temporary directory"""
 
     if debug:
-        print "generate_cmd_file(%s, %s, %s)" % (path, result, debug)
+        print("generate_cmd_file(%s, %s, %s)" % (path, result, debug))
 
     # create the output filename
     outpath = os.path.join(path, BATFILENAME)
 
     if debug:
-        print "Creating file %s" % outpath
+        print("Creating file %s" % outpath)
 
     outfile = open(outpath, "w")
 
     # create the directory
-    print >>outfile, "mkdir temp"
+    print("mkdir temp", file=outfile)
 
     # for all entries in the result dictionary
-    for new in sorted(result.keys()):
+    for new in sorted(list(result.keys())):
 
         # get the old filename
         old = result[new]
 
         # report it
         if debug:
-            print 'copy "%s" temp\%s' % (old, new)
+            print('copy "%s" temp\%s' % (old, new))
 
         # copy and rename the file to the temporary directory
-        print >>outfile, 'copy "%s" temp\%s' % (old, new)
+        print('copy "%s" temp\%s' % (old, new), file=outfile)
 
     # close the batch file
     outfile.close()
@@ -235,8 +253,7 @@ def process(path, debug=False):
     """Process .jpg files in the path directory"""
 
     if debug:
-        print "process(%s, debug=%s)" % (path, debug)
-
+        print("process(%s, debug=%s)" % (path, debug))
     # return the dictionary of filename:newname values
     translation_table = {}
 
@@ -244,7 +261,6 @@ def process(path, debug=False):
     filenames = os.listdir(path)
 
     if debug:
-        from pprint import pprint
         pprint(filenames)
 
     # examine each file in the directory
@@ -257,7 +273,7 @@ def process(path, debug=False):
         if filename.endswith('.jpg'):
 
             if debug:
-                print filename
+                print(filename)
 
             # get picture date from EXIF timestamp
             yr, mo, dy, hr, mn, se = get_exif_timestamp(path, filename, debug)
@@ -265,48 +281,50 @@ def process(path, debug=False):
             # generate a new name like the old camera used to make
 
             # this was the old format
-####        newname = "%2s%2s%2s%2s%2s.jpg" % (mo, dy, yr[2:], hr, mn)
+#           newname = "%2s%2s%2s%2s%2s.jpg" % (mo, dy, yr[2:], hr, mn)
             newname = "IMG_%4s%2s%2s_%2s%2s%2s_000.jpg" % \
                 (yr, mo, dy, hr, mn, se)
 
-            uniquename = ensure_unique(newname, translation_table.keys())
+            uniquename = ensure_unique(newname, list(translation_table.keys()))
 
             if debug:
-                print yr, mo, dy, hr, mn, se, newname, uniquename
+                print(yr, mo, dy, hr, mn, se, newname, uniquename)
 
             # put an entry into the table
             translation_table[uniquename] = filename
 
             if debug:
-                print
+                print()
 
     return translation_table
 
+########################################################################
+
 if __name__ == '__main__':
 
-    import sys
-#   import os
+    # import sys
+    # import os
     import traceback
     import optparse
     import time
 
-#from pexpect import run, spawn
+# from pexpect import run, spawn
 
 # Uncomment the following section if you want readline history support.
-#import readline, atexit
-#histfile = os.path.join(os.environ['HOME'], '.TODO_history')
-#try:
-#    readline.read_history_file(histfile)
-#except IOError:
-#    pass
-#atexit.register(readline.write_history_file, histfile)
+# import readline, atexit
+# histfile = os.path.join(os.environ['HOME'], '.TODO_history')
+# try:
+#     readline.read_history_file(histfile)
+# except IOError:
+#     pass
+# atexit.register(readline.write_history_file, histfile)
 
 ########################################################################
 
     BASE = r"C:\Users\Robert Oelschlaeger\Google Drive\Caching Pictures"
     """Location of pictures containing EXIF data"""
 
-    DATE = "20151005"
+    DATE = "20170125"
     """Location of this week's pictures"""
 
     def main():
@@ -321,14 +339,14 @@ if __name__ == '__main__':
         directory_option = OPTIONS.directory
 
         if debug_option:
-            print ARGS, OPTIONS
-            print debug_option
-            print base_option
-            print date_option
-            print generate_option
-            print list_option
-            print directory_option
-            print
+            print(ARGS, OPTIONS)
+            print(debug_option)
+            print(base_option)
+            print(date_option)
+            print(generate_option)
+            print(list_option)
+            print(directory_option)
+            print()
 
         if list_option:
             show_directories(base_option, list_option)
@@ -337,7 +355,6 @@ if __name__ == '__main__':
         else:
             path = os.path.join(base_option, date_option)
             result = process(path, debug_option)
-            from pprint import pprint
             pprint(result)
 
             if generate_option:
@@ -425,7 +442,7 @@ if __name__ == '__main__':
         (OPTIONS, ARGS) = PARSER.parse_args()
 
         if OPTIONS.verbose:
-            print time.asctime()
+            print(time.asctime())
 
         EXIT_CODE = main()
 
@@ -433,21 +450,21 @@ if __name__ == '__main__':
             EXIT_CODE = 0
 
         if OPTIONS.verbose:
-            print time.asctime()
-            print 'TOTAL TIME IN MINUTES:',
-            print (time.time() - START_TIME) / 60.0
+            print(time.asctime())
+            print('TOTAL TIME IN MINUTES:', end=" ")
+            print((time.time() - START_TIME) / 60.0)
 
         sys.exit(EXIT_CODE)
 
-    except KeyboardInterrupt, error_exception:        # Ctrl-C
+    except KeyboardInterrupt as error_exception:      # Ctrl-C
         raise error_exception
 
-    except SystemExit, error_exception:               # sys.exit()
+    except SystemExit as error_exception:             # sys.exit()
         raise error_exception
 
-    except Exception, error_exception:
-        print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(error_exception)
+    except Exception as error_exception:
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(error_exception))
         traceback.print_exc()
         os._exit(1)
 

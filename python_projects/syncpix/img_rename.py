@@ -2,18 +2,18 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 08 Oct 2014 08:31:13 PM CDT
-# Last Modified: Wed 10 Jun 2015 08:28:47 PM CDT
+# Last Modified: Fri 23 Oct 2015 08:53:50 AM CDT
 
 """
 SYNOPSIS
 
-    TODO helloworld [-h] [-v,--verbose] [--version]
+    TODO img_rename [-h] [-v,--verbose] [--version]
 
 DESCRIPTION
 
-    TODO This describes how to use this script.
-    This docstring will be printed by the script if there is an error or
-    if the user requests help (-h or --help).
+    Rename images received from an iPhone 5c with names that indicate the time
+    and date on which the picture was taken, using the EXIF information
+    embedded in the .jpg file.
 
 EXAMPLES
 
@@ -25,7 +25,7 @@ EXIT STATUS
 
 AUTHOR
 
-    TODO: Robert Oelschlaeger <roelsch2009@gmail.com>
+    TODO: Robert Oelschlaeger <roelschlaeger@gmail.com>
 
 LICENSE
 
@@ -35,7 +35,7 @@ VERSION
 
 """
 
-__VERSION__ = "0.0.1"
+__VERSION__ = "0.0.2"
 
 ########################################################################
 
@@ -98,9 +98,9 @@ if __name__ == '__main__':
     import optparse
     import time
 
-#   BASE = "C:/Users/Robert Oelschlaeger/Google Drive/Caching Pictures"
-    BASE = "C:/Users/Robert Oelschlaeger/Desktop/Camera"
-    DATE = "20150610"
+    BASE = "C:/Users/Robert Oelschlaeger/Google Drive/Caching Pictures"
+#   BASE = "C:/Users/Robert Oelschlaeger/Desktop/Camera"
+    DATE = "20151022"
 #   DIRECTORY_NAME = "20150106"
 #   DIRECTORY_NAME = "20150205"
     DIRECTORY_NAME = DATE
