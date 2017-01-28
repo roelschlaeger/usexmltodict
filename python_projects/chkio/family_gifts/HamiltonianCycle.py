@@ -4,7 +4,9 @@
 # http://blog.mayec.eu/2011/05/python-hamiltonian-cycles-in-graph.html#
 #
 # roelsch2015@gmail.com
-# Modified for Python3 and PEP8
+#     20161028 - Modified for Python3 and PEP8
+
+"""Solve for Hamiltonian Cycles in Graph."""
 
 from __future__ import print_function
 
@@ -31,6 +33,7 @@ zJ noq
 zK ceko
 
 """
+
 # Zones connections:
 zA = ['a', 'b', 'c']
 zB = ['a', 'f', 'g']
@@ -43,6 +46,7 @@ zH = ['b', 'd', 'h', 'l']
 zI = ['g', 'j', 'k']
 zJ = ['n', 'o', 'q']
 zK = ['c', 'e', 'k', 'o']
+
 # Bridge connections:
 a = ['zA', 'zB']
 b = ['zA', 'zH']
@@ -67,7 +71,7 @@ zones = {
     'zA': zA, 'zB': zB, 'zC': zC, 'zD': zD, 'zE': zE, 'zF': zF, 'zG': zG, 'zH':
     zH, 'zI': zI, 'zJ': zJ, 'zK': zK
 }
-#zones = {'zA':zA} #debug
+# zones = {'zA':zA} #debug
 
 bridges = {
     'a': a, 'b': b, 'c': c, 'd': d, 'e': e, 'f': f, 'g': g, 'h': h, 'i': i,
@@ -99,6 +103,7 @@ path = []
 
 
 def debug(message):
+    """If global 'debugSwitch' is set, print 'message'."""
     global debug
     if debugSwitch:
         print(message)
@@ -107,6 +112,7 @@ def debug(message):
 
 
 def formatPath(path):
+    """Return a formatted string composed of elements of 'path'."""
     myPath = ''
     for i in range(0, len(path)):
         myPath += (str(path[i]) + ' ')
@@ -114,6 +120,7 @@ def formatPath(path):
 
 
 def exploreBridges(zone, firstBranch):
+    """Explore bridges in 'zone'."""
     global runs, maxRuns, hamiltonianPaths, path, usedZones, usedBridges, file
 
     # mark this zone as used
@@ -132,7 +139,7 @@ def exploreBridges(zone, firstBranch):
     debug("see bridges:")
     newUsableBridges = list(usableBridges)
     for bridge in usableBridges:
-        #debug( "used? " + bridge + "," + str(usedBridges[bridge]) )
+        # debug( "used? " + bridge + "," + str(usedBridges[bridge]) )
         # remove bridge from usable bridges if it has been used
         if usedBridges[bridge] == 0:
             newUsableBridges.remove(bridge)
@@ -153,16 +160,16 @@ def exploreBridges(zone, firstBranch):
         for bridge in usableBridges:
             debug("now in zone " + zone)
             debug("cross " + bridge)
-            #cross first available bridge
+            # cross first available bridge
             path.append(bridge)
             usedBridges[bridge] = 0
             debug("usedBridges: " + str(usedBridges))
-            #find out which zone is across bridge
+            # find out which zone is across bridge
             if zone == bridges[bridge][0]:
                 newZone = bridges[bridge][1]
             else:
                 newZone = bridges[bridge][0]
-            #explore that zone
+            # explore that zone
             exploreBridges(newZone, 0)
         # once done with all bridges:
         if len(path) > 1:
@@ -244,9 +251,9 @@ def exploreBridges(zone, firstBranch):
                 file.write("Hamiltonian Path!\n")
             if (haltOnHamiltonianPath):
                 sys.exit()
-            #End of test for Hamiltonian Path
+            # End of test for Hamiltonian Path
 
-        #if we have reached specified max. # of runs, stop execution
+        # if we have reached specified max. # of runs, stop execution
         if limitRuns and (runs == maxRuns):
             sys.exit(0)
 
@@ -254,7 +261,7 @@ def exploreBridges(zone, firstBranch):
         # remove last zone visited
         # reset last zone visited to not used
         usedZones[path[len(path) - 1]] = 1
-        #remove last zone from path
+        # remove last zone from path
         removed = path.pop()
         debug("remove " + removed)
         # remove last bridge crossed
@@ -270,7 +277,7 @@ def exploreBridges(zone, firstBranch):
     debug("closeLevel")
 
 
-#------------ MAIN LOOP ------------
+# ------------ MAIN LOOP ------------
 
 if toFile:
     file = open('hamiltonian.txt', 'w')
