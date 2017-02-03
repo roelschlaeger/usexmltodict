@@ -4,7 +4,7 @@
 from __future__ import print_function
 
 # Created:       Thu 02 Oct 2014 06:37:29 PM CDT
-# Last Modified: Thu 26 Jan 2017 10:48:55 AM CST
+# Last Modified: Fri 03 Feb 2017 09:11:11 AM CST
 
 #######################################################################
 
@@ -324,7 +324,7 @@ if __name__ == '__main__':
     BASE = r"C:\Users\Robert Oelschlaeger\Google Drive\Caching Pictures"
     """Location of pictures containing EXIF data"""
 
-    DATE = "20170125"
+    DATE = "20170202"
     """Location of this week's pictures"""
 
     def main():

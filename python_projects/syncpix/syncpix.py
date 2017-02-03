@@ -2,20 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Thu 26 Jan 2017 10:45:33 AM CST
-
-#######################################################################
-
-from datetime import datetime
-from mh import make_html
-from pprint import pprint
-from xml.etree import ElementTree as ET
-import dateutil.parser
-import os
-import pickle
-import re
-import sys
-from compute_closest_waypoints import compute_closest_waypoints
+# Last Modified: Fri 03 Feb 2017 09:30:43 AM CST
 
 #######################################################################
 
@@ -47,9 +34,22 @@ LICENSE
 
 """
 
-__VERSION__ = "0.2.1"
-
 ########################################################################
+
+from datetime import datetime
+from mh import make_html
+from pprint import pprint
+from xml.etree import ElementTree as ET
+import dateutil.parser
+import os
+import pickle
+import re
+import sys
+from compute_closest_waypoints import compute_closest_waypoints
+
+#######################################################################
+
+__VERSION__ = "0.2.2"
 
 global PICKLE
 PICKLE = False
@@ -350,8 +350,8 @@ if __name__ == '__main__':
     import time
     import traceback
 
-    DATE = "20170125"
-    ROUTE_NAME = "topo885c - Rosebud MO"
+    DATE = "20170202"
+    ROUTE_NAME = "topo886b - Lohman MO"
 
     HOME = r"C:\Users\Robert Oelschlaeger"
     TIMEZONE = "CDT"
