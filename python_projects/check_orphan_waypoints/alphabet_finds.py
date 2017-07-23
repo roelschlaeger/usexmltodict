@@ -7,8 +7,10 @@
 from __future__ import print_function
 
 from sqlite3 import connect
+import sys
+assert sys.version_info > (3, ), "Python 3 required"
 
-__VERSION__ = "0.0.1"
+__VERSION__ = "0.0.2"  # 20170723 1405 rlo
 
 ########################################################################
 
@@ -21,49 +23,49 @@ def get_all_waypoints(dbname):
     """Fetch all waypoint names from the SQLite3 database."""
     print("Opening %s" % dbname)
 
-    with connect(dbname) as c:
+    with connect(dbname) as _connection:
 
         print("Selecting Code from Caches")
-        c2 = c.execute(
+        _selection = _connection.execute(
             'SELECT Code, Name, PlacedBy, FoundByMeDate \
             FROM Caches ORDER BY FoundByMeDate DESC'
         )
 
         # get all rows as tuples
-        all = c2.fetchall()
+        _all_names = _selection.fetchall()
 
     # return just the names instead of tuples
-    return all
+    return _all_names
 
 ########################################################################
 
 
-def calculate_widths(d):
+def calculate_widths(_data):
     """Calculate the widths of the output fields."""
-    w1 = w2 = w3 = w4 = 0
+    w_1 = w_2 = w_3 = w_4 = 0
 
-    for key, values in d.items():
-        w1 = max(w1, len(values[0]))
-        w2 = max(w2, len(values[1]))
-        w3 = max(w3, len(values[2]))
-        w4 = max(w4, len(values[3]))
+    for _key, values in _data.items():
+        w_1 = max(w_1, len(values[0]))
+        w_2 = max(w_2, len(values[1]))
+        w_3 = max(w_3, len(values[2]))
+        w_4 = max(w_4, len(values[3]))
 
-    # print(w1, w2, w3, w4)
-    return w1, w2, w3, w4
+    # print(w_1, w_2, w_3, w_4)
+    return w_1, w_2, w_3, w_4
 
 ########################################################################
 
 
 def print_results(out):
     """Print the contents of the computed results."""
-    w1, w2, w3, w4 = calculate_widths(out)
-    format = "%%c:  %%-%ds  %%-%ds  %%-%ds  %%-%ds" % (w1, w2, w3, w4)
+    w_1, w_2, w_3, w_4 = calculate_widths(out)
+    _format = "%%c:  %%-%ds  %%-%ds  %%-%ds  %%-%ds" % (w_1, w_2, w_3, w_4)
     print()
-    print(format % ("A", "GC", "Name", "Owner", "Found Date"))
-    print(format % ("-", "-" * w1, "-" * w2, "-" * w3, "-" * w4))
+    print(_format % ("A", "GC", "Name", "Owner", "Found Date"))
+    print(_format % ("-", "-" * w_1, "-" * w_2, "-" * w_3, "-" * w_4))
     for key in sorted(out):
         value = out[key]
-        print(format % (key, value[0], value[1], value[2], value[3]))
+        print(_format % (key, value[0], value[1], value[2], value[3]))
     print()
 
 ########################################################################
@@ -76,38 +78,41 @@ def main():
     print("Processing from %s" % dbname)
     print()
 
-    all = get_all_waypoints(dbname)
+    _all_names = get_all_waypoints(dbname)
 
     # get all geocache names
-    gc = [x for x in all if x[0][:2] == 'GC']
-    # print(len(gc), "cache waypoints")
+    _gc_name = [x for x in _all_names if x[0][:2] == 'GC']
+    # print(len(_gc_name), "cache waypoints")
 
     out = {}
     import string
-    for c in string.uppercase:  # + string.digits + string.lowercase:
-        # print(c)
-        for item in gc:
-            if item[1][0] == c:
+    for _char in string.ascii_uppercase:  # + string.digits + string.lowercase:
+        # print(_char)
+        for item in _gc_name:
+            if item[1][0] == _char:
                 # print(item[1])
-                out[c] = item
-                # print("%c: %s" % (c, out[c][1]))
+                out[_char] = item
+                # print("%c: %s" % (_char, out[_connection][1]))
                 break
     print_results(out)
+
+    return 0
+
 
 ########################################################################
 
 if __name__ == '__main__':
 
-    import sys
+    # import sys
     import argparse
     import textwrap
-    import traceback
-    import os
+    # import traceback
+    # import os
 
     PARSER = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
         usage=textwrap.dedent(globals()['__doc__']),
-        version="Version: %s" % __VERSION__
+        # version="Version: %s" % __VERSION__
     )
 
     PARSER.add_argument(
@@ -133,10 +138,10 @@ if __name__ == '__main__':
     except SystemExit as error_exception:               # sys.exit()
         raise error_exception
 
-    except Exception as error_exception:
-        print('ERROR, UNEXPECTED EXCEPTION')
-        print(str(error_exception))
-        traceback.print_exc()
-        os._exit(1)
+    # except Exception as error_exception:
+    #     print('ERROR, UNEXPECTED EXCEPTION')
+    #     print(str(error_exception))
+    #     traceback.print_exc()
+    #     os._exit(1)
 
 # end of file

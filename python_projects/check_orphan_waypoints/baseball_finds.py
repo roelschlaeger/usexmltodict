@@ -6,8 +6,12 @@
 # if run from python2.x, support print()
 from __future__ import print_function
 from sqlite3 import connect
+from collections import defaultdict
 
-__VERSION__ = "0.0.2"
+import sys
+assert sys.version_info > (3, ), "Python 3 required"
+
+__VERSION__ = "0.0.3"  # 20170723 1422 rlo: Update for Python3
 
 ########################################################################
 
@@ -39,20 +43,56 @@ KEYWORDS = [
     "BREWERS",
 ]
 
+# Added this list of team names 20170723 rlo
+TEAMS = [
+    "ANGELS",
+    "ASTROS",
+    "ATHLETICS",
+    "BLUE JAYS",
+    "BRAVES",
+    "BREWERS",
+    "CARDINALS",
+    "CUBS",
+    "DIAMONDBACKS",
+    "DODGERS",
+    "GIANTS",
+    "INDIANS",
+    "MARINERS",
+    "MARLINS",
+    "METS",
+    "NATIONALS",
+    "ORIOLES",
+    "PADRES",
+    "PHILLIES",
+    "PIRATES",
+    "RANGERS",
+    "RAYS",
+    "REDS",
+    "REDSOX",
+    "ROCKIES",
+    "ROYALS",
+    "TIGERS",
+    "TWINS",
+    "WHITE SOX",
+    "YANKEES"
+]
+
+# KEYWORDS += TEAMS
+
 ########################################################################
 
 
 def build_query(keywords):
     """Create a query from the keywords."""
-    c1 = "SELECT Code, Name, PlacedBy, FoundByMeDate FROM Caches"
-    c3 = "ORDER BY FoundByMeDate DESC"
+    _c1 = "SELECT Code, Name, PlacedBy, FoundByMeDate FROM Caches"
+    _c3 = "ORDER BY FoundByMeDate DESC"
 
     clist = []
-    for w in keywords:
-        clist.append('UPPER(Name) LIKE "%%_%s_%%"' % w.upper())
-    c2 = "WHERE " + " or ".join(clist)
+    for _w in keywords:
+        clist.append('UPPER(Name) LIKE "%%_%s_%%"' % _w.upper())
+    _c2 = "WHERE " + " or ".join(clist)
 
-    return "%s %s %s" % (c1, c2, c3)
+    return "%s %s %s" % (_c1, _c2, _c3)
 
 ########################################################################
 
@@ -61,90 +101,91 @@ def get_all_waypoints(dbname):
     """Fetch all waypoint names from the SQLite3 database."""
     print("Opening %s" % dbname)
 
-    with connect(dbname) as c:
+    with connect(dbname) as _connection:
 
         print("Selecting Code from Caches")
 
         query = build_query(KEYWORDS)
+        # query = build_query(TEAMS)
         print(query)
 
-        c2 = c.execute(query)
+        _query_result = _connection.execute(query)
         #   'SELECT Code, Name, PlacedBy, FoundByMeDate
         #   FROM Caches ORDER BY FoundByMeDate DESC'
         # )
 
         # get all rows as tuples
-        all = c2.fetchall()
+        _all_names = _query_result.fetchall()
 
     # return just the names instead of tuples
-    return all
+    return _all_names
 
 ########################################################################
 
 
-def calculate_widths(d):
+def calculate_widths(_data):
     """Calculate the widths of the output fields."""
-    w0 = w1 = w2 = w3 = w4 = 0
+    w_0 = w_1 = w_2 = w_3 = w_4 = 0
 
-    for key, valuelist in d.items():
-        w0 = max(w0, len(key))
+    for key, valuelist in _data.items():
+        w_0 = max(w_0, len(key))
         for values in valuelist:
-            w1 = max(w1, len(values[0]))
-            w2 = max(w2, len(values[1]))
-            w3 = max(w3, len(values[2]))
-            w4 = max(w4, len(values[3]))
+            w_1 = max(w_1, len(values[0]))
+            w_2 = max(w_2, len(values[1]))
+            w_3 = max(w_3, len(values[2]))
+            w_4 = max(w_4, len(values[3]))
 
     # print(w0, w1, w2, w3, w4)
-    return w0, w1, w2, w3, w4
+    return w_0, w_1, w_2, w_3, w_4
 
 ########################################################################
 
 
 def print_results(out):
     """Print the contents of the computed results."""
-    w0, w1, w2, w3, w4 = calculate_widths(out)
-    format = "%%-%ds:  %%-%ds  %%-%ds  %%-%ds  %%-%ds" % (w0, w1, w2, w3, w4)
+    w_0, w_1, w_2, w_3, w_4 = calculate_widths(out)
+    _format = "%%-%ds:  %%-%ds  %%-%ds  %%-%ds  %%-%ds" % (
+        w_0, w_1, w_2, w_3, w_4
+        )
     print()
-    print(format % ("String", "GC", "Name", "Owner", "Found Date"))
-    print(format % ("-" * w0, "-" * w1, "-" * w2, "-" * w3, "-" * w4))
+    print(_format % ("String", "GC", "Name", "Owner", "Found Date"))
+    print(_format % ("-" * w_0, "-" * w_1, "-" * w_2, "-" * w_3, "-" * w_4))
     for key in KEYWORDS:
         if key not in out:
             continue
         for value in out[key]:
-            print(format % (key, value[0], value[1], value[2], value[3]))
+            print(_format % (key, value[0], value[1], value[2], value[3]))
     print()
 
 ########################################################################
 
 
-def compute_alphabet_challenge():
-    """Compute alphabet challenge."""
+def compute_baseball_challenge():
+    """Compute baseball challenge."""
     dbname = DBNAME
 
     print("Processing from %s" % dbname)
     print()
 
-    all = get_all_waypoints(dbname)
+    _all_names = get_all_waypoints(dbname)
 
     # get all geocache names
-    gc = [x for x in all if x[0][:2] == 'GC']
-    # print(len(gc), "cache waypoints")
+    _gc = [x for x in _all_names if x[0][:2] == 'GC']
+    # print(len(_gc), "cache waypoints")
 
-    from collections import defaultdict
     out = defaultdict(list)
-    for c in KEYWORDS:  # + string.digits + string.lowercase:
-        print(c)
-        for item in gc:
-            if item[1].upper().find(c) >= 0:
+    for _keyword in KEYWORDS:
+        print(_keyword)
+        for item in _gc:
+            if item[1].upper().find(_keyword) >= 0:
                 # print(item[1])
-                out[c].append(item)
-                # print("%c: %s" % (c, out[c][1]))
+                out[_keyword].append(item)
+                # print("%_keyword: %s" % (_keyword, out[_keyword][1]))
 #               break
-        else:
-            if len(out[c]) == 0:
-                print("Nothing found for %s" % c)
-#   from pprint import pprint
-#   pprint(out)
+        # else:
+        # if len(out[_keyword]) == 0:
+        if not out[_keyword]:
+            print("Nothing found for %s" % _keyword)
     print_results(out)
 
 ########################################################################
@@ -152,22 +193,21 @@ def compute_alphabet_challenge():
 
 def main():
     """main routine called from command line."""
-    compute_alphabet_challenge()
+    compute_baseball_challenge()
+    return 0
+
 
 ########################################################################
 
 if __name__ == '__main__':
 
-    import sys
     import argparse
     import textwrap
-    import traceback
-    import os
 
     PARSER = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
         usage=textwrap.dedent(globals()['__doc__']),
-        version="Version: %s" % __VERSION__
+        # version="Version: %s" % __VERSION__
     )
 
     PARSER.add_argument(
@@ -193,10 +233,10 @@ if __name__ == '__main__':
     except SystemExit as error_exception:               # sys.exit()
         raise error_exception
 
-    except Exception as error_exception:
-        print('ERROR, UNEXPECTED EXCEPTION')
-        print(str(error_exception))
-        traceback.print_exc()
-        os._exit(1)
+    # except Exception as error_exception:
+    #     print('ERROR, UNEXPECTED EXCEPTION')
+    #     print(str(error_exception))
+    #     traceback.print_exc()
+    #     os._exit(1)
 
 # end of file
