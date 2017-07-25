@@ -27,17 +27,36 @@ VERSION
 
 """
 
-from __future__ import print_function
-from degmin import degmin
-from dominate import document
-from dominate.tags import table, tr, th, td, br, em, style, a, caption, meta
+# xpylint: disable=W0603,W0402,R0914,R0915,R0912,W0640
+# global
+# pylint: disable=W0603
+# optparse
+# pylint: disable=W0402
+# ... defined in loop
+# pylint: disable=W0640
+# too many branches
+# pylint: disable=R0912
+# too many local variables
+# pylint: disable=R0914
+# too many statements
+# pylint: disable=R0915
+
+# from __future__ import print_function
 from xml.etree import ElementTree as ET
 import codecs
 import os.path
+import sys
+from dominate import document
+from dominate.tags import table, tr, th, td, br, em, style, a, caption, meta
+from degmin import degmin
+
+
+assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__VERSION__ = "0.0.4"
+__VERSION__ = "0.0.5"    # rlo
+__DATE__ = "2017-07-24"  # rlo
 
 DEBUG = False
 ELLIPSIS_MAX = 72
@@ -50,7 +69,7 @@ def location_link(lat, lon):
     from maplink import maplink
     href = maplink(lat, lon)
     link = "(%s, %s)" % (degmin(lat, "NS"), degmin(lon, "EW"))
-    return a(link, cls="latlon", href=href)
+    return a(link, cls="latlon", href=href, target="_blank")
 
 ########################################################################
 
@@ -78,21 +97,21 @@ def get_wpts(gpxname):
 ########################################################################
 
 
-def ellipsis(s, l):
+def ellipsis(_s, _l):
     """
-    Return a string of length 'l' at most.
+    Return a string of length '_l' at most.
 
     The returned string results from appending an ellipsis if necessary to
     indicate overflow.
     """
     # TODO this shouldn't happen?
-    if s is None:
+    if _s is None:
         return None
 
-    if len(s) < l:
-        return s
+    if len(_s) < _l:
+        return _s
 
-    return s[:l - 3] + "..."
+    return _s[:_l - 3] + "..."
 
 ########################################################################
 
@@ -130,10 +149,11 @@ def create_rooter_document(gpxname):
 
     wpts, latlon_dictionary = get_wpts(gpxname)
 
-    w0 = wpts[0]
+    _w0 = wpts[0]
 
-    def make_wtag(s):
-        return w0.tag.replace("wpt", s)
+    def make_wtag(_s):
+        """Create a waypoint tag from _s."""
+        return _w0.tag.replace("wpt", _s)
 
     rooter_document = document()
 
@@ -168,32 +188,34 @@ def create_rooter_document(gpxname):
         if DEBUG:
             w_format = "%-20s = %-70s"
 
-            print(w_format % ("lat",        str(w_lat)))
-            print(w_format % ("lon",        str(w_lon)))
-#           print(w_format % ("time",       w_time))
-            print(w_format % ("name",       w_name))
-#           print(w_format % ("cmt",        w_cmt))
-            print(w_format % ("desc",       w_desc))
-            print(w_format % ("link_href",  w_link_href))
-#           print(w_format % ("link_text",  w_link_text))
-#           print(w_format % ("sym",        w_sym))
-            print(w_format % ("type",       w_type))
+            print(w_format % ("lat", str(w_lat)))
+            print(w_format % ("lon", str(w_lon)))
+#           print(w_format % ("time", w_time))
+            print(w_format % ("name", w_name))
+#           print(w_format % ("cmt", w_cmt))
+            print(w_format % ("desc", w_desc))
+            print(w_format % ("link_href", w_link_href))
+#           print(w_format % ("link_text", w_link_text))
+#           print(w_format % ("sym", w_sym))
+            print(w_format % ("type", w_type))
             print(w_format % ("extensions", w_extensions))
 
-        wptExtension = w_extensions[0]
-        etag = wptExtension[0].tag
+        _wpt_extension = w_extensions[0]
+        _etag = _wpt_extension[0].tag
 
-        def make_etag(s):
-            return etag.replace('UserFlag', s)
+        def make_etag(_s):
+            """Create an etag from _s."""
+            return _etag.replace('UserFlag', _s)
 
-        def get_ext(s):
-            tag = make_etag(s)
-            v = wptExtension.find(tag)
-            if v is not None:
-                v = v.text
+        def get_ext(_s):
+            """Docstring."""
+            tag = make_etag(_s)
+            _v = _wpt_extension.find(tag)
+            if _v is not None:
+                _v = _v.text
             if DEBUG:
-                print("%s=%s" % (s, v))
-            return v
+                print("%s=%s" % (_s, _v))
+            return _v
 
 #       e_userflag = get_ext('UserFlag')
 #       e_lock = get_ext('Lock')
@@ -221,30 +243,33 @@ def create_rooter_document(gpxname):
 #       e_customdata = get_ext('CustomData')
 
 ####
-        def make_ctag(s):
-            return ctag.replace('name', s)
+        def make_ctag(_s):
+            """Create a ctag from _s."""
+            return ctag.replace('name', _s)
 
         if len(w_extensions) > 1:
-            wptCache = w_extensions[1]
+            _wpt_cache = w_extensions[1]
 
-            ctag = wptCache[0].tag
+            ctag = _wpt_cache[0].tag
 
-            def get_cext(s):
-                tag = make_ctag(s)
-                v = wptCache.find(tag)
-                if v is not None:
-                    v = v.text
+            def get_cext(_s):
+                """Docstring."""
+                tag = make_ctag(_s)
+                _v = _wpt_cache.find(tag)
+                if _v is not None:
+                    _v = _v.text
                 if DEBUG:
-                    print("%s=%s" % (s, v))
-                return v
+                    print("%s=%s" % (_s, _v))
+                return _v
         else:
 
-            def get_cext(s):
+            def get_cext(_s):
+                """Docstring."""
                 return ""
 
-        c_cache_id = wptCache.attrib["id"]
-        c_cache_available = wptCache.attrib["available"]
-        c_cache_archived = wptCache.attrib["archived"]
+        c_cache_id = _wpt_cache.attrib["id"]
+        c_cache_available = _wpt_cache.attrib["available"]
+        c_cache_archived = _wpt_cache.attrib["archived"]
         if DEBUG:
             print(
                 c_cache_id,
@@ -266,7 +291,7 @@ def create_rooter_document(gpxname):
 #       c_short_description = get_cext("short_description")
 #       c_long_description = get_cext("long_description")
         c_encoded_hints = get_cext("encoded_hints")
-#       c_logs = wptCache.find(make_ctag("logs"))
+#       c_logs = _wpt_cache.find(make_ctag("logs"))
 #       c_travelbugs = get_cext("travelbugs")
 
 ####
@@ -284,7 +309,7 @@ def create_rooter_document(gpxname):
 
         if e_usersort:
             gc_text += "%s: " % e_usersort
-        gc_text += a(w_desc, href=w_link_href)
+        gc_text += a(w_desc, href=w_link_href, target="_blank")
         gc_text += " (%s)" % w_name
 
         gc_text += br()
@@ -297,7 +322,7 @@ def create_rooter_document(gpxname):
 #           gc_text += log_info
 
         # don't publish coordinates for SKIPped geocaches
-        if (e_user2 is not None and e_user2.startswith("SKIP")):
+        if e_user2 is not None and e_user2.startswith("SKIP"):
             # try to locate the puzzle FINAl coordinates
             final_name = w_name.replace("GC", "FL")
             if final_name in latlon_dictionary:
@@ -392,15 +417,15 @@ def create_rooter_document(gpxname):
 def make_zipfile(fname):
     """Create a zipfile containing fname."""
     zipdir, zipbase = os.path.split(fname)
-    zipfile, zipext = os.path.splitext(zipbase)
+    zipfile, _zipext = os.path.splitext(zipbase)
     zipfilename = os.path.join(zipdir, "%s.zip" % zipfile)
     print("%s created" % zipfilename)
 
     from zipfile import ZipFile
-    zf = ZipFile(zipfilename, "w")
-    arcdir, arcname = os.path.split(fname)
-    zf.write(fname, arcname)
-    zf.close()
+    _zf = ZipFile(zipfilename, "w")
+    _arcdir, arcname = os.path.split(fname)
+    _zf.write(fname, arcname)
+    _zf.close()
 
 ########################################################################
 
@@ -438,76 +463,78 @@ def print_rooter_document(gpxname, rooter_document, zipfile=True):
 
 def do_rooter(gpxname):
     """Create and print a Rooter file from gpxname .gpx file."""
-    document = create_rooter_document(gpxname)
-    print_rooter_document(gpxname, document)
+    _document = create_rooter_document(gpxname)
+    print_rooter_document(gpxname, _document)
 
 ########################################################################
 
+
 if __name__ == '__main__':
 
-    import sys
-    import os
-    import traceback
+    # import sys
+    # import os
+    # import traceback
     import optparse
     import time
 
     def main():
         """Process command line arguments and options."""
-        global options, args
+        global OPTIONS, ARGS, DEBUG
 
-        global DEBUG
-        DEBUG = options.debug
+        DEBUG = OPTIONS.debug
 
-        do_rooter(args[0])
+        do_rooter(ARGS[0])
+
+        return 0
 
     ########################################################################
 
     try:
-        start_time = time.time()
-        parser = optparse.OptionParser(
+        START_TIME = time.time()
+        PARSER = optparse.OptionParser(
             formatter=optparse.TitledHelpFormatter(),
             usage=globals()['__doc__'],
-            version='Version: %s' % __VERSION__
+            version='Version: %s %s' % (__VERSION__, __DATE__)
         )
-        parser.add_option(
+        PARSER.add_option(
             '-d',
             '--debug',
             action='store_true',
             default=False,
             help='debug'
         )
-        parser.add_option(
+        PARSER.add_option(
             '-v',
             '--verbose',
             action='store_true',
             default=False,
             help='verbose output'
         )
-        (options, args) = parser.parse_args()
-        if len(args) < 1:
-            args = ["default.gpx"]
-        if options.verbose:
+        (OPTIONS, ARGS) = PARSER.parse_args()
+        if len(ARGS) < 1:
+            ARGS = ["default.gpx"]
+        if OPTIONS.verbose:
             print(time.asctime())
 
-        exit_code = main()
+        EXIT_CODE = main()
 
-        if exit_code is None:
-            exit_code = 0
-        if options.verbose:
+        if EXIT_CODE is None:
+            EXIT_CODE = 0
+        if OPTIONS.verbose:
             print(time.asctime())
-        if options.verbose:
-            print('TOTAL TIME IN MINUTES:'),
-        if options.verbose:
-            print((time.time() - start_time) / 60.0)
-        sys.exit(exit_code)
-    except KeyboardInterrupt as e:      # Ctrl-C
-        raise e
-    except SystemExit as e:             # sys.exit()
-        raise e
-    except Exception as e:
-        print('ERROR, UNEXPECTED EXCEPTION')
-        print(str(e))
-        traceback.print_exc()
-        os._exit(1)
+        if OPTIONS.verbose:
+            print('TOTAL TIME IN MINUTES:', end=" ")
+        if OPTIONS.verbose:
+            print((time.time() - START_TIME) / 60.0)
+        sys.exit(EXIT_CODE)
+    except KeyboardInterrupt as _exception:      # Ctrl-C
+        raise _exception
+    except SystemExit as _exception:             # sys.exit()
+        raise _exception
+    # except Exception as _exception:
+    #     print('ERROR, UNEXPECTED EXCEPTION')
+    #     print(str(_exception))
+    #     traceback.print_exc()
+    #     os._exit(1)
 
 # vim:set sr et ts=4 sw=4 ft=python fenc=utf-8: // See Vim, :help 'modeline'

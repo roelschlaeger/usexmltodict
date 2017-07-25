@@ -14,11 +14,18 @@ Trips.
 from __future__ import print_function
 from xml.etree import ElementTree as ET
 import os.path
+import sys
 from gpx2kml import pretty_print
+
+assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__VERSION__ = "0.0.2"
+__VERSION__ = "0.0.2"  # manual version information
+__DATE__ = "2017-07-25"
+
+########################################################################
+
 __CREATOR__ = "make_rtept.py %s" % __VERSION__
 
 GPX_NAMESPACE = "http://www.topografix.com/GPX/1/1"
@@ -36,16 +43,16 @@ ET.register_namespace("groundspeak", GROUNDSPEAK_NAMESPACE)
 ########################################################################
 
 
-def get_usersort(w0):
-    """Get a UserSort value for the current waypoint w0, if one exists."""
+def get_usersort(_w0):
+    """Get a UserSort value for the current waypoint _w0, if one exists."""
     try:
 
-        value = w0\
+        value = _w0\
             .find(make_tag("extensions"))\
             .find(make_tag("wptExtension", GSAK_NAMESPACE))\
             .find(make_tag("UserSort", GSAK_NAMESPACE))\
             .text
-        # print("Success: %s" % value, list(w0))
+        # print("Success: %s" % value, list(_w0))
     except AttributeError:
         value = ""
 
@@ -54,6 +61,7 @@ def get_usersort(w0):
 ########################################################################
 
 
+# pylint: disable=too-many-locals,too-few-public-methods
 class DummyText(object):
     """From a text string create an object that has a .text attribute."""
 
@@ -71,11 +79,12 @@ class DummyText(object):
 ########################################################################
 
 
-def make_tag(s, ns=GPX_NAMESPACE):
-    """Create an Element tag from tagname s and optional namespace ns."""
-    return "{%s}%s" % (ns, s)
+def make_tag(_s, _ns=GPX_NAMESPACE):
+    """Create an Element tag from tagname _s and optional namespace _ns."""
+    return "{%s}%s" % (_ns, _s)
 
 ########################################################################
+
 
 ELE_TAG = make_tag("ele")
 TIME_TAG = make_tag("time")
@@ -129,33 +138,34 @@ def add_rtepts_from_wpts(rte, wpts):
         _desc = DummyText(wpt.find(DESC_TAG))
         _usersort = DummyText(get_usersort(wpt))
 
+        # pylint: disable=cell-var-from-loop
         def _fabricated_name():
             if _usersort:
                 return "%s %s %s " % (_usersort.text, _desc.text, _name.text)
-            return "%s %s" (_desc.text, _name.text)
+            return "%s %s" % (_desc.text, _name.text)
 
         # pass along most of the information to the new_wtp (but not
         # extensions)
         for tag in [
-            ELE_TAG,                           # KEEP THESE IN THIS ORDER #
-            TIME_TAG,                          #
-            MAGVAR_TAG,                        #
-            GEOIDHEIGHT_TAG,                   #
-            NAME_TAG,                          #
-            CMT_TAG,                           #
-            DESC_TAG,                          #
-            SRC_TAG,                           #
-            LINK_TAG,                          #
-            SYM_TAG,                           #
-            RTYPE_TAG,                         #
-            FIX_TAG,                           #
-            SAT_TAG,                           #
-            HDOP_TAG,                          #
-            VDOP_TAG,                          #
-            PDOP_TAG,                          #
-            AGEOFDGPSDATA_TAG,                 #
-            DGPSID_TAG,                        # KEEP THESE IN THIS ORDER #
-            # EXTENSIONS_TAG                   # not passing along extensions
+                ELE_TAG,                           # KEEP THESE IN THIS ORDER #
+                TIME_TAG,                          #
+                MAGVAR_TAG,                        #
+                GEOIDHEIGHT_TAG,                   #
+                NAME_TAG,                          #
+                CMT_TAG,                           #
+                DESC_TAG,                          #
+                SRC_TAG,                           #
+                LINK_TAG,                          #
+                SYM_TAG,                           #
+                RTYPE_TAG,                         #
+                FIX_TAG,                           #
+                SAT_TAG,                           #
+                HDOP_TAG,                          #
+                VDOP_TAG,                          #
+                PDOP_TAG,                          #
+                AGEOFDGPSDATA_TAG,                 #
+                DGPSID_TAG,                        # KEEP THESE IN THIS ORDER #
+                # EXTENSIONS_TAG                   # not passing extensions
         ]:
 
             # check for the presence of the tag in the old wpt
@@ -193,6 +203,7 @@ def add_rtepts_from_wpts(rte, wpts):
 
 def do_make_rtept(filename, debug=False, outfile=None):
     """Create a route GPX file from pathname."""
+    # pylint: disable=global-statement
     global ITEM_TEXT
 
     from datetime import date
@@ -237,13 +248,14 @@ def do_make_rtept(filename, debug=False, outfile=None):
     # add the wpts to the rte as rtepts
     add_rtepts_from_wpts(rte, wpts)
 
-    ofile = open(outname, "wb")
+    ofile = open(outname, "w", encoding="utf-8")
     pretty_print(ofile, gpx, indent=" ")
     ofile.close()
 
     return outname
 
 #######################################################################
+
 
 if __name__ == "__main__":
 
@@ -276,6 +288,12 @@ if __name__ == "__main__":
     )
 
     PARSER.add_argument(
+        "--version",
+        action="version",
+        version="%%(prog)s, Version: %s %s" % (__VERSION__, __DATE__)
+        )
+
+    PARSER.add_argument(
         "-d",
         "--debug",
         action="store_true",
@@ -297,10 +315,8 @@ if __name__ == "__main__":
         help="Specify explicit output filename"
     )
 
-    args = PARSER.parse_args()
-#    from pprint import pprint
-#    pprint(args)
+    ARGS = PARSER.parse_args()
 
-    process_files(args)
+    process_files(ARGS)
 
 # end of file

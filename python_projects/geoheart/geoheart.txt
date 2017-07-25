@@ -1,0 +1,3303 @@
+GC6ZJZ4 Geo(he)Art 1 http://www.geocaching.com/seek/cache_details.aspx?guid=be8fe001-7b7a-4aea-9c0a-624e8d0716b1
+Encountered some data  : 
+
+
+Encountered some data  : 
+
+Encountered a start tag: html
+Encountered some data  : 
+
+Encountered a start tag: head
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: title
+Encountered some data  : 
+	GC6ZJZ4 Geo(he)Art 1 (Unknown Cache) in Illinois, United States created by TheGeocachingFairy
+
+Encountered an end tag : title
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered some data  : 
+
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered some data  : 
+
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered a start tag: script
+Encountered an end tag : script
+Encountered some data  : 
+
+Encountered a start tag: script
+Encountered an end tag : script
+Encountered some data  : 
+
+        
+Encountered a start tag: script
+Encountered some data  : 
+
+            var googletag = googletag || {};
+            googletag.cmd = googletag.cmd || [];
+
+            (function () {
+                var gads = document.createElement('script');
+                gads.async = true;
+                gads.type = 'text/javascript';
+                var useSSL = 'https:' == document.location.protocol;
+                gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+                var node = document.getElementsByTagName('script')[0];
+                node.parentNode.insertBefore(gads, node);
+            })();
+
+            //=============
+
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+
+            
+            ga('create', 'UA-2020240-1', 'auto');
+            
+            ga('require', 'linkid');
+        
+Encountered an end tag : script
+Encountered some data  : 
+    
+    
+Encountered a start tag: script
+Encountered some data  : 
+        ga('set', 'page', '/geocache/cache_details.aspx');
+        ga('set', 'title', 'Geocaching Detail Page');
+    
+Encountered an end tag : script
+Encountered some data  : 
+
+    
+    
+Encountered a start tag: script
+Encountered some data  : 
+        ga('send', 'pageview');
+    
+Encountered an end tag : script
+Encountered some data  : 
+    
+    
+
+Encountered a start tag: script
+Encountered some data  : 
+    var serverParameters = {
+        'user:info': {
+            isLoggedIn: false,
+            username: "",
+            userType: "",
+            publicGuid: "",
+            avatarUrl: "https://www.geocaching.com/images/default_avatar.png",
+            dateFormat: ""
+        },
+        'app:options': {
+            localRegion: ""
+        }
+    }
+
+Encountered an end tag : script
+Encountered some data  : 
+    
+     
+    
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered some data  : 
+    
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered some data  : 
+    
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered some data  : 
+    
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered some data  : 
+    
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered some data  : 
+    
+Encountered a start tag: script
+Encountered an end tag : script
+Encountered some data  : 
+    
+Encountered a start tag: script
+Encountered an end tag : script
+Encountered some data  : 
+    
+Encountered a start tag: script
+Encountered an end tag : script
+Encountered some data  : 
+    
+Encountered a start tag: script
+Encountered some data  : 
+        var userToken = null,
+                urlParams = {},
+                mapLatLng = null,
+                cmapAdditionalWaypoints = [],
+                initalLogs = null, totalLogs = 0, includeAvatars = false;
+
+        (function () {
+            var e,
+            d = function (s) { return decodeURIComponent(s.replace(/\+/g, " ")); },
+            q = window.location.search.substring(1),
+            r = /([^&=]+)=?([^&]*)/g;
+
+            while (e = r.exec(q)) {
+                urlParams[d(e[1])] = d(e[2]);
+            }
+        })();
+    
+Encountered an end tag : script
+Encountered some data  : 
+
+Encountered a start tag: script
+Encountered some data  : function utmx_section(){}function utmx(){}(function(){var k='3682814-19',d=document,l=d.location,c=d.cookie; if(l.search.indexOf('utm_expid='+k)>0)return; function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write('<sc'+'ript src=" '+'http'+(l.protocol=='https:'?'s://ssl':'://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+'" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+Encountered an end tag : script
+Encountered a start tag: script
+Encountered some data  : utmx('url','A/B');
+Encountered an end tag : script
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: meta
+Encountered an end tag : meta
+Encountered a start tag: link
+Encountered an end tag : link
+Encountered an end tag : head
+Encountered some data  : 
+
+Encountered a start tag: body
+Encountered some data  : 
+    
+Encountered a start tag: form
+Encountered some data  : 
+
+Encountered a start tag: div
+Encountered some data  : 
+
+Encountered a start tag: input
+Encountered an end tag : input
+Encountered some data  : 
+
+Encountered a start tag: input
+Encountered an end tag : input
+Encountered some data  : 
+
+Encountered a start tag: input
+Encountered an end tag : input
+Encountered some data  : 
+
+Encountered a start tag: input
+Encountered an end tag : input
+Encountered some data  : 
+
+Encountered a start tag: input
+Encountered an end tag : input
+Encountered some data  : 
+
+Encountered an end tag : div
+Encountered some data  : 
+
+
+Encountered a start tag: script
+Encountered some data  : 
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+
+Encountered an end tag : script
+Encountered some data  : 
+
+
+
+
+Encountered a start tag: script
+Encountered an end tag : script
+Encountered some data  : 
+
+Encountered a start tag: script
+Encountered an end tag : script
+Encountered some data  : 
+
+Encountered a start tag: script
+Encountered an end tag : script
+Encountered some data  : 
+
+Encountered a start tag: script
+Encountered an end tag : script
+Encountered some data  : 
+
+Encountered a start tag: script
+Encountered an end tag : script
+Encountered some data  : 
+
+Encountered a start tag: div
+Encountered some data  : 
+
+	
+Encountered a start tag: input
+Encountered an end tag : input
+Encountered some data  : 
+
+Encountered an end tag : div
+Encountered some data  : 
+    
+    
+Encountered a start tag: div
+Encountered some data  : 
+        
+Encountered a start tag: a
+Encountered some data  : Skip to Navigation
+Encountered an end tag : a
+Encountered some data  : 
+        
+Encountered a start tag: a
+Encountered some data  : Skip to Content
+Encountered an end tag : a
+Encountered some data  : 
+    
+Encountered an end tag : div
+Encountered some data  : 
+    
+Encountered some data  : 
+    
+    
+    
+Encountered a start tag: div
+Encountered some data  : 
+        
+        
+Encountered a start tag: svg
+Encountered some data  : 
+            
+Encountered a start tag: use
+Encountered an end tag : use
+Encountered some data  : 
+        
+Encountered an end tag : svg
+Encountered some data  : 
+        
+Encountered a start tag: hr
+Encountered an end tag : hr
+Encountered some data  : 
+        
+    
+Encountered an end tag : div
+Encountered some data  : 
+    
+    
+Encountered a start tag: header
+Encountered some data  : 
+        
+        
+Encountered a start tag: div
+Encountered some data  : 
+            
+Encountered a start tag: div
+Encountered some data  : 
+                
+Encountered a start tag: div
+Encountered some data  : 
+    
+Encountered a start tag: p
+Encountered some data  : 
+        
+Encountered a start tag: a
+Encountered some data  : Sign Up
+Encountered an end tag : a
+Encountered some data  : 
+        
+Encountered a start tag: a
+Encountered some data  : Log In
+Encountered an end tag : a
+Encountered some data  : 
+    
+Encountered an end tag : p
+Encountered some data  : 
+
+Encountered an end tag : div
+Encountered some data  : 
+
+
+Encountered a start tag: script
+Encountered some data  : 
+    $(document).ready(function () {
+        var $formLogout = $('#form-logout');
+        $formLogout.find('input').val(window.location.href);
+
+        $('.sign-out').bind('click', function () {
+            $formLogout.submit();
+        });
+    });
+
+Encountered an end tag : script
+Encountered some data  : 
+            
+Encountered an end tag : div
+Encountered some data  : 
+        
+Encountered an end tag : div
+Encountered some data  : 
+        
+        
+    
+Encountered an end tag : header
+Encountered some data  : 
+    
+    
+
+ 
+Encountered a start tag: nav
+Encountered some data  : 
+    
+Encountered a start tag: div
+Encountered some data  : 
+        
+Encountered a start tag: a
+Encountered some data  : 
+            
+Encountered a start tag: svg
+Encountered some data  : 
+                
+Encountered a start tag: use
+Encountered an end tag : use
+Encountered some data  : 
+            
+Encountered an end tag : svg
+Encountered some data  : 
+        
+Encountered an end tag : a
+Encountered some data  : 
+        
+Encountered a start tag: ul
+Encountered some data  : 
+            
+Encountered a start tag: li
+Encountered some data  : 
+                
+Encountered a start tag: a
+Encountered some data  : Learn
+Encountered an end tag : a
+Encountered some data  : 
+                
+Encountered a start tag: ul
+Encountered some data  : 
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : Geocaching 101
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : Videos
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+Encountered an end tag : ul
+Encountered some data  : 
+            
+Encountered an end tag : li
+Encountered some data  : 
+            
+Encountered a start tag: li
+Encountered some data  : 
+                
+Encountered a start tag: a
+Encountered some data  : Play
+Encountered an end tag : a
+Encountered some data  : 
+                
+Encountered a start tag: ul
+Encountered some data  : 
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : Find a Geocache
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : Hide a Geocache
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  :                  
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : View Geocache Map
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                    
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : Find Trackables
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : Trackable Promotions
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : GeoTours
+Encountered an end tag : a
+Encountered some data  : 
+                    
+Encountered an end tag : li
+Encountered some data  : 
+                    
+                    
+                
+Encountered an end tag : ul
+Encountered some data  : 
+            
+Encountered an end tag : li
+Encountered some data  : 
+            
+Encountered a start tag: li
+Encountered some data  : 
+                
+Encountered a start tag: a
+Encountered some data  : Community
+Encountered an end tag : a
+Encountered some data  : 
+                
+Encountered a start tag: ul
+Encountered some data  :  
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : Volunteers
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : Discussion Forums
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : Blog
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : Events
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+Encountered an end tag : ul
+Encountered some data  : 
+            
+Encountered an end tag : li
+Encountered some data  : 
+            
+Encountered a start tag: li
+Encountered some data  : 
+                
+Encountered a start tag: a
+Encountered some data  : Shop
+Encountered an end tag : a
+Encountered some data  : 
+                
+Encountered a start tag: ul
+Encountered some data  : 
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : USA/Canada Shop
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : International Retailers
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                    
+Encountered a start tag: li
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : Become a Premium Member
+Encountered an end tag : a
+Encountered some data  : 
+                    
+Encountered an end tag : li
+Encountered some data  : 
+                
+Encountered an end tag : ul
+Encountered some data  : 
+            
+Encountered an end tag : li
+Encountered some data  :              
+        
+Encountered an end tag : ul
+Encountered some data  :         
+    
+Encountered an end tag : div
+Encountered some data  : 
+
+Encountered an end tag : nav
+Encountered some data  : 
+
+    
+Encountered a start tag: section
+Encountered some data  : 
+        
+    
+
+        
+        
+Encountered a start tag: div
+Encountered some data  : 
+            
+
+            
+Encountered a start tag: div
+Encountered some data  : 
+	
+                
+    
+    
+    
+    
+    
+Encountered a start tag: div
+Encountered some data  : 
+		
+    
+Encountered a start tag: p
+Encountered some data  : 
+        
+Encountered a start tag: a
+Encountered some data  : 
+            
+Encountered a start tag: span
+Encountered some data  : GC6ZJZ4
+Encountered an end tag : span
+Encountered some data  : 
+            
+Encountered a start tag: span
+Encountered an end tag : span
+Encountered some data  :  
+Encountered an end tag : a
+Encountered some data  : 
+    
+Encountered an end tag : p
+Encountered some data  : 
+
+	
+Encountered an end tag : div
+Encountered some data  : 
+
+Encountered a start tag: div
+Encountered some data  : 
+    
+Encountered a start tag: input
+Encountered an end tag : input
+Encountered some data  : 
+    
+Encountered a start tag: a
+Encountered some data  : 
+        x
+Encountered an end tag : a
+Encountered some data  : 
+
+Encountered an end tag : div
+Encountered some data  : 
+
+Encountered a start tag: script
+Encountered some data  : 
+    $("a.CoordInfoLink").click(function (e) {
+        e.preventDefault();
+
+        $("#dlgClipboard")
+                    .show()
+                    .position({
+                        of: $("a.CoordInfoLink"),
+                        my: "right top",
+                        at: "right bottom",
+                        offset: "0 5"
+                    })
+                    .find("input")
+                        .val('https://coord.info/' + $('.CoordInfoCode').text())
+                        .focus()
+                        .select();
+
+        $(document).mouseup(function (e) {
+            if ($(e.target).parent("div#dlgClipboard").length == 0) {
+                $(this).unbind(e);
+                $("div#dlgClipboard").hide();
+            }
+        });
+
+        return false;
+    });
+
+ 
+
+Encountered an end tag : script
+Encountered some data  : 
+
+    
+    
+Encountered a start tag: div
+Encountered some data  : 
+        
+        
+Encountered a start tag: div
+Encountered some data  : 
+            
+Encountered a start tag: p
+Encountered some data  : 
+                
+Encountered a start tag: a
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered an end tag : a
+Encountered some data  : 
+            
+Encountered an end tag : p
+Encountered some data  : 
+            
+            
+Encountered a start tag: h2
+Encountered some data  : 
+                
+Encountered a start tag: span
+Encountered some data  : Geo(he)Art 1
+Encountered an end tag : span
+Encountered some data  : 
+            
+Encountered an end tag : h2
+Encountered some data  : 
+            
+Encountered a start tag: div
+Encountered some data  : 
+                
+Encountered a start tag: div
+Encountered some data  : 
+                    A cache by 
+Encountered a start tag: a
+Encountered some data  : TheGeocachingFairy
+Encountered an end tag : a
+Encountered some data  : 
+                    
+Encountered a start tag: span
+Encountered some data  :                         
+                        
+Encountered a start tag: svg
+Encountered some data  : 
+                            
+Encountered a start tag: title
+Encountered some data  : Send Message to Owner
+Encountered an end tag : title
+Encountered some data  : 
+                            
+Encountered a start tag: defs
+Encountered some data  : 
+                                
+Encountered a start tag: path
+Encountered an end tag : path
+Encountered some data  : 
+                            
+Encountered an end tag : defs
+Encountered some data  : 
+                            
+Encountered a start tag: g
+Encountered some data  : 
+                                
+Encountered a start tag: g
+Encountered some data  : 
+                                    
+Encountered a start tag: g
+Encountered some data  : 
+                                        
+Encountered a start tag: g
+Encountered some data  : 
+                                            
+Encountered a start tag: g
+Encountered some data  : 
+                                                
+Encountered a start tag: mask
+Encountered some data  : 
+                                                    
+Encountered a start tag: use
+Encountered an end tag : use
+Encountered some data  : 
+                                                
+Encountered an end tag : mask
+Encountered some data  : 
+                                                
+Encountered a start tag: g
+Encountered an end tag : g
+Encountered some data  : 
+                                                
+Encountered a start tag: path
+Encountered an end tag : path
+Encountered some data  : 
+                                            
+Encountered an end tag : g
+Encountered some data  : 
+                                            
+Encountered a start tag: path
+Encountered an end tag : path
+Encountered some data  : 
+                                            
+Encountered a start tag: path
+Encountered an end tag : path
+Encountered some data  : 
+                                            
+Encountered a start tag: path
+Encountered an end tag : path
+Encountered some data  : 
+                                        
+Encountered an end tag : g
+Encountered some data  : 
+                                    
+Encountered an end tag : g
+Encountered some data  : 
+                                
+Encountered an end tag : g
+Encountered some data  : 
+                            
+Encountered an end tag : g
+Encountered some data  : 
+                        
+Encountered an end tag : svg
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : Message this owner
+Encountered an end tag : a
+Encountered some data  : 
+                    
+Encountered an end tag : span
+Encountered some data  : 
+                
+Encountered an end tag : div
+Encountered some data  : 
+                
+Encountered a start tag: div
+Encountered some data  : 
+                    Hidden
+                    :
+                    1/21/2017
+                    
+                
+Encountered an end tag : div
+Encountered some data  : 
+                
+Encountered a start tag: div
+Encountered some data  : 
+                    In Illinois, United States
+                
+Encountered an end tag : div
+Encountered some data  : 
+            
+Encountered an end tag : div
+Encountered some data  : 
+        
+Encountered an end tag : div
+Encountered some data  : 
+        
+Encountered a start tag: div
+Encountered some data  : 
+            
+            
+Encountered a start tag: dl
+Encountered some data  : 
+                
+Encountered a start tag: dt
+Encountered some data  : 
+                    Difficulty:
+Encountered an end tag : dt
+Encountered some data  : 
+                
+Encountered a start tag: dd
+Encountered some data  : 
+                    
+Encountered a start tag: span
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered an end tag : span
+Encountered some data  : 
+                
+Encountered an end tag : dd
+Encountered some data  : 
+            
+Encountered an end tag : dl
+Encountered some data  : 
+            
+Encountered a start tag: dl
+Encountered some data  : 
+                
+Encountered a start tag: dt
+Encountered some data  : 
+                    Terrain:
+Encountered an end tag : dt
+Encountered some data  :  
+                
+Encountered a start tag: dd
+Encountered some data  : 
+                    
+Encountered a start tag: span
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered an end tag : span
+Encountered some data  : 
+                
+Encountered an end tag : dd
+Encountered some data  : 
+            
+Encountered an end tag : dl
+Encountered some data  : 
+            
+        
+Encountered an end tag : div
+Encountered some data  : 
+        
+Encountered a start tag: div
+Encountered some data  : 
+            
+            
+Encountered a start tag: p
+Encountered some data  : 
+                Size:
+Encountered a start tag: span
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered a start tag: small
+Encountered some data  : (small)
+Encountered an end tag : small
+Encountered an end tag : span
+Encountered some data  : 
+            
+Encountered an end tag : p
+Encountered some data  : 
+            
+        
+Encountered an end tag : div
+Encountered some data  : 
+        
+Encountered a start tag: div
+Encountered some data  : 
+            
+            
+            
+        
+Encountered an end tag : div
+Encountered some data  : 
+        
+            
+Encountered a start tag: div
+Encountered some data  : 
+                
+Encountered a start tag: div
+Encountered some data  : 
+                    
+Encountered a start tag: span
+Encountered some data  : 
+                        Join now to view geocache location details. It's free!
+                    
+Encountered an end tag : span
+Encountered some data  : 
+                    
+Encountered a start tag: span
+Encountered some data  : 
+                        
+Encountered a start tag: a
+Encountered some data  : Sign up
+Encountered an end tag : a
+Encountered a start tag: a
+Encountered a start tag: span
+Encountered some data  : Login
+Encountered an end tag : span
+Encountered an end tag : a
+Encountered an end tag : span
+Encountered an end tag : div
+Encountered a start tag: div
+Encountered some data  : 
+                    
+Encountered a start tag: div
+Encountered some data  : 
+                        
+Encountered a start tag: div
+Encountered some data  : 
+                            
+Encountered a start tag: div
+Encountered some data  : 
+                                
+Encountered a start tag: a
+Encountered some data  : ▶
+Encountered an end tag : a
+Encountered some data  : 
+                            
+Encountered an end tag : div
+Encountered some data  : 
+                            
+Encountered a start tag: h4
+Encountered some data  : 
+                                Watch
+                            
+Encountered an end tag : h4
+Encountered some data  : 
+                            How Geocaching Works
+                        
+Encountered an end tag : div
+Encountered some data  : 
+                    
+Encountered an end tag : div
+Encountered some data  : 
+                    
+Encountered a start tag: div
+Encountered some data  : 
+                        
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered some data  : 
+                    
+Encountered an end tag : div
+Encountered some data  : 
+                
+Encountered an end tag : div
+Encountered some data  : 
+                
+Encountered a start tag: div
+Encountered some data  : 
+                    
+Encountered a start tag: span
+Encountered some data  : 
+                        
+Encountered a start tag: span
+Encountered some data  : 
+                            Looking for a different adventure?
+Encountered an end tag : span
+Encountered some data  : 
+                    
+Encountered an end tag : span
+Encountered some data  : 
+                    
+Encountered a start tag: span
+Encountered some data  : 
+                        
+Encountered a start tag: input
+Encountered an end tag : input
+Encountered some data  : 
+                    
+Encountered an end tag : span
+Encountered some data  : 
+                
+Encountered an end tag : div
+Encountered some data  : 
+            
+Encountered an end tag : div
+Encountered some data  : 
+            
+            
+Encountered a start tag: script
+Encountered some data  : 
+                
+                $("#lus_container")
+                    .on("click", "div.lus-video", function () {
+                        var $this = $(this),
+                            h = $this.height(),
+                            w = $this.width();
+
+                        $("div.lus-image").hide('slide', { direction: 'right' }, 500, function () {
+                            var vhtml = ["<iframe width=\"" + w + "\" height=\"" + h + "\" src=\"http://www.youtube.com/embed/1YTqitVK-Ts?rel=0&autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>"].join('');
+                            $this.replaceWith(vhtml);
+                        });
+                        return false;
+                    });
+
+                $("#findacache").click(function (e) {
+                    e.preventDefault();
+                    $("#txtFindCache").text("Searching...");
+
+                    navigator.geolocation.getCurrentPosition(
+                        function (position) {                               // Browser success
+                            $(window.location).attr('href', '/seek/nearest.aspx?origin_lat=' + position.coords.latitude + '&origin_long=' + position.coords.longitude + '&dist=100');
+                        }, function (error) {                               // Browser failure, fallback to geocode.
+                            $.ajax({
+                                url: '/api/geocode?cmd=whoami',
+                                dataType: 'json',
+                                async: false,
+                                success: function (response) {
+                                    if (response.status == 'success') {     // Geocode success
+                                        $(window.location).attr('href', '/seek/nearest.aspx?origin_lat=' + response.data.lat + '&origin_long=' + response.data.lng + '&dist=100');
+                                    } else {                                // Total failure, just go to the search page.
+                                        $(window.location).attr('href', '/seek/nearest.aspx');  
+                                    }
+                                }
+                            });
+                        },
+                        { 
+                            timeout: 3000                                   // Wait on the browser for a max of 3 seconds.
+                        });
+                    return false;
+                });
+
+                // Geolocation emulator
+                (function (geolocation) {
+
+                    if (geolocation) return;
+
+                    var cache;
+
+                    geolocation = window.navigator.geolocation = {};
+                    geolocation.getCurrentPosition = function (callback) {
+
+                        if (cache) callback(cache);
+
+                        $.getScript('//www.google.com/jsapi', function () {
+
+                            cache = {
+                                coords: {
+                                    "latitude": google.loader.ClientLocation.latitude,
+                                    "longitude": google.loader.ClientLocation.longitude
+                                }
+                            };
+
+                            callback(cache);
+                        });
+
+                    };
+
+                    geolocation.watchPosition = geolocation.getCurrentPosition;
+                })(navigator.geolocation);
+    
+
+            
+Encountered an end tag : script
+Encountered some data  : 
+       
+        
+        
+Encountered a start tag: p
+Encountered some data  : 
+
+            
+
+        
+Encountered an end tag : p
+Encountered some data  : 
+        
+        
+        
+        
+        
+            
+Encountered a start tag: div
+Encountered some data  : 
+                
+Encountered a start tag: strong
+Encountered some data  : 
+                    Please note
+                
+Encountered an end tag : strong
+Encountered some data  : 
+                Use of geocaching.com services is subject to the terms and conditions 
+Encountered a start tag: a
+Encountered some data  : in our disclaimer
+Encountered an end tag : a
+Encountered some data  : .
+            
+Encountered an end tag : div
+Encountered some data  : 
+        
+        
+        
+Encountered a start tag: h3
+Encountered some data  : Geocache Description:
+Encountered an end tag : h3
+Encountered some data  : 
+        
+Encountered a start tag: div
+Encountered some data  : 
+            
+            
+Encountered a start tag: span
+Encountered a start tag: p
+Encountered some data  : P
+Encountered some data  : G
+Encountered an end tag : p
+Encountered some data  : 
+
+
+Encountered an end tag : span
+Encountered some data  : 
+            
+        
+Encountered an end tag : div
+Encountered some data  : 
+        
+        
+Encountered a start tag: br
+Encountered an end tag : br
+Encountered some data  : 
+        
+Encountered a start tag: div
+Encountered some data  : 
+            
+            
+Encountered a start tag: span
+Encountered a start tag: p
+Encountered some data  : This cache is not located at the above coordinates. Do not go there; you will not find it. Please read the description in full before setting out on your journey.
+Encountered an end tag : p
+Encountered some data  : 
+
+Encountered a start tag: p
+Encountered some data  : ***
+Encountered an end tag : p
+Encountered some data  : 
+
+Encountered a start tag: p
+Encountered some data  : For once, Rosetta and Maurelle have worked together to create a set of caches to celebrate Valentine’s Day.  Rosetta created the geoart while Maurelle placed the hides, with the promise to her sister that none of the caches would be too hard to find.
+Encountered an end tag : p
+Encountered some data  : 
+
+Encountered a start tag: p
+Encountered some data  :  
+Encountered an end tag : p
+Encountered some data  : 
+
+Encountered a start tag: p
+Encountered some data  : In order to obtain the final and sign the log, you must choose which fairy to follow.  Below are your choices.  It is recommended that you read the hint before you begin.
+Encountered an end tag : p
+Encountered some data  : 
+
+Encountered a start tag: p
+Encountered some data  :  
+Encountered an end tag : p
+Encountered some data  : 
+
+Encountered a start tag: p
+Encountered some data  : Rosetta suggests that you will find the final at these coordinates:  N 39 15.700, W 090 16.589
+Encountered an end tag : p
+Encountered some data  : 
+
+Encountered a start tag: p
+Encountered some data  : Maurelle thinks you should look for the final at these coordinates:  N 39 16.156, W 090 16.040
+Encountered an end tag : p
+Encountered some data  : 
+
+Encountered a start tag: p
+Encountered some data  :  
+Encountered an end tag : p
+Encountered some data  : 
+
+Encountered a start tag: p
+Encountered some data  : Good luck in your adventure!
+Encountered an end tag : p
+Encountered an end tag : span
+Encountered some data  : 
+            
+        
+Encountered an end tag : div
+Encountered some data  : 
+        
+        
+Encountered a start tag: p
+Encountered some data  : 
+            
+
+        
+Encountered an end tag : p
+Encountered some data  : 
+        
+Encountered a start tag: p
+Encountered some data  : 
+            
+Encountered a start tag: strong
+Encountered some data  : 
+                Additional Hints
+Encountered an end tag : strong
+Encountered some data  : 
+            (
+Encountered a start tag: a
+Encountered some data  : Decrypt
+Encountered an end tag : a
+Encountered some data  : ) 
+Encountered an end tag : p
+Encountered a start tag: div
+Encountered some data  : 
+            Pubbfr lbhe snvel jvfryl.  Jura lbh'ir znqr lbhe pubvpr, fgvpx jvgu ure guebhtubhg lbhe wbhearl, yrfg lbh svaq lbhefrys ergenpvat lbhe fgrcf.
+Encountered an end tag : div
+Encountered a start tag: div
+Encountered some data  : 
+            
+Encountered a start tag: span
+Encountered a start tag: div
+Encountered some data  :  
+Encountered a start tag: p
+Encountered some data  : Decryption Key
+Encountered an end tag : p
+Encountered some data  :  
+Encountered a start tag: p
+Encountered some data  : A|B|C|D|E|F|G|H|I|J|K|L|M
+Encountered a start tag: br
+Encountered an end tag : br
+Encountered some data  :  -------------------------
+Encountered a start tag: br
+Encountered an end tag : br
+Encountered some data  :  N|O|P|Q|R|S|T|U|V|W|X|Y|Z
+Encountered an end tag : p
+Encountered some data  :  
+Encountered a start tag: p
+Encountered some data  : (letter above equals below, and vice versa)
+Encountered an end tag : p
+Encountered an end tag : div
+Encountered an end tag : span
+Encountered some data  : 
+        
+Encountered an end tag : div
+Encountered some data  : 
+        
+Encountered a start tag: div
+Encountered some data  : 
+        
+Encountered an end tag : div
+Encountered some data  : 
+        
+    
+Encountered an end tag : div
+Encountered some data  : 
+    
+    
+    
+Encountered a start tag: div
+Encountered some data  : 
+        
+        
+        
+        
+        
+Encountered a start tag: div
+Encountered some data  : 
+            
+            
+Encountered a start tag: h3
+Encountered some data  : 
+                Attributes
+            
+Encountered an end tag : h3
+Encountered some data  : 
+            
+Encountered a start tag: div
+Encountered some data  : 
+                
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered some data  :  
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered some data  :  
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered some data  :  
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered some data  :  
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered some data  :  
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered some data  :  
+Encountered a start tag: p
+Encountered a start tag: small
+Encountered a start tag: a
+Encountered some data  : What are Attributes?
+Encountered an end tag : a
+Encountered an end tag : small
+Encountered an end tag : p
+Encountered some data  : 
+            
+Encountered an end tag : div
+Encountered some data  : 
+            
+        
+Encountered an end tag : div
+Encountered some data  : 
+        
+        
+        
+Encountered a start tag: div
+Encountered some data  : 
+		
+            
+            
+Encountered a start tag: script
+Encountered some data  : 
+googletag.cmd.push(function() {{
+googletag.defineSlot('/1011121/cache_details_pg_250x250', [250, 250], 'div_8d683f3e-aa2c-405f-ac08-320b106862bf').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+}});
+
+Encountered an end tag : script
+Encountered some data  : 
+
+Encountered a start tag: div
+Encountered some data  : 
+
+Encountered a start tag: script
+Encountered some data  : 
+googletag.cmd.push(function() { googletag.display('div_8d683f3e-aa2c-405f-ac08-320b106862bf'); });
+
+Encountered an end tag : script
+Encountered some data  : 
+
+Encountered an end tag : div
+Encountered some data  : 
+
+            
+Encountered a start tag: p
+Encountered some data  : 
+                
+Encountered a start tag: small
+Encountered a start tag: a
+Encountered some data  : Advertising with Us
+Encountered an end tag : a
+Encountered an end tag : small
+Encountered some data  :  
+Encountered an end tag : p
+Encountered some data  : 
+	
+Encountered an end tag : div
+Encountered a start tag: div
+Encountered some data  : 
+            
+        
+Encountered an end tag : div
+Encountered some data  : 
+        
+Encountered a start tag: div
+Encountered some data  : 
+        
+Encountered an end tag : div
+Encountered some data  : 
+        
+        
+Encountered a start tag: span
+Encountered an end tag : span
+Encountered some data  : 
+        
+        
+
+Encountered a start tag: div
+Encountered some data  : 
+    
+    
+Encountered a start tag: h3
+Encountered some data  : 
+        
+Encountered a start tag: span
+Encountered some data  : Inventory
+Encountered an end tag : span
+Encountered some data  : 
+    
+Encountered an end tag : h3
+Encountered some data  : 
+    
+Encountered a start tag: div
+Encountered some data  : 
+        
+        
+            
+            
+Encountered a start tag: div
+Encountered some data  : 
+                
+                
+Encountered a start tag: p
+Encountered a start tag: a
+Encountered some data  : View past Trackables
+Encountered an end tag : a
+Encountered an end tag : p
+Encountered some data  : 
+                
+Encountered a start tag: p
+Encountered a start tag: a
+Encountered some data  : What are Trackable Items?
+Encountered an end tag : a
+Encountered an end tag : p
+Encountered some data  : 
+            
+Encountered an end tag : div
+Encountered some data  : 
+
+        
+    
+Encountered an end tag : div
+Encountered some data  : 
+    
+    
+
+Encountered an end tag : div
+Encountered some data  : 
+
+        
+        
+        
+    
+Encountered an end tag : div
+Encountered some data  : 
+    
+    
+    
+Encountered a start tag: div
+Encountered some data  : 
+        
+        
+Encountered a start tag: p
+Encountered some data  : 
+            
+Encountered some data  :  
+Encountered a start tag: br
+Encountered an end tag : br
+Encountered some data  : 
+            
+            
+        
+Encountered a start tag: p
+Encountered some data  : 
+        
+        
+        
+Encountered a start tag: p
+Encountered some data  : 
+            
+Encountered a start tag: span
+Encountered some data  : Find...
+Encountered an end tag : span
+Encountered some data  : 
+            
+Encountered a start tag: br
+Encountered an end tag : br
+Encountered some data  : 
+            
+Encountered a start tag: span
+Encountered an end tag : span
+Encountered some data  : 
+        
+Encountered an end tag : p
+Encountered some data  : 
+        
+Encountered a start tag: ul
+Encountered some data  : 
+            
+Encountered a start tag: li
+Encountered some data  : 
+                ...other caches 
+Encountered a start tag: a
+Encountered some data  : hidden
+Encountered an end tag : a
+Encountered some data  :  or 
+Encountered a start tag: a
+Encountered some data  : found
+Encountered an end tag : a
+Encountered some data  :  by this user
+            
+Encountered an end tag : li
+Encountered some data  : 
+            
+            
+        
+Encountered an end tag : ul
+Encountered some data  : 
+        
+Encountered a start tag: p
+Encountered some data  : 
+            
+        
+Encountered an end tag : p
+Encountered some data  : 
+        
+Encountered a start tag: span
+Encountered some data  : 
+            
+        
+Encountered an end tag : span
+Encountered some data  : 
+        
+Encountered a start tag: ul
+Encountered some data  : 
+            
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+        
+Encountered an end tag : ul
+Encountered some data  : 
+        
+            
+Encountered a start tag: div
+Encountered some data  : 
+                
+Encountered a start tag: h3
+Encountered some data  : 
+                    4 Logged Visits
+                
+Encountered an end tag : h3
+Encountered some data  : 
+                
+Encountered a start tag: div
+Encountered some data  : 
+                    
+Encountered a start tag: a
+Encountered some data  : 
+                        Decrypt
+                    
+Encountered an end tag : a
+Encountered some data  : 
+                
+Encountered an end tag : div
+Encountered some data  : 
+                
+Encountered a start tag: span
+Encountered a start tag: p
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered some data  :  3
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered some data  :  1
+Encountered an end tag : p
+Encountered an end tag : span
+Encountered some data  : 
+                
+Encountered a start tag: p
+Encountered some data  : 
+                    
+Encountered a start tag: a
+Encountered some data  : View Logbook
+Encountered an end tag : a
+Encountered some data  :  | 
+Encountered a start tag: a
+Encountered some data  : View the Image Gallery
+Encountered an end tag : a
+Encountered some data  : 
+                
+Encountered an end tag : p
+Encountered some data  : 
+                
+Encountered a start tag: p
+Encountered some data  : 
+                    
+Encountered a start tag: span
+Encountered some data  : **Warning!
+Encountered an end tag : span
+Encountered some data  :  
+Encountered a start tag: a
+Encountered some data  : Spoilers
+Encountered an end tag : a
+Encountered some data  :  may be included in the descriptions or links.
+                
+Encountered an end tag : p
+Encountered some data  : 
+            
+Encountered an end tag : div
+Encountered some data  : 
+            
+            
+Encountered a start tag: div
+Encountered some data  : 
+                
+Encountered a start tag: table
+Encountered some data  : 
+                    
+Encountered a start tag: tbody
+Encountered some data  : 
+                    
+Encountered an end tag : tbody
+Encountered some data  : 
+                    
+Encountered a start tag: tfoot
+Encountered some data  : 
+                        
+Encountered a start tag: tr
+Encountered some data  : 
+                            
+Encountered a start tag: td
+Encountered some data  : 
+                                
+Encountered a start tag: div
+Encountered some data  : 
+                                    
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered some data  : 
+                                    Loading Cache Logs...
+                                
+Encountered an end tag : div
+Encountered some data  : 
+                                
+Encountered a start tag: div
+Encountered some data  : 
+                                    
+Encountered a start tag: a
+Encountered some data  : 
+                                        Load More Logs...
+Encountered an end tag : a
+Encountered some data  : 
+                                
+Encountered an end tag : div
+Encountered some data  : 
+                            
+Encountered an end tag : td
+Encountered some data  : 
+                        
+Encountered an end tag : tr
+Encountered some data  : 
+                    
+Encountered an end tag : tfoot
+Encountered some data  : 
+                
+Encountered an end tag : table
+Encountered some data  : 
+            
+Encountered an end tag : div
+Encountered some data  : 
+            
+Encountered a start tag: p
+Encountered some data  : 
+                
+Encountered a start tag: small
+Encountered some data  : 
+                    Current Time: 
+Encountered a start tag: time
+Encountered some data  : 2/15/2017 6:58:41 AM (UTC-08:00) Pacific Time (US 
+Encountered some data  : &
+Encountered some data  :  Canada) (2:58 PM GMT)
+Encountered an end tag : time
+Encountered a start tag: br
+Encountered an end tag : br
+Encountered some data  : Last Updated: 
+Encountered a start tag: time
+Encountered some data  : 2017-02-15T01:19:45Z
+Encountered an end tag : time
+Encountered some data  :  on 2/14/2017 5:19:45 PM (UTC-08:00) Pacific Time (US 
+Encountered some data  : &
+Encountered some data  :  Canada) (1:19 AM GMT) 
+Encountered a start tag: br
+Encountered an end tag : br
+Encountered some data  : Rendered From:Unknown
+Encountered a start tag: br
+Encountered an end tag : br
+Encountered some data  : Coordinates are in the WGS84 datum
+                
+Encountered an end tag : small
+Encountered some data  : 
+            
+Encountered an end tag : p
+Encountered some data  : 
+            
+Encountered a start tag: div
+Encountered some data  : 
+                
+Encountered a start tag: a
+Encountered an end tag : a
+Encountered some data  :  
+Encountered an end tag : div
+Encountered an end tag : div
+Encountered a start tag: script
+Encountered some data  : 
+        <tr class="log-row" data-encoded="${IsEncoded}">
+            <td>
+                <div class="FloatLeft LogDisplayLeft">
+                    <p class="logOwnerProfileName">
+                        <strong><a id="143568283" href="/profile/?guid=${AccountGuid}">${UserName}</a></strong>
+                    </p>
+                    <p class="logOwnerBadge">
+                        <img title="${creator.GroupTitle}" src="${creator.GroupImageUrl}">${creator.GroupTitle}
+                    </p>
+                    <p class="logOwnerAvatar">
+                        <a href="/profile/?guid=${AccountGuid}">{{if includeAvatars && AvatarImage}}
+                                <img width="48" height="48" src="https://img.geocaching.com/user/avatar/${AvatarImage}">
+                            {{else includeAvatars }}
+                                <img width="48" height="48" src="/images/default_avatar.png">
+                            {{/if}}
+                        </a>
+                    </p>
+                    <p class="logOwnerStats">
+                        {{if GeocacheFindCount > 0 }}
+                            <img title="Caches Found" src="/images/icons/16/found.png">${GeocacheFindCount}
+                        {{/if}}
+                    </p>
+                </div>
+                <div class="FloatLeft LogDisplayRight">
+                    <div class="HalfLeft LogType">
+                        <strong>
+                            <img title="${LogType}" alt="${LogType}" src="/images/logtypes/${LogTypeImage}">&nbsp;${LogType}</strong>
+                    </div>
+                    <div class="HalfRight AlignRight">
+                        <span class="minorDetails LogDate">${Visited}</span>
+                    </div>
+                    <div class="Clear LogContent markdown-output">
+                        {{if LatLonString.length > 0}}
+                            <span class="WaypointLog">${LatLonString}</span>
+                        {{/if}}
+                            <span class="LogText">{{html LogText}}</span>
+                        {{if Images.length > 0}}
+                                <table cellspacing="0" cellpadding="3" class="LogImagesTable">
+                                    {{tmpl(Images) "tmplCacheLogImages"}}
+                                </table>
+                        {{/if}}
+                            
+                        <div class="AlignRight">
+                            <small><a title="View Log" href="/seek/log.aspx?LUID=${LogGuid}" target="_blank">{{if (userInfo.ID==AccountID)}}
+                                       View / Edit Log / Images
+                                    {{else}}
+                                       View Log
+                                    {{/if}}
+                            </a></small>&nbsp;
+                                {{if (userInfo.ID==AccountID)}}
+                                <small><a title="Upload Image" href="/seek/upload.aspx?LID=${LogID}" target="_blank">Upload Image</a></small>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    
+Encountered an end tag : script
+Encountered a start tag: script
+Encountered some data  : 
+            <tr>
+                <td>
+                    
+                    <a class="tb_images lnk" rel="tb_images[grp${LogID}]" href="https://img.geocaching.com/cache/log/large/${FileName}" data-title="{{tmpl "tmplCacheLogImagesTitle"}}">
+                        <img title="Photo" alt="Photo" src="/images/icons/16/photo.png"> 
+                        <span>${ $('<div />').text($('<div />').html($item.data.Name).text()).html() }</span>
+                    </a>
+                </td>
+            </tr>
+    
+Encountered an end tag : script
+Encountered a start tag: script
+Encountered some data  : 
+            &lt;span class=&quot;LogImgTitle&quot;&gt; ${ $('<div />
+            ').text($('<div />
+            ').text($('<div />
+            ').html($item.data.Name).text()).html()).html() } &nbsp;&lt;/span&gt;&lt;span class=&quot;LogImgLink&quot;&gt;
+
+                &lt;a target=&quot;_blank&quot; href=&quot;/seek/log.aspx?LUID=${$item.parent.parent.data.LogGuid}&IID=${ImageGuid}&quot;>View Log&lt;/a&gt;&nbsp;
+        
+                &lt;a href=&quot;https://img.geocaching.com/cache/log/large/${FileName}&quot;>Print Picture&lt;/a&gt;&lt;/span&gt;
+
+                {{if (Descr && Descr.length > 0) }}
+                   &lt;br /&gt;&lt;p class=&quot;LogImgDescription&quot;&gt;${ $('<div />
+            ').text($('<div />
+            ').text($('<div />
+            ').html($item.data.Descr).text()).html()).html() }&lt;/p&gt;
+                {{/if}}
+    
+Encountered an end tag : script
+Encountered a start tag: script
+Encountered some data  : 
+        <div class="ccu-update" data-lat="${ll[0]}" data-lng="${ll[1]}">
+            <h4 class="BottomSpacing">Corrected Coordinates (hidden from others)</h4>
+            <dl>
+                <dt>Original:</dt>
+                <dd>${ll_formatted} <a href="#" class="ccu-restore">Restore</a></dd>
+            </dl>
+            <dl class="ccu-parse">
+                <dt>Change To:</dt>
+                <dd>
+                    <input type="text" max="40" size="35" class="cc-parse-text">
+                    <button class="ccu-button ccu-parse">Submit</button>
+                </dd>
+            </dl>
+            <dl class="ccu-parseverify" style="display: none;">
+                <dt>Change To:</dt>
+                <dd>
+                    <span class="ccu-parseverify-coords">N 32Â°38.880â€², W 097Â°23.755â€²</span>
+                </dd>
+                <dt>&nbsp;</dt>
+                <dd>
+                    <button class="ccu-button ccu-parseverify-accept">Accept</button>&nbsp;
+                    <button class="ccu-button ccu-parseverify-cancel">Cancel</button>
+                </dd>
+            </dl>
+        </div>
+    
+Encountered an end tag : script
+Encountered some data  : 
+
+            
+
+Encountered an end tag : div
+Encountered some data  : 
+
+            
+        
+Encountered an end tag : div
+Encountered some data  : 
+    
+Encountered an end tag : section
+Encountered some data  : 
+
+    
+Encountered a start tag: footer
+Encountered some data  : 
+        
+
+
+Encountered a start tag: div
+Encountered some data  : 
+    
+Encountered a start tag: section
+Encountered some data  : 
+        
+Encountered a start tag: dl
+Encountered some data  : 
+            
+Encountered a start tag: dt
+Encountered some data  : Get to Know Us
+Encountered an end tag : dt
+Encountered some data  : 
+            
+Encountered a start tag: dd
+Encountered a start tag: a
+Encountered some data  : Careers
+Encountered an end tag : a
+Encountered an end tag : dd
+Encountered some data  : 
+            
+Encountered a start tag: dd
+Encountered a start tag: a
+Encountered some data  : Partner With Us
+Encountered an end tag : a
+Encountered an end tag : dd
+Encountered some data  : 
+        
+Encountered an end tag : dl
+Encountered some data  : 
+
+        
+Encountered a start tag: dl
+Encountered some data  : 
+            
+Encountered a start tag: dt
+Encountered some data  : Legal
+Encountered an end tag : dt
+Encountered some data  : 
+            
+Encountered a start tag: dd
+Encountered a start tag: a
+Encountered some data  : Logo Usage Guidelines
+Encountered an end tag : a
+Encountered an end tag : dd
+Encountered some data  : 
+            
+Encountered a start tag: dd
+Encountered a start tag: a
+Encountered some data  : Parks 
+Encountered some data  : &
+Encountered some data  :  Police
+Encountered an end tag : a
+Encountered an end tag : dd
+Encountered some data  : 
+        
+Encountered an end tag : dl
+Encountered some data  : 
+
+        
+Encountered a start tag: dl
+Encountered some data  : 
+            
+Encountered a start tag: dt
+Encountered some data  : Shop Geocaching
+Encountered an end tag : dt
+Encountered some data  : 
+            
+Encountered a start tag: dd
+Encountered a start tag: a
+Encountered some data  : USA/Canada Shop
+Encountered an end tag : a
+Encountered an end tag : dd
+Encountered some data  : 
+            
+Encountered a start tag: dd
+Encountered a start tag: a
+Encountered some data  : International Retailers
+Encountered an end tag : a
+Encountered an end tag : dd
+Encountered some data  : 
+        
+Encountered an end tag : dl
+Encountered some data  : 
+        
+Encountered a start tag: dl
+Encountered some data  : 
+            
+Encountered a start tag: dt
+Encountered some data  : Contact Us
+Encountered an end tag : dt
+Encountered some data  : 
+            
+Encountered a start tag: dd
+Encountered a start tag: a
+Encountered some data  : Help Center
+Encountered an end tag : a
+Encountered an end tag : dd
+Encountered some data  : 
+            
+Encountered a start tag: dd
+Encountered a start tag: a
+Encountered some data  : Media Inquiries
+Encountered an end tag : a
+Encountered an end tag : dd
+Encountered some data  : 
+        
+Encountered an end tag : dl
+Encountered some data  : 
+        
+
+
+Encountered a start tag: div
+Encountered some data  : 
+    
+Encountered a start tag: div
+Encountered some data  : 
+        Choose Language
+    
+Encountered an end tag : div
+Encountered some data  : 
+    
+Encountered a start tag: div
+Encountered some data  : 
+        
+        
+Encountered a start tag: div
+Encountered some data  : 
+            
+            
+Encountered a start tag: a
+Encountered some data  : English
+Encountered an end tag : a
+Encountered some data  : 
+            
+        
+Encountered an end tag : div
+Encountered some data  : 
+        
+Encountered a start tag: ul
+Encountered some data  : 
+            
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : English
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Català
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Čeština
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Dansk
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Deutsch
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Ελληνικά
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Eesti
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Español
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Français
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Italiano
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : 日本語
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : 한국어
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Latviešu
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Lëtzebuergesch
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Magyar
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Nederlands
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Norsk, Bokmål
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Polski
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Português
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Română
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Русский
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Suomi
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Slovenščina
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+                    
+Encountered a start tag: li
+Encountered a start tag: a
+Encountered some data  : Svenska
+Encountered an end tag : a
+Encountered an end tag : li
+Encountered some data  : 
+                
+        
+Encountered an end tag : ul
+Encountered some data  : 
+        
+    
+Encountered an end tag : div
+Encountered some data  : 
+
+Encountered an end tag : div
+Encountered some data  : 
+
+Encountered a start tag: script
+Encountered some data  : 
+
+    jQuery(document).ready(function () {
+        jQuery(".selected-language a").click(function (e) {
+            e.preventDefault();
+            var $loc = jQuery(this).parent().next();
+            jQuery($loc).show().position({
+                of: $loc.parent(),
+                my: "left bottom",
+                at: "left top-10",
+                collision: "fit fit"
+            });
+            jQuery(this).addClass("Expanded");
+            jQuery(document).click(function () {
+                jQuery(".language-list").fadeOut("fast");
+                jQuery(".selected-language a").removeClass("Expanded");
+            });
+            return false;
+        });
+    });
+
+Encountered an end tag : script
+Encountered some data  : 
+    
+Encountered an end tag : section
+Encountered some data  : 
+
+Encountered an end tag : div
+Encountered some data  : 
+
+
+Encountered a start tag: section
+Encountered some data  : 
+    
+Encountered a start tag: div
+Encountered some data  : 
+        
+Encountered a start tag: p
+Encountered some data  : 
+            
+Encountered some data  :  2000-2017
+            
+Encountered a start tag: a
+Encountered some data  : Groundspeak, Inc.
+Encountered an end tag : a
+Encountered some data  : 
+            All Rights Reserved.
+            
+Encountered a start tag: a
+Encountered some data  : Groundspeak Terms of Use
+Encountered an end tag : a
+Encountered some data  : 
+            |
+    
+Encountered a start tag: a
+Encountered some data  : Privacy Policy
+Encountered an end tag : a
+Encountered some data  : 
+        
+Encountered an end tag : p
+Encountered some data  : 
+
+        
+Encountered a start tag: ul
+Encountered some data  : 
+            
+Encountered a start tag: li
+Encountered some data  : 
+                
+Encountered a start tag: a
+Encountered an end tag : a
+Encountered some data  : 
+            
+Encountered an end tag : li
+Encountered some data  : 
+            
+Encountered a start tag: li
+Encountered some data  : 
+                
+Encountered a start tag: a
+Encountered an end tag : a
+Encountered some data  : 
+            
+Encountered an end tag : li
+Encountered some data  : 
+            
+Encountered a start tag: li
+Encountered some data  : 
+                
+Encountered a start tag: a
+Encountered an end tag : a
+Encountered some data  : 
+            
+Encountered an end tag : li
+Encountered some data  : 
+            
+Encountered a start tag: li
+Encountered some data  : 
+                
+Encountered a start tag: a
+Encountered an end tag : a
+Encountered some data  :                          
+            
+Encountered an end tag : li
+Encountered some data  : 
+        
+Encountered an end tag : ul
+Encountered some data  : 
+    
+Encountered an end tag : div
+Encountered some data  : 
+
+Encountered an end tag : section
+Encountered some data  : 
+    
+Encountered an end tag : footer
+Encountered some data  : 
+    
+Encountered a start tag: div
+Encountered some data  : 
+        
+Encountered a start tag: a
+Encountered some data  : Return to the Top of the Page
+Encountered an end tag : a
+Encountered some data  : 
+    
+Encountered an end tag : div
+Encountered some data  : 
+    
+
+
+Encountered a start tag: script
+Encountered some data  : 
+//<![CDATA[
+$(function() { ga('send', 'event', 'Geocaching', 'CacheDetailsMemberType', 'NotSignedIn'); });var isLoggedIn = false;
+var dh=false;userInfo = {ID: 0};
+userToken = 'WQZID4ZFAYC6SULYQF74LYDA3S3BDCRFF42MHAMCQ2FV344K2FX57T5PR5HMIIEYY3CGMUR4ZCJLP7VAWNJC2ENUT6N4I2OFUTVC2CMW3OMU3SIX2EORZZKG5ZVI5LPF7O3SKJ3G4VYDHYKX4TV3SGHNRSOE64LNMJGOKDA';
+var lat=null, lng=null, guid=null, dh=false;
+initalLogs = {"status":"success", "data": [{"LogID":664891272,"CacheID":6041968,"LogGuid":"8ede11f7-fbd0-4492-818c-94661fd64297","Latitude":null,"Longitude":null,"LatLonString":"","LogType":"Found it","LogTypeImage":"2.png","LogText":"<p>This is the first geo-art for me. I thank you for developing the art and the placing of the caches.</p>\n","Created":"02/15/2017","Visited":"02/14/2017","UserName":"gpmgeo","MembershipLevel":3,"AccountID":14556431,"AccountGuid":"e0c690d3-9b0d-437c-a5b2-35a6d4f3f721","Email":"","AvatarImage":"f6903c12-b7b1-4b50-8294-5e13fabc23ec.jpg","GeocacheFindCount":659,"GeocacheHideCount":1,"ChallengesCompleted":0,"IsEncoded":false,"creator":{"GroupTitle":"Premium Member","GroupImageUrl":"/images/icons/prem_user.gif"},"Images":[]},{"LogID":664884619,"CacheID":6041968,"LogGuid":"0c2cc1df-a19c-4d91-a0d1-71660c68958b","Latitude":null,"Longitude":null,"LatLonString":"","LogType":"Found it","LogTypeImage":"2.png","LogText":"<p>Spent the day out playing at the Geo(he) Art.  Had seen the post on FB, was was beaten to FTFs by another cacher.  Not surprising since gpmgeo and I didn't even get to the start of the art until 1pm.  But we were STF, not too shabby.  Cute container here.  Merry Christmas!?  =)</p>\n<p>Thanks for the fun on an otherwise boring pre-half price chocolate day!!</p>\n","Created":"02/14/2017","Visited":"02/14/2017","UserName":"korriaan","MembershipLevel":3,"AccountID":8480851,"AccountGuid":"1850707d-f823-4c52-8c95-aa05e9cb8c18","Email":"","AvatarImage":"368cced5-a2c0-464e-bfc7-6dbf2f201659.jpg","GeocacheFindCount":3291,"GeocacheHideCount":17,"ChallengesCompleted":0,"IsEncoded":false,"creator":{"GroupTitle":"Premium Member","GroupImageUrl":"/images/icons/prem_user.gif"},"Images":[]},{"LogID":664857642,"CacheID":6041968,"LogGuid":"46b32ea9-d085-499d-91d3-9c7e9f1e27bd","Latitude":null,"Longitude":null,"LatLonString":"","LogType":"Found it","LogTypeImage":"2.png","LogText":"<p>Very Nice! – A fitting container for cache #1 – All the placements were enjoyable to search for but this one stands out and deserves a favorite point! - Traded Some Items - SL - Thanks GeocachingFairy for expending the time and effort to create and place this fun GeoArt series – It Is Appreciated!</p>\n","Created":"02/14/2017","Visited":"02/14/2017","UserName":"awanderer","MembershipLevel":3,"AccountID":1470722,"AccountGuid":"49f84feb-cda8-45f6-927c-b0d1ec5ca5c6","Email":"","AvatarImage":"1e8d8523-6d74-4ca7-a42a-2531ba9fa198.jpg","GeocacheFindCount":2038,"GeocacheHideCount":212,"ChallengesCompleted":0,"IsEncoded":false,"creator":{"GroupTitle":"Premium Member","GroupImageUrl":"/images/icons/prem_user.gif"},"Images":[]},{"LogID":664793174,"CacheID":6041968,"LogGuid":"7bd33202-e823-48ef-b9d3-7e81ce8ff4fc","Latitude":null,"Longitude":null,"LatLonString":"","LogType":"Publish Listing","LogTypeImage":"24.png","LogText":"<p>Published</p>\n","Created":"02/14/2017","Visited":"02/14/2017","UserName":"Reviewer Smith","MembershipLevel":3,"AccountID":7369467,"AccountGuid":"daa7e46e-5dc3-4463-bb4f-7d0adf339973","Email":"","AvatarImage":"c3070805-33f5-44ca-bb85-d0a6115bddfe.jpg","GeocacheFindCount":9,"GeocacheHideCount":0,"ChallengesCompleted":0,"IsEncoded":false,"creator":{"GroupTitle":"Reviewer","GroupImageUrl":"/images/icon_admin.gif"},"Images":[]}], "pageInfo": { "idx":1, "size": 5, "totalRows": 4, "rows": 4 } };
+var gaToken = 'UA-2020240-1';//]]>
+
+Encountered an end tag : script
+Encountered some data  : 
+
+Encountered an end tag : form
+Encountered some data  : 
+    
+    
+Encountered a start tag: form
+Encountered some data  : 
+        
+Encountered a start tag: input
+Encountered an end tag : input
+Encountered some data  : 
+    
+Encountered an end tag : form
+Encountered some data  : 
+
+    
+Encountered a start tag: script
+Encountered an end tag : script
+Encountered some data  : 
+    
+Encountered a start tag: script
+Encountered an end tag : script
+Encountered some data  : 
+
+    
+    
+    
+Encountered a start tag: script
+Encountered some data  : 
+    <!--
+
+    function s2gps(guid) {
+        var w = window.open('/seek/sendtogps.aspx?guid=' + guid, 's2gps', config='width=450,height=450,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,directories=no,status=no');
+        w.focus();
+    }
+
+    function pl(lc) {
+        document.location.href='/seek/cache_details_print.aspx?guid=' + guid + '&numlogs=' + lc +'&pt=full&lt=letter&decrypt='+ ((dh)?'y':'n');
+    }
+    
+    function setNotification(id) {
+        //new Effect.Highlight(id, {startcolor:'#ffffff', endcolor:'#ffff99', restorecolor:'#ffff99', duration:3.0, queue:'front'});
+        //new Effect.Highlight(id, {startcolor:'#ffff99', endcolor:'#ffffff', restorecolor:'#ffffff', duration:5.0, queue:'end'});
+    }
+    
+    function cmo(id) {
+        Cookie.set('sn', true);
+    }
+
+    function pp(img) {
+        var w = window.open(img);
+        w.focus();
+    }
+        
+    var map, bounds;
+    var canUpdateFavoriteStatus = true;
+    var decryptLogs = (urlParams["decrypt"] && urlParams["decrypt"] == "y") ? true : false;
+    var logInitialLoaded = false;
+    var $tfoot = $("#cache_logs_table").find("tfoot");
+    var currentPageIdx = 1, totalPages = 1, pageSize = 10;
+    var isBusy = false;
+        
+    var locString = {
+        decrypt: 'Decrypt',
+        encrypt: 'Encrypt'
+    };
+
+    $("#tmpl_CacheLogImagesTitle").template("tmplCacheLogImagesTitle");
+    $("#tmpl_CacheLogImages").template("tmplCacheLogImages");
+    $("#tmpl_CacheLogRow").template("tmplCacheLogRow");
+
+    $(".EncryptDecrypt")
+        .button({ icons: { secondary: 'ui-icon-arrowreturnthick-1-w'} })
+        .click(function (e) {
+            e.preventDefault();
+            $("tr.log-row").each(function (i, obj) {
+                var $obj = $(obj);
+                if ($obj.data("encoded") == true) {
+                    var lt = $obj.find("span.LogText");
+                    //var ltDecoded = $('<div />').html(lt.html()).text();
+                    lt.html(convertROTStringWithBrackets(lt.html()));
+                }
+            });
+
+            decryptLogs = !decryptLogs;
+
+            $("a.decrypt-link").html(decryptLogs ? locString.encrypt : locString.decrypt);
+
+            return false;
+        });
+            
+    function appendNewLogs(obj) {
+
+        totalPages = obj.pageInfo.totalPages;
+
+        var $newBody = $(document.createElement("TBODY"));
+
+        $("#tmpl_CacheLogRow").tmpl(obj.data,{ includeAvatars: includeAvatars }).appendTo($newBody);
+
+        $newBody.find("a.tb_images").each(function()
+        {
+            var $this = $(this);
+            $this.fancybox({
+                'type': 'image', 
+                'titlePosition': 'inside', 
+                'padding': 10,
+                titleFormat: function() { return $this.data('title'); } 
+            });
+        });
+
+        $("#cache_logs_table")
+            .append($newBody.children());
+
+        currentPageIdx = obj.pageInfo.idx + 1;
+        pageSize = obj.pageInfo.size;
+    }
+
+    var showScroll = false;
+
+    function callLogLoad(hideFooter) {
+        if (screen.width > 1090){
+            showScroll = true;
+        }
+        $.getJSON("/seek/geocache.logbook", { tkn: userToken, idx: currentPageIdx, num: pageSize, decrypt: decryptLogs },
+            function (response) {
+                if (response.status == "success") {
+                    if (response.data.length > 0) {
+                        $("#ctl00_ContentBody_lnkPrintFriendly5Logs").css('display', 'inline-block');
+                        $("#ctl00_ContentBody_lnkPrintFriendly10Logs").css('display', 'inline-block');
+                    }
+
+                    appendNewLogs(response);
+                    if( hideFooter || (totalPages < currentPageIdx) ) {
+                        $tfoot.hide();
+                    }
+                } else if (response.status == "error" && response.value == "1") {
+                    // reload the page since the data had expired.
+                    window.location.reload();
+                }
+                isBusy = false;
+            });
+    }
+
+    
+
+    $("#add_to_favorites").click(function () {
+
+        if (canUpdateFavoriteStatus) {
+            canUpdateFavoriteStatus = false;
+
+            var fv = parseInt($(".favorite-value").text());
+            fv++;
+            $(".favorite-value").text(fv);
+
+            var fr = parseInt($(".favorite-rank").text());
+            fr--;
+            $(".favorite-rank").text(fr);
+
+            $("#pnlNonfavoriteCache").fadeOut("fast", function () {
+                $("#pnlFavoriteCache").fadeIn("fast");
+            });
+
+            $.ajax({
+                type: "POST",
+                cache: false,
+                url: '/datastore/favorites.svc/update?u=' + userToken + '&f=true',
+                success: function () {
+                    canUpdateFavoriteStatus = true;
+                    gotScore = false;
+                    showFavoriteScore();
+                }
+            });
+
+            return false;
+        }
+    });
+
+    $("#remove_from_favorites").click(function () {
+
+        if (canUpdateFavoriteStatus) {
+            canUpdateFavoriteStatus = false;
+
+            var fv = parseInt($(".favorite-value").text());
+            fv--;
+            $(".favorite-value").text(fv);
+
+            var fr = parseInt($(".favorite-rank").text());
+            fr++;
+            $(".favorite-rank").text(fr);
+
+            $("#pnlFavoriteCache").fadeOut("fast", function () {
+                $("#pnlNonfavoriteCache").fadeIn("fast");
+            });
+
+            $.ajax({
+                type: "POST",
+                cache: false,
+                url: '/datastore/favorites.svc/update?u=' + userToken + '&f=false',
+                success: function () {
+                    canUpdateFavoriteStatus = true;
+                    gotScore = false;
+                    showFavoriteScore();
+                }
+            });
+
+            return false;
+        }
+    });
+
+    $(function () {
+
+        // CSP Section
+        if ($("#cspMessage").length) {
+                
+            var editLink = $('a[href*="report.aspx"]').attr('href');
+
+            $("#cspMessage").prepend('<P><strong>Already submitted this geocache?</strong> Please check below for the Reviewer’s notes and make any necessary changes before you resubmit. You can also respond by clicking "Log Your Visit" and posting a Reviewer Note.</P>');
+            $("#cspMessage").prepend('<P>Your geocache has not been published. Once your geocache is in place and all of the details have been entered, click "Submit for Review". A volunteer reviewer will begin the review process within about 7 days.</P>');
+                    
+            $("#cspGoBack").click(function (e) {
+                e.preventDefault();
+                window.location = editLink;
+                return false;
+            });
+                    
+            $("#cspSubmit").click(function (e) {
+                e.preventDefault();
+                $.pageMethod("/seek/cache_details.aspx/EnableCSPCache", JSON.stringify({ dto: { ut: userToken } }), function (r) {
+                    var r = JSON.parse(r.d);
+                    if (r.success == true) {
+                        window.location = '/seek/cache_details.aspx?guid=' + r.guid;
+                    } else {
+                        alert("There was an error enabling your cache.");
+                    }
+                });
+                return false;
+            });
+                    
+                
+        }
+
+
+        //override coords
+        if (typeof(userDefinedCoords) != "undefined") {
+            if (userDefinedCoords.status == "success" && userDefinedCoords.data.isUserDefined == true) {
+                mapLatLng = $.extend({}, mapLatLng, userDefinedCoords.data);
+                $("#uxLatLon")
+                    .data("isOverridden", true)
+                    .addClass("myLatLon");
+            } else if (userDefinedCoords.status == "success") {
+                mapLatLng = $.extend({}, mapLatLng, userDefinedCoords.data);
+            } else {
+                $("#uxLatLonLink").contents().unwrap();
+            }
+        } else {
+            $("#uxLatLonLink").contents().unwrap();
+        }
+            
+            
+        var cacheNoteText = {
+            DefaultText: 'Click to enter a note',
+                ErrorInSaving: 'There was an error saving page.  Please refresh the page and try again.',
+                SavingText: 'Please wait, saving your note...'
+            };
+
+        $("time.timeago").timeago();
+
+        $(".button").button();
+
+        var sn = Cookie.get('sn');
+
+        if ($('#trNotPM').length > 0) {
+            $('#trNotPM').toggle(!sn);
+        }
+
+        $("#cache_note").editInPlace({
+            cancel_button: "<input type='submit' class='inplace_cancel' value='Cancel'></input>",
+            save_button: "<input type='submit' class='inplace_save' value='Save'></input>",
+            callback: function (unused, enteredText) {
+                var me = $(this);
+
+                var et = $.trim(enteredText);
+                if (et.length > 500 ) {
+                    et = et.substr(0, 500);
+                }
+                $.pageMethod("/seek/cache_details.aspx/SetUserCacheNote", JSON.stringify({ dto: { et: et, ut: userToken} }), function (r) {
+                    var r = JSON.parse(r.d);
+                    if (r.success == true) {
+                        if ($.trim(r.note) == "") {
+                            $("#cache_note").text(cacheNoteText.DefaultText);
+                        } else {
+                            $("#cache_note").text(r.note);
+                        }
+
+                        me.effect('highlight', { color: '#ffb84c' }, 'slow');
+                    } else {
+                        alert(cacheNoteText.ErrorInSaving);
+                        $("#cache_note").text(cacheNoteText.DefaultText);
+                    }
+
+                });
+
+                return cacheNoteText.SavingText;
+            }
+                    , default_text: cacheNoteText.DefaultText
+                    , field_type: "textarea"
+                    , textarea_rows: "7"
+                    , textarea_cols: "65"
+                    , show_buttons: true
+                    , bg_over: "#dad7cb"
+            //, callback_skip_dom_reset: true
+
+        });
+
+        $("#lnk_slippyMap").click(function(e) {
+            e.preventDefault();
+            loadDynamicMap();
+            return false;
+        });
+
+        $(".inplace_field").live("focus", function () {
+            if ($(this).data("created") == null) {
+                $(this).data("created", true)
+                $(this).countable({
+                    maxLength: 500
+                    });
+            }
+            });
+                
+        $("#pcn_help").qtip({ 
+            content: 'Enter your own notes here.  No other user will be able to access them.',
+                position: {
+                    my: 'top center',
+                    at: 'bottom center'
+                },
+                style: {
+                    classes: 'ui-tooltip-dark ui-tooltip-rounded pcn-tooltip'
+                },
+            });
+                    
+        $("a.decrypt-link").html(decryptLogs ? locString.encrypt : locString.decrypt);
+                        
+        if ($("#cache_logs_container").length > 0) {
+
+            appendNewLogs(initalLogs);
+
+            if (DetectMobileQuick()) {
+                $("#pnlButtonLoad")
+                    .show()
+                    .find("a.MobileButton")
+                    .click(function(e) {
+                        e.preventDefault();
+                        callLogLoad(false);
+                        return false;
+                    })
+                    .button();
+                if (!DetectTierTablet()) {
+                    $("a.MobileButton").addClass("Phone");
+                }
+            } else {
+                $("#pnlLazyLoad").show();
+
+                $(window).endlessScroll({
+                    fireOnce: true,
+                    fireDelay: 500,
+                    bottomPixels: ($(document).height() - $("#cache_logs_container").offset().top) + 50,
+                    ceaseFire: function() {
+                        // stop the scrolling if the last page is reached.
+                        return (isLoggedIn == false) || (totalPages < currentPageIdx);
+                    },
+                    callback: function() {
+                        if (!isBusy) {
+
+                            isBusy = true;
+                            $tfoot.show();
+                            callLogLoad(true);
+                        }
+                    }
+                });
+            }
+        }
+
+        if (!isLoggedIn) {
+            $("#cache_logs_table").find("tfoot").hide();
+        }
+
+        if (mapLatLng != null) {
+
+            $("#uxLatLonLink").qtip({
+                suppress:false,
+                content: buildCacheCoordMenu(),
+                position: {
+                    my: 'left top',
+                    at: 'right top',
+                    adjust: {
+                        x: 10, y: -10
+                    }
+                },
+                show: {
+                    ready: false,
+                    event: "click",
+                    solo: true
+                }, hide: {
+                    event: 'unfocus'
+                },
+                style: {
+                    tip: {
+                        corner: false
+                    },
+                    classes: 'ui-tooltip-widget'
+                },
+                events: {
+                    show: function () {
+                        if ($("#uxLatLon").data("isOverridden")) {
+                            $("a.ccu-restore").show();
+                        } else {
+                            $("a.ccu-restore").hide();
+                        }
+
+                        if (userDefinedCoords.status != "success") {
+                            $("div.ccu-update").hide();
+                        } else {
+                            $("div.ccu-update").show();
+                        }
+                    }
+                }
+            }).click(function (e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            $("#ctl00_ContentBody_uxNotesAboutPrinting").fancybox({
+                    overlayShow: false
+                });
+                
+                setStaticMap();
+            }
+    });
+
+        function setStaticMap() {
+            
+            var mapLarge = L.map('map_canvas', {
+                center: [mapLatLng.lat, mapLatLng.lng],
+                zoom: 14,
+                doubleClickZoom: true,
+                dragging: true,
+                touchZoom: false,
+                scrollWheelZoom: false,
+                zoomControl: true,
+                attributionControl: false
+            })
+            .addControl(new L.Control.Attribution({ prefix: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors. <a href="/about/maps.aspx#leaflet" target="_blank">About our maps</a>' }))
+            .addControl(new L.Control.Scale());
+
+            addInternalMapTileLayer(mapLarge, function(layer) {
+                if (cmapAdditionalWaypoints != null && cmapAdditionalWaypoints.length > 0) {
+
+                    var llBounds = L.latLngBounds([mapLatLng.lat, mapLatLng.lng], [mapLatLng.lat, mapLatLng.lng]);
+
+                    for (var x = 0, len = cmapAdditionalWaypoints.length; x < len; x++) {
+
+                        var item = cmapAdditionalWaypoints[x],
+                            ll = [item.lat, item.lng];
+
+                        L.marker(ll, {
+                            icon:  L.icon({ iconUrl: '/images/wpttypes/pins/'+ item.type + '.png', iconSize: [20, 23], iconAnchor: [10, 23] }),
+                            title: item.name,
+                            clickable: false
+                        }).addTo(mapLarge);
+
+                        llBounds.extend(ll);
+                    }
+
+                    window.setTimeout(function () {
+                        mapLarge.fitBounds(llBounds.pad(.5));
+                    }, 100);
+                }
+
+                // Add posted coords last so they are prioritized on map
+                L.marker([mapLatLng.lat, mapLatLng.lng], {
+                    icon: L.icon({iconUrl: '/images/wpttypes/pins/' + mapLatLng.type + '.png', iconSize: [20, 23], iconAnchor: [10, 23]}),
+                    clickable: false,
+                    //zIndexOffset: 99,
+                    title: mapLatLng.name
+                }).addTo(mapLarge);
+            });
+        }
+
+        var lnkDH = $('#ctl00_ContentBody_lnkDH');
+        function dht() {
+            try {
+                $('#div_hint').html(convertROTStringWithBrackets($('#div_hint').html()));
+                var linkText = ((lnkDH.attr('title') == 'Decrypt') ? 'Encrypt' : 'Decrypt');
+                lnkDH
+                    .text(linkText)
+                    .attr('title', linkText);
+            } catch (e) {
+                alert(e);
+                return false;
+            }
+            return false;
+        } 
+
+        function buildCacheCoordMenu() {
+            var curLatLng = new LatLon(mapLatLng.lat, mapLatLng.lng)
+            $.template( "tmplCacheCoordinateUpdate_CoordItem", "<tr><td nowrap='nowrap'>${t}</td><td class='ccc-coord' nowrap='nowrap' dataum='${k}'>${v}</td></tr>" );
+
+            var $menu = $("<div></div>");
+
+            $( "#tmpl_CacheCoordinateUpdate" ).tmpl( {
+                ll: [mapLatLng.lat, mapLatLng.lng], 
+                ll_formatted: mapLatLng.oldLatLngDisplay
+            } ).appendTo( $menu );
+
+            $menu.find("button.ccu-button").button();
+
+            $menu.delegate("button.ccu-parse", "click", function (e) {
+                e.preventDefault();
+                var $this = $(e.target),
+                    $parse =$this.closest('dd').find(".cc-parse-text"),
+                    parseCoords = $.trim($parse.val());
+                    
+                if (parseCoords.length == 0) {
+                    alert('Please provide valid coordinates.');    
+                } else {
+                    $.getJSON("/api/geocode", { parse: parseCoords}, function (response) {
+                        if (response.status == "success") {
+                            var newLatLng = new LatLon(response.data.lat, response.data.lng);
+                                
+                            // update the displayed coords    
+                            var dist = curLatLng.rhumbDistanceTo(newLatLng);
+                            var bearingTo = curLatLng.rhumbBearingTo(newLatLng);
+                            var bearing = bearingTo >= 0 || bearingTo < 22.5 ? "N" : bearingTo >= 22.5 || bearingTo < 67.5 ? "NE" : bearingTo >= 67.5 || bearingTo < 112.5 ? "E" : bearingTo >= 112.5 || bearingTo < 157.5 ? "SE" : bearingTo >= 157.5 || bearingTo < 202.5 ? "S" : bearingTo >= 202.5 || bearingTo < 247.5 ? "SW" : bearingTo >= 247.5 || bearingTo < 292.5 ? "W" : bearingTo >= 292.5 || bearingTo < 337.5 ? "NW" : "N";
+                                
+                            var formats = response.data.formats;
+                            
+                            $menu
+                                .find("span.ccu-parseverify-coords").text(formats.DM).end()
+                                .find("dl.ccu-parse").hide().end()
+                                .find("dl.ccu-parseverify").show().end()
+                                .find("button.ccu-parseverify-accept")
+                                    .data("utm", '')
+                                    .data("dm", formats.DM)
+                                    .data("lat", response.data.lat)
+                                    .data("lng", response.data.lng)
+                                    .end();
+                        } else {
+                            alert("Sorry unable to parse the coordinates you entered.");
+                        }
+                    });
+                }
+                        
+                return false;
+            });
+
+            $menu.delegate("button.ccu-parseverify-accept", "click", function (e) {
+                e.preventDefault();
+                var $this = $(this);
+                // update to webmethod
+                $.pageMethod("/seek/cache_details.aspx/SetUserCoordinate", JSON.stringify({ dto: { data: {lat: $this.data("lat"), lng: $this.data("lng") }, ut: userToken } }), function (r) {
+                    var r = JSON.parse(r.d);
+                    if (r.status == "success") {
+                        window.location.reload();
+                    } else {
+                        $("#uxLatLonLink").qtip('hide');
+                    }
+                    
+                });
+                
+                return false;
+            });
+
+            $menu.delegate("button.ccu-parseverify-cancel", "click", function (e) {
+                e.preventDefault();
+                $menu
+                    .find("input.cc-parse-text").val('').end()
+                    .find("dl.ccu-parse").show().end()
+                    .find("dl.ccu-parseverify").hide().end();
+                return false;
+            });
+
+            $menu.delegate("a.ccu-restore", "click", function (e) {
+                e.preventDefault();
+
+                $.pageMethod("/seek/cache_details.aspx/ResetUserCoordinate", JSON.stringify({ dto: { ut: userToken } }), function (r) {
+                    var r = JSON.parse(r.d);
+                    if (r.status == "success") {
+                        window.location.reload();
+                    }
+                });
+                
+                return false;
+            });
+
+            return $menu;
+        }
+
+        GSPK = window.GSPK || {};
+        GSPK.Selector = {};
+        GSPK.Selector.getSelected = function(){
+            var t = null;
+            if ( window.getSelection ){
+                t = window.getSelection();
+            }else if(document.getSelection){
+                t = document.getSelection();
+            }else if(document.selection){
+                t = document.selection.createRange().text;
+            }
+            return t;
+        }
+        //-->
+    
+Encountered an end tag : script
+Encountered some data  : 
+    
+Encountered a start tag: script
+Encountered some data  : 
+        Favorites/Premium Logs
+    
+Encountered an end tag : script
+Encountered some data  : 
+    
+Encountered a start tag: script
+Encountered some data  : 
+            <!--
+    var gotScore = false;
+    var favDropDown = $('.favorite-dropdown');
+    var favContainer = $('.favorite-container');
+
+    function showFavoriteScore() {
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: '/datastore/favorites.svc/score?u=' + userToken,
+            success: function (scoreResult) {
+                gotScore = true;
+
+                var score = 0;
+
+                if(scoreResult) {
+                    score = scoreResult;
+                }
+
+                if(score > 100) {
+                    score = 100;
+                }
+
+                $('.favorite-score').html((score < 1 ? "<1" : score) + '%' + $("#loc_favPointsScoreDesc").html());
+            }
+        });
+    }
+    var scrollId = false,
+        logTop = 0;
+
+    if (document.getElementById("cache_logs_container") != null){
+        logTop = $("#cache_logs_container").position().top;
+    }
+
+
+    $(window).on("scroll", function() {
+        if (scrollId != false) {
+            window.clearTimeout(scrollId);
+            scrollId = false;
+        }
+
+        scrollId = window.setTimeout(function() {
+            if (showScroll){
+                if ($(this).scrollTop()< logTop) {
+                    $("#topScroll").fadeOut();
+                } else {
+                    $("#topScroll").fadeIn();
+                }
+            }}, 250);
+    });
+
+    $(document).bind('mouseup', function (e) {
+        var $clicked = $(e.target);
+        if (!$clicked.parents().hasClass("favorite-dropdown") && !$clicked.parents().hasClass("FavoriteWidget")) {
+            favDropDown.hide(1, function () {
+                favContainer.addClass('favorite-container');
+                favContainer.removeClass('favorite-container-open');
+            });
+        }
+    });
+
+    $('#uxFavContainerLink').click(function () {
+        if ($(favDropDown).is(':visible')) {
+            favDropDown.hide(1, function(){
+                favContainer.addClass('favorite-container');
+                favContainer.removeClass('favorite-container-open');
+            });                
+        }
+        else {
+            if (!gotScore) {
+                showFavoriteScore();
+            }
+
+            favContainer.addClass('favorite-container-open');
+            favContainer.removeClass('favorite-container');
+            favDropDown.show(1);
+        }
+    });
+
+    $("#lnkMessageOwner").on("click", function (e) {
+        e.preventDefault();
+        var $self = $(this),
+            hasFired = false;
+        
+        var hitCallback = function() {
+            if (!hasFired) {
+                hasFired = true;
+                document.location = $self.attr('href');
+            }
+        }
+
+        ga('send', 'event', 'Message Center', 'Click', 'Message Owner - Cache Details', { 'hitCallback': hitCallback });
+
+        // just in case google analytics is having issues.
+        window.setTimeout(hitCallback, 3000);
+
+        return false;
+    });
+
+    $("body").on("click", ".LogText a", function(e) {
+        if (e.target.tagName.toLowerCase() === 'a') {
+            var url = $(e.target).attr("href");
+
+            var hostname = extractHostname(url);
+            if (isGeocachingDomain(hostname)) {
+                return true;
+            }
+        }
+        
+        if (window.confirm("Hey wait! You’re about to leave Geocaching.com. Are you sure you want to do that?")) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+
+        //  End -->
+    
+Encountered an end tag : script
+Encountered some data  : 
+
+
+    
+Encountered a start tag: script
+Encountered some data  : 
+        $(document).ready(function () {
+            $('#hlUpgrade').bind('click', function () {
+                var $self = $(this),
+                hasFired = false;
+
+                var hitCallback = function() {
+                    if (!hasFired) {
+                        hasFired = true;
+                        document.location = $self.attr('href');
+                    }
+                }
+
+                ga('send', 'event', 'Geocaching', 'Premium Upsell', 'Mini-profile Widget', { 'hitCallback': hitCallback });
+
+                // just in case google analytics is having issues.
+                window.setTimeout(hitCallback, 3000);
+
+                return false;
+            });
+
+            $('a[target="_blank"]').attr('rel', 'noopener noreferrer');
+        });
+
+        $(function () {
+            $("a.language").click(function (e) {
+                e.preventDefault();
+                window.location.replace(window.location.href + (window.location.search.indexOf("?") == -1 ? "?" : "&") + "lang=" + $(this).attr("lang"));
+            });
+        });
+    
+Encountered an end tag : script
+Encountered some data  : 
+
+    
+    
+Encountered a start tag: div
+Encountered some data  : 
+        
+Encountered a start tag: script
+Encountered some data  : 
+            var _qevents = _qevents || [];
+
+            (function () {
+                var elem = document.createElement('script');
+
+                elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+                elem.async = true;
+                elem.type = "text/javascript";
+                var scpt = document.getElementsByTagName('script')[0];
+                scpt.parentNode.insertBefore(elem, scpt);
+            })();
+        
+Encountered an end tag : script
+Encountered some data  : 
+        
+Encountered a start tag: script
+Encountered some data  : 
+            _qevents.push({ qacct: "p-f6VPrfmR4cujU" });
+        
+Encountered an end tag : script
+Encountered some data  : 
+        
+Encountered a start tag: noscript
+Encountered some data  : 
+            
+Encountered a start tag: div
+Encountered some data  : 
+                
+Encountered a start tag: img
+Encountered an end tag : img
+Encountered an end tag : div
+Encountered some data  : 
+        
+Encountered an end tag : noscript
+Encountered some data  : 
+    
+Encountered an end tag : div
+Encountered some data  : 
+    
+
+    
+Encountered some data  : 
+
+Encountered an end tag : body
+Encountered some data  : 
+
+Encountered an end tag : html
+Encountered some data  : 
+

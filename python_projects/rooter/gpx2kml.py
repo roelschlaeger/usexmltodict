@@ -1,22 +1,28 @@
 # coding=utf-8
 
-"""Convert a .gpx file to a .kml file for Google Earth."""
+"""Convert a .gpx file to a .kml file for Google Earth.
+
+Convert an ordered GSAK .gpx waypoint file to a Google Earth .kml file with
+waypoints and route path folders.
+
+"""
+
+# pylint: disable=W0603,R0914
 
 from __future__ import print_function
-from xml.etree.ElementTree import Element, ElementTree, SubElement, tostring
-from degmin import latdegmin, londegmin
 import glob
 import sys
 import os.path
+from xml.etree.ElementTree import Element, ElementTree, SubElement, tostring
+from degmin import latdegmin, londegmin
+
+assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-"""Convert an ordered GSAK .gpx waypoint file to a Google Earth .kml file with
-waypoints and route path folders."""
-
-# TODO: Update this manually, for now
-__version__ = "$Revision: 181 $".split()[1]
-__date__ = "$Date: 2016-05-15 14:36:56 -0500 (Sun, 15 May 2016) $".split()[1]
+# Update this manually, for now
+__VERSION__ = "182"
+__DATE__ = "2017-07-25"
 
 ########################################################################
 
@@ -122,10 +128,11 @@ def get_other_icon(text):
     if word in OTHER_ICON_MAPPING:
         return OTHER_ICON_MAPPING[word]
     # get the first letter, already uppercase
-    c = word[0]
+    first_letter = word[0]
     # there are icons for all letters and digits
-    if c.isalpha() or (c.isdigit() and (c != "0")):
-        return LABELLED_PIN_ICON % c
+    if first_letter.isalpha() or \
+            (first_letter.isdigit() and (first_letter != "0")):
+        return LABELLED_PIN_ICON % first_letter
     # otherwise return something else
     return DEFAULT_OTHER_ICON
 
@@ -162,23 +169,12 @@ CHILD_WAYPOINT_BALLOON_STYLE = "child_waypoint_balloon"
 
 
 def pretty_print(ofile, element, indent="\t"):
-    """Write element to the L{ofile} file with indenting."""
+    """Write L{element} to the L{ofile} file with indenting."""
     from xml.dom.minidom import parseString
 
     txt = tostring(element)
-    # TODO Fix this Python VERSION dependency
-    if sys.version_info < (3,):
-        ofile.write(
-            parseString(txt).toprettyxml(
-                indent=indent
-            ).encode('ascii', 'ignore')
-        )
-    else:
-        ofile.write(
-            parseString(txt).toprettyxml(
-                indent=indent
-            )
-        )
+    _string = parseString(txt).toprettyxml(indent=indent)
+    ofile.write(_string)
 
 ########################################################################
 
@@ -215,17 +211,17 @@ def make_placemark(**kwargs):
     # do the subelements in this order, per
     # http://www.datypic.com/sc/kml22/e-kml_Placemark.html
     for elementname in [
-        'name',
-        'description',
-        'styleurl',
-        'style',
-        'extendeddata',
-        'point',
+            'name',
+            'description',
+            'styleurl',
+            'style',
+            'extendeddata',
+            'point',
     ]:
         if elementname in kwargs:
             placemark.append(kwargs.pop(elementname))
 
-    if (kwargs.keys()):
+    if kwargs.keys():
         print("make_placemark leftovers!", kwargs.keys())
 
         for _value in list(kwargs.values()):
@@ -236,7 +232,7 @@ def make_placemark(**kwargs):
 ########################################################################
 
 
-def Data(name, value):
+def _data(name, value):
     """Create and return a Data element with the specified value."""
     data = Element("Data", {"name": name})
     val = SubElement(data, "value")
@@ -246,9 +242,10 @@ def Data(name, value):
 
 ########################################################################
 
-def ExtendedData(wpt, text=None):
-    """Create ExtendedData element with optional text."""
-    """Format latitude and longitude in degmin and degrees."""
+def _extended_data(wpt, text=None):
+    """Create ExtendedData element with optional text.
+
+    Format latitude and longitude in degmin and degrees."""
 
     xdata = Element("ExtendedData")
 
@@ -259,14 +256,14 @@ def ExtendedData(wpt, text=None):
     lon = wpt.attrib["lon"]
 
     xdata.append(
-        Data(
+        _data(
             "gc_wpt_location_degmin",
             "%s %s" % (latdegmin(lat), londegmin(lon))
         )
     )
 
     xdata.append(
-        Data(
+        _data(
             "gc_wpt_location",
             "%s %s" % (lat, lon)
         )
@@ -289,7 +286,7 @@ def make_generic_placemark(wpt):
 
     name = Element("name")
     style = Element("Style")
-    xdata = ExtendedData(wpt)
+    xdata = _extended_data(wpt)
     point = Element("Point")
 
     wpt_name = get_gpx_text("name")
@@ -305,10 +302,10 @@ def make_generic_placemark(wpt):
         if wpt_child.tag == TIME_TAG:
             continue
         tag = wpt_child.tag[wpt_child.tag.find('}') + 1:]
-        xdata.append(Data(tag, wpt_child.text))
+        xdata.append(_data(tag, wpt_child.text))
 
     for _key, _value in list(wpt.attrib.items()):
-        xdata.append(Data(_key, _value))
+        xdata.append(_data(_key, _value))
 
     coordinates = SubElement(point, "coordinates")
     coordinates.text = "%s,%s" % (wpt.attrib["lon"], wpt.attrib["lat"])
@@ -341,7 +338,7 @@ def make_waypoint_placemark(wpt):
     name = Element("name")
     styleurl = Element("styleUrl")
     style = Element("Style")
-    xdata = ExtendedData(wpt)
+    xdata = _extended_data(wpt)
     point = Element("Point")
 
     wpt_name = get_gpx_text("name")
@@ -364,7 +361,7 @@ def make_waypoint_placemark(wpt):
         if wpt_child.tag == TIME_TAG:
             continue
         tag = wpt_child.tag[wpt_child.tag.find('}') + 1:]
-        xdata.append(Data(tag, wpt_child.text))
+        xdata.append(_data(tag, wpt_child.text))
 
     coordinates = SubElement(point, "coordinates")
     coordinates.text = "%s,%s" % (wpt.attrib["lon"], wpt.attrib["lat"])
@@ -403,7 +400,7 @@ def make_geocache_placemark(wpt):
     href = SubElement(icon, "href")
     href.text = "http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png"
 
-    xdata = ExtendedData(wpt, Data("gc_num", wpt.find(NAME_TAG).text))
+    xdata = _extended_data(wpt, _data("gc_num", wpt.find(NAME_TAG).text))
     description = wpt.find(DESC_TAG).text
 
     wpt_name = wpt.find(NAME_TAG).text
@@ -412,8 +409,8 @@ def make_geocache_placemark(wpt):
 
     # my additions
     if wpt.find(URL_TAG) is not None:
-        xdata.append(Data("gc_url", wpt.find(URL_TAG).text))
-    xdata.append(Data("gc_type", wpt.find(TYPE_TAG).text))
+        xdata.append(_data("gc_url", wpt.find(URL_TAG).text))
+    xdata.append(_data("gc_type", wpt.find(TYPE_TAG).text))
 
     # the location of the 'cache' tag has changed, now it is part of
     # <extensions>
@@ -449,19 +446,19 @@ def make_geocache_placemark(wpt):
             ["%s=%s" % (k, v) for k, v in list(cache.attrib.items())]
         )
 
-        xdata.append(Data("gc_cont_icon", wpt_cache_cont_icon))
-        xdata.append(Data("gc_diff", wpt_cache_diff))
-        xdata.append(Data("gc_diff_stars", wpt_cache_diff_stars))
-        xdata.append(Data("gc_hints", wpt_cache_hints))
-        xdata.append(Data("gc_long_desc", wpt_cache_long_desc))
-        xdata.append(Data("gc_name", description))
-        xdata.append(Data("gc_placer", wpt_cache_placer))
-        xdata.append(Data("gc_placer_id", wpt_cache_placer_id))
-        xdata.append(Data("gc_short_desc", wpt_cache_short_desc))
-        xdata.append(Data("gc_terr", wpt_cache_terr))
-        xdata.append(Data("gc_terr_stars", wpt_cache_terr_stars))
-        xdata.append(Data("gc_wpt_cache_type", wpt_cache_type))
-        xdata.append(Data("gc_wpt_cache_attr", wpt_cache_attributes))
+        xdata.append(_data("gc_cont_icon", wpt_cache_cont_icon))
+        xdata.append(_data("gc_diff", wpt_cache_diff))
+        xdata.append(_data("gc_diff_stars", wpt_cache_diff_stars))
+        xdata.append(_data("gc_hints", wpt_cache_hints))
+        xdata.append(_data("gc_long_desc", wpt_cache_long_desc))
+        xdata.append(_data("gc_name", description))
+        xdata.append(_data("gc_placer", wpt_cache_placer))
+        xdata.append(_data("gc_placer_id", wpt_cache_placer_id))
+        xdata.append(_data("gc_short_desc", wpt_cache_short_desc))
+        xdata.append(_data("gc_terr", wpt_cache_terr))
+        xdata.append(_data("gc_terr_stars", wpt_cache_terr_stars))
+        xdata.append(_data("gc_wpt_cache_type", wpt_cache_type))
+        xdata.append(_data("gc_wpt_cache_attr", wpt_cache_attributes))
 
         href.text = GEOCACHE_ICON_MAPPING.get(
             wpt_cache_type,
@@ -472,7 +469,7 @@ def make_geocache_placemark(wpt):
             symbol_type = get_gpx_text("sym")
             href.text = get_other_icon(symbol_type)
 
-        xdata.append(Data("gc_icon", href.text))
+        xdata.append(_data("gc_icon", href.text))
 
         # modify the name to reflect availability and archive status
         archived = cache.attrib["archived"]
@@ -480,7 +477,7 @@ def make_geocache_placemark(wpt):
         if archived == "True":
             name.text = "<font color='red'>%s</font>" % name.text
             xdata.append(
-                Data(
+                _data(
                     "gc_issues",
                     "<tt><b>This cache is permanently archived</b></tt>"
                 )
@@ -489,14 +486,14 @@ def make_geocache_placemark(wpt):
         elif available == "False":
             name.text = "<s>%s</s>" % name.text
             xdata.append(
-                Data(
+                _data(
                     "gc_issues",
                     "<tt><b>This cache is temporarily unavailable</b></tt>"
                 )
             )
 
         else:
-            xdata.append(Data("gc_issues", ""))
+            xdata.append(_data("gc_issues", ""))
 
     if wpt_extension is not None:
         def get_extension_text(tag):
@@ -528,8 +525,9 @@ def make_geocache_placemark(wpt):
 
 
 def create_wpts_folder(wpts):
-    """Create a .kml Folder element containing waypoint information."""
-    """Each waypoint contains the following subelements::
+    """Create a .kml Folder element containing waypoint information.
+
+    Each waypoint contains the following subelements::
 
         <Element {http://www.topografix.com/GPX/1/0}time>,
         <Element {http://www.topografix.com/GPX/1/0}name>,
@@ -563,11 +561,12 @@ def create_wpts_folder(wpts):
     for wpt in wpts:
 
         wpt_type = wpt.find(TYPE_TAG)
+        # print("wpt_type: %s" % wpt_type.text)
 
-        if (wpt_type is None):
+        if wpt_type is None:
             placemark = make_generic_placemark(wpt)
 
-        elif (wpt_type.text.startswith("Waypoint|")):
+        elif wpt_type.text.startswith("Waypoint|"):
             placemark = make_waypoint_placemark(wpt)
 
         elif wpt_type.text.startswith("Geocache|"):
@@ -751,12 +750,12 @@ def make_kml(name, input_tree):
         "Style",
         {"id": "lineStyle0"}
     )
-    kml_document_linestyle0_linestyle = SubElement(
+    kml_document_linestyle0_ls = SubElement(
         kml_document_linestyle0,
         "LineStyle"
     )
-    SubElement(kml_document_linestyle0_linestyle, "color").text = "99ffac59"
-    SubElement(kml_document_linestyle0_linestyle, "width").text = "6"
+    SubElement(kml_document_linestyle0_ls, "color").text = "99ffac59"
+    SubElement(kml_document_linestyle0_ls, "width").text = "6"
 
     # add balloon styles
     kml_document.append(geocache_balloon_style())
@@ -798,6 +797,7 @@ def main(args, options):
             # on next 'for' loop, if any, put output in a different file
             output_filename = None
 
+
 ########################################################################
 
 if __name__ == "__main__":
@@ -805,19 +805,23 @@ if __name__ == "__main__":
     from argparse import ArgumentParser
 
     DESCRIPTION = __doc__
-    VERSION = "Version: %s, %s" % (__version__, __date__)
     EPILOG = """If no filename parameter(s) are provided, the user will be
 prompted with a file open dialog to select an input .gpx file.
 
 Unless specified with the -o/--output option, the generated output filename
 will be the input filename + ".kml" extension.
-"""
+# """
 
     PARSER = ArgumentParser(
         description=DESCRIPTION,
-        version=VERSION,
         epilog=EPILOG,
     )
+
+    PARSER.add_argument(
+        "--version",
+        action="version",
+        version="%%(prog)s, Version: %s %s" % (__VERSION__, __DATE__)
+        )
 
     PARSER.add_argument(
         "-d",
@@ -837,30 +841,24 @@ will be the input filename + ".kml" extension.
 
     PARSER.add_argument("files", nargs="*")
 
-#   PARSER.set_defaults(
-        # output_file=None,
-        # debug=False,
-#   )
-
-    namespace = PARSER.parse_args()
+    NAMESPACE = PARSER.parse_args()
 
     (OPTIONS, ARGS) = (
-        namespace,
-        namespace.files
+        NAMESPACE,
+        NAMESPACE.files
     )
 
     if not ARGS:
 
-        import EasyDialogs
+        # import EasyDialogs
+        from file_dialog_tk import get_gpx_file
 
-        INPUT_FILE = EasyDialogs.AskFileForOpen(
-            "Select a .gpx file",
-            [
+        INPUT_FILE = get_gpx_file(
+            filetypes=[
                 ("Geographic files (*.gpx)", '*.gpx'),
-                ("All files (*.*)",          '*.*'),
+                ("All files (*.*)", '*.*'),
             ],
-            defaultLocation="*.gpx",
-            windowTitle="Open a .gpx file for processing",
+            title="Open a .gpx file for processing",
         )
 
         if INPUT_FILE:

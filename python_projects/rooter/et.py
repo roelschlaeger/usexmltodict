@@ -1,13 +1,19 @@
-#!C:\Python25\python.exe
+#!C:\Program Files\Python36\python.exe
 # -*- coding: utf-8 -*-
 # vim:ts=4:sw=4:tw=0:wm=0:et
-# Created:       Sun 08 Aug 2010 10:04:57 PM CDT
-# Last Modified: Tue 02 Jun 2015 11:53:14 AM CDT
-# $Id: et.py 193 2011-01-08 04:28:44Z harry $
 
 """Process a .gpx file to extract pertinent data fields"""
 
-########################################################################
+from __future__ import print_function
+
+__version__ = "1.1.1"  # Update for Python3
+__date__ = "20170724"
+
+# pylint: disable=too-many-lines
+# pylint: disable=too-many-locals
+# pylint: disable=too-many-statements
+
+#  #####################################################################
 
 from pprint import pprint, pformat
 from xml.etree import ElementTree as ET
@@ -15,19 +21,20 @@ import codecs
 import glob
 import os.path
 import re
-import StringIO
+import io
 import sys
-import types
 import zipfile
 
-########################################################################
+assert sys.version_info > (3, ), "Python 3 required"
+
+#  #####################################################################
 
 GLOBAL_MIN_INDEX = 110
 
 # HTTP_TRAILER = "&pf=y&log=y&decrypt=y"
 HTTP_TRAILER = "&lc=10&decrypt=y"
 
-########################################################################
+#  #####################################################################
 
 
 def tag_factory(schema):
@@ -36,12 +43,15 @@ def tag_factory(schema):
     schema_string = "%s%%s" % schema
     return lambda x: schema_string % x
 
-########################################################################
+
+#  #####################################################################
 
 # generate_gpx_tag values, filled in after the 'gpx' root element is read
 
 # gpx tags
-# pylint: disable=E0221
+# pylint: disable=W0603
+# noqa: E266,E0501
+
 AUTHOR = None
 BOUNDS = None
 CMT = None
@@ -95,10 +105,11 @@ TERRAIN = None
 CHILD_SKIP_TAGS = []
 GRANDCHILD_SKIP_TAGS = []
 
-########################################################################
+#  #####################################################################
 
 
 def make_cache_tags(schema="{http://www.groundspeak.com/cache/1/0/1}"):
+    """Docstring."""
 
     global CACHE, CONTAINER, DIFFICULTY, ENCODED_HINTS, GSNAME, OWNER
     global PLACED_BY, TERRAIN
@@ -114,10 +125,11 @@ def make_cache_tags(schema="{http://www.groundspeak.com/cache/1/0/1}"):
     PLACED_BY = generate_cache_tag("placed_by")
     TERRAIN = generate_cache_tag("terrain")
 
-########################################################################
+#  #####################################################################
 
 
 def make_extension_tags(schema="{http://www.gsak.net/xmlv1/5}"):
+    """Docstring."""
 
     global WPTEXTENSION, USER2, COUNTY, SMARTNAME, USERSORT
 
@@ -136,7 +148,7 @@ def make_extension_tags(schema="{http://www.gsak.net/xmlv1/5}"):
     USERSORT = generate_wpt_extension_tag("UserSort")
     # LASTGPXDATE = generate_wpt_extension_tag("LastGpxDate")
 
-########################################################################
+#  #####################################################################
 
 
 def make_gpx_tags(root_tag="{http://www.topografix.com/GPX/1/0}"):
@@ -174,10 +186,11 @@ def make_gpx_tags(root_tag="{http://www.topografix.com/GPX/1/0}"):
     URLNAME = generate_gpx_tag("urlname")       # not used, just skipped
     WPT = generate_gpx_tag("wpt")
 
-########################################################################
+#  #####################################################################
 
 
 def make_skip_lists():
+    """Docstring."""
 
     # now use the tags to build the skip lists
     global CHILD_SKIP_TAGS
@@ -208,20 +221,22 @@ def make_skip_lists():
         WPTEXTENSION
     ]
 
-########################################################################
+#  #####################################################################
 
 
 def find_schema(root, start):
+    """Locate the L{start} schema in root.attrib."""
 
     xsi = "{http://www.w3.org/2001/XMLSchema-instance}"
-    for schema in root.attrib[xsi + "schemaLocation"].split()[0::2]:
+    _key = xsi + "schemaLocation"
+    assert _key in root.attrib, "Invalid .gpx file, missing %s tag" % _key
+    for schema in root.attrib[_key].split()[0::2]:
         if schema.startswith(start):
-#           print "{%s}" % schema
             return "{%s}" % schema
     assert 0, "schema for %s not found" % start
     return None
 
-########################################################################
+#  #####################################################################
 
 
 def make_tags(root):
@@ -232,7 +247,7 @@ def make_tags(root):
     make_gpx_tags(find_schema(root, "http://www.topografix.com/GPX"))
     make_skip_lists()
 
-########################################################################
+#  #####################################################################
 
 
 def lat_format(arg):
@@ -243,13 +258,13 @@ def lat_format(arg):
 """
 
     arg = float(arg)
-    hemisphere = (arg < 0) and "S" or "N"
+    hemisphere = "S" if (arg < 0) else "N"
     arg = abs(arg)
     degrees = int(arg)
     minval = (arg - degrees) * 60.000
     return "%c%02d %2.3f" % (hemisphere, degrees, minval)
 
-########################################################################
+#  #####################################################################
 
 
 def lon_format(arg):
@@ -259,13 +274,13 @@ def lon_format(arg):
 @returns: string
 """
     arg = float(arg)
-    hemisphere = (arg < 0) and "W" or "E"
+    hemisphere = "W" if (arg < 0) else "E"
     arg = abs(arg)
     degrees = int(arg)
     minval = (arg - degrees) * 60.000
     return "%c%03d %2.3f" % (hemisphere, degrees, minval)
 
-########################################################################
+#  #####################################################################
 
 
 def do_output_header():
@@ -296,108 +311,109 @@ def do_output_header():
 
     return "\t".join(cols)
 
-########################################################################
+#  #####################################################################
 
 
-### def make_row(index, tags):
-###     """output the collected column data as a tab-delimited row string"""
-###
-###     # create an empty list to hold output for a line
-###     out = []
-###
-###     cache_dict = tags["cache"]
-###
-###     # assemble column information
-###     archived = cache_dict["archived"]
-###     available = cache_dict["available"]
-###     container = cache_dict["container"] or "ERROR"
-###     encoded_hints = " ".join((cache_dict["encoded_hints"] or "").split())
-###     owner = cache_dict["owner"] or ""
-### #   placed_by     = cache_dict[ "placed_by" ] or ""
-###
-###     desc = tags["desc"]
-###     lat = tags["lat"]
-###     lon = tags["lon"]
-###     name = tags["name"]
-###
-###     # split the GC number into prefix and id
-###     gc_prefix, gc_number = name[:2], name[2:]
-###
-###     gtype = tags["type"].replace(
-###         "Geocache|", ""
-###     ).replace(
-###         "Cache", ""
-###     ).replace(
-###         "Waypoint|", ""
-###     )
-###
-###     # get the url, with modifications
-###     url = tags["url"] or ""
-###     if url:
-###         url = url.replace("cache_details.aspx", "cdpf.aspx")
-###         url += HTTP_TRAILER
-###
-### #   urlname = tags[ "urlname" ]           # not used
-###
-### #   try:
-### #       county = tags[ "wptExtension" ][ "County" ]
-### #   except KeyError:
-### #       county = "UNK"
-###
-###     user2 = tags["wptExtension"].get("User2", "")
-###     smartname = tags["wptExtension"]["SmartName"]
-###
-###     # compute odd or even row for background coloring
-###     odd = ((index - GLOBAL_MIN_INDEX) % 20 == 0 and "even") or "odd"
-###
-### #   link = "N/A"
-###     row_number = ((index - GLOBAL_MIN_INDEX) / 10) + 4
-###     link = "=HYPERLINK(F%d;E%d)" % (row_number, row_number)
-###
-###     log = '=CONCATENATE($a$1;" ";R%d;" Thanks, ";G%d;", for placing this cache! -- roelsch, St. Charles, MO.")' % (row_number, row_number)
-###
-###     # cleanup non GC items
-###     if gc_prefix != "GC":
-###         gc_number = "None"
-###         available = "N/A"
-###         archived = "N/A"
-###         gtype = ""
-###         link = "=E%d" % row_number
-###         container = ""
-###         encoded_hints = ""
-###         owner = ""
-###         url = ""                    # output the column information to the list
-###         log = ""                    # no log if not a waypoint
-###
-###     out.append(gc_prefix)               # A: GC
-###     out.append(gc_number)               # B: GC#
-###     out.append(available)               # C: True | False
-###     out.append(archived)                # D: True | False
-###     out.append(desc)                    # E: A Tiny Park by RGS (2.5/1)
-###     out.append(url)                     # F: http://www.geocaching.com/seek...
-###     out.append(owner)                   # G: RGS
-###     out.append(user2)                   # H: USER2
-###     out.append(odd)                     # I: odd/even
-###     out.append(str(index))              # J: 110
-###     out.append(name)                    # K: GC17KCY
-###     out.append(link)                    # L: =HYPERLINK(F2,E2)
-###     out.append(gtype)                   # M: Traditional
-###     out.append(container)               # N: Micro
-###     out.append(encoded_hints)           # O: Sit a spell.
-###     out.append(lat_format(lat))         # P: 38.576333
-###     out.append(lon_format(lon))         # Q: -90.355583
-###     out.append("")                      # R: note
-###     out.append(log)                     # S: log
-###     out.append(smartname)               # T: smartname
-###
-###     # for a tab-delimited output string
-### #   out = map( str, out )
-###     output_string = "\t".join(map(str, out))
-###
-###     # and fixup any unicode errors
-###     return output_string.encode('utf-8', 'ignore')
+#   def make_row(index, tags):
+#       """output the collected column data as a tab-delimited row string"""
+#
+#       # create an empty list to hold output for a line
+#       out = []
+#
+#       cache_dict = tags["cache"]
+#
+#       # assemble column information
+#       archived = cache_dict["archived"]
+#       available = cache_dict["available"]
+#       container = cache_dict["container"] or "ERROR"
+#       encoded_hints = " ".join((cache_dict["encoded_hints"] or "").split())
+#       owner = cache_dict["owner"] or ""
+#   #   placed_by     = cache_dict[ "placed_by" ] or ""
+#
+#       desc = tags["desc"]
+#       lat = tags["lat"]
+#       lon = tags["lon"]
+#       name = tags["name"]
+#
+#       # split the GC number into prefix and id
+#       gc_prefix, gc_number = name[:2], name[2:]
+#
+#       gtype = tags["type"].replace(
+#           "Geocache|", ""
+#       ).replace(
+#           "Cache", ""
+#       ).replace(
+#           "Waypoint|", ""
+#       )
+#
+#       # get the url, with modifications
+#       url = tags["url"] or ""
+#       if url:
+#           url = url.replace("cache_details.aspx", "cdpf.aspx")
+#           url += HTTP_TRAILER
+#
+#   #   urlname = tags[ "urlname" ]           # not used
+#
+#   #   try:
+#   #       county = tags[ "wptExtension" ][ "County" ]
+#   #   except KeyError:
+#   #       county = "UNK"
+#
+#       user2 = tags["wptExtension"].get("User2", "")
+#       smartname = tags["wptExtension"]["SmartName"]
+#
+#       # compute odd or even row for background coloring
+#       odd = ((index - GLOBAL_MIN_INDEX) % 20 == 0 and "even") or "odd"
+#
+#   #   link = "N/A"
+#       row_number = ((index - GLOBAL_MIN_INDEX) / 10) + 4
+#       link = "=HYPERLINK(F%d;E%d)" % (row_number, row_number)
+#
+#       log = '=CONCATENATE($a$1;" ";R%d;" Thanks, ";G%d;", for placing'\
+# ' this cache! -- roelsch, St. Charles, MO.")' % (row_number, row_number)
+#
+#       # cleanup non GC items
+#       if gc_prefix != "GC":
+#           gc_number = "None"
+#           available = "N/A"
+#           archived = "N/A"
+#           gtype = ""
+#           link = "=E%d" % row_number
+#           container = ""
+#           encoded_hints = ""
+#           owner = ""
+#           url = ""  # output the column information to the list
+#           log = ""  # no log if not a waypoint
+#
+#       out.append(gc_prefix)               # A: GC
+#       out.append(gc_number)               # B: GC#
+#       out.append(available)               # C: True | False
+#       out.append(archived)                # D: True | False
+#       out.append(desc)                    # E: A Tiny Park by RGS (2.5/1)
+#       out.append(url)                     # F: http://www.geocaching.com/seek
+#       out.append(owner)                   # G: RGS
+#       out.append(user2)                   # H: USER2
+#       out.append(odd)                     # I: odd/even
+#       out.append(str(index))              # J: 110
+#       out.append(name)                    # K: GC17KCY
+#       out.append(link)                    # L: =HYPERLINK(F2,E2)
+#       out.append(gtype)                   # M: Traditional
+#       out.append(container)               # N: Micro
+#       out.append(encoded_hints)           # O: Sit a spell.
+#       out.append(lat_format(lat))         # P: 38.576333
+#       out.append(lon_format(lon))         # Q: -90.355583
+#       out.append("")                      # R: note
+#       out.append(log)                     # S: log
+#       out.append(smartname)               # T: smartname
+#
+#       # for a tab-delimited output string
+#   #   out = map( str, out )
+#       output_string = "\t".join(map(str, out))
+#
+#       # and fixup any unicode errors
+#       return output_string.encode('utf-8', 'ignore')
 
-########################################################################
+#  #####################################################################
 
 
 def make_row2(index, tags):
@@ -452,13 +468,14 @@ def make_row2(index, tags):
     smartname = tags["wptExtension"]["SmartName"]
 
     # compute odd or even row for background coloring
-    odd = ((index - GLOBAL_MIN_INDEX) % 20 == 0 and "even") or "odd"
+    odd = "even" if ((index - GLOBAL_MIN_INDEX) % 20 == 0) else "odd"
 
 #   link = "N/A"
     row_number = ((index - GLOBAL_MIN_INDEX) / 10) + 4
     link = "=HYPERLINK(F%d;E%d)" % (row_number, row_number)
 
-    log = '=CONCATENATE($a$1;" ";R%d;" Thanks, ";G%d;", for placing this cache! -- roelsch, St. Charles, MO.")' % (row_number, row_number)
+    log = '=CONCATENATE($a$1;" ";R%d;" Thanks, ";G%d;", for placing this ' \
+        'cache! -- roelsch, St. Charles, MO.")' % (row_number, row_number)
 
     # cleanup non GC items
     if gc_prefix != "GC":
@@ -500,9 +517,10 @@ def make_row2(index, tags):
     output_string = "\t".join(map(str, out))
 
     # and fixup any unicode errors
-    return output_string.encode('utf-8', 'ignore')
+    # return output_string.encode('utf-8', 'ignore')
+    return output_string
 
-########################################################################
+#  #####################################################################
 
 
 def getzipfile(arg):
@@ -514,9 +532,9 @@ def getzipfile(arg):
         z_file.printdir()
         raise ValueError("Expecting a zip file with a single payload")
 
-    return StringIO.StringIO(z_file.read(namelist[0]))
+    return io.StringIO(z_file.read(namelist[0]))
 
-########################################################################
+#  #####################################################################
 
 
 def create_tags_dictionary(child):
@@ -578,23 +596,24 @@ derived from this data structure"""
 
     return tags
 
-########################################################################
+#  #####################################################################
 
 
 def striptag(tag):
     """split a tag into schema and tag parts, returning the tag"""
 
-    re_match = re.match("(\{.*\})(.*)", tag)
+    re_match = re.match(r"(\{.*\})(.*)", tag)
     if re_match:
         _schema, tag = re_match.groups()
     else:
         raise ValueError("tag not found in %s" % tag)
     return tag
 
-########################################################################
+#  #####################################################################
 
 
 def handle_wptextension(grandchild, tags):
+    """Docstring"""
 
     c3tags = {}
     for child3 in grandchild.getchildren():
@@ -604,14 +623,16 @@ def handle_wptextension(grandchild, tags):
 
     tags["wptExtension"] = c3tags
 
-########################################################################
+
+#  #####################################################################
 
 OPTIONS_DEBUG = False
 
-########################################################################
+#  #####################################################################
 
 
 def handle_cache(grandchild, tags):
+    """Docstring"""
 
     # capture the cache attributes
     if OPTIONS_DEBUG:
@@ -640,20 +661,20 @@ def handle_cache(grandchild, tags):
     for child3 in grandchild.getchildren():
 
         if child3.tag in [
-            CACHE,
-            CONTAINER,
-            DIFFICULTY,
-            TERRAIN,
-            ENCODED_HINTS,
-            OWNER,
-            PLACED_BY,
-            GSNAME
+                CACHE,
+                CONTAINER,
+                DIFFICULTY,
+                TERRAIN,
+                ENCODED_HINTS,
+                OWNER,
+                PLACED_BY,
+                GSNAME
         ]:
             c3tags[striptag(child3.tag)] = child3.text
 
     tags["cache"] = c3tags
 
-########################################################################
+#  #####################################################################
 
 
 def process_11_extensions(node, tags):
@@ -666,9 +687,9 @@ def process_11_extensions(node, tags):
         elif child.tag == CACHE:
             handle_cache(child, tags)
         else:
-            print "process_11_extensions unhandled: %s" % child.tag
+            print("process_11_extensions unhandled: %s" % child.tag)
 
-########################################################################
+#  #####################################################################
 
 
 def process_wpt(child, grandchild_skip_tags):
@@ -709,66 +730,68 @@ def process_wpt(child, grandchild_skip_tags):
             pass
 
         else:
-            print >> sys.stderr, \
+            print(
                 "UNEXPECTED GRANDCHILD TAG: '%s' '%s' '%s'\nSkipping...\n" % (
                     grandchild.tag,
                     grandchild.text,
                     grandchild.attrib
-                )
+                ),
+                file=sys.stderr
+            )
             grandchild_skip_tags.append(grandchild.tag)
 
     return tags
 
-########################################################################
+#  #####################################################################
 
 
-### def process_tree(index, tree):
-###     """parse the tree generating .xls text output"""
-###
-###     # a list to hold the output lines
-###     outlines = ["Geocaching with Mean Gene and The Rooter", ""]
-###
-###     # output the header
-###     outlines.append(do_output_header())
-###
-###     # get the root of the three
-###     root = tree.getroot()
-###
-###     # create tags
-###     make_tags(root)
-###
-###     child_skip_tags = CHILD_SKIP_TAGS
-###     grandchild_skip_tags = GRANDCHILD_SKIP_TAGS
-###
-###     # look at the children
-###     for child in root.getchildren():
-###
-###         # look at each waypoint
-###         if child.tag == WPT:
-###
-###             tags = process_wpt(child, grandchild_skip_tags)
-###             outlines.append(make_row(index, tags))
-###             index += 10
-###
-###         elif child.tag == RTE:
-###             process_rte(child)
-###
-###         # skip these tags
-###         elif child.tag in child_skip_tags:
-###             pass
-###
-###         else:
-###             print >> sys.stderr,     \
-###                 "UNEXPECTED CHILD TAG:", \
-###                 child.tag,               \
-###                 child.text,              \
-###                 child.attrib
-###
-###             child_skip_tags.append(child.tag)
-###
-###     return "\n".join(outlines)
+#   def process_tree(index, tree):
+#       """parse the tree generating .xls text output"""
+#
+#       # a list to hold the output lines
+#       outlines = ["Geocaching with Mean Gene and The Rooter", ""]
+#
+#       # output the header
+#       outlines.append(do_output_header())
+#
+#       # get the root of the three
+#       root = tree.getroot()
+#
+#       # create tags
+#       make_tags(root)
+#
+#       child_skip_tags = CHILD_SKIP_TAGS
+#       grandchild_skip_tags = GRANDCHILD_SKIP_TAGS
+#
+#       # look at the children
+#       for child in root.getchildren():
+#
+#           # look at each waypoint
+#           if child.tag == WPT:
+#
+#               tags = process_wpt(child, grandchild_skip_tags)
+#               outlines.append(make_row(index, tags))
+#               index += 10
+#
+#           elif child.tag == RTE:
+#               process_rte(child)
+#
+#           # skip these tags
+#           elif child.tag in child_skip_tags:
+#               pass
+#
+#           else:
+#               print >> sys.stderr,     \
+#                   "UNEXPECTED CHILD TAG:", \
+#                   child.tag,               \
+#                   child.text,              \
+#                   child.attrib
+#
+#               child_skip_tags.append(child.tag)
+#
+#       return "\n".join(outlines)
 
-########################################################################
+#  #####################################################################
 
 
 def process_tree2(index, tree):
@@ -807,17 +830,17 @@ def process_tree2(index, tree):
             pass
 
         else:
-            print >> sys.stderr,     \
-                "UNEXPECTED CHILD TAG:", \
-                child.tag,               \
-                child.text,              \
-                child.attrib
+            print(
+                "UNEXPECTED CHILD TAG:", child.tag, child.text, child.attrib,
+                file=sys.stderr
+            )
 
             child_skip_tags.append(child.tag)
 
+    # pprint(outlines)
     return "\n".join(outlines)
 
-########################################################################
+#  #####################################################################
 
 
 def make_html_row(index, tags):
@@ -855,10 +878,12 @@ def make_html_row(index, tags):
         st_index, gname, anchor
     )
 
-    # fixup any unicode errors
-    return out.encode('utf-8', 'ignore')
+    return out
 
-########################################################################
+    # fixup any unicode errors
+    # return out.encode('utf-8', 'ignore')
+
+#  #####################################################################
 
 
 def html_tree(index, tree):
@@ -871,8 +896,11 @@ def html_tree(index, tree):
     # pylint: disable-msg=C0301
     htmllines.append('<html>')
     htmllines.append(' <body>')
-    htmllines.append('<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.js"></script>')
-    htmllines.append('<script type="text/javascript" src="js_tempb.js"></script>')
+    htmllines.append(
+        '<script type="text/javascript" '
+        'src="http://code.jquery.com/jquery-1.4.2.js"></script>')
+    htmllines.append(
+        '<script type="text/javascript" src="js_tempb.js"></script>')
 
     bodylines.append("  <table id='waypoints' align='center' border='1'>")
     bodylines.append("   <tr><th>Index</th><th>Waypoint</th><th>URL</th></tr>")
@@ -886,21 +914,21 @@ def html_tree(index, tree):
     child_skip_tags = CHILD_SKIP_TAGS
     grandchild_skip_tags = GRANDCHILD_SKIP_TAGS
 
-### # now use the tags to build the skip lists
-### child_skip_tags = [
-###         AUTHOR,
-###         DESC,
-###         EMAIL,
-###         KEYWORDS,
-###         BOUNDS,
-###         NAME,
-###         TIME,
-###         URL,
-###         URLNAME,
-###         METADATA,
-###         LINK,
-###         ]
-### grandchild_skip_tags = [ SYM, TIME, URLNAME, CMT, WPTEXTENSION, LINK ]
+#   # now use the tags to build the skip lists
+#   child_skip_tags = [
+#           AUTHOR,
+#           DESC,
+#           EMAIL,
+#           KEYWORDS,
+#           BOUNDS,
+#           NAME,
+#           TIME,
+#           URL,
+#           URLNAME,
+#           METADATA,
+#           LINK,
+#           ]
+#   grandchild_skip_tags = [ SYM, TIME, URLNAME, CMT, WPTEXTENSION, LINK ]
 
     # look at the children
     for child in root.getchildren():
@@ -925,13 +953,12 @@ def html_tree(index, tree):
             pass
 
         else:
-            print >> sys.stderr,            \
-                "UNEXPECTED CHILD TAG:",    \
-                child.tag,                  \
-                child.text,                 \
-                child.attrib,               \
-                "\n",                       \
-                pformat(child_skip_tags)
+            print(
+                "UNEXPECTED CHILD TAG:", child.tag, child.text, child.attrib,
+                "\n",
+                pformat(child_skip_tags),
+                file=sys.stderr
+            )
 
             child_skip_tags.append(child.tag)
 
@@ -942,54 +969,56 @@ def html_tree(index, tree):
     htmllines.append(" </body>")
     htmllines.append("</html>")
 
+    # pprint(htmllines)
+
     return "\n".join(htmllines)
 
-########################################################################
+#  #####################################################################
 
 
-### def do_body(arg, index, options):
-###     """process file L{filedata}"""
-###
-###     global GLOBAL_MIN_INDEX
-###     GLOBAL_MIN_INDEX = index
-###
-###     filedata = arg
-###
-###     # if filedata is a .zip file, replace it with the unzipped contents
-###     if zipfile.is_zipfile(filedata):
-###         filedata = getzipfile(filedata)
-###
-###     # convert to ascii
-###     filedata = StringIO.StringIO(
-###         codecs.open(
-###             filedata,
-###             "r",
-###             encoding="ascii",
-###             errors="ignore"
-###         ).read().decode(
-###             "utf-8",
-###             "ignore"
-###         )
-###     )
-###
-###     # parse the input file
-###     tree = ET.parse(filedata)
-###
-###     # optionally create HTML output
-###     if options.html:
-###
-###         # create a filename with .html extension
-###         ofile = os.path.splitext(arg)[0] + ".html"
-###
-###         # create HTML output and write the file
-###         _tempfile = open(ofile, "w")
-###         print >> _tempfile, html_tree(index, tree)
-###         _tempfile.close()
-###         print >> sys.stderr, "HTML output is in %s" % ofile
-###
-###     return process_tree(index, tree)
-###
-########################################################################
+#   def do_body(arg, index, options):
+#       """process file L{filedata}"""
+#
+#       global GLOBAL_MIN_INDEX
+#       GLOBAL_MIN_INDEX = index
+#
+#       filedata = arg
+#
+#       # if filedata is a .zip file, replace it with the unzipped contents
+#       if zipfile.is_zipfile(filedata):
+#           filedata = getzipfile(filedata)
+#
+#       # convert to ascii
+#       filedata = io.StringIO(
+#           codecs.open(
+#               filedata,
+#               "r",
+#               encoding="ascii",
+#               errors="ignore"
+#           ).read().decode(
+#               "utf-8",
+#               "ignore"
+#           )
+#       )
+#
+#       # parse the input file
+#       tree = ET.parse(filedata)
+#
+#       # optionally create HTML output
+#       if options.html:
+#
+#           # create a filename with .html extension
+#           ofile = os.path.splitext(arg)[0] + ".html"
+#
+#           # create HTML output and write the file
+#           _tempfile = open(ofile, "w")
+#           print >> _tempfile, html_tree(index, tree)
+#           _tempfile.close()
+#           print >> sys.stderr, "HTML output is in %s" % ofile
+#
+#       return process_tree(index, tree)
+#
+#  #####################################################################
 
 
 def do_body2(arg, index, options):
@@ -1005,17 +1034,21 @@ def do_body2(arg, index, options):
         filedata = getzipfile(filedata)
 
     # convert to ascii
-    filedata = StringIO.StringIO(
-        codecs.open(
-            filedata,
-            "r",
-            encoding="ascii",
-            errors="ignore"
-        ).read().decode(
-            "utf-8",
-            "ignore"
-        )
-    )
+    # if 0:
+    #     filedata = io.StringIO(
+    #         codecs.open(
+    #             filedata,
+    #             "r",
+    #             encoding="ascii",
+    #             errors="ignore"
+    #         ).read().decode(
+    #             "utf-8",
+    #             "ignore"
+    #         )
+    #     )
+    # else:
+    filedata = codecs.open(filedata, "r", encoding="ascii", errors="ignore")
+    filedata = io.StringIO(filedata.read())
 
     # parse the input file
     tree = ET.parse(filedata)
@@ -1028,13 +1061,13 @@ def do_body2(arg, index, options):
 
         # create HTML output and write the file
         _tempfile = open(ofile, "w")
-        print >> _tempfile, html_tree(index, tree)
+        print(html_tree(index, tree), file=_tempfile)
         _tempfile.close()
-        print >> sys.stderr, "HTML output is in %s" % ofile
+        print("HTML output is in %s" % ofile, file=sys.stderr)
 
     return process_tree2(index, tree)
 
-########################################################################
+#  #####################################################################
 
 
 def process_node(node, depth=1, follow=None):
@@ -1047,39 +1080,41 @@ def process_node(node, depth=1, follow=None):
     for child in node.getchildren():
 
         if child.tag in follow:
-            print "  " * depth, child.tag, child.text, child.attrib
+            print("  " * depth, child.tag, child.text, child.attrib)
 #           if type(follow) == type({}):
-            if isinstance(follow, types.DictType):
+            if isinstance(follow, dict):
                 aux = follow[child.tag]
             else:
                 aux = []
             process_node(child, depth + 1, aux)
 
-        elif not child.tag in unseen:
-            print "  " * depth, child.tag, child.text, child.attrib, "UNKNOWN"
+        elif child.tag not in unseen:
+            print("  " * depth, child.tag, child.text, child.attrib, "UNKNOWN")
             unseen.append(child.tag)
 
-########################################################################
+#  #####################################################################
 
 
 def process_rte(rte):
     """Process an embedded route"""
 
-    process_node(rte, 1,
-                 {
-                     RTEPT: [
-                         RTE_TIME,
-                         RTE_NAME,
-                         RTE_CMT,
-                         RTE_DESC,
-                         RTE_SYM,
-                         RTE_TYPE,
-                         RTE_EXTENSIONS
-                     ],
-                 }
-                 )
+    process_node(
+        rte,
+        1,
+        {
+            RTEPT: [
+                RTE_TIME,
+                RTE_NAME,
+                RTE_CMT,
+                RTE_DESC,
+                RTE_SYM,
+                RTE_TYPE,
+                RTE_EXTENSIONS
+            ],
+        }
+    )
 
-########################################################################
+#  #####################################################################
 
 
 def main(args, options):
@@ -1096,16 +1131,17 @@ Excel or Open Office base"""
         filelist.extend(glob.glob(arg))
 
     for arg in filelist:
-        print >> sys.stderr, "Processing %s" % arg
+        print("Processing %s" % arg, file=sys.stderr)
 
 #       print do_body(arg, index, options)
-        print do_body2(arg, index, options)
+        print(do_body2(arg, index, options))
 
-########################################################################
+
+#  #####################################################################
 
 if __name__ == "__main__":
 
-#   import sys
+    # pylint: disable=deprecated-module
     from optparse import OptionParser
 
     USAGE = """%prog - { options } filename { filename ... }
@@ -1119,7 +1155,7 @@ If no filename arguments are present, the user is prompted to locate an input
 file name.
 """
 
-    VERSION = "%prog: Version 1.0.0, Fri 06/13/2008"
+    VERSION = "%%prog: Version %s, %s" % (__version__, __date__)
     PARSER = OptionParser(usage=USAGE, version=VERSION)
 
     PARSER.add_option(
@@ -1144,31 +1180,27 @@ file name.
 
     if not ARGS:
 
-        import EasyDialogs
+        # import EasyDialogs
+        from file_dialog_tk import get_gpx_file
 
-        INPUT_FILENAME = EasyDialogs.AskFileForOpen(
-            "Select a .gpx file",
-            [
+        INPUT_FILENAME = get_gpx_file(
+            # title = "Select a .gpx file",
+            # initialdir=".",
+            filetypes=[
                 ("Geographic files (*.gpx)", '*.gpx'),
-                ("All files (*.*)",          '*.*'),
+                ("All files (*.*)", '*.*'),
             ],
-            defaultLocation="*.gpx",
-            windowTitle="Open a .gpx file for processing",
+            title="Open a .gpx file for processing",
+            # defaultLocation="*.gpx",
         )
 
         if INPUT_FILENAME:
 
             ARGS = [INPUT_FILENAME]
 
-            if 0:
-                OUTPUT_FILENAME = EasyDialogs.AskFileForSave(
-                    "Select an output file; Cancel for stdout",
-                    savedFileName="%s.xls" % INPUT_FILENAME
-                )
-            else:
-                OUTPUT_FILENAME = "%s.xls" % INPUT_FILENAME
+            OUTPUT_FILENAME = "%s.xls" % INPUT_FILENAME
 
-            print "Writing to OUTPUT_FILENAME=%s" % OUTPUT_FILENAME
+            print("Writing to OUTPUT_FILENAME=%s" % OUTPUT_FILENAME)
 
             if OUTPUT_FILENAME:
                 OUTFILE = open(OUTPUT_FILENAME, "w")
@@ -1180,4 +1212,4 @@ file name.
 
     main(ARGS, OPTIONS)
 
-########################################################################
+#  #####################################################################

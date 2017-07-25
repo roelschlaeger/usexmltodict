@@ -1,16 +1,20 @@
 # coding=utf-8
 """Process a GSAK .gpx file, converting ordered waypoints into a <rte>."""
 
+# pylint: disable=R0914,R0915,W0603
+
 from __future__ import print_function
-import lxml.etree as ET
 import os
 import sys
 import copy
+import lxml.etree as ET
+
+assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__version__ = "$Revision: 192 $".split()[1]
-__date__ = "$Date: 2016-05-16 18:40:00 -0500 (Mon, 16 May 2016) $".split()[1]
+__version__ = "0.0.193"  # 20170723 1853 rlo
+__date__ = "2017-07-23"  # 20170723 1853 rlo
 
 ########################################################################
 
@@ -30,13 +34,15 @@ def new_metadata(item, outname):
     @param item: the existing metadata item
     @type item:  lxlm.etree.Element
     """
+
     metadata = ET.Element("metadata")
     metadata.tail = "\n "
     metadata.text = "\n "
 
     meta_name = ET.Element("name")
     meta_name.tail = "\n  "
-    meta_name.text = outname
+    print("*** new_metadata ***", type(outname), outname)
+    meta_name.text = os.path.basename(outname)
 
     desc = ET.Element("desc")
     desc.tail = "\n  "
@@ -59,21 +65,21 @@ def new_metadata(item, outname):
     author.append(name)
     author.append(email)
 
-    copyright = ET.Element("copyright")
-    copyright.tail = "\n  "
-    copyright.text = "\n   "
+    _copyright = ET.Element("copyright")
+    _copyright.tail = "\n  "
+    _copyright.text = "\n   "
 
     year = ET.Element("year")
     year.tail = "\n   "
     year.text = "2010"
 
-    license = ET.Element("license")
-    license.tail = "\n  "
-    license.text = ""
+    _license = ET.Element("license")
+    _license.tail = "\n  "
+    _license.text = ""
 
-    copyright.attrib["author"] = "Robert L. Oelschlaeger"
-    copyright.append(year)
-    copyright.append(license)
+    _copyright.attrib["author"] = "Robert L. Oelschlaeger"
+    _copyright.append(year)
+    _copyright.append(_license)
 
 #   link = ET.Element( "link" )
 #   link.tail = "\n  "
@@ -88,7 +94,7 @@ def new_metadata(item, outname):
     metadata.append(meta_name)
     metadata.append(desc)
     metadata.append(author)
-    metadata.append(copyright)
+    metadata.append(_copyright)
 #   metadata.append( link )
     metadata.append(time)
     metadata.append(keywords)
@@ -215,7 +221,7 @@ def create_rtept_from_wpt(wpt):
 ########################################################################
 
 
-def process_arg(arg, options):
+def process_arg(arg, _options):
     """Process command line arguments and options."""
     global GPX
     global GPX_NAMESPACE
@@ -223,7 +229,7 @@ def process_arg(arg, options):
     global LABEL_NAMESPACE
 
     route_dir, route_file = os.path.split(arg)
-    route_name, route_ext = os.path.splitext(route_file)
+    route_name, _route_ext = os.path.splitext(route_file)
     route_label = route_name + "_route"
     outname = os.path.join(route_dir, route_label + ".gpx")
 
@@ -235,8 +241,8 @@ def process_arg(arg, options):
     if not root_namespace == GPX_NAMESPACE:
         print("Namespace %s mismatch, will try using %s" % (
             GPX_NAMESPACE, root_namespace),
-            file=sys.stderr
-        )
+              file=sys.stderr
+             )
         GPX_NAMESPACE = root_namespace
 
     GPX = "{%s}" % GPX_NAMESPACE
@@ -247,12 +253,12 @@ def process_arg(arg, options):
     root = tree.getroot()
     wpts = root.findall(GPX + "wpt")
 
-    NSMAP = {
+    _nsmap = {
         None: GPX_NAMESPACE,       # the default namespace (no prefix)
         #           "ol" : LABEL_NAMESPACE,
     }
 
-    gpx = ET.Element(GPX + "gpx", nsmap=NSMAP)  # lxml only!
+    gpx = ET.Element(GPX + "gpx", nsmap=_nsmap)  # lxml only!
     gpx.tail = "\n"
     gpx.text = "\n"
     gpx.attrib["creator"] = "'mr.py' by roelsch"
@@ -339,6 +345,7 @@ def process_arg(arg, options):
 
 #
 
+
 if __name__ == "__main__":
 
     def main(args, options):
@@ -346,6 +353,7 @@ if __name__ == "__main__":
         for arg in args:
             process_arg(arg, options)
 
+    # pylint: disable=deprecated-module
     from optparse import OptionParser
 
     USAGE = "%prog { options }"
@@ -366,17 +374,30 @@ if __name__ == "__main__":
 
     if not ARGS:
 
-        import EasyDialogs
+        # import EasyDialogs
 
-        INPUT_FILE = EasyDialogs.AskFileForOpen(
-            "Select a .gpx file",
-            [
+        from file_dialog_tk import get_gpx_file
+
+        INPUT_FILE = get_gpx_file(
+            # title = "Select a .gpx file",
+            # initialdir=".",
+            filetypes=[
                 ("Geographic files (*.gpx)", '*.gpx'),
-                ("All files (*.*)",          '*.*'),
+                ("All files (*.*)", '*.*'),
             ],
-            defaultLocation="*.gpx",
-            windowTitle="Open a .gpx file for processing",
+            title="Open a .gpx file for processing",
+            # defaultLocation="*.gpx",
         )
+
+        # INPUT_FILE = EasyDialogs.AskFileForOpen(
+        #     "Select a .gpx file",
+        #     [
+        #         ("Geographic files (*.gpx)", '*.gpx'),
+        #         ("All files (*.*)",          '*.*'),
+        #     ],
+        #     defaultLocation="*.gpx",
+        #     windowTitle="Open a .gpx file for processing",
+        # )
 
         if INPUT_FILE:
             ARGS = [INPUT_FILE]

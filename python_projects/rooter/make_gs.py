@@ -1,13 +1,10 @@
 #!/usr/bin/env python
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
-# Created:       Wed 10 Aug 2016 04:26:51 PM CDT
-# Last Modified: Thu 11 Aug 2016 07:52:26 AM CDT
-
 """
 SYNOPSIS
 
-    make_gs [-h | --help] [-v | --version] [--verbose] file [ file ... ]
+    make_gs [-h | --help] [--version] [--verbose] file [ file ... ]
 
 DESCRIPTION
 
@@ -37,24 +34,31 @@ LICENSE
 from __future__ import print_function
 from xml.etree import ElementTree as ET
 
-__VERSION__ = "0.0.1"
+import sys
+
+assert sys.version_info > (3, ), "Python 3 required"
+
+__VERSION__ = "0.0.2"    # updated for Python3
+__DATE__ = "2017-07-25"  # updated for Python3
 
 ########################################################################
 
 
 def generate_output_filename(name):
+    """Generate an output filename from L{name}."""
     from os.path import split, splitext, join
 
     # output will be in the current directory
-    dir, outname = split(name)
+    _dir, outname = split(name)
     root, ext = splitext(outname)
 
     # append "_gs" to basename
     root += "_gs"
 
-    return join(dir, root + ext)
+    return join(_dir, root + ext)
 
 ########################################################################
+
 
 GPX_NAMESPACE = "http://www.topografix.com/GPX/1/1"
 NSMAP = {
@@ -85,10 +89,10 @@ def register_namespaces():
         GROUNDSPEAK_NAMESPACE
     )
 
-
 ########################################################################
 
 
+# pylint: disable=too-many-locals
 def process_arg(arg):
     """Process a single file."""
 
@@ -115,9 +119,11 @@ def process_arg(arg):
         # get old ame
         name = wpt.find(name_tag)
         try:
-            name_text = name.text
-        except AttributeError as e:
-            print(e, file=sys.stderr)
+            # name_text = name.text
+            name_text = "" if name is None else name.text
+        except AttributeError as _error:
+            print(_error, file=sys.stderr)
+            traceback.print_exc()
             name_text = "None"
 
         # get UserSort value
@@ -125,9 +131,10 @@ def process_arg(arg):
             extensions = wpt.find(extensions_tag)
             gsak = extensions.find(gsak_tag)
             usersort = gsak.find(gsak.tag.replace("wptExtension", "UserSort"))
-            usersort_text = usersort.text
-        except AttributeError as e:
-            print(e, file=sys.stderr)
+            usersort_text = "" if usersort is None else usersort.text
+        except AttributeError as _error:
+            print(_error, file=sys.stderr)
+            traceback.print_exc()
             usersort_text = "None"
 
         # compute a new name
@@ -137,28 +144,26 @@ def process_arg(arg):
     # create the modified output filename
     outfilename = generate_output_filename(arg)
 
-    # create the binary file
-    outfile = open(outfilename, "wb")
+    # create the binary .gpx file
+    with open(outfilename, "wb") as outfile:
 
-    # recreate the tree
-    ofile = ET.ElementTree(root)
+        # recreate the tree
+        ofile = ET.ElementTree(root)
 
-    # add in the namespaces
-    register_namespaces()
+        # add in the namespaces
+        register_namespaces()
 
-    # write the result
-    ofile.write(
-        outfile,
-        encoding="utf-8",
-        xml_declaration=True,
-        method="xml"
-    )
+        # write the result
+        ofile.write(
+            outfile,
+            encoding="utf-8",
+            xml_declaration=True,
+            method="xml"
+        )
 
-    # close the file and tell the user
-    outfile.close()
-    print("Output is in %s" % outfilename)
-
-#   tree.write(outfilename)
+        # close the file and tell the user
+        outfile.close()
+        print("Output is in %s" % outfilename)
 
 ########################################################################
 
@@ -177,35 +182,24 @@ def process(args=None):
 
 ########################################################################
 
-# print(globals()['__doc__'])
 
 if __name__ == '__main__':
 
     import argparse
-    import os
-    import sys
-    import textwrap
     import time
     import traceback
-
-#from pexpect import run, spawn
-
-# Uncomment the following section if you want readline history support.
-#import readline, atexit
-#histfile = os.path.join(os.environ['HOME'], '.TODO_history')
-#try:
-#    readline.read_history_file(histfile)
-#except IOError:
-#    pass
-#atexit.register(readline.write_history_file, histfile)
 
 ########################################################################
 
     def main():
+        """Main program."""
 
+        # pylint: disable=global-statement
         global OPTIONS
 
         process(OPTIONS.files)
+
+        return 0
 
 ########################################################################
 
@@ -214,9 +208,13 @@ if __name__ == '__main__':
 
         PARSER = argparse.ArgumentParser(
             formatter_class=argparse.RawDescriptionHelpFormatter,
-            usage=textwrap.dedent(globals()['__doc__']),
-            version="Version: %s" % __VERSION__
         )
+
+        PARSER.add_argument(
+            "--version",
+            action="version",
+            version="%%(prog)s, Version: %s %s" % (__VERSION__, __DATE__)
+            )
 
         PARSER.add_argument(
             '--verbose',
@@ -254,10 +252,10 @@ if __name__ == '__main__':
     except SystemExit as error_exception:               # sys.exit()
         raise error_exception
 
-    except Exception as error_exception:
-        print('ERROR, UNEXPECTED EXCEPTION')
-        print(str(error_exception))
-        traceback.print_exc()
-        os._exit(1)
+    # except Exception as error_exception:
+    #     print('ERROR, UNEXPECTED EXCEPTION')
+    #     print(str(error_exception))
+    #     traceback.print_exc()
+    #     os._exit(1)
 
 # end of file

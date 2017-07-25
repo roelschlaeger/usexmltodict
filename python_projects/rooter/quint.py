@@ -3,8 +3,10 @@
 """Apply et.py, gpx2kml.py, mr.py and rooter to the same file."""
 
 from __future__ import print_function
-import wx
 
+import sys
+
+import wx
 import et
 import gpx2kml
 import mr
@@ -12,10 +14,12 @@ import rooter
 import make_rtept
 import make_gs
 
+assert sys.version_info > (3, ), "Python 3 required"
+
 ########################################################################
 
-__version__ = "$Revision: 101 $".split()[1]
-__date__ = "$Date: 2016-05-16 18:51:00 -0500 (Mon, 16 May 2016) $".split()[1]
+__version__ = "102"      # update for Python 3
+__date__ = "2017-07-24"  #
 
 ########################################################################
 
@@ -25,20 +29,23 @@ MIN_INDEX = 1010
 ########################################################################
 
 
+# pylint: disable=too-few-public-methods
 class Options(object):
     """Dummy options class."""
-
-    pass
+    def __init__(self):
+        self.html = True
+# pylint: enable=too-few-public-methods
 
 ########################################################################
 
 
+# pylint: disable=too-many-instance-attributes
 class MyPanel2(wx.Panel):
     """Display a dialog panel."""
 
-    def __init__(self, parent, id, *args, **kwargs):
+    def __init__(self, parent, _id, *args, **kwargs):
         """Class instance initialization."""
-        wx.Panel.__init__(self, parent, id, *args, **kwargs)
+        wx.Panel.__init__(self, parent, _id, *args, **kwargs)
 
         st0 = wx.StaticText(self, -1, "&Filename:")
         self.tc0 = wx.TextCtrl(
@@ -73,7 +80,7 @@ class MyPanel2(wx.Panel):
             "&GeoSphere - generate a GeoSphere file"
         )
 
-        button = wx.Button(self,   -1, "&Run")
+        button = wx.Button(self, -1, "&Run")
         self.tc1 = wx.TextCtrl(
             self,
             -1,
@@ -107,14 +114,14 @@ class MyPanel2(wx.Panel):
         sb1.Add(self.cb7, 0, wx.ALL, 5)
 
         top_sizer = wx.BoxSizer(wx.VERTICAL)
-        top_sizer.Add(sz0,      0, wx.CENTER | wx.ALL, 5)
-        top_sizer.Add(sb1,      0, wx.CENTER | wx.ALL, 5)
-        top_sizer.Add(button,   0, wx.CENTER | wx.ALL, 5)
+        top_sizer.Add(sz0, 0, wx.CENTER | wx.ALL, 5)
+        top_sizer.Add(sb1, 0, wx.CENTER | wx.ALL, 5)
+        top_sizer.Add(button, 0, wx.CENTER | wx.ALL, 5)
         top_sizer.Add(self.tc1, 1, wx.EXPAND)
         self.SetSizerAndFit(top_sizer)
 
-        self.Bind(wx.EVT_BUTTON,         self.on_button,   button)
-        self.tc0.Bind(wx.EVT_LEFT_UP,    self.on_mouse_up, self.tc0)
+        self.Bind(wx.EVT_BUTTON, self.on_button, button)
+        self.tc0.Bind(wx.EVT_LEFT_UP, self.on_mouse_up, self.tc0)
         self.tc0.Bind(wx.EVT_TEXT_ENTER, self.on_mouse_up, self.tc0)
 
     ########################################################################
@@ -140,16 +147,16 @@ class MyPanel2(wx.Panel):
 
     ########################################################################
 
-    def log(self, s):
-        """Log the string s to the operator."""
+    def log(self, _s):
+        """Log the string _s to the operator."""
         app = wx.GetApp()
         frame = app.GetTopWindow()
-        frame.SetStatusText(s)
-        self.tc1.AppendText(s + "\n")
+        frame.SetStatusText(_s)
+        self.tc1.AppendText(_s + "\n")
 
     ########################################################################
 
-    def on_button(self, event):
+    def on_button(self, _event):
         """Perform processing in response to the Run button."""
         # get the checkbox values
         et_flag = self.cb1.GetValue()
@@ -163,13 +170,13 @@ class MyPanel2(wx.Panel):
 
         # must have at least one checkbox selected
         if not (
-            et_flag or
-            html_flag or
-            kml_flag or
-            mr_flag or
-            ro_flag or
-            rtept_flag or
-            gs_flag
+                et_flag or
+                html_flag or
+                kml_flag or
+                mr_flag or
+                ro_flag or
+                rtept_flag or
+                gs_flag
         ):
             wx.MessageBox(
                 "You must select at least one of checkbox choices",
@@ -202,36 +209,39 @@ class MyPanel2(wx.Panel):
                 gs_flag=gs_flag
             )
 
+            wx.Exit()
+
 ########################################################################
 
+    # pylint: disable=too-many-arguments
     def process_parameters(
-        self,
-        pathname="",
-        et_flag=True,
-        html_flag=False,
-        kml_flag=True,
-        mr_flag=True,
-        ro_flag=True,
-        rtept_flag=False,
-        gs_flag=True
+            self,
+            pathname="",
+            et_flag=True,
+            html_flag=False,
+            kml_flag=True,
+            mr_flag=True,
+            ro_flag=True,
+            rtept_flag=False,
+            gs_flag=True
     ):
         """Perform all processing specified by pathname and flags."""
         self.log("Reading from %s" % pathname)
 
         if not (
-            et_flag or
-            html_flag or
-            kml_flag or
-            mr_flag or
-            ro_flag or
-            rtept_flag or
-            gs_flag
+                et_flag or
+                html_flag or
+                kml_flag or
+                mr_flag or
+                ro_flag or
+                rtept_flag or
+                gs_flag
         ):
             self.log("ERROR: Nothing to do: no flags set")
             return
 
         # perform the processing
-        if (et_flag or html_flag):
+        if et_flag or html_flag:
             self.do_et(pathname, et_flag=et_flag, html_flag=html_flag)
 
         if kml_flag:
@@ -251,6 +261,9 @@ class MyPanel2(wx.Panel):
             self.do_gs(pathname)
 
         self.log("Done!")
+        print("Done!")
+    # pylint: enable=too-many-arguments
+# pylint: enable=too-many-instance-attributes
 
 ########################################################################
 
@@ -316,12 +329,14 @@ class MyPanel2(wx.Panel):
 
 ########################################################################
 
+
 if __name__ == '__main__':
 
+    # pylint: disable=deprecated-module
     from optparse import OptionParser
-    import sys
+    # pylint: enable=deprecated-module
 
-    def main(args, options):
+    def main(_args, _options):
         """Process each of the command line arguments."""
         app = wx.App(redirect=False)
         app.SetAppName("quint")
@@ -350,8 +365,8 @@ if __name__ == '__main__':
 
     USAGE = "%prog { options }"
     VERSION = "Version: %(version)s, %(date)s" % {
-        "version":   __version__,
-        "date":   __date__,
+        "version": __version__,
+        "date":  __date__,
     }
 
     PARSER = OptionParser(usage=USAGE, version=VERSION)
