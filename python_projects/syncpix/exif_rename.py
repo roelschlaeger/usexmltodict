@@ -4,7 +4,7 @@
 from __future__ import print_function
 
 # Created:       Thu 02 Oct 2014 06:37:29 PM CDT
-# Last Modified: Fri 03 Feb 2017 09:11:11 AM CST
+# Last Modified: Tue 22 Aug 2017 09:53:41 AM CDT
 
 #######################################################################
 
@@ -125,7 +125,7 @@ def ensure_unique(name, namelist):
     root, ext = os.path.splitext(name)
 
     # set up potential name modifier
-    g = chain(string.lowercase, count())
+    g = chain(string.ascii_lowercase, count())
 
     # start with original name
     testname = root
@@ -141,6 +141,7 @@ def ensure_unique(name, namelist):
 
     # return the result with its extension
     return testname + ext
+
 
 if 0:
     namelist = {}
@@ -207,6 +208,7 @@ def get_exif_timestamp(path, filename, debug):
     return yr, mo, dy, hr, mn, se
 
 #########################################################################
+
 
 BATFILENAME = "rename_files.bat"
 """The output filename for the batch file for renaming .jpg files"""
@@ -300,6 +302,7 @@ def process(path, debug=False):
 
 ########################################################################
 
+
 if __name__ == '__main__':
 
     # import sys
@@ -321,10 +324,10 @@ if __name__ == '__main__':
 
 ########################################################################
 
-    BASE = r"C:\Users\Robert Oelschlaeger\Google Drive\Caching Pictures"
+    BASE = "C:/Users/Robert Oelschlaeger/Google Drive/Caching Pictures"
     """Location of pictures containing EXIF data"""
 
-    DATE = "20170202"
+    DATE = "20170921"
     """Location of this week's pictures"""
 
     def main():

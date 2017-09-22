@@ -142,8 +142,8 @@ font-family: "Courier New"; }
     document += picture_table
 
     outfilename = os.path.join(pixdir, "make_html.html")
-    print >> open(outfilename, "w"), unicode(document).encode('utf-8')
-    print "Output is in %s" % outfilename
+    print(document, file=open(outfilename, "w"))
+    print("Output is in %s" % outfilename)
 
 ########################################################################
 
@@ -207,7 +207,7 @@ if __name__ == '__main__':
         OPTIONS = PARSER.parse_args()
 
         if OPTIONS.verbose:
-            print time.asctime()
+            print(time.asctime())
 
         EXIT_CODE = main()
 
@@ -215,21 +215,21 @@ if __name__ == '__main__':
             EXIT_CODE = 0
 
         if OPTIONS.verbose:
-            print time.asctime()
-            print 'TOTAL TIME IN MINUTES:',
-            print (time.time() - START_TIME) / 60.0
+            print(time.asctime())
+            print('TOTAL TIME IN MINUTES:',)
+            print((time.time() - START_TIME) / 60.0)
 
         sys.exit(EXIT_CODE)
 
-    except KeyboardInterrupt, e:        # Ctrl-C
+    except KeyboardInterrupt as e:      # Ctrl-C
         raise e
 
-    except SystemExit, e:               # sys.exit()
+    except SystemExit as e:             # sys.exit()
         raise e
 
-    except Exception, e:
-        print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(e)
+    except Exception as e:
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(e))
         traceback.print_exc()
         os._exit(1)
 

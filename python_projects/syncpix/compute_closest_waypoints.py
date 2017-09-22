@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Sat 01 Feb 2014 12:57:36 PM CST
-# Last Modified: Sat 01 Feb 2014 02:56:25 PM CST
+# Last Modified: Tue 22 Aug 2017 10:30:20 AM CDT
 
 """
 SYNOPSIS
@@ -62,7 +62,7 @@ def compute_closest_waypoints(
     geocache/waypoint locations
     """
 
-    print >> sys.stderr, "compute_closest_waypoints"
+    print("compute_closest_waypoints", file=sys.stderr)
 
     closest_waypoints = []
     for time, filename in picture_datetimes:
@@ -71,10 +71,10 @@ def compute_closest_waypoints(
         tp = find_trackpoint(time, trackpoint_datetimes)
 
         if debug:
-            print "compute_closest_waypoints: time: %s tp: %s" % (
+            print("compute_closest_waypoints: time: %s tp: %s" % (
                 time,
                 str(tp)
-            )
+            ))
 
         # find a nearby waypoint
         gc = find_nearest_gc(tp, geocache_locations, debug)
@@ -90,7 +90,7 @@ def compute_closest_waypoints(
 
     if PICKLE:
         from pickle import dump
-        dump(closest_waypoints, open("closest_waypoints.dmp", "w"))
+        dump(closest_waypoints, open("closest_waypoints.dmp", "wb"))
 
     return closest_waypoints
 
@@ -130,21 +130,21 @@ if __name__ == '__main__':
 
         picture_datetimes = unpickle("picture_datetimes.dmp")
         if debug:
-            print "picture_datetimes"
+            print("picture_datetimes")
             pprint(picture_datetimes)
-            print
+            print()
 
         trackpoint_datetimes = unpickle("trackpoint_datetimes.dmp")
         if debug:
-            print "trackpoint_datetimes"
+            print("trackpoint_datetimes")
             pprint(trackpoint_datetimes)
-            print
+            print()
 
         geocache_locations = unpickle("geocache_locations.dmp")
         if debug:
-            print "geocache_locations"
+            print("geocache_locations")
             pprint(geocache_locations)
-            print
+            print()
 
         compute_closest_waypoints(
             picture_datetimes,
@@ -186,7 +186,7 @@ if __name__ == '__main__':
         #       parser.error ('missing argument')
 
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
 
         exit_code = main()
 
@@ -194,21 +194,21 @@ if __name__ == '__main__':
             exit_code = 0
 
         if options.verbose:
-            print time.asctime()
-            print 'TOTAL TIME IN MINUTES:',
-            print (time.time() - start_time) / 60.0
+            print(time.asctime())
+            print('TOTAL TIME IN MINUTES:',)
+            print((time.time() - start_time) / 60.0)
 
         sys.exit(exit_code)
 
-    except KeyboardInterrupt, e:        # Ctrl-C
+    except KeyboardInterrupt as e:      # Ctrl-C
         raise e
 
-    except SystemExit, e:               # sys.exit()
+    except SystemExit as e:             # sys.exit()
         raise e
 
-    except Exception, e:
-        print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(e)
+    except Exception as e:
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(e))
         traceback.print_exc()
         os._exit(1)
 

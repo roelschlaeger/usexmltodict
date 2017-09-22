@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Sat 01 Feb 2014 01:00:21 PM CST
-# Last Modified: Sat 01 Feb 2014 01:01:23 PM CST
+# Last Modified: Tue 22 Aug 2017 10:26:29 AM CDT
 
 """
 SYNOPSIS
@@ -53,7 +53,7 @@ def find_trackpoint(time, trackpoint_datetimes):
     for rtime, rlon, rlat in trackpoint_datetimes:
         if rtime > time:
             return (rlat, rlon)
-    print "Returning default"
+    print("Returning default")
     return (trackpoint_datetimes[0][2], trackpoint_datetimes[0][1])
 
 ########################################################################
@@ -84,7 +84,7 @@ if __name__ == '__main__':
         global options, args
 
         # TODO: Do something more interesting here...
-        print 'Hello world!'
+        print('Hello world!')
 
 ########################################################################
 
@@ -111,7 +111,7 @@ if __name__ == '__main__':
         #       parser.error ('missing argument')
 
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
 
         exit_code = main()
 
@@ -119,21 +119,21 @@ if __name__ == '__main__':
             exit_code = 0
 
         if options.verbose:
-            print time.asctime()
-            print 'TOTAL TIME IN MINUTES:',
-            print (time.time() - start_time) / 60.0
+            print(time.asctime())
+            print('TOTAL TIME IN MINUTES:',)
+            print((time.time() - start_time) / 60.0)
 
         sys.exit(exit_code)
 
-    except KeyboardInterrupt, e:        # Ctrl-C
+    except KeyboardInterrupt as e:      # Ctrl-C
         raise e
 
-    except SystemExit, e:               # sys.exit()
+    except SystemExit as e:             # sys.exit()
         raise e
 
-    except Exception, e:
-        print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(e)
+    except Exception as e:
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(e))
         traceback.print_exc()
         os._exit(1)
 

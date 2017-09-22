@@ -44,7 +44,7 @@ from geographiclib.geodesic import Geodesic
 def distance(lat1, lon1, lat2, lon2, debug=False):
 
     if debug:
-        print "distance( %s, %s, %s, %s )" % (lat1, lon1, lat2, lon2)
+        print("distance( %s, %s, %s, %s )" % (lat1, lon1, lat2, lon2))
 
     return Geodesic.WGS84.Inverse(lat1, lon1, lat2, lon2)['s12']
 
@@ -59,7 +59,7 @@ def find_nearest_gc(tp, geocache_locations, debug=False):
 
     lat, lon = tp
     if debug:
-        print "find_nearest_gc: lat=%s lon=%s" % (lat, lon)
+        print("find_nearest_gc: lat=%s lon=%s" % (lat, lon))
 
     min_d = None
     for glon, glat, gname, gdesc in geocache_locations:
@@ -126,7 +126,7 @@ def test1(interesting, extent, geocache_locations):
 
         name = gl[2]
         from pprint import pformat
-        print name, str(tp), pformat(result, width=132)
+        print(name, str(tp), pformat(result, width=132))
 
 ########################################################################
 
@@ -144,24 +144,24 @@ if __name__ == '__main__':
         #if len(args) < 1:
         #    parser.error ('missing argument')
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
         exit_code = main()
         if exit_code is None:
             exit_code = 0
         if options.verbose:
-            print time.asctime()
+            print(time.asctime())
         if options.verbose:
-            print 'TOTAL TIME IN MINUTES:',
+            print('TOTAL TIME IN MINUTES:', end=" ")
         if options.verbose:
-            print (time.time() - start_time) / 60.0
+            print((time.time() - start_time) / 60.0)
         sys.exit(exit_code)
-    except KeyboardInterrupt, e:        # Ctrl-C
+    except KeyboardInterrupt as e:      # Ctrl-C
         raise e
-    except SystemExit, e:               # sys.exit()
+    except SystemExit as e:             # sys.exit()
         raise e
-    except Exception, e:
-        print 'ERROR, UNEXPECTED EXCEPTION'
-        print str(e)
+    except Exception as e:
+        print('ERROR, UNEXPECTED EXCEPTION')
+        print(str(e))
         traceback.print_exc()
         os._exit(1)
 
