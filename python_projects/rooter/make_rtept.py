@@ -3,7 +3,7 @@
 """
 make_rtept.py: Create a <rtept> Element for a <gpx> XML file.
 
-Copyright (c) 2016, Robert L. Oelschlaeger,  All Rights Reserved.
+Copyright (c) 2016-2017, Robert L. Oelschlaeger,  All Rights Reserved.
 
 Create a ElementTree rtept element suitable for use with Microsoft Streets and
 Trips.
@@ -21,8 +21,8 @@ assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__VERSION__ = "0.0.2"  # manual version information
-__DATE__ = "2017-07-25"
+__VERSION__ = "0.0.3"  # manual version information
+__DATE__ = "2017-07-28"
 
 ########################################################################
 
@@ -80,7 +80,10 @@ class DummyText(object):
 
 
 def make_tag(_s, _ns=GPX_NAMESPACE):
-    """Create an Element tag from tagname _s and optional namespace _ns."""
+
+    """Create an Element tag from tagname L{_s} and optional namespace
+L{_ns}."""
+
     return "{%s}%s" % (_ns, _s)
 
 ########################################################################
@@ -259,6 +262,11 @@ def do_make_rtept(filename, debug=False, outfile=None):
 
 if __name__ == "__main__":
 
+    from argparse import ArgumentParser
+    import textwrap
+
+    DEFAULT_FILENAME = "topo840b - collinsville IL.gpx"
+
     #######################################################################
 
     def process_files(args):
@@ -278,12 +286,9 @@ if __name__ == "__main__":
 
     #######################################################################
 
-    DEFAULT_FILENAME = "topo840b - collinsville IL.gpx"
-
-    from argparse import ArgumentParser
-
     PARSER = ArgumentParser(
         description="Process files using make_rtept().",
+        usage=textwrap.dedent(__doc__),
         epilog="Results will be returned in FILENAME.gpx",
     )
 

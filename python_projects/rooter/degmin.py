@@ -4,13 +4,7 @@
 # Created:       Fri 17 Jan 2014 06:11:21 PM CST
 # Last Modified: Mon 15 Feb 2016 05:47:49 PM CST
 
-from __future__ import print_function
-
 """
-SYNOPSIS
-
-    TODO degmin [-h] [-v,--verbose] [--version]
-
 DESCRIPTION
 
     TODO This describes how to use this script.
@@ -27,21 +21,28 @@ EXIT STATUS
 
 AUTHOR
 
-    TODO: Robert Oelschlaeger <roelsch2009@gmail.com>
+    Robert Oelschlaeger <roelsch2009@gmail.com>
 
 LICENSE
 
     This script is in the public domain.
 
-VERSION
-
 """
+########################################################################
 
-__VERSION__ = "0.0.1"
+from __future__ import print_function
+
+from math import trunc
+import sys
+
+assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-from math import trunc
+__VERSION__ = "0.0.2"
+__DATE__ = "2017-07-28"
+
+########################################################################
 
 
 def degmin(latlon, posneg=" -"):
@@ -55,13 +56,13 @@ def degmin(latlon, posneg=" -"):
 
     """
 
-    v = float(latlon)
+    _value = float(latlon)
 
-    sign = (v < 0)
+    sign = (_value < 0)
 
-    v = abs(v)
+    _value = abs(_value)
 
-    degrees, fraction = trunc(v), v - trunc(v)
+    degrees, fraction = trunc(_value), _value - trunc(_value)
     minutes = fraction * 60.
     minutes, thousandths = (
         trunc(minutes),
@@ -70,70 +71,74 @@ def degmin(latlon, posneg=" -"):
 
     # apply sign
     if sign:
-        s = posneg[1]
+        _string = posneg[1]
     else:
-        s = posneg[0]
+        _string = posneg[0]
 
-    s = s.strip()
-    s += "%d %02d.%03d" % (degrees, minutes, thousandths)
+    _string = _string.strip()
+    _string += "%d %02d.%03d" % (degrees, minutes, thousandths)
 
-    return s
+    return _string
 
 ########################################################################
 
+
 def latdegmin(lat):
+    """Return L{lat} formatted as latitude."""
     return degmin(lat, "NS")
 
 ########################################################################
 
+
 def londegmin(lon):
+    """Return L{lon} formatted as longitude."""
     return degmin(lon, "EW")
 
 ########################################################################
 
+
 if __name__ == '__main__':
 
-    import sys
-    import os
-    import traceback
-    import optparse
+    import argparse
     import time
-
-#from pexpect import run, spawn
-
-# Uncomment the following section if you want readline history support.
-#import readline, atexit
-#histfile = os.path.join(os.environ['HOME'], '.TODO_history')
-#try:
-#    readline.read_history_file(histfile)
-#except IOError:
-#    pass
-#atexit.register(readline.write_history_file, histfile)
+    import textwrap
 
 ########################################################################
 
     def main():
 
-        global options, args
+        """Main test routine."""
 
         print(degmin(38.20575, "NS"))
         print(latdegmin(38.20575))
 
+        print(degmin(-38.20575, "NS"))
+        print(latdegmin(-38.20575))
+
         print(degmin(-90.39094, "EW"))
         print(londegmin(-90.39094))
+
+        print(degmin(90.39094, "EW"))
+        print(londegmin(90.39094))
+
+        return 0
 
 ########################################################################
 
     try:
-        start_time = time.time()
+        START_TIME = time.time()
 
-        parser = optparse.OptionParser(
-            formatter=optparse.TitledHelpFormatter(),
-            usage=globals()['__doc__'],
-            version=__VERSION__
+        PARSER = argparse.ArgumentParser(
+            usage=textwrap.dedent(__doc__)
         )
 
-        parser.add_option(
+        PARSER.add_argument(
+            "--version",
+            action="version",
+            version="%%(prog)s, Version: %s %s" % (__VERSION__, __DATE__)
+            )
+
+        PARSER.add_argument(
             '-v',
             '--verbose',
             action='store_true',
@@ -141,36 +146,37 @@ if __name__ == '__main__':
             help='verbose output'
         )
 
-        (options, args) = parser.parse_args()
+        OPTIONS = PARSER.parse_args()
+        ARGS = None
 
         #   if len(args) < 1:
-        #       parser.error ('missing argument')
+        #       PARSER.error ('missing argument')
 
-        if options.verbose:
+        if OPTIONS.verbose:
             print(time.asctime())
 
-        exit_code = main()
+        EXIT_CODE = main()
 
-        if exit_code is None:
-            exit_code = 0
+        if EXIT_CODE is None:
+            EXIT_CODE = 0
 
-        if options.verbose:
+        if OPTIONS.verbose:
             print(time.asctime())
             print('TOTAL TIME IN MINUTES:',)
-            print((time.time() - start_time) / 60.0)
+            print((time.time() - START_TIME) / 60.0)
 
-        sys.exit(exit_code)
+        sys.exit(EXIT_CODE)
 
-    except KeyboardInterrupt as e:      # Ctrl-C
-        raise e
+    except KeyboardInterrupt as _error:      # Ctrl-C
+        raise _error
 
-    except SystemExit as e:             # sys.exit()
-        raise e
+    except SystemExit as _error:             # sys.exit()
+        raise _error
 
-    except Exception as e:
-        print('ERROR, UNEXPECTED EXCEPTION')
-        print(str(e))
-        traceback.print_exc()
-        os._exit(1)
+    # except Exception as _error:
+    #     print('ERROR, UNEXPECTED EXCEPTION')
+    #     print(str(_error))
+    #     traceback.print_exc()
+    #     os._exit(1)
 
 # end of file

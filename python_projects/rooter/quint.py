@@ -2,6 +2,8 @@
 
 """Apply et.py, gpx2kml.py, mr.py and rooter to the same file."""
 
+# pylint: disable=too-many-instance-attributes
+
 from __future__ import print_function
 
 import sys
@@ -18,8 +20,8 @@ assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__version__ = "102"      # update for Python 3
-__date__ = "2017-07-24"  #
+__VERSION__ = "102"      # update for Python 3
+__DATE__ = "2017-07-28"  #
 
 ########################################################################
 
@@ -34,12 +36,10 @@ class Options(object):
     """Dummy options class."""
     def __init__(self):
         self.html = True
-# pylint: enable=too-few-public-methods
 
 ########################################################################
 
 
-# pylint: disable=too-many-instance-attributes
 class MyPanel2(wx.Panel):
     """Display a dialog panel."""
 
@@ -126,6 +126,7 @@ class MyPanel2(wx.Panel):
 
     ########################################################################
 
+    # pylint: disable=no-self-use
     def on_mouse_up(self, event):
         """Handle mouseUp event."""
         event_object = event.GetEventObject()
@@ -262,8 +263,6 @@ class MyPanel2(wx.Panel):
 
         self.log("Done!")
         print("Done!")
-    # pylint: enable=too-many-arguments
-# pylint: enable=too-many-instance-attributes
 
 ########################################################################
 
@@ -332,18 +331,12 @@ class MyPanel2(wx.Panel):
 
 if __name__ == '__main__':
 
-    # pylint: disable=deprecated-module
-    from optparse import OptionParser
-    # pylint: enable=deprecated-module
+    from argparse import ArgumentParser
 
-    def main(_args, _options):
+    def main():
         """Process each of the command line arguments."""
         app = wx.App(redirect=False)
         app.SetAppName("quint")
-
-    # # config = wx.FileConfig(localFilename="options")
-    # # config.Create()
-    # # print "config.GetPath()=%s" % config.GetPath()
 
         frame = wx.Frame(None, -1, "Run quint .gpx processing")
 
@@ -363,15 +356,11 @@ if __name__ == '__main__':
 
     ########################################################################
 
-    USAGE = "%prog { options }"
-    VERSION = "Version: %(version)s, %(date)s" % {
-        "version": __version__,
-        "date":  __date__,
-    }
+    PARSER = ArgumentParser(
+        description=__doc__
+    )
 
-    PARSER = OptionParser(usage=USAGE, version=VERSION)
-
-    PARSER.add_option(
+    PARSER.add_argument(
         "-d",
         "--debug",
         dest="debug",
@@ -379,12 +368,15 @@ if __name__ == '__main__':
         help="increment debug counter"
     )
 
-    (OPTIONS, ARGS) = PARSER.parse_args()
+    PARSER.add_argument(
+        "-v",
+        "--version",
+        action="version",
+        version="%%(prog)s, Version: %s %s" % (__VERSION__, __DATE__)
+        )
 
-    if ARGS:
-        PARSER.print_help()
-        sys.exit(1)
+    NAMESPACE = PARSER.parse_args()
 
-    main(ARGS, OPTIONS)
+    main()
 
 ########################################################################

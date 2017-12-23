@@ -7,16 +7,18 @@
 
 ########################################################################
 
+from __future__ import print_function
+
+import sys
 from pprint import pprint
 
-########################################################################
-
-__version__ = "$Revision: 100 $".split()[1]
-__date__ = "$Date: 2016-05-17 11:50:00 $".split()[1]
+assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-DEBUG = False
+
+__VERSION__ = "0.0.101"
+__DATE__ = "2017-07-30"
 
 ########################################################################
 
@@ -39,119 +41,127 @@ if __name__ == "__main__":
 
     def build_dictionaries():
         """Build forward- and back-reference dictionaries from FRANKLIN."""
-        d = {}
-        dr = {}
+        _dictionary = {}
+        _dictionary_reverse = {}
 
         for row_number, row in enumerate(FRANKLIN.split('\n')):
 
             for col_number, digits in enumerate(row.split()):
 
                 if DEBUG:
-                    print "%02d %02d %2s" % (row_number, col_number, digits)
+                    print("%02d %02d %2s" % (row_number, col_number, digits))
 
-                t = (row_number, col_number)
-                n = int(digits)
-                d[t] = n
-                dr[n] = t
+                _temp = (row_number, col_number)
+                _number = int(digits)
+                _dictionary[_temp] = _number
+                _dictionary_reverse[_number] = _temp
 
             if DEBUG:
-                print
+                print()
 
-        return d, dr
+        return _dictionary, _dictionary_reverse
 
     ########################################################################
 
-    def decode(s, d):
-        """Decode string s according to d."""
-        s = s.upper()
+    def decode(_string, _dictionary):
+        """Decode string _string according to _dictionary."""
+        _string = _string.upper()
 
         result = list("_" * 64)
 
         for row in range(8):
             for col in range(8):
-                t = (row, col)
-                index = d[t]
-                result[index - 1] = s[row * 8 + col]
+                _temp = (row, col)
+                index = _dictionary[_temp]
+                result[index - 1] = _string[row * 8 + col]
 
         return "".join(result)
 
     ########################################################################
 
-    def encode(s, dr):
-        """Encode string s according to d."""
-        s = s.upper()
+    def encode(_string, _dictionary_reverse):
+        """Encode string _string according to _dictionary_reverse."""
+        _string = _string.upper()
 
         if DEBUG:
-            print s
+            print(_string)
 
-        o = []
+        _output = []
         for row in range(8):
-            r = []
+            _row = []
             for col in range(8):
-                r.append("")
-            o.append(r)
+                _row.append("")
+            _output.append(_row)
 
-        for index, c in enumerate(s):
+        for index, _char in enumerate(_string):
 
-            row, col = dr[index + 1]
-            o[row][col] = c
+            row, col = _dictionary_reverse[index + 1]
+            _output[row][col] = _char
 
         if DEBUG:
-            pprint(o)
+            pprint(_output)
 
-        return "\n".join(["".join(_r) for _r in o])
+        return "\n".join(["".join(_row) for _row in _output])
 
     ########################################################################
 
     def main(args, options):
         """Process each of the command line arguments."""
-        d, dr = build_dictionaries()
+        global DEBUG  # pylint: disable=W0601
+        DEBUG = options.debug
+
+        _dictonary_forward, _dictionary_reverse = build_dictionaries()
         if DEBUG:
-            pprint(dr)
+            pprint(_dictionary_reverse)
 
         for arg in args:
 
-            s = arg.replace(' ', '')
-            s += 'X' * (64 - len(s))
-            assert len(s) == 64
+            _string = arg.replace(' ', '')
+            _string += 'X' * (64 - len(_string))
+            assert len(_string) == 64
 
             if DEBUG:
-                print s
+                print(_string)
 
             if not options.encode:
-                result = decode(s, d)
+                result = decode(_string, _dictonary_forward)
             else:
-                result = encode(s, dr)
+                result = encode(_string, _dictionary_reverse)
 
-            print "".join(result.split('\n'))
-            print
+            print("".join(result.split('\n')))
+            print()
 
     ########################################################################
 
-    from optparse import OptionParser
-#   import sys
+    from argparse import ArgumentParser
+    import textwrap
 
-    USAGE = "%prog { options }"
-    VERSION = "Version: %(version)s, %(date)s" % {
-        "version":   __version__,
-        "date":   __date__,
-    }
+    PARSER = ArgumentParser(description=textwrap.dedent(__doc__))
 
-    PARSER = OptionParser(usage=USAGE, version=VERSION)
+    PARSER.add_argument(
+        "--version",
+        action="version",
+        version="Version: %s %s" % (__VERSION__, __DATE__)
+        )
 
-    PARSER.add_option("-d",
-                      "--debug",
-                      dest="debug",
-                      action="count",
-                      help="increment debug counter")
+    PARSER.add_argument(
+        "-d",
+        "--debug",
+        dest="debug",
+        action="count",
+        help="increment debug counter"
+        )
 
-    PARSER.add_option("-e",
-                      "--encode",
-                      dest="encode",
-                      action="store_true",
-                      help="encode")
+    PARSER.add_argument(
+        "-e",
+        "--encode",
+        dest="encode",
+        action="store_true",
+        help="encode"
+        )
 
-    (OPTIONS, ARGS) = PARSER.parse_args()
+    OPTIONS = PARSER.parse_args()
+    ARGS = OPTIONS.encode
 
     if not ARGS:
         ARGS = [

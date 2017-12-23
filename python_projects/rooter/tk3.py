@@ -33,66 +33,118 @@ VERSION
 
 """
 
-__VERSION__ = "0.0.1"
+########################################################################
+
+from __future__ import print_function
+
+# pylint: disable=C0321
+import sys; assert sys.version_info > (3, ), "Python 3 required"  # noqa: E303, E702
+
+from tkinter import ACTIVE, Button, Checkbutton, Entry, IntVar, LabelFrame, Tk
+from tkinter import StringVar, W
 
 ########################################################################
 
-from Tkinter import ACTIVE, Button, Checkbutton, Entry, IntVar, LabelFrame, Tk
-from Tkinter import StringVar, W
+__VERSION__ = "0.0.2"
+__DATE__ = "2017-07-27"
 
 ########################################################################
 
-root = Tk()
 
-# frame = Frame(root, height=128, width=128)
-frame = root
+# pylint: disable=too-many-locals
+def main(_args):
+    """Dummy mainline routein for testing use of Tk in lieu of Wx."""
 
-v1 = IntVar()
-v2 = IntVar()
-v3 = IntVar()
-v4 = IntVar()
-v5 = IntVar()
-s1 = StringVar()
-s1.set("filename goes here")
+    root = Tk()
 
-v1.set(1)
-v2.set(0)
-v3.set(1)
-v4.set(1)
-v5.set(1)
+    # frame = Frame(root, height=128, width=128)
+    frame = root
 
-lf1 = LabelFrame(frame, text="File:", padx=5, pady=5)
-e1 = Entry(lf1, textvariable=s1)
+    _v1 = IntVar()
+    _v2 = IntVar()
+    _v3 = IntVar()
+    _v4 = IntVar()
+    _v5 = IntVar()
+    _s1 = StringVar()
+    _s1.set("filename goes here")
 
-lf2 = LabelFrame(frame, text="Switches", padx=5, pady=5)
-c1 = Checkbutton(lf2, text="ET - generate Excel .csv output", variable=v1)
-c2 = Checkbutton(
-    lf2,
-    text="HTML - include HTML output from et.py",
-    variable=v2
-)
-c3 = Checkbutton(lf2, text="KML - output for Google Earth", variable=v3)
-c4 = Checkbutton(lf2, text="MR - generate a .gpx route file", variable=v4)
-c5 = Checkbutton(lf2, text="ROOTER - generate a Rooter file", variable=v5)
+    _v1.set(1)
+    _v2.set(0)
+    _v3.set(1)
+    _v4.set(1)
+    _v5.set(1)
 
+    lf1 = LabelFrame(frame, text="File:", padx=5, pady=5)
+    _e1 = Entry(lf1, textvariable=_s1)
 
-def b1_callback():
-    print '"%s"' % e1.get(), v1.get(), v2.get(), v3.get(), v4.get(), v5.get()
+    lf2 = LabelFrame(frame, text="Switches", padx=5, pady=5)
+    _c1 = Checkbutton(lf2, text="ET - generate Excel .csv output", variable=_v1)  # noqa: E501
+    _c2 = Checkbutton(
+        lf2,
+        text="HTML - include HTML output from et.py",
+        variable=_v2
+    )
+    _c3 = Checkbutton(lf2, text="KML - output for Google Earth", variable=_v3)
+    _c4 = Checkbutton(lf2, text="MR - generate a .gpx route file", variable=_v4)  # noqa: E501
+    _c5 = Checkbutton(lf2, text="ROOTER - generate a Rooter file", variable=_v5)  # noqa: E501
 
-b1 = Button(frame, text="Run", command=b1_callback, default=ACTIVE, activebackground="#f00")
+    def b1_callback():
+        """Button 1 callback handler."""
+        print(
+            '"%s"' % _e1.get(),
+            _v1.get(),
+            _v2.get(),
+            _v3.get(),
+            _v4.get(),
+            _v5.get()
+            )
 
-e1.pack()
-lf1.pack()
+    _b1 = Button(
+        frame,
+        text="Run",
+        command=b1_callback,
+        default=ACTIVE,
+        activebackground="#f00"
+        )
 
-lf2.pack()
-c1.pack(anchor=W)
-c2.pack(anchor=W)
-c3.pack(anchor=W)
-c4.pack(anchor=W)
-c5.pack(anchor=W)
+    _e1.pack()
+    lf1.pack()
 
-b1.pack()
+    lf2.pack()
+    _c1.pack(anchor=W)
+    _c2.pack(anchor=W)
+    _c3.pack(anchor=W)
+    _c4.pack(anchor=W)
+    _c5.pack(anchor=W)
 
-root.mainloop()
+    _b1.pack()
+
+    root.mainloop()
 
 ########################################################################
+
+
+if __name__ == '__main__':
+
+    from argparse import ArgumentParser
+
+    PARSER = ArgumentParser()
+
+    PARSER.add_argument(
+        "-d",
+        "--debug",
+        dest="debug",
+        action="count",
+        help="increment debug counter")
+
+    PARSER.add_argument(
+        "--version",
+        action="version",
+        version="%%(prog)s, Version: %s %s" % (__VERSION__, __DATE__)
+        )
+
+    main(PARSER.parse_args())
+
+########################################################################
+
+# end of file

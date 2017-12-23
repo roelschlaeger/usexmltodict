@@ -12,7 +12,7 @@ from itertools import chain, count
 import exifread
 import os
 import string
-from pprint import pprint
+from pprint import pprint, pformat
 import sys
 
 #######################################################################
@@ -171,6 +171,8 @@ def get_exif_timestamp(path, filename, debug):
     # optionally show the results
     if debug:
 
+        print("tags:")
+
         # show all of the relevant keys
         for tag in list(tags.keys()):
 
@@ -181,19 +183,21 @@ def get_exif_timestamp(path, filename, debug):
                 'EXIF MakerNote'
             ):
                 print("%-38s: %s" % (tag, tags[tag]))
+        print()
 
     # we're interested in the original date and time the picture was
     # taken
     try:
         datetimeoriginal = str(tags["EXIF DateTimeOriginal"])
     except KeyError as e:
-        print()
-        print("in ", pathname)
+        print("Error extracting 'EXIF DateTimeOriginal' in", pathname)
         print(str(e))
         print()
-        print(e.args, e.message)
+#       print(e.args, e.message)
+        print(e.args)
         print()
         print("SKIPPING")
+        print()
         datetimeoriginal = "2001:01:01 00:00:00"
 
     # split into date and time fields
@@ -275,7 +279,7 @@ def process(path, debug=False):
         if filename.endswith('.jpg'):
 
             if debug:
-                print(filename)
+                print("filename = ", filename)
 
             # get picture date from EXIF timestamp
             yr, mo, dy, hr, mn, se = get_exif_timestamp(path, filename, debug)
@@ -342,13 +346,14 @@ if __name__ == '__main__':
         directory_option = OPTIONS.directory
 
         if debug_option:
-            print(ARGS, OPTIONS)
-            print(debug_option)
-            print(base_option)
-            print(date_option)
-            print(generate_option)
-            print(list_option)
-            print(directory_option)
+            print("ARGS             = ", ARGS)
+            print("OPTIONS          = ", pformat(OPTIONS))
+            print("debug_option     = ", debug_option)
+            print("base_option      = ", base_option)
+            print("date_option      = ", date_option)
+            print("generate_option  = ", generate_option)
+            print("list_option      = ", list_option)
+            print("directory_option = ", directory_option)
             print()
 
         if list_option:

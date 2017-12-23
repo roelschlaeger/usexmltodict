@@ -1,9 +1,6 @@
+#!/usr/bin/env python
 # coding=utf-8
 
-#!/usr/bin/env python
-# vim:ts=4:sw=4:tw=0:wm=0:et:nowrap
-# $Id: alien_message.py 35 2008-07-17 05:34:05Z harry $
-# Timestamp: <timestamp>
 ########################################################################
 
 """Decrypt the hint message for
@@ -61,15 +58,26 @@ Here is sample output::
 
 """
 
-__author__  = "Robert L. Oelschlaeger"
-__version__ = "$Revision: 35 $".split()[1]
-__date__    = "$Date: 2008-07-17 00:34:05 -0500 (Thu, 17 Jul 2008) $".split()[1]
+########################################################################
+
+import sys
+
+assert sys.version_info > (3, ), "Python 3 required"
+
+########################################################################
+
+# __author__ = "Robert L. Oelschlaeger"
+# __version__ = "$Revision: 35 $".split()[1]
+# __date__ = "$Date: 2008-07-17 00:34:05 -0500 (Thu, 17 Jul 2008) $".split()[1]
+
+__VERSION__ = "0.0.36"
+__DATE__ = "2017-07-29"
 
 ########################################################################
 
 # 1001: 7 11 13
 
-otext = """
+OTEXT = """
 .NNN......NN......NNN...N.......NNN....NNN...N.............
 ..................N...N....N.N.....N...N..N......N...N..N..
 .N..N...................................N...N..N.....N...N.
@@ -90,7 +98,7 @@ W..WW..W..W...W..W...W.....................................
 """
 """This was the text string for the original cache"""
 
-text = """
+TEXT = """
 N...N..NNN...NNN...NNN..NNNN...NNN........NNNN...NNN.....N.
 ....N.............N...N.N...N.N...N..N.N..N.....N...N......
 .N.....N...N...NN....N..............NN..N....N...N.N...NNN.
@@ -110,7 +118,7 @@ WW..WWW...WWWW..........................W.W.W.W...W.....W.W
 WW...WWW........WWWWW.W.......WW...WWW...WWW...WWW.......
 """
 
-text = """
+TEXT = """
 N...N..NNN...NNN...NNN..NNNN...NNN........NNNN...NNN...NNN.
 ....N.............N...N.N...N.N...N..N.N..N.....N...N......
 .N.....N...N.N...N...N..............NN..N....N...N.N...NNN.
@@ -133,62 +141,68 @@ WW...WWW........WWWWW.W.......WW...WWW...WWW...WWW.......
 
 ########################################################################
 
-# from optparse import OptionParser
-import sys
 
-########################################################################
-
-def print_t(t, i):
-    """print i-length substrings of t, replacing 'W' or 'N' characters with '.'
+def print_t(_tail, i):
+    """print i-length substrings of _tail, replacing 'W' or 'N' characters with '.'
 depending on whether i is 77 or 91
-@param t: the input
-@type t: string
+@param _tail: the input
+@type _tail: string
 @param i: characters per line
 @type i: integer"""
 
-    o = []
-    while t:
-        h, t = t[:i], t[i:]
-        if i == 77: h = h.replace("W", ".")
-        if i == 91: h = h.replace("N", ".")
-        o.append(h)
-    print "\n".join(o)
+    _output = []
+    while _tail:
+        _head, _tail = _tail[:i], _tail[i:]
+        if i == 77:
+            _head = _head.replace("W", ".")
+        if i == 91:
+            _head = _head.replace("N", ".")
+        _output.append(_head)
+    print("\n".join(_output))
 
 ########################################################################
 
-def main(args, options):
+
+def main(_args, _options):
     """reformat 'text' to generate the latitude and longitude of the cache"""
 
-    t = "".join(text.split("\n"))
-    print len(t)
+    _t = "".join(TEXT.split("\n"))
+    print(len(_t))
 
 #   for i in [ 7, 11, 13, 77, 91, 143 ]:
-    for i in [ 77, 91, ]:
-        print i
-        print
-        print_t(t, i)
+    for i in [77, 91]:
+        print(i)
+        print()
+        print_t(_t, i)
 
 ########################################################################
 
-if __name__=="__main__":
 
-    from optparse import OptionParser
+if __name__ == "__main__":
 
-    version = "%%prog - Version: %s, %s" % (__version__, __date__)
-    usage = "%%prog - [options]"
-    parser = OptionParser(usage=usage, version=version)
+    from argparse import ArgumentParser
 
-    parser.add_option("-d", "--debug",
+    VERSION = "%%(prog)s - Version: %s, %s" % (__VERSION__, __DATE__)
+    USAGE = "%%(prog)s - [options]"
+
+    import textwrap
+    PARSER = ArgumentParser(usage=textwrap.dedent(__doc__))
+    PARSER.add_argument(
+        "-d",
+        "--debug",
         action="count",
         dest="debug",
-        help="Increment debug counter")
+        help="Increment debug counter"
+        )
 
-    (options, args) = parser.parse_args()
+    PARSER.add_argument(
+        "--version",
+        action="version",
+        version=VERSION
+        )
 
-    if args:
-        parser.print_help()
-        sys.exit(1)
+    OPTIONS = PARSER.parse_args()
 
-    main(args, options)
+    main(None, OPTIONS)
 
 ########################################################################

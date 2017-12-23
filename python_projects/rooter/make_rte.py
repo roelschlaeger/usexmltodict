@@ -1,34 +1,58 @@
-__PROGRAM_NAME__ = "make_rte.py"
+#!/usr/bin/env python
+
+"""Program to create a .kml route file."""
+
+import sys
 
 from xml.etree import ElementTree as ET
-from gpx2kml import pretty_print
 from datetime import datetime
+from gpx2kml import pretty_print
 from make_rte_wpts import get_wpts
 from make_rtept import make_rtept_from_wpts
+
+assert sys.version_info > (3, ), "Python 3 required"
+
+########################################################################
+
+__PROGRAM_NAME__ = "make_rte.py"
+__VERSION__ = "0.0.2"
+__DATE__ = "2017-07-30"
 
 DEBUG = False
 OUTNAME = "_make_rte.xml"
 TAG_BASE = "http://www.topografix.com/GPX/1/1/"
 ET.register_namespace("", TAG_BASE)
 
+########################################################################
+
+
 def make_tag(tag, tag_base=TAG_BASE):
+    """Return a tag combining L{tag} and L{tag_base}."""
     return "{%s}%s" % (tag_base, tag)
 
-class Route(object):
-    _last_route = 0
 
-    def __init__(self,
-        name,
-        cmt="",
-        desc="",
-        src="",
-        link=None,
-        number=0,
-        rtype="",           # type
-        extensions=[],
-        rtept=[],
-        _debug = DEBUG
-        ):
+# pylint: disable=too-many-instance-attributes,too-few-public-methods
+class Route(object):
+    """Define a route."""
+    _last_route = 0
+    rtept = None  # due to missing function
+
+    # pylint: disable=too-many-arguments
+    def __init__(
+            self,
+            name,
+            cmt="",
+            desc="",
+            src="",
+            link=None,
+            number=0,
+            rtype="",           # type
+            extensions=None,
+            rtept=None,
+            _debug=DEBUG
+    ):
+        """Class initialization."""
+
         self._debug = _debug
 
         self.name = name
@@ -36,8 +60,8 @@ class Route(object):
         # provide a cmt if none given
         if not cmt:
             cmt = "Generated on %s by '%s'" % (
-            datetime.today(),
-            __PROGRAM_NAME__
+                datetime.today(),
+                __PROGRAM_NAME__
             )
         self.cmt = cmt
 
@@ -52,13 +76,15 @@ class Route(object):
         self.number = number
 
         self.rtype = rtype              # type
-        self.extensions = extensions
-
-        if rtept:
-            rtept = make_rtept_from_wpts(rtept)
-        self.rtept = rtept
+        self.extensions = [] if extensions is None else extensions
+        try:
+            self.rtept = [] if rtept is None else make_rtept_from_wpts(rtept)
+        except Warning as _warning:
+            print(_warning)
+            self.rtept = []
 
     def to_xml(self):
+        """Make an XML rte."""
         rte = ET.Element(make_tag("rte"))
 
         if self.name or self._debug:
@@ -99,13 +125,48 @@ class Route(object):
 
         return rte
 
-INFILE = "default.gpx"
-INFILE = "topo859 - Macon County MO.gpx"
-tree = ET.parse(INFILE)
-wpts = get_wpts(tree.getroot())
-rte = Route(name="My Route", rtept=wpts).to_xml()
 
-outfile = open(OUTNAME, "wb")
-pp = pretty_print(outfile, rte, indent="  ")
-outfile.close()
-print("output is in %s" % OUTNAME)
+if __name__ == '__main__':
+
+    from argparse import ArgumentParser
+    import textwrap
+
+    def main(args, _options):
+
+        """Main function."""
+
+        if args:
+            infile = args[0]
+
+            tree = ET.parse(infile)
+            wpts = get_wpts(tree.getroot())
+            rte = Route(name="My Route", rtept=wpts).to_xml()
+
+            outfile = open(OUTNAME, "w")
+            pretty_print(outfile, rte, indent="  ")
+            outfile.close()
+            print("output is in %s" % OUTNAME)
+        else:
+            print("'args' is empty", file=sys.stderr)
+
+    PARSER = ArgumentParser(description=textwrap.dedent(__doc__))
+
+    PARSER.add_argument(
+        "-v",
+        "--version",
+        action="version",
+        version="%%(prog)s Version: %(__VERSION__)s, %(__DATE__)s" % globals()
+    )
+
+    PARSER.add_argument(
+        "files",
+        nargs="*",
+        help="target files",
+        default=["topo859 - Macon County MO.gpx"]
+    )
+
+    OPTIONS = PARSER.parse_args()
+
+    main(OPTIONS.files, OPTIONS)
+
+# end of file

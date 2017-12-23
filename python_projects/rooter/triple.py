@@ -1,14 +1,24 @@
 #!/usr/bin/python
 # vim:ts=4:sw=4:tw=0:wm=0:et
-# $Id: $
-# Created: 	     Fri 31 Dec 2010 05:38:29 PM CST
-# Last modified: Tue 23 Jun 2015 12:36:10 PM CDT
 
 ########################################################################
 
 """Apply et.py, gpx2kml.py and mr.py to the same file"""
 
-__VERSION__ = "0.0.2"
+########################################################################
+
+import sys
+
+import wx
+
+import et
+import gpx2kml
+import mr
+
+assert sys.version_info > (3, ), "Python 3 required"
+
+__VERSION__ = "0.0.3"
+__DATE__ = "2017-07-28"
 
 ########################################################################
 
@@ -17,27 +27,21 @@ MIN_INDEX = 1010
 
 ########################################################################
 
-import wx
-
-import et
-import gpx2kml
-import mr
-
-########################################################################
-
 
 class Options(object):
     """Dummy options class"""
-    pass
+
+    html = False
 
 ########################################################################
 
 
 class MyPanel2(wx.Panel):
+    """Display panel for dialog."""
 
-    def __init__(self, parent, id, *args, **kwargs):
+    def __init__(self, parent, _id, *args, **kwargs):
 
-        wx.Panel.__init__(self, parent, id, *args, **kwargs)
+        wx.Panel.__init__(self, parent, _id, *args, **kwargs)
 
         st0 = wx.StaticText(self, -1, "&Filename:")
         self.tc0 = wx.TextCtrl(
@@ -59,7 +63,7 @@ class MyPanel2(wx.Panel):
         )
         self.cb3 = wx.CheckBox(self, -1, "&KML - output for Google Earth")
 
-        button = wx.Button(self,   -1, "&Run")
+        button = wx.Button(self, -1, "&Run")
         self.tc1 = wx.TextCtrl(
             self,
             -1,
@@ -83,19 +87,20 @@ class MyPanel2(wx.Panel):
         sb1.Add(self.cb3, 0, wx.ALL, 5)
 
         top_sizer = wx.BoxSizer(wx.VERTICAL)
-        top_sizer.Add(sz0,      0, wx.CENTER | wx.ALL, 5)
-        top_sizer.Add(sb1,      0, wx.CENTER | wx.ALL, 5)
-        top_sizer.Add(button,   0, wx.CENTER | wx.ALL, 5)
+        top_sizer.Add(sz0, 0, wx.CENTER | wx.ALL, 5)
+        top_sizer.Add(sb1, 0, wx.CENTER | wx.ALL, 5)
+        top_sizer.Add(button, 0, wx.CENTER | wx.ALL, 5)
         top_sizer.Add(self.tc1, 1, wx.EXPAND)
         self.SetSizerAndFit(top_sizer)
 
-        self.Bind(wx.EVT_BUTTON,         self.on_button,   button)
-        self.tc0.Bind(wx.EVT_LEFT_UP,    self.on_mouse_up, self.tc0)
+        self.Bind(wx.EVT_BUTTON, self.on_button, button)
+        self.tc0.Bind(wx.EVT_LEFT_UP, self.on_mouse_up, self.tc0)
         self.tc0.Bind(wx.EVT_TEXT_ENTER, self.on_mouse_up, self.tc0)
 
     ########################################################################
 
     def on_mouse_up(self, event):
+        """Event handler for mouse up event."""
 
         event_object = event.GetEventObject()
         current_filename = event_object.GetValue()
@@ -116,16 +121,18 @@ class MyPanel2(wx.Panel):
 
     ########################################################################
 
-    def log(self, s):
+    def log(self, _s):
+        """Log the L{_s} string to the status window."""
 
         app = wx.GetApp()
         frame = app.GetTopWindow()
-        frame.SetStatusText(s)
-        self.tc1.AppendText(s + "\n")
+        frame.SetStatusText(_s)
+        self.tc1.AppendText(_s + "\n")
 
     ########################################################################
 
-    def on_button(self, event):
+    def on_button(self, _event):
+        """Handle the button event."""
 
         # get the checkbox values
         html = self.cb2.GetValue()
@@ -157,7 +164,7 @@ class MyPanel2(wx.Panel):
             self.log("Reading from %s" % pathname)
 
             # perform the processing
-            if (html):
+            if html:
                 self.do_et(pathname, html_flag=html)
 
             if kml:
@@ -168,6 +175,7 @@ class MyPanel2(wx.Panel):
     ########################################################################
 
     def do_et(self, pathname, html_flag=True):
+        """Handle processing for ET checkbox."""
 
         self.log("Processing ET and/or HTML")
 
@@ -179,6 +187,7 @@ class MyPanel2(wx.Panel):
     ########################################################################
 
     def do_gpx2kml(self, pathname):
+        """Handle processing for KML checkbox."""
 
         self.log("Processing gpx2hkml")
 
@@ -189,6 +198,7 @@ class MyPanel2(wx.Panel):
     ########################################################################
 
     def do_mr(self, pathname):
+        """Handle processing for MR checkbox."""
 
         self.log("Processing mr")
 
@@ -198,7 +208,7 @@ class MyPanel2(wx.Panel):
 ########################################################################
 
 
-def main(options):
+def main(_options):
     """process each of the command line arguments"""
 
     app = wx.App(redirect=False)
@@ -222,19 +232,27 @@ def main(options):
 
 ########################################################################
 
-from argparse import ArgumentParser
 
-PARSER = ArgumentParser(
-    version="Version: %s" % __VERSION__
-)
+if __name__ == '__main__':
 
-PARSER.add_argument(
-    "-d",
-    "--debug",
-    dest="debug",
-    action="count",
-    help="increment debug counter")
+    from argparse import ArgumentParser
 
-main(PARSER.parse_args())
+    PARSER = ArgumentParser()
+
+    PARSER.add_argument(
+        "-v",
+        "--version",
+        action="version",
+        version="%%(prog)s: Version: %s %s" % (__VERSION__, __DATE__)
+    )
+
+    PARSER.add_argument(
+        "-d",
+        "--debug",
+        dest="debug",
+        action="count",
+        help="increment debug counter")
+
+    main(PARSER.parse_args())
 
 ########################################################################

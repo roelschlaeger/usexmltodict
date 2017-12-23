@@ -33,36 +33,47 @@ VERSION
 
 """
 
-__VERSION__ = "0.0.1"
-
-########################################################################
-
-from Tkinter import ACTIVE, BOTH, IntVar, Menu, RAISED, StringVar, W
-from ttk import Button, Checkbutton, Entry, Frame, LabelFrame
-
 ########################################################################
 
 
+# pylint: disable=multiple-statements
+import sys; assert sys.version_info > (3, ), "Python 3 required"  # noqa: E702
+
+from tkinter import ACTIVE, BOTH, IntVar, Menu, RAISED, StringVar, W
+from tkinter import Button, Checkbutton, Entry, Frame, LabelFrame
+
+########################################################################
+
+__VERSION__ = "0.0.2"
+__DATE__ = "2017-07-28"
+
+########################################################################
+
+
+# pylint: disable=too-many-ancestors,too-many-instance-attributes,no-self-use
 class App(Frame):
+    """The main Tk app."""
 
     def __init__(self, master=None):
         Frame.__init__(self, master, relief=RAISED)
         self.pack(fill=BOTH)
-        self.CreateWidgets()
-        self.CreateMenubar()
-        self.Initialize()
+        self.create_widgets()
+        self.create_menubar()
+        self.initialize()
 
-    def aboutMe(self):
-        print "aboutMe"
+    def about_me(self):
+        """Handle About event."""
+        print("about_me")
 
-    def CreateWidgets(self):
-        self.s1 = StringVar()
-        self.s2 = StringVar()
-        self.v1 = IntVar()
-        self.v2 = IntVar()
-        self.v3 = IntVar()
-        self.v4 = IntVar()
-        self.v5 = IntVar()
+    def create_widgets(self):
+        """Create class widgets."""
+        self._s1 = StringVar()
+        self._s2 = StringVar()
+        self._v1 = IntVar()
+        self._v2 = IntVar()
+        self._v3 = IntVar()
+        self._v4 = IntVar()
+        self._v5 = IntVar()
 
         self.lf1 = LabelFrame(self, text="Filename:")
         self.lf1.pack(fill=BOTH)
@@ -76,60 +87,61 @@ class App(Frame):
         self.lf3 = LabelFrame(self, text="Logging")
         self.lf3.pack(fill=BOTH)
 
-        self.b1 = Button(
+        self._b1 = Button(
             self,
             text="Run",
             command=self.b1_callback,
             default=ACTIVE
         )
-        self.b1.pack(side="bottom")
+        self._b1.pack(side="bottom")
 
-        self.e1 = Entry(
+        self._e1 = Entry(
             self.lf1,
-            textvariable=self.s1
+            textvariable=self._s1
         )
-        self.e1.pack(fill=BOTH)
-        self.e1.bind("<Button-1>", self.e1_callback)
+        self._e1.pack(fill=BOTH)
+        self._e1.bind("<Button-1>", self.e1_callback)
 
-        self.e2 = Entry(self.lf3, textvariable=self.s2)
-        self.e2.pack(fill=BOTH)
+        self._e2 = Entry(self.lf3, textvariable=self._s2)
+        self._e2.pack(fill=BOTH)
 
-        self.c1 = Checkbutton(
+        self._c1 = Checkbutton(
             self.lf2,
             text="ET - generate Excel .csv output",
-            variable=self.v1
+            variable=self._v1
         )
-        self.c1.pack(anchor=W)
+        self._c1.pack(anchor=W)
 
-        self.c2 = Checkbutton(
+        self._c2 = Checkbutton(
             self.lf2,
             text="HTML - include HTML output from et.py",
-            variable=self.v2
+            variable=self._v2
         )
-        self.c2.pack(anchor=W)
+        self._c2.pack(anchor=W)
 
-        self.c3 = Checkbutton(
+        self._c3 = Checkbutton(
             self.lf2,
             text="KML - output for Google Earth",
-            variable=self.v3
+            variable=self._v3
         )
-        self.c3.pack(anchor=W)
+        self._c3.pack(anchor=W)
 
-        self.c4 = Checkbutton(
+        self._c4 = Checkbutton(
             self.lf2,
             text="MR - generate a .gpx route file",
-            variable=self.v4
+            variable=self._v4
         )
-        self.c4.pack(anchor=W)
+        self._c4.pack(anchor=W)
 
-        self.c5 = Checkbutton(
+        self._c5 = Checkbutton(
             self.lf2,
             text="ROOTER - generate a Rooter file",
-            variable=self.v5
+            variable=self._v5
         )
-        self.c5.pack(anchor=W)
+        self._c5.pack(anchor=W)
 
-    def CreateMenubar(self):
+    def create_menubar(self):
+        """Create the application menubar."""
         self.menubar = Menu(self)
 
         self.filemenu = Menu(self.menubar, tearoff=0)
@@ -137,46 +149,71 @@ class App(Frame):
         self.filemenu.add_command(label="Quit", command=self.quit)
 
         self.helpmenu = Menu(self.menubar, tearoff=0)
-        self.helpmenu.add_command(label="About Me", command=self.aboutMe)
+        self.helpmenu.add_command(label="About Me", command=self.about_me)
 
         self.menubar.add_cascade(label="File", menu=self.filemenu)
         self.menubar.add_cascade(label="Help", menu=self.helpmenu)
 
         self.master.config(menu=self.menubar)
 
-    def Initialize(self):
-        self.s1.set("Filename goes here")
-        self.s2.set("Logging")
-        self.v1.set(1)
-        self.v2.set(0)
-        self.v3.set(1)
-        self.v4.set(1)
-        self.v5.set(1)
+    def initialize(self):
+        """Perform all initialization."""
+        self._s1.set("Filename goes here")
+        self._s2.set("Logging")
+        self._v1.set(1)
+        self._v2.set(0)
+        self._v3.set(1)
+        self._v4.set(1)
+        self._v5.set(1)
 
     def b1_callback(self):
-        print '"%s"' % self.e1.get(), \
-            self.v1.get(), \
-            self.v2.get(), \
-            self.v3.get(), \
-            self.v4.get(), \
-            self.v5.get()
+        """Callback function for button1."""
+        print('"%s"' % self._e1.get(), self._v1.get(), self._v2.get(),
+              self._v3.get(), self._v4.get(), self._v5.get())
 
     def e1_callback(self, event):
-        print "e1_callback", "%s" % event
-        from Tkinter import filedialog
-        filename = filedialog.askopendialog()
+        """Callback function for entry1."""
+        print("e1_callback", "%s" % event)
+        from tkinter import filedialog
+        filename = filedialog.askopenfilename()
         del filename  # just discard to keep Lint happy
 
-    ########################################################################
+########################################################################
+
 
 if __name__ == "__main__":
 
-    app = App()
+    def main():
+        """Main program for testing."""
 
-    app.master.title("Run quint .gpx processing")
-#   app.master.maxsize(1000, 400)
-    app.master.geometry("450x300+200+200")
+        app = App()
 
-    app.mainloop()
+        app.master.title("Run quint .gpx processing")
+        app.master.geometry("450x300+200+200")
+
+        app.mainloop()
+
+########################################################################
+
+    from argparse import ArgumentParser
+
+    PARSER = ArgumentParser()
+
+    PARSER.add_argument(
+        "-d",
+        "--debug",
+        dest="debug",
+        action="count",
+        help="increment debug counter")
+
+    PARSER.add_argument(
+        "--version",
+        action="version",
+        version="%%(prog)s, Version: %s %s" % (__VERSION__, __DATE__)
+        )
+
+    PARSER.parse_args()
+
+    main()
 
 ########################################################################

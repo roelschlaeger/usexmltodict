@@ -1,41 +1,41 @@
 #!/usr/bin/env python
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
-# Created:       Thu 16 Jan 2014 11:25:46 AM CST
-# Last Modified: Mon 15 Feb 2016 06:03:45 PM CST
-
-from __future__ import print_function
-
 """
-SYNOPSIS
-
-    TODO latest_log [-h] [-v,--verbose] [--version]
-
 DESCRIPTION
 
-    TODO This function returns log information for a given wpt.
+    This function returns log information for a given wpt.
 
 EXAMPLES
 
-    TODO: Show some examples of how to use this script.
+    Show some examples of how to use this script.
 
 EXIT STATUS
 
-    TODO: List exit codes
+    List exit codes
 
 AUTHOR
 
-    TODO: Robert Oelschlaeger <roelsch2009@gmail.com>
+    Robert Oelschlaeger <roelsch2009@gmail.com>
 
 LICENSE
 
     This script is in the public domain.
 
-VERSION
-
 """
 
-__VERSION__ = "0.0.1"
+from __future__ import print_function
+
+import sys
+from pprint import pprint
+
+assert sys.version_info > (3, ), "Python 3 required"
+
+########################################################################
+
+
+__VERSION__ = "0.0.2"
+__DATE__ = "2017-07-28"
 
 ########################################################################
 
@@ -128,54 +128,58 @@ def latest_log(wpt):
 
 ########################################################################
 
+
 if __name__ == '__main__':
 
-    import sys
-    import os
-    import traceback
-    import optparse
+    import argparse
     import time
 
 ########################################################################
 
-    CACHETAG = '{http://www.groundspeak.com/cache/1/0/1}cache'
-    EXTTAG = '{http://www.topografix.com/GPX/1/1}extensions'
-    LOGSTAG = '{http://www.groundspeak.com/cache/1/0/1}logs'
-    LOGTAG = '{http://www.groundspeak.com/cache/1/0/1}log'
+    # CACHETAG = '{http://www.groundspeak.com/cache/1/0/1}cache'
+    # EXTTAG = '{http://www.topografix.com/GPX/1/1}extensions'
+    # LOGSTAG = '{http://www.groundspeak.com/cache/1/0/1}logs'
+    # LOGTAG = '{http://www.groundspeak.com/cache/1/0/1}log'
 
-    def make_tag(element, s):
-        tag = element.tag
-        index = tag.find("}")
-        old_tag = tag[index + 1:]
-        new_tag = tag.replace(old_tag, s)
-        return new_tag
+    # def make_tag(element, _tag):
+    #     """Replace the tag in L{element} with L{_tag}."""
+    #     tag = element.tag
+    #     index = tag.find("}")
+    #     old_tag = tag[index + 1:]
+    #     new_tag = tag.replace(old_tag, _tag)
+    #     return new_tag
 
-    from pprint import pprint
-
-    def main():
-
-        global options, args
+    def main(args, _options):
+        """Main routine for testing."""
 
         from rooter import get_wpts
-        wpts, junk = get_wpts(args[0])
+        wpts, _junk = get_wpts(args[0])
         for wpt in wpts:
             result = latest_log(wpt)
             if result["count"]:
                 pprint(result)
                 print()
 
+        return 0
+
 ########################################################################
 
-    try:
-        start_time = time.time()
+    import textwrap
 
-        parser = optparse.OptionParser(
-            formatter=optparse.TitledHelpFormatter(),
-            usage=globals()['__doc__'],
-            version=__VERSION__
+    try:
+        START_TIME = time.time()
+
+        PARSER = argparse.ArgumentParser(
+            usage=textwrap.dedent(__doc__)
         )
 
-        parser.add_option(
+        PARSER.add_argument(
+            "--version",
+            action="version",
+            version="%%(prog)s: Version %s %s" % (__VERSION__, __DATE__)
+        )
+
+        PARSER.add_argument(
             '-v',
             '--verbose',
             action='store_true',
@@ -183,40 +187,43 @@ if __name__ == '__main__':
             help='verbose output'
         )
 
-        (options, args) = parser.parse_args()
+        PARSER.add_argument("files", nargs="*")
 
-        if len(args) < 1:
-#           parser.error ('missing argument')
-#           args = [r"C:/Users/Robert Oelschlaeger/Dropbox/Geocaching/"
-#                   r"topo731 - Poplar Bluff MO/"
-#                   r"topo731b - Poplar Bluff MO.gpx"]
-            args = ["default.gpx"]
-#
-        if options.verbose:
+        OPTIONS = PARSER.parse_args()
+        ARGS = OPTIONS.files
+
+        if len(ARGS) < 1:
+            # PARSER.error ('missing argument')
+            # ARGS = [r"C:/Users/Robert Oelschlaeger/Dropbox/Geocaching/"
+            #     r"topo731 - Poplar Bluff MO/"
+            #     r"topo731b - Poplar Bluff MO.gpx"]
+            ARGS = ["default.gpx"]
+
+        if OPTIONS.verbose:
             print(time.asctime())
 
-        exit_code = main()
+        EXIT_CODE = main(ARGS, OPTIONS)
 
-        if exit_code is None:
-            exit_code = 0
+        if EXIT_CODE is None:
+            EXIT_CODE = 0
 
-        if options.verbose:
+        if OPTIONS.verbose:
             print(time.asctime())
             print('TOTAL TIME IN MINUTES:',)
-            print((time.time() - start_time) / 60.0)
+            print((time.time() - START_TIME) / 60.0)
 
-        sys.exit(exit_code)
+        sys.exit(EXIT_CODE)
 
-    except KeyboardInterrupt as e:      # Ctrl-C
-        raise e
+    except KeyboardInterrupt as _error:      # Ctrl-C
+        raise _error
 
-    except SystemExit as e:             # sys.exit()
-        raise e
+    except SystemExit as _error:             # sys.exit()
+        raise _error
 
-    except Exception as e:
-        print('ERROR, UNEXPECTED EXCEPTION')
-        print(str(e))
-        traceback.print_exc()
-        os._exit(1)
+    # except Exception as _error:
+    #     print('ERROR, UNEXPECTED EXCEPTION')
+    #     print(str(_error))
+    #     traceback.print_exc()
+    #     os._exit(1)
 
 # end of file
