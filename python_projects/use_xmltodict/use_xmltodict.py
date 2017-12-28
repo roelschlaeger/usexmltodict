@@ -5,7 +5,7 @@ import json
 
 FILENAME = "temp.gpx"
 JSONFILE = "outfile.json"
-TEXTFILE = "outfile.txt"
+# TEXTFILE = "outfile.txt"
 JSONTEXT = open(FILENAME, "rb").read()
 
 
@@ -62,7 +62,7 @@ def create_temp_csv(wpt):
 
     with open("temp.csv", "w") as f:
         with redirect_stdout(f):
-            writer = csv.writer(f, lineterminator='\n')
+            writer = csv.writer(f, lineterminator='\n', dialect="excel-tab")
             writer.writerow(cols)
             for w0 in wpt:
                 row = build_row(w0)
@@ -76,14 +76,14 @@ def show(s):
 
 
 # redirect stdout to a file
-with open(TEXTFILE, "w") as outfile:
+# with open(TEXTFILE, "w") as outfile:
 
-    doc = parse(JSONTEXT)
-    # create_outfile_json(doc)
+doc = parse(JSONTEXT)
+# create_outfile_json(doc)
 
-    gpx = doc['gpx']
-    wpt = gpx['wpt']
-    w0 = wpt[0]
+gpx = doc['gpx']
+wpt = gpx['wpt']
+w0 = wpt[0]
 
 #   print("Output is going to %s" % TEXTFILE)
 #   with redirect_stdout(outfile):
@@ -95,10 +95,8 @@ with open(TEXTFILE, "w") as outfile:
 
 #       print("Done 1!")
 
-    create_temp_csv(wpt)
+create_temp_csv(wpt)
 
-    print("Done 2!")
-
-print("Done 3!")
+print("Done 2!")
 
 # end of file
