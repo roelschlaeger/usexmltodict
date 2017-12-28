@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from contextlib import redirect_stdout
 from xmltodict import parse
 import csv
@@ -43,30 +44,58 @@ def create_temp_csv(wpt):
         cache_cols
     ]
 
-    cols = []
-    [cols.extend(l) for l in col_lists]
-#   pprint(cols)
+#   if 0:
+#       cols = []
+#       [cols.extend(l) for l in col_lists]
+
+#       def build_row(w0):
+#           cols = []
+#           cols.extend(w0[c] for c in w0_cols)
+#           cols.extend(w0["link"][c] for c in link_cols)
+#           cols.extend(
+#               w0["extensions"]["gsak:wptExtension"][c]
+#               for c in wptExtension_cols
+#           )
+#           cols.extend(
+#               w0["extensions"]["groundspeak:cache"][c] for c in cache_cols
+#           )
+#           return cols
+
+#       with open("temp.csv", "w") as f:
+#           with redirect_stdout(f):
+#               writer = csv.writer(
+#                   f,
+#                   lineterminator='\n',
+#                   dialect="excel-tab"
+#               )
+#               writer.writerow(cols)
+#               for w0 in wpt:
+#                   row = build_row(w0)
+#                   writer.writerow(row)
+#   else:
 
     def build_row(w0):
-        cols = []
-        cols.extend(w0[c] for c in w0_cols)
-        cols.extend(w0["link"][c] for c in link_cols)
-        cols.extend(
-            w0["extensions"]["gsak:wptExtension"][c]
-            for c in wptExtension_cols
-        )
-        cols.extend(
-            w0["extensions"]["groundspeak:cache"][c] for c in cache_cols
-        )
-        return cols
+        d = OrderedDict()
+        for c in w0_cols:
+            d[c] = w0[c]
+        for c in link_cols:
+            d[c] = w0["link"][c]
+        for c in wptExtension_cols:
+            d[c] = w0["extensions"]["gsak:wptExtension"][c]
+        for c in cache_cols:
+            d[c] = w0["extensions"]["groundspeak:cache"][c]
+        return d
 
     with open("temp.csv", "w") as f:
         with redirect_stdout(f):
-            writer = csv.writer(f, lineterminator='\n', dialect="excel-tab")
-            writer.writerow(cols)
-            for w0 in wpt:
+            writer = csv.writer(
+                f, lineterminator='\n', dialect="excel-tab"
+            )
+            for index, w0 in enumerate(wpt):
                 row = build_row(w0)
-                writer.writerow(row)
+                if index == 0:
+                    writer.writerow(row.keys())
+                writer.writerow(row.values())
 
 
 def show(s):
