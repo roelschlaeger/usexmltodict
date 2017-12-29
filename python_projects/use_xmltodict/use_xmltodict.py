@@ -1,96 +1,105 @@
+"""Parse a .gpx file into a .csv output."""
+
+from bs4 import BeautifulSoup
 from collections import OrderedDict
 from contextlib import redirect_stdout
 from xmltodict import parse
 import csv
-import json
 
+# output filename
 FILENAME = "temp.gpx"
 JSONFILE = "outfile.json"
-# TEXTFILE = "outfile.txt"
-JSONTEXT = open(FILENAME, "rb").read()
+
+# interesting columns
+W0_COLS = [
+    "@lat",
+    "@lon",
+    "name",
+    "desc",
+    "sym",
+    "type"
+]
+
+LINK_COLS = [
+    "@href",
+    "text"
+]
+
+# these are keys underneath [extensions]
+WPTEXTENSION_COLS = [
+    "gsak:User2",
+    "gsak:UserSort",
+    "gsak:Code"
+]
+
+CACHE_COLS = [
+    "@available",
+    "@archived",
+    "groundspeak:placed_by",
+    "groundspeak:type",
+    "groundspeak:container",
+    "groundspeak:difficulty",
+    "groundspeak:terrain",
+    "groundspeak:short_description",
+    "groundspeak:long_description",
+    "groundspeak:encoded_hints",
+]
 
 
-def create_outfile_json(doc):
-    """Create a JSON file describing doc"""
-    s = json.dumps(doc, indent=1)
-    with open("outfile.json", "w") as ofile:
-        ofile.write(s)
-    print("JSON written to %s" % JSONFILE)
+def fix_html(d, key_list):
+    """Extract text from hint and description tags"""
+    for key in key_list:
+        text = ""
+        if key == "groundspeak:encoded_hints" and d[key] != "None":
+            text = d[key]
+        else:
+            if d[key] is not None:
+                if "#text" in d[key]:
+                    text = d[key]["#text"]
+                    if "@html" in d[key] and d[key]["@html"]:
+                        soup = BeautifulSoup(text, 'html.parser')
+                        text = soup.get_text()
+        d[key] = text
+
+
+def build_row(w0):
+    """Create a new output row from the column specs"""
+    d = OrderedDict()
+    for c in W0_COLS:
+        d[c] = w0[c]
+    for c in LINK_COLS:
+        d[c] = w0["link"][c]
+    for c in WPTEXTENSION_COLS:
+        d[c] = w0["extensions"]["gsak:wptExtension"][c]
+    for c in CACHE_COLS:
+        d[c] = w0["extensions"]["groundspeak:cache"][c]
+
+    # make corrections to text fields
+    fix_html(
+        d,
+        [
+            "groundspeak:short_description",
+            "groundspeak:long_description",
+            "groundspeak:encoded_hints",
+        ]
+    )
+
+    # return the row
+    return d
 
 
 def create_temp_csv(wpt):
     """Create a temp.csv file containing select gpx columns"""
-    w0_cols = ["@lat", "@lon", "name", "desc", "sym", "type"]
-    link_cols = ["@href", "text"]
-#   extension_cols = ["gsak:wptExtension", "groundspeak:cache"]
-    wptExtension_cols = ["gsak:User2", "gsak:UserSort", "gsak:Code"]
-    cache_cols = [
-        "@available",
-        "@archived",
-        "groundspeak:placed_by",
-        "groundspeak:type",
-        "groundspeak:container",
-        "groundspeak:difficulty",
-        "groundspeak:terrain",
-        "groundspeak:short_description",
-        "groundspeak:long_description",
-        "groundspeak:encoded_hints",
-    ]
-
-    col_lists = [
-        w0_cols,
-        link_cols,
-        wptExtension_cols,
-        cache_cols
-    ]
-
-#   if 0:
-#       cols = []
-#       [cols.extend(l) for l in col_lists]
-
-#       def build_row(w0):
-#           cols = []
-#           cols.extend(w0[c] for c in w0_cols)
-#           cols.extend(w0["link"][c] for c in link_cols)
-#           cols.extend(
-#               w0["extensions"]["gsak:wptExtension"][c]
-#               for c in wptExtension_cols
-#           )
-#           cols.extend(
-#               w0["extensions"]["groundspeak:cache"][c] for c in cache_cols
-#           )
-#           return cols
-
-#       with open("temp.csv", "w") as f:
-#           with redirect_stdout(f):
-#               writer = csv.writer(
-#                   f,
-#                   lineterminator='\n',
-#                   dialect="excel-tab"
-#               )
-#               writer.writerow(cols)
-#               for w0 in wpt:
-#                   row = build_row(w0)
-#                   writer.writerow(row)
-#   else:
-
-    def build_row(w0):
-        d = OrderedDict()
-        for c in w0_cols:
-            d[c] = w0[c]
-        for c in link_cols:
-            d[c] = w0["link"][c]
-        for c in wptExtension_cols:
-            d[c] = w0["extensions"]["gsak:wptExtension"][c]
-        for c in cache_cols:
-            d[c] = w0["extensions"]["groundspeak:cache"][c]
-        return d
 
     with open("temp.csv", "w") as f:
         with redirect_stdout(f):
+
+            # create the spreadsheet writer
             writer = csv.writer(
                 f, lineterminator='\n', dialect="excel-tab"
             )
+
+            # fill in spreadsheet header and rows
             for index, w0 in enumerate(wpt):
                 row = build_row(w0)
                 if index == 0:
@@ -98,34 +107,23 @@ def create_temp_csv(wpt):
                 writer.writerow(row.values())
 
 
-def show(s):
-    """Show the contents of an OrderedDict"""
-    for k in s.keys():
-        print(bytes(k, 'utf8'), str(s[k])[:80])
+#   def show(s):
+#       """Show the contents of an OrderedDict"""
+#       for k in s.keys():
+#           print(bytes(k, 'utf8'), str(s[k])[:80])
 
 
-# redirect stdout to a file
-# with open(TEXTFILE, "w") as outfile:
+def main():
 
-doc = parse(JSONTEXT)
-# create_outfile_json(doc)
+    jsontext = open(FILENAME, "rb").read()
+    doc = parse(jsontext)
 
-gpx = doc['gpx']
-wpt = gpx['wpt']
-w0 = wpt[0]
+    gpx = doc['gpx']
+    wpt = gpx['wpt']
+    create_temp_csv(wpt)
 
-#   print("Output is going to %s" % TEXTFILE)
-#   with redirect_stdout(outfile):
 
-#       show(gpx)
-#       show(w0)
-#       for w in wpt:
-#           show(w)
-
-#       print("Done 1!")
-
-create_temp_csv(wpt)
-
-print("Done 2!")
+if __name__ == "__main__":
+    main()
 
 # end of file
