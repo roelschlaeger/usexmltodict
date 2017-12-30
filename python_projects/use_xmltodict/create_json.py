@@ -3,8 +3,8 @@
 import json
 from xmltodict import parse
 
-
 ########################################################################
+
 
 def create_outfile_json(doc, outfile):
     """Create a JSON file in outfile describing doc"""
@@ -19,8 +19,8 @@ def create_outfile_json(doc, outfile):
     # show that processing is complete
     print(f"JSON written to {outfile}")
 
-
 ########################################################################
+
 
 def main(filename, outfile):
 

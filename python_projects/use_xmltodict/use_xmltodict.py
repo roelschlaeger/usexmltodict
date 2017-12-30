@@ -2,13 +2,15 @@
 
 from bs4 import BeautifulSoup
 from collections import OrderedDict
-from contextlib import redirect_stdout
-from xmltodict import parse
+# from xmltodict import parse
+from json import loads
 import csv
 
-# output filename
-FILENAME = "temp.gpx"
+# input filename
 JSONFILE = "outfile.json"
+
+# output filename
+CSV_FILENAME = "temp.csv"
 
 # interesting columns
 W0_COLS = [
@@ -88,23 +90,22 @@ def build_row(w0):
     return d
 
 
-def create_temp_csv(wpt):
+def create_temp_csv(filename, wpt):
     """Create a temp.csv file containing select gpx columns"""
 
-    with open("temp.csv", "w") as f:
-        with redirect_stdout(f):
+    with open(filename, "w") as f:
 
-            # create the spreadsheet writer
-            writer = csv.writer(
-                f, lineterminator='\n', dialect="excel-tab"
-            )
+        # create the spreadsheet writer
+        writer = csv.writer(
+            f, lineterminator='\n', dialect="excel-tab"
+        )
 
-            # fill in spreadsheet header and rows
-            for index, w0 in enumerate(wpt):
-                row = build_row(w0)
-                if index == 0:
-                    writer.writerow(row.keys())
-                writer.writerow(row.values())
+        # fill in spreadsheet header and rows
+        for index, w0 in enumerate(wpt):
+            row = build_row(w0)
+            if index == 0:
+                writer.writerow(row.keys())
+            writer.writerow(row.values())
 
 
 #   def show(s):
@@ -115,12 +116,12 @@ def create_temp_csv(wpt):
 
 def main():
 
-    jsontext = open(FILENAME, "rb").read()
-    doc = parse(jsontext)
+    with open(JSONFILE, "rb") as jsonfile:
+        doc = loads(jsonfile.read())
 
     gpx = doc['gpx']
     wpt = gpx['wpt']
-    create_temp_csv(wpt)
+    create_temp_csv(CSV_FILENAME, wpt)
 
 
 if __name__ == "__main__":
