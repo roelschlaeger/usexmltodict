@@ -2,7 +2,6 @@
 
 from bs4 import BeautifulSoup
 from collections import OrderedDict
-# from xmltodict import parse
 from json import loads
 import csv
 
@@ -114,17 +113,21 @@ def create_temp_csv(filename, wpt):
 #           print(bytes(k, 'utf8'), str(s[k])[:80])
 
 
-def main():
+def main(input_file, output_file):
 
-    with open(JSONFILE, "rb") as jsonfile:
+    print(
+        "\nReading from {0}, writing to {1}.\n".format(input_file, output_file)
+    )
+
+    with open(input_file, "rb") as jsonfile:
         doc = loads(jsonfile.read())
 
     gpx = doc['gpx']
     wpt = gpx['wpt']
-    create_temp_csv(CSV_FILENAME, wpt)
+    create_temp_csv(output_file, wpt)
 
 
 if __name__ == "__main__":
-    main()
+    main(JSONFILE, CSV_FILENAME)
 
 # end of file
