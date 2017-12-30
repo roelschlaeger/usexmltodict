@@ -46,6 +46,8 @@ CACHE_COLS = [
     "groundspeak:encoded_hints",
 ]
 
+########################################################################
+
 
 def fix_html(d, key_list):
     """Extract text from hint and description tags"""
@@ -61,6 +63,8 @@ def fix_html(d, key_list):
                         soup = BeautifulSoup(text, 'html.parser')
                         text = soup.get_text()
         d[key] = text
+
+########################################################################
 
 
 def build_row(w0):
@@ -88,6 +92,8 @@ def build_row(w0):
     # return the row
     return d
 
+########################################################################
+
 
 def create_temp_csv(filename, wpt):
     """Create a temp.csv file containing select gpx columns"""
@@ -106,12 +112,16 @@ def create_temp_csv(filename, wpt):
                 writer.writerow(row.keys())
             writer.writerow(row.values())
 
+########################################################################
+
 
 #   def show(s):
 #       """Show the contents of an OrderedDict"""
 #       for k in s.keys():
 #           print(bytes(k, 'utf8'), str(s[k])[:80])
 
+
+########################################################################
 
 def main(input_file, output_file):
 
@@ -127,7 +137,38 @@ def main(input_file, output_file):
     create_temp_csv(output_file, wpt)
 
 
+########################################################################
+
 if __name__ == "__main__":
-    main(JSONFILE, CSV_FILENAME)
+
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Convert JSON file to CSV",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+
+    parser.add_argument(
+        "inputfile",
+        type=str,
+        nargs="?",
+        help="JSON input filename",
+    )
+
+    parser.add_argument(
+        "csvfile",
+        type=str,
+        nargs="?",
+        help="CSV output filename",
+    )
+
+    parser.set_defaults(
+        inputfile=JSONFILE,
+        csvfile=CSV_FILENAME
+    )
+
+    args = parser.parse_args()
+
+    main(args.inputfile, args.csvfile)
 
 # end of file
