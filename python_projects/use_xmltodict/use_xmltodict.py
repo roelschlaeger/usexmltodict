@@ -126,7 +126,7 @@ def create_temp_csv(filename, wpt):
 def main(input_file, output_file):
 
     print(
-        "\nReading from {0}, writing to {1}.\n".format(input_file, output_file)
+        f"\nReading from {input_file}, writing to {output_file}.\n"
     )
 
     with open(input_file, "rb") as jsonfile:

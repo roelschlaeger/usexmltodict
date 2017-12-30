@@ -13,7 +13,7 @@ def create_outfile_json(doc, outfile):
     s = json.dumps(doc, indent=1)
 
     # write it to a text file
-    with open(OUTFILE, "w") as ofile:
+    with open(outfile, "w") as ofile:
         ofile.write(s)
 
     # show that processing is complete
