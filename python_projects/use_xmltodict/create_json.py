@@ -24,7 +24,7 @@ def create_outfile_json(doc, outfile):
 
 def main(filename, outfile):
 
-    print(f"Reading from {filename}")
+    print(f"\nReading from {filename}, writing to {outfile}.\n")
     jsontext = open(filename, "rb").read()
     doc = parse(jsontext)
     create_outfile_json(doc, outfile)
@@ -34,9 +34,37 @@ def main(filename, outfile):
 
 if __name__ == "__main__":
 
+    import argparse
+
     FILENAME = "temp.gpx"
     OUTFILE = "outfile.json"
 
-    main(FILENAME, OUTFILE)
+    parser = argparse.ArgumentParser(
+        description="Convert .gpx file to JSON",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+
+    parser.add_argument(
+        "inputfile",
+        type=str,
+        nargs="?",
+        help="GPX input filename",
+    )
+
+    parser.add_argument(
+        "jsonfile",
+        type=str,
+        nargs="?",
+        help="JSON output filename",
+    )
+
+    parser.set_defaults(
+        inputfile=FILENAME,
+        jsonfile=OUTFILE
+    )
+
+    args = parser.parse_args()
+
+    main(args.inputfile, args.jsonfile)
 
 # end of file
