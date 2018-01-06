@@ -1,9 +1,16 @@
 """Parse a .gpx file into a .csv output."""
 
+from __future__ import print_function
+
 from bs4 import BeautifulSoup
 from collections import OrderedDict
 from json import loads
 import csv
+
+from with_sqlite3 import create_temp_db, delete_temp_db, fill_temp_db
+
+# database file
+DB_FILE = "output_file.db"
 
 # input filename
 JSONFILE = "outfile.json"
@@ -114,27 +121,30 @@ def create_temp_csv(filename, wpt):
 
 ########################################################################
 
-
-#   def show(s):
-#       """Show the contents of an OrderedDict"""
-#       for k in s.keys():
-#           print(bytes(k, 'utf8'), str(s[k])[:80])
-
-
-########################################################################
-
-def main(input_file, output_file):
-
-    print(
-        f"\nReading from {input_file}, writing to {output_file}.\n"
-    )
+def main(input_file, output_file, create=False, delete=False):
 
     with open(input_file, "rb") as jsonfile:
+        print(f"\nReading from {input_file}")
         doc = loads(jsonfile.read())
 
     gpx = doc['gpx']
     wpt = gpx['wpt']
-    create_temp_csv(output_file, wpt)
+
+    if delete:
+        print("\nDeleting table in %s" % DB_FILE)
+        delete_temp_db(DB_FILE)
+
+    if create:
+        print("\nCreating and filling table in %s" % DB_FILE)
+        row = build_row(wpt[0])
+        create_temp_db(DB_FILE, row)
+        for w0 in wpt:
+            row = build_row(w0)
+            fill_temp_db(DB_FILE, row)
+    else:
+        if not delete:
+            print(f"\nWriting to {output_file}.")
+            create_temp_csv(output_file, wpt)
 
 
 ########################################################################
@@ -167,8 +177,27 @@ if __name__ == "__main__":
         csvfile=CSV_FILENAME
     )
 
+    parser.add_argument(
+        "-c",
+        "--create",
+        action="store_true",
+        help="create new database table and exit",
+    )
+
+    parser.add_argument(
+        "-d",
+        "--delete",
+        action="store_true",
+        help="delete database table",
+    )
+
     args = parser.parse_args()
 
-    main(args.inputfile, args.csvfile)
+    main(
+        args.inputfile,
+        args.csvfile,
+        args.create,
+        args.delete
+    )
 
 # end of file
