@@ -3,6 +3,8 @@
 from collections import OrderedDict
 from sqlite3 import connect, OperationalError
 
+FILENAME = "output_file.db"
+
 ########################################################################
 
 
@@ -76,10 +78,10 @@ def fill_temp_db(filename, row):
 ########################################################################
 
 
-def get_data(filename):
+def get_data(filename=FILENAME):
     with connect(filename) as conn:
         c = conn.cursor()
-        c.execute("select `@lat`, `@lon`, text, sym from `waypoints`")
+        c.execute("select `@lat`, `@lon`, text, sym, name from `waypoints`")
         data = c.fetchall()
         c.close()
     return data
