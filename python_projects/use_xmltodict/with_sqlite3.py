@@ -81,7 +81,10 @@ def fill_temp_db(filename, row):
 def get_data(filename=FILENAME):
     with connect(filename) as conn:
         c = conn.cursor()
-        c.execute("select `@lat`, `@lon`, text, sym, name from `waypoints`")
+        c.execute(
+            "select `@lat`, `@lon`, text, sym, name, `gsak:UserSort`"
+            " from `waypoints`"
+        )
         data = c.fetchall()
         c.close()
     return data

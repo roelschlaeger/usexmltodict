@@ -1,7 +1,10 @@
 html-1.16/
-boston_to_concord_stopover_charleston_via_lexington.json 
-html-1.16.tar 
+boston_to_concord_stopover_charleston_via_lexington.json
+html-1.16.tar
+mymap.html
 output_file.db
 requirements.txt
 t.py
-test.html 
+test.html
+test2.html
+tidy_help.txt

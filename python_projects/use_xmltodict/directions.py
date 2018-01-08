@@ -5,58 +5,76 @@
     https://www.google.com/maps/dir/?api=1
 """
 
-# from urllib.parse import urlencode
-# from collections import defaultdict
+from build_path import build_paths
 
-def directions(pfm, pto, waypoints=None):
-    """Encode string for directions request"""
-    s = "https://www.google.com/maps/dir/?api=1"
-    s += "&origin=%s,%s" % (pfm[0], pfm[1])
-    s += "&destination=%s,%s" % (pto[0], pto[1])
+
+def directions(lats, lons, names, start, end, waypoints):
+    """Create URI for a map from 'start' to 'end' via possibly empty
+'waypoints' list of intermediate points"""
+
+    result = "https://www.google.com/maps/dir/?api=1"
+    result += "&origin=%s,%s" % (lats[start], lons[start])
+    result += "&destination=%s,%s" % (lats[end], lons[end])
     if waypoints:
-        w = "&waypoints="
+        waypoints_string = "&waypoints="
         for index, wpt in enumerate(waypoints):
-            if index == 0:
-                w += "%s,%s" % (wpt[0], wpt[1])
-            else:
-                w += "%7C%s,%s" % (wpt[0], wpt[1])
-        s += w
-#   print(s)
-    return s
+            if index != 0:
+                waypoints_string += "%7C"
+            waypoints_string += "%s,%s" % (lats[wpt], lons[wpt])
+        result += waypoints_string
+    return result
 
 
 if __name__ == "__main__":
 
+    from with_sqlite3 import get_data
     import myhtml
 
-    doc = myhtml.HTML()
-    table = doc.body.table(border="1")
-    tr = table.tr()
-    tr.th("Index")
+    FILENAME = "output_file.db"
+    data = get_data(FILENAME)
+    lats, lons, texts, syms, names, usersorts = zip(*data)
+
+    doc = myhtml.XHTML("html")
+    doc.meta(charset="utf-8")
+    doc.title("Title for Route")
+    doc.style("""
+table, caption, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+              vertical-align: center;
+              padding: 3px;
+              }
+caption { font-weight: bold; font-size: 150% }
+th { text-align: center; font-size: 125%}
+""")
+
+    table = doc.body.table()
+    table.caption("Table of Map Routes")
+
+    tr = table.thead.tr()
+    tr.th("UserSort")
     tr.th("From")
     tr.th("To")
-    tr.th("Link")
+    tr.th("Via")
 
-    from with_sqlite3 import get_data
-    FILENAME = "output_file.db"
-
-    data = get_data(FILENAME)
-
-    for index, item in enumerate(data):
+    for start, end, waypoints in build_paths(data):
         tr = table.tr()
-        lat, lon, text, sym, name = item[:5]
-        p_to = (lat, lon, name, text)
-        if index == 0:
-            p_from = p_to
-            waypoints = []
-            continue
-        tr.th(str(index))
-        tr.th(p_from[2])
-        tr.th(p_to[2])
-        href = directions(p_from[:2], p_to[:2])
-        tr.th.a("link", href=href, type="text/html")
-        p_from = p_to
+        href = directions(lats, lons, names, start, end, waypoints)
+        tr.td(str(usersorts[start]), style="text-align: center")
+        tr.td.a(texts[start], href=href, target="_blank")
+        tr.td(texts[end])
+        td3 = tr.td()
+        if waypoints:
+            if len(waypoints) == 1:
+                td3(texts[waypoints[0]])
+            else:
+                for index, waypoint in enumerate(waypoints):
+                    if index == 0:
+                        td3(texts[waypoint])
+                    else:
+                        td3.br()
+                        td3(texts[waypoint])
 
-    print(doc)
+    print("<!DOCTYPE HTML>\n" + str(doc))
 
 # end of file
