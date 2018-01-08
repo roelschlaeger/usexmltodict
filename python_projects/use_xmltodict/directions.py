@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     FILENAME = "output_file.db"
     data = get_data(FILENAME)
-    lats, lons, texts, syms, names, usersorts = zip(*data)
+    lats, lons, texts, syms, names, usersorts, hrefs = zip(*data)
 
     doc = myhtml.XHTML("html")
     doc.meta(charset="utf-8")
@@ -52,6 +52,14 @@ th { text-align: center; font-size: 125%}
     table.caption("Table of Map Routes")
 
     tr = table.thead.tr()
+    tr.th(
+        "Map Link",
+        colspan="1",
+        style="text-decoration: underline; color: blue;"
+    )
+    tr.th("Waypoints", colspan="3")
+
+    tr = table.thead.tr()
     tr.th("UserSort")
     tr.th("From")
     tr.th("To")
@@ -60,20 +68,28 @@ th { text-align: center; font-size: 125%}
     for start, end, waypoints in build_paths(data):
         tr = table.tr()
         href = directions(lats, lons, names, start, end, waypoints)
-        tr.td(str(usersorts[start]), style="text-align: center")
-        tr.td.a(texts[start], href=href, target="_blank")
-        tr.td(texts[end])
+        td = tr.td(style="text-align: center").a(
+            str(usersorts[start]),
+            href=href,
+            target="_blank"
+        )
+
+        if 0 and hrefs[start]:
+            tr.td.a(texts[start], href=hrefs[start], target="_blank")
+        else:
+            tr.td(texts[start])
+
+        if hrefs[end]:
+            tr.td.a(texts[end], href=hrefs[end], target="_blank")
+        else:
+            tr.td(texts[end])
+
         td3 = tr.td()
         if waypoints:
-            if len(waypoints) == 1:
-                td3(texts[waypoints[0]])
-            else:
-                for index, waypoint in enumerate(waypoints):
-                    if index == 0:
-                        td3(texts[waypoint])
-                    else:
-                        td3.br()
-                        td3(texts[waypoint])
+            for index, waypoint in enumerate(waypoints):
+                if index != 0:
+                    td3.br()
+                td3 += texts[waypoint]
 
     print("<!DOCTYPE HTML>\n" + str(doc))
 

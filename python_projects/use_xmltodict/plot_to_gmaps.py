@@ -12,10 +12,11 @@ FIVEHUNDREDFEET = 152.4  # 500 feet converted to meters
 # gmap.heatmap(heat_lats, heat_lngs)
 
 data = get_data(FILENAME)
-latitudes = [d[0] for d in data]
-longitudes = [d[1] for d in data]
-texts = [d[2] for d in data]
-syms = [d[3] for d in data]
+latitudes, longitudes, texts, syms = list(zip(*data))[:4]
+# latitudes = [d[0] for d in data]
+# longitudes = [d[1] for d in data]
+# texts = [d[2] for d in data]
+# syms = [d[3] for d in data]
 
 # compute centerpoint
 if 0:

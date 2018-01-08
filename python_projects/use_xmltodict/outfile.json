@@ -19,7 +19,7 @@
     "@href": "http://gsak.net",
     "text": "Geocaching Swiss Army Knife"
    },
-   "time": "2017-12-20T17:34:36Z",
+   "time": "2018-01-08T17:34:06Z",
    "keywords": "cache, geocache, groundspeak",
    "bounds": {
     "@minlat": "38.7725",
@@ -48,7 +48,7 @@
       "gsak:Lock": "false",
       "gsak:DNF": "false",
       "gsak:Watch": "false",
-      "gsak:UserData": "BCDLRSU",
+      "gsak:UserData": "ABCDHLRSU",
       "gsak:DNFDate": "2009-02-01",
       "gsak:FirstToFind": "false",
       "gsak:User2": null,
@@ -166,6 +166,73 @@
     }
    },
    {
+    "@lat": "39.063067",
+    "@lon": "-88.704783",
+    "time": "2017-12-12T08:00:00Z",
+    "name": "PK7FZR3",
+    "desc": "Parking for  Come Fly With Me by roelsch (1/1)",
+    "link": {
+     "@href": "",
+     "text": "Parking for  Come Fly With Me by roelsch"
+    },
+    "sym": "Parking",
+    "type": "Geocache|Other",
+    "extensions": {
+     "gsak:wptExtension": {
+      "@xmlns:gsak": "http://www.gsak.net/xmlv1/6",
+      "gsak:UserFlag": "true",
+      "gsak:Lock": "false",
+      "gsak:DNF": "false",
+      "gsak:Watch": "false",
+      "gsak:UserData": "S",
+      "gsak:FirstToFind": "false",
+      "gsak:User2": null,
+      "gsak:User3": null,
+      "gsak:User4": null,
+      "gsak:County": "Effingham",
+      "gsak:UserSort": "1025",
+      "gsak:SmartName": "Parki521",
+      "gsak:Code": "PK7FZR3",
+      "gsak:Resolution": null,
+      "gsak:IsPremium": "false",
+      "gsak:FavPoints": "0",
+      "gsak:GcNote": null,
+      "gsak:Guid": null,
+      "gsak:CacheImages": null,
+      "gsak:LogImages": null,
+      "gsak:CustomData": "Custom_Start:cCode:Custom_Data:PK7FZR3:Custom_End\nCustom_Start:Place:Custom_Data::Custom_End\nCustom_Start:PlaceType:Custom_Data::Custom_End"
+     },
+     "groundspeak:cache": {
+      "@id": "99041935",
+      "@available": "True",
+      "@archived": "False",
+      "@xmlns:groundspeak": "http://www.groundspeak.com/cache/1/0/1",
+      "groundspeak:name": "Parking for  Come Fly With Me",
+      "groundspeak:placed_by": "roelsch",
+      "groundspeak:owner": {
+       "@id": "29948",
+       "#text": "roelsch"
+      },
+      "groundspeak:type": "Other",
+      "groundspeak:container": "Other",
+      "groundspeak:attributes": null,
+      "groundspeak:difficulty": "1",
+      "groundspeak:terrain": "1",
+      "groundspeak:country": "United States",
+      "groundspeak:state": "Illinois",
+      "groundspeak:short_description": {
+       "@html": "False"
+      },
+      "groundspeak:long_description": {
+       "@html": "False"
+      },
+      "groundspeak:encoded_hints": null,
+      "groundspeak:logs": null,
+      "groundspeak:travelbugs": null
+     }
+    }
+   },
+   {
     "@lat": "39.062683",
     "@lon": "-88.702083",
     "time": "2017-12-12T08:00:00Z",
@@ -192,13 +259,13 @@
       "gsak:County": "Effingham",
       "gsak:UserSort": "1030",
       "gsak:SmartName": "ComeFlyW",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC7FZR3",
       "gsak:Resolution": null,
-      "gsak:IsPremium": "false",
+      "gsak:IsPremium": "true",
       "gsak:FavPoints": "0",
       "gsak:GcNote": null,
-      "gsak:Guid": null,
+      "gsak:Guid": "174d8209-62ac-44ad-9ea6-cf30e6e8b85c",
       "gsak:CacheImages": null,
       "gsak:LogImages": null,
       "gsak:CustomData": "Custom_Start:cCode:Custom_Data:GC7FZR3:Custom_End\nCustom_Start:Place:Custom_Data::Custom_End\nCustom_Start:PlaceType:Custom_Data::Custom_End"
@@ -303,7 +370,7 @@
       "gsak:County": "Jasper",
       "gsak:UserSort": "1040",
       "gsak:SmartName": "BertsRev",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC1YCNZ",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -1115,7 +1182,7 @@
       "gsak:County": "Jasper",
       "gsak:UserSort": "1060",
       "gsak:SmartName": "WelcomeY",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC1XNB8",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -1941,7 +2008,7 @@
       "gsak:County": "Clark",
       "gsak:UserSort": "1070",
       "gsak:SmartName": "BetweenC",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC1Y213",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -2101,7 +2168,7 @@
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "20307264",
-          "#text": "Chewy396"
+          "#text": "CaptainJRod"
          },
          "groundspeak:text": {
           "@encoded": "False",
@@ -2218,7 +2285,7 @@
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "17776166",
-          "#text": "Casey296"
+          "#text": "CaptainJRod96"
          },
          "groundspeak:text": {
           "@encoded": "False",
@@ -2231,7 +2298,7 @@
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "17776166",
-          "#text": "Casey296"
+          "#text": "CaptainJRod96"
          },
          "groundspeak:text": {
           "@encoded": "False",
@@ -2934,7 +3001,7 @@
       "gsak:County": "Clark",
       "gsak:UserSort": "1080",
       "gsak:SmartName": "TrailToM",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC1Y20K",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -3866,7 +3933,7 @@
       "gsak:County": "Cumberland",
       "gsak:UserSort": "1100",
       "gsak:SmartName": "AlongThe",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC1MHZ4",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -4785,7 +4852,7 @@
       "gsak:County": "Cumberland",
       "gsak:UserSort": "1130",
       "gsak:SmartName": "PaulCeme",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC20TJV",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -5546,7 +5613,7 @@
       "gsak:County": "Cumberland",
       "gsak:UserSort": "1140",
       "gsak:SmartName": "GatewayT",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC495V5",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -6211,7 +6278,7 @@
       "gsak:County": "Cumberland",
       "gsak:UserSort": "1160",
       "gsak:SmartName": "TippettC",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC495VB",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -6924,7 +6991,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1190",
       "gsak:SmartName": "Presiden",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC53E35",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -7793,7 +7860,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1220",
       "gsak:SmartName": "HonestAe",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC1MEC5",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -9069,7 +9136,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1240",
       "gsak:SmartName": "SolarCac",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC2B2ED",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -9724,7 +9791,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1250",
       "gsak:SmartName": "Parki567",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "PK41HMM",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -9793,7 +9860,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1260",
       "gsak:SmartName": "DotysHid",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC41HMM",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -10283,7 +10350,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1270",
       "gsak:SmartName": "Undernea",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC1W4D5",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -10905,7 +10972,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1280",
       "gsak:SmartName": "RockabyA",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC4PZ3G",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -11538,7 +11605,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1290",
       "gsak:SmartName": "Plateau",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC1W4E5",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -12031,7 +12098,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1300",
       "gsak:SmartName": "FamilyTh",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "P07456K",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -12098,7 +12165,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1310",
       "gsak:SmartName": "TarzansT",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC7456K",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -12246,7 +12313,7 @@
         },
         {
          "@id": "706652468",
-         "groundspeak:date": "2017-07-30T20:48:19Z",
+         "groundspeak:date": "2017-07-30T20:48:18Z",
          "groundspeak:type": "Didn't find it",
          "groundspeak:finder": {
           "@id": "14123351",
@@ -12259,7 +12326,7 @@
         },
         {
          "@id": "692765055",
-         "groundspeak:date": "2017-06-09T19:00:00Z",
+         "groundspeak:date": "2017-06-09T18:59:59Z",
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "165046",
@@ -12272,7 +12339,7 @@
         },
         {
          "@id": "692456462",
-         "groundspeak:date": "2017-06-07T21:00:00Z",
+         "groundspeak:date": "2017-06-07T20:59:59Z",
          "groundspeak:type": "Didn't find it",
          "groundspeak:finder": {
           "@id": "2834056",
@@ -12407,7 +12474,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1320",
       "gsak:SmartName": "CableRoo",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC74560",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -12550,7 +12617,7 @@
         },
         {
          "@id": "695891901",
-         "groundspeak:date": "2017-06-21T19:00:00Z",
+         "groundspeak:date": "2017-06-21T18:59:59Z",
          "groundspeak:type": "Owner Maintenance",
          "groundspeak:finder": {
           "@id": "7028111",
@@ -12563,7 +12630,7 @@
         },
         {
          "@id": "692767379",
-         "groundspeak:date": "2017-06-09T19:00:00Z",
+         "groundspeak:date": "2017-06-09T18:59:59Z",
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "165046",
@@ -12576,7 +12643,7 @@
         },
         {
          "@id": "688262823",
-         "groundspeak:date": "2017-05-17T19:00:00Z",
+         "groundspeak:date": "2017-05-17T18:59:59Z",
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "2991934",
@@ -12589,7 +12656,7 @@
         },
         {
          "@id": "680585091",
-         "groundspeak:date": "2017-04-23T19:00:00Z",
+         "groundspeak:date": "2017-04-23T18:59:59Z",
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "1463641",
@@ -12685,7 +12752,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1330",
       "gsak:SmartName": "HalfWayD",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC7455G",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -12837,7 +12904,7 @@
         },
         {
          "@id": "692765998",
-         "groundspeak:date": "2017-06-09T19:00:00Z",
+         "groundspeak:date": "2017-06-09T18:59:59Z",
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "165046",
@@ -12850,7 +12917,7 @@
         },
         {
          "@id": "692444345",
-         "groundspeak:date": "2017-06-07T20:58:00Z",
+         "groundspeak:date": "2017-06-07T20:57:59Z",
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "2834056",
@@ -12863,7 +12930,7 @@
         },
         {
          "@id": "688262338",
-         "groundspeak:date": "2017-05-17T19:00:00Z",
+         "groundspeak:date": "2017-05-17T18:59:59Z",
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "2991934",
@@ -12985,7 +13052,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1340",
       "gsak:SmartName": "Pole",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC1W4DH",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -13526,7 +13593,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1350",
       "gsak:SmartName": "370N",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC1W4D1",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -14160,7 +14227,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1370",
       "gsak:SmartName": "Kickapoo",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC1W4CQ",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -14931,7 +14998,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1380",
       "gsak:SmartName": "Parking8",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "P15778V",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -15067,7 +15134,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1400",
       "gsak:SmartName": "RockyRod",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC5778V",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -15144,7 +15211,7 @@
       },
       "groundspeak:long_description": {
        "@html": "True",
-       "#text": "<p>This is my first hide, in honor of my 100th find. It's a bit of a walk to the cache, definitely not a park and grab, so bring a pole and fish along the way. Cache contains plenty of loot, along with a bag of treasure for the FTF. There is plenty of parking along the southern edge of the lake, or the northwest corner if you want to go the hard way. Placed with permission from the Charleston Parks and Rec Department. As always, be respectful of your surroundings.</p>"
+       "#text": "<p>This is my first hide, in honor of my 100th find. It's a bit of a walk to the cache, definitely not a park and grab, so bring a pole and fish along the way. Cache contains plenty of loot, along with a bag of treasure for the FTF. There is plenty of parking along the southern edge of the lake, or the northwest corner if you want to go the hard way. Placed with permission from the Charleston Parks and Rec Department. As always, be respectful of your surroundings.</p>\n\n<p>Additional Waypoints</p>P15778V - Parking<br />N 39\u00b0 27.571 W 088\u00b0 08.497<br />Parking for cache<br />"
       },
       "groundspeak:encoded_hints": "Woods, near corner of lake.",
       "groundspeak:logs": {
@@ -15177,7 +15244,7 @@
         },
         {
          "@id": "728722601",
-         "groundspeak:date": "2017-10-21T21:07:28Z",
+         "groundspeak:date": "2017-10-21T21:07:29Z",
          "groundspeak:type": "Didn't find it",
          "groundspeak:finder": {
           "@id": "21144058",
@@ -15190,7 +15257,7 @@
         },
         {
          "@id": "715918809",
-         "groundspeak:date": "2017-08-27T22:44:05Z",
+         "groundspeak:date": "2017-08-27T22:44:06Z",
          "groundspeak:type": "Didn't find it",
          "groundspeak:finder": {
           "@id": "21109452",
@@ -15203,7 +15270,7 @@
         },
         {
          "@id": "617942594",
-         "groundspeak:date": "2016-07-14T18:20:49Z",
+         "groundspeak:date": "2016-07-14T18:20:50Z",
          "groundspeak:type": "Didn't find it",
          "groundspeak:finder": {
           "@id": "17681558",
@@ -15216,7 +15283,7 @@
         },
         {
          "@id": "612421784",
-         "groundspeak:date": "2016-06-26T12:37:59Z",
+         "groundspeak:date": "2016-06-26T12:37:58Z",
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "17279245",
@@ -15229,7 +15296,7 @@
         },
         {
          "@id": "612223822",
-         "groundspeak:date": "2016-06-25T19:15:37Z",
+         "groundspeak:date": "2016-06-25T19:15:36Z",
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "13627864",
@@ -15746,7 +15813,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1430",
       "gsak:SmartName": "Woodyar2",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC6PDG4",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -16231,7 +16298,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1440",
       "gsak:SmartName": "HighTher",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC6K21R",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -16698,7 +16765,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1460",
       "gsak:SmartName": "Welcom42",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC72V5Q",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -17026,7 +17093,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1480",
       "gsak:SmartName": "HoppyFro",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC73Z13",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -17249,7 +17316,7 @@
     "extensions": {
      "gsak:wptExtension": {
       "@xmlns:gsak": "http://www.gsak.net/xmlv1/6",
-      "gsak:UserFlag": "false",
+      "gsak:UserFlag": "true",
       "gsak:Lock": "false",
       "gsak:DNF": "false",
       "gsak:Watch": "false",
@@ -17329,7 +17396,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1490",
       "gsak:SmartName": "GabrielJ",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC2723F",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -18047,7 +18114,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1510",
       "gsak:SmartName": "FeelTheP",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC6EJ9M",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -18559,7 +18626,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1520",
       "gsak:SmartName": "ItsGreek",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GCWT34",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -19295,7 +19362,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1540",
       "gsak:SmartName": "VFWWayPa",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC1JA5E",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -20379,7 +20446,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1550",
       "gsak:SmartName": "JustAnoL",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC6RJ3T",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -21191,7 +21258,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1560",
       "gsak:SmartName": "CanWeGoF",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC2B52A",
       "gsak:Resolution": "30m",
       "gsak:IsPremium": "false",
@@ -21726,7 +21793,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1570",
       "gsak:SmartName": "Parki600",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "PK1N8JG",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -21794,7 +21861,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1580",
       "gsak:SmartName": "Moonl600",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC1N8JG",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -22531,7 +22598,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1590",
       "gsak:SmartName": "CommonCa",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC1KCRK",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -22661,6 +22728,19 @@
       "groundspeak:logs": {
        "groundspeak:log": [
         {
+         "@id": "739931541",
+         "groundspeak:date": "2018-01-01T00:57:23Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "6024039",
+          "#text": "J&M92"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Happy New Year!"
+         }
+        },
+        {
          "@id": "731804731",
          "groundspeak:date": "2017-11-04T20:47:48Z",
          "groundspeak:type": "Found it",
@@ -22714,7 +22794,7 @@
         },
         {
          "@id": "719743146",
-         "groundspeak:date": "2017-09-11T20:04:36Z",
+         "groundspeak:date": "2017-09-11T20:04:35Z",
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "5546114",
@@ -24133,7 +24213,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1600",
       "gsak:SmartName": "GrantCem",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC1N90P",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -25060,7 +25140,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1610",
       "gsak:SmartName": "Parki457",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "P156XMC",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -25129,7 +25209,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1620",
       "gsak:SmartName": "FathersC",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC56XMC",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -25812,7 +25892,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1630",
       "gsak:SmartName": "Parki515",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "P06MVGF",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -25860,7 +25940,7 @@
     "name": "GC6MVGF",
     "desc": "The Battle of NORMANdy by Stormin&Shad (3/3.5)",
     "link": {
-     "@href": "https://www.geocaching.com/seek/cache_details.aspx?guid=a04d4c4e-deb9-4d75-b342-dc8e56499837",
+     "@href": "http://www.geocaching.com/seek/cache_details.aspx?guid=a04d4c4e-deb9-4d75-b342-dc8e56499837",
      "text": "The Battle of NORMANdy by Stormin&Shad"
     },
     "sym": "Geocache",
@@ -25880,7 +25960,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1640",
       "gsak:SmartName": "BattleON",
-      "gsak:LastGpxDate": "2017-12-18",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC6MVGF",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -25950,7 +26030,7 @@
       },
       "groundspeak:long_description": {
        "@html": "True",
-       "#text": "<p>This cache is on private property and is maintained by the property owners. You can take the parts of the cache with you, if you would like as you advance on your mission, just make sure you return them to where you found them in order to avoid hindering the progress of future cachers. At the first way point you will need to search a 10 foot radius. Your mission if you choose to accept it, is to find the ammunition stash, equip for battle and defend the final position, to claim victory. This cache begins with an uphill battle in which you will have to use stealth to traverse difficult terrain undetected, to the ammunition and equipment stash. After you are fully equipped make your way to the final battle front to claim your victory.\u00a0<br />\n\u00a0</p>\n\n<p>Additional Hidden Waypoints</p>FN6MVGF - Final Location<br />N/S  __ \u00b0 __ . ___ W/E ___ \u00b0 __ . ___ <br />Victory is ours! Defend the final advance, and find the cache. Please return the parts to this multi-cache to the place you found them, so that future combatants can be well equipped.<br />P06MVGF - In the Grass Parking<br />N 39\u00b0 30.476 W 088\u00b0 07.065<br />Pull in the driveway and park in the grass and wood chip parking spot to start the cache. Back out and leave the way you came.<br />"
+       "#text": "<p>This cache is on private property and is maintained by the property owners. You can take the parts of the cache with you, if you would like as you advance on your mission, just make sure you return them to where you found them in order to avoid hindering the progress of future cachers. At the first way point you will need to search a 10 foot radius. Your mission if you choose to accept it, is to find the ammunition stash, equip for battle and defend the final position, to claim victory. This cache begins with an uphill battle in which you will have to use stealth to traverse difficult terrain undetected, to the ammunition and equipment stash. After you are fully equipped make your way to the final battle front to claim your victory.\u00a0<br />\n\u00a0</p>\n\n<p>Additional Waypoints</p>FN6MVGF - Final Location<br />N/S  __ \u00b0 __ . ___ W/E ___ \u00b0 __ . ___ <br />Victory is ours! Defend the final advance, and find the cache. Please return the parts to this multi-cache to the place you found them, so that future combatants can be well equipped.<br />P06MVGF - In the Grass Parking<br />N 39\u00b0 30.476 W 088\u00b0 07.065<br />Pull in the driveway and park in the grass and wood chip parking spot to start the cache. Back out and leave the way you came.<br />"
       },
       "groundspeak:encoded_hints": "Latitude on the ammunition, Longitude on the weapon both are within 20 feet of the initial coordinates. Final cash may require air warfare.",
       "groundspeak:logs": {
@@ -26053,7 +26133,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1650",
       "gsak:SmartName": "OutOfThe",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC2KJG7",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -26706,7 +26786,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1660",
       "gsak:SmartName": "CharlesT",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC2X98J",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -27352,7 +27432,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1670",
       "gsak:SmartName": "BakerBas",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC1W3T7",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -28260,7 +28340,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1680",
       "gsak:SmartName": "JustAnoB",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC6N33C",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -29222,7 +29302,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1700",
       "gsak:SmartName": "HairToda",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC3HJHC",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -31202,7 +31282,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1720",
       "gsak:SmartName": "Flowerdo",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC3A0K6",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -33069,7 +33149,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1730",
       "gsak:SmartName": "Checkmat",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC3P9JD",
       "gsak:Resolution": "30m",
       "gsak:IsPremium": "false",
@@ -33515,7 +33595,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1760",
       "gsak:SmartName": "Coach",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC2YW6Z",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -34991,7 +35071,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1780",
       "gsak:SmartName": "IMEIUDas",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC3BZG3",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -36394,7 +36474,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1800",
       "gsak:SmartName": "ColesCem",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC14WAW",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -38010,7 +38090,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1820",
       "gsak:SmartName": "Parking7",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "371M07E",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -38079,7 +38159,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1830",
       "gsak:SmartName": "WhatYear",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC1M07E",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -38777,7 +38857,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1850",
       "gsak:SmartName": "OldAndYo",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC53E0E",
       "gsak:Resolution": "30m",
       "gsak:IsPremium": "false",
@@ -40040,7 +40120,7 @@
     "extensions": {
      "gsak:wptExtension": {
       "@xmlns:gsak": "http://www.gsak.net/xmlv1/6",
-      "gsak:UserFlag": "false",
+      "gsak:UserFlag": "true",
       "gsak:Lock": "false",
       "gsak:DNF": "false",
       "gsak:Watch": "false",
@@ -40120,7 +40200,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1860",
       "gsak:SmartName": "ColesCou",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC6EBB7",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -40550,7 +40630,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1880",
       "gsak:SmartName": "TakeARet",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC2BHCW",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -41498,7 +41578,7 @@
       "gsak:County": "Coles",
       "gsak:UserSort": "1900",
       "gsak:SmartName": "DouglasH",
-      "gsak:LastGpxDate": "2017-12-17",
+      "gsak:LastGpxDate": "2018-01-07",
       "gsak:Code": "GC56CG2",
       "gsak:Resolution": null,
       "gsak:IsPremium": "false",
@@ -41718,7 +41798,7 @@
         },
         {
          "@id": "700624233",
-         "groundspeak:date": "2017-07-10T19:00:00Z",
+         "groundspeak:date": "2017-07-10T18:59:59Z",
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "5556253",
@@ -41731,7 +41811,7 @@
         },
         {
          "@id": "700201804",
-         "groundspeak:date": "2017-07-09T19:37:06Z",
+         "groundspeak:date": "2017-07-09T19:37:05Z",
          "groundspeak:type": "Found it",
          "groundspeak:finder": {
           "@id": "8357534",
