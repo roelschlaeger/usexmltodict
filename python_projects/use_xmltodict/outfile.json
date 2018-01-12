@@ -19,7 +19,7 @@
     "@href": "http://gsak.net",
     "text": "Geocaching Swiss Army Knife"
    },
-   "time": "2018-01-11T22:49:40Z",
+   "time": "2018-01-12T16:39:23Z",
    "keywords": "cache, geocache, groundspeak",
    "bounds": {
     "@minlat": "38.7725",
@@ -592,6 +592,636 @@
     }
    },
    {
+    "@lat": "39.39925",
+    "@lon": "-88.1613",
+    "time": "2014-12-20T08:00:00Z",
+    "name": "GC5J15J",
+    "desc": "Half Dead by Rando60 (2/3)",
+    "link": {
+     "@href": "http://www.geocaching.com/seek/cache_details.aspx?guid=da86dcc3-2cfb-4dc9-bc95-66303f367d5a",
+     "text": "Half Dead by Rando60"
+    },
+    "sym": "Geocache",
+    "type": "Geocache|Traditional Cache",
+    "extensions": {
+     "gsak:wptExtension": {
+      "@xmlns:gsak": "http://www.gsak.net/xmlv1/6",
+      "gsak:UserFlag": "true",
+      "gsak:Lock": "false",
+      "gsak:DNF": "false",
+      "gsak:Watch": "false",
+      "gsak:UserData": "S",
+      "gsak:FirstToFind": "false",
+      "gsak:User2": null,
+      "gsak:User3": "IL-072",
+      "gsak:User4": null,
+      "gsak:County": "Coles",
+      "gsak:UserSort": "1050",
+      "gsak:SmartName": "HalfDead",
+      "gsak:LastGpxDate": "2018-01-08",
+      "gsak:Code": "GC5J15J",
+      "gsak:Resolution": null,
+      "gsak:IsPremium": "false",
+      "gsak:FavPoints": "2",
+      "gsak:GcNote": null,
+      "gsak:Guid": "da86dcc3-2cfb-4dc9-bc95-66303f367d5a",
+      "gsak:CacheImages": null,
+      "gsak:LogImages": {
+       "gsak:LogImage": {
+        "gsak:ilogid": "584702507",
+        "gsak:iname": "View from Half Dead.",
+        "gsak:idescription": null,
+        "gsak:iguid": "41ed8121-2011-4f43-bd7b-d7e1cfb99d15",
+        "gsak:iimage": "http://img.geocaching.com/cache/log/41ed8121-2011-4f43-bd7b-d7e1cfb99d15.jpg"
+       }
+      },
+      "gsak:CustomData": "Custom_Start:cCode:Custom_Data:GC5J15J:Custom_End\nCustom_Start:Place:Custom_Data::Custom_End\nCustom_Start:PlaceType:Custom_Data::Custom_End"
+     },
+     "groundspeak:cache": {
+      "@id": "4743857",
+      "@available": "True",
+      "@archived": "False",
+      "@xmlns:groundspeak": "http://www.groundspeak.com/cache/1/0/1",
+      "groundspeak:name": "Half Dead",
+      "groundspeak:placed_by": "Rando60",
+      "groundspeak:owner": {
+       "@id": "7028111",
+       "#text": "Rando60"
+      },
+      "groundspeak:type": "Traditional Cache",
+      "groundspeak:container": "Regular",
+      "groundspeak:attributes": {
+       "groundspeak:attribute": [
+        {
+         "@id": "1",
+         "@inc": "1",
+         "#text": "Dogs"
+        },
+        {
+         "@id": "52",
+         "@inc": "0",
+         "#text": "Night Cache"
+        }
+       ]
+      },
+      "groundspeak:difficulty": "2",
+      "groundspeak:terrain": "3",
+      "groundspeak:country": "United States",
+      "groundspeak:state": "Illinois",
+      "groundspeak:short_description": {
+       "@html": "True",
+       "#text": "Located in Fox Ridge State Park off of the Riverview Trail in hilly terrain.<br />\nThe easiest way to this is to park at the listed parking coordinates, which is the Hickory Haven parking lot. Then walk west down the road about 250 feet and you will find the Riverview Trail. Head south down the trail.<br />\nTrail maps are usually available at the park office located at the park entrance."
+      },
+      "groundspeak:long_description": {
+       "@html": "True",
+       "#text": "You are looking for a regular sized lock and lock container in very hilly terrain.<br />\n<br />\n1. Geocache is placed on Department managed property with permission.<br />\n2. Do not place the following items in the geocache: food items, inappropriate, offensive, or hazardous materials.<br />\n3. It is the visitor's responsibility to orient themselves with policies and rules pertaining to this Department managed site.\n<p>Additional Waypoints</p>P15J15J - Hickory Haven Parking<br />N 39\u00b0 24.105 W 088\u00b0 09.491<br /><br />T15J15J - Riverview Trail Access Point<br />N 39\u00b0 24.117 W 088\u00b0 09.573<br /><br />"
+      },
+      "groundspeak:encoded_hints": "Half dead",
+      "groundspeak:logs": {
+       "groundspeak:log": [
+        {
+         "@id": "733809423",
+         "groundspeak:date": "2017-11-16T20:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "2872199",
+          "#text": "North Coast Cacher"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Found cache. Heading to Indiana from Kansas for Thanksgiving and doing some caching along the way. Detoured route just to spend most of the day hiking these trails and searching for geocaches in this awesome park. Found 6/8 today. Made quick enough find here. Cache in good shape. TN/LN/SL."
+         }
+        },
+        {
+         "@id": "695892488",
+         "groundspeak:date": "2017-06-21T19:00:00Z",
+         "groundspeak:type": "Owner Maintenance",
+         "groundspeak:finder": {
+          "@id": "7028111",
+          "#text": "Rando60"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Checked this one tonight. Half dead has fallen over. Cache is still there in good shape in the same spot. The half dead tree is now all dead and lying on the ground. Cache is good to go."
+         }
+        },
+        {
+         "@id": "671716370",
+         "groundspeak:date": "2017-03-18T19:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "2302383",
+          "#text": "DANANDTINA05"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Came down from Minnesota to visit my son who is stationed/living at Fox Ridge State Park. We made the hike through this nice park and grabbed caches on the way. We checked a few spots and then made the find. All is good. TFTC SL"
+         }
+        },
+        {
+         "@id": "594114030",
+         "groundspeak:date": "2016-04-24T15:40:26Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "5617704",
+          "#text": "jdsteph"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Easy"
+         }
+        },
+        {
+         "@id": "584702507",
+         "groundspeak:date": "2016-03-27T19:00:00Z",
+         "groundspeak:type": "Owner Maintenance",
+         "groundspeak:finder": {
+          "@id": "7028111",
+          "#text": "Rando60"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Checked on this after the forest fire. Burned all around it but the cache was unharmed. Good to go."
+         }
+        },
+        {
+         "@id": "584308999",
+         "groundspeak:date": "2016-03-26T19:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "165046",
+          "#text": "Flowerdoc"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "I bypassed this one on the way to \"Downhill Side\" because my GPS was going crazy and the smart phone wasn't much help either.  These caches will be a bear when the trees leaf out.  On the return, the combination of Garmin and Samsung made for a happy couple and led me over the river and through the woods to the cache."
+         }
+        },
+        {
+         "@id": "581946421",
+         "groundspeak:date": "2016-03-18T19:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "1032383",
+          "#text": "Bluespade00"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "201603181922  #1636  Sixth of eight finds for the day\nThanks for the cache!  Great spots for all the hides in this park."
+         }
+        },
+        {
+         "@id": "577203390",
+         "groundspeak:date": "2016-02-28T19:54:51Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "15568101",
+          "#text": "Shudd"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Second one today!"
+         }
+        },
+        {
+         "@id": "577170624",
+         "groundspeak:date": "2016-02-28T19:54:51Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "15568101",
+          "#text": "Shudd"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Second one today!"
+         }
+        },
+        {
+         "@id": "577167747",
+         "groundspeak:date": "2016-02-28T19:52:13Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "15570681",
+          "#text": "moffett555"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Second find of the day!"
+         }
+        },
+        {
+         "@id": "565998881",
+         "groundspeak:date": "2016-01-01T20:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "13258451",
+          "#text": "Team Bushlings"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Fun find"
+         }
+        },
+        {
+         "@id": "548941111",
+         "groundspeak:date": "2015-10-10T18:59:59Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "849503",
+          "#text": "vogelly"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "2nd of 5 finds for the day on a 13+ mile georun/walk around Charleston/Fox Ridge State Park on a gorgeous day.   Took spider.\nTFTH/TspiderLN/SL"
+         }
+        },
+        {
+         "@id": "505842675",
+         "groundspeak:date": "2015-05-25T18:55:14Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "1881611",
+          "#text": "The J Girls"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Second cache for the day! Beautiful day to be out seeing by this park! TFTC!"
+         }
+        },
+        {
+         "@id": "489064263",
+         "groundspeak:date": "2015-04-04T18:59:59Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "2991934",
+          "#text": "2outforfun"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "We bushwhacked through the woods and over the hills to GZ for this one.  It was a fun workout!  We love to cache in the woods like this!  Thank you!"
+         }
+        },
+        {
+         "@id": "483611946",
+         "groundspeak:date": "2015-03-15T18:59:59Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "1463641",
+          "#text": "bigbucks60"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "TFTC"
+         }
+        },
+        {
+         "@id": "472714323",
+         "groundspeak:date": "2015-01-18T20:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "726665",
+          "#text": "Stormin&Shad"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Three Deer snuck up on us, at this Cache. A 6 point buck and 2 does, Gabriel spotted them first. I think it was the highlight of the trip for him. Thanks for setting this group of caches up Rando and tell Billie I said HI!"
+         }
+        },
+        {
+         "@id": "467955961",
+         "groundspeak:date": "2014-12-26T20:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "8614591",
+          "#text": "Wetwilli54"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "TFTC!!"
+         }
+        },
+        {
+         "@id": "467452107",
+         "groundspeak:date": "2014-12-23T20:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "1470722",
+          "#text": "awanderer"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Great Hide! \u2013 Fun little side trek up to this one. The creek and ditches between the main trail and GZ were too deep with water to cross so this one took some scouting around before the alternate trail and bridges became apparent. I am awarding this one a favorite point for the location of the container. Nicely done! Many thanks to Jodi McKinney of the Parks Department for helping us with an issue we had with our vehicle. The assistance was most certainly appreciated. Took a Goofy Figurine and Left a Carabiner and Purple plastic frog \u2013 SL - Thank you Rando60 for expending the time and effort to create and place this cache \u2013 It is appreciated!"
+         }
+        },
+        {
+         "@id": "466893981",
+         "groundspeak:date": "2014-12-21T03:17:21Z",
+         "groundspeak:type": "Publish Listing",
+         "groundspeak:finder": {
+          "@id": "7369467",
+          "#text": "Reviewer Smith"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Published"
+         }
+        }
+       ]
+      },
+      "groundspeak:travelbugs": null
+     }
+    }
+   },
+   {
+    "@lat": "39.398417",
+    "@lon": "-88.16415",
+    "time": "2014-12-20T08:00:00Z",
+    "name": "GC5J15T",
+    "desc": "Downhill Side by Rando60 (2/3)",
+    "link": {
+     "@href": "http://www.geocaching.com/seek/cache_details.aspx?guid=bb27c739-7093-4e6f-a8c9-d7c2df76dd8b",
+     "text": "Downhill Side by Rando60"
+    },
+    "sym": "Geocache",
+    "type": "Geocache|Traditional Cache",
+    "extensions": {
+     "gsak:wptExtension": {
+      "@xmlns:gsak": "http://www.gsak.net/xmlv1/6",
+      "gsak:UserFlag": "true",
+      "gsak:Lock": "false",
+      "gsak:DNF": "false",
+      "gsak:Watch": "false",
+      "gsak:UserData": "S",
+      "gsak:FirstToFind": "false",
+      "gsak:User2": null,
+      "gsak:User3": "IL-072",
+      "gsak:User4": null,
+      "gsak:County": "Coles",
+      "gsak:UserSort": "1060",
+      "gsak:SmartName": "Downhill",
+      "gsak:LastGpxDate": "2018-01-08",
+      "gsak:Code": "GC5J15T",
+      "gsak:Resolution": null,
+      "gsak:IsPremium": "false",
+      "gsak:FavPoints": "0",
+      "gsak:GcNote": null,
+      "gsak:Guid": "bb27c739-7093-4e6f-a8c9-d7c2df76dd8b",
+      "gsak:CacheImages": null,
+      "gsak:LogImages": {
+       "gsak:LogImage": {
+        "gsak:ilogid": "584705011",
+        "gsak:iname": "View from Downhill Side.",
+        "gsak:idescription": null,
+        "gsak:iguid": "126c156f-fe0e-4af2-9f54-f812059662ca",
+        "gsak:iimage": "http://img.geocaching.com/cache/log/126c156f-fe0e-4af2-9f54-f812059662ca.jpg"
+       }
+      },
+      "gsak:CustomData": "Custom_Start:cCode:Custom_Data:GC5J15T:Custom_End\nCustom_Start:Place:Custom_Data::Custom_End\nCustom_Start:PlaceType:Custom_Data::Custom_End"
+     },
+     "groundspeak:cache": {
+      "@id": "4743864",
+      "@available": "True",
+      "@archived": "False",
+      "@xmlns:groundspeak": "http://www.groundspeak.com/cache/1/0/1",
+      "groundspeak:name": "Downhill Side",
+      "groundspeak:placed_by": "Rando60",
+      "groundspeak:owner": {
+       "@id": "7028111",
+       "#text": "Rando60"
+      },
+      "groundspeak:type": "Traditional Cache",
+      "groundspeak:container": "Regular",
+      "groundspeak:attributes": {
+       "groundspeak:attribute": [
+        {
+         "@id": "1",
+         "@inc": "1",
+         "#text": "Dogs"
+        },
+        {
+         "@id": "52",
+         "@inc": "0",
+         "#text": "Night Cache"
+        }
+       ]
+      },
+      "groundspeak:difficulty": "2",
+      "groundspeak:terrain": "3",
+      "groundspeak:country": "United States",
+      "groundspeak:state": "Illinois",
+      "groundspeak:short_description": {
+       "@html": "True",
+       "#text": "Located in Fox Ridge State Park off of the Riverview Trail on hilly terrain.<br>The easiest way to this is to park at the listed parking coordinates, which is the Hickory Haven parking lot. Then walk west down the road about 250 feet and you will find the Riverview Trail. Head south down the trail.<br>Trail maps are usually available at the park office located at the park entrance."
+      },
+      "groundspeak:long_description": {
+       "@html": "True",
+       "#text": "You are looking for a regular sized lock and lock container. It is a long walk back to this in hilly terrain.<br><br>1. Geocache is placed on Department managed property with permission.<br>2. Do not place the following items in the geocache: food items, inappropriate, offensive, or hazardous materials.<br>3. It is the visitor's responsibility to orient themselves with policies and rules pertaining to this Department managed site.<p>Additional Waypoints</p>P15J15T - Hickory Haven Parking<br />N 39\u00b0 24.105 W 088\u00b0 09.491<br /><br />T15J15T - Riverview Trail Access Point<br />N 39\u00b0 24.117 W 088\u00b0 09.573<br /><br />"
+      },
+      "groundspeak:encoded_hints": "On the downhill side",
+      "groundspeak:logs": {
+       "groundspeak:log": [
+        {
+         "@id": "733809626",
+         "groundspeak:date": "2017-11-16T20:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "2872199",
+          "#text": "North Coast Cacher"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Found cache. Heading to Indiana from Kansas for Thanksgiving and doing some caching along the way. Detoured route just to spend most of the day hiking these trails and searching for geocaches in this awesome park. Found 6/8 today. Made quick enough find here. Cache in good shape. TN/LN/SL."
+         }
+        },
+        {
+         "@id": "671716415",
+         "groundspeak:date": "2017-03-18T19:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "2302383",
+          "#text": "DANANDTINA05"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Came down from Minnesota to visit my son who is stationed/living at Fox Ridge State Park. We made the hike through this nice park and grabbed caches on the way. We checked a few spots and then made the find. All is good. TFTC SL"
+         }
+        },
+        {
+         "@id": "584705011",
+         "groundspeak:date": "2016-03-27T19:00:00Z",
+         "groundspeak:type": "Owner Maintenance",
+         "groundspeak:finder": {
+          "@id": "7028111",
+          "#text": "Rando60"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Checked on this after the forest fire. Burned all around it but cache was unharmed. Good to go."
+         }
+        },
+        {
+         "@id": "584306273",
+         "groundspeak:date": "2016-03-26T19:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "165046",
+          "#text": "Flowerdoc"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Downhill side?  Yeah, but it's uphill to the downhill side.  Thanks in part to the recent rain and the burned leaves underfoot, it was very slippery so I crawled up a nearby log to reach the cache."
+         }
+        },
+        {
+         "@id": "581947439",
+         "groundspeak:date": "2016-03-18T19:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "1032383",
+          "#text": "Bluespade00"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "2016031831Z  #1637 \nGreat walk in the woods.  Thank you for the  cache!"
+         }
+        },
+        {
+         "@id": "577298212",
+         "groundspeak:date": "2016-02-28T20:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "15570681",
+          "#text": "moffett555"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "First find ever earlier today!!"
+         }
+        },
+        {
+         "@id": "577151329",
+         "groundspeak:date": "2016-02-28T19:30:57Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "15568101",
+          "#text": "Shudd"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "This was our first!"
+         }
+        },
+        {
+         "@id": "565998152",
+         "groundspeak:date": "2016-01-01T20:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "13258451",
+          "#text": "Team Bushlings"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Approached from above"
+         }
+        },
+        {
+         "@id": "548941026",
+         "groundspeak:date": "2015-10-10T18:59:59Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "849503",
+          "#text": "vogelly"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "1st of 5 finds for the day on a 13+ mile georun/walk around Charleston/Fox Ridge State Park on a gorgeous day.  \nTFTH/TNLN/SL"
+         }
+        },
+        {
+         "@id": "505842665",
+         "groundspeak:date": "2015-05-25T18:18:01Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "1881611",
+          "#text": "The J Girls"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Decided to get back out after a long hiatus from geocaching. This one was quite the physical challenge for those of us who have become accustomed to flat land! TFTC!"
+         }
+        },
+        {
+         "@id": "489065841",
+         "groundspeak:date": "2015-04-04T18:59:59Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "2991934",
+          "#text": "2outforfun"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "We made it to this one a bit out of breath!  Who am I kidding?  Bob ended up getting there to sign this log as I was headed up the adjacent hill.  We couldn't decide which spot looked more likely.  I was happy to wait for him at the bottom before heading on to Majestic View.  Another great cache for us to find!  Thanks!!"
+         }
+        },
+        {
+         "@id": "483611850",
+         "groundspeak:date": "2015-03-15T18:59:59Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "1463641",
+          "#text": "bigbucks60"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "TFTC"
+         }
+        },
+        {
+         "@id": "472716511",
+         "groundspeak:date": "2015-01-18T20:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "726665",
+          "#text": "Stormin&Shad"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "I was surprised to only see one extra log. Definitely bringing the kids back to the RandoFoxRidge5, when it's dry. It was great to get see the old confidence course. I spent allot of time on it as a kid. Gabriel and I even conquered the log on a chain obstacle. I did almost put my hand in Racoon poop while exploring a huge tree that had split equally in three, that would be a great place for a cache! Had a great time, Thanks again for the Cache and the Fun."
+         }
+        },
+        {
+         "@id": "467452184",
+         "groundspeak:date": "2014-12-23T20:00:00Z",
+         "groundspeak:type": "Found it",
+         "groundspeak:finder": {
+          "@id": "1470722",
+          "#text": "awanderer"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Neat Hide! \u2013 Last one of the day and by this time I was definitely feeling the effects of climbing the steep slopes and navigating the slippery wet leaves. Just standing at GZ to take some pictures and sign the log required a bit of concentration. This beautiful little State Park has many trails of varying terrain and difficulties which makes for some great hiking. Again many thanks to Jodi McKinney of the Parks Department for helping us with an issue we had with our vehicle. The assistance was most certainly appreciated. \u2013 Took a Minnie Mouse Figurine \u2013 Left a Plastic Hedgehog and a Blue plastic frog \u2013 SL - Thanks Rando60 for creating and placing this cache!"
+         }
+        },
+        {
+         "@id": "466893998",
+         "groundspeak:date": "2014-12-21T03:17:47Z",
+         "groundspeak:type": "Publish Listing",
+         "groundspeak:finder": {
+          "@id": "7369467",
+          "#text": "Reviewer Smith"
+         },
+         "groundspeak:text": {
+          "@encoded": "False",
+          "#text": "Published"
+         }
+        }
+       ]
+      },
+      "groundspeak:travelbugs": null
+     }
+    }
+   },
+   {
     "@lat": "39.40175",
     "@lon": "-88.158183",
     "time": "2017-04-17T08:00:00Z",
@@ -616,7 +1246,7 @@
       "gsak:User3": null,
       "gsak:User4": null,
       "gsak:County": "Coles",
-      "gsak:UserSort": "1050",
+      "gsak:UserSort": "1070",
       "gsak:SmartName": "Hickoryo",
       "gsak:Code": "P17454W",
       "gsak:Resolution": null,
@@ -682,7 +1312,7 @@
       "gsak:User3": "IL-072",
       "gsak:User4": null,
       "gsak:County": "Coles",
-      "gsak:UserSort": "1060",
+      "gsak:UserSort": "1080",
       "gsak:SmartName": "Wilderne",
       "gsak:Code": "TH5J152",
       "gsak:Resolution": null,
@@ -751,7 +1381,7 @@
       "gsak:User3": "IL-072",
       "gsak:User4": null,
       "gsak:County": "Coles",
-      "gsak:UserSort": "1070",
+      "gsak:UserSort": "1090",
       "gsak:SmartName": "Hillsidi",
       "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC5J152",
@@ -1346,7 +1976,7 @@
       "gsak:User3": null,
       "gsak:User4": null,
       "gsak:County": "Coles",
-      "gsak:UserSort": "1080",
+      "gsak:UserSort": "1100",
       "gsak:SmartName": "FencedGa",
       "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC7454W",
@@ -1624,7 +2254,7 @@
       "gsak:User3": "IL-072",
       "gsak:User4": null,
       "gsak:County": "Coles",
-      "gsak:UserSort": "1090",
+      "gsak:UserSort": "1110",
       "gsak:SmartName": "AncientD",
       "gsak:LastGpxDate": "2018-01-08",
       "gsak:Code": "GC5J156",
@@ -2116,636 +2746,6 @@
         {
          "@id": "466893935",
          "groundspeak:date": "2014-12-21T03:16:25Z",
-         "groundspeak:type": "Publish Listing",
-         "groundspeak:finder": {
-          "@id": "7369467",
-          "#text": "Reviewer Smith"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Published"
-         }
-        }
-       ]
-      },
-      "groundspeak:travelbugs": null
-     }
-    }
-   },
-   {
-    "@lat": "39.39925",
-    "@lon": "-88.1613",
-    "time": "2014-12-20T08:00:00Z",
-    "name": "GC5J15J",
-    "desc": "Half Dead by Rando60 (2/3)",
-    "link": {
-     "@href": "http://www.geocaching.com/seek/cache_details.aspx?guid=da86dcc3-2cfb-4dc9-bc95-66303f367d5a",
-     "text": "Half Dead by Rando60"
-    },
-    "sym": "Geocache",
-    "type": "Geocache|Traditional Cache",
-    "extensions": {
-     "gsak:wptExtension": {
-      "@xmlns:gsak": "http://www.gsak.net/xmlv1/6",
-      "gsak:UserFlag": "true",
-      "gsak:Lock": "false",
-      "gsak:DNF": "false",
-      "gsak:Watch": "false",
-      "gsak:UserData": "S",
-      "gsak:FirstToFind": "false",
-      "gsak:User2": null,
-      "gsak:User3": "IL-072",
-      "gsak:User4": null,
-      "gsak:County": "Coles",
-      "gsak:UserSort": "1100",
-      "gsak:SmartName": "HalfDead",
-      "gsak:LastGpxDate": "2018-01-08",
-      "gsak:Code": "GC5J15J",
-      "gsak:Resolution": null,
-      "gsak:IsPremium": "false",
-      "gsak:FavPoints": "2",
-      "gsak:GcNote": null,
-      "gsak:Guid": "da86dcc3-2cfb-4dc9-bc95-66303f367d5a",
-      "gsak:CacheImages": null,
-      "gsak:LogImages": {
-       "gsak:LogImage": {
-        "gsak:ilogid": "584702507",
-        "gsak:iname": "View from Half Dead.",
-        "gsak:idescription": null,
-        "gsak:iguid": "41ed8121-2011-4f43-bd7b-d7e1cfb99d15",
-        "gsak:iimage": "http://img.geocaching.com/cache/log/41ed8121-2011-4f43-bd7b-d7e1cfb99d15.jpg"
-       }
-      },
-      "gsak:CustomData": "Custom_Start:cCode:Custom_Data:GC5J15J:Custom_End\nCustom_Start:Place:Custom_Data::Custom_End\nCustom_Start:PlaceType:Custom_Data::Custom_End"
-     },
-     "groundspeak:cache": {
-      "@id": "4743857",
-      "@available": "True",
-      "@archived": "False",
-      "@xmlns:groundspeak": "http://www.groundspeak.com/cache/1/0/1",
-      "groundspeak:name": "Half Dead",
-      "groundspeak:placed_by": "Rando60",
-      "groundspeak:owner": {
-       "@id": "7028111",
-       "#text": "Rando60"
-      },
-      "groundspeak:type": "Traditional Cache",
-      "groundspeak:container": "Regular",
-      "groundspeak:attributes": {
-       "groundspeak:attribute": [
-        {
-         "@id": "1",
-         "@inc": "1",
-         "#text": "Dogs"
-        },
-        {
-         "@id": "52",
-         "@inc": "0",
-         "#text": "Night Cache"
-        }
-       ]
-      },
-      "groundspeak:difficulty": "2",
-      "groundspeak:terrain": "3",
-      "groundspeak:country": "United States",
-      "groundspeak:state": "Illinois",
-      "groundspeak:short_description": {
-       "@html": "True",
-       "#text": "Located in Fox Ridge State Park off of the Riverview Trail in hilly terrain.<br />\nThe easiest way to this is to park at the listed parking coordinates, which is the Hickory Haven parking lot. Then walk west down the road about 250 feet and you will find the Riverview Trail. Head south down the trail.<br />\nTrail maps are usually available at the park office located at the park entrance."
-      },
-      "groundspeak:long_description": {
-       "@html": "True",
-       "#text": "You are looking for a regular sized lock and lock container in very hilly terrain.<br />\n<br />\n1. Geocache is placed on Department managed property with permission.<br />\n2. Do not place the following items in the geocache: food items, inappropriate, offensive, or hazardous materials.<br />\n3. It is the visitor's responsibility to orient themselves with policies and rules pertaining to this Department managed site.\n<p>Additional Waypoints</p>P15J15J - Hickory Haven Parking<br />N 39\u00b0 24.105 W 088\u00b0 09.491<br /><br />T15J15J - Riverview Trail Access Point<br />N 39\u00b0 24.117 W 088\u00b0 09.573<br /><br />"
-      },
-      "groundspeak:encoded_hints": "Half dead",
-      "groundspeak:logs": {
-       "groundspeak:log": [
-        {
-         "@id": "733809423",
-         "groundspeak:date": "2017-11-16T20:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "2872199",
-          "#text": "North Coast Cacher"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Found cache. Heading to Indiana from Kansas for Thanksgiving and doing some caching along the way. Detoured route just to spend most of the day hiking these trails and searching for geocaches in this awesome park. Found 6/8 today. Made quick enough find here. Cache in good shape. TN/LN/SL."
-         }
-        },
-        {
-         "@id": "695892488",
-         "groundspeak:date": "2017-06-21T19:00:00Z",
-         "groundspeak:type": "Owner Maintenance",
-         "groundspeak:finder": {
-          "@id": "7028111",
-          "#text": "Rando60"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Checked this one tonight. Half dead has fallen over. Cache is still there in good shape in the same spot. The half dead tree is now all dead and lying on the ground. Cache is good to go."
-         }
-        },
-        {
-         "@id": "671716370",
-         "groundspeak:date": "2017-03-18T19:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "2302383",
-          "#text": "DANANDTINA05"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Came down from Minnesota to visit my son who is stationed/living at Fox Ridge State Park. We made the hike through this nice park and grabbed caches on the way. We checked a few spots and then made the find. All is good. TFTC SL"
-         }
-        },
-        {
-         "@id": "594114030",
-         "groundspeak:date": "2016-04-24T15:40:26Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "5617704",
-          "#text": "jdsteph"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Easy"
-         }
-        },
-        {
-         "@id": "584702507",
-         "groundspeak:date": "2016-03-27T19:00:00Z",
-         "groundspeak:type": "Owner Maintenance",
-         "groundspeak:finder": {
-          "@id": "7028111",
-          "#text": "Rando60"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Checked on this after the forest fire. Burned all around it but the cache was unharmed. Good to go."
-         }
-        },
-        {
-         "@id": "584308999",
-         "groundspeak:date": "2016-03-26T19:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "165046",
-          "#text": "Flowerdoc"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "I bypassed this one on the way to \"Downhill Side\" because my GPS was going crazy and the smart phone wasn't much help either.  These caches will be a bear when the trees leaf out.  On the return, the combination of Garmin and Samsung made for a happy couple and led me over the river and through the woods to the cache."
-         }
-        },
-        {
-         "@id": "581946421",
-         "groundspeak:date": "2016-03-18T19:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "1032383",
-          "#text": "Bluespade00"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "201603181922  #1636  Sixth of eight finds for the day\nThanks for the cache!  Great spots for all the hides in this park."
-         }
-        },
-        {
-         "@id": "577203390",
-         "groundspeak:date": "2016-02-28T19:54:51Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "15568101",
-          "#text": "Shudd"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Second one today!"
-         }
-        },
-        {
-         "@id": "577170624",
-         "groundspeak:date": "2016-02-28T19:54:51Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "15568101",
-          "#text": "Shudd"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Second one today!"
-         }
-        },
-        {
-         "@id": "577167747",
-         "groundspeak:date": "2016-02-28T19:52:13Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "15570681",
-          "#text": "moffett555"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Second find of the day!"
-         }
-        },
-        {
-         "@id": "565998881",
-         "groundspeak:date": "2016-01-01T20:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "13258451",
-          "#text": "Team Bushlings"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Fun find"
-         }
-        },
-        {
-         "@id": "548941111",
-         "groundspeak:date": "2015-10-10T18:59:59Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "849503",
-          "#text": "vogelly"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "2nd of 5 finds for the day on a 13+ mile georun/walk around Charleston/Fox Ridge State Park on a gorgeous day.   Took spider.\nTFTH/TspiderLN/SL"
-         }
-        },
-        {
-         "@id": "505842675",
-         "groundspeak:date": "2015-05-25T18:55:14Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "1881611",
-          "#text": "The J Girls"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Second cache for the day! Beautiful day to be out seeing by this park! TFTC!"
-         }
-        },
-        {
-         "@id": "489064263",
-         "groundspeak:date": "2015-04-04T18:59:59Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "2991934",
-          "#text": "2outforfun"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "We bushwhacked through the woods and over the hills to GZ for this one.  It was a fun workout!  We love to cache in the woods like this!  Thank you!"
-         }
-        },
-        {
-         "@id": "483611946",
-         "groundspeak:date": "2015-03-15T18:59:59Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "1463641",
-          "#text": "bigbucks60"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "TFTC"
-         }
-        },
-        {
-         "@id": "472714323",
-         "groundspeak:date": "2015-01-18T20:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "726665",
-          "#text": "Stormin&Shad"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Three Deer snuck up on us, at this Cache. A 6 point buck and 2 does, Gabriel spotted them first. I think it was the highlight of the trip for him. Thanks for setting this group of caches up Rando and tell Billie I said HI!"
-         }
-        },
-        {
-         "@id": "467955961",
-         "groundspeak:date": "2014-12-26T20:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "8614591",
-          "#text": "Wetwilli54"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "TFTC!!"
-         }
-        },
-        {
-         "@id": "467452107",
-         "groundspeak:date": "2014-12-23T20:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "1470722",
-          "#text": "awanderer"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Great Hide! \u2013 Fun little side trek up to this one. The creek and ditches between the main trail and GZ were too deep with water to cross so this one took some scouting around before the alternate trail and bridges became apparent. I am awarding this one a favorite point for the location of the container. Nicely done! Many thanks to Jodi McKinney of the Parks Department for helping us with an issue we had with our vehicle. The assistance was most certainly appreciated. Took a Goofy Figurine and Left a Carabiner and Purple plastic frog \u2013 SL - Thank you Rando60 for expending the time and effort to create and place this cache \u2013 It is appreciated!"
-         }
-        },
-        {
-         "@id": "466893981",
-         "groundspeak:date": "2014-12-21T03:17:21Z",
-         "groundspeak:type": "Publish Listing",
-         "groundspeak:finder": {
-          "@id": "7369467",
-          "#text": "Reviewer Smith"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Published"
-         }
-        }
-       ]
-      },
-      "groundspeak:travelbugs": null
-     }
-    }
-   },
-   {
-    "@lat": "39.398417",
-    "@lon": "-88.16415",
-    "time": "2014-12-20T08:00:00Z",
-    "name": "GC5J15T",
-    "desc": "Downhill Side by Rando60 (2/3)",
-    "link": {
-     "@href": "http://www.geocaching.com/seek/cache_details.aspx?guid=bb27c739-7093-4e6f-a8c9-d7c2df76dd8b",
-     "text": "Downhill Side by Rando60"
-    },
-    "sym": "Geocache",
-    "type": "Geocache|Traditional Cache",
-    "extensions": {
-     "gsak:wptExtension": {
-      "@xmlns:gsak": "http://www.gsak.net/xmlv1/6",
-      "gsak:UserFlag": "true",
-      "gsak:Lock": "false",
-      "gsak:DNF": "false",
-      "gsak:Watch": "false",
-      "gsak:UserData": "S",
-      "gsak:FirstToFind": "false",
-      "gsak:User2": null,
-      "gsak:User3": "IL-072",
-      "gsak:User4": null,
-      "gsak:County": "Coles",
-      "gsak:UserSort": "1110",
-      "gsak:SmartName": "Downhill",
-      "gsak:LastGpxDate": "2018-01-08",
-      "gsak:Code": "GC5J15T",
-      "gsak:Resolution": null,
-      "gsak:IsPremium": "false",
-      "gsak:FavPoints": "0",
-      "gsak:GcNote": null,
-      "gsak:Guid": "bb27c739-7093-4e6f-a8c9-d7c2df76dd8b",
-      "gsak:CacheImages": null,
-      "gsak:LogImages": {
-       "gsak:LogImage": {
-        "gsak:ilogid": "584705011",
-        "gsak:iname": "View from Downhill Side.",
-        "gsak:idescription": null,
-        "gsak:iguid": "126c156f-fe0e-4af2-9f54-f812059662ca",
-        "gsak:iimage": "http://img.geocaching.com/cache/log/126c156f-fe0e-4af2-9f54-f812059662ca.jpg"
-       }
-      },
-      "gsak:CustomData": "Custom_Start:cCode:Custom_Data:GC5J15T:Custom_End\nCustom_Start:Place:Custom_Data::Custom_End\nCustom_Start:PlaceType:Custom_Data::Custom_End"
-     },
-     "groundspeak:cache": {
-      "@id": "4743864",
-      "@available": "True",
-      "@archived": "False",
-      "@xmlns:groundspeak": "http://www.groundspeak.com/cache/1/0/1",
-      "groundspeak:name": "Downhill Side",
-      "groundspeak:placed_by": "Rando60",
-      "groundspeak:owner": {
-       "@id": "7028111",
-       "#text": "Rando60"
-      },
-      "groundspeak:type": "Traditional Cache",
-      "groundspeak:container": "Regular",
-      "groundspeak:attributes": {
-       "groundspeak:attribute": [
-        {
-         "@id": "1",
-         "@inc": "1",
-         "#text": "Dogs"
-        },
-        {
-         "@id": "52",
-         "@inc": "0",
-         "#text": "Night Cache"
-        }
-       ]
-      },
-      "groundspeak:difficulty": "2",
-      "groundspeak:terrain": "3",
-      "groundspeak:country": "United States",
-      "groundspeak:state": "Illinois",
-      "groundspeak:short_description": {
-       "@html": "True",
-       "#text": "Located in Fox Ridge State Park off of the Riverview Trail on hilly terrain.<br>The easiest way to this is to park at the listed parking coordinates, which is the Hickory Haven parking lot. Then walk west down the road about 250 feet and you will find the Riverview Trail. Head south down the trail.<br>Trail maps are usually available at the park office located at the park entrance."
-      },
-      "groundspeak:long_description": {
-       "@html": "True",
-       "#text": "You are looking for a regular sized lock and lock container. It is a long walk back to this in hilly terrain.<br><br>1. Geocache is placed on Department managed property with permission.<br>2. Do not place the following items in the geocache: food items, inappropriate, offensive, or hazardous materials.<br>3. It is the visitor's responsibility to orient themselves with policies and rules pertaining to this Department managed site.<p>Additional Waypoints</p>P15J15T - Hickory Haven Parking<br />N 39\u00b0 24.105 W 088\u00b0 09.491<br /><br />T15J15T - Riverview Trail Access Point<br />N 39\u00b0 24.117 W 088\u00b0 09.573<br /><br />"
-      },
-      "groundspeak:encoded_hints": "On the downhill side",
-      "groundspeak:logs": {
-       "groundspeak:log": [
-        {
-         "@id": "733809626",
-         "groundspeak:date": "2017-11-16T20:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "2872199",
-          "#text": "North Coast Cacher"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Found cache. Heading to Indiana from Kansas for Thanksgiving and doing some caching along the way. Detoured route just to spend most of the day hiking these trails and searching for geocaches in this awesome park. Found 6/8 today. Made quick enough find here. Cache in good shape. TN/LN/SL."
-         }
-        },
-        {
-         "@id": "671716415",
-         "groundspeak:date": "2017-03-18T19:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "2302383",
-          "#text": "DANANDTINA05"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Came down from Minnesota to visit my son who is stationed/living at Fox Ridge State Park. We made the hike through this nice park and grabbed caches on the way. We checked a few spots and then made the find. All is good. TFTC SL"
-         }
-        },
-        {
-         "@id": "584705011",
-         "groundspeak:date": "2016-03-27T19:00:00Z",
-         "groundspeak:type": "Owner Maintenance",
-         "groundspeak:finder": {
-          "@id": "7028111",
-          "#text": "Rando60"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Checked on this after the forest fire. Burned all around it but cache was unharmed. Good to go."
-         }
-        },
-        {
-         "@id": "584306273",
-         "groundspeak:date": "2016-03-26T19:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "165046",
-          "#text": "Flowerdoc"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Downhill side?  Yeah, but it's uphill to the downhill side.  Thanks in part to the recent rain and the burned leaves underfoot, it was very slippery so I crawled up a nearby log to reach the cache."
-         }
-        },
-        {
-         "@id": "581947439",
-         "groundspeak:date": "2016-03-18T19:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "1032383",
-          "#text": "Bluespade00"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "2016031831Z  #1637 \nGreat walk in the woods.  Thank you for the  cache!"
-         }
-        },
-        {
-         "@id": "577298212",
-         "groundspeak:date": "2016-02-28T20:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "15570681",
-          "#text": "moffett555"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "First find ever earlier today!!"
-         }
-        },
-        {
-         "@id": "577151329",
-         "groundspeak:date": "2016-02-28T19:30:57Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "15568101",
-          "#text": "Shudd"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "This was our first!"
-         }
-        },
-        {
-         "@id": "565998152",
-         "groundspeak:date": "2016-01-01T20:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "13258451",
-          "#text": "Team Bushlings"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Approached from above"
-         }
-        },
-        {
-         "@id": "548941026",
-         "groundspeak:date": "2015-10-10T18:59:59Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "849503",
-          "#text": "vogelly"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "1st of 5 finds for the day on a 13+ mile georun/walk around Charleston/Fox Ridge State Park on a gorgeous day.  \nTFTH/TNLN/SL"
-         }
-        },
-        {
-         "@id": "505842665",
-         "groundspeak:date": "2015-05-25T18:18:01Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "1881611",
-          "#text": "The J Girls"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Decided to get back out after a long hiatus from geocaching. This one was quite the physical challenge for those of us who have become accustomed to flat land! TFTC!"
-         }
-        },
-        {
-         "@id": "489065841",
-         "groundspeak:date": "2015-04-04T18:59:59Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "2991934",
-          "#text": "2outforfun"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "We made it to this one a bit out of breath!  Who am I kidding?  Bob ended up getting there to sign this log as I was headed up the adjacent hill.  We couldn't decide which spot looked more likely.  I was happy to wait for him at the bottom before heading on to Majestic View.  Another great cache for us to find!  Thanks!!"
-         }
-        },
-        {
-         "@id": "483611850",
-         "groundspeak:date": "2015-03-15T18:59:59Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "1463641",
-          "#text": "bigbucks60"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "TFTC"
-         }
-        },
-        {
-         "@id": "472716511",
-         "groundspeak:date": "2015-01-18T20:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "726665",
-          "#text": "Stormin&Shad"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "I was surprised to only see one extra log. Definitely bringing the kids back to the RandoFoxRidge5, when it's dry. It was great to get see the old confidence course. I spent allot of time on it as a kid. Gabriel and I even conquered the log on a chain obstacle. I did almost put my hand in Racoon poop while exploring a huge tree that had split equally in three, that would be a great place for a cache! Had a great time, Thanks again for the Cache and the Fun."
-         }
-        },
-        {
-         "@id": "467452184",
-         "groundspeak:date": "2014-12-23T20:00:00Z",
-         "groundspeak:type": "Found it",
-         "groundspeak:finder": {
-          "@id": "1470722",
-          "#text": "awanderer"
-         },
-         "groundspeak:text": {
-          "@encoded": "False",
-          "#text": "Neat Hide! \u2013 Last one of the day and by this time I was definitely feeling the effects of climbing the steep slopes and navigating the slippery wet leaves. Just standing at GZ to take some pictures and sign the log required a bit of concentration. This beautiful little State Park has many trails of varying terrain and difficulties which makes for some great hiking. Again many thanks to Jodi McKinney of the Parks Department for helping us with an issue we had with our vehicle. The assistance was most certainly appreciated. \u2013 Took a Minnie Mouse Figurine \u2013 Left a Plastic Hedgehog and a Blue plastic frog \u2013 SL - Thanks Rando60 for creating and placing this cache!"
-         }
-        },
-        {
-         "@id": "466893998",
-         "groundspeak:date": "2014-12-21T03:17:47Z",
          "groundspeak:type": "Publish Listing",
          "groundspeak:finder": {
           "@id": "7369467",
@@ -5755,7 +5755,7 @@
          },
          "groundspeak:text": {
           "@encoded": "False",
-          "#text": "file:///C:/Users/Robert%20Oelschlaeger/Google%20Drive/Caching%20Pictures/20180110/IMG_20180110_143630_000.jpg$~We stopped by this park to do \"Woodyard #2\" and \"High There\" but found the trails just too muddy and slippery for our tastes. We'll be back another day!"
+          "#text": "file:///C:/Users/Robert%20Oelschlaeger/Google%20Drive/Caching%20Pictures/20180110/IMG_20180110_143630_000.jpg\n\nhttp://www.charlestonillinois.org/vertical/sites/%7B48D19AF4-26A9-444F-A5B9-99631D71D5F2%7D/uploads/Trail_Map_2.1.pdf$~We stopped by this park to do \"Woodyard #2\" and \"High There\" but found the trails just too muddy and slippery for our tastes. We'll be back another day!"
          }
         },
         {

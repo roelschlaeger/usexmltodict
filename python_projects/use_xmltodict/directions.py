@@ -30,35 +30,9 @@ if __name__ == "__main__":
     from with_sqlite3 import get_data
     import pml
 
-#   BOOTSTRAP_LINK = """
-#   <link
-#       rel="stylesheet"
-#       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-#       integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-#       crossorigin="anonymous"
-#   >
-#   """
-
     BOOTSTRAP_LINK = """<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">"""
 
-#   JQUERY = """
-#   <script
-#       src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-#       integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-#       crossorigin="anonymous">
-#   </script>
-#   """
-
     JQUERY = """<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>"""
-
-#   BOOTSTRAP = """
-#   <script
-#       src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-#       integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-#       crossorigin="anonymous"
-#       >
-#   </script>
-#   """
 
     BOOTSTRAP = """<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>"""
 
@@ -76,28 +50,6 @@ if __name__ == "__main__":
     h2 {
         text-align: center;
         }
-    """
-
-    xSTYLE = """
-    .table-fixed thead {
-                width: 97%;
-    }
-
-    .table-fixed tbody {
-                height: 230px;
-                overflow-y: auto;
-                width: 100%;
-    }
-
-    .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
-                display: block;
-    }
-
-    .table-fixed tbody td, .table-fixed thead > tr > th {
-                float: left;
-                border-bottom-width: 0;
-    }
-
     """
 
     FILENAME = "output_file.db"
@@ -127,45 +79,50 @@ $(document).ready(function(){
     div.h2("Table of Map Routes")
     table = div.table(klass="table")
 
-    tr = table.thead.tr()
-    tr.th(
-        "Link",
-        colspan="1",
-    )
-    tr.th("Waypoints", colspan="3")
+    thead = table.thead()
+    tr = thead.tr()
+    tr.th("Link", colspan="1")
+    tr.th("Waypoints", colspan="2")
 
-    tr = table.thead.tr()
-    tr.th("UserSort",
-        id="bobs_reset"
-    )
-    tr.th("From")
-    tr.th("To")
-    tr.th("Via")
+    tr = thead.tr()
+    tr.th("To: UserSort")
+    tr.th("Name")
+    tr.th("Via Names")
 
     tbody = table.tbody()
-    for start, end, waypoints in build_paths(data):
+
+#   from pprint import pprint
+#   pprint(build_paths(data))
+
+    for item_index, items in enumerate(build_paths(data)):
+        start, end, waypoints = items
+
+        # show phony header row just for route starting point
+        if item_index == 0:
+            tr = tbody.tr()
+            tr.td.button(
+                "Reset: %s" % usersorts[start],
+                klass="btn btn-primary",
+                id="bobs_reset"
+            )
+            tr.td(texts[start])
+            tr.td()
+
         tr = tbody.tr()
         href = directions(lats, lons, names, start, end, waypoints)
         td = tr.td.a(
-            "%d to %d" % (usersorts[start], usersorts[end]),
+            "%d" % (usersorts[end]),
             href=href,
             target="_blank",
             type="button",
             klass="btn btn-primary"
         )
 
-        if 0 and hrefs[start]:
-            tr.td.a(texts[start], href=hrefs[start], target="_blank")
-        else:
-            tr.td(texts[start])
-
         if hrefs[end]:
             tr.td.a(
                 texts[end],
                 href=hrefs[end],
-                target="_blank",
-                # type="button",
-                # klass="btn btn-link"
+                target="_blank"
             )
         else:
             tr.td(texts[end])
