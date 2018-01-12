@@ -22,11 +22,17 @@ def create_outfile_json(doc, outfile):
 ########################################################################
 
 
+def get_creation_info(doc):
+    gpx = doc["gpx"]
+    return ", ".join([gpx["metadata"][x] for x in ["desc", "time"]])
+
+
 def main(filename, outfile):
 
     print(f"\nReading from {filename}, writing to {outfile}.\n")
     jsontext = open(filename, "rb").read()
     doc = parse(jsontext)
+    print(get_creation_info(doc))
     create_outfile_json(doc, outfile)
 
 
@@ -37,7 +43,7 @@ if __name__ == "__main__":
     import argparse
 
     # FILENAME = "temp.gpx"
-    FILENAME = "topo924c - Charleston IL.gpx"
+    FILENAME = "topo925 - Charleston IL.gpx"
     OUTFILE = "outfile.json"
 
     parser = argparse.ArgumentParser(
