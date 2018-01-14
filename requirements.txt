@@ -1,0 +1,4 @@
+beautifulsoup4>=4.6.0
+bs4>=0.0.1
+pml>=1.19
+xmltodict>=0.11.0
