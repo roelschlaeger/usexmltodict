@@ -43,7 +43,7 @@ if __name__ == "__main__":
     import argparse
 
     # FILENAME = "temp.gpx"
-    FILENAME = "topo925 - Charleston IL.gpx"
+    FILENAME = "topo925a - Charleston IL.gpx"
     OUTFILE = "outfile.json"
 
     parser = argparse.ArgumentParser(

@@ -1,7 +1,11 @@
 html-1.16/
 boston_to_concord_stopover_charleston_via_lexington.json
+gpsbabel_help.txt
 html-1.16.tar
+makeitn.bat
 mymap.html
+outfile route.gpx
+outfile route.gpx.itn
 output_file.db
 requirements.txt
 t.py

@@ -1,4 +1,10 @@
+# vim:ts=4:sw=4:tw=0:wm=0:et:noic
+
 from collections import OrderedDict
+
+# count of the number of routes generated so far
+global ROUTE_NUMBER
+ROUTE_NUMBER = 0
 
 # ordered list of keys that are available in WPT entries
 KEYS = [
@@ -7,29 +13,55 @@ KEYS = [
     # 'time',
     'name',
     'desc',
-    # 'link',
+    'link',
     # 'sym',
     # 'type',
     # 'extensions'
 ]
 
 
-def make_rte(wpt):
+def make_rte(wpt, **kwargs):
+
+    if "route_number" in kwargs:
+        route_number = kwargs["route_number"]
+    else:
+        global ROUTE_NUMBER
+
+        # bump the route number
+        ROUTE_NUMBER += 1
+        # and use it
+        route_number = ROUTE_NUMBER
+
+    # the list of permitted keys and their default values
+    optional_args = {
+        "name": None,
+        "cmt": None,
+        "desc": None,
+        "src": None,
+        "link": None,
+        "number": str(route_number),
+        "type": "Route",
+        "extensions": None
+    }
+
+    keys = optional_args.keys()
+    optional_args.update(**kwargs)
+
     rte = OrderedDict()
-    rte["name"] = "name"
-    rte["cmt"] = "cmt"
-    rte["desc"] = "desc"
-    rte["src"] = "src"
-    rte["link"] = "link"
-    rte["number"] = "number"
-    rte["type"] = "type"
-    rte["extensions"] = "extensions"
+
+    for key in keys:
+        if optional_args[key]:
+            rte[key] = optional_args[key]
 
     rtept = []
     for w0 in wpt:
         r0 = OrderedDict.fromkeys(KEYS)
         for key in KEYS:
             r0[key] = w0[key]
+
+        usersort = w0["extensions"]["gsak:wptExtension"]["gsak:UserSort"]
+        r0["name"] = "%s: %s" % (usersort, w0["name"])
+
         rtept.append(r0)
 
     rte["rtept"] = rtept
@@ -42,23 +74,27 @@ if __name__ == "__main__":
     import argparse
     from xmltodict import parse, unparse
 
-    FILENAME = "topo925 - Charleston IL.gpx"
+    FILENAME = "topo925a - Charleston IL.gpx"
     OUTFILENAME = FILENAME.replace(".gpx", " route.gpx")
 
     def main(filename):
 
-        # print(f"\nReading from {filename}.\n")
         jsontext = open(filename, "rb").read()
         doc = parse(jsontext)
         gpx = doc["gpx"]
         wpt = gpx["wpt"]
 
-        rte = make_rte(wpt)
+        rte = make_rte(
+            wpt,
+            name="The name of the route",
+            desc="The description of the route"
+        )
         gpx["rte"] = rte
         doc["gpx"] = gpx
 
         with open(OUTFILENAME, "wb") as outputfile:
             unparse(doc, pretty=True, output=outputfile)
+
             print("Route written to %s" % OUTFILENAME)
 
     ########################################################################
