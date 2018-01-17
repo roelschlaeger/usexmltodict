@@ -12,6 +12,9 @@ from xmltodict import unparse
 
 
 def make_metadata(doc):
+    """Create metadata information for gpx with routes added."""
+
+    # tags supported by *gpx*
     keys = [
         "name",
         "desc",
@@ -39,6 +42,7 @@ def make_metadata(doc):
     metadata["keywords"] = ref["keywords"]
     metadata["bounds"] = ref["bounds"]
 
+    # remove entries with no data
     for key in keys:
         if metadata[key] is None:
             del metadata[key]
@@ -60,14 +64,11 @@ def make_route_gpx(
     with open(json_filename, "rb") as jsonfile:
         doc = loads(jsonfile.read())
 
-    make_metadata(doc)
-#   import sys
-#   sys.exit(0)
-
     gpx = doc["gpx"]
     wpt = gpx["wpt"]
-
     data = get_data_from_wpt(wpt)
+
+    # create routes
     results = build_paths(data)
 
     rte = []
@@ -99,11 +100,10 @@ def make_route_gpx(
         )
         rte.append(result)
 
-    new_metadata = make_metadata(doc)
-    doc["gpx"]["metadata"] = new_metadata
+    doc["gpx"]["metadata"] = make_metadata(doc)
 
+    # conditionally remove list of waypoints
     if waypoint_flag:
-        # remove waypoints
         print("Removing 'wpt'")
         del gpx["wpt"]
 

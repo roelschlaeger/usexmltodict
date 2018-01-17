@@ -6,6 +6,8 @@
 """
 
 from build_path import build_paths
+from get_data_from_wpt import get_data_from_wpt
+import sys
 
 
 def directions(lats, lons, names, start, end, waypoints):
@@ -27,7 +29,8 @@ def directions(lats, lons, names, start, end, waypoints):
 
 if __name__ == "__main__":
 
-    from with_sqlite3 import get_data
+    from json import loads
+    # from with_sqlite3 import get_data
     import pml
 
     BOOTSTRAP_LINK = """<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">"""
@@ -52,8 +55,13 @@ if __name__ == "__main__":
         }
     """
 
-    FILENAME = "output_file.db"
-    data = get_data(FILENAME)
+    json_filename = "outfile.json"
+    print(f"Reading from {json_filename}", file=sys.stderr)
+    with open(json_filename, "rb") as jsonfile:
+        doc = loads(jsonfile.read())
+    gpx = doc["gpx"]
+    wpt = gpx["wpt"]
+    data = get_data_from_wpt(wpt)
     lats, lons, texts, syms, names, usersorts, hrefs = zip(*data)
 
     doc = pml.XHTML("html")
@@ -91,9 +99,6 @@ $(document).ready(function(){
 
     tbody = table.tbody()
 
-#   from pprint import pprint
-#   pprint(build_paths(data))
-
     for item_index, items in enumerate(build_paths(data)):
         start, end, waypoints = items
 
@@ -111,7 +116,7 @@ $(document).ready(function(){
         tr = tbody.tr()
         href = directions(lats, lons, names, start, end, waypoints)
         td = tr.td.a(
-            "%d" % (usersorts[end]),
+            "%s" % (usersorts[end]),
             href=href,
             target="_blank",
             type="button",
