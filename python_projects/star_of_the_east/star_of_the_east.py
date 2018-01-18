@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Sun 11 Jan 2015 04:53:43 PM CST
-# Last Modified: Sun 11 Jan 2015 06:07:57 PM CST
+# Last Modified: Mon 12 Jan 2015 09:37:25 AM CST
 
 """
 SYNOPSIS
@@ -38,6 +38,8 @@ __VERSION__ = "0.0.1"
 ########################################################################
 
 from simplekml import Kml
+from collections import defaultdict
+
 
 def convert(s):
     sign = s[0]
@@ -73,6 +75,7 @@ def add_static_waypoints(kml):
 
 def process():
     kml = Kml()
+    unique_locations = defaultdict(lambda: 0)
     add_static_waypoints(kml)
     for a in range(10):
         for b in range(10):
@@ -89,7 +92,9 @@ def process():
                 coords = [(lon, lat)]
                 print a, b, c, lat, lon
                 kml.newpoint(name=name, coords=coords)
+                unique_locations[coords[0]] += 1
     kml.save("star_of_the_east.kml")
+    return unique_locations
 
 if __name__ == '__main__':
 
@@ -119,7 +124,8 @@ if __name__ == '__main__':
 #       # TODO: Do something more interesting here...
 #       print 'Hello world!'
 
-        process()
+        d = process()
+        print len(d)
 
 ########################################################################
 

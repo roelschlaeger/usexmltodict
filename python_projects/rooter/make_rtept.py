@@ -21,8 +21,8 @@ assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__VERSION__ = "0.0.3"  # manual version information
-__DATE__ = "2017-07-28"
+__VERSION__ = "0.0.4"  # manual version information
+__DATE__ = "2017-07-30"
 
 ########################################################################
 
@@ -39,6 +39,15 @@ ET.register_namespace("GSAK", GSAK_NAMESPACE)
 ET.register_namespace("groundspeak", GROUNDSPEAK_NAMESPACE)
 # ET.register_namespace("xsd", "http://www.w3.org/2001/XMLSchema")
 # ET.register_namespace("xsi", "http://www.w3.org/2001/XMLSchema-instance")
+
+########################################################################
+
+
+# dummy routine for use by make_rte.py
+def make_rtept_from_wpts(_arg):
+    """Dummy routine for use by make_rte.py"""
+    raise Warning("make_rtept_from_wpts is a dummy stub procedure.")
+    # return []
 
 ########################################################################
 

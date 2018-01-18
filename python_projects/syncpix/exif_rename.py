@@ -331,7 +331,9 @@ if __name__ == '__main__':
     BASE = "C:/Users/Robert Oelschlaeger/Google Drive/Caching Pictures"
     """Location of pictures containing EXIF data"""
 
-    DATE = "20170921"
+    DATE = "20180110"
+#   DATE = "20171215/others"
+#   DATE = "MaryIs40"
     """Location of this week's pictures"""
 
     def main():

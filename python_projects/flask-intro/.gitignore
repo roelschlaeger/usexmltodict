@@ -2,6 +2,7 @@
 *.pyc
 archived/
 bootstrap-3.3.5-dist/
+psycopg2-2.6.1.win32-py2.7-pg9.4.4-release.exe 
+python-bcrypt-0.3.1.zip 
 venv/
 youtube.md
-psycopg2-2.6.1.win32-py2.7-pg9.4.4-release.exe 

@@ -1,58 +1,128 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Project: Scene change</title>
-        <style>
+
+<head>
+    <meta charset="utf-8">
+    <title>Project: Scene change</title>
+    <style>
         #leafers {
             position: absolute;
             top: 210px;
             left: 378px;
         }
-        </style>
-    </head>
-    <body>
-        <img src="https://www.kasandbox.org/programming-images/landscapes/beach-with-palm-trees.png" id="background">
-        <img src="https://www.kasandbox.org/programming-images/avatars/leafers-seedling.png" id="leafers">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script>
-            var backgrounds = [
-                "https://www.kasandbox.org/programming-images/landscapes/beach-sunset.png",
-                "https://www.kasandbox.org/programming-images/landscapes/fields-of-wine.png",
-                "https://www.kasandbox.org/programming-images/seasonal/snowy-slope-with-trees.png",
-                "https://www.kasandbox.org/programming-images/landscapes/lotus-garden.png",
-                "https://www.kasandbox.org/programming-images/landscapes/beach-with-palm-trees.png"
-                ];
+        #headphones {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            height: 40px;
+            width: 40px;
+        }
+    </style>
+</head>
 
-            var pictures = [
-                "https://www.kasandbox.org/programming-images/avatars/leafers-sapling.png",
-                "https://www.kasandbox.org/programming-images/avatars/leafers-seed.png",
-                "https://www.kasandbox.org/programming-images/avatars/leafers-seedling.png",
-                "https://www.kasandbox.org/programming-images/avatars/leafers-tree.png",
-                "https://www.kasandbox.org/programming-images/avatars/leafers-ultimate.png",
-                "https://www.kasandbox.org/programming-images/creatures/Hopper-Cool.png",
-                "https://www.kasandbox.org/programming-images/creatures/Hopper-Happy.png",
-                "https://www.kasandbox.org/programming-images/creatures/Hopper-Jumping.png",
-                "https://www.kasandbox.org/programming-images/creatures/OhNoes.png"
-                ];
+<body>
+    <img src="https://www.kasandbox.org/programming-images/landscapes/beach-with-palm-trees.png" id="background">
+    <img src="https://www.kasandbox.org/programming-images/avatars/leafers-seedling.png" id="leafers">
+    <ul>
+        <li>Click the character to change it</li>
+        <li>Click the background to change it</li>
+        <li id="mp3_name">Click the headphones to play a sound</li>
+    </ul>
+    <img 
+        id="headphones"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Headphone_icon.svg/2000px-Headphone_icon.svg.png" 
+        >
+    <audio preload="auto"></audio>
+    <hr>
+    <hr>
 
-            var index = 0;
-            var bindex = 0;
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        // Creates a new <audio> element
+        // var $sound = $("<audio preload=auto>");
+        var $sound = $("audio");
+        // See below for more sound URLs you can use
+        $sound.attr("src", "https://www.kasandbox.org/programming-sounds/rpg/metal-clink.mp3");
+        // $("body").append($sound);
 
-            $("#leafers").on("click", function(event) {
-                // show a different character
-                $(this).attr("src", pictures[index % pictures.length]);
-                index += 1;
-            });
+        var backgrounds = [
+            "https://www.kasandbox.org/programming-images/landscapes/beach-sunset.png",
+            "https://www.kasandbox.org/programming-images/landscapes/fields-of-wine.png",
+            "https://www.kasandbox.org/programming-images/seasonal/snowy-slope-with-trees.png",
+            "https://www.kasandbox.org/programming-images/landscapes/lotus-garden.png",
+            "https://www.kasandbox.org/programming-images/landscapes/beach-with-palm-trees.png"
+        ];
 
-            $("#background").on("click", function(event) {
-                // show a different character
-                $(this).attr("src", backgrounds[bindex % backgrounds.length]);
-                bindex += 1;
-            });
+        var pictures = [
+            "https://www.kasandbox.org/programming-images/avatars/leafers-sapling.png",
+            "https://www.kasandbox.org/programming-images/avatars/leafers-seed.png",
+            "https://www.kasandbox.org/programming-images/avatars/leafers-seedling.png",
+            "https://www.kasandbox.org/programming-images/avatars/leafers-tree.png",
+            "https://www.kasandbox.org/programming-images/avatars/leafers-ultimate.png",
+            "https://www.kasandbox.org/programming-images/creatures/Hopper-Cool.png",
+            "https://www.kasandbox.org/programming-images/creatures/Hopper-Happy.png",
+            "https://www.kasandbox.org/programming-images/creatures/Hopper-Jumping.png",
+            "https://www.kasandbox.org/programming-images/creatures/OhNoes.png"
+        ];
 
-        </script>
-    </body>
+        var sounds = [
+            "https://www.kasandbox.org/programming-sounds/rpg/battle-magic.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/battle-spell.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/battle-swing.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/coin-jingle.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/door-open.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/giant-hyah.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/giant-no.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/giant-yah.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/hit-clop.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/hit-splat.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/hit-thud.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/hit-whack.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/metal-chime.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/metal-clink.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/step-heavy.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/water-slosh.mp3",
+            "https://www.kasandbox.org/programming-sounds/rpg/water-bubble.mp3"
+        ];
+
+        var index = 0;
+        var bindex = 0;
+        var sindex = 0;
+
+        var play_sound = function() {
+            var sound = sounds[sindex];
+            $sound.attr("src", sound);
+            var name = sound.split("/");
+            name = name[name.length - 1];
+            console.log(name);
+            $("#headphones").attr("alt", name);
+            $("#mp3_name").text("Last sound played was: " + name);
+            $sound[0].play();
+            sindex++;
+            if (sindex >= sounds.length) {
+                sindex = 0;
+            }
+        };
+
+        $("#leafers").on("click", function(event) {
+            // show a different character
+            $(this).attr("src", pictures[index % pictures.length]);
+            index += 1;
+        });
+
+        $("#background").on("click", function(event) {
+            // show a different character
+            $(this).attr("src", backgrounds[bindex % backgrounds.length]);
+            bindex += 1;
+        });
+
+        // Plays the sound when the user clicks the image
+        $("#headphones").on("click", function() {
+            play_sound();
+        })
+
+    </script>
+</body>
+
 </html>
-
 

@@ -1,5 +1,5 @@
-from app import db
-import bcrypt
+from project import db
+from project.models import bcrypt
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
@@ -29,7 +29,7 @@ class User(db.Model):
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
     password = db.Column(db.String)
-    posts = relationship("BlogPost", backref="author")
+    posts = relationship("BlogPost", backref="author", cascade="all")
 
     def __init__(self, name, email, password):
         self.name = name

@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 03 May 2016 03:25:54 PM CDT
-# Last Modified: Tue 03 May 2016 04:09:51 PM CDT
+# Last Modified: Tue 03 May 2016 07:00:30 PM CDT
 
 from read_image import read_image, STARTX, STARTY, ENDX, ENDY
 from read_image import HOLLERITH_COLUMNS, HOLLERITH_ROWS
@@ -61,15 +61,21 @@ class Image(object):
         self.to_decode()
 
 
-im1 = Image(LATITUDE_IMAGE, 27.5, 25, 609, 265)
+im1 = Image(LATITUDE_IMAGE, 27, 23, 610, 262)
 im2 = Image(LONGITUDE_IMAGE, 27, 27, 609, 267)
 im3 = Image(MY_LATITUDE_IMAGE, 27, 26, 738, 320)
+im4 = Image("thanks_rich.jpg", 27, 26, 738, 320)
 
-im1.process()
-print(im1.decode)
+# im1.process()
+# print(im1.decode)
 
 # im2.process()
 # print(im2.decode)
 
 # im3.process()
 # print(im3.decode)
+
+im4.process()
+# print(im4.data)
+# print(im4.hollerith)
+print(im4.decode)

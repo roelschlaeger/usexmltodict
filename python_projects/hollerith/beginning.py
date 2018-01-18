@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Mon 02 May 2016 03:15:43 PM CDT
-# Last Modified: Tue 03 May 2016 11:49:26 AM CDT
+# Last Modified: Tue 03 May 2016 06:57:49 PM CDT
 
 """
 SYNOPSIS
@@ -216,7 +216,7 @@ def decode(strings):
     out = []
 
     for s in strings:
-        if s:
+        if s in HOLLERITH:
             out.append(HOLLERITH[s])
         else:
             out.append(" ")

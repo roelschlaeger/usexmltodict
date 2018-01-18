@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Tue 03 May 2016 09:33:16 AM CDT
-# Last Modified: Tue 03 May 2016 04:02:07 PM CDT
+# Last Modified: Tue 03 May 2016 06:45:08 PM CDT
 
 """
 SYNOPSIS
@@ -95,9 +95,60 @@ def read_image(
             coord = (x, y)
             coldata.append(im.getpixel(coord))
             im.putpixel(coord, color)
+            read_chad(im, coord, color)
         rowdata.append(coldata)
     im.show()
     return rowdata
+
+########################################################################
+
+
+if 0:
+
+    def read_chad(im, coord, color):
+        pixel = im.getpixel(coord)
+        im.putpixel(coord, color)
+        return pixel
+
+########################################################################
+
+else:
+
+    def read_chad(im, coord, color):
+        x, y = coord
+        pixels = []
+        for dx in [-1, 0, 1]:
+            curx = x + dx
+            for dy in [-1, 0, 1]:
+                coord = (curx, y + dy)
+                pixels.append(im.getpixel(coord))
+                im.putpixel(coord, color)
+
+        compute_chad(pixels)
+
+    from im2holl import calc_luma
+
+#   def order_pixel(pixel):
+#       return calc_luma(pixel)
+
+    def compute_chad(pixels):
+        s = sorted(pixels, key=calc_luma)
+        return s[0]
+
+
+#   def compute_chad(pixels):
+
+#       rsum = 0
+#       gsum = 0
+#       bsum = 0
+
+#       for pixel in pixels:
+#           r, g, b = pixel
+#           rsum += r
+#           gsum += g
+#           bsum += b
+
+#       return tuple(map(lambda x: int(x / 9.), [rsum, gsum, bsum]))
 
 ########################################################################
 

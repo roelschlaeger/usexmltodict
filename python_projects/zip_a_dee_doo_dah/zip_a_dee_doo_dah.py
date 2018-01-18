@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 # -*- encoding=utf-8 -*-
 # Created:       Sun 08 Feb 2015 12:00:50 PM CST
-# Last Modified: Sun 08 Feb 2015 12:56:52 PM CST
+# Last Modified: Mon 09 Feb 2015 11:29:33 AM CST
 
 """
 SYNOPSIS
@@ -58,44 +58,71 @@ APPLETON_WI = [
     54919
 ]
 
+if 1:
 
-def convert(s):
-    """convert ADD DD.DDD latitude/longitude string to float"""
-    print s,
-    s, rest = s[0], s[1:]
-#   print s, rest
-    sign = ((s == 'W') or (s == 'S'))
-#   print sign
-    sdeg, smin = map(float, rest.split())
-    angle = sdeg + smin / 60.0
-    if sign:
-        angle = -angle
-    print angle
-    return angle
+    def convert(s):
+        """convert ADD DD.DDD latitude/longitude string to float"""
+    #   print s,
+        s, rest = s[0], s[1:]
+    #   print s, rest
+        sign = ((s == 'W') or (s == 'S'))
+    #   print sign
+        sdeg, smin = map(float, rest.split())
+        angle = sdeg + smin / 60.0
+        if sign:
+            angle = -angle
+    #   print angle
+        return angle
 
-from simplekml import Kml
+    from simplekml import Kml
 
+    def process(args, options):
 
-def process(args, options):
+        kml = Kml()
+        kml.newpoint(
+            name="GC3DQM3 zip-a-dee-doo-dah N36_55.979 W090_34.064",
+            coords=[(-90.56773, 36.93298)]
+        )
 
-    kml = Kml()
-    kml.newpoint(
-        name="GC3DQM3 zip-a-dee-doo-dah N36_55.979 W090_34.064",
-        coords=[(-90.56773, 36.93298)]
-    )
+        for lat in APPLETON_WI:
 
-    for lat in PALM_COAST_FL:
+            latitude = convert("N36 %2d.%03d" % (divmod(lat, 1000)))
 
-        latitude = convert("N36 %2d.%03d" % (divmod(lat, 1000)))
+            for lon in PALM_COAST_FL:
 
-        for lon in APPLETON_WI:
+                longitude = convert("W90 %2d.%03d" % (divmod(lon, 1000)))
+                name = "%s_%s" % (lat, lon)
 
-            longitude = convert("W90 %2d.%03d" % (divmod(lon, 1000)))
-            name = "%s_%s" % (lat, lon)
+                kml.newpoint(name=name, coords=[(longitude, latitude)])
 
-            kml.newpoint(name=name, coords=[(longitude, latitude)])
+        kml.save('zip_a_dee_doo_dah.kml')
 
-    kml.save('zip_a_dee_doo_dah.kml')
+else:
+
+    def process(args, options):
+
+        def convert(d, z):
+            m, t = divmod(z, 1000)
+            return (d + (m + t / 1000.) / 60.)
+
+        print "index\tlatitude\tlongitude\tlat\tlon\txlatitude\txlongitude"
+        index = 0
+        for lon in PALM_COAST_FL:
+            for lat in APPLETON_WI:
+                index += 1
+                xlatitude = "N36 %02d.%03d" % divmod(lat, 1000)
+                latitude = convert(36, lat)
+                xlongitude = "W90 %02d.%03d" % divmod(lon, 1000)
+                longitude = -(convert(90, lon))
+                print "%d\t%s\t%s\t%s\t%s\t%s\t%s" % (
+                    index,
+                    latitude,
+                    longitude,
+                    lat,
+                    lon,
+                    xlatitude,
+                    xlongitude
+                )
 
 if __name__ == '__main__':
 

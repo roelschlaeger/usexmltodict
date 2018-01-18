@@ -2,7 +2,7 @@
 // vim:ts=4:sw=4:tw=0:wm=0:et:nowrap
 
 // Created:       Thu 04 Dec 2014 10:37:33 AM CST
-// Last Modified: Thu 04 Dec 2014 02:56:17 PM CST
+// Last Modified: Sun 21 Dec 2014 02:05:25 PM CST
 
 'use strict'
 
@@ -13,11 +13,29 @@ var parser = new xml2js.Parser();
 
 var results;
 
+var output_filename = "/test.json";
+
+var WRITER = 1;
+
 function getResults() {
     fs.readFile(__dirname + '/test.gpx', function(err, data) {
         if (err) { raise (err) };
         parser.parseString(data, function (err, results) {
             if (err) { raise (err) };
+
+            console.log("__dirname: ", __dirname);
+
+            if (WRITER === 1) {
+                fs.writeFile(
+                    __dirname + output_filename, 
+                    JSON.stringify(results, undefined, " "), 
+                    function(err) {
+                    if (err) { raise (err) };
+                    console.log("data written to " + output_filename);
+                });
+
+                return;
+            };
 
 //          console.log("getResults is done");
 
@@ -28,8 +46,8 @@ function getResults() {
 //          console.log(json_out);
 
             var wpts = results.gpx.wpt;
-//          console.log(wpts[0]);
-//          console.log(wpts.length);
+            console.log(wpts[0]);
+            console.log(wpts.length);
 
             for(var i=0; i<wpts.length; i++) {
 

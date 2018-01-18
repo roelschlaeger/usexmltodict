@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Fri 10 Oct 2014 03:23:36 PM CDT
-# Last Modified: Fri 10 Oct 2014 06:42:14 PM CDT
+# Last Modified: Mon 13 Oct 2014 03:27:24 PM CDT
 
 """
 SYNOPSIS
@@ -54,9 +54,11 @@ import os.path
 import re
 
 ATT_KEY_ITEMS_LIST = [
+    "Title",
     "First Name",
     "Middle Name",
     "Last Name",
+    "Suffix",
 ]
 
 GOOGLE_KEY_ITEMS_LIST = [
@@ -71,15 +73,29 @@ ATT_NEW_ITEMS_LIST = [
     "E-mail 2 Address",
     "E-mail 3 Address",
     "Primary Phone",
+    "Mobile Phone",
     "Home Phone",
     "Home Phone 2",
-    "Mobile Phone",
     "Business Phone",
     "Other Phone",
+    "Home Street",
+    "Home City",
+    "Home State",
+    "Home Postal Code",
+    "Home Country",
     "Company",
     "Business Fax",
     "Notes",
     "Other Street",
+    "Other City",
+    "Other State",
+    "Other Country",
+    "Gender",
+    "Hobby",
+    "Spouse",
+    "Anniversary",
+    "Birthday",
+    "Children",
 ]
 
 GOOGLE_NEW_ITEMS_LIST = [
@@ -264,7 +280,9 @@ BASE = "C:\Users\Robert Oelschlaeger\Downloads"
 # FILENAME = "All_Contacts_Thu_Oct_09_18-42-42_CDT_2014.csv"
 # FILENAME = "All_Contacts_Thu_Oct_09_18-42-42_CDT_2014_EDITED.csv"
 # FILENAME = "google_contacts.csv"
-FILENAME = "contacts.csv"
+# FILENAME = "contacts.csv"
+# FILENAME = "All_Contacts_Mon_Oct_13_14-39-45_CDT_2014.csv"
+FILENAME = "All_Contacts_Mon_Oct_13_15-16-32_CDT_2014.csv"
 
 if __name__ == '__main__':
 

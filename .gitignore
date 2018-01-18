@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 angular_projects/
 bootstrap4_projects/
 bootstrap_projects/
@@ -11,3 +12,13 @@ rails_projects/
 repos/
 roku_projects/
 vagrant_projects/
+=======
+__pycache__/
+outfile.json
+output_file.db
+temp.csv
+test.html
+test2.html
+tidy_errors.txt
+topo925 - Charleston IL.gpx
+>>>>>>> 4cda1d4adae7250de17de8fbb88ee54c47d6a605

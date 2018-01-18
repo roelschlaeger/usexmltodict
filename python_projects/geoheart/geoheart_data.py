@@ -2,8 +2,13 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 # Created:       Wed 15 Feb 2017 08:55:30 AM CST
-# Last Modified: Wed 15 Feb 2017 08:58:46 AM CST
+# Last Modified: Wed 15 Feb 2017 11:40:10 AM CST
 
+# search strings
+TEXT1 = "<p>(Rosetta) suggests that you will find the final at these coordinates:.. (.*), (.*)</p>"
+TEXT2 = "<p>(Maurelle) thinks you should look for the final at these coordinates:.. (.*), (.*)</p>"
+
+# file information
 DATA = """
 GC6ZJZ4	Geo(he)Art 1	http://www.geocaching.com/seek/cache_details.aspx?guid=be8fe001-7b7a-4aea-9c0a-624e8d0716b1
 GC6ZJZ5	Geo(he)Art 2	http://www.geocaching.com/seek/cache_details.aspx?guid=8abddd5b-a7f8-4e76-a0a4-5c75a41274c0
@@ -31,4 +36,4 @@ GC6ZJZW	Geo(he)Art 22	http://www.geocaching.com/seek/cache_details.aspx?guid=048
 
 data = list((x.split("\t") for x in DATA.split("\n")[1:-1]))
 
-
+# end of file

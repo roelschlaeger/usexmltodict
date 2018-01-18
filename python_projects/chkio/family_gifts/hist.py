@@ -229,13 +229,14 @@ def ensure_correct_types(family, couples):
 
     assert type(couples) in (list, tuple), \
         "couples is of type %s" % type(couples)
-    assert type(couples[0]) == set, \
-        "couples[0] is of type %s" % type(couples[0])
+    if couples:
+        assert type(couples[0]) == set, \
+            "couples[0] is of type %s" % type(couples[0])
 
     family = sorted(list(family))
     couples = sorted(list(couples))
     # convert couples to be tuples instead of sets
-    if type(couples[0]) == set:
+    if couples and type(couples[0]) == set:
         couples = [tuple(sorted([x, y])) for (x, y) in couples]
         if DEBUG:
             print(
@@ -357,6 +358,21 @@ def find_chains(family, couples):
 
 ########################################################################
 
+
+def do_job(family, couples):
+    result = find_chains(family, couples)
+    print(
+        "\nfamily_length", len(family),
+        "\ncouples_length", len(couples),
+        "\nresult_length", len(result),
+        "\nfamily", pformat(family),
+        "\ncouples", pformat(couples),
+        "\nresult", pformat(result, width=132, depth=3),
+        "\n"
+    )
+
+########################################################################
+
 if __name__ == '__main__':
 
     # find_chains({"Doreen", "Fred", "Yolanda"},  ({"Doreen", "Fred"}, ))
@@ -369,16 +385,16 @@ if __name__ == '__main__':
     #     )
     # )
 
-    family = {
-        'Loraine', 'Leah', 'Jenifer', 'Russell', 'Benjamin', 'Todd',
-        'Maryanne', 'Penny', 'Matthew'
-    }
+    # family = {
+    #     'Loraine', 'Leah', 'Jenifer', 'Russell', 'Benjamin', 'Todd',
+    #     'Maryanne', 'Penny', 'Matthew'
+    # }
 
-    couples = (
-        {"Loraine", "Benjamin"},
-        {"Leah", "Matthew"},
-        {"Todd", "Jenifer"},
-    )
+    # couples = (
+    #     {"Loraine", "Benjamin"},
+    #     {"Leah", "Matthew"},
+    #     {"Todd", "Jenifer"},
+    # )
     #
     # family = {'Philip', 'Sondra', 'Mary', 'Selena', 'Eric', 'Phyllis'}
     # couples = ({'Philip', 'Sondra'}, {'Eric', 'Mary'},)
@@ -386,7 +402,13 @@ if __name__ == '__main__':
     # family = {"Allison",  "Robin",  "Petra",  "Curtis",  "Bobbie",  "Kelly"}
     # couples = ({"Allison",  "Curtis"},  {"Robin",  "Kelly"},)
 
-    result = find_chains(family, couples)
-    print("\nresult", len(result), pformat(result, width=132, depth=3))
+    family = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'}
+    couples = (
+        {'A', 'B'},
+        {'C', 'D'},
+        {'E', 'F'}
+    )
+
+    do_job(family, couples)
 
 # end of file
