@@ -2,7 +2,7 @@
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8
 
 # Created:       Fri 03 Jan 2014 03:26:18 PM CST
-# Last Modified: Wed 10 Jan 2018 08:56:40 PM CST
+# Last Modified: Thu 25 Jan 2018 08:34:46 PM CST
 
 #######################################################################
 
@@ -352,8 +352,8 @@ if __name__ == '__main__':
     import time
     import traceback
 
-    DATE = "20180110"
-    ROUTE_NAME = "topo924d - Charleston IL"
+    DATE = "20180125"
+    ROUTE_NAME = "topo926c - The Pneuma Trail"
 
     HOME = r"C:\Users\Robert Oelschlaeger"
     TIMEZONE = "CDT"
