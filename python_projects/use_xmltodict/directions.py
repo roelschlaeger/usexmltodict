@@ -109,10 +109,11 @@ of the route going from geocache to geocache.
 
     doc.script(SCRIPT)
 
-    doc.body.h2(f"Created {today} by {__file__}.")
-    doc.body.hr()
+    body = doc.body()
+    body.h2(f"Created {today} by {__file__}.")
+    body.hr()
 
-    div = doc.body.div(klass="container")
+    div = body.div(klass="container")
     div.h2("Table of Map Routes")
     table = div.table(klass="table")
 
