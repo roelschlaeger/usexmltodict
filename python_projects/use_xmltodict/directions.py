@@ -12,6 +12,7 @@ from get_data_from_wpt import get_data_from_wpt
 import datetime
 import pml
 import sys
+from json import loads
 
 JSON_INPUT_FILENAME = "outfile.json"
 HTML_OUTPUT_FILENAME = "directions.html"
@@ -208,7 +209,6 @@ html_filename."""
 
 if __name__ == "__main__":
 
-    from json import loads
     import argparse
 
     parser = argparse.ArgumentParser(
