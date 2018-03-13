@@ -74,7 +74,7 @@ if __name__ == "__main__":
     import argparse
     from xmltodict import parse, unparse
 
-    FILENAME = "topo925a - Charleston IL.gpx"
+    FILENAME = "topo930a - Smithshire IL.gpx"
     OUTFILENAME = FILENAME.replace(".gpx", " route.gpx")
 
     def main(filename):

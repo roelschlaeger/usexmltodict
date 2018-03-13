@@ -1,30 +1,19 @@
-.ropeproject/
 _make_rte.xml
-_make_rtept.gpx
-_s_and_t.gpx
-_s_and_t_topo840.gpx
+.ropeproject/
+*.gpx
+*.pyc
 8x8.html
-default.gpx.csv
-default.gpx.kml
-default.html
 default_gpx_rooter.html
 default_gpx_rooter.zip
-default_route.gpx
+default.html
+rooter_default_gpx.html
 rooter.html
 rooter.sublime-project
 rooter.sublime-workspace
 rooter.txt
-rooter_default_gpx.html
 test.kml
-topo730 - Sikeston MO.gpx
-topo730 - Sikeston MO.gpx.kml
 topo730 - Sikeston MO.html
 topo730_-_Sikeston_MO_gpx_rooter.html
 topo730_-_Sikeston_MO_gpx_rooter.zip
 topo731c_-_Poplar_Bluff_MO_gpx_rooter.html
 topo742d*
-topo823a - SLAGA Fall Picnic 2015.gpx
-topo839d - Salem MO.gpx
-topo839d - Salem MO.gpx.kml
-topo840b - Collinsville IL.gpx.kml
-_make_rtept.gpx.kml

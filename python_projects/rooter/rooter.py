@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # coding=utf-8
 
 """
@@ -56,7 +57,7 @@ assert sys.version_info > (3, ), "Python 3 required"
 ########################################################################
 
 __VERSION__ = "0.0.5"    # rlo
-__DATE__ = "2017-07-24"  # rlo
+__DATE__ = "2018-03-10"  # rlo
 
 DEBUG = False
 ELLIPSIS_MAX = 72
@@ -65,7 +66,12 @@ ELLIPSIS_MAX = 72
 
 
 def location_link(lat, lon):
-    """Return an anchor tag for (lat, lon) that links to Google Maps."""
+    """Return an anchor for (lat, lon) that links to Google Maps.
+
+    Arguments:
+        lat {[str]} -- [latitude in DM format]
+        lon {[str]} -- [longitude in DM format]
+    """
     from maplink import maplink
     href = maplink(lat, lon)
     link = "(%s, %s)" % (degmin(lat, "NS"), degmin(lon, "EW"))
@@ -83,13 +89,17 @@ def get_wpts(gpxname):
     """
     tree = ET.parse(gpxname)
     root = tree.getroot()
-    wpts = root.findall(root.tag.replace("gpx", "wpt"))
+
+    wpt_tag = root.tag.replace("gpx", "wpt")
+    name_tag = root.tag.replace("gpx", "name")
 
     latlon_dictionary = {}
+    wpts = root.findall(wpt_tag)
+
     for wpt in wpts:
         lat = wpt.attrib["lat"]
         lon = wpt.attrib["lon"]
-        name = wpt.find(wpt.tag.replace("wpt", "name")).text
+        name = wpt.find(name_tag).text
         latlon_dictionary[name] = (lat, lon)
 
     return wpts, latlon_dictionary
@@ -471,9 +481,6 @@ def do_rooter(gpxname):
 
 if __name__ == '__main__':
 
-    # import sys
-    # import os
-    # import traceback
     import optparse
     import time
 
@@ -531,10 +538,5 @@ if __name__ == '__main__':
         raise _exception
     except SystemExit as _exception:             # sys.exit()
         raise _exception
-    # except Exception as _exception:
-    #     print('ERROR, UNEXPECTED EXCEPTION')
-    #     print(str(_exception))
-    #     traceback.print_exc()
-    #     os._exit(1)
 
 # vim:set sr et ts=4 sw=4 ft=python fenc=utf-8: // See Vim, :help 'modeline'
