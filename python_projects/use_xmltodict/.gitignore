@@ -1,11 +1,11 @@
-__pycache__
+__pycache__/
+html-1.16/
 .pylintrc
 bobo.tmp
 boston_to_concord_stopover_charleston_via_lexington.json
 directions.html
 gpsbabel_help.txt
 html-1.16.tar
-html-1.16/
 makeitn.bat
 mymap.html
 outfile route.gpx
@@ -15,6 +15,5 @@ t.py
 test.html
 test2.html
 tidy_help.txt
-topo924c - Charleston IL.gpx
 topo930a - Smithshire IL route.gpx
 topo930a - Smithshire IL.gpx
