@@ -8,8 +8,8 @@ SYNOPSIS
 
 DESCRIPTION
 
-    This file modifies a standard .gpx file for use with GeoSphere by
-    prepending the UserSort value to the Code value for a given waypoint.
+    This file modifies a standard .gpx file for use with Cachely by prepending
+    the UserSort value to the <groundspeak:name> value for a given waypoint.
 
 EXAMPLES
 
@@ -38,8 +38,11 @@ import sys
 
 assert sys.version_info > (3, ), "Python 3 required"
 
-__VERSION__ = "0.0.2"    # updated for Python3
-__DATE__ = "2017-07-25"  # updated for Python3
+__VERSION__ = "0.0.3"    # updated for Python3
+__DATE__ = "2018-03-17"  # updated for Python3
+
+# Generate modified output suitable for use in Cachly app
+CACHELY = True
 
 ########################################################################
 
@@ -109,6 +112,8 @@ def process_arg(arg):
     name_tag = make_tag("name")
     extensions_tag = make_tag("extensions")
     gsak_tag = "{%s}wptExtension" % GSAK_NAMESPACE
+    gname_tag = "{%s}name" % GROUNDSPEAK_NAMESPACE
+    cache_tag = "{%s}cache" % GROUNDSPEAK_NAMESPACE
 
     # get all waypoints
     wpts = root.findall(wpt_tag)
@@ -116,19 +121,10 @@ def process_arg(arg):
     # change their name elements
     for wpt in wpts:
 
-        # get old ame
-        name = wpt.find(name_tag)
-        try:
-            # name_text = name.text
-            name_text = "" if name is None else name.text
-        except AttributeError as _error:
-            print(_error, file=sys.stderr)
-            traceback.print_exc()
-            name_text = "None"
-
         # get UserSort value
+        extensions = wpt.find(extensions_tag)
+
         try:
-            extensions = wpt.find(extensions_tag)
             gsak = extensions.find(gsak_tag)
             usersort = gsak.find(gsak.tag.replace("wptExtension", "UserSort"))
             usersort_text = "" if usersort is None else usersort.text
@@ -137,9 +133,40 @@ def process_arg(arg):
             traceback.print_exc()
             usersort_text = "None"
 
-        # compute a new name
-        new_name = "%s %s" % (usersort_text, name_text)
-        name.text = str(new_name)
+        if CACHELY:
+
+            cache = extensions.find(cache_tag)
+            if cache is not None:
+
+                # get old gname
+                gname = cache.find(gname_tag)
+
+                try:
+                    # gname_text = gname.text
+                    gname_text = "" if gname is None else gname.text
+                except AttributeError as _error:
+                    print(_error, file=sys.stderr)
+                    traceback.print_exc()
+                    gname_text = "None"
+
+                # compute a new gname
+                new_gname = "%s %s" % (usersort_text, gname_text)
+                gname.text = str(new_gname)
+
+        else:
+            # get old name
+            name = wpt.find(name_tag)
+            try:
+                # name_text = name.text
+                name_text = "" if name is None else name.text
+            except AttributeError as _error:
+                print(_error, file=sys.stderr)
+                traceback.print_exc()
+                name_text = "None"
+
+            # compute a new name
+            new_name = "%s %s" % (usersort_text, name_text)
+            name.text = str(new_name)
 
     # create the modified output filename
     outfilename = generate_output_filename(arg)
@@ -214,7 +241,7 @@ if __name__ == '__main__':
             "--version",
             action="version",
             version="%%(prog)s, Version: %s %s" % (__VERSION__, __DATE__)
-            )
+        )
 
         PARSER.add_argument(
             '--verbose',
@@ -251,11 +278,5 @@ if __name__ == '__main__':
 
     except SystemExit as error_exception:               # sys.exit()
         raise error_exception
-
-    # except Exception as error_exception:
-    #     print('ERROR, UNEXPECTED EXCEPTION')
-    #     print(str(error_exception))
-    #     traceback.print_exc()
-    #     os._exit(1)
 
 # end of file

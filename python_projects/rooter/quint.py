@@ -20,8 +20,8 @@ assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__VERSION__ = "102"      # update for Python 3
-__DATE__ = "2017-07-28"  #
+__VERSION__ = "103"      # update for Python 3
+__DATE__ = "2018-03-17"  #
 
 ########################################################################
 
@@ -68,16 +68,16 @@ class MyPanel2(wx.Panel):
         )
         self.cb3 = wx.CheckBox(self, -1, "&KML - output for Google Earth")
         self.cb4 = wx.CheckBox(self, -1, "&MR - generate a .gpx route file")
-        self.cb5 = wx.CheckBox(self, -1, "&ROOTER - generate a Rooter file")
+        self.cb5 = wx.CheckBox(self, -1, "R&OOTER - generate a Rooter file")
         self.cb6 = wx.CheckBox(
             self,
             -1,
-            "&RTEPT - generate a Streets &Trips GPX _rtept file"
+            "RTE&PT - generate a Streets and Trips GPX _rtept file"
         )
         self.cb7 = wx.CheckBox(
             self,
             -1,
-            "&GeoSphere - generate a GeoSphere file"
+            "&Cachly - generate a Cachly file"
         )
 
         button = wx.Button(self, -1, "&Run")
@@ -321,8 +321,8 @@ class MyPanel2(wx.Panel):
     ########################################################################
 
     def do_gs(self, pathname):
-        """Create a GeoSphere gpx File."""
-        self.log("Creating GeoSphere file")
+        """Create a Cachly gpx File."""
+        self.log("Creating Cachly file")
 
         make_gs.process_arg(pathname)
 
