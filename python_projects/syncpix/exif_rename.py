@@ -4,7 +4,7 @@
 from __future__ import print_function
 
 # Created:       Thu 02 Oct 2014 06:37:29 PM CDT
-# Last Modified: Tue 22 Aug 2017 09:53:41 AM CDT
+# Last Modified: Sat 17 Mar 2018 10:12:41 AM CDT
 
 #######################################################################
 
@@ -63,7 +63,7 @@ VERSION
 
 """
 
-__VERSION__ = "0.0.3"
+__VERSION__ = "0.1.0"
 
 #########################################################################
 
@@ -233,8 +233,7 @@ temporary directory"""
 
     outfile = open(outpath, "w")
 
-    # create the directory
-    print("mkdir temp", file=outfile)
+    print("@rem Renaming files to include timestamp", file=outfile)
 
     # for all entries in the result dictionary
     for new in sorted(list(result.keys())):
@@ -244,10 +243,10 @@ temporary directory"""
 
         # report it
         if debug:
-            print('copy "%s" temp\%s' % (old, new))
+            print('@mv "%s" %s' % (old, new))
 
         # copy and rename the file to the temporary directory
-        print('copy "%s" temp\%s' % (old, new), file=outfile)
+        print('@mv "%s" %s' % (old, new), file=outfile)
 
     # close the batch file
     outfile.close()
@@ -331,7 +330,7 @@ if __name__ == '__main__':
     BASE = "C:/Users/Robert Oelschlaeger/Google Drive/Caching Pictures"
     """Location of pictures containing EXIF data"""
 
-    DATE = "20180131"
+    from common_info import DATE
     """Location of this week's pictures"""
 
     def main():
