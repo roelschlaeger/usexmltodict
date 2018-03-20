@@ -1,11 +1,13 @@
+#!/usr/bin/env python
+
 """Parse a .gpx file into a .csv output."""
 
 from __future__ import print_function
 
-from bs4 import BeautifulSoup
-from collections import OrderedDict
 from json import loads
 import csv
+from collections import OrderedDict
+from bs4 import BeautifulSoup
 
 from with_sqlite3 import create_temp_db, delete_temp_db, fill_temp_db
 
@@ -56,39 +58,42 @@ CACHE_COLS = [
 ########################################################################
 
 
-def fix_html(d, key_list):
+def fix_html(e_dict, key_list):
     """Extract text from hint and description tags"""
     for key in key_list:
         text = ""
-        if key == "groundspeak:encoded_hints" and d[key] != "None":
-            text = d[key]
+
+        if key == "groundspeak:encoded_hints" and e_dict[key] != "None":
+            text = e_dict[key]
+
         else:
-            if d[key] is not None:
-                if "#text" in d[key]:
-                    text = d[key]["#text"]
-                    if "@html" in d[key] and d[key]["@html"]:
+            if e_dict[key] is not None:
+                if "#text" in e_dict[key]:
+                    text = e_dict[key]["#text"]
+                    if "@html" in e_dict[key] and e_dict[key]["@html"]:
                         soup = BeautifulSoup(text, 'html.parser')
                         text = soup.get_text()
-        d[key] = text
+
+        e_dict[key] = text
 
 ########################################################################
 
 
-def build_row(w0):
+def build_row(wpt0):
     """Create a new output row from the column specs"""
-    d = OrderedDict()
-    for c in W0_COLS:
-        d[c] = w0[c]
-    for c in LINK_COLS:
-        d[c] = w0["link"][c]
-    for c in WPTEXTENSION_COLS:
-        d[c] = w0["extensions"]["gsak:wptExtension"][c]
-    for c in CACHE_COLS:
-        d[c] = w0["extensions"]["groundspeak:cache"][c]
+    e_dict = OrderedDict()
+    for column in W0_COLS:
+        e_dict[column] = wpt0[column]
+    for column in LINK_COLS:
+        e_dict[column] = wpt0["link"][column]
+    for column in WPTEXTENSION_COLS:
+        e_dict[column] = wpt0["extensions"]["gsak:wptExtension"][column]
+    for column in CACHE_COLS:
+        e_dict[column] = wpt0["extensions"]["groundspeak:cache"][column]
 
     # make corrections to text fields
     fix_html(
-        d,
+        e_dict,
         [
             "groundspeak:short_description",
             "groundspeak:long_description",
@@ -97,7 +102,7 @@ def build_row(w0):
     )
 
     # return the row
-    return d
+    return e_dict
 
 ########################################################################
 
@@ -105,23 +110,38 @@ def build_row(w0):
 def create_temp_csv(filename, wpt):
     """Create a temp.csv file containing select gpx columns"""
 
-    with open(filename, "w") as f:
+    with open(filename, "w") as outfile:
 
         # create the spreadsheet writer
         writer = csv.writer(
-            f, lineterminator='\n', dialect="excel-tab"
+            outfile, lineterminator='\n', dialect="excel-tab"
         )
 
         # fill in spreadsheet header and rows
-        for index, w0 in enumerate(wpt):
-            row = build_row(w0)
+        for index, wpt0 in enumerate(wpt):
+            row = build_row(wpt0)
             if index == 0:
                 writer.writerow(row.keys())
             writer.writerow(row.values())
 
 ########################################################################
 
+
 def main(input_file, output_file, create=False, delete=False):
+    """Processing to read JSON-formatted 'input_file" to generate 'output_file'
+    HTML maps file
+
+    Arguments:
+        input_file {str} -- input filename
+        output_file {str} -- output filename
+
+    Keyword Arguments:
+        Delete and/or create a 'waypoints' table in the SQLite3 file
+        'output_file.db':
+
+        delete {bool} -- if True delete database table (default: {False})
+        create {bool} -- if True create a database table (default: {False})
+    """
 
     with open(input_file, "rb") as jsonfile:
         print(f"\nReading from {input_file}")
@@ -138,8 +158,8 @@ def main(input_file, output_file, create=False, delete=False):
         print("\nCreating and filling table in %s" % DB_FILE)
         row = build_row(wpt[0])
         create_temp_db(DB_FILE, row)
-        for w0 in wpt:
-            row = build_row(w0)
+        for wpt0 in wpt:
+            row = build_row(wpt0)
             fill_temp_db(DB_FILE, row)
     else:
         if not delete:
@@ -153,51 +173,51 @@ if __name__ == "__main__":
 
     import argparse
 
-    parser = argparse.ArgumentParser(
+    PARSER = argparse.ArgumentParser(
         description="Convert JSON file to CSV",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
 
-    parser.add_argument(
+    PARSER.add_argument(
         "inputfile",
         type=str,
         nargs="?",
         help="JSON input filename",
     )
 
-    parser.add_argument(
+    PARSER.add_argument(
         "csvfile",
         type=str,
         nargs="?",
         help="CSV output filename",
     )
 
-    parser.set_defaults(
+    PARSER.set_defaults(
         inputfile=JSONFILE,
         csvfile=CSV_FILENAME
     )
 
-    parser.add_argument(
+    PARSER.add_argument(
         "-c",
         "--create",
         action="store_true",
         help="create new database table and exit",
     )
 
-    parser.add_argument(
+    PARSER.add_argument(
         "-d",
         "--delete",
         action="store_true",
         help="delete database table",
     )
 
-    args = parser.parse_args()
+    ARGS = PARSER.parse_args()
 
     main(
-        args.inputfile,
-        args.csvfile,
-        args.create,
-        args.delete
+        ARGS.inputfile,
+        ARGS.csvfile,
+        ARGS.create,
+        ARGS.delete
     )
 
 # end of file

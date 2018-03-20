@@ -1,21 +1,24 @@
+.pytest_cache/
 .vscode/
 __pycache__/
-html-1.16/
 py36_env/
-# .pylintrc
-# bobo.tmp
-# boston_to_concord_stopover_charleston_via_lexington.json
-# directions.html
-# gpsbabel_help.txt
-# html-1.16.tar
-# makeitn.bat
-# mymap.html
-# outfile route.gpx
-# outfile route.gpx.itn
-# output_file.db
-# t.py
-# test.html
-# test2.html
-# tidy_help.txt
-# topo930a - Smithshire IL route.gpx
-# topo930a - Smithshire IL.gpx
+*.json
+*.html
+.pylintrc
+bobo.tmp
+boston_to_concord_stopover_charleston_via_lexington.json
+directions.html
+gpsbabel_help.txt
+html-1.16.tar
+makeitn.bat
+mymap.html
+outfile route.gpx
+outfile route.gpx.itn
+output_file.db
+t.py
+temp.csv
+temp.gpx
+test.html
+test2.html
+tidy_help.txt
+topo931a - Saint James MO*.*
