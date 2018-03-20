@@ -1,7 +1,9 @@
-_make_rte.xml
+.pytest_cache/
 .ropeproject/
+.vscode/
 *.gpx
 *.pyc
+_make_rte.xml
 8x8.html
 default_gpx_rooter.html
 default_gpx_rooter.zip

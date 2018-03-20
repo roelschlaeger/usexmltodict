@@ -45,7 +45,7 @@ def build_paths(data, single_route_flag=False):
 
 if __name__ == "__main__":
 
-    from with_sqlite3 import get_data
+    from html_maps.with_sqlite3 import get_data
 
     DATA = get_data()
 

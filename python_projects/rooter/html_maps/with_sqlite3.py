@@ -23,7 +23,7 @@ def _build_keytypes(row):
             "gsak:UserSort",
             "groundspeak:difficulty",
             "groundspeak:terrain"
-        ]:
+    ]:
         keytypes[col] = "INTEGER"
 
     return keytypes
@@ -81,7 +81,8 @@ def fill_temp_db(filename, row):
             )
         )
         questions = ", ".join(["?"] * len(row))
-        cmd = "INSERT INTO `waypoints` (%s) VALUES (%s)" % (row_keys, questions)
+        cmd = "INSERT INTO `waypoints` (%s) VALUES (%s)" % (
+            row_keys, questions)
         values_tuple = tuple(row.values())
         cursor.execute(cmd, values_tuple)
 
