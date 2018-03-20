@@ -66,11 +66,11 @@ $(document).ready(function(){
 
 
 def directions(
-    lats=None,
-    lons=None,
-    start=None,
-    end=None,
-    waypoints=None
+        lats=None,
+        lons=None,
+        start=None,
+        end=None,
+        waypoints=None
 ):
     """Create URI for a map from 'start' to 'end' via possibly empty
 'waypoints' list of intermediate points"""
@@ -126,14 +126,14 @@ of the route going from geocache to geocache.
     table = div.table(klass="table")
 
     thead = table.thead()
-    tr = thead.tr()
-    tr.th("Link", colspan="1")
-    tr.th("Waypoints", colspan="2")
+    tr0 = thead.tr()
+    tr0.th("Link", colspan="1")
+    tr0.th("Waypoints", colspan="2")
 
-    tr = thead.tr()
-    tr.th("To: UserSort")
-    tr.th("Name")
-    tr.th("Via Names")
+    tr1 = thead.tr()
+    tr1.th("To: UserSort")
+    tr1.th("Name")
+    tr1.th("Via Names")
 
     tbody = table.tbody()
 
@@ -142,16 +142,16 @@ of the route going from geocache to geocache.
 
         # show phony header row just for route starting point
         if item_index == 0:
-            tr = tbody.tr()
-            tr.td.button(
+            tr2 = tbody.tr()
+            tr2.td.button(
                 "Reset: %s" % usersorts[start],
                 klass="btn btn-primary",
                 id="bobs_reset"
             )
-            tr.td(texts[start])
-            tr.td()
+            tr2.td(texts[start])
+            tr2.td()
 
-        tr = tbody.tr()
+        tr3 = tbody.tr()
 
         href = directions(
             lats=lats,
@@ -161,7 +161,7 @@ of the route going from geocache to geocache.
             waypoints=waypoints
         )
 
-        td = tr.td.a(
+        tr3.td.a(
             "%s" % (usersorts[end]),
             href=href,
             target="_blank",
@@ -170,15 +170,15 @@ of the route going from geocache to geocache.
         )
 
         if hrefs[end]:
-            tr.td.a(
+            tr3.td.a(
                 texts[end],
                 href=hrefs[end],
                 target="_blank"
             )
         else:
-            tr.td(texts[end])
+            tr3.td(texts[end])
 
-        td3 = tr.td()
+        td3 = tr3.td()
         if waypoints:
             for index, waypoint in enumerate(waypoints):
                 if index != 0:
@@ -191,8 +191,8 @@ of the route going from geocache to geocache.
 
 
 def convert_json_to_html(
-    json_filename=JSON_INPUT_FILENAME,
-    html_filename=HTML_OUTPUT_FILENAME
+        json_filename=JSON_INPUT_FILENAME,
+        html_filename=HTML_OUTPUT_FILENAME
 ):
     """Convert .gpx data encoded in json_filename to HTML directions in
 html_filename."""

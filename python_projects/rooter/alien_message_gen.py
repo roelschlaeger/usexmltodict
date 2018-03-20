@@ -26,7 +26,7 @@ ALPHABET = {
         'x   x',
         'x   x',
         ' xxx ',
-        ),
+    ),
 
     '1':   (
         '  x  ',
@@ -36,7 +36,7 @@ ALPHABET = {
         '  x  ',
         '  x  ',
         'xxxxx',
-        ),
+    ),
 
     '2':   (
         ' xxx ',
@@ -46,7 +46,7 @@ ALPHABET = {
         ' x   ',
         'x    ',
         'xxxxx',
-        ),
+    ),
 
     '3':   (
         ' xxx ',
@@ -56,7 +56,7 @@ ALPHABET = {
         '   x ',
         'x   x',
         ' xxx ',
-        ),
+    ),
 
     '4':   (
         '   x ',
@@ -66,7 +66,7 @@ ALPHABET = {
         'xxxxx',
         '   x ',
         '   x ',
-        ),
+    ),
 
     '5':   (
         'xxxx ',
@@ -76,7 +76,7 @@ ALPHABET = {
         '    x',
         'x   x',
         ' xxx ',
-        ),
+    ),
 
     '6':   (
         '  xx ',
@@ -86,7 +86,7 @@ ALPHABET = {
         'x   x',
         'x   x',
         ' xxx ',
-        ),
+    ),
 
     '7':   (
         'xxxxx',
@@ -96,7 +96,7 @@ ALPHABET = {
         ' x   ',
         'x    ',
         'x    ',
-        ),
+    ),
 
     '8':   (
         ' xxx ',
@@ -106,7 +106,7 @@ ALPHABET = {
         ' x x ',
         'x   x',
         ' xxx ',
-        ),
+    ),
 
     '9':   (
         ' xxx ',
@@ -116,7 +116,7 @@ ALPHABET = {
         '    x',
         '    x',
         ' xxx ',
-        ),
+    ),
 
     ' ':   (
         '     ',
@@ -126,7 +126,7 @@ ALPHABET = {
         '     ',
         '     ',
         '     ',
-        ),
+    ),
 
     'N':   (
         'x   x',
@@ -136,7 +136,7 @@ ALPHABET = {
         'x  xx',
         'x   x',
         'x   x',
-        ),
+    ),
 
     'W':   (
         'x   x',
@@ -146,7 +146,7 @@ ALPHABET = {
         'x x x',
         'xx xx',
         'x   x',
-        ),
+    ),
 
     '.':   (
         '     ',
@@ -156,7 +156,7 @@ ALPHABET = {
         '     ',
         '  xx ',
         '  xx ',
-        ),
+    ),
 
     'o':   (
         ' xxx ',
@@ -166,7 +166,7 @@ ALPHABET = {
         '     ',
         '     ',
         '     ',
-        ),
+    ),
 
     "'":   (
         '   x ',
@@ -176,7 +176,7 @@ ALPHABET = {
         '     ',
         '     ',
         '     ',
-        ),
+    ),
 
 }
 
@@ -196,37 +196,39 @@ def update(array, _dimension, charnumber, row, col, _char):
 ########################################################################
 
 
-def encode(s, array, _char):
-    """Encode the latitude/longitude string s into array."""
-#   print "encode: %s" % s
+def encode(e_string, array, _char):
+    """Encode the latitude/longitude string e_string into array."""
+#   print "encode: %s" % e_string
     # check for, set up for latitude
     if _char == 'N':
-        d = 77
-        ro = 0
-        co = 0
+        dimension = 77
+        row_offset = 0
+        col_offset = 0
     else:
-        # et up for longitude
-        d = 91
-        ro = 4
-        co = 20
+        # set up for longitude
+        dimension = 91
+        row_offset = 4
+        col_offset = 20
 
-    for charnumber, char in enumerate(s):
+    for charnumber, char in enumerate(e_string):
         # print "char: %s" % char
-        f = ALPHABET[char]
-        for row, l in enumerate(f):
-            row += ro
-#           print row, l
-            for col, x in enumerate(l):
-                col += co
-#               print col, x,
-                if x == 'x':
-                    update(array, d, charnumber, row, col, _char)
+        fontdata = ALPHABET[char]
+        for row, leftover in enumerate(fontdata):
+            row += row_offset
+#           print row, leftover
+            for col, xchar in enumerate(leftover):
+                col += col_offset
+#               print col, xchar,
+                if xchar == 'x':
+                    update(array, dimension, charnumber, row, col, _char)
 
 ########################################################################
 
 
 def main(_args, options):
     """Run encoding from the console."""
+    print(options)
+
     latitude = options.latitude
     longitude = options.longitude
     pitch = options.pitch
@@ -234,8 +236,8 @@ def main(_args, options):
     if options.debug:
         for _char in sorted(ALPHABET.keys()):
             print()
-            for l in ALPHABET[_char]:
-                print(l)
+            for leftover in ALPHABET[_char]:
+                print(leftover)
 
     array = [DEFAULT_CHAR] * 1001
 
@@ -243,10 +245,10 @@ def main(_args, options):
     encode(longitude, array, 'W')
 
     print()
-    x = array
-    while x:
-        s, x = x[:pitch], x[pitch:]
-        print("".join(s))
+    xdata = array
+    while xdata:
+        sline, xdata = xdata[:pitch], xdata[pitch:]
+        print("".join(sline))
 
 ########################################################################
 
@@ -258,7 +260,7 @@ if __name__ == "__main__":
     import textwrap
     PARSER = ArgumentParser(
         usage=textwrap.dedent(__doc__)
-        )
+    )
 
     PARSER.add_argument(
         "-v",
