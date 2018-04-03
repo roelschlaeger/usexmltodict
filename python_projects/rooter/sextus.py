@@ -22,8 +22,8 @@ assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__VERSION__ = "110"      # update for Python 3
-__DATE__ = "2018-03-19"  #
+__VERSION__ = "1.11.0"   # set cb8 default to True
+__DATE__ = "2018-04-03"  #
 
 ########################################################################
 
@@ -105,7 +105,7 @@ class MyPanel2(wx.Panel):
         self.cb5.SetValue(True)
         self.cb6.SetValue(True)
         self.cb7.SetValue(True)
-        self.cb8.SetValue(False)
+        self.cb8.SetValue(True)
 
         # set up sizers
         sb1 = wx.StaticBoxSizer(

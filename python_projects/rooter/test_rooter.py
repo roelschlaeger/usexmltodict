@@ -14,6 +14,21 @@ DEFAULT_WPTS = 131
 ########################################################################
 
 
+def test_location_link():
+    """Perform a test of 'location_link' function
+    """
+    lat = "1.23456"
+    lon = "-1.23456"
+    retval = location_link(lat, lon)
+    expected_value = '<a class="latlon" ' \
+        'href="https://www.google.com/search?q=N1%2014.073%20W1%2014.073" ' \
+        'target="_blank">(N1 14.073, W1 14.073)</a>'
+    assert str(retval) == expected_value
+
+
+########################################################################
+
+
 def test_get_wpts():
     """Test the get_wpts function
     """
@@ -54,18 +69,5 @@ def test_ellipsis():
         print(result, bval)
         assert result == bval
 
-
-########################################################################
-
-def test_location_link():
-    """Perform a test of 'location_link' function
-    """
-    lat = "1.23456"
-    lon = "-1.23456"
-    retval = location_link(lat, lon)
-    expected_value = '<a class="latlon" ' \
-        'href="https://www.google.com/search?q=N1%2014.073%20W1%2014.073" ' \
-        'target="_blank">(N1 14.073, W1 14.073)</a>'
-    assert str(retval) == expected_value
 
 # end of file

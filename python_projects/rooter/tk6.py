@@ -1,36 +1,25 @@
 #!/usr/bin/env python
+# -*- coding=utf-8 -*-
 # vim:ts=4:sw=4:tw=0:wm=0:et:foldlevel=99:fileencoding=utf-8:ft=python
 
 """
-SYNOPSIS
+    SYNOPSIS
 
-    tk6 [-h] [-v,--verbose] [--version]
+        tk6 [-h] [-v,--verbose] [--version]
 
-DESCRIPTION
+    DESCRIPTION
 
-    Test package for using Tkinter in place of wx
+        Test package for using Tkinter in place of wx
 
-EXAMPLES
+    AUTHOR
 
-    TODO: Show some examples of how to use this script.
+        Robert Oelschlaeger <roelsch2009@gmail.com>
 
-EXIT STATUS
+    LICENSE
 
-    TODO: List exit codes
-
-AUTHOR
-
-    TODO: Robert Oelschlaeger <roelsch2009@gmail.com>
-
-LICENSE
-
-    This script is in the public domain.
-
-VERSION
+        This script is in the public domain.
 
 """
-
-# from __future__ import print_function
 
 # pylint: disable=R0201
 
@@ -49,13 +38,12 @@ import make_gs
 import make_rtept
 from html_maps import make_html_maps
 
-
 assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__VERSION__ = "1.1.0"
-__DATE__ = "2018-03-21"
+__VERSION__ = "1.11.0"      # match version from sextus.py
+__DATE__ = "2018-04-03"     # match date from sextus.py
 
 ########################################################################
 
@@ -254,11 +242,11 @@ class App(Frame):
         self._v1.set(1)
         self._v2.set(0)
         self._v3.set(1)
-        self._v4.set(1)
+        self._v4.set(0)
         self._v5.set(1)
         self._v6.set(1)
         self._v7.set(1)
-        self._v8.set(0)
+        self._v8.set(1)
 
     def b1_callback(self):
         """Callback function for _b1."""
@@ -380,9 +368,7 @@ if __name__ == "__main__":
         root = Tk()
         root.title("Run quint .gpx processing")
         root.geometry("400x400+200+200")
-    #   root.minsize(400, 200)
 
-        # master = Frame(root, padding=(3, 3, 12, 12))
         master = Frame(root)
         master.grid(column=0, row=0, sticky=(N, E, S, W))
 
