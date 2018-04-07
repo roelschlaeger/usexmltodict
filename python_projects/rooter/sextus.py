@@ -22,8 +22,8 @@ assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__VERSION__ = "1.11.0"   # set cb8 default to True
-__DATE__ = "2018-04-03"  #
+__VERSION__ = "1.11.1"   # set cb8 default to True
+__DATE__ = "2018-04-07"  #
 
 ########################################################################
 
@@ -365,7 +365,7 @@ if __name__ == '__main__':
         app = wx.App(redirect=False)
         app.SetAppName("quint")
 
-        frame = wx.Frame(None, -1, "Run quint .gpx processing")
+        frame = wx.Frame(None, -1, "Run sextus .gpx processing")
 
         panel = MyPanel2(frame, -1)
 
