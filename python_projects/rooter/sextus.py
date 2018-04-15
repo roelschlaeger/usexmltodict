@@ -22,8 +22,8 @@ assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__VERSION__ = "1.11.1"   # set cb8 default to True
-__DATE__ = "2018-04-07"  #
+__VERSION__ = "1.11.2"   # set cb8 default to True
+__DATE__ = "2018-04-15"  #
 
 ########################################################################
 
@@ -48,13 +48,19 @@ class MyPanel2(wx.Panel):
 
     def __init__(self, parent, _id, *args, **kwargs):
         """Class instance initialization."""
+
+        # get the "path" argument, unique to MyPanel2
+        default_file_text = kwargs.get("path") or DEFAULT_FILE_TEXT
+        del kwargs["path"]
+
         wx.Panel.__init__(self, parent, _id, *args, **kwargs)
 
         st0 = wx.StaticText(self, -1, "&Filename:")
+
         self.tc0 = wx.TextCtrl(
             self,
             -1,
-            DEFAULT_FILE_TEXT,
+            default_file_text,
             size=(384, -1),
             style=wx.TE_MULTILINE | wx.TE_PROCESS_ENTER
         )
@@ -360,14 +366,14 @@ if __name__ == '__main__':
 
     from argparse import ArgumentParser
 
-    def main():
+    def main(path=None):
         """Process each of the command line arguments."""
         app = wx.App(redirect=False)
         app.SetAppName("quint")
 
         frame = wx.Frame(None, -1, "Run sextus .gpx processing")
 
-        panel = MyPanel2(frame, -1)
+        panel = MyPanel2(frame, -1, path=path)
 
         frame.CreateStatusBar()
         frame.GetStatusBar().SetStatusText("Ready!")
@@ -388,6 +394,12 @@ if __name__ == '__main__':
     )
 
     PARSER.add_argument(
+        "infile",
+        nargs="?",
+        type=str
+    )
+
+    PARSER.add_argument(
         "-d",
         "--debug",
         dest="debug",
@@ -404,6 +416,6 @@ if __name__ == '__main__':
 
     NAMESPACE = PARSER.parse_args()
 
-    main()
+    main(path=NAMESPACE.infile)
 
 ########################################################################
