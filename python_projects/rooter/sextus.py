@@ -8,6 +8,7 @@
 # from __future__ import print_function
 
 import sys
+import os
 
 import wx
 import et
@@ -22,7 +23,7 @@ assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__VERSION__ = "1.11.2"   # set cb8 default to True
+__VERSION__ = "1.11.3"   # set cb8 default to True
 __DATE__ = "2018-04-15"  #
 
 ########################################################################
@@ -50,8 +51,18 @@ class MyPanel2(wx.Panel):
         """Class instance initialization."""
 
         # get the "path" argument, unique to MyPanel2
-        default_file_text = kwargs.get("path") or DEFAULT_FILE_TEXT
+        tc0_text = DEFAULT_FILE_TEXT
+
+        # handle the optional path parameter
+        path = kwargs.get("path")
+        # don't pass path to parent
         del kwargs["path"]
+
+        if path:
+            # expand to full pathname for current directory
+            if not os.path.dirname(path):
+                path = os.path.abspath(os.path.join(os.getcwd(), path))
+            tc0_text = path
 
         wx.Panel.__init__(self, parent, _id, *args, **kwargs)
 
@@ -60,7 +71,7 @@ class MyPanel2(wx.Panel):
         self.tc0 = wx.TextCtrl(
             self,
             -1,
-            default_file_text,
+            tc0_text,
             size=(384, -1),
             style=wx.TE_MULTILINE | wx.TE_PROCESS_ENTER
         )
