@@ -29,6 +29,7 @@ Perform selected processing on .gpx files.
 
 import sys
 import os
+import traceback
 
 from tkinter import Button, Checkbutton, Entry
 from tkinter import IntVar, Menu, StringVar
@@ -46,7 +47,7 @@ assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__VERSION__ = "1.11.3"      # match version from sextus.py
+__VERSION__ = "1.11.4"      # match version from sextus.py
 __DATE__ = "2018-04-17"     # match date from sextus.py
 
 DEFAULT_FILE_TEXT = "Filename goes here"
@@ -118,8 +119,9 @@ class App(Frame):
             self.log("do_rtept")
             output_filename = make_rtept.do_make_rtept(pathname)
             self.log("%s created" % output_filename)
-        except:
-            raise NotImplementedError()
+        except Exception as e:
+            print(e)
+            self.log(traceback.format_exc())
 
     def do_gs(self, pathname):
         """Create a Cachly gpx File.
@@ -130,8 +132,9 @@ class App(Frame):
         self.log("Creating Cachly file")
         try:
             make_gs.process_arg(pathname)
-        except:
-            raise NotImplementedError()
+        except Exception as e:
+            print(e)
+            self.log(traceback.format_exc())
 
     def do_html_maps(self, pathname):
         """Create a HTML Maps File.
@@ -142,8 +145,9 @@ class App(Frame):
         self.log("Creating HTML Maps file")
         try:
             make_html_maps.process_arg(pathname)
-        except:
-            raise NotImplementedError()
+        except Exception as e:
+            print(e)
+            self.log(traceback.format_exc())
 
     def _create_widgets(self):
         self._s1 = StringVar()
@@ -186,7 +190,6 @@ class App(Frame):
         self._e1.pack(fill=BOTH)
         self._e1.bind("<Button-1>", self.e1_callback)
 
-        # self._e2 = Text(self.lf3, textvariable=self._s2)
         self._e2 = Text(self.lf3, height=10, width=72, wrap=NONE)
         self._e2.pack(fill=BOTH)
 
@@ -418,13 +421,6 @@ if __name__ == "__main__":
         nargs="?",
         type=str
     )
-
-    PARSER.add_argument(
-        "-d",
-        "--debug",
-        dest="debug",
-        action="count",
-        help="increment debug counter")
 
     PARSER.add_argument(
         "--version",
