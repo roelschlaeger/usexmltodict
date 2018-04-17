@@ -12,7 +12,7 @@ tuples"""
 
     result = []
 
-    for wpt0 in wpt:
+    for index, wpt0 in enumerate(wpt):
         link = wpt0["link"]
         extensions = wpt0["extensions"]
         gsak = extensions["gsak:wptExtension"]
@@ -23,7 +23,7 @@ tuples"""
                 link["text"],
                 wpt0["sym"],
                 wpt0["name"],
-                gsak["gsak:UserSort"],
+                gsak.get("gsak:UserSort", index + 1),
                 link["@href"]
             )
         )
