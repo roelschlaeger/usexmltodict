@@ -24,6 +24,7 @@ Perform selected processing on .gpx files.
 """
 
 # pylint: disable=R0201
+# pylint: disable=W0703
 
 ########################################################################
 
@@ -47,10 +48,14 @@ assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
+__PROGNAME__ = "tk6.py"
 __VERSION__ = "1.11.4"      # match version from sextus.py
 __DATE__ = "2018-04-17"     # match date from sextus.py
 
+########################################################################
+
 DEFAULT_FILE_TEXT = "Filename goes here"
+DEFAULT_FLAGS = (True, False, True, False, True, True, True, True)
 
 ########################################################################
 
@@ -61,15 +66,10 @@ DEFAULT_FILE_TEXT = "Filename goes here"
 class App(Frame):
     """The main application."""
 
-    def __init__(self, master=None, **kwargs):
+    def __init__(self, master=None, path="", flags=DEFAULT_FLAGS):
         """Initialize the frame."""
-        # get the "path" argument, unique to MyPanel2
+        # get the "path" keyword argument, unique to MyPanel2
         tc0_text = DEFAULT_FILE_TEXT
-
-        # handle the optional path parameter
-        path = kwargs.get("path")
-        # don't pass path to parent
-        del kwargs["path"]
 
         if path:
             # expand to full pathname for current directory
@@ -77,11 +77,15 @@ class App(Frame):
                 path = os.path.abspath(os.path.join(os.getcwd(), path))
             tc0_text = path
 
+        # if no flags were passed, use the defaults
+        if flags == (False,) * 8:
+            flags = DEFAULT_FLAGS
+
         Frame.__init__(self, master, relief=RAISED)
         self.pack(fill=BOTH)
         self._create_widgets()
         self._create_menubar()
-        self._initialize(tc0_text)
+        self._initialize(tc0_text, flags)
 
     def about_me(self):
         """Handle About..."""
@@ -119,8 +123,8 @@ class App(Frame):
             self.log("do_rtept")
             output_filename = make_rtept.do_make_rtept(pathname)
             self.log("%s created" % output_filename)
-        except Exception as e:
-            print(e)
+        except Exception as _e:
+            print(_e)
             self.log(traceback.format_exc())
 
     def do_gs(self, pathname):
@@ -132,8 +136,8 @@ class App(Frame):
         self.log("Creating Cachly file")
         try:
             make_gs.process_arg(pathname)
-        except Exception as e:
-            print(e)
+        except Exception as _e:
+            print(_e)
             self.log(traceback.format_exc())
 
     def do_html_maps(self, pathname):
@@ -145,8 +149,8 @@ class App(Frame):
         self.log("Creating HTML Maps file")
         try:
             make_html_maps.process_arg(pathname)
-        except Exception as e:
-            print(e)
+        except Exception as _e:
+            print(_e)
             self.log(traceback.format_exc())
 
     def _create_widgets(self):
@@ -263,17 +267,17 @@ class App(Frame):
 
 #       self.master.config(menu=self.menubar)
 
-    def _initialize(self, tc0_text):
+    def _initialize(self, tc0_text, flags):
         self._s1.set(tc0_text)
         self._s2.set("Logging")
-        self._v1.set(1)
-        self._v2.set(0)
-        self._v3.set(1)
-        self._v4.set(0)
-        self._v5.set(1)
-        self._v6.set(1)
-        self._v7.set(1)
-        self._v8.set(1)
+        self._v1.set(flags[0])
+        self._v2.set(flags[1])
+        self._v3.set(flags[2])
+        self._v4.set(flags[3])
+        self._v5.set(flags[4])
+        self._v6.set(flags[5])
+        self._v7.set(flags[6])
+        self._v8.set(flags[7])
 
     def b1_callback(self):
         """Handle the callback operation of the  _b1 button."""
@@ -312,7 +316,7 @@ class App(Frame):
         """Shutdown after three seconds."""
         self.after(3000, self.quit())
 
-    def e1_callback(self, event):
+    def e1_callback(self, _event):
         """Handle the callback function for _e1."""
         # print("e1_callback", "%s" % event)
         filename = tkFileDialog.askopenfilename(
@@ -389,18 +393,18 @@ class App(Frame):
 
 if __name__ == "__main__":
 
-    def main(path=None):
+    def main(path=None, flags=None):
         """Build the GUI and run it."""
         from tkinter import Tk
 
         root = Tk()
-        root.title("Run tk6 .gpx processing")
+        root.title(f"Run {__PROGNAME__} .gpx processing")
         root.geometry("524x524+100+100")
 
         master = Frame(root)
         master.grid(column=0, row=0, sticky=(N, E, S, W))
 
-        app = App(master, path=path)
+        app = App(master, path=path, flags=flags)
         root.config(menu=app.menubar)
 
         for child in master.winfo_children():
@@ -410,26 +414,42 @@ if __name__ == "__main__":
 
 ########################################################################
 
-    from argparse import ArgumentParser
+    HELP_DOC = f"""
+    usage: {__PROGNAME__} [--help --version] [-abcdefgh] [INFILE]
 
-    PARSER = ArgumentParser(
-        description=__doc__
-    )
+    Perform selected processing on .gpx files based on Wx GUI.
 
-    PARSER.add_argument(
-        "infile",
-        nargs="?",
-        type=str
-    )
+        DESCRIPTION:  GUI package using Tkinter
+        AUTHOR:       Robert Oelschlaeger <roelsch2009@gmail.com>
 
-    PARSER.add_argument(
-        "--version",
-        action="version",
-        version="%%(prog)s, Version: %s %s" % (__VERSION__, __DATE__)
-    )
+    positional arguments:
+        INFILE
 
-    NAMESPACE = PARSER.parse_args()
+    optional arguments:
+    --help         show this help message and exit
+    --version      show program's version number and exit
 
-    main(path=NAMESPACE.infile)
+    -a  enable ET - Generate Excel .csv output
+    -b  enable HTML - include HTML output from et.py
+    -c  enable KML - output for Google Earth
+    -d  enable MR - generate a .gpx route file
+    -e  enable ROOTER - generate a Rooter file
+    -f  enable RTEPT - generate a Streets and Trips GPX _rtept file
+    -g  enable Cachly - generate a Cachly file
+    -h  enable HTML Maps - generate a HTML Maps file
+
+    """
+    from docopt import docopt
+
+    VERSION_TEXT = f"{__PROGNAME__}  Version: {__VERSION__}  Date: {__DATE__}"
+
+    ARGUMENTS = docopt(HELP_DOC, version=VERSION_TEXT, help=False)
+    if ARGUMENTS["--help"]:
+        print(HELP_DOC.strip())
+        sys.exit(1)
+
+    # print(ARGUMENTS)
+    FLAGS = tuple([ARGUMENTS[f"-{x}"] for x in "abcdefgh"])
+    main(path=ARGUMENTS["INFILE"], flags=FLAGS)
 
 ########################################################################
