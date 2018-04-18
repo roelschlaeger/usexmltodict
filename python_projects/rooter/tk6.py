@@ -44,18 +44,35 @@ import make_gs
 import make_rtept
 from html_maps import make_html_maps
 
+import et
+import gpx2kml
+import mr
+import rooter
+
 assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
 __PROGNAME__ = "tk6.py"
-__VERSION__ = "1.11.4"      # match version from sextus.py
-__DATE__ = "2018-04-17"     # match date from sextus.py
+__VERSION__ = "1.11.5"      # match version from sextus.py
+__DATE__ = "2018-04-18"     # match date from sextus.py
 
 ########################################################################
 
 DEFAULT_FILE_TEXT = "Filename goes here"
+MIN_INDEX = 1010
 DEFAULT_FLAGS = (True, False, True, False, True, True, True, True)
+
+########################################################################
+
+# pylint: disable=too-few-public-methods
+
+
+class Options(object):
+    """Dummy options class."""
+
+    def __init__(self):
+        self.html = True
 
 ########################################################################
 
@@ -97,21 +114,53 @@ class App(Frame):
         self._e2.insert(END, "\n- " + _s)
         self._e2.see(END)
 
-    def do_et(self, pathname, et_flag, html_flag):
-        """Pretend to run the ET function."""
-        self.log("do_et: %s %s %s" % (pathname, et_flag, html_flag))
+    ########################################################################
 
-    def do_gpx2kml(self, _pathname):
-        """Pretend to run the GPX2KML function."""
-        self.log("do_gpx2kml")
+    def do_et(self, pathname, et_flag, html_flag):
+        """Run the ET function."""
+        # self.log("do_et: %s %s %s" % (pathname, et_flag, html_flag))
+        self.log("Processing ET and/or HTML")
+
+        et_options = Options()
+        et_options.html = html_flag
+
+        body = et.do_body2(pathname, index=MIN_INDEX, options=et_options)
+
+        if et_flag:
+            output_filename = "%s.csv" % pathname
+            outfile = open(output_filename, "w")
+            print(body, file=outfile)
+            outfile.close()
+            print("et output is in %s" % output_filename)
+
+    ########################################################################
+
+    def do_gpx2kml(self, pathname):
+        """Create a KML file from the path data."""
+        self.log("Processing gpx2hkml")
+
+        input_filename = pathname
+        output_filename = None
+        gpx2kml.create_kml_file(input_filename, output_filename)
+
+    ########################################################################
 
     def do_mr(self, pathname):
-        """Pretend to run the MR function."""
-        self.log("do_mr: %s" % pathname)
+        """Process the pathname file using mr.py."""
+        self.log(f"Processing mr: {pathname}")
+
+        mr_options = Options()
+        mr.process_arg(pathname, mr_options)
+
+    ########################################################################
 
     def do_rooter(self, pathname):
-        """Pretend to run the ROOTER function."""
-        self.log("do_rooter: %s" % pathname)
+        """Create a Rooter HTML File."""
+        self.log("Creating Rooter file")
+
+        rooter.do_rooter(pathname)       # , options=ro_options)
+
+    ########################################################################
 
     def do_rtept(self, pathname):
         """Create a Streets & Trips Route GPX File.
@@ -127,6 +176,8 @@ class App(Frame):
             print(_e)
             self.log(traceback.format_exc())
 
+    ########################################################################
+
     def do_gs(self, pathname):
         """Create a Cachly gpx File.
 
@@ -140,6 +191,8 @@ class App(Frame):
             print(_e)
             self.log(traceback.format_exc())
 
+    ########################################################################
+
     def do_html_maps(self, pathname):
         """Create a HTML Maps File.
 
@@ -152,6 +205,8 @@ class App(Frame):
         except Exception as _e:
             print(_e)
             self.log(traceback.format_exc())
+
+    ########################################################################
 
     def _create_widgets(self):
         self._s1 = StringVar()

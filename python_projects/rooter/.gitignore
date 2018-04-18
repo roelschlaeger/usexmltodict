@@ -4,14 +4,22 @@
 *.gpx
 *.pyc
 _make_rte.xml
+_make_rtept.gpx.kml
 8x8.html
 default_gpx_rooter.html
 default_gpx_rooter.zip
+default.gpx.csv
+default.gpx.json.html
+default.gpx.kml
 default.html
+default.xls
 rooter_default_gpx.html
 rooter.html
 rooter.sublime-project
 rooter.sublime-workspace
 rooter.txt
+simple.xls
 test.kml
+topo840b - Collinsville IL.gpx.json.html
+topo840b - Collinsville IL.gpx.kml
 topo859 - Macon County MO.gpx
