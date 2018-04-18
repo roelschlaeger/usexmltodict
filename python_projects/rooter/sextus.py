@@ -23,13 +23,15 @@ assert sys.version_info > (3, ), "Python 3 required"
 
 ########################################################################
 
-__VERSION__ = "1.11.3"   # set cb8 default to True
-__DATE__ = "2018-04-15"  #
+__PROGNAME__ = "sextus.py"
+__VERSION__ = "1.11.4"   # set cb8 default to True
+__DATE__ = "2018-04-17"  #
 
 ########################################################################
 
 DEFAULT_FILE_TEXT = "Filename goes here"
 MIN_INDEX = 1010
+DEFAULT_FLAGS = (True, False, True, False, True, True, True, True)
 
 ########################################################################
 
@@ -47,22 +49,20 @@ class Options(object):
 class MyPanel2(wx.Panel):
     """Display a dialog panel."""
 
-    def __init__(self, parent, _id, *args, **kwargs):
+    def __init__(self, parent, _id, *args, path="", flags=DEFAULT_FLAGS, **kwargs):
         """Class instance initialization."""
 
         # get the "path" argument, unique to MyPanel2
         tc0_text = DEFAULT_FILE_TEXT
-
-        # handle the optional path parameter
-        path = kwargs.get("path")
-        # don't pass path to parent
-        del kwargs["path"]
 
         if path:
             # expand to full pathname for current directory
             if not os.path.dirname(path):
                 path = os.path.abspath(os.path.join(os.getcwd(), path))
             tc0_text = path
+
+        if flags == (False,) * 8:
+            flags = DEFAULT_FLAGS
 
         wx.Panel.__init__(self, parent, _id, *args, **kwargs)
 
@@ -115,14 +115,14 @@ class MyPanel2(wx.Panel):
             style=wx.TE_MULTILINE | wx.TE_READONLY
         )
 
-        self.cb1.SetValue(True)
-        self.cb2.SetValue(False)
-        self.cb3.SetValue(True)
-        self.cb4.SetValue(False)
-        self.cb5.SetValue(True)
-        self.cb6.SetValue(True)
-        self.cb7.SetValue(True)
-        self.cb8.SetValue(True)
+        self.cb1.SetValue(flags[0])
+        self.cb2.SetValue(flags[1])
+        self.cb3.SetValue(flags[2])
+        self.cb4.SetValue(flags[3])
+        self.cb5.SetValue(flags[4])
+        self.cb6.SetValue(flags[5])
+        self.cb7.SetValue(flags[6])
+        self.cb8.SetValue(flags[7])
 
         # set up sizers
         sb1 = wx.StaticBoxSizer(
@@ -375,16 +375,14 @@ class MyPanel2(wx.Panel):
 
 if __name__ == '__main__':
 
-    from argparse import ArgumentParser
-
-    def main(path=None):
+    def main(path=None, flags=None):
         """Process each of the command line arguments."""
         app = wx.App(redirect=False)
         app.SetAppName("quint")
 
         frame = wx.Frame(None, -1, "Run sextus .gpx processing")
 
-        panel = MyPanel2(frame, -1, path=path)
+        panel = MyPanel2(frame, -1, path=path, flags=flags)
 
         frame.CreateStatusBar()
         frame.GetStatusBar().SetStatusText("Ready!")
@@ -400,33 +398,42 @@ if __name__ == '__main__':
 
     ########################################################################
 
-    PARSER = ArgumentParser(
-        description=__doc__
-    )
+    HELP_DOC = f"""
+    usage: {__PROGNAME__} [--help --version] [-abcdefgh] [INFILE]
 
-    PARSER.add_argument(
-        "infile",
-        nargs="?",
-        type=str
-    )
+    Perform selected processing on .gpx files based on Wx GUI.
 
-    PARSER.add_argument(
-        "-d",
-        "--debug",
-        dest="debug",
-        action="count",
-        help="increment debug counter"
-    )
+        DESCRIPTION:  GUI package using wx
+        AUTHOR:       Robert Oelschlaeger <roelsch2009@gmail.com>
 
-    PARSER.add_argument(
-        "-v",
-        "--version",
-        action="version",
-        version="%%(prog)s, Version: %s %s" % (__VERSION__, __DATE__)
-    )
+    positional arguments:
+        INFILE
 
-    NAMESPACE = PARSER.parse_args()
+    optional arguments:
+    --help         show this help message and exit
+    --version      show program's version number and exit
 
-    main(path=NAMESPACE.infile)
+    -a  enable ET - Generate Excel .csv output
+    -b  enable HTML - include HTML output from et.py
+    -c  enable KML - output for Google Earth
+    -d  enable MR - generate a .gpx route file
+    -e  enable ROOTER - generate a Rooter file
+    -f  enable RTEPT - generate a Streets and Trips GPX _rtept file
+    -g  enable Cachly - generate a Cachly file
+    -h  enable HTML Maps - generate a HTML Maps file
 
-########################################################################
+    """
+    from docopt import docopt
+
+    VERSION_TEXT = f"{__PROGNAME__}  Version: {__VERSION__}  Date: {__DATE__}"
+
+    ARGUMENTS = docopt(HELP_DOC, version=VERSION_TEXT, help=False)
+    if ARGUMENTS["--help"]:
+        print(HELP_DOC.strip())
+        sys.exit(1)
+
+    # print(ARGUMENTS)
+    FLAGS = tuple([ARGUMENTS[f"-{x}"] for x in "abcdefgh"])
+    main(path=ARGUMENTS["INFILE"], flags=FLAGS)
+
+# end of file
