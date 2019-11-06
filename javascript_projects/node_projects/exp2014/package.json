@@ -14,6 +14,6 @@
     "debug": "~>2.6.9",
     "hjs": "~0.0.6",
     "less-middleware": "1.0.x",
-    "mongoose": "~3.8.19"
+    "mongoose": ">=5.7.5"
   }
 }
