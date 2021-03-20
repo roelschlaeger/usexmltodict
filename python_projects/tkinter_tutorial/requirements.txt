@@ -13,7 +13,7 @@ pandas==0.17.1
 path.py==8.1.2
 pbr==1.1.0
 pickleshare==0.6
-Pillow==6.2.0
+Pillow>=8.1.2
 pylab==0.1.3
 pyparsing==2.1.0
 python-dateutil==2.4.2
